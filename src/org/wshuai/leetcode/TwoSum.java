@@ -1,3 +1,5 @@
+package org.wshuai.leetcode;
+
 import java.util.HashMap;
 
 /**
@@ -29,3 +31,4 @@ public class TwoSum {
         return result;
     }
 }
+
