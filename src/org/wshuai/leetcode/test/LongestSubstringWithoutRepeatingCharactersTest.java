@@ -3,7 +3,7 @@ package org.wshuai.leetcode.test;
 import org.junit.Test;
 import org.wshuai.leetcode.LongestSubstringWithoutRepeatingCharacters;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Wei on 8/9/2015.
