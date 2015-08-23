@@ -7,7 +7,7 @@ import org.wshuai.utility.ArrayUtil;
  */
 public class SelectionSort {
     public static void sort(Comparable[] array){
-        if(array == null || array.length == 0){
+        if(array == null || array.length <= 1){
             return;
         }
 

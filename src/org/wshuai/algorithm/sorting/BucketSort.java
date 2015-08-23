@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class BucketSort {
   public static void sort(Comparable[] array){
-    if(array == null || array.length <= 0){
+    if(array == null || array.length <= 1){
       return;
     }
 
