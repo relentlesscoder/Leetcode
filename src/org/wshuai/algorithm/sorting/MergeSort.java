@@ -21,7 +21,7 @@ public class MergeSort {
     }
 
     auxiliary = new Comparable[array.length];
-    MergeSort.sort(array, 0, array.length - 1);
+    sort(array, 0, array.length - 1);
   }
 
   /**
@@ -55,7 +55,7 @@ public class MergeSort {
     }
 
     int left = low;
-    int right = middle;
+    int right = middle + 1;
 
     for(int i = low; i <= high; i++){
       if(left > middle){
