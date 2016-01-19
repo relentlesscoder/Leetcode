@@ -61,4 +61,27 @@ public class HeapSort {
     maxHeapify(heap, 0);
     return max;
   }
+
+  private static void increaseKey(ArrayList<Comparable> heap, int index, Comparable key){
+    if(ArrayUtil.less(key, heap.get(index))){
+      throw new UnsupportedOperationException("New key must be larger than current key.");
+    }
+
+    while(index != 0){
+      int parent;
+      if(index%2 == 0){
+        parent = index/2-1;
+      }
+      else{
+        parent = index/2;
+      }
+
+      if(ArrayUtil.less(heap.get(parent), key)){
+        heap.set(index, heap.get(parent));
+        heap.set(parent, key);
+      }
+
+      index = parent;
+    }
+  }
 }
