@@ -1,29 +1,24 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
- * Created by Wei on 1/19/2016.
- * #104 https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ * Created by Wei on 1/20/16.
  */
-public class MaximumDepthOfBinaryTree {
-  public int maxDepthRecursive(TreeNode root) {
-    if(root == null){
-      return 0;
-    }
-    return Math.max(maxDepthRecursive(root.left) + 1, maxDepthRecursive(root.right) + 1);
-  }
+public class BinaryTreePostorderTraversal {
+  public List<Integer> postorderTraversal(TreeNode root) {
+    List<Integer> result = new ArrayList<Integer>();
 
-  public int maxDepthIterative(TreeNode root) {
     if(root == null){
-      return 0;
+      return result;
     }
 
-    int result = 0;
     Stack<TreeNode> stack = new Stack<TreeNode>();
 
-    TreeNode prev = null;
     stack.push(root);
+    TreeNode prev = null;
     while (!stack.isEmpty()){
       TreeNode current = stack.peek();
       if(prev == null || prev.left == current || prev.right == current){
@@ -33,20 +28,27 @@ public class MaximumDepthOfBinaryTree {
         else if(current.right != null){
           stack.push(current.right);
         }
+        else{
+          result.add(current.val);
+        }
       }
       else if(current.left == prev){
         if(current.right != null){
           stack.push(current.right);
         }
+        else{
+          result.add(current.val);
+        }
+      }
+      else if(current.right == prev){
+        result.add(current.val);
       }
       else{
         stack.pop();
       }
+
       prev = current;
-
-      result = Math.max(stack.size(), result);
     }
-
     return result;
   }
 }
