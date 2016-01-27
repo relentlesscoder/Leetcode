@@ -6,9 +6,10 @@ import java.util.Stack;
 
 /**
  * Created by Wei on 1/20/16.
+ * #145 https://leetcode.com/problems/binary-tree-postorder-traversal/
  */
 public class BinaryTreePostorderTraversal {
-  public List<Integer> postorderTraversal(TreeNode root) {
+  public static List<Integer> postorderTraversal(TreeNode root) {
     List<Integer> result = new ArrayList<Integer>();
 
     if(root == null){
