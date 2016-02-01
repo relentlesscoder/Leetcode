@@ -5,19 +5,45 @@ import java.util.Stack;
 /**
  * Created by Wei on 1/26/16.
  * #173 https://leetcode.com/problems/binary-search-tree-iterator/
+ * This problem is just another way of implement inorder iterative traversal
+ * http://articles.leetcode.com/2010/04/binary-search-tree-in-order-traversal.html
  */
-public class BSTIterator {
+public class BinarySearchTreeIterator {
 
-  public BSTIterator(TreeNode root) {
+  private Stack<TreeNode> stack;
+  TreeNode current;
+  TreeNode rootNode;
+
+  public BinarySearchTreeIterator(TreeNode root) {
+    stack = new Stack<TreeNode>();
+    current = root;
+    rootNode = root;
   }
 
   /** @return whether we have a next smallest number */
   public boolean hasNext() {
-    return true;
+    if(rootNode == null){
+      return false;
+    }
+
+    return (!stack.isEmpty() || current != null);
   }
 
   /** @return the next smallest number */
   public int next() {
+    while (!stack.isEmpty() || current != null){
+      if(current != null){
+        stack.push(current);
+        current = current.left;
+      }
+      else{
+        TreeNode next = stack.peek();
+        current = stack.pop();
+        current = current.right;
+        return next.val;
+      }
+    }
+
     return 0;
   }
 }
