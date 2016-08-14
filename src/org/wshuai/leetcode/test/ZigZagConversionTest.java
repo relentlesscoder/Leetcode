@@ -16,7 +16,7 @@ public class ZigZagConversionTest {
   }
 
   @Test
-  public void rowNumGreaterThanInputStringLengthShouldReturnZigZagOutput(){
+  public void rowNumGtInputLengthShouldReturnOriginal(){
     String s = ZigZagConversion.convert("AB", 3);
     assertEquals(s, "AB");
   }
