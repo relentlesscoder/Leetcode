@@ -13,4 +13,9 @@ public class ImplementStrStrTest {
   public void testKMP(){
     int[] arr = ImplementStrStr.computeLspTable("AAACAAAA");
   }
+
+  @Test
+  public void testBuildKMP(){
+    int[] arr = ImplementStrStr.buildKMPTable("abababca");
+  }
 }

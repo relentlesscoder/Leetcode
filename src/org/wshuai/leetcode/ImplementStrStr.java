@@ -41,4 +41,27 @@ public class ImplementStrStr {
     }
     return lsp;
   }
+
+  public static int[] buildKMPTable(String word){
+    int wordLen = word.length();
+    int[] table = new int[wordLen];
+    int len = 0;
+    int i = 1;
+    table[0] = 0;
+    while(i < wordLen){
+      if(word.charAt(len) == word.charAt(i)){
+        len++;
+        table[i] = len;
+        i++;
+      }else{
+        if(len != 0){
+          len = table[len - 1];
+        }else{
+          table[i] = 0;
+          i++;
+        }
+      }
+    }
+    return table;
+  }
 }
