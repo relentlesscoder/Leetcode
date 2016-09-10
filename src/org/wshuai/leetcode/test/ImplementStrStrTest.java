@@ -10,12 +10,27 @@ import static org.junit.Assert.assertEquals;
  */
 public class ImplementStrStrTest {
   @Test
-  public void testKMP(){
-    int[] arr = ImplementStrStr.computeLspTable("AAACAAAA");
+  public void testBuildKMP1(){
+    char[] pattern = "AAACAAAA".toCharArray();
+    int[] lsp = new int[pattern.length];
+    ImplementStrStr.buildLSP(pattern, lsp);
   }
 
   @Test
-  public void testBuildKMP(){
-    int[] arr = ImplementStrStr.buildKMPTable("abababca");
+  public void testBuildKMP2(){
+    char[] pattern = "abababca".toCharArray();
+    int[] lsp = new int[pattern.length];
+    ImplementStrStr.buildLSP(pattern, lsp);
   }
+
+  @Test
+  public void testKMP1(){
+    int x = ImplementStrStr.strStrKMP("ABABDABACDABABCABAB", "ABABCABAB");
+  }
+
+  @Test
+  public void testKMP2() {
+    int x = ImplementStrStr.strStrKMP("mississippi", "issip");
+  }
+
 }
