@@ -5,63 +5,59 @@ package org.wshuai.leetcode;
  */
 public class ImplementStrStr {
 
-  public static int strStrKmp(String pattern, String text) {
-    int[] lsp = computeLspTable(pattern);
-
-    int j = 0;  // Number of chars matched in pattern
-    for (int i = 0; i < text.length(); i++) {
-      while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
-        // Fall back in the pattern
-        j = lsp[j - 1];  // Strictly decreasing
-      }
-      if (text.charAt(i) == pattern.charAt(j)) {
-        // Next char matched, increment position
-        j++;
-        if (j == pattern.length())
-          return i - (j - 1);
-      }
+  public static int strStrKMP(String haystack, String needle) {
+    if(haystack == null || needle == null){
+      return -1;
     }
-
-    return -1;  // Not found
-  }
-
-  public static int[] computeLspTable(String pattern) {
-    int[] lsp = new int[pattern.length()];
-    lsp[0] = 0;  // Base case
-    for (int i = 1; i < pattern.length(); i++) {
-      // Start by assuming we're extending the previous LSP
-      int j = lsp[i - 1];
-      while (j > 0 && pattern.charAt(i) != pattern.charAt(j)){
-        j = lsp[j - 1];
-      }
-      if (pattern.charAt(i) == pattern.charAt(j)){
-        j++;
-      }
-      lsp[i] = j;
+    if(needle.isEmpty()){
+      return 0;
     }
-    return lsp;
-  }
+    int pLen = needle.length();
+    int vLen = haystack.length();
+    char[] val = haystack.toCharArray();
+    char[] pattern = needle.toCharArray();
+    int[] lsp = new int[pLen];
+    buildLSP(pattern, lsp);
 
-  public static int[] buildKMPTable(String word){
-    int wordLen = word.length();
-    int[] table = new int[wordLen];
-    int len = 0;
-    int i = 1;
-    table[0] = 0;
-    while(i < wordLen){
-      if(word.charAt(len) == word.charAt(i)){
-        len++;
-        table[i] = len;
-        i++;
+    int vp = 0;
+    int pp = 0;
+    while(vp < vLen){
+      if(val[vp] == pattern[pp]){
+        if(pp == pLen - 1){
+          return vp - pLen + 1;
+        }
+        vp++;
+        pp++;
+      }else if(pp == 0){
+        vp++;
       }else{
-        if(len != 0){
-          len = table[len - 1];
+        int prefix = lsp[pp - 1];
+        if(prefix == 0){
+          pp = 0;
         }else{
-          table[i] = 0;
-          i++;
+          pp = prefix;
         }
       }
     }
-    return table;
+
+    return -1;
   }
+
+  public static void buildLSP(char[] pattern, int[] lsp){
+    int len = pattern.length;
+    lsp[0] = 0;
+    int prefix = 0;
+    for(int i = 1; i < len; i++){
+      while (prefix > 0 && pattern[prefix] != pattern[i]){
+        prefix = lsp[prefix - 1];
+      }
+
+      if(pattern[prefix] == pattern[i]){
+        prefix++;
+      }
+
+      lsp[i] = prefix;
+    }
+  }
+
 }
