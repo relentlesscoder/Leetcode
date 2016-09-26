@@ -1,7 +1,7 @@
-package org.wshuai.algorithm.backtracking.test;
+package org.wshuai.algorithm.backTracking.test;
 
 import org.junit.Test;
-import org.wshuai.algorithm.backtracking.NQueens;
+import org.wshuai.algorithm.backTracking.NQueens;
 
 /**
  * Created by Wei on 8/28/16.

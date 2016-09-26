@@ -1,4 +1,4 @@
-package org.wshuai.algorithm.tree;
+package org.wshuai.algorithm.binaryTree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
