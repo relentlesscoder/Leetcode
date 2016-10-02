@@ -1,4 +1,4 @@
-package org.wshuai.algorithm.Graph;
+package org.wshuai.algorithm.graph;
 
 import java.util.ArrayList;
 import java.util.List;
