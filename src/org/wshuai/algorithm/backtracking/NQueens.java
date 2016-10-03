@@ -1,4 +1,4 @@
-package org.wshuai.algorithm.backtracking;
+package org.wshuai.algorithm.backTracking;
 
 /**
  * Created by Wei on 8/28/16.
