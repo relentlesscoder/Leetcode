@@ -13,6 +13,7 @@ public class Graph {
   private int E;
   private List<Integer>[] adj;
 
+  // Constructor
   public Graph(int V){
     if(V < 0){
       throw new IllegalArgumentException("Number of vertices much be nonnegative");
