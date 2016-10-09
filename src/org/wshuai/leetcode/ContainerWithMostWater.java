@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  */
 public class ContainerWithMostWater {
 
+  // O(n) time
   public static int maxArea(int[] height) {
     int len = height.length;
     if(len <= 0){
