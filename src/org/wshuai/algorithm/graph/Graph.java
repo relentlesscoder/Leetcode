@@ -58,6 +58,7 @@ public class Graph {
     return adj[v].size();
   }
 
+  @Override
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(V + " vertices, " + E + " edges " + NEWLINE);

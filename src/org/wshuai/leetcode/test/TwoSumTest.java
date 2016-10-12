@@ -14,7 +14,8 @@ public class TwoSumTest {
     int[] array1 = {3, 2, 4};
     int target1 = 6;
 
-    int[] result1 = TwoSum.twoSum(array1, target1);
+    TwoSum ts = new TwoSum();
+    int[] result1 = ts.twoSum(array1, target1);
     assertEquals(2, result1[0]);
     assertEquals(3, result1[1]);
   }

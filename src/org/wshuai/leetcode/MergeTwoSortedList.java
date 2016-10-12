@@ -2,41 +2,38 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 8/16/2016.
+ * #21 https://leetcode.com/problems/merge-two-sorted-lists/
  */
 public class MergeTwoSortedList {
-  public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-    if(l1 == null && l2 == null){
-      return null;
-    }
+  public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
     if(l1 == null){
       return l2;
     }
     if(l2 == null){
       return l1;
     }
-    ListNode current = l1.val < l2.val ? l1 : l2;
-    ListNode root = current;
-    while(true){
 
-      while(l1 != null && l1.val < l2.val){
-        current = l1;
-        l1 = l1.next;
-      }
-      current.next = l2;
+    ListNode root = new ListNode(0);
+    ListNode c = root;
+    while(l1 != null || l2 != null){
       if(l1 == null){
+        c.next = l2;
         break;
       }
-
-      while(l2 != null && l2.val <= l1.val){
-        current = l2;
+      if(l2 == null){
+        c.next = l1;
+        break;
+      }
+      if(l1.val < l2.val){
+        c.next = l1;
+        l1 = l1.next;
+      }else{
+        c.next = l2;
         l2 = l2.next;
       }
-      current.next = l1;
-      if(l2 == null){
-        break;
-      }
+      c = c.next;
     }
 
-    return root;
+    return root.next;
   }
 }
