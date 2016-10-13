@@ -13,6 +13,7 @@ public class Graph {
   private int E;
   private List<Integer>[] adj;
 
+  // Constructor
   public Graph(int V){
     if(V < 0){
       throw new IllegalArgumentException("Number of vertices much be nonnegative");
@@ -57,6 +58,7 @@ public class Graph {
     return adj[v].size();
   }
 
+  @Override
   public String toString(){
     StringBuilder sb = new StringBuilder();
     sb.append(V + " vertices, " + E + " edges " + NEWLINE);

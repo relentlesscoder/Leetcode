@@ -14,6 +14,7 @@ public class MergeTwoSortedListTest {
   public void validInputsShouldBeMerged(){
     ListNode l1 = new ListNode(2);
     ListNode l2 = new ListNode(1);
-    ListNode r = MergeTwoSortedList.mergeTwoLists(l1, l2);
+    MergeTwoSortedList mt = new MergeTwoSortedList();
+    ListNode r = mt.mergeTwoLists(l1, l2);
   }
 }

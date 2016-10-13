@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import static org.wshuai.leetcode.MergeTwoSortedList.mergeTwoLists;
-
 /**
  * Created by Wei on 8/20/16.
  */
@@ -26,7 +24,8 @@ public class SortList {
                 mid.next = null;
                 ListNode l = sortList(head);
                 ListNode r = sortList(nxt);
-                return mergeTwoLists(l, r);
+                MergeTwoSortedList mt = new MergeTwoSortedList();
+                return mt.mergeTwoLists(l, r);
             }
         }else{
             return head;

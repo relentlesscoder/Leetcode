@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/2/16.
+ * #243 https://leetcode.com/problems/shortest-word-distance/
  */
 public class ShortestWordDistance {
   public int shortestDistance(String[] words, String word1, String word2) {
