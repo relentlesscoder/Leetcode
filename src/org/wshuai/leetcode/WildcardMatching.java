@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import java.util.regex.Pattern;
-
 /**
  * Created by Wei on 8/30/2016.
  */

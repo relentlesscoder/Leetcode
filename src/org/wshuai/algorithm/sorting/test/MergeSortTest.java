@@ -1,8 +1,8 @@
 package org.wshuai.algorithm.sorting.test;
 
 import org.junit.Test;
-import org.wshuai.algorithm.sorting.MergeSort;
 import org.wshuai.utility.ArrayUtil;
+import org.wshuai.algorithm.sorting.MergeSort;
 
 import static org.junit.Assert.*;
 
