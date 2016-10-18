@@ -6,7 +6,36 @@ import java.util.*;
  * Created by Wei on 10/1/2016.
  */
 public class FactorCombinations {
+
   public List<List<Integer>> getFactors(int n) {
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    List<Integer> lst = new ArrayList<Integer>();
+    getFactorsUtil(n, 2, res, lst);
+    return res;
+  }
+
+  private void getFactorsUtil(int n, int start, List<List<Integer>> res, List<Integer> lst){
+    if(n == 1){
+      if(lst.size() > 1){
+        res.add(new ArrayList<Integer>(lst));
+      }
+      return;
+    }else{
+      for(int i = start; i <= Math.sqrt(n); i++){
+        if(n%i == 0){
+          lst.add(i);
+          getFactorsUtil(n/i, i, res, lst);
+          lst.remove(lst.size()-1);
+        }
+      }
+    }
+
+    lst.add(n);
+    getFactorsUtil(1, n, res, lst);
+    lst.remove(lst.size()-1);
+  }
+
+  public List<List<Integer>> getFactorsBT(int n) {
     Set<String> set = new HashSet<String>();
     List<List<Integer>> lst = new ArrayList<List<Integer>>();
     List<Integer> ls = new ArrayList<Integer>();

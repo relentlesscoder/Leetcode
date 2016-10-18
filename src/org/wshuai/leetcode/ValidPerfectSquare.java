@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/1/2016.
+ * #367 https://leetcode.com/problems/valid-perfect-square/
  */
 public class ValidPerfectSquare {
   public boolean isPerfectSquare(int num) {

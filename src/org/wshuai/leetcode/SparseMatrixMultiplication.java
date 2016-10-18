@@ -2,20 +2,23 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/2/16.
+ * #311 https://leetcode.com/problems/sparse-matrix-multiplication/
  */
 public class SparseMatrixMultiplication {
-  //74 ms
-  public int[][] multiply(int[][] A, int[][] B) {
+  //46 ms
+  public int[][] multiply(int[][] A, int[][] B){
     int aRow = A.length;
     int aCol = A[0].length;
     int bCol = B[0].length;
     int[][] result = new int[aRow][bCol];
+
     for(int i = 0; i < aRow; i++){
       for(int j = 0; j < aCol; j++){
-        if(A[i][j] != 0){
-          for(int k = 0; k < bCol; k++){
-            result[i][k] += A[i][j]*B[j][k];
-          }
+        if(A[i][j] == 0){
+          continue;
+        }
+        for(int k = 0; k < bCol; k++){
+          result[i][k] += A[i][j]*B[j][k];
         }
       }
     }
