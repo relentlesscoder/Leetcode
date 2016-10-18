@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by Wei on 10/1/2016.
+ * #254 https://leetcode.com/problems/factor-combinations/
  */
 public class FactorCombinations {
 
