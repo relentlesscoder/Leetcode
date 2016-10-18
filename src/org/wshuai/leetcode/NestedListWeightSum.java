@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by Wei on 9/18/2016.
+ * #339 https://leetcode.com/problems/nested-list-weight-sum/
  */
 public class NestedListWeightSum {
   public int depthSum(List<NestedInteger> nestedList) {

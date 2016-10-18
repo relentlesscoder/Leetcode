@@ -1,4 +1,4 @@
-package org.wshuai.algorithm.binaryTree;
+package org.wshuai.algorithm.binarytree;
 
 /**
  * Created by Wei on 8/18/15.

@@ -1,5 +1,6 @@
 package org.wshuai.leetcode.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.wshuai.leetcode.StringToInteger;
 
@@ -11,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class StringToIntegerTest {
   @Test
   public void emptyShouldConvertToZero(){
-    assertEquals(StringToInteger.myAtoi(""), 0);
+    Assert.assertEquals(StringToInteger.myAtoi(""), 0);
   }
 
   @Test

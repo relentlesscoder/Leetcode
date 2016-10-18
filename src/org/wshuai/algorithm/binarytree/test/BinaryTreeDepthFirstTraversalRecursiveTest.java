@@ -1,8 +1,8 @@
-package org.wshuai.algorithm.binaryTree.test;
+package org.wshuai.algorithm.binarytree.test;
 
+import org.wshuai.algorithm.binarytree.BinaryTreeDepthFirstTraversalRecursive;
+import org.wshuai.algorithm.binarytree.BinaryTreeNode;
 import org.junit.Test;
-import org.wshuai.algorithm.binaryTree.BinaryTreeDepthFirstTraversalRecursive;
-import org.wshuai.algorithm.binaryTree.BinaryTreeNode;
 
 import java.util.List;
 
