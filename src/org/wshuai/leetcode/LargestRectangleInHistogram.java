@@ -5,6 +5,7 @@ import java.util.Stack;
 
 /**
  * Created by Wei on 10/4/16.
+ * #84 https://leetcode.com/problems/largest-rectangle-in-histogram/
  */
 public class LargestRectangleInHistogram {
   public int largestRectangleArea(int[] heights) {

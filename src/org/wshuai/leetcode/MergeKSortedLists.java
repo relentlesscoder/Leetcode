@@ -9,25 +9,43 @@ public class MergeKSortedLists {
     if(lists == null || lists.length == 0){
       return null;
     }
-    if(lists.length == 1){
-      return lists[0];
-    }
-    ListNode x = mergeLists(lists, 0, lists.length - 1);
-    return x;
+
+    int len = lists.length;
+    return mergeKListsUtil(lists, 0, len-1);
   }
 
-  public ListNode mergeLists(ListNode[] lst, int p, int q){
-    if(q - p > 1){
-      int r = (p + q)/2;
-      ListNode left = mergeLists(lst, p, r);
-      ListNode right = mergeLists(lst, r+1, q);
-      MergeTwoSortedList mt = new MergeTwoSortedList();
-      return mt.mergeTwoLists(left, right);
-    }else if(q == p + 1){
-      MergeTwoSortedList mt = new MergeTwoSortedList();
-      return mt.mergeTwoLists(lst[p], lst[q]);
+  private ListNode mergeKListsUtil(ListNode[] lists, int p, int q){
+    if(p == q){
+      return lists[p];
     }else{
-      return lst[p];
+      int r = p + (q-p)/2;
+      ListNode left = mergeKListsUtil(lists, p, r);
+      ListNode right = mergeKListsUtil(lists, r+1, q);
+      return mergeTwoLists(left, right);
     }
+  }
+
+  private ListNode mergeTwoLists(ListNode p, ListNode q){
+    ListNode root = new ListNode(-1);
+    ListNode curr = root;
+    while(p != null || q != null){
+      if(p == null){
+        curr.next = q;
+        break;
+      }
+      if(q == null){
+        curr.next = p;
+        break;
+      }
+      if(p.val < q.val){
+        curr.next = p;
+        p = p.next;
+      }else{
+        curr.next = q;
+        q = q.next;
+      }
+      curr = curr.next;
+    }
+    return root.next;
   }
 }
