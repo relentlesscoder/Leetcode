@@ -2,50 +2,55 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/2/2016.
+ * #76 https://leetcode.com/problems/minimum-window-substring/
  */
 public class MinimumWindowSubstring {
   public String minWindow(String s, String t) {
     if(s == null || t == null){
       return "";
     }
+
     int sLen = s.length();
     int tLen = t.length();
     if(sLen < tLen){
       return "";
     }
 
+    int[] expected = new int[256];
+    int[] found = new int[256];
+
+    int i = 0;
+    while(i < tLen){
+      expected[t.charAt(i)]++;
+      i++;
+    }
+
     int minStart = 0;
     int winStart = 0;
     int min = Integer.MAX_VALUE;
-    int[] expected = new int[256];
-    int[] found = new int[256];
     int count = 0;
-
-    for(int i = 0; i < tLen; i++){
-      expected[t.charAt(i)]++;
-    }
-
     for(int winEnd = 0; winEnd < sLen; winEnd++){
       char curr = s.charAt(winEnd);
       if(expected[curr] > 0){
         found[curr]++;
-        if(found[curr] <= expected[curr]){
+        if(expected[curr] >= found[curr]){
           count++;
         }
       }
 
       if(count == tLen){
-        while(expected[s.charAt(winStart)] == 0
-                || found[s.charAt(winStart)] > expected[s.charAt(winStart)]){
-          if(expected[s.charAt(winStart)] > 0){
-            found[s.charAt(winStart)]--;
+        char start = s.charAt(winStart);
+        while(expected[start] == 0 || found[start] > expected[start]){
+          if(expected[start] > 0){
+            found[start]--;
           }
           winStart++;
+          start = s.charAt(winStart);
         }
 
-        int winLen = winEnd - winStart + 1;
-        if(min > winLen){
-          min = winLen;
+        int winSize = winEnd - winStart + 1;
+        if(winSize < min){
+          min = winSize;
           minStart = winStart;
         }
       }
@@ -54,6 +59,6 @@ public class MinimumWindowSubstring {
     if(min == Integer.MAX_VALUE){
       return "";
     }
-    return s.substring(minStart, minStart + min);
+    return s.substring(minStart, minStart+min);
   }
 }

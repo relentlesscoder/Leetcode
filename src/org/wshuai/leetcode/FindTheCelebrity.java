@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/1/2016.
+ * #277 https://leetcode.com/problems/find-the-celebrity/
  */
 public class FindTheCelebrity {
   public int findCelebrity(int n) {
