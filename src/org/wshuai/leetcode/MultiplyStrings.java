@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/5/16.
+ * #43 https://leetcode.com/problems/multiply-strings/
  */
 public class MultiplyStrings {
   public String multiply(String num1, String num2) {
