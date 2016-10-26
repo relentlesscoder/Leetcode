@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 8/12/2016.
+ * #7 https://leetcode.com/problems/reverse-integer/
  */
 public class ReverseInteger {
   public static int reverse(int x) {

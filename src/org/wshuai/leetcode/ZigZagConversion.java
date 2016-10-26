@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 8/12/2016.
+ * #6 https://leetcode.com/problems/zigzag-conversion/
  */
 public class ZigZagConversion {
   public static String convert(String s, int numRows) {
@@ -20,6 +21,7 @@ public class ZigZagConversion {
       return s;
     }
     StringBuilder sb = new StringBuilder();
+    //Each section has numRows + (numRows-2) elements
     int size = 2*numRows - 2;
     for(int i = 0; i < numRows; i++){
       for(int j = i; j < len; j+=size){

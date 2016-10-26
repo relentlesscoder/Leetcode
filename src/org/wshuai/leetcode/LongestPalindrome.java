@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 10/3/16.
+ * #409 https://leetcode.com/problems/longest-palindrome/
  */
 public class LongestPalindrome {
   public int longestPalindrome(String s) {
@@ -28,6 +29,7 @@ public class LongestPalindrome {
         }
       }
     }
+    //Allow one extra character at center
     if(max != len){
       max++;
     }

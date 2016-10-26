@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * Created by Wei on 8/9/2015.
+ * #3 https://leetcode.com/problems/longest-substring-without-repeating-characters/
  */
 public class LongestSubstringWithoutRepeatingCharacters {
   public static int lengthOfLongestSubstring(String s) {
