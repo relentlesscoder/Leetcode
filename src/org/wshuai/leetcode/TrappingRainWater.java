@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/8/16.
+ * #42 https://leetcode.com/problems/trapping-rain-water/
  */
 public class TrappingRainWater {
 

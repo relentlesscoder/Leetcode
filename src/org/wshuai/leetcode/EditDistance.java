@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 9/2/2016.
+ * #72 https://leetcode.com/problems/edit-distance/
  */
 public class EditDistance {
   public static int minDistance(String word1, String word2) {

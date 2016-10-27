@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * Created by Wei on 8/21/16.
+ * #139 https://leetcode.com/problems/word-break/
  */
 public class WordBreak {
   public static boolean wordBreak(String s, Set<String> wordDict) {

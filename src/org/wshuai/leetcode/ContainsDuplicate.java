@@ -5,6 +5,7 @@ import java.util.Set;
 
 /**
  * Created by Wei on 10/10/16.
+ * #217 https://leetcode.com/problems/contains-duplicate/
  */
 public class ContainsDuplicate {
   public boolean containsDuplicate(int[] nums) {

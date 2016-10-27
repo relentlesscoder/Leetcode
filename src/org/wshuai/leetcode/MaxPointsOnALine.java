@@ -32,6 +32,7 @@ public class MaxPointsOnALine {
           }
         }else{
           Double slope = 1.0*(p2.y - p1.y)/(p2.x - p1.x);
+          //Important corner case!!
           slope = slope == -0.0 ? 0.0 : slope;
           if(map.containsKey(slope)){
             int count = map.get(slope);

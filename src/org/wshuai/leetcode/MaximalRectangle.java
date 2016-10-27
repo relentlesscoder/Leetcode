@@ -5,6 +5,7 @@ import java.util.Stack;
 
 /**
  * Created by Wei on 10/5/16.
+ * #85 https://leetcode.com/problems/maximal-rectangle/
  */
 public class MaximalRectangle {
   public int maximalRectangle(char[][] matrix) {

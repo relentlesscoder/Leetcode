@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 9/19/2016.
+ * #326 https://leetcode.com/problems/power-of-three/
  */
 public class PowerOfThree {
   public boolean isPowerOfThree(int n) {

@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/8/16.
+ * #172 https://leetcode.com/problems/factorial-trailing-zeroes/
  */
 public class FactorialTrailingZeroes {
 

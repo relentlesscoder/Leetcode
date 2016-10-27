@@ -4,6 +4,7 @@ import org.wshuai.algorithm.sorting.QuickSort;
 
 /**
  * Created by Wei on 8/18/2016.
+ * #169 https://leetcode.com/problems/majority-element/
  */
 public class MajorityElement {
 

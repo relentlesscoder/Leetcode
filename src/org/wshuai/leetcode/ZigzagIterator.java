@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by Wei on 9/27/2016.
+ * #281 https://leetcode.com/problems/zigzag-iterator/
  */
 public class ZigzagIterator {
   int idx1;
