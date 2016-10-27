@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by Wei on 9/19/2016.
+ * #288 https://leetcode.com/problems/unique-word-abbreviation/
  */
 public class UniqueWordAbbreviation {
   private final Map<String, Boolean> abbrDict = new HashMap<String, Boolean>();

@@ -5,16 +5,14 @@ import java.util.List;
 
 /**
  * Created by Wei on 9/18/2016.
+ * #346 https://leetcode.com/problems/moving-average-from-data-stream/
  */
 public class MovingAverageFromDataStream {
+
   private List<Integer> lst;
-
   private double sum;
-
   private int count;
-
   private int size;
-
   private int head;
 
   /** Initialize your data structure here. */
