@@ -1,16 +1,57 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Wei on 8/14/2016.
+ * #15 https://leetcode.com/problems/3sum/
  */
 public class ThreeSum {
 
-  // Time complexity n^2
+  //O(n^2)
+  public List<List<Integer>> threeSum(int[] nums) {
+    List<List<Integer>> lst = new ArrayList<List<Integer>>();
+    if(nums == null || nums.length == 0){
+      return lst;
+    }
+
+    int len = nums.length;
+    Arrays.sort(nums);
+    int i = 0;
+    while(i < len-2){
+      int val = nums[i];
+      int left = i+1;
+      int right = len-1;
+      while(left < right){
+        int lVal = nums[left];
+        int rVal = nums[right];
+        int sum = nums[i]+lVal+rVal;
+        if(sum == 0){
+          List<Integer> ls = new ArrayList<Integer>();
+          ls.add(nums[i]);
+          ls.add(nums[left]);
+          ls.add(nums[right]);
+          lst.add(ls);
+          while(left < right && nums[left]==lVal){
+            left++;
+          }
+          while(left < right && nums[right]==rVal){
+            right--;
+          }
+        }else if (sum > 0){
+          right--;
+        }else{
+          left++;
+        }
+      }
+      while(i < len-2 && nums[i]==val){
+        i++;
+      }
+    }
+    return lst;
+  }
+
+  // Time complexity O(n^2) TLE
   public static List<List<Integer>> threeSumHashMap(int[] nums) {
     if(nums == null){
       throw new IllegalArgumentException("Invalid input.");
@@ -81,7 +122,7 @@ public class ThreeSum {
     return result;
   }
 
-  // Time complexity n^3
+  // Time complexity O(n^3) TLE
   public static List<List<Integer>> threeSumBrutalForce(int[] nums) {
     if(nums == null){
       throw new IllegalArgumentException("Invalid input.");
