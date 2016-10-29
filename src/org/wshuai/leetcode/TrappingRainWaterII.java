@@ -5,8 +5,10 @@ import java.util.PriorityQueue;
 
 /**
  * Created by Wei on 10/8/16.
+ * #407 https://leetcode.com/problems/trapping-rain-water-ii/
  */
 public class TrappingRainWaterII {
+  //BFS: http://www.cnblogs.com/grandyang/p/5928987.html
   public int trapRainWater(int[][] heightMap) {
     if(heightMap == null || heightMap.length == 0 || heightMap[0].length == 0){
       return 0;

@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 9/19/2016.
+ * #252 https://leetcode.com/problems/meeting-rooms/
  */
 public class MeetingRooms {
   public boolean canAttendMeetings(Interval[] intervals) {

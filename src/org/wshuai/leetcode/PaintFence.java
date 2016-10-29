@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by Wei on 9/20/2016.
+ * #276 https://leetcode.com/problems/paint-fence/
  */
 public class PaintFence {
 
