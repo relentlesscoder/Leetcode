@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * Created by Wei on 8/28/16.
+ * #242 https://leetcode.com/problems/valid-anagram/
  */
 public class ValidAnagram {
   public static boolean isAnagram(String s, String t) {
