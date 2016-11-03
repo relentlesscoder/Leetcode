@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 9/25/2016.
+ * #307 https://leetcode.com/problems/range-sum-query-mutable/
  */
 public class RangeSumQueryMutable {
   private int[] btree;

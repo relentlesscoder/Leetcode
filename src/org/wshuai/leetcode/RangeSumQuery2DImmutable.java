@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 9/25/16.
+ * #304 https://leetcode.com/problems/range-sum-query-2d-immutable/
  */
 public class RangeSumQuery2DImmutable {
   private int[][] mtx;
