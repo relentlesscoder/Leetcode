@@ -4,18 +4,6 @@ package org.wshuai.leetcode;
  * Created by Wei on 10/21/2016.
  * #208 https://leetcode.com/problems/implement-trie-prefix-tree/
  */
-class TrieNode {
-  TrieNode[] chars;
-  boolean valid;
-
-  // Initialize your data structure here.
-  public TrieNode()
-  {
-    this.chars = new TrieNode[26];
-    this.valid = false;
-  }
-}
-
 public class ImplementTrie {
   private TrieNode root;
 
@@ -36,11 +24,11 @@ public class ImplementTrie {
     {
       char c = word.charAt(i);
       int idx = c - 'a';
-      TrieNode next = curr.chars[idx];
+      TrieNode next = curr.nodes[idx];
       if (next == null)
       {
         next = new TrieNode();
-        curr.chars[idx] = next;
+        curr.nodes[idx] = next;
       }
       curr = next;
       i++;
@@ -77,7 +65,7 @@ public class ImplementTrie {
     {
       char c = word.charAt(i);
       int idx = c - 'a';
-      TrieNode next = curr.chars[idx];
+      TrieNode next = curr.nodes[idx];
       if (next == null)
       {
         return null;
