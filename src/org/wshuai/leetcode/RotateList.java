@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/9/16.
+ * #61 https://leetcode.com/problems/rotate-list/
  */
 public class RotateList {
   public ListNode rotateRight(ListNode head, int k) {

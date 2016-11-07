@@ -5,9 +5,31 @@ package org.wshuai.leetcode;
  * #418 https://leetcode.com/problems/sentence-screen-fitting/
  */
 public class SentenceScreenFitting {
+  public int wordsTyping(String[] sentence, int rows, int cols) {
+    if(sentence == null || sentence.length == 0 || rows <= 0 || cols <= 0){
+      return 0;
+    }
+    int start = 0;
+    String sen = "";
+    for(String s: sentence){
+      sen += s + " ";
+    }
+    int len = sen.length();
+    for(int i = 0; i < rows; i++){
+      start += cols;
+      if(sen.charAt(start%len) == ' '){
+        start++;
+      }else{
+        while(start > 0 && sen.charAt((start-1)%len) != ' '){
+          start--;
+        }
+      }
+    }
+    return start/len;
+  }
 
   //TLE
-  public int wordsTyping(String[] sentence, int rows, int cols) {
+  public int wordsTypingNaive(String[] sentence, int rows, int cols) {
     if(sentence == null || sentence.length == 0 || rows <= 0 || cols <= 0){
       return 0;
     }
