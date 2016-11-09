@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/8/16.
+ * #73 https://leetcode.com/problems/set-matrix-zeroes/
  */
 public class SetMatrixZeroes {
   public void setZeroes(int[][] matrix) {
@@ -12,6 +13,8 @@ public class SetMatrixZeroes {
     int rows = matrix.length;
     int cols = matrix[0].length;
 
+    //Using first row and column to record if
+    // the rest rows and columns need to be set to zeros
     boolean setFirstRow = false;
     boolean setFirstCol = false;
 
