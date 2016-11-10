@@ -1,15 +1,14 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/11/2016.
- * #33 https://leetcode.com/problems/search-in-rotated-sorted-array/
+ * Created by Wei on 11/10/2016.
+ * #81 https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
  */
-public class SearchInRotatedSortedArray {
-
-  //O(lg(n))
-  public int search(int[] nums, int target){
+public class SearchInRotatedSortedArrayII {
+  //O(lg(n)), worst case O(n)
+  public boolean search(int[] nums, int target) {
     if(nums == null || nums.length == 0){
-      return -1;
+      return false;
     }
 
     int i = 0;
@@ -20,22 +19,24 @@ public class SearchInRotatedSortedArray {
       int m = i + (j-i)/2;
       int middle = nums[m];
       if(middle == target){
-        return m;
+        return true;
       }
-      if(left <= middle){
+      if(left < middle){
         if(middle > target && target >= left){
           j = m-1;
         }else{
           i = m+1;
         }
-      }else{
+      }else if(left > middle){
         if(middle < target && target <= right){
           i = m+1;
         }else{
           j = m-1;
         }
+      }else{
+        i++;
       }
     }
-    return -1;
+    return false;
   }
 }
