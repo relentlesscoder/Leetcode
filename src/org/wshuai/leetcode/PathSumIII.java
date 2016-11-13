@@ -47,7 +47,3 @@ public class PathSumIII {
     pathSumUtil(root.right, sum, nsum, cnt);
   }
 }
-
-class CountObj{
-  int count = 0;
-}
