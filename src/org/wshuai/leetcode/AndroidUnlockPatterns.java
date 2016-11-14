@@ -8,6 +8,8 @@ import java.util.List;
  * #351 https://leetcode.com/problems/android-unlock-patterns/
  */
 public class AndroidUnlockPatterns {
+  //DFS, the description is quite misleading.
+  //Try understanding why jump from 9 to 2 is legal.
   public int numberOfPatterns(int m, int n) {
     int[][] aux = new int[10][10];
     aux[1][3] = aux[3][1] = 2;
@@ -23,7 +25,8 @@ public class AndroidUnlockPatterns {
     return co.count;
   }
 
-  private void numberOfPatternsUtil(int[][] aux, boolean[] visited, int m, int n, List<Integer> curr, CountObj co){
+  private void numberOfPatternsUtil(int[][] aux, boolean[] visited,
+                                    int m, int n, List<Integer> curr, CountObj co){
     int size = curr.size();
     if(size >= m){
       co.count++;
