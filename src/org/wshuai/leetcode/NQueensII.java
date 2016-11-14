@@ -4,22 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 10/1/2016.
- * #51 https://leetcode.com/problems/n-queens/
+ * Created by Wei on 11/9/16.
+ * #52 https://leetcode.com/problems/n-queens-ii/
  */
-public class NQueens {
+public class NQueensII {
   //DFS
-  public List<List<String>> solveNQueens(int n)
+  public int totalNQueens(int n)
   {
-    List<List<String>> lst = new ArrayList<List<String>>();
     if(n == 1){
-      List<String> l = new ArrayList<String>();
-      l.add("Q");
-      lst.add(l);
-      return lst;
+      return 1;
     }
     if (n <= 3){
-      return lst;
+      return 0;
     }
     char[][] board = new char[n][n];
     for (int i = 0; i < n; i++)
@@ -29,15 +25,16 @@ public class NQueens {
         board[i][j] = '.';
       }
     }
+    RefCount rt = new RefCount();
     List<Integer> pos = new ArrayList<Integer>();
-    solveNQueensUtil(board, n, lst, 0, pos);
-    return lst;
+    solveNQueensUtil(board, n, rt, 0, pos);
+    return rt.val;
   }
 
-  private void solveNQueensUtil(char[][] board, int n, List<List<String>> lst, int cnt, List<Integer> pos)
+  private void solveNQueensUtil(char[][] board, int n, RefCount rt, int cnt, List<Integer> pos)
   {
     if (cnt == n){
-      lst.add(printBoard(board, n));
+      rt.val++;
     }else{
       for (int i = 0; i < n; i++)
       {
@@ -45,27 +42,12 @@ public class NQueens {
         {
           board[cnt][i] = 'Q';
           pos.add(cnt*n+i);
-          solveNQueensUtil(board, n, lst, cnt+1, pos);
+          solveNQueensUtil(board, n, rt, cnt+1, pos);
           board[cnt][i] = '.';
           pos.remove(pos.size()-1);
         }
       }
     }
-  }
-
-  private List<String> printBoard(char[][] board, int n)
-  {
-    List<String> lst = new ArrayList<String>();
-    for (int i = 0; i < n; i++)
-    {
-      StringBuilder row = new StringBuilder();
-      for (int j = 0; j < n; j++)
-      {
-        row.append(board[i][j]);
-      }
-      lst.add(row.toString());
-    }
-    return lst;
   }
 
   private boolean isValidMove(List<Integer> pos, int r, int c, int n)
@@ -81,4 +63,8 @@ public class NQueens {
     }
     return true;
   }
+}
+
+class RefCount{
+  int val = 0;
 }
