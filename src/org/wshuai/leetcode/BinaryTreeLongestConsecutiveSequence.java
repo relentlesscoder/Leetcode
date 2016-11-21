@@ -11,7 +11,7 @@ public class BinaryTreeLongestConsecutiveSequence {
   public int longestConsecutiveRecursive(TreeNode root) {
     RefType res = new RefType();
     longestConsecutiveUtil(root, res);
-    return res.max;
+    return res.val;
   }
 
   public int longestConsecutiveUtil(TreeNode root, RefType res){
@@ -20,7 +20,7 @@ public class BinaryTreeLongestConsecutiveSequence {
     }
 
     if(root.left==null && root.right==null){
-      res.max = 1 > res.max ? 1 : res.max;
+      res.val = 1 > res.val ? 1 : res.val;
       return 1;
     }
 
@@ -31,7 +31,7 @@ public class BinaryTreeLongestConsecutiveSequence {
     int right = root.right != null && root.val == root.right.val-1 ? rVal+1 : 1;
 
     int cmax = Math.max(left, right);
-    res.max = cmax > res.max ? cmax : res.max;
+    res.val = cmax > res.val ? cmax : res.val;
     return cmax;
   }
 
@@ -72,8 +72,4 @@ public class BinaryTreeLongestConsecutiveSequence {
 
     return max;
   }
-}
-
-class RefType{
-  int max = 0;
 }

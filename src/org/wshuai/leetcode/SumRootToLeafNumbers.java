@@ -10,25 +10,21 @@ public class SumRootToLeafNumbers {
       return 0;
     }
 
-    SumObj res = new SumObj();
+    RefType res = new RefType();
     sumNumbersUtil(root, 0, res);
-    return res.sum;
+    return res.val;
   }
 
-  private void sumNumbersUtil(TreeNode root, int csum, SumObj res){
+  private void sumNumbersUtil(TreeNode root, int csum, RefType res){
     if(root == null){
       return;
     }
     int nsum = csum*10 + root.val;
     if(root.left == null && root.right == null){
-      res.sum += nsum;
+      res.val += nsum;
       return;
     }
     sumNumbersUtil(root.left, nsum, res);
     sumNumbersUtil(root.right, nsum, res);
   }
-}
-
-class SumObj{
-  int sum = 0;
 }

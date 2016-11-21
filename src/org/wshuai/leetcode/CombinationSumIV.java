@@ -57,18 +57,18 @@ public class CombinationSumIV {
     if(nums == null || nums.length == 0){
       return 0;
     }
-    ResRefType rt = new ResRefType();
+    RefType rt = new RefType();
     int len = nums.length;
     combinationSum4DFSUtil(nums, rt, len, target, 0);
-    return rt.cs;
+    return rt.val;
   }
 
-  private void combinationSum4DFSUtil(int[] nums, ResRefType rt, int len, int target, int sum){
+  private void combinationSum4DFSUtil(int[] nums, RefType rt, int len, int target, int sum){
     if(sum > target){
       return;
     }
     if(sum == target){
-      rt.cs++;
+      rt.val++;
       return;
     }else{
       for(int i = 0; i < len; i++){
@@ -76,8 +76,4 @@ public class CombinationSumIV {
       }
     }
   }
-}
-
-class ResRefType{
-  int cs = 0;
 }

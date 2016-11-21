@@ -13,7 +13,7 @@ public class JumpGame {
     int max = 0;
     int i = 0;
     int len = nums.length;
-    //"i <= max" makes sure it can jump to i
+    //"i <= val" makes sure it can jump to i
     for(i = 0; i <= max && i < len; i++){
       max = Math.max(max, i+nums[i]);
     }

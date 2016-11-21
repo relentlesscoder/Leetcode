@@ -25,13 +25,13 @@ public class NQueensII {
         board[i][j] = '.';
       }
     }
-    RefCount rt = new RefCount();
+    RefType rt = new RefType();
     List<Integer> pos = new ArrayList<Integer>();
     solveNQueensUtil(board, n, rt, 0, pos);
     return rt.val;
   }
 
-  private void solveNQueensUtil(char[][] board, int n, RefCount rt, int cnt, List<Integer> pos)
+  private void solveNQueensUtil(char[][] board, int n, RefType rt, int cnt, List<Integer> pos)
   {
     if (cnt == n){
       rt.val++;
@@ -63,8 +63,4 @@ public class NQueensII {
     }
     return true;
   }
-}
-
-class RefCount{
-  int val = 0;
 }

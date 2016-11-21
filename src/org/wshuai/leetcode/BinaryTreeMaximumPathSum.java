@@ -21,7 +21,7 @@ public class BinaryTreeMaximumPathSum {
     int left = findMaxPathSum(node.left, maxVal);
     int right = findMaxPathSum(node.right, maxVal);
 
-    //For each node if the max path go through it, there are 3 scenarios:
+    //For each node if the val path go through it, there are 3 scenarios:
     //1. left + node
     //2. right + node
     //3. cross
@@ -31,7 +31,7 @@ public class BinaryTreeMaximumPathSum {
     int maxTop = crs > maxChild ? crs : maxChild;
     int mv = maxVal.val;
     maxVal.val = mv > maxTop ? mv : maxTop;
-    //return max child path for the parent node calculation
+    //return val child path for the parent node calculation
     return maxChild;
   }
 
