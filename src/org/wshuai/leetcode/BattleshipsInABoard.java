@@ -6,7 +6,7 @@ package org.wshuai.leetcode;
  */
 public class BattleshipsInABoard {
 
-  //O(1)
+  //O(1) space
   public int countBattleships(char[][] board) {
     if(board == null){
       return 0;

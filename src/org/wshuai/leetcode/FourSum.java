@@ -9,6 +9,7 @@ import java.util.List;
  * #18 https://leetcode.com/problems/4sum/
  */
 public class FourSum {
+  //O(n^3)
   public List<List<Integer>> fourSum(int[] nums, int target) {
     List<List<Integer>> lst = new ArrayList<List<Integer>>();
     if(nums == null || nums.length == 0){
