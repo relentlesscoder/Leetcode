@@ -1,20 +1,18 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 /**
- * Created by Wei on 1/19/2016.
- * #94 https://leetcode.com/problems/binary-tree-inorder-traversal/
+ * Created by Wei on 11/21/2016.
+ * #285 https://leetcode.com/problems/inorder-successor-in-bst/
  */
-public class BinaryTreeInorderTraversal {
+public class InorderSuccessorInBST {
   //O(n), iterative
-  public List<Integer> inorderTraversal(TreeNode root) {
-    List<Integer> result = new ArrayList<Integer>();
-    if(root == null){
-      return result;
+  public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+    if(root == null || p == null){
+      return null;
     }
+    boolean nxt = false;
     Stack<TreeNode> stack = new Stack<TreeNode>();
     TreeNode current = root;
     while (current != null || !stack.empty()){
@@ -24,10 +22,13 @@ public class BinaryTreeInorderTraversal {
       }
       else{
         TreeNode parent = stack.pop();
-        result.add(parent.val);
+        if(nxt){
+          return parent;
+        }
+        nxt = parent == p;
         current = parent.right;
       }
     }
-    return result;
+    return null;
   }
 }

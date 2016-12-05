@@ -1,7 +1,9 @@
 package org.wshuai.algorithm.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Wei on 9/24/2016.
@@ -20,7 +22,7 @@ public class Graph {
     }
     this.V = V;
     this.E = 0;
-    adj = (ArrayList<Integer>[])new List[V];
+    adj = (ArrayList<Integer>[])new ArrayList[V];
     for(int v = 0; v < V; v++){
       adj[v] = new ArrayList<Integer>();
     }
@@ -45,7 +47,7 @@ public class Graph {
     validateVertex(w);
     E++;
     adj[v].add(w);
-    adj[w].add(v);
+    //adj[w].add(v);
   }
 
   public Iterable<Integer> adj(int v){
@@ -56,6 +58,35 @@ public class Graph {
   public int degree(int v){
     validateVertex(v);
     return adj[v].size();
+  }
+
+  public List<Integer> topologicalSort(){
+    List<Integer> lst = new ArrayList<Integer>();
+    Stack<Integer> stack = new Stack<Integer>();
+    boolean[] visited = new boolean[V];
+    Arrays.fill(visited, false);
+    for(int i = 0; i < V; i++){
+      if(!visited[i]){
+        topologicalSortUtil(i, visited, stack);
+      }
+    }
+    while (!stack.isEmpty()){
+      lst.add(stack.pop());
+    }
+    return lst;
+  }
+
+  private void topologicalSortUtil(int i, boolean[] visited,
+                                  Stack<Integer> stack){
+    visited[i] = true;
+
+    for(int n: adj[i]){
+      if(!visited[n]){
+        topologicalSortUtil(n, visited, stack);
+      }
+    }
+
+    stack.push(i);
   }
 
   @Override

@@ -1,70 +1,39 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Wei on 9/21/2016.
+ * #388 https://leetcode.com/problems/longest-absolute-file-path/
  */
 public class LongestAbsoluteFilePath {
   public int lengthLongestPath(String input) {
-    int max = 0;
     if(input == null || input.length() == 0){
-      return max;
+      return 0;
     }
-
-    Stack<Integer> stk = new Stack<Integer>();
-    char[] chs = input.toCharArray();
-    int len = chs.length;
-    int i = 0;
-    int depth = 0;
-    int cLen = 0;
-
-    // root folder
-    while(i < len && chs[i] != '\n'){
-      i++;
-    }
-    String root =  input.substring(0, i);
-    int rLen = root.length();
-    cLen += rLen;
-    stk.push(rLen);
-    if(root.contains(".")){
-      max = cLen > max ? cLen : max;
-    }
-
-    while(i < len){
-      i++;
-      int count = 0;
-      while(i < len && chs[i] == '\t'){
-        i++;
-        count++;
-      }
-      if(count == 0){
-        count = 1;
-      }
-
-      while(i < len && chs[i] == ' '){
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    map.put(0,0);
+    int len = input.length();
+    int level = 0;
+    int max = 0;
+    for(int i = 0; i < len; i++){
+      int s = i;
+      while(i < len && input.charAt(i) != '\n' && input.charAt(i) != '\t'){
         i++;
       }
-
-      int j = i;
-      while(j < len && chs[j] != '\n'){
-        j++;
+      if(i >= len || input.charAt(i) == '\n'){
+        String str = input.substring(s, i);
+        if(str.contains(".")){
+          max = Math.max(max, map.get(level)+str.length());
+        }else{
+          level++;
+          map.put(level, map.get(level-1)+str.length()+1);
+        }
+        level = 0;
+      }else{
+        level++;
       }
-
-      String val =  input.substring(i, j);
-      int vLen = val.length() + 1;
-      while(count <= depth){
-        int xLen = stk.pop();
-        cLen -= xLen;
-        depth--;
-      }
-      cLen += vLen;
-      stk.push(vLen);
-      depth++;
-      if(val.contains(".")){
-        max = cLen > max ? cLen : max;
-      }
-      i = j;
     }
     return max;
   }

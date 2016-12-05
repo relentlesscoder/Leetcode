@@ -23,6 +23,8 @@ public class ThreeSumSmaller {
         if(sum >= target){
           right--;
         }else{
+          //right is the maximum val, if left+right < target
+          //then all values between+left < target
           count += right-left;
           left++;
         }
