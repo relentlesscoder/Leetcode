@@ -2,10 +2,11 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 8/16/2016.
+ * #28 https://leetcode.com/problems/implement-strstr/
  */
 public class ImplementStrStr {
 
-  public static int strStrKMP(String haystack, String needle) {
+  public int strStrKMP(String haystack, String needle) {
     if(haystack == null || needle == null){
       return -1;
     }
@@ -43,7 +44,7 @@ public class ImplementStrStr {
     return -1;
   }
 
-  public static void buildLSP(char[] pattern, int[] lsp){
+  public void buildLSP(char[] pattern, int[] lsp){
     int len = pattern.length;
     lsp[0] = 0;
     int prefix = 0;
