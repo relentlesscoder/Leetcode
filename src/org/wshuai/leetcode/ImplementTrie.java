@@ -57,7 +57,7 @@ public class ImplementTrie {
     return true;
   }
 
-  private TrieNode searchNode(String word){
+  public TrieNode searchNode(String word){
     int len = word.length();
     int i = 0;
     TrieNode curr = root;
