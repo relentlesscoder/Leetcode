@@ -17,9 +17,3 @@ public class PopulatingNextRightPointersInEachNode {
     connect(root.right);
   }
 }
-
-class TreeLinkNode {
-  int val;
-  TreeLinkNode left, right, next;
-  TreeLinkNode(int x) { val = x; }
-}
