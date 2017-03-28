@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 9/19/2016.
+ * #374 https://leetcode.com/problems/guess-number-higher-or-lower/
  */
 public class GuessNumberHigherOrLower {
   private int val;
