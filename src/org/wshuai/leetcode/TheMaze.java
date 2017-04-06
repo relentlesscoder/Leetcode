@@ -10,10 +10,12 @@ public class TheMaze {
     int rows = maze.length;
     int cols = maze[0].length;
     boolean[][] visited = new boolean[rows][cols];
-    return hasPathUtil(maze, start, destination, visited);
+    int[][] dir = new int[][]{{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
+    return hasPathUtil(maze, start, destination, visited, dir, rows, cols);
   }
 
-  private boolean hasPathUtil(int[][] maze, int[] start, int[] dest, boolean[][] visited){
+  private boolean hasPathUtil(int[][] maze, int[] start, int[] dest, boolean[][] visited,
+                              int[][] dir, int rows, int cols){
     if(start[0] == dest[0] && start[1] == dest[1]){
       return true;
     }
@@ -21,64 +23,19 @@ public class TheMaze {
       return false;
     }
     visited[start[0]][start[1]] = true;
-    int[] up = moveUp(maze, start);
-    if(!visited[up[0]][up[1]] && hasPathUtil(maze, up, dest, visited)){
-      return true;
-    }
-    int[] down = moveDown(maze, start);
-    if(!visited[down[0]][down[1]] && hasPathUtil(maze, down, dest, visited)){
-      return true;
-    }
-    int[] left = moveLeft(maze, start);
-    if(!visited[left[0]][left[1]] && hasPathUtil(maze, left, dest, visited)){
-      return true;
-    }
-    int[] right = moveRight(maze, start);
-    if(!visited[right[0]][right[1]] && hasPathUtil(maze, right, dest, visited)){
-      return true;
+    for(int i = 0; i < 4; i++){
+      int x = start[0];
+      int y = start[1];
+      while(x >= 0 && x < rows && y >= 0 && y < cols && maze[x][y] == 0){
+        x += dir[i][0];
+        y += dir[i][1];
+      }
+      x -= dir[i][0];
+      y -= dir[i][1];
+      if(!visited[x][y] && hasPathUtil(maze, new int[]{x, y}, dest, visited, dir, rows, cols)){
+        return true;
+      }
     }
     return false;
-  }
-
-  private int[] moveUp(int[][] maze, int[] curr){
-    int[] up = new int[2];
-    up[0] = curr[0];
-    up[1] = curr[1];
-    while(up[0] > 0 && maze[up[0]-1][up[1]] != 1){
-      up[0]--;
-    }
-    return up;
-  }
-
-  private int[] moveDown(int[][] maze, int[] curr){
-    int rows = maze.length;
-    int[] down = new int[2];
-    down[0] = curr[0];
-    down[1] = curr[1];
-    while(down[0] < rows-1 && maze[down[0]+1][down[1]] != 1){
-      down[0]++;
-    }
-    return down;
-  }
-
-  private int[] moveLeft(int[][] maze, int[] curr){
-    int[] left = new int[2];
-    left[0] = curr[0];
-    left[1] = curr[1];
-    while(left[1] > 0 && maze[left[0]][left[1]-1] != 1){
-      left[1]--;
-    }
-    return left;
-  }
-
-  private int[] moveRight(int[][] maze, int[] curr){
-    int cols = maze[0].length;
-    int[] right = new int[2];
-    right[0] = curr[0];
-    right[1] = curr[1];
-    while(right[1] < cols-1 && maze[right[0]][right[1]+1] != 1){
-      right[1]++;
-    }
-    return right;
   }
 }

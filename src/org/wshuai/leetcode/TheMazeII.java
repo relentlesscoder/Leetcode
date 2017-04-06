@@ -53,8 +53,9 @@ public class TheMazeII {
     int rows = maze.length;
     int cols = maze[0].length;
     boolean[][] visited = new boolean[rows][cols];
+    int[][] dir = new int[][]{{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
     List<Integer> lst = new ArrayList<Integer>();
-    shortestDistanceUtil(maze, start, destination, visited, 0, lst);
+    shortestDistanceUtil(maze, start, destination, visited, 0, lst, dir, rows, cols);
     if(lst.size() == 0){
       return -1;
     }else{
@@ -66,7 +67,8 @@ public class TheMazeII {
     }
   }
 
-  private void shortestDistanceUtil(int[][] maze, int[] start, int[] dest, boolean[][] visited, int sum, List<Integer> lst){
+  private void shortestDistanceUtil(int[][] maze, int[] start, int[] dest, boolean[][] visited,
+                                    int sum, List<Integer> lst, int[][] dir, int rows, int cols){
     if(start[0] == dest[0] && start[1] == dest[1]){
       lst.add(sum);
       return;
@@ -75,70 +77,22 @@ public class TheMazeII {
       return;
     }
     visited[start[0]][start[1]] = true;
-    int[] up = moveUp(maze, start);
-    if(!visited[up[0]][up[1]]){
-      int diff = start[0]-up[0];
-      shortestDistanceUtil(maze, up, dest, visited, sum+diff, lst);
-    }
-    int[] down = moveDown(maze, start);
-    if(!visited[down[0]][down[1]]){
-      int diff = down[0]-start[0];
-      shortestDistanceUtil(maze, down, dest, visited, sum+diff, lst);
-    }
-    int[] left = moveLeft(maze, start);
-    if(!visited[left[0]][left[1]]){
-      int diff = start[1]-left[1];
-      shortestDistanceUtil(maze, left, dest, visited, sum+diff, lst);
-    }
-    int[] right = moveRight(maze, start);
-    if(!visited[right[0]][right[1]]){
-      int diff = right[1]-start[1];
-      shortestDistanceUtil(maze, right, dest, visited, sum+diff, lst);
+    for(int i = 0; i < 4; i++){
+      int x = start[0];
+      int y = start[1];
+      while(x >= 0 && x < rows && y >= 0 && y < cols && maze[x][y] == 0){
+        x += dir[i][0];
+        y += dir[i][1];
+      }
+      x -= dir[i][0];
+      y -= dir[i][1];
+      if(!visited[x][y]){
+        int diff = Math.max(Math.abs(x-start[0]), Math.abs(y-start[1]));
+        shortestDistanceUtil(maze, new int[]{x, y}, dest, visited, sum+diff, lst, dir, rows, cols);
+      }
     }
     visited[start[0]][start[1]] = false;
     return;
-  }
-
-  private int[] moveUp(int[][] maze, int[] curr){
-    int[] up = new int[2];
-    up[0] = curr[0];
-    up[1] = curr[1];
-    while(up[0] > 0 && maze[up[0]-1][up[1]] != 1){
-      up[0]--;
-    }
-    return up;
-  }
-
-  private int[] moveDown(int[][] maze, int[] curr){
-    int rows = maze.length;
-    int[] down = new int[2];
-    down[0] = curr[0];
-    down[1] = curr[1];
-    while(down[0] < rows-1 && maze[down[0]+1][down[1]] != 1){
-      down[0]++;
-    }
-    return down;
-  }
-
-  private int[] moveLeft(int[][] maze, int[] curr){
-    int[] left = new int[2];
-    left[0] = curr[0];
-    left[1] = curr[1];
-    while(left[1] > 0 && maze[left[0]][left[1]-1] != 1){
-      left[1]--;
-    }
-    return left;
-  }
-
-  private int[] moveRight(int[][] maze, int[] curr){
-    int cols = maze[0].length;
-    int[] right = new int[2];
-    right[0] = curr[0];
-    right[1] = curr[1];
-    while(right[1] < cols-1 && maze[right[0]][right[1]+1] != 1){
-      right[1]++;
-    }
-    return right;
   }
 }
 
