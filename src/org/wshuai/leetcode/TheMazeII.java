@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  * #505 https://leetcode.com/problems/the-maze-ii/
  */
 public class TheMazeII {
-  
+
   //BFS, see https://discuss.leetcode.com/topic/77472/similar-to-the-maze-easy-understanding-java-bfs-solution
   public int shortestDistance(int[][] maze, int[] start, int[] destination) {
     int rows = maze.length;
