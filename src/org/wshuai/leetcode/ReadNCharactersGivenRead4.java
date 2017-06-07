@@ -2,6 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 9/20/2016.
+ * #157 https://leetcode.com/problems/read-n-characters-given-read4/
  */
 public class ReadNCharactersGivenRead4 {
   /**
@@ -10,32 +11,18 @@ public class ReadNCharactersGivenRead4 {
    * @return    The number of characters read
    */
   public int read(char[] buf, int n) {
-    if(n <= 0){
-      return 0;
+    for(int i = 0; i < n; i += 4){
+      char[] tmp = new char[4];
+      int len = read4(tmp);
+      System.arraycopy(tmp, 0, buf, i, Math.min(len, n-i));
+      if(len < 4){
+        return Math.min(i+len, n);
+      }
     }
-
-    int count = -1;
-    while(n >= 0){
-      char[] temp = new char[4];
-      int c = read4(temp);
-      if(c == 0){
-        return count + 1;
-      }
-      int x = c > n ? n : c;
-      for(int j = 0; j < x; j++){
-        count++;
-        buf[count] = temp[j];
-      }
-      if(c > n || c < 4){
-        return count + 1;
-      }
-      n -= 4;
-    }
-
-    return count + 1;
+    return n;
   }
 
-  // Fake method
+  // Fake implementation
   public int read4(char[] buf){
     return 0;
   }

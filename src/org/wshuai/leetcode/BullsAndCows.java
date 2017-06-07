@@ -4,6 +4,7 @@ import java.util.*;
 
 /**
  * Created by Wei on 9/21/2016.
+ * #299 https://leetcode.com/problems/bulls-and-cows/
  */
 public class BullsAndCows {
 
