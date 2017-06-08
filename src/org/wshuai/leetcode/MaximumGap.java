@@ -7,6 +7,7 @@ import java.util.Arrays;
  * #164 https://leetcode.com/problems/maximum-gap/
  */
 public class MaximumGap {
+  //Bucket sort, see https://leetcode.com/problems/maximum-gap/#/solutions
   public int maximumGap(int[] nums) {
     if(nums == null || nums.length <= 1){
       return 0;
