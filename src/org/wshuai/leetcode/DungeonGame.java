@@ -5,6 +5,34 @@ package org.wshuai.leetcode;
  * #174 https://leetcode.com/problems/dungeon-game/
  */
 public class DungeonGame {
+
+  //DP, see https://discuss.leetcode.com/topic/6858/my-ac-java-version-suggestions-are-welcome
+  public int calculateMinimumHP(int[][] dungeon) {
+    if(dungeon == null || dungeon.length == 0 || dungeon[0].length == 0){
+      return 0;
+    }
+    int rows = dungeon.length;
+    int cols = dungeon[0].length;
+    int[][] aux = new int[rows][cols];
+
+    aux[rows-1][cols-1] = Math.max(1, 1-dungeon[rows-1][cols-1]);
+
+    for(int i = rows-2; i >= 0; i--){
+      aux[i][cols-1] = Math.max(aux[i+1][cols-1]-dungeon[i][cols-1], 1);
+    }
+    for(int i = cols-2; i >= 0; i--){
+      aux[rows-1][i] = Math.max(aux[rows-1][i+1]-dungeon[rows-1][i], 1);
+    }
+    for(int i = rows-2; i >= 0; i--){
+      for(int j = cols-2; j >= 0; j--){
+        int down = Math.max(aux[i+1][j]-dungeon[i][j], 1);
+        int right = Math.max(aux[i][j+1]-dungeon[i][j], 1);
+        aux[i][j] = Math.min(down, right);
+      }
+    }
+    return aux[0][0];
+  }
+
   private int min = Integer.MAX_VALUE;
 
   // DFS, TLE
