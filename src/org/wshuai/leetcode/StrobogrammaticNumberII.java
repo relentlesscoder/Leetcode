@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by Wei on 9/24/2016.
+ * #247 https://leetcode.com/problems/strobogrammatic-number-ii/
  */
 public class StrobogrammaticNumberII {
   public List<String> findStrobogrammatic(int n) {
