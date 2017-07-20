@@ -8,6 +8,7 @@ import java.util.List;
  * #282 https://leetcode.com/problems/expression-add-operators/
  */
 public class ExpressionAddOperators {
+  // See https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear
   public List<String> addOperators(String num, int target) {
     List<String> res = new ArrayList<String>();
     if(num == null || num.isEmpty()){
