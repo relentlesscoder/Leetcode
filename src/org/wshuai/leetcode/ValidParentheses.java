@@ -7,7 +7,24 @@ import java.util.Stack;
  * #20 https://leetcode.com/problems/valid-parentheses/
  */
 public class ValidParentheses {
-  public boolean isValid(String s) {
+
+  public boolean isValid(String s){
+    int count = 0;
+
+    for(int i = 0; i < s.length(); i++){
+      char c = s.charAt(i);
+      if(c == '('){
+        count++;
+      }
+      if(c == ')' && count-- == 0){
+        return false;
+      }
+    }
+
+    return count == 0;
+  }
+
+  public boolean isValidStack(String s) {
     if(s == null || s.isEmpty()){
       return false;
     }
