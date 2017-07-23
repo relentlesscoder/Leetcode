@@ -1,0 +1,67 @@
+package org.wshuai.leetcode;
+
+import org.wshuai.algorithm.segmentTree.SegmentTreeNode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Wei on 7/23/2017.
+ * #315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+ */
+public class CountOfSmallerNumbersAfterSelf {
+  //Segment tree, 92ms
+  public List<Integer> countSmaller(int[] nums) {
+    List<Integer> res = new ArrayList<Integer>();
+    if(nums == null || nums.length == 0){
+      return res;
+    }
+    int len = nums.length;
+    int start = Integer.MAX_VALUE;
+    int end = Integer.MIN_VALUE;
+    for(int num: nums){
+      start = Math.min(num, start);
+      end = Math.max(num, end);
+    }
+    SegmentTreeNode root = new SegmentTreeNode(start, end);
+    for(int i = len-1; i >= 0; i--){
+      int cnt = search(root, nums[i]);
+      update(root, nums[i]);
+      res.add(0, cnt);
+    }
+    return res;
+  }
+
+  private int search(SegmentTreeNode root, int val){
+    if(root == null){
+      return 0;
+    }
+    if(val > root.end){
+      return root.sum;
+    }
+    if(val < root.start){
+      return 0;
+    }
+    return search(root.left, val)+search(root.right, val);
+  }
+
+  private void update(SegmentTreeNode root, int val){
+    if(root.start == root.end && root.start == val){
+      root.sum++;
+      return;
+    }
+    int mid = root.start + (root.end - root.start)/2;
+    if(val > mid){
+      if(root.right == null){
+        root.right = new SegmentTreeNode(mid+1, root.end);
+      }
+      update(root.right, val);
+    }else{
+      if(root.left == null){
+        root.left = new SegmentTreeNode(root.start, mid);
+      }
+      update(root.left, val);
+    }
+    root.sum = (root.left == null ? 0 : root.left.sum) + (root.right == null ? 0 : root.right.sum);
+  }
+}

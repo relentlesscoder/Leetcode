@@ -2,6 +2,7 @@ package org.wshuai.algorithm.segmentTree;
 
 /**
  * Created by Wei on 9/25/2016.
+ * Binary tree representation
  */
 public class SegmentTree {
   private SegmentTreeNode root = null;
