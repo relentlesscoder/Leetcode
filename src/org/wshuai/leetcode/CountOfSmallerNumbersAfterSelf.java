@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 import org.wshuai.algorithm.segmentTree.SegmentTreeNode;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -10,9 +10,50 @@ import java.util.List;
  * #315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
  */
 public class CountOfSmallerNumbersAfterSelf {
-  //Segment tree, 92ms
+  //7ms
   public List<Integer> countSmaller(int[] nums) {
-    List<Integer> res = new ArrayList<Integer>();
+    //Note: use LinkedList instead of ArrayList to
+    //improve the running time from 75ms to 7ms
+    List<Integer> res = new LinkedList<Integer>();
+    if(nums == null || nums.length == 0){
+      return res;
+    }
+    int len = nums.length;
+    int[] aux = new int[len];
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
+    for(int num: nums){
+      min = num < min ? num : min;
+    }
+    for(int i = 0; i < len; i++){
+      aux[i] = nums[i]-min+1;
+      max = aux[i] > max ? aux[i] : max;
+    }
+    int[] bit = new int[max+1];
+    for(int i = len-1; i >= 0; i--){
+      res.add(0, sum(bit, aux[i]-1));
+      add(bit, aux[i]);
+    }
+    return res;
+  }
+
+  private void add(int[] bit, int idx){
+    for(int i = idx; i < bit.length-1; i+=i&(-i)){
+      bit[i]++;
+    }
+  }
+
+  private int sum(int[] bit, int idx){
+    int sum = 0;
+    for(int i = idx; i >= 1; i-=i&(-i)){
+      sum += bit[i];
+    }
+    return sum;
+  }
+
+  //Segment tree, 24ms
+  public List<Integer> countSmallerSegmentTree(int[] nums) {
+    List<Integer> res = new LinkedList<>();
     if(nums == null || nums.length == 0){
       return res;
     }
