@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 7/29/2017.
+ * Created by Wei on 7/29/2017.   
  * #604 https://leetcode.com/problems/design-compressed-string-iterator/
  */
 public class DesignCompressedStringIterator {
