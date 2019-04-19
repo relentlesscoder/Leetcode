@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,6 +42,6 @@ public class FlattenNestedListIterator implements Iterator<Integer> {
 
   @Override
   public void remove(){
-    throw new NotImplementedException();
+    //throw new NotImplementedException();
   }
 }
