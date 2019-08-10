@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 8/9/19.
+ * Created by Wei on 8/10/19.
  * #1022 https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
  */
 public class SumOfRootToLeafBinaryNumbers {
