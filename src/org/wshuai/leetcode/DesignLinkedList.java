@@ -83,17 +83,6 @@ public class DesignLinkedList {
     }
 }
 
-class LinkedListNode{
-    int val;
-
-    LinkedListNode next;
-
-    public LinkedListNode(int val){
-        this.val = val;
-        this.next = null;
-    }
-}
-
 /**
  * Your MyLinkedList object will be instantiated and called as such:
  * MyLinkedList obj = new MyLinkedList();
