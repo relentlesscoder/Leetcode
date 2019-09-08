@@ -34,17 +34,17 @@ public class LongestWordInDictionary {
             TrieNode prev = root;
             boolean buildable = true;
             for(int i = 0; i < chars.length-1; i++){
-                if(!prev.valid || prev.nodes[chars[i]-'a'] == null){
+                if(!prev.isEnd() || prev.containsKey(chars[i])){
                     buildable = false;
                     break;
                 }
-                prev = prev.nodes[chars[i]-'a'];
+                prev = prev.get(chars[i]);
             }
             if(!buildable){
                 continue;
             }
-            prev.valid = true;
-            prev.nodes[chars[chars.length-1]-'a'] = new TrieNode();
+            prev.setEnd();
+            prev.put(chars[chars.length-1], new TrieNode());
             if(chars.length > max){
                 max = chars.length;
                 res = word;

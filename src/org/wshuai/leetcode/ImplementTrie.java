@@ -13,74 +13,62 @@ public class ImplementTrie {
 
   // Inserts a word into the trie.
   public void insert(String word) {
-    if (word == null || word.isEmpty())
-    {
-      return;
-    }
-    int len = word.length();
-    int i = 0;
-    TrieNode curr = root;
-    while (i < len)
-    {
-      char c = word.charAt(i);
-      int idx = c - 'a';
-      TrieNode next = curr.nodes[idx];
-      if (next == null)
-      {
-        next = new TrieNode();
-        curr.nodes[idx] = next;
+    TrieNode node = root;
+    for(int i = 0; i < word.length(); i++){
+      char currentKey = word.charAt(i);
+      if(!node.containsKey(currentKey)){
+        node.put(currentKey, new TrieNode());
       }
-      curr = next;
-      i++;
+      node = node.get(currentKey);
     }
-    curr.valid = true;
+    node.setEnd();
   }
 
   // Returns if the word is in the trie.
   public boolean search(String word) {
-    TrieNode node = searchNode(word);
-    if (node == null)
-    {
-      return false;
-    }
-    return node.valid;
+    TrieNode node = searchPrefix(word);
+    return node != null && node.isEnd();
   }
 
   // Returns if there is any word in the trie
   // that starts with the given prefix.
-  public boolean startsWith(String prefix) {
-    TrieNode node = searchNode(prefix);
-    if (node == null)
-    {
-      return false;
-    }
-    return true;
+  public boolean startsWith(String prefix){
+    TrieNode node = searchPrefix(prefix);
+    return node != null;
   }
 
-  public TrieNode searchNode(String word){
-    int len = word.length();
-    int i = 0;
-    TrieNode curr = root;
-    while (i < len)
-    {
-      char c = word.charAt(i);
-      int idx = c - 'a';
-      TrieNode next = curr.nodes[idx];
-      if (next == null)
-      {
+  // search a prefix or whole key in trie and
+  // returns the node where search ends
+  public TrieNode searchPrefix(String word){
+    TrieNode node = root;
+    for(int i = 0; i < word.length(); i++){
+      char currentLetter = word.charAt(i);
+      if(node.containsKey(currentLetter)){
+        node = node.get(currentLetter);
+      }else{
         return null;
       }
-      else
-      {
-        curr = next;
+    }
+    return node;
+  }
+
+  // search for the shortest prefix - #648
+  public String searchRoot(String successor){
+    TrieNode node = root;
+    StringBuilder sb = new StringBuilder();
+    for(int i = 0; i < successor.length(); i++){
+      char key = successor.charAt(i);
+      if(node.containsKey(key)){
+        sb.append("" + key);
+        node = node.get(key);
+      }else{
+        return successor;
       }
-      i++;
+      if(node.isEnd()){
+        break;
+      }
     }
-    if (curr == root)
-    {
-      return null;
-    }
-    return curr;
+    return sb.toString();
   }
 }
 

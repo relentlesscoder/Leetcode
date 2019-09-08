@@ -45,9 +45,9 @@ public class WordSearchII {
     used[i][j] = true;
     sb.append(board[i][j]);
     String str = sb.toString();
-    TrieNode node = trie.searchNode(str);
+    TrieNode node = trie.searchPrefix(str);
     if(node != null){
-      if(node.valid && !res.contains(str)){
+      if(node.isEnd() && !res.contains(str)){
         res.add(str);
       }
       findWordsUtil(i-1, j, sb, used, board, trie, res, rows, cols);
