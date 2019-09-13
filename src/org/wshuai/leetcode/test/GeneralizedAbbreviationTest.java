@@ -14,4 +14,11 @@ public class GeneralizedAbbreviationTest {
     GeneralizedAbbreviation ga = new GeneralizedAbbreviation();
     List<String> s = ga.generateAbbreviations("word");
   }
+
+  @Test
+  public void testcase1(){
+    String s = "word";
+    String s1 = s.substring(0,0);
+    String s2 = s.substring(4,4);
+  }
 }
