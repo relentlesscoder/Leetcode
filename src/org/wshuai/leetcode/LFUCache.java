@@ -54,6 +54,7 @@ public class LFUCache {
             int evict = lists.get(min).iterator().next();
             lists.get(min).remove(evict);
             vals.remove(evict);
+            counts.remove(evict);
         }
         vals.put(key, value);
         counts.put(key, 1);
