@@ -2,6 +2,10 @@ package org.wshuai.leetcode;
 
 import java.util.Random;
 
+/**
+ * Created by Wei on 9/18/2019.
+ * #528 https://leetcode.com/problems/random-pick-with-weight/
+ */
 public class RandomPickWithWeight {
   private int sum;
   private int[] w;
