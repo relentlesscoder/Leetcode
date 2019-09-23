@@ -5,13 +5,13 @@ package org.wshuai.leetcode;
  * #61 https://leetcode.com/problems/rotate-list/
  */
 public class RotateList {
-  public ListNode rotateRight(ListNode head, int k) {
+  public LinkedListNode rotateRight(LinkedListNode head, int k) {
     if(head == null || k <= 0){
       return head;
     }
     int count = 0;
-    ListNode curr = head;
-    ListNode prev = null;
+    LinkedListNode curr = head;
+    LinkedListNode prev = null;
     while(curr != null){
       prev = curr;
       curr = curr.next;

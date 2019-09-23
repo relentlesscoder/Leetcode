@@ -5,14 +5,14 @@ package org.wshuai.leetcode;
  * #328 https://leetcode.com/problems/odd-even-linked-list/
  */
 public class OddEvenLinkedList {
-  public ListNode oddEvenList(ListNode head) {
+  public LinkedListNode oddEvenList(LinkedListNode head) {
     if (head == null || head.next == null || head.next.next == null)
     {
       return head;
     }
-    ListNode curr = head;
-    ListNode even = head.next;
-    ListNode nxt = null;
+    LinkedListNode curr = head;
+    LinkedListNode even = head.next;
+    LinkedListNode nxt = null;
 
     boolean odd = true;
     while (curr != null)

@@ -7,8 +7,8 @@ import java.util.Stack;
  * #1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
  */
 public class NextGreaterNodeInLinkedList {
-    public int[] nextLargerNodes(ListNode head) {
-        ListNode curr = head;
+    public int[] nextLargerNodes(LinkedListNode head) {
+        LinkedListNode curr = head;
         int count = 0;
         // first pass to get the size
         while(curr != null){

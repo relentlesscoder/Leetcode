@@ -2,7 +2,7 @@ package org.wshuai.leetcode.test;
 
 import org.junit.Test;
 import org.wshuai.leetcode.ConvertSortedListToBinarySearchTree;
-import org.wshuai.leetcode.ListNode;
+import org.wshuai.leetcode.LinkedListNode;
 import org.wshuai.leetcode.TreeNode;
 
 /**
@@ -12,9 +12,9 @@ public class ConvertSortedListToBinarySearchTreeTest {
   @Test
   public void testcase(){
     ConvertSortedListToBinarySearchTree cs = new ConvertSortedListToBinarySearchTree();
-    ListNode root = new ListNode(3);
-    root.next = new ListNode(5);
-    root.next.next = new ListNode(8);
+    LinkedListNode root = new LinkedListNode(3);
+    root.next = new LinkedListNode(5);
+    root.next.next = new LinkedListNode(8);
     TreeNode tn = cs.sortedListToBST(root);
   }
 }

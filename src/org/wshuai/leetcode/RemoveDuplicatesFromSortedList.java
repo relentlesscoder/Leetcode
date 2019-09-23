@@ -5,12 +5,12 @@ package org.wshuai.leetcode;
  * #83 https://leetcode.com/problems/remove-duplicates-from-sorted-list/
  */
 public class RemoveDuplicatesFromSortedList {
-  public ListNode deleteDuplicates(ListNode head) {
+  public LinkedListNode deleteDuplicates(LinkedListNode head) {
     if(head == null || head.next == null){
       return head;
     }
-    ListNode last = head;
-    ListNode curr = head;
+    LinkedListNode last = head;
+    LinkedListNode curr = head;
     while(curr != null){
       if(curr.val != last.val){
         last.next = curr;

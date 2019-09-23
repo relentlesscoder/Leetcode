@@ -5,7 +5,7 @@ package org.wshuai.leetcode;
  * #148 https://leetcode.com/problems/sort-list/
  */
 public class SortList {
-    public static ListNode sortList(ListNode head) {
+    public static LinkedListNode sortList(LinkedListNode head) {
         if(head != null && head.next != null){
             if(head.next.next == null){
                 if(head.val > head.next.val){
@@ -15,16 +15,16 @@ public class SortList {
                 }
                 return head;
             }else{
-                ListNode curr = head;
-                ListNode mid = head;
+                LinkedListNode curr = head;
+                LinkedListNode mid = head;
                 while(curr != null && curr.next != null){
                   curr = curr.next.next;
                   mid = mid.next;
                 }
-                ListNode nxt = mid.next;
+                LinkedListNode nxt = mid.next;
                 mid.next = null;
-                ListNode l = sortList(head);
-                ListNode r = sortList(nxt);
+                LinkedListNode l = sortList(head);
+                LinkedListNode r = sortList(nxt);
                 MergeTwoSortedList mt = new MergeTwoSortedList();
                 return mt.mergeTwoLists(l, r);
             }

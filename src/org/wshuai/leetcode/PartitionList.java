@@ -6,18 +6,18 @@ package org.wshuai.leetcode;
  */
 public class PartitionList {
   //O(n)
-  public ListNode partition(ListNode head, int x) {
-    ListNode left = new ListNode(-1);
-    ListNode right = new ListNode(-1);
-    ListNode lcurr = left;
-    ListNode rcurr = right;
+  public LinkedListNode partition(LinkedListNode head, int x) {
+    LinkedListNode left = new LinkedListNode(-1);
+    LinkedListNode right = new LinkedListNode(-1);
+    LinkedListNode lcurr = left;
+    LinkedListNode rcurr = right;
     while(head != null){
       if(head.val < x){
-        ListNode node = new ListNode(head.val);
+        LinkedListNode node = new LinkedListNode(head.val);
         lcurr.next = node;
         lcurr = node;
       }else{
-        ListNode node = new ListNode(head.val);
+        LinkedListNode node = new LinkedListNode(head.val);
         rcurr.next = node;
         rcurr = node;
       }

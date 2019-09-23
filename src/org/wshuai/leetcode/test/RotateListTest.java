@@ -1,7 +1,7 @@
 package org.wshuai.leetcode.test;
 
 import org.junit.Test;
-import org.wshuai.leetcode.ListNode;
+import org.wshuai.leetcode.LinkedListNode;
 import org.wshuai.leetcode.RotateList;
 
 /**
@@ -10,8 +10,8 @@ import org.wshuai.leetcode.RotateList;
 public class RotateListTest {
   @Test
   public void testcase(){
-    ListNode head = new ListNode(1);
+    LinkedListNode head = new LinkedListNode(1);
     RotateList rl = new RotateList();
-    ListNode r = rl.rotateRight(head, 1);
+    LinkedListNode r = rl.rotateRight(head, 1);
   }
 }

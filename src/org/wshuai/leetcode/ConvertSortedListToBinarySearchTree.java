@@ -5,13 +5,13 @@ package org.wshuai.leetcode;
  * #109 https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
  */
 public class ConvertSortedListToBinarySearchTree {
-  public TreeNode sortedListToBST(ListNode head) {
+  public TreeNode sortedListToBST(LinkedListNode head) {
     if(head == null){
       return null;
     }
 
     int len = 0;
-    ListNode curr = head;
+    LinkedListNode curr = head;
     while(curr != null){
       curr = curr.next;
       len++;
@@ -19,13 +19,13 @@ public class ConvertSortedListToBinarySearchTree {
     return sortedListToBSTUtil(head, 0, len-1);
   }
 
-  private TreeNode sortedListToBSTUtil(ListNode head, int p, int q){
+  private TreeNode sortedListToBSTUtil(LinkedListNode head, int p, int q){
     if(p > q){
       return null;
     }
     int mid = p + (q-p)/2;
     int s = p;
-    ListNode curr = head;
+    LinkedListNode curr = head;
     while(s < mid){
       curr = curr.next;
       s++;

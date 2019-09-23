@@ -5,12 +5,12 @@ package org.wshuai.leetcode;
  * #160 https://leetcode.com/problems/intersection-of-two-linked-lists/
  */
 public class IntersectionOfTwoLinkedLists {
-  public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+  public LinkedListNode getIntersectionNode(LinkedListNode headA, LinkedListNode headB) {
     if(headA == null || headB == null){
       return null;
     }
-    ListNode x = headA;
-    ListNode y = headB;
+    LinkedListNode x = headA;
+    LinkedListNode y = headB;
     boolean af = true;
     boolean bf = true;
     while(x != null && y != null){

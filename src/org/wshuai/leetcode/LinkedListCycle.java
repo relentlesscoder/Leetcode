@@ -5,12 +5,12 @@ package org.wshuai.leetcode;
  * #141 https://leetcode.com/problems/linked-list-cycle/
  */
 public class LinkedListCycle {
-  public boolean hasCycle(ListNode head) {
+  public boolean hasCycle(LinkedListNode head) {
     if(head == null || head.next == null){
       return false;
     }
-    ListNode s = head.next;
-    ListNode f = head.next.next;
+    LinkedListNode s = head.next;
+    LinkedListNode f = head.next.next;
     while(s != null && f != null){
       if(s == f){
         return true;

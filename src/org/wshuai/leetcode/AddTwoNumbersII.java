@@ -8,22 +8,22 @@ import java.util.Stack;
  */
 public class AddTwoNumbersII {
   //O(n)
-  public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+  public LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
     if(l1 == null){
       return l2;
     }
     if(l2 == null){
       return l1;
     }
-    ListNode root = null;
+    LinkedListNode root = null;
     Stack<Integer> s1 = new Stack<Integer>();
     Stack<Integer> s2 = new Stack<Integer>();
-    ListNode r1 = l1;
+    LinkedListNode r1 = l1;
     while(r1 != null){
       s1.push(r1.val);
       r1 = r1.next;
     }
-    ListNode r2 = l2;
+    LinkedListNode r2 = l2;
     while(r2 != null){
       s2.push(r2.val);
       r2 = r2.next;
@@ -33,7 +33,7 @@ public class AddTwoNumbersII {
       int o1 = s1.isEmpty() ? 0 : s1.pop();
       int o2 = s2.isEmpty() ? 0 : s2.pop();
       int sum = o1 + o2 + carry;
-      ListNode curr = new ListNode(sum%10);
+      LinkedListNode curr = new LinkedListNode(sum%10);
       curr.next = root;
       root = curr;
       carry = sum/10;

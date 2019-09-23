@@ -5,7 +5,7 @@ package org.wshuai.leetcode;
  * #237 https://leetcode.com/problems/delete-node-in-a-linked-list/
  */
 public class DeleteNodeInALinkedList {
-  public void deleteNode(ListNode node) {
+  public void deleteNode(LinkedListNode node) {
     if(node == null){
       return;
     }

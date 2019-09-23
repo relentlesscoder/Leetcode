@@ -4,7 +4,7 @@ package org.wshuai.leetcode;
  * Created by Wei on 9/2/2016.
  */
 public class PalindromeLinkedList {
-  public static boolean isPalindrome(ListNode head) {
+  public static boolean isPalindrome(LinkedListNode head) {
     // base cases
     if(head == null){
       return true;
@@ -19,8 +19,8 @@ public class PalindromeLinkedList {
       return head.val == head.next.next.val;
     }
 
-    ListNode slow = head;
-    ListNode fast = head;
+    LinkedListNode slow = head;
+    LinkedListNode fast = head;
     boolean odd = false;
 
     while(fast != null){
@@ -35,9 +35,9 @@ public class PalindromeLinkedList {
       }
     }
 
-    ListNode prev = null;
-    ListNode curr = head;
-    ListNode next = head.next;
+    LinkedListNode prev = null;
+    LinkedListNode curr = head;
+    LinkedListNode next = head.next;
     while(curr != slow){
       curr.next = prev;
       prev = curr;
@@ -45,8 +45,8 @@ public class PalindromeLinkedList {
       next = next.next;
     }
 
-    ListNode left = prev;
-    ListNode right = slow;
+    LinkedListNode left = prev;
+    LinkedListNode right = slow;
     if(odd){
       right = right.next;
     }

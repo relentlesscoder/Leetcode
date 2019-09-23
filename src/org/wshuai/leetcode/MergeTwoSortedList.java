@@ -5,7 +5,7 @@ package org.wshuai.leetcode;
  * #21 https://leetcode.com/problems/merge-two-sorted-lists/
  */
 public class MergeTwoSortedList {
-  public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+  public LinkedListNode mergeTwoLists(LinkedListNode l1, LinkedListNode l2) {
     if(l1 == null){
       return l2;
     }
@@ -13,8 +13,8 @@ public class MergeTwoSortedList {
       return l1;
     }
 
-    ListNode root = new ListNode(0);
-    ListNode c = root;
+    LinkedListNode root = new LinkedListNode(0);
+    LinkedListNode c = root;
     while(l1 != null || l2 != null){
       if(l1 == null){
         c.next = l2;

@@ -5,15 +5,15 @@ package org.wshuai.leetcode;
  * #206 https://leetcode.com/problems/reverse-linked-list/
  */
 public class ReverseLinkedList {
-  public ListNode reverseList(ListNode head) {
+  public LinkedListNode reverseList(LinkedListNode head) {
     if(head == null){
       return null;
     }
 
-    ListNode prev = null;
-    ListNode curr = head;
+    LinkedListNode prev = null;
+    LinkedListNode curr = head;
     while(curr != null){
-      ListNode next = curr.next;
+      LinkedListNode next = curr.next;
       curr.next = prev;
       prev = curr;
       curr = next;

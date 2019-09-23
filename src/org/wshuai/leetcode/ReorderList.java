@@ -14,15 +14,15 @@ public class ReorderList {
    * }
    */
   public class Solution {
-    public void reorderList(ListNode head) {
+    public void reorderList(LinkedListNode head) {
       if (head == null || head.next == null || head.next.next == null)
       {
         return;
       }
 
       // Find the middle
-      ListNode fast = head;
-      ListNode slow = head;
+      LinkedListNode fast = head;
+      LinkedListNode slow = head;
       while (fast != null)
       {
         slow = slow.next;
@@ -34,7 +34,7 @@ public class ReorderList {
       }
 
       // Split the list
-      ListNode it = head;
+      LinkedListNode it = head;
       while (it.next != slow)
       {
         it = it.next;
@@ -42,23 +42,23 @@ public class ReorderList {
       it.next = null;
 
       // Reverse the 2nd half
-      ListNode prev = null;
-      ListNode curr = slow;
+      LinkedListNode prev = null;
+      LinkedListNode curr = slow;
       while (curr != null)
       {
-        ListNode nxt = curr.next;
+        LinkedListNode nxt = curr.next;
         curr.next = prev;
         prev = curr;
         curr = nxt;
       }
 
       // Reorder
-      ListNode left = head;
-      ListNode right = prev;
+      LinkedListNode left = head;
+      LinkedListNode right = prev;
       while (right != null)
       {
-        ListNode nxtLeft = left.next;
-        ListNode nxtRight = right.next;
+        LinkedListNode nxtLeft = left.next;
+        LinkedListNode nxtRight = right.next;
         left.next = right;
         right.next = nxtLeft;
         left = nxtLeft;
