@@ -9,6 +9,7 @@ import java.util.Stack;
  * #94 https://leetcode.com/problems/binary-tree-inorder-traversal/
  */
 public class BinaryTreeInorderTraversal {
+
 	//O(n), iterative
 	public List<Integer> inorderTraversal(TreeNode root) {
 		List<Integer> result = new ArrayList<Integer>();
@@ -29,4 +30,5 @@ public class BinaryTreeInorderTraversal {
 		}
 		return result;
 	}
+
 }

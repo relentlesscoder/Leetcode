@@ -22,6 +22,8 @@ public class BinaryTreePostorderTraversal {
 		TreeNode prev = null;
 		while (!stack.isEmpty()) {
 			TreeNode current = stack.peek();
+			/* go down the tree in search of a leaf an if so process it
+            and pop stack otherwise move down */
 			if (prev == null || prev.left == current || prev.right == current) {
 				if (current.left != null) {
 					stack.push(current.left);
@@ -30,12 +32,17 @@ public class BinaryTreePostorderTraversal {
 				} else {
 					result.add(current.val);
 				}
+				/* go up the tree from left node, if the child is right
+                   push it onto stack otherwise process parent and pop
+                   stack */
 			} else if (current.left == prev) {
 				if (current.right != null) {
 					stack.push(current.right);
 				} else {
 					result.add(current.val);
 				}
+				/* go up the tree from right node and after coming back
+                 from right node process parent and pop stack */
 			} else if (current.right == prev) {
 				result.add(current.val);
 			} else {
