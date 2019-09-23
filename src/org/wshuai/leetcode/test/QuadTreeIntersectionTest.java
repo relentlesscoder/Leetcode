@@ -6,7 +6,7 @@ import org.wshuai.leetcode.QuadTreeNode;
 
 public class QuadTreeIntersectionTest {
 	@Test
-	public void testcase(){
+	public void testcase() {
 		QuadTreeNode root1 = new QuadTreeNode();
 		root1.isLeaf = false;
 		root1.val = false;

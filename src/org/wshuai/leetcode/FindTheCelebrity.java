@@ -5,32 +5,32 @@ package org.wshuai.leetcode;
  * #277 https://leetcode.com/problems/find-the-celebrity/
  */
 public class FindTheCelebrity {
-  public int findCelebrity(int n) {
-    if(n <= 0){
-      return -1;
-    }
-    int a = 0;
-    int b = n - 1;
-    while(a < b){
-      boolean k = knows(a, b);
-      if(k){
-        a++;
-      }else{
-        b--;
-      }
-    }
+	public int findCelebrity(int n) {
+		if (n <= 0) {
+			return -1;
+		}
+		int a = 0;
+		int b = n - 1;
+		while (a < b) {
+			boolean k = knows(a, b);
+			if (k) {
+				a++;
+			} else {
+				b--;
+			}
+		}
 
-    for(int i = 0; i < n; i++){
-      if(i != a && (!knows(i, a) || knows(a, i))){
-        return -1;
-      }
-    }
+		for (int i = 0; i < n; i++) {
+			if (i != a && (!knows(i, a) || knows(a, i))) {
+				return -1;
+			}
+		}
 
-    return a;
-  }
+		return a;
+	}
 
-  // Fake method for compiling
-  private boolean knows(int a, int b){
-    return false;
-  }
+	// Fake method for compiling
+	private boolean knows(int a, int b) {
+		return false;
+	}
 }

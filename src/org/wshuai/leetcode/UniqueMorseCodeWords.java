@@ -8,26 +8,26 @@ import java.util.Set;
  * #804 https://leetcode.com/problems/unique-morse-code-words/
  */
 public class UniqueMorseCodeWords {
-    public int uniqueMorseRepresentations(String[] words) {
-        if(words == null || words.length == 0){
-            return 0;
-        }
-        String[] MORSE = new String[]{".-","-...","-.-.","-..",".","..-.","--.",
-                "....","..",".---","-.-",".-..","--","-.",
-                "---",".--.","--.-",".-.","...","-","..-",
-                "...-",".--","-..-","-.--","--.."};
-        Set<String> set = new HashSet<String>();
-        for(int i = 0; i < words.length; i++){
-            int sLen = words[i].length();
-            int j = 0;
-            StringBuilder sb = new StringBuilder();
-            while(j < sLen){
-                int idx = words[i].charAt(j)-'a';
-                sb.append(MORSE[idx]);
-                j++;
-            }
-            set.add(sb.toString());
-        }
-        return set.size();
-    }
+	public int uniqueMorseRepresentations(String[] words) {
+		if (words == null || words.length == 0) {
+			return 0;
+		}
+		String[] MORSE = new String[]{".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+				"....", "..", ".---", "-.-", ".-..", "--", "-.",
+				"---", ".--.", "--.-", ".-.", "...", "-", "..-",
+				"...-", ".--", "-..-", "-.--", "--.."};
+		Set<String> set = new HashSet<String>();
+		for (int i = 0; i < words.length; i++) {
+			int sLen = words[i].length();
+			int j = 0;
+			StringBuilder sb = new StringBuilder();
+			while (j < sLen) {
+				int idx = words[i].charAt(j) - 'a';
+				sb.append(MORSE[idx]);
+				j++;
+			}
+			set.add(sb.toString());
+		}
+		return set.size();
+	}
 }

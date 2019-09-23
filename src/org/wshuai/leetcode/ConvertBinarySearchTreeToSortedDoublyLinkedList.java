@@ -5,41 +5,41 @@ package org.wshuai.leetcode;
  * #426 https://leetcode.com/problems/convert-binary-search-tree-to-sorted-doubly-linked-list/
  */
 public class ConvertBinarySearchTreeToSortedDoublyLinkedList {
-    TreeNode first = null;
-    TreeNode last = null;
+	TreeNode first = null;
+	TreeNode last = null;
 
-    // use inorder traversal
-    public TreeNode treeToDoublyList(TreeNode root) {
-        if(root == null){
-            return null;
-        }
+	// use inorder traversal
+	public TreeNode treeToDoublyList(TreeNode root) {
+		if (root == null) {
+			return null;
+		}
 
-        helper(root);
+		helper(root);
 
-        last.right = first;
-        first.left = last;
+		last.right = first;
+		first.left = last;
 
-        return first;
-    }
+		return first;
+	}
 
-    private void helper(TreeNode node){
-        if(node != null){
-            //left
-            helper(node.left);
+	private void helper(TreeNode node) {
+		if (node != null) {
+			//left
+			helper(node.left);
 
-            // for parent node, set left to last
-            // for right node, set parent to last
-            if(last != null){
-                last.right = node;
-                node.left = last;
-            }else{
-                // maintain the smallest node
-                first = node;
-            }
-            // maintain the current last node
-            last = node;
-            //right
-            helper(node.right);
-        }
-    }
+			// for parent node, set left to last
+			// for right node, set parent to last
+			if (last != null) {
+				last.right = node;
+				node.left = last;
+			} else {
+				// maintain the smallest node
+				first = node;
+			}
+			// maintain the current last node
+			last = node;
+			//right
+			helper(node.right);
+		}
+	}
 }

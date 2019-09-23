@@ -9,8 +9,8 @@ import static org.junit.Assert.assertEquals;
  * Created by Wei on 8/17/2016.
  */
 public class SubstringWithSoncatenationOfAllWordsTest {
-  @Test
-  public void test1(){
-    SubstringWithSoncatenationOfAllWords.findSubstringBrutalForce("barfoothefoobarman", new String[]{"foo","bar"});
-  }
+	@Test
+	public void test1() {
+		SubstringWithSoncatenationOfAllWords.findSubstringBrutalForce("barfoothefoobarman", new String[]{"foo", "bar"});
+	}
 }

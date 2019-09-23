@@ -24,16 +24,16 @@ public class ImplementStrStrTest {
     ImplementStrStr.buildLSP(pattern, lsp);
   }*/
 
-  @Test
-  public void testKMP1(){
-    KMP kmp = new KMP();
-    int x = kmp.kmpMatch("ABABDABACDABABCABAB", "ABABCABAB");
-  }
+	@Test
+	public void testKMP1() {
+		KMP kmp = new KMP();
+		int x = kmp.kmpMatch("ABABDABACDABABCABAB", "ABABCABAB");
+	}
 
-  @Test
-  public void testKMP2() {
-    KMP kmp = new KMP();
-    int x = kmp.kmpMatch("mississippi", "issip");
-  }
+	@Test
+	public void testKMP2() {
+		KMP kmp = new KMP();
+		int x = kmp.kmpMatch("mississippi", "issip");
+	}
 
 }

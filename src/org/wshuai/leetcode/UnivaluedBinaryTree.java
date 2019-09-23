@@ -5,13 +5,13 @@ package org.wshuai.leetcode;
  * #965 https://leetcode.com/problems/univalued-binary-tree/
  */
 public class UnivaluedBinaryTree {
-    public boolean isUnivalTree(TreeNode root) {
-        if(root == null){
-            return true;
-        }
-        return (root.left == null || root.left.val == root.val)
-                && (root.right == null || root.right.val == root.val)
-                && isUnivalTree(root.left)
-                && isUnivalTree(root.right);
-    }
+	public boolean isUnivalTree(TreeNode root) {
+		if (root == null) {
+			return true;
+		}
+		return (root.left == null || root.left.val == root.val)
+				&& (root.right == null || root.right.val == root.val)
+				&& isUnivalTree(root.left)
+				&& isUnivalTree(root.right);
+	}
 }

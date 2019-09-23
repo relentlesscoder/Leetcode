@@ -8,18 +8,18 @@ import java.util.List;
  * #1134 https://leetcode.com/problems/armstrong-number/
  */
 public class ArmstrongNumber {
-    public boolean isArmstrong(int N) {
-        List<Integer> lst = new ArrayList<Integer>();
-        int val = N;
-        while(val > 0){
-            lst.add(val%10);
-            val = val/10;
-        }
-        int pwr = lst.size();
-        long res = 0;
-        for(int i: lst){
-            res += (int)Math.pow(i, pwr);
-        }
-        return res == N;
-    }
+	public boolean isArmstrong(int N) {
+		List<Integer> lst = new ArrayList<Integer>();
+		int val = N;
+		while (val > 0) {
+			lst.add(val % 10);
+			val = val / 10;
+		}
+		int pwr = lst.size();
+		long res = 0;
+		for (int i : lst) {
+			res += (int) Math.pow(i, pwr);
+		}
+		return res == N;
+	}
 }

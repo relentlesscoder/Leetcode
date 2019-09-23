@@ -5,23 +5,23 @@ package org.wshuai.leetcode;
  * #897 https://leetcode.com/problems/increasing-order-search-tree/
  */
 public class IncreasingOrderSearchTree {
-    private TreeNode curr;
+	private TreeNode curr;
 
-    public TreeNode increasingBST(TreeNode root) {
-        TreeNode res = new TreeNode(0);
-        curr = res;
-        inOrder(root);
-        return res.right;
-    }
+	public TreeNode increasingBST(TreeNode root) {
+		TreeNode res = new TreeNode(0);
+		curr = res;
+		inOrder(root);
+		return res.right;
+	}
 
-    private void inOrder(TreeNode node){
-        if(node == null){
-            return;
-        }
-        inOrder(node.left);
-        node.left = null;
-        curr.right = node;
-        curr = node;
-        inOrder(node.right);
-    }
+	private void inOrder(TreeNode node) {
+		if (node == null) {
+			return;
+		}
+		inOrder(node.left);
+		node.left = null;
+		curr.right = node;
+		curr = node;
+		inOrder(node.right);
+	}
 }

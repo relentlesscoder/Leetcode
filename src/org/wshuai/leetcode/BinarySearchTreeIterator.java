@@ -10,42 +10,45 @@ import java.util.Stack;
  */
 public class BinarySearchTreeIterator {
 
-  private Stack<TreeNode> stack;
-  TreeNode current;
-  TreeNode rootNode;
+	private Stack<TreeNode> stack;
+	TreeNode current;
+	TreeNode rootNode;
 
-  public BinarySearchTreeIterator(TreeNode root) {
-    stack = new Stack<TreeNode>();
-    current = root;
-    rootNode = root;
-  }
+	public BinarySearchTreeIterator(TreeNode root) {
+		stack = new Stack<TreeNode>();
+		current = root;
+		rootNode = root;
+	}
 
-  /** @return whether we have a next smallest number */
-  public boolean hasNext() {
-    if(rootNode == null){
-      return false;
-    }
+	/**
+	 * @return whether we have a next smallest number
+	 */
+	public boolean hasNext() {
+		if (rootNode == null) {
+			return false;
+		}
 
-    return (!stack.isEmpty() || current != null);
-  }
+		return (!stack.isEmpty() || current != null);
+	}
 
-  /** @return the next smallest number */
-  public int next() {
-    while (!stack.isEmpty() || current != null){
-      if(current != null){
-        stack.push(current);
-        current = current.left;
-      }
-      else{
-        TreeNode next = stack.peek();
-        current = stack.pop();
-        current = current.right;
-        return next.val;
-      }
-    }
+	/**
+	 * @return the next smallest number
+	 */
+	public int next() {
+		while (!stack.isEmpty() || current != null) {
+			if (current != null) {
+				stack.push(current);
+				current = current.left;
+			} else {
+				TreeNode next = stack.peek();
+				current = stack.pop();
+				current = current.right;
+				return next.val;
+			}
+		}
 
-    return 0;
-  }
+		return 0;
+	}
 }
 
 /**

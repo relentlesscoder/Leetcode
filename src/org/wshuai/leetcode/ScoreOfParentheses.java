@@ -11,15 +11,15 @@ public class ScoreOfParentheses {
 		int res = 0;
 		int i = 0;
 		Stack<Integer> stack = new Stack<>();
-		while(i < S.length()){
+		while (i < S.length()) {
 			// find the next ) to construct a balanced parentheses
-			if(S.charAt(i) == '('){
+			if (S.charAt(i) == '(') {
 				stack.push(i);
-			}else{
+			} else {
 				int l = stack.pop();
-				if(stack.isEmpty()){
+				if (stack.isEmpty()) {
 					// if the current contains child balanced parentheses, solve it recursively
-					res += i == l+1 ? 1 : 2*scoreOfParentheses(S.substring(l+1, i));
+					res += i == l + 1 ? 1 : 2 * scoreOfParentheses(S.substring(l + 1, i));
 				}
 			}
 			i++;

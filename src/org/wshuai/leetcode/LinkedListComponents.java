@@ -11,14 +11,14 @@ public class LinkedListComponents {
 	public int numComponents(LinkedListNode head, int[] G) {
 		int count = 0;
 		Set<Integer> set = new HashSet<>();
-		for(int g: G){
+		for (int g : G) {
 			set.add(g);
 		}
 		LinkedListNode node = head;
-		while(node != null){
-			if(set.contains(node.val)){
+		while (node != null) {
+			if (set.contains(node.val)) {
 				count++;
-				while(node.next != null && set.contains(node.next.val)){
+				while (node.next != null && set.contains(node.next.val)) {
 					node = node.next;
 				}
 			}

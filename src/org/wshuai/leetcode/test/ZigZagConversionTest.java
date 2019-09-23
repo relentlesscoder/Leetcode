@@ -9,15 +9,15 @@ import static org.junit.Assert.assertEquals;
  * Created by Wei on 8/12/2016.
  */
 public class ZigZagConversionTest {
-  @Test
-  public void validInputShouldReturnZigZagOutput(){
-    String s = ZigZagConversion.convert("ABC", 2);
-    assertEquals(s, "ACB");
-  }
+	@Test
+	public void validInputShouldReturnZigZagOutput() {
+		String s = ZigZagConversion.convert("ABC", 2);
+		assertEquals(s, "ACB");
+	}
 
-  @Test
-  public void rowNumGtInputLengthShouldReturnOriginal(){
-    String s = ZigZagConversion.convert("AB", 3);
-    assertEquals(s, "AB");
-  }
+	@Test
+	public void rowNumGtInputLengthShouldReturnOriginal() {
+		String s = ZigZagConversion.convert("AB", 3);
+		assertEquals(s, "AB");
+	}
 }

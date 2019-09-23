@@ -9,15 +9,15 @@ import java.util.Set;
  * #893 https://leetcode.com/problems/groups-of-special-equivalent-strings/
  */
 public class GroupsOfSpecialEquivalentStrings {
-    public int numSpecialEquivGroups(String[] A) {
-        Set<String> set = new HashSet<>();
-        for(String a: A){
-            int[] count = new int[52];
-            for(int i = 0; i < a.length(); i++){
-                count[a.charAt(i) - 'a' + 26 * (i % 2)]++;
-            }
-            set.add(Arrays.toString(count));
-        }
-        return set.size();
-    }
+	public int numSpecialEquivGroups(String[] A) {
+		Set<String> set = new HashSet<>();
+		for (String a : A) {
+			int[] count = new int[52];
+			for (int i = 0; i < a.length(); i++) {
+				count[a.charAt(i) - 'a' + 26 * (i % 2)]++;
+			}
+			set.add(Arrays.toString(count));
+		}
+		return set.size();
+	}
 }

@@ -8,13 +8,13 @@ import java.util.Set;
  * #961 https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
  */
 public class NRepeatedElementInSize2NArray {
-    public int repeatedNTimes(int[] A) {
-        Set<Integer> set = new HashSet<Integer>();
-        for(int a: A){
-            if(!set.add(a)){
-                return a;
-            }
-        }
-        return -1;
-    }
+	public int repeatedNTimes(int[] A) {
+		Set<Integer> set = new HashSet<Integer>();
+		for (int a : A) {
+			if (!set.add(a)) {
+				return a;
+			}
+		}
+		return -1;
+	}
 }

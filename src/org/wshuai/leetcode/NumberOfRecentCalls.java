@@ -8,19 +8,19 @@ import java.util.Queue;
  * #933 https://leetcode.com/problems/number-of-recent-calls/
  */
 public class NumberOfRecentCalls {
-    Queue<Integer> queue;
+	Queue<Integer> queue;
 
-    public NumberOfRecentCalls() {
-        queue = new LinkedList<Integer>();
-    }
+	public NumberOfRecentCalls() {
+		queue = new LinkedList<Integer>();
+	}
 
-    public int ping(int t) {
-        queue.add(t);
-        while(queue.peek() < t - 3000){
-            queue.poll();
-        }
-        return queue.size();
-    }
+	public int ping(int t) {
+		queue.add(t);
+		while (queue.peek() < t - 3000) {
+			queue.poll();
+		}
+		return queue.size();
+	}
 }
 
 /**

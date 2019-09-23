@@ -10,17 +10,17 @@ import java.util.Set;
 public class MinimumCostForTickets {
 	public int mincostTickets(int[] days, int[] costs) {
 		Set<Integer> set = new HashSet<>();
-		for(int d: days){
+		for (int d : days) {
 			set.add(d);
 		}
 		int[] dp = new int[366];
-		for(int i = 1; i < 366; i++){
-			if(!set.contains(i)){
-				dp[i] = dp[i-1];
-			}else{
-				int min = dp[i-1] + costs[0];
-				min = Math.min(min, dp[Math.max(0, i-7)] + costs[1]);
-				min = Math.min(min, dp[Math.max(0, i-30)] + costs[2]);
+		for (int i = 1; i < 366; i++) {
+			if (!set.contains(i)) {
+				dp[i] = dp[i - 1];
+			} else {
+				int min = dp[i - 1] + costs[0];
+				min = Math.min(min, dp[Math.max(0, i - 7)] + costs[1]);
+				min = Math.min(min, dp[Math.max(0, i - 30)] + costs[2]);
 				dp[i] = min;
 			}
 		}

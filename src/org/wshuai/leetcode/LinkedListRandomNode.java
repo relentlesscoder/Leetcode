@@ -8,30 +8,34 @@ import java.util.Random;
  */
 public class LinkedListRandomNode {
 
-  private LinkedListNode head;
-  private Random random;
+	private LinkedListNode head;
+	private Random random;
 
-  /** @param head The linked list's head.
-  Note that the head is guaranteed to be not null, so it contains at least one node. */
-  public LinkedListRandomNode(LinkedListNode head) {
-    this.head = head;
-    this.random = new Random();
-  }
+	/**
+	 * @param head The linked list's head.
+	 *             Note that the head is guaranteed to be not null, so it contains at least one node.
+	 */
+	public LinkedListRandomNode(LinkedListNode head) {
+		this.head = head;
+		this.random = new Random();
+	}
 
-  /** Returns a random node's value. */
-  //O(n), reservoir sampling. http://www.geeksforgeeks.org/reservoir-sampling/
-  public int getRandom() {
-    int result = 0;
-    LinkedListNode curr = head;
+	/**
+	 * Returns a random node's value.
+	 */
+	//O(n), reservoir sampling. http://www.geeksforgeeks.org/reservoir-sampling/
+	public int getRandom() {
+		int result = 0;
+		LinkedListNode curr = head;
 
-    for(int i = 1; curr!=null; i++){
-      if(random.nextInt(i) == 0){
-        result = curr.val;
-      }
-      curr = curr.next;
-    }
-    return result;
-  }
+		for (int i = 1; curr != null; i++) {
+			if (random.nextInt(i) == 0) {
+				result = curr.val;
+			}
+			curr = curr.next;
+		}
+		return result;
+	}
 }
 
 /**

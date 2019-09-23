@@ -7,7 +7,8 @@ public class DoublyLinkedListNode {
 	public DoublyLinkedListNode next;
 	public DoublyLinkedListNode child;
 
-	public DoublyLinkedListNode() {}
+	public DoublyLinkedListNode() {
+	}
 
 	public DoublyLinkedListNode(int _val, DoublyLinkedListNode _prev, DoublyLinkedListNode _next, DoublyLinkedListNode _child) {
 		val = _val;

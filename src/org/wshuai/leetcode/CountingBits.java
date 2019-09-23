@@ -5,16 +5,16 @@ package org.wshuai.leetcode;
  * #338 https://leetcode.com/problems/counting-bits/
  */
 public class CountingBits {
-  public int[] countBits(int num) {
-    if(num < 0){
-      return new int[0];
-    }
+	public int[] countBits(int num) {
+		if (num < 0) {
+			return new int[0];
+		}
 
-    int[] res = new int[num+1];
-    NumberOf1Bits nb = new NumberOf1Bits();
-    for(int i = 0; i <= num; i++){
-      res[i] = nb.hammingWeight(i);
-    }
-    return res;
-  }
+		int[] res = new int[num + 1];
+		NumberOf1Bits nb = new NumberOf1Bits();
+		for (int i = 0; i <= num; i++) {
+			res[i] = nb.hammingWeight(i);
+		}
+		return res;
+	}
 }

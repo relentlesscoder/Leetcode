@@ -9,63 +9,60 @@ import java.util.Stack;
  * #144 https://leetcode.com/problems/binary-tree-preorder-traversal/
  */
 public class BinaryTreePreorderTraversal {
-  public static List<Integer> preorderTraversal(TreeNode root) {
-    List<Integer> result = new ArrayList<Integer>();
+	public static List<Integer> preorderTraversal(TreeNode root) {
+		List<Integer> result = new ArrayList<Integer>();
 
-    if(root == null){
-      return result;
-    }
+		if (root == null) {
+			return result;
+		}
 
-    Stack<TreeNode> stack = new Stack<TreeNode>();
-    stack.push(root);
-    TreeNode prev = null;
-    while (!stack.isEmpty()){
-      TreeNode current = stack.peek();
-      if(prev == null || prev.left == current || prev.right == current){
-        result.add(current.val);
-        if(current.left != null){
-          stack.push(current.left);
-        }
-        else if(current.right != null){
-          stack.push(current.right);
-        }
-      }
-      else if(current.left == prev){
-        if(current.right != null){
-          stack.push(current.right);
-        }
-      }
-      else{
-        stack.pop();
-      }
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		stack.push(root);
+		TreeNode prev = null;
+		while (!stack.isEmpty()) {
+			TreeNode current = stack.peek();
+			if (prev == null || prev.left == current || prev.right == current) {
+				result.add(current.val);
+				if (current.left != null) {
+					stack.push(current.left);
+				} else if (current.right != null) {
+					stack.push(current.right);
+				}
+			} else if (current.left == prev) {
+				if (current.right != null) {
+					stack.push(current.right);
+				}
+			} else {
+				stack.pop();
+			}
 
-      prev = current;
-    }
+			prev = current;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public List<Integer> preorderTraversalSimple(TreeNode root) {
-    List<Integer> result = new ArrayList<Integer>();
+	public List<Integer> preorderTraversalSimple(TreeNode root) {
+		List<Integer> result = new ArrayList<Integer>();
 
-    if(root == null){
-      return result;
-    }
+		if (root == null) {
+			return result;
+		}
 
-    Stack<TreeNode> stack = new Stack<TreeNode>();
-    stack.push(root);
-    while (!stack.empty()){
-      TreeNode current = stack.pop();
-      result.add(current.val);
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		stack.push(root);
+		while (!stack.empty()) {
+			TreeNode current = stack.pop();
+			result.add(current.val);
 
-      if(current.left != null){
-        stack.push(current.left);
-      }
-      if(current.right != null){
-        stack.push(current.right);
-      }
-    }
+			if (current.left != null) {
+				stack.push(current.left);
+			}
+			if (current.right != null) {
+				stack.push(current.right);
+			}
+		}
 
-    return result;
-  }
+		return result;
+	}
 }

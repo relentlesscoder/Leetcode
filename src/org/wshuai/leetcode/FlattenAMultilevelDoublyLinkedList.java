@@ -11,22 +11,22 @@ public class FlattenAMultilevelDoublyLinkedList {
 		return head;
 	}
 
-	private DoublyLinkedListNode flattenUtil(DoublyLinkedListNode curr){
-		while(curr != null){
-			if(curr.child != null){
+	private DoublyLinkedListNode flattenUtil(DoublyLinkedListNode curr) {
+		while (curr != null) {
+			if (curr.child != null) {
 				DoublyLinkedListNode next = curr.next;
 				DoublyLinkedListNode child = curr.child;
 				curr.next = curr.child;
 				child.prev = curr;
 				curr.child = null;
 				DoublyLinkedListNode tail = flattenUtil(child);
-				if(next != null){
+				if (next != null) {
 					tail.next = next;
 					next.prev = tail;
 				}
 				curr = tail;
 			}
-			if(curr.next == null){
+			if (curr.next == null) {
 				return curr;
 			}
 			curr = curr.next;

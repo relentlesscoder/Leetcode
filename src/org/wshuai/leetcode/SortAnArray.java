@@ -7,8 +7,8 @@ import org.wshuai.algorithm.sorting.QuickSort;
  * #912 https://leetcode.com/problems/sort-an-array/
  */
 public class SortAnArray {
-    public int[] sortArray(int[] nums) {
-        QuickSort.quickSort(nums, 0, nums.length-1);
-        return nums;
-    }
+	public int[] sortArray(int[] nums) {
+		QuickSort.quickSort(nums, 0, nums.length - 1);
+		return nums;
+	}
 }

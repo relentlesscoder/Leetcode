@@ -6,24 +6,24 @@ package org.wshuai.leetcode;
  */
 public class TwoSumIIInputArrayIsSorted {
 
-  //O(n)
-  public int[] twoSum(int[] numbers, int target) {
-    int[] res = new int[2];
-    int len = numbers.length;
-    int left = 0;
-    int right = len-1;
-    while(left < right){
-      int sum = numbers[left] + numbers[right];
-      if(sum == target){
-        res[0] = left+1;
-        res[1] = right+1;
-        break;
-      }else if(sum < target){
-        left++;
-      }else{
-        right--;
-      }
-    }
-    return res;
-  }
+	//O(n)
+	public int[] twoSum(int[] numbers, int target) {
+		int[] res = new int[2];
+		int len = numbers.length;
+		int left = 0;
+		int right = len - 1;
+		while (left < right) {
+			int sum = numbers[left] + numbers[right];
+			if (sum == target) {
+				res[0] = left + 1;
+				res[1] = right + 1;
+				break;
+			} else if (sum < target) {
+				left++;
+			} else {
+				right--;
+			}
+		}
+		return res;
+	}
 }

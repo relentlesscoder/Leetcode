@@ -6,34 +6,34 @@ package org.wshuai.leetcode;
  */
 public class TrieNode {
 
-  // R links to node children
-  private TrieNode[] links;
+	// R links to node children
+	private TrieNode[] links;
 
-  private final int R = 26;
+	private final int R = 26;
 
-  private boolean isEnd;
+	private boolean isEnd;
 
-  public TrieNode(){
-    this.links = new TrieNode[R];
-  }
+	public TrieNode() {
+		this.links = new TrieNode[R];
+	}
 
-  public boolean containsKey(char key){
-    return links[key - 'a'] != null;
-  }
+	public boolean containsKey(char key) {
+		return links[key - 'a'] != null;
+	}
 
-  public TrieNode get(char key){
-    return links[key-'a'];
-  }
+	public TrieNode get(char key) {
+		return links[key - 'a'];
+	}
 
-  public void put(char key, TrieNode node){
-    links[key-'a'] = node;
-  }
+	public void put(char key, TrieNode node) {
+		links[key - 'a'] = node;
+	}
 
-  public void setEnd(){
-    isEnd = true;
-  }
+	public void setEnd() {
+		isEnd = true;
+	}
 
-  public boolean isEnd(){
-    return isEnd;
-  }
+	public boolean isEnd() {
+		return isEnd;
+	}
 }

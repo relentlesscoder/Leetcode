@@ -8,33 +8,37 @@ import java.util.Random;
  * #384 https://leetcode.com/problems/shuffle-an-array/
  */
 public class ShuffleAnArray {
-  private int[] nums;
-  private int[] out;
-  private Random random;
+	private int[] nums;
+	private int[] out;
+	private Random random;
 
-  public ShuffleAnArray(int[] nums) {
-    this.nums = nums;
-    this.out = Arrays.copyOf(nums, nums.length);
-    this.random = new Random();
-  }
+	public ShuffleAnArray(int[] nums) {
+		this.nums = nums;
+		this.out = Arrays.copyOf(nums, nums.length);
+		this.random = new Random();
+	}
 
-  /** Resets the array to its original configuration and return it. */
-  public int[] reset() {
-    this.out = Arrays.copyOf(nums, nums.length);
-    return out;
-  }
+	/**
+	 * Resets the array to its original configuration and return it.
+	 */
+	public int[] reset() {
+		this.out = Arrays.copyOf(nums, nums.length);
+		return out;
+	}
 
-  /** Returns a random shuffling of the array. */
-  public int[] shuffle() {
-    int len = nums.length;
-    for(int i = 0; i < len; i++){
-      int pos = random.nextInt(len-i)+i;
-      int temp = out[pos];
-      out[pos] = out[i];
-      out[i] = temp;
-    }
-    return out;
-  }
+	/**
+	 * Returns a random shuffling of the array.
+	 */
+	public int[] shuffle() {
+		int len = nums.length;
+		for (int i = 0; i < len; i++) {
+			int pos = random.nextInt(len - i) + i;
+			int temp = out[pos];
+			out[pos] = out[i];
+			out[i] = temp;
+		}
+		return out;
+	}
 }
 
 /**
