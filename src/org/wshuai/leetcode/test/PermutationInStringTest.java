@@ -7,6 +7,6 @@ public class PermutationInStringTest {
 	@Test
 	public void testcase(){
 		PermutationInString pis = new PermutationInString();
-		boolean v = pis.checkInclusionOptimized("adc", "dcda");
+		boolean v = pis.checkInclusion("adc", "dcda");
 	}
 }
