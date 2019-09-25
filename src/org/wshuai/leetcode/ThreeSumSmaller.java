@@ -24,7 +24,7 @@ public class ThreeSumSmaller {
 					right--;
 				} else {
 					//right is the maximum val, if left+right < target
-					//then all values between+left < target
+					//then all values (between left and right) + left < target
 					count += right - left;
 					left++;
 				}
