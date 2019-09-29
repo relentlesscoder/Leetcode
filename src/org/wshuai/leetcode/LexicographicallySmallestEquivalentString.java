@@ -6,7 +6,7 @@ package org.wshuai.leetcode;
  */
 public class LexicographicallySmallestEquivalentString {
 
-	// union find
+	// union find, similar as #1101
 	public String smallestEquivalentString(String A, String B, String S) {
 		char[] map = new char[26];
 		for(int i = 0; i < 26; i++){
