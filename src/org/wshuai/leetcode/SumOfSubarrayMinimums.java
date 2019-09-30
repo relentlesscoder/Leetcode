@@ -10,7 +10,7 @@ public class SumOfSubarrayMinimums {
 	public int sumSubarrayMins(int[] A) {
 		int mod = 1_000_000_007;
 
-		Stack<ValueCountPair> stack = new Stack();
+		Stack<ValueCountPair<Integer, Integer>> stack = new Stack();
 		int ans = 0;
 		// dot is the sum of minimum of all contiguous subarray that ends with index j
 		// [1,7,5,2,4,9]
@@ -21,10 +21,10 @@ public class SumOfSubarrayMinimums {
 		int dot = 0;
 		for (int j = 0; j < A.length; j++) {
 			int count = 1;
-			while (!stack.isEmpty() && stack.peek().val >= A[j]) {
-				ValueCountPair node = stack.pop();
+			while (!stack.isEmpty() && stack.peek().value >= A[j]) {
+				ValueCountPair<Integer, Integer> node = stack.pop();
 				count += node.count;
-				dot -= node.val * node.count;
+				dot -= node.value * node.count;
 			}
 			stack.push(new ValueCountPair(A[j], count));
 			dot += A[j] * count;
@@ -33,16 +33,5 @@ public class SumOfSubarrayMinimums {
 		}
 
 		return ans;
-	}
-}
-
-class ValueCountPair {
-	int val;
-
-	int count;
-
-	public ValueCountPair(int v, int c) {
-		val = v;
-		count = c;
 	}
 }
