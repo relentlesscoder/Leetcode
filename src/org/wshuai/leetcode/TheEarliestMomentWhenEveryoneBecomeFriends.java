@@ -7,7 +7,7 @@ import java.util.Arrays;
  * #1101 https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/
  */
 public class TheEarliestMomentWhenEveryoneBecomeFriends {
-  // union find
+  // union find with size tracking
   public int earliestAcq(int[][] logs, int N) {
     int[] root = new int[N];
     int[] size = new int[N];
