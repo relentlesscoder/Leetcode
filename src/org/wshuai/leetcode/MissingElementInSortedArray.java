@@ -6,20 +6,25 @@ package org.wshuai.leetcode;
  */
 public class MissingElementInSortedArray {
 	public int missingElement(int[] nums, int k) {
-		int l = 0, h = nums.length;
-		while(l < h){
-			int m = l + (h - l)/2;
-			// if there is no numbers missing, nums[m] - m == nums[0]
-			// 4, 5, 6, 7, 8, 9, 10 -> 7 - 3 = 4
-			// since there are missing numbers.
-			// if there is 1 missing number in the left, nums[m] - m - 1 == nums[0] ->
-			// if n missing we have nums[m] - m - n == nums[0]
-			if(nums[m] - m - k >= nums[0]){
-				h = m;
+		int left = 0;
+		int right = nums.length - 1;
+		int totalMissing = missing(right, nums);
+		if(totalMissing < k){
+			return nums[right] + k - totalMissing;
+		}
+		while (left < right){
+			int mid = left + (right - left) / 2;
+			if(missing(mid, nums) < k){
+				left = mid + 1;
 			}else{
-				l = m + 1;
+				right = mid;
 			}
 		}
-		return nums[0] + l + k - 1;
+
+		return nums[left - 1] + k - missing(left - 1, nums);
+	}
+
+	private int missing(int index, int[] nums){
+		return nums[index] - nums[0] - index;
 	}
 }
