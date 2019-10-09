@@ -11,6 +11,7 @@ public class PrimeArrangements {
 
 	private int MOD = 1_000_000_007;
 
+	// https://leetcode.com/problems/prime-arrangements/discuss/371884/Simple-Java-With-comment-sieve_of_eratosthenes
 	public int numPrimeArrangements(int n) {
 		int noOfPrime = countPrimes(n);
 		BigInteger x = factorial(noOfPrime);
