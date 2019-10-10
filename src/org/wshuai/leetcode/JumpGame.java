@@ -5,18 +5,18 @@ package org.wshuai.leetcode;
  * #55 https://leetcode.com/problems/jump-game/
  */
 public class JumpGame {
-  public boolean canJump(int[] nums) {
-    if(nums == null){
-      throw new IllegalArgumentException("Invalid input.");
-    }
+	public boolean canJump(int[] nums) {
+		if (nums == null) {
+			throw new IllegalArgumentException("Invalid input.");
+		}
 
-    int max = 0;
-    int i = 0;
-    int len = nums.length;
-    //"i <= val" makes sure it can jump to i
-    for(i = 0; i <= max && i < len; i++){
-      max = Math.max(max, i+nums[i]);
-    }
-    return i == len;
-  }
+		int max = 0;
+		int i = 0;
+		int len = nums.length;
+		//"i <= val" makes sure it can jump to i
+		for (i = 0; i <= max && i < len; i++) {
+			max = Math.max(max, i + nums[i]);
+		}
+		return i == len;
+	}
 }

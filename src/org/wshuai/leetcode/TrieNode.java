@@ -2,13 +2,48 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 11/5/16.
+ * Updated by Wei on 9/8/19.
  */
 public class TrieNode {
-  TrieNode[] nodes;
-  boolean valid;
+
+	// R links to node children
+  public TrieNode[] links;
+
+  private final int R = 52;
+
+  private boolean isEnd;
 
   public TrieNode(){
-    this.nodes = new TrieNode[26];
-    this.valid = false;
+    this.links = new TrieNode[R];
+  }
+
+  public boolean containsKey(char key){
+    int index = getIndex(key);
+    return links[index] != null;
+  }
+
+  public TrieNode get(char key){
+    int index = getIndex(key);
+    return links[index];
+  }
+
+  public void put(char key, TrieNode node){
+    int index = getIndex(key);
+    links[index] = node;
+  }
+
+  public boolean isEnd(){
+    return isEnd;
+  }
+
+  public void setEnd(){
+    isEnd = true;
+  }
+
+  private int getIndex(char key){
+    if(Character.isUpperCase(key)){
+      return (key - 'A') + 26;
+    }
+    return key - 'a';
   }
 }

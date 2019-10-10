@@ -8,62 +8,59 @@ import java.util.Stack;
  */
 public class ValidParentheses {
 
-  public boolean isValid(String s){
-    int count = 0;
+	public boolean isValid(String s) {
+		int count = 0;
 
-    for(int i = 0; i < s.length(); i++){
-      char c = s.charAt(i);
-      if(c == '('){
-        count++;
-      }
-      if(c == ')' && count-- == 0){
-        return false;
-      }
-    }
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (c == '(') {
+				count++;
+			}
+			if (c == ')' && count-- == 0) {
+				return false;
+			}
+		}
 
-    return count == 0;
-  }
+		return count == 0;
+	}
 
-  public boolean isValidStack(String s) {
-    if(s == null || s.isEmpty()){
-      return false;
-    }
-    int len = s.length();
-    if(len%2 == 1){
-      return false;
-    }
-    char first = s.charAt(0);
-    if(first != '(' && first != '{' && first != '['){
-      return false;
-    }
-    Stack<Character> stk = new Stack<Character>();
-    for(int i = 0; i < len; i++){
-      char x = s.charAt(i);
-      if(x == '(' || x == '{' || x == '['){
-        stk.push(x);
-      }else{
-        if(stk.empty()){
-          return false;
-        }else{
-          char y = stk.pop();
-          if(y == '(' && x == ')'){
-            continue;
-          }
-          else if(y == '[' && x == ']'){
-            continue;
-          }
-          else if(y == '{' && x == '}'){
-            continue;
-          }
-          else{
-            return false;
-          }
-        }
-      }
-    }
-    if(!stk.empty()){
-      return false;
-    }
-    return true;
-  }
+	public boolean isValidStack(String s) {
+		if (s == null || s.isEmpty()) {
+			return false;
+		}
+		int len = s.length();
+		if (len % 2 == 1) {
+			return false;
+		}
+		char first = s.charAt(0);
+		if (first != '(' && first != '{' && first != '[') {
+			return false;
+		}
+		Stack<Character> stk = new Stack<Character>();
+		for (int i = 0; i < len; i++) {
+			char x = s.charAt(i);
+			if (x == '(' || x == '{' || x == '[') {
+				stk.push(x);
+			} else {
+				if (stk.empty()) {
+					return false;
+				} else {
+					char y = stk.pop();
+					if (y == '(' && x == ')') {
+						continue;
+					} else if (y == '[' && x == ']') {
+						continue;
+					} else if (y == '{' && x == '}') {
+						continue;
+					} else {
+						return false;
+					}
+				}
+			}
+		}
+		if (!stk.empty()) {
+			return false;
+		}
+		return true;
+	}
 }

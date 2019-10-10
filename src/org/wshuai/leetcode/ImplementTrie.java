@@ -5,83 +5,71 @@ package org.wshuai.leetcode;
  * #208 https://leetcode.com/problems/implement-trie-prefix-tree/
  */
 public class ImplementTrie {
-  private TrieNode root;
+	private TrieNode root;
 
-  public ImplementTrie() {
-    root = new TrieNode();
-  }
+	public ImplementTrie() {
+		root = new TrieNode();
+	}
 
-  // Inserts a word into the trie.
-  public void insert(String word) {
-    if (word == null || word.isEmpty())
-    {
-      return;
-    }
-    int len = word.length();
-    int i = 0;
-    TrieNode curr = root;
-    while (i < len)
-    {
-      char c = word.charAt(i);
-      int idx = c - 'a';
-      TrieNode next = curr.nodes[idx];
-      if (next == null)
-      {
-        next = new TrieNode();
-        curr.nodes[idx] = next;
-      }
-      curr = next;
-      i++;
-    }
-    curr.valid = true;
-  }
+	// Inserts a word into the trie.
+	public void insert(String word) {
+		TrieNode node = root;
+		for (int i = 0; i < word.length(); i++) {
+			char currentKey = word.charAt(i);
+			if (!node.containsKey(currentKey)) {
+				node.put(currentKey, new TrieNode());
+			}
+			node = node.get(currentKey);
+		}
+		node.setEnd();
+	}
 
-  // Returns if the word is in the trie.
-  public boolean search(String word) {
-    TrieNode node = searchNode(word);
-    if (node == null)
-    {
-      return false;
-    }
-    return node.valid;
-  }
+	// Returns if the word is in the trie.
+	public boolean search(String word) {
+		TrieNode node = searchPrefix(word);
+		return node != null && node.isEnd();
+	}
 
-  // Returns if there is any word in the trie
-  // that starts with the given prefix.
-  public boolean startsWith(String prefix) {
-    TrieNode node = searchNode(prefix);
-    if (node == null)
-    {
-      return false;
-    }
-    return true;
-  }
+	// Returns if there is any word in the trie
+	// that starts with the given prefix.
+	public boolean startsWith(String prefix) {
+		TrieNode node = searchPrefix(prefix);
+		return node != null;
+	}
 
-  public TrieNode searchNode(String word){
-    int len = word.length();
-    int i = 0;
-    TrieNode curr = root;
-    while (i < len)
-    {
-      char c = word.charAt(i);
-      int idx = c - 'a';
-      TrieNode next = curr.nodes[idx];
-      if (next == null)
-      {
-        return null;
-      }
-      else
-      {
-        curr = next;
-      }
-      i++;
-    }
-    if (curr == root)
-    {
-      return null;
-    }
-    return curr;
-  }
+	// search a prefix or whole key in trie and
+	// returns the node where search ends
+	public TrieNode searchPrefix(String word) {
+		TrieNode node = root;
+		for (int i = 0; i < word.length(); i++) {
+			char currentLetter = word.charAt(i);
+			if (node.containsKey(currentLetter)) {
+				node = node.get(currentLetter);
+			} else {
+				return null;
+			}
+		}
+		return node;
+	}
+
+	// search for the shortest prefix - #648
+	public String searchRoot(String successor) {
+		TrieNode node = root;
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < successor.length(); i++) {
+			char key = successor.charAt(i);
+			if (node.containsKey(key)) {
+				sb.append("" + key);
+				node = node.get(key);
+			} else {
+				return successor;
+			}
+			if (node.isEnd()) {
+				break;
+			}
+		}
+		return sb.toString();
+	}
 }
 
 // Your Trie object will be instantiated and called as such:

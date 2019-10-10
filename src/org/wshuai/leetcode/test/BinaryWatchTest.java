@@ -9,9 +9,9 @@ import java.util.List;
  * Created by Wei on 9/21/2016.
  */
 public class BinaryWatchTest {
-  @Test
-  public void testcase(){
-    BinaryWatch bw = new BinaryWatch();
-    List<String> lst = bw.readBinaryWatch(1);
-  }
+	@Test
+	public void testcase() {
+		BinaryWatch bw = new BinaryWatch();
+		List<String> lst = bw.readBinaryWatch(1);
+	}
 }

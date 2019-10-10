@@ -7,29 +7,29 @@ import java.util.Random;
  * #398 https://leetcode.com/problems/random-pick-index/
  */
 public class RandomPickIndex {
-  private int[] nums;
-  private Random random;
+	private int[] nums;
+	private Random random;
 
-  public RandomPickIndex(int[] nums) {
-    this.nums = nums;
-    this.random = new Random();
-  }
+	public RandomPickIndex(int[] nums) {
+		this.nums = nums;
+		this.random = new Random();
+	}
 
-  public int pick(int target) {
-    int idx = 0;
-    int cnt = 0;
-    int len = nums.length;
-    for(int i = 0; i < len; i++){
-      if(nums[i] != target){
-        continue;
-      }
-      cnt++;
-      if(random.nextInt(cnt) == 0){
-        idx = i;
-      }
-    }
-    return idx;
-  }
+	public int pick(int target) {
+		int idx = 0;
+		int cnt = 0;
+		int len = nums.length;
+		for (int i = 0; i < len; i++) {
+			if (nums[i] != target) {
+				continue;
+			}
+			cnt++;
+			if (random.nextInt(cnt) == 0) {
+				idx = i;
+			}
+		}
+		return idx;
+	}
 }
 
 /**

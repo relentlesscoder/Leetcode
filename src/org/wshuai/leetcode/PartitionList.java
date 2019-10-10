@@ -5,29 +5,29 @@ package org.wshuai.leetcode;
  * #86 https://leetcode.com/problems/partition-list/
  */
 public class PartitionList {
-  //O(n)
-  public ListNode partition(ListNode head, int x) {
-    ListNode left = new ListNode(-1);
-    ListNode right = new ListNode(-1);
-    ListNode lcurr = left;
-    ListNode rcurr = right;
-    while(head != null){
-      if(head.val < x){
-        ListNode node = new ListNode(head.val);
-        lcurr.next = node;
-        lcurr = node;
-      }else{
-        ListNode node = new ListNode(head.val);
-        rcurr.next = node;
-        rcurr = node;
-      }
-      head = head.next;
-    }
-    if(left.next == null){
-      return right.next;
-    }else{
-      lcurr.next = right.next;
-      return left.next;
-    }
-  }
+	//O(n)
+	public LinkedListNode partition(LinkedListNode head, int x) {
+		LinkedListNode left = new LinkedListNode(-1);
+		LinkedListNode right = new LinkedListNode(-1);
+		LinkedListNode lcurr = left;
+		LinkedListNode rcurr = right;
+		while (head != null) {
+			if (head.val < x) {
+				LinkedListNode node = new LinkedListNode(head.val);
+				lcurr.next = node;
+				lcurr = node;
+			} else {
+				LinkedListNode node = new LinkedListNode(head.val);
+				rcurr.next = node;
+				rcurr = node;
+			}
+			head = head.next;
+		}
+		if (left.next == null) {
+			return right.next;
+		} else {
+			lcurr.next = right.next;
+			return left.next;
+		}
+	}
 }

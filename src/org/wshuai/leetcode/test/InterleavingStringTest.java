@@ -8,9 +8,9 @@ import org.wshuai.leetcode.InterleavingString;
  */
 public class InterleavingStringTest {
 
-  @Test
-  public void testcase(){
-    InterleavingString is = new InterleavingString();
-    boolean x = is.isInterleave("a", "b", "ab");
-  }
+	@Test
+	public void testcase() {
+		InterleavingString is = new InterleavingString();
+		boolean x = is.isInterleave("a", "b", "ab");
+	}
 }

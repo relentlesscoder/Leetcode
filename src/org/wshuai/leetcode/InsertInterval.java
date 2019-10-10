@@ -9,35 +9,35 @@ import java.util.List;
  */
 public class InsertInterval {
 
-  public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-    if(newInterval == null){
-      return intervals;
-    }
-    List<Interval> lst = new ArrayList<Interval>();
-    lst.add(newInterval);
-    if(intervals == null || intervals.size() == 0){
-      return lst;
-    }
+	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+		if (newInterval == null) {
+			return intervals;
+		}
+		List<Interval> lst = new ArrayList<Interval>();
+		lst.add(newInterval);
+		if (intervals == null || intervals.size() == 0) {
+			return lst;
+		}
 
-    int i = 0;
-    int len = intervals.size();
-    while(i < len){
-      Interval curr = intervals.get(i);
-      int size = lst.size();
-      Interval tail = lst.get(size - 1);
-      if(curr.end < tail.start){
-        lst.set(size - 1, curr);
-        lst.add(tail);
-      }else if(curr.start > tail.end){
-        lst.add(curr);
-      }else{
-        Interval ni = new Interval(Math.min(curr.start, tail.start),
-          Math.max(curr.end, tail.end));
-        lst.set(size - 1, ni);
-      }
-      i++;
-    }
+		int i = 0;
+		int len = intervals.size();
+		while (i < len) {
+			Interval curr = intervals.get(i);
+			int size = lst.size();
+			Interval tail = lst.get(size - 1);
+			if (curr.end < tail.start) {
+				lst.set(size - 1, curr);
+				lst.add(tail);
+			} else if (curr.start > tail.end) {
+				lst.add(curr);
+			} else {
+				Interval ni = new Interval(Math.min(curr.start, tail.start),
+						Math.max(curr.end, tail.end));
+				lst.set(size - 1, ni);
+			}
+			i++;
+		}
 
-    return lst;
-  }
+		return lst;
+	}
 }

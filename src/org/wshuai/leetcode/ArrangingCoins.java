@@ -5,19 +5,19 @@ package org.wshuai.leetcode;
  * #441 https://leetcode.com/problems/arranging-coins/
  */
 public class ArrangingCoins {
-  public int arrangeCoins(int n) {
-    if(n <= 0){
-      return 0;
-    }
+	public int arrangeCoins(int n) {
+		if (n <= 0) {
+			return 0;
+		}
 
-    int count = 0;
-    int i = 1;
-    while(n >= i){
-      n -= i;
-      i++;
-      count++;
-    }
+		int count = 0;
+		int i = 1;
+		while (n >= i) {
+			n -= i;
+			i++;
+			count++;
+		}
 
-    return count;
-  }
+		return count;
+	}
 }

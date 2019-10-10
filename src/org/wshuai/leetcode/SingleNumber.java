@@ -5,12 +5,12 @@ package org.wshuai.leetcode;
  * #136 https://leetcode.com/problems/single-number/
  */
 public class SingleNumber {
-  public int singleNumber(int[] nums) {
-    int len = nums.length;
-    int x = nums[0];
-    for(int i = 1; i < len; i++){
-      x ^= nums[i];
-    }
-    return x;
-  }
+	public int singleNumber(int[] nums) {
+		int len = nums.length;
+		int x = nums[0];
+		for (int i = 1; i < len; i++) {
+			x ^= nums[i];
+		}
+		return x;
+	}
 }

@@ -8,68 +8,35 @@ import java.util.List;
  * #320 https://leetcode.com/problems/generalized-abbreviation/
  */
 public class GeneralizedAbbreviation {
+	private List<String> lst;
+	private int len;
 
-  //DFS
-  public List<String> generateAbbreviationsDFS(String word) {
-    List<String> lst = new ArrayList<String>();
-    if(word == null || word.length() == 0){
-      lst.add("");
-      return lst;
-    }
-    int len = word.length();
-    generateAbbreviationsUtil(word, "", 0, lst, len);
-    return lst;
-  }
+	public List<String> generateAbbreviations(String word) {
+		lst = new ArrayList<>();
+		if (word == null || word.length() == 0) {
+			lst.add("");
+			return lst;
+		}
+		len = word.length();
+		generateAbbreviationsUtil(word, "", 0);
+		return lst;
+	}
 
-  private void generateAbbreviationsUtil(String word, String curr, int start, List<String> lst, int len){
-    lst.add(curr + word.substring(start));
-    if(start == len){
-      return;
-    }
-    int i = 0;
-    if(start > 0){
-      i = start+1;
-    }
-    for(; i < len; i++){
-      String prefix = curr + word.substring(start, i);
-      for(int j = 1; j <= len-i; j++){
-        generateAbbreviationsUtil(word, prefix+j, i+j, lst, len);
-      }
-    }
-  }
-
-  public List<String> generateAbbreviations(String word) {
-    List<String> lst = new ArrayList<String>();
-    if(word == null || word.length() == 0){
-      lst.add("");
-      return lst;
-    }
-    int len = word.length();
-    int num = (int)Math.pow(2, len);
-    StringBuilder val;
-    for(int i = 0; i < num; i++){
-      val = new StringBuilder();
-      int j = len-1;
-      int n = i;
-      int cnt = 0;
-      while(j >= 0){
-        if((n&1) == 0){
-          if(cnt > 0){
-            val.insert(0, Integer.toString(cnt));
-            cnt = 0;
-          }
-          val.insert(0, word.charAt(j));
-        }else{
-          cnt++;
-        }
-        n >>= 1;
-        j--;
-      }
-      if(cnt > 0){
-        val.insert(0, Integer.toString(cnt));
-      }
-      lst.add(val.toString());
-    }
-    return lst;
-  }
+	private void generateAbbreviationsUtil(String word, String curr, int start) {
+		lst.add(curr + word.substring(start));
+		if (start == len) {
+			return;
+		}
+		// i is the current starting position
+		int i = start > 0 ? start + 1 : 0;
+		for (; i < len; i++) {
+			// get prefix from current value - "1" -> "1o" -> "1or"
+			String prefix = curr + word.substring(start, i);
+			// j is the characters that replaced by the count
+			for (int j = 1; j <= len - i; j++) {
+				//System.out.println(String.format("i:%d, j:%d, prefix: %s, curr: %s, start: %d, result: %s", i, j, prefix, prefix+j, i+j, prefix+j + word.substring(i+j)));
+				generateAbbreviationsUtil(word, prefix + j, i + j);
+			}
+		}
+	}
 }

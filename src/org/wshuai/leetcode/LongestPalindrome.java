@@ -7,32 +7,32 @@ import java.util.Arrays;
  * #409 https://leetcode.com/problems/longest-palindrome/
  */
 public class LongestPalindrome {
-  public int longestPalindrome(String s) {
-    if(s == null || s.isEmpty()){
-      return 0;
-    }
+	public int longestPalindrome(String s) {
+		if (s == null || s.isEmpty()) {
+			return 0;
+		}
 
-    int[] counts = new int[256];
-    Arrays.fill(counts, 0);
-    int len = s.length();
-    for(int i = 0; i < len; i++){
-      counts[s.charAt(i)]++;
-    }
-    int max = 0;
-    for(int i = 0; i < 256; i++){
-      int cnt = counts[i];
-      if(cnt > 0){
-        if(cnt%2 == 0){
-          max+=cnt;
-        }else{
-          max+=cnt-1;
-        }
-      }
-    }
-    //Allow one extra character at center
-    if(max != len){
-      max++;
-    }
-    return max;
-  }
+		int[] counts = new int[256];
+		Arrays.fill(counts, 0);
+		int len = s.length();
+		for (int i = 0; i < len; i++) {
+			counts[s.charAt(i)]++;
+		}
+		int max = 0;
+		for (int i = 0; i < 256; i++) {
+			int cnt = counts[i];
+			if (cnt > 0) {
+				if (cnt % 2 == 0) {
+					max += cnt;
+				} else {
+					max += cnt - 1;
+				}
+			}
+		}
+		//Allow one extra character at center
+		if (max != len) {
+			max++;
+		}
+		return max;
+	}
 }
