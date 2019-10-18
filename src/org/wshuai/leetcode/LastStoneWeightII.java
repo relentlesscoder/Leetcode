@@ -1,35 +1,29 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Wei on 10/18/2019.
  * #1049 https://leetcode.com/problems/last-stone-weight-ii/
  */
 public class LastStoneWeightII {
-	Map<String, Integer> map;
-
 	public int lastStoneWeightII(int[] stones) {
-		map = new HashMap<>();
-		return minimumDiff(stones, 0, 0, 0);
-	}
-
-	private int minimumDiff(int[] nums, int n, int S1, int S2){
-		if(n >= nums.length){
-			return Math.abs(S1 - S2);
+		int s2 = 0;
+		int sum = 0;
+		for(int s: stones){
+			sum += s;
 		}
-
-		String key = n + "|" + S1;
-
-		if(!map.containsKey(key)){
-
-			int inc = minimumDiff(nums, n + 1, S1 + nums[n], S2);
-			int exec = minimumDiff(nums, n + 1, S1, S2 + nums[n]);
-
-			map.put(key, Math.min(inc, exec));
+		int n = stones.length;
+		boolean[][] dp = new boolean[n + 1][sum + 1];
+		for(int i = 0; i <= n; i++){
+			dp[i][0] = true;
 		}
-
-		return map.get(key);
+		for(int i = 1; i <= n; i++){
+			for(int j = 1; j <= sum / 2; j++){
+				if(dp[i - 1][j] || (j >= stones[i - 1] && dp[i - 1][j - stones[i - 1]])){
+					dp[i][j] = true;
+					s2 = Math.max(s2, j);
+				}
+			}
+		}
+		return sum - 2 * s2;
 	}
 }
