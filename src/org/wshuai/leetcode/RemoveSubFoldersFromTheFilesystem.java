@@ -27,7 +27,7 @@ public class RemoveSubFoldersFromTheFilesystem {
 
 	private Map<String, String> map;
 
-	//TLE
+	// union find TLE
 	public List<String> removeSubfoldersUnionFind(String[] folder) {
 		map = new HashMap<>();
 		for(int i = 0; i < folder.length; i++){
