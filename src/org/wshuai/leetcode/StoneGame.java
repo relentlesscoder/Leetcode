@@ -4,34 +4,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 10/8/2019.
- * #486 https://leetcode.com/problems/predict-the-winner/
+ * Created by Wei on 10/11/2019.
+ * #877 https://leetcode.com/problems/stone-game/
  */
-public class PredictTheWinner {
+public class StoneGame {
 
-	// beats 100%
-	public boolean predictTheWinner(int[] nums) {
-		int n = nums.length;
+	// 6 ms
+	public boolean stoneGame(int[] piles) {
+		int n = piles.length;
 		int[][] dp = new int[n][n];
 
 		for(int i = 0; i < n; i++){
-			dp[i][i] = nums[i];
+			dp[i][i] = piles[i];
 		}
 
 		for(int len = 1; len < n; len++){
 			for(int i = 0; i + len < n; i++){
-				dp[i][i + len] = Math.max(nums[i] - dp[i + 1][i + len],
-					nums[i + len] - dp[i][i + len - 1]);
+				dp[i][i + len] = Math.max(piles[i] - dp[i + 1][i + len],
+					piles[i + len] - dp[i][i + len - 1]);
 			}
 		}
-		return dp[0][n - 1] >= 0;
+		return dp[0][n - 1] > 0;
 	}
 
 	Map<Integer, Integer> map;
 
-	public boolean predictTheWinnerMiniMax(int[] nums) {
+	// 108 ms same as #486
+	public boolean stoneGameMiniMax(int[] piles) {
 		map = new HashMap<>();
-		return getScore(nums, 0, nums.length - 1) >= 0;
+		return getScore(piles, 0, piles.length - 1) >= 0;
 	}
 
 	private int getScore(int[] nums, int l, int r){
