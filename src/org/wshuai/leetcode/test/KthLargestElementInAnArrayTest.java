@@ -11,13 +11,13 @@ public class KthLargestElementInAnArrayTest {
 	public void testcase1() {
 		KthLargestElementInAnArray k = new KthLargestElementInAnArray();
 		int[] nums = {5, 2, 4, 1, 3, 6, 0};
-		int kth = k.findKthLargest(nums, 4);
+		int kth = k.findKthLargestQuickSelectionWithRandomization(nums, 4);
 	}
 
 	@Test
 	public void testcase2() {
 		KthLargestElementInAnArray k = new KthLargestElementInAnArray();
 		int[] nums = {3, 1, 2, 4};
-		int kth = k.findKthLargest(nums, 2);
+		int kth = k.findKthLargestQuickSelectionWithRandomization(nums, 2);
 	}
 }

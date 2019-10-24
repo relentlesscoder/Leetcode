@@ -9,6 +9,7 @@ import org.wshuai.leetcode.CountPrimes;
 public class CountPrimesTest {
 	@Test
 	public void testcase() {
-		int count = CountPrimes.countPrimes(13);
+		CountPrimes cp = new CountPrimes();
+		int count = cp.countPrimes(13);
 	}
 }
