@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
  * #1102 https://leetcode.com/problems/path-with-maximum-minimum-value/
  */
 public class PathWithMaximumMinimumValue {
-	
+
 	// BFS - Dijkstra MST
 	public int maximumMinimumPath(int[][] A) {
 		int m = A.length;
