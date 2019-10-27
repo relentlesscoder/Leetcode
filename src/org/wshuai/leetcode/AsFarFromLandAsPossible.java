@@ -28,17 +28,16 @@ public class AsFarFromLandAsPossible {
 			int size = queue.size();
 			while(size-- > 0){
 				int[] curr = queue.pollFirst();
-				result = Math.max(result, grid[curr[0]][curr[1]] - 1);
 				for(int i = 0; i < 4; i++){
 					int x = curr[0] + dir[0][i];
 					int y = curr[1] + dir[1][i];
 					if(x >= 0 && x < m && y >= 0 && y < n && !visited[x][y]){
 						visited[x][y] = true;
-						grid[x][y] = grid[curr[0]][curr[1]] + 1;
 						queue.offer(new int[]{x, y});
 					}
 				}
 			}
+			result++;
 		}
 		return result == 0 ? -1 : result;
 	}
