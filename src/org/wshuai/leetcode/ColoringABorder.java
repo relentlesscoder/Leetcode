@@ -25,9 +25,9 @@ public class ColoringABorder {
 
 	private void dfs(int[][] grid, int i, int j, int color, boolean[][] visited, List<int[]> border){
 		visited[i][j] = true;
-		boolean isboundary = false;
+		boolean isBoundary = false;
 		if(i == 0 || j == 0 || i == grid.length - 1 || j == grid[0].length - 1){
-			isboundary = true;
+			isBoundary = true;
 		}
 		List<int[]> next = new ArrayList<>();
 		int count = 0;
@@ -41,7 +41,7 @@ public class ColoringABorder {
 				}
 			}
 		}
-		if(isboundary || count < 4){
+		if(isBoundary || count < 4){
 			border.add(new int[]{i, j});
 		}
 		for(int[] c: next){
