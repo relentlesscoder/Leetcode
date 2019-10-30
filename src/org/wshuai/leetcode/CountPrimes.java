@@ -1,34 +1,32 @@
 package org.wshuai.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
- * Created by Wei on 9/1/16.
+ * Created by Wei on 10/24/2019.
+ * #204 https://leetcode.com/problems/count-primes/
  */
 public class CountPrimes {
-	public static int countPrimes(int n) {
-		if (n <= 2) {
+	// a good explanation - https://www.youtube.com/watch?v=Kwo2jkHOyPY
+	// https://www.geeksforgeeks.org/sieve-of-eratosthenes/
+	public int countPrimes(int n) {
+		if(n < 3){
 			return 0;
 		}
-		if (n == 3) {
-			return 1;
-		}
-
-		Set<Integer> set = new HashSet<Integer>();
-		int count = n - 2;
-		for (int i = 2; i * i <= n; i++) {
-			int j = 0;
-			int num = i * i;
-			while (num < n) {
-				if (!set.contains(num)) {
-					set.add(num);
-					count--;
-				}
-				j++;
-				num = i * i + j * i;
+		boolean[] notPrime = new boolean[n];
+		notPrime[0] = notPrime[1] = true;
+		for(int i = 2; i < Math.sqrt(n); i++){
+			if(notPrime[i]){
+				continue;
+			}
+			for(int j = 2; j * i < n; j++){
+				notPrime[j * i] = true;
 			}
 		}
-		return count;
+		int res = 0;
+		for(int i = 2; i < n; i++){
+			if(!notPrime[i]){
+				res++;
+			}
+		}
+		return res;
 	}
 }

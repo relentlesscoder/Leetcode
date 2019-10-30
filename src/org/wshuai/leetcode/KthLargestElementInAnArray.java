@@ -1,44 +1,115 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/12/16.
+ * Created by Wei on 10/22/19.
+ * #215 https://leetcode.com/problems/kth-largest-element-in-an-array/
  */
 public class KthLargestElementInAnArray {
-	public int findKthLargest(int[] nums, int k) {
-		int len = nums.length;
-		return getKthLargestUtil(nums, k, 0, len - 1);
+
+	// average: O(n * log(n)) worst: O(n^2)
+	// after randomization, expected: O (n)
+	public int findKthLargestQuickSelectionWithRandomization(int[] nums, int k) {
+		return getKthLargestUtil(nums, k, 0, nums.length - 1);
 	}
 
-	private int getKthLargestUtil(int[] nums, int k, int l, int r) {
-		if (l == r) {
-			return nums[l];
-		}
-		if (l < r) {
+	private int getKthLargestUtil(int[] nums, int k, int l, int r){
+		if(k > 0 && k <= r - l + 1){
 			int p = partition(nums, l, r);
-			if (p == k - 1) {
+			int count = p - l + 1;
+			if(count == k){
 				return nums[p];
-			} else if (p > k - 1) {
+			}else if(count > k){
 				return getKthLargestUtil(nums, k, l, p - 1);
-			} else {
-				return getKthLargestUtil(nums, k, p + 1, r);
+			}else{
+				return getKthLargestUtil(nums, k - count, p + 1, r);
 			}
 		}
-		return -1;
+		return Integer.MAX_VALUE;
 	}
 
-	private int partition(int[] nums, int l, int r) {
+	private int partition(int[] nums, int l, int r){
+		// choose pivot number randomly, 33 ms -> 1 ms
+		int rand = (int)(Math.random() * (r - l));
+		int index = l + rand;
+		int temp = nums[index];
+		nums[index] = nums[r];
+		nums[r] = temp;
+
 		int pivot = nums[r];
 		int i = l;
-		for (int j = l; j < r; j++) {
+		for(int j = l; j < r; j++){
 			int val = nums[j];
-			if (val > pivot) {
+			if(val > pivot){
 				nums[j] = nums[i];
-				nums[i] = val;
-				i++;
+				nums[i++] = val;
 			}
 		}
 		nums[r] = nums[i];
 		nums[i] = pivot;
 		return i;
 	}
+
+	/*
+	 * deterministic quick selection
+	private int getKthLargestUtil(int[] nums, int k, int l, int r){
+		if(k > 0 && k <= r - l + 1){
+			int n = r - l + 1;
+
+			int i;
+
+			int[] median = new int[(n + 4) / 5];
+			for(i = 0; i < n/5; i++){
+				median[i] = findMedian(nums, l + i * 5, 5);
+			}
+
+			if(i * 5 < n){
+				median[i] = findMedian(nums, l + i * 5, n % 5);
+				i++;
+			}
+
+			int medOfMed = (i == 1) ? median[i - 1] : getKthLargestUtil(median, 0, i - 1, i / 2);
+
+			int p = partition(nums, l, r, medOfMed);
+			int count = p - l + 1;
+			if(count == k){
+				return nums[p];
+			}else if(count > k){
+				return getKthLargestUtil(nums, k, l, p - 1);
+			}else{
+				return getKthLargestUtil(nums, k - count, p + 1, r);
+			}
+		}
+		return Integer.MAX_VALUE;
+	}
+
+	private int partition(int[] nums, int l, int r, int x){
+
+		int k;
+		for(k = l; k < r; k++){
+			if(nums[k] == x){
+				break;
+			}
+		}
+		int temp = nums[k];
+		nums[k] = nums[r];
+		nums[r] = temp;
+
+		int pivot = nums[r];
+		int i = l;
+		for(int j = l; j < r; j++){
+			int val = nums[j];
+			if(val > pivot){
+				nums[j] = nums[i];
+				nums[i++] = val;
+			}
+		}
+		nums[r] = nums[i];
+		nums[i] = pivot;
+		return i;
+	}
+
+	private int findMedian(int[] arr, int i, int n){
+		Arrays.sort(arr, i, i + n);
+		return arr[i + n / 2];
+	}*/
 }
