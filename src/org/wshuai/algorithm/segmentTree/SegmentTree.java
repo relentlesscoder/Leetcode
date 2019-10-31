@@ -79,19 +79,17 @@ public class SegmentTree {
 		}
 
 		if (i == j) {
-			return new SegmentTreeNode(i, j, nums[i]);
+			return new SegmentTreeNode(i, j, nums[i], null, null);
 		}
-
-		SegmentTreeNode current = new SegmentTreeNode(i, j);
 
 		int mid = i + (j - i) / 2;
 
-		current.left = buildSegmentTree(nums, i, mid);
-		current.right = buildSegmentTree(nums, mid + 1, j);
+		SegmentTreeNode left = buildSegmentTree(nums, i, mid);
+		SegmentTreeNode right = buildSegmentTree(nums, mid + 1, j);
 
-		current.sum = current.left.sum + current.right.sum;
+		int sum = left.sum + right.sum;
 
-		return current;
+		return new SegmentTreeNode(i, j, sum, left, right);
 	}
 
 	private boolean validateIndex(int i) {
