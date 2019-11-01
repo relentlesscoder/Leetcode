@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/31/2019.
+ * Created by Wei on 11/1/2019.
  * #1138 https://leetcode.com/problems/alphabet-board-path/
  */
 public class AlphabetBoardPath {
