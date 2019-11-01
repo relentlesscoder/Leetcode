@@ -16,7 +16,7 @@ public class BinaryTreeLongestConsecutiveSequenceTest {
 		root.right.left = new TreeNode(2);
 		root.right.right = new TreeNode(4);
 		root.right.right.left = new TreeNode(5);
-		int x = bt.longestConsecutiveRecursive(root);
+		int x = bt.longestConsecutiveDFS(root);
 	}
 
 	@Test
@@ -26,6 +26,6 @@ public class BinaryTreeLongestConsecutiveSequenceTest {
 		root.left = new TreeNode(2);
 		root.right = new TreeNode(4);
 		root.left.left = new TreeNode(3);
-		int x = bt.longestConsecutiveIterative(root);
+		int x = bt.longestConsecutiveBFS(root);
 	}
 }
