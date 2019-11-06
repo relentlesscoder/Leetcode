@@ -30,6 +30,7 @@ public class AnalyzeUserWebsiteVisitPattern {
 					for(int k = j + 1; k < lst.size(); k++){
 						List<String> key = Arrays.asList(lst.get(i), lst.get(j), lst.get(k));
 						String v = String.join(",", key);
+						// same visit pattern is only added once for each user
 						if(!used.contains(v)){
 							count.put(key, count.getOrDefault(key, 0) + 1);
 							used.add(v);
@@ -38,7 +39,10 @@ public class AnalyzeUserWebsiteVisitPattern {
 				}
 			}
 		}
-		PriorityQueue<Map.Entry<List<String>, Integer>> pq = new PriorityQueue<>((a, b) -> a.getValue() == b.getValue() ? String.join(",", a.getKey()).compareTo(String.join(",", b.getKey())) : b.getValue() - a.getValue());
+		PriorityQueue<Map.Entry<List<String>, Integer>> pq =
+			new PriorityQueue<>((a, b) -> a.getValue() == b.getValue() ?
+				String.join(",", a.getKey()).compareTo(String.join(",", b.getKey()))
+				: b.getValue() - a.getValue());
 		for(Map.Entry<List<String>, Integer> entry : count.entrySet()){
 			pq.offer(entry);
 		}
