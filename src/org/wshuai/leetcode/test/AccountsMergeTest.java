@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.wshuai.leetcode.AccountsMerge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AccountsMergeTest {
