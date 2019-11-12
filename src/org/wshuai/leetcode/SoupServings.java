@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import org.junit.Test;
-
 /**
  * Created by Wei on 11/12/19.
  * #808 https://leetcode.com/problems/soup-servings/
