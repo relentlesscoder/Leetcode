@@ -8,35 +8,38 @@ import java.util.Queue;
  * #298 https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/
  */
 public class BinaryTreeLongestConsecutiveSequence {
-	public int longestConsecutiveRecursive(TreeNode root) {
-		RefType res = new RefType();
-		longestConsecutiveUtil(root, res);
-		return res.val;
+
+	private int res;
+
+	public int longestConsecutiveDFS(TreeNode root) {
+		res = 0;
+		dfs(root);
+		return res;
 	}
 
-	public int longestConsecutiveUtil(TreeNode root, RefType res) {
-		if (root == null) {
+	private int dfs(TreeNode root){
+		if(root == null){
 			return 0;
 		}
 
-		if (root.left == null && root.right == null) {
-			res.val = 1 > res.val ? 1 : res.val;
+		if(root.left==null && root.right==null){
+			res = Math.max(res, 1);
 			return 1;
 		}
 
-		int lVal = longestConsecutiveUtil(root.left, res);
-		int left = root.left != null && root.val == root.left.val - 1 ? lVal + 1 : 1;
+		int leftMax = dfs(root.left);
+		int left = root.left != null && root.val == root.left.val - 1 ? leftMax + 1 : 1;
 
-		int rVal = longestConsecutiveUtil(root.right, res);
-		int right = root.right != null && root.val == root.right.val - 1 ? rVal + 1 : 1;
+		int rightMax = dfs(root.right);
+		int right = root.right != null && root.val == root.right.val - 1 ? rightMax + 1 : 1;
 
-		int cmax = Math.max(left, right);
-		res.val = cmax > res.val ? cmax : res.val;
-		return cmax;
+		int curr = Math.max(left, right);
+		res = Math.max(res, curr);
+		return curr;
 	}
 
-	//Queue
-	public int longestConsecutiveIterative(TreeNode root) {
+	// BFS
+	public int longestConsecutiveBFS(TreeNode root) {
 		if (root == null) {
 			return 0;
 		}

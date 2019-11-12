@@ -10,10 +10,12 @@ public class SegmentTreeNode {
 	public SegmentTreeNode left;
 	public SegmentTreeNode right;
 
-	public SegmentTreeNode(int start, int end, int sum) {
+	public SegmentTreeNode(int start, int end, int sum, SegmentTreeNode left, SegmentTreeNode right) {
 		this.start = start;
 		this.end = end;
 		this.sum = sum;
+		this.left = left;
+		this.right = right;
 	}
 
 	public SegmentTreeNode(int start, int end) {
