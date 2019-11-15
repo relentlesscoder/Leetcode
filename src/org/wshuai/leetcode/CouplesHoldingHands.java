@@ -20,7 +20,7 @@ public class CouplesHoldingHands {
 		for(int i = 0; i < M; i++){
 			root[i] = i;
 		}
-		int cnt = 0;
+		int res = 0;
 		for(int i = 0; i < N; i++){
 			int j = i % 2 == 0 ? i + 1 : i - 1;
 			int c1 = map.get(i);
@@ -30,6 +30,9 @@ public class CouplesHoldingHands {
 			}
 			int r1 = find(c1, root);
 			int r2 = find(c2, root);
+			if(r1 != r2){
+				res++;
+			}
 			if(rank[r1] > rank[r2]){
 				root[r2] = r1;
 				rank[r1] += rank[r2];
@@ -38,12 +41,7 @@ public class CouplesHoldingHands {
 				rank[r2] += rank[r1];
 			}
 		}
-		for(int i = 0; i < M; i++){
-			if(root[i] == i){
-				cnt++;
-			}
-		}
-		return M - cnt;
+		return res;
 	}
 
 	private int find(int i, int[] root){
