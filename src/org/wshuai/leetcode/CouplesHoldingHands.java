@@ -25,6 +25,7 @@ public class CouplesHoldingHands {
 		int[] rank = new int[M];
 		for(int i = 0; i < M; i++){
 			root[i] = i;
+			rank[i] = 1;
 		}
 		int res = 0;
 		for(int i = 0; i < edges.size(); i++){

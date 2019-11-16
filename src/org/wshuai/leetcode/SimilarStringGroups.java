@@ -11,6 +11,7 @@ public class SimilarStringGroups {
 		//int[] rank = new int[N];
 		for(int i = 0; i < N; i++){
 			root[i] = i;
+			//rank[i] = 1;
 		}
 		int res = N;
 		for(int i = 0; i < N; i++){
