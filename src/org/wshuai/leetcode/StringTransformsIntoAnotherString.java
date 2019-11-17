@@ -9,6 +9,8 @@ import java.util.Map;
  * #1153 https://leetcode.com/problems/string-transforms-into-another-string/
  */
 public class StringTransformsIntoAnotherString {
+	// logical thinking at
+	// https://leetcode.com/problems/string-transforms-into-another-string/discuss/355382/JavaC%2B%2BPython-Need-One-Unused-Character
 	public boolean canConvert(String str1, String str2) {
 		if (str1.equals(str2)) {
 			return true;
