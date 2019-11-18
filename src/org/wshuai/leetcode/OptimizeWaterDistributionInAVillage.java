@@ -3,7 +3,7 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 11/16/2019.
+ * Created by Wei on 11/17/2019.
  * #1168 https://leetcode.com/problems/optimize-water-distribution-in-a-village/
  */
 public class OptimizeWaterDistributionInAVillage {
