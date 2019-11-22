@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 11/21/16.
+ * Created by Wei on 11/21/19.
  * #982 https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/
  */
 public class TriplesWithBitwiseAndEqualToZero {
