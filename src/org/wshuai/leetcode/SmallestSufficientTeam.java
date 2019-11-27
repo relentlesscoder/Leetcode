@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +9,7 @@ import java.util.List;
  * #1125 https://leetcode.com/problems/smallest-sufficient-team/
  */
 public class SmallestSufficientTeam {
+	// 18ms
 	public int[] smallestSufficientTeam(String[] req_skills, List<List<String>> people) {
 		int N = people.size();
 		int[] skill_sets = new int[N];
@@ -30,12 +29,12 @@ public class SmallestSufficientTeam {
 		int T = (1 << req_skills.length) - 1;
 		int[] dp = new int[T + 1];
 		int[][] path = new int[T + 1][2];
-		Arrays.fill(dp, Integer.MAX_VALUE / 2);
+		Arrays.fill(dp, Integer.MAX_VALUE);
 		dp[0] = 0;
 		for(int i = 0; i < N; i++){
 			int k = skill_sets[i];
 			for(int j = T; j >= 0; j--){
-				if(dp[j] + 1 < dp[j | k]){
+				if(dp[j] != Integer.MAX_VALUE && dp[j] + 1 < dp[j | k]){
 					dp[j | k] = dp[j] + 1;
 					path[j | k] = new int[]{j, i};
 				}
@@ -55,6 +54,7 @@ public class SmallestSufficientTeam {
 		return res;
 	}
 
+	//48ms
 	public int[] smallestSufficientTeam2D(String[] req_skills, List<List<String>> people) {
 		int N = people.size();
 		int[] skill_sets = new int[N];
@@ -74,16 +74,16 @@ public class SmallestSufficientTeam {
 		int T = (1 << req_skills.length) - 1;
 		int[][] dp = new int[N + 1][T + 1];
 		int[][] path = new int[T + 1][2];
-		Arrays.fill(dp[0], Integer.MAX_VALUE / 2);
+		Arrays.fill(dp[0], Integer.MAX_VALUE);
 		dp[0][0] = 0;
 		for(int i = 1; i <= N; i++){
 			int k = skill_sets[i - 1];
-			Arrays.fill(dp[i], Integer.MAX_VALUE / 2);
+			Arrays.fill(dp[i], Integer.MAX_VALUE);
 			dp[i][0] = 0;
 			for(int j = T; j >= 0; j--){
-				dp[i][j | k] = dp[i - 1][j | k];
-				path[j | k] = new int[]{j, i - 1};
-				if(dp[i - 1][j] + 1 < dp[i][j | k]){
+				dp[i][j] = dp[i - 1][j];
+				if(dp[i - 1][j] != Integer.MAX_VALUE
+					&& dp[i - 1][j] + 1 < dp[i][j | k]){
 					dp[i][j | k] = dp[i - 1][j] + 1;
 					path[j | k] = new int[]{j, i - 1};
 				}
@@ -101,18 +101,5 @@ public class SmallestSufficientTeam {
 			res[i++] = list.get(j);
 		}
 		return res;
-	}
-
-	@Test
-	public void testcase(){
-		SmallestSufficientTeam sst = new SmallestSufficientTeam();
-		List<List<String>> list = new ArrayList<>();
-		list.add(Arrays.asList("algorithms","math","java"));
-		list.add(Arrays.asList("algorithms","math","reactjs"));
-		list.add(Arrays.asList("java","csharp","aws"));
-		list.add(Arrays.asList("reactjs","csharp"));
-		list.add(Arrays.asList("csharp","math"));
-		list.add(Arrays.asList("aws","java"));
-		int[] min = sst.smallestSufficientTeam2D(new String[]{"algorithms","math","java","reactjs","csharp","aws"}, list);
 	}
 }
