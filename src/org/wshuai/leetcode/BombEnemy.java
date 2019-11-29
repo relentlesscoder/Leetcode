@@ -6,81 +6,68 @@ package org.wshuai.leetcode;
  */
 public class BombEnemy {
 
-	//703ms
-	public int maxKilledEnemiesNaive(char[][] grid) {
-		if (grid == null) {
+	public int maxKilledEnemies(char[][] grid) {
+		if(grid == null || grid.length == 0 || grid[0].length == 0){
 			return 0;
 		}
-		int rows = grid.length;
-		if (rows == 0) {
-			return 0;
-		}
-		int cols = grid[0].length;
-		if (cols == 0) {
-			return 0;
-		}
-
-		int max = 0;
-		int[][] aux = new int[rows][cols];
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				char val = grid[i][j];
-				if (val == 'W') {
-					aux[i][j] = -1;
+		int res = 0;
+		int r = grid.length, c = grid[0].length;
+		int[][][] dp = new int[r][c][4];
+		for(int i = 0; i < r; ++i){
+			for(int j = 0; j < c; ++j){
+				if(grid[i][j] == 'W'){
 					continue;
 				}
-				if (val == '0') {
+				if(grid[i][j] == 'E'){
+					dp[i][j][0]++;
+				}
+				if(i > 0){
+					dp[i][j][0] += dp[i - 1][j][0];
+				}
+			}
+		}
+		for(int j = 0; j < c; ++j){
+			for(int i = 0; i < r; ++i){
+				if(grid[i][j] == 'W'){
 					continue;
 				}
-				if (grid[i][j] == 'E') {
-					countEnemy(i, j, rows, cols, aux, grid);
+				if(grid[i][j] == 'E'){
+					dp[i][j][1]++;
+				}
+				if(j > 0){
+					dp[i][j][1] += dp[i][j - 1][1];
 				}
 			}
 		}
-
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				if (aux[i][j] > max) {
-					max = aux[i][j];
+		for(int j = c - 1; j >= 0; --j){
+			for(int i = 0; i < r; ++i){
+				if(grid[i][j] == 'W'){
+					continue;
+				}
+				if(grid[i][j] == 'E'){
+					dp[i][j][2]++;
+				}
+				if(j < c - 1){
+					dp[i][j][2] += dp[i][j + 1][2];
 				}
 			}
 		}
-
-		return max;
-	}
-
-	private void countEnemy(int i, int j, int rows, int cols, int[][] aux, char[][] grid) {
-		//Up
-		int u = i - 1;
-		while (u >= 0 && grid[u][j] != 'W') {
-			if (grid[u][j] == '0') {
-				aux[u][j]++;
+		for(int i = r - 1; i >= 0; --i){
+			for(int j = 0; j < c; ++j){
+				if(grid[i][j] == 'W'){
+					continue;
+				}
+				if(grid[i][j] == 'E'){
+					dp[i][j][3]++;
+				}
+				if(i < r - 1){
+					dp[i][j][3] += dp[i + 1][j][3];
+				}
+				if(grid[i][j] == '0'){
+					res = Math.max(res, dp[i][j][0] + dp[i][j][1] + dp[i][j][2] + dp[i][j][3]);
+				}
 			}
-			u--;
 		}
-		//Down
-		int d = i + 1;
-		while (d < rows && grid[d][j] != 'W') {
-			if (grid[d][j] == '0') {
-				aux[d][j]++;
-			}
-			d++;
-		}
-		//Left
-		int l = j - 1;
-		while (l >= 0 && grid[i][l] != 'W') {
-			if (grid[i][l] == '0') {
-				aux[i][l]++;
-			}
-			l--;
-		}
-		//Right
-		int r = j + 1;
-		while (r < cols && grid[i][r] != 'W') {
-			if (grid[i][r] == '0') {
-				aux[i][r]++;
-			}
-			r++;
-		}
+		return res;
 	}
 }
