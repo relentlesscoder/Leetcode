@@ -7,12 +7,16 @@ package org.wshuai.leetcode;
 public class UniquePathsII {
 	public int uniquePathsWithObstacles(int[][] obstacleGrid) {
 		if(obstacleGrid == null
-			|| obstacleGrid.length == 0
-			|| obstacleGrid[0].length == 0){
+				|| obstacleGrid.length == 0
+				|| obstacleGrid[0].length == 0){
 			return 0;
 		}
 		int r = obstacleGrid.length;
 		int c = obstacleGrid[0].length;
+		if(obstacleGrid[0][0] == 1
+				|| obstacleGrid[r - 1][c - 1] == 1){
+			return 0;
+		}
 		int[][] dp = new int[r][c];
 		for(int i = 0; i < r; i++){
 			for(int j = 0; j < c; j++){
