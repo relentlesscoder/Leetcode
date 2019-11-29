@@ -7,6 +7,7 @@ package org.wshuai.leetcode;
 public class StrangePrinter {
 	private int[][] dp;
 
+	// https://www.youtube.com/watch?v=YQQUGsb7mww
 	public int strangePrinter(String s) {
 		if(s == null || s.length() == 0){
 			return 0;
