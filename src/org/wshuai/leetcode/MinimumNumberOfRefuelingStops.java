@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import org.junit.Test;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -67,14 +65,5 @@ public class MinimumNumberOfRefuelingStops {
 		}
 		dp.put(key, res);
 		return res;
-	}
-
-	@Test
-	public void testcase(){
-		MinimumNumberOfRefuelingStops mno = new MinimumNumberOfRefuelingStops();
-		int min = mno.minRefuelStopsDFSWithMemorization(1000000,8663,
-						new int[][]{{31,195796},{42904,164171},{122849,139112},{172890,121724},{182747,90912},{194124,112994},{210182,101272},{257242,73097},{284733,108631},{369026,25791},{464270,14596},
-								{470557,59420},{491647,192483},{516972,123213},{577532,184184},{596589,143624},{661564,154130},{705234,100816},{721453,122405},{727874,6021},{728786,19444},{742866,2995},
-								{807420,87414},{922999,7675},{996060,32691}});
 	}
 }
