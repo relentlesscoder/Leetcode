@@ -25,7 +25,8 @@ public class ProfitableSchemes {
 		int res = 0;
 		res = (res + dfs(cur + 1, available, target, group, profit)) % mod;
 		if(available >= group[cur]){
-			res = (res + dfs(cur + 1, available - group[cur], target - profit[cur], group, profit)) % mod;
+			res = (res + dfs(cur + 1, available - group[cur],
+				target - profit[cur], group, profit)) % mod;
 		}
 		dp[cur][available][profitNeeded] = res;
 		return dp[cur][available][profitNeeded];
