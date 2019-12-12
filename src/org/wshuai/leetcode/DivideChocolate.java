@@ -5,6 +5,15 @@ package org.wshuai.leetcode;
  * #1231 https://leetcode.com/problems/divide-chocolate/
  */
 public class DivideChocolate {
+	/*
+	There's another reason: in this question, we want to find
+	the maximum total sweetness. We have to find the rightmost
+	value, so we use int mid = (left + right + 1)/2 and
+	if(condition passed) left = mid;else hi = mid - 1. For question
+	like 1101, we want to find the leftmost value. So we have to use
+	something like int mid = (left + right) / 2 and if (condition
+	passed) right = mid; else left = mid + 1;
+	*/
 	public int maximizeSweetness(int[] sweetness, int K) {
 		int left = 100_000;
 		int right = 0;
