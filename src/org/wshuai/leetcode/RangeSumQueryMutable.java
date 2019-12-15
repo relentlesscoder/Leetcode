@@ -1,67 +1,73 @@
 package org.wshuai.leetcode;
 
-import org.wshuai.algorithm.segmentTree.SegmentTreeNode;
-
 /**
  * Created by Wei on 9/25/2016.
  * #307 https://leetcode.com/problems/range-sum-query-mutable/
  */
 public class RangeSumQueryMutable {
-	private int N;
-	private SegmentTreeNode root;
+	private int[] segmentTree;
+	private int[] arr;
+	private int n;
 
 	public RangeSumQueryMutable(int[] nums) {
-		N = nums.length;
-		root = buildSegmentTree(nums, 0, N - 1);
+		n = nums.length;
+		if(n > 0){
+			arr = nums;
+			int x = (int)(Math.ceil(Math.log(n) / Math.log(2)));
+			int size = 2 * (int) Math.pow(2, x) - 1;
+			segmentTree = new int[size];
+			build(0, n - 1, 0);
+		}
 	}
 
 	public void update(int i, int val) {
-		updateUtil(root, i, val);
-	}
-
-	private void updateUtil(SegmentTreeNode root, int i, int val){
-		if(root == null){
+		if(i < 0 || i >= n){
 			return;
 		}
-		int mid = root.start + (root.end - root.start) / 2;
-		if(i > mid){
-			updateUtil(root.right, i, val);
-		}else{
-			updateUtil(root.left, i, val);
-		}
-		if(root.start == i && root.start == root.end){
-			root.sum = val;
-			return;
-		}
-		root.sum = root.left.sum + root.right.sum;
+		int diff = val - arr[i];
+		arr[i] = val;
+		updateUtil(0, n - 1, i, diff, 0);
 	}
 
 	public int sumRange(int i, int j) {
-		return sumRangeUtil(root, i, j);
+		if(i < 0 || j >= n || i > j){
+			return -1;
+		}
+		return sumRangeUtil(0, n - 1, i, j, 0);
 	}
 
-	private int sumRangeUtil(SegmentTreeNode root, int i, int j){
-		if(root == null || i > root.end || j < root.start || i > j){
+	private int build(int start, int end, int index){
+		if(start == end){
+			segmentTree[index] = arr[start];
+			return arr[start];
+		}
+		int mid = start + (end - start) / 2;
+		segmentTree[index] = build(start, mid, index * 2 + 1)
+			+ build(mid + 1, end, index * 2 + 2);
+		return segmentTree[index];
+	}
+
+	private void updateUtil(int start, int end, int i, int diff, int index){
+		if(i < start || i > end){
+			return;
+		}
+		segmentTree[index] = segmentTree[index] + diff;
+		if(start != end){
+			int mid = start + (end - start) / 2;
+			updateUtil(start, mid, i, diff, 2 * index + 1);
+			updateUtil(mid + 1, end, i, diff, 2 * index + 2);
+		}
+	}
+
+	private int sumRangeUtil(int start, int end, int i, int j, int index){
+		if(i <= start && j >= end){
+			return segmentTree[index];
+		}
+		if(i > end || j < start){
 			return 0;
 		}
-		if(i <= root.start && j >= root.end){
-			return root.sum;
-		}
-		int mid = root.start + (root.end - root.start) / 2;
-		return sumRangeUtil(root.left, i, Math.min(mid, j)) +
-			sumRangeUtil(root.right, Math.max(mid + 1, i), j);
-	}
-
-	private SegmentTreeNode buildSegmentTree(int[] nums, int i, int j){
-		if(i > j){
-			return null;
-		}
-		if(i == j){
-			return new SegmentTreeNode(i, j, nums[i], null, null);
-		}
-		int mid = i + (j - i) / 2;
-		SegmentTreeNode left = buildSegmentTree(nums, i, mid);
-		SegmentTreeNode right = buildSegmentTree(nums, mid + 1, j);
-		return new SegmentTreeNode(i, j, left.sum + right.sum, left, right);
+		int mid = start + (end - start) / 2;
+		return sumRangeUtil(start, mid, i, j, 2 * index + 1)
+			+ sumRangeUtil(mid + 1, end, i, j, 2 * index + 2);
 	}
 }
