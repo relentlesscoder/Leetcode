@@ -9,6 +9,7 @@ import java.util.TreeMap;
  * #726 https://leetcode.com/problems/number-of-atoms/
  */
 public class NumberOfAtoms {
+	// same idea as #1096
 	public String countOfAtoms(String formula) {
 		Stack<String> stack = new Stack<>();
 		stack.push(formula);
