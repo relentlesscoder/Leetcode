@@ -4,22 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 8/9/15.
+ * Created by Wei on 8/9/2015.
  * #1 https://leetcode.com/problems/two-sum/
  */
 public class TwoSum {
 	public int[] twoSum(int[] nums, int target) {
-		int[] result = new int[2];
-		Map<Integer, Integer> temp = new HashMap<Integer, Integer>();
-		for (int i = 0; i < nums.length; i++) {
-			if (temp.containsKey(nums[i])) {
-				result[0] = (Integer) temp.get(nums[i]);
-				result[1] = i;
-			} else {
-				temp.put(target - nums[i], i);
+		Map<Integer, Integer> map = new HashMap<>();
+		for(int i = 0; i < nums.length; i++){
+			map.put(target - nums[i], i);
+		}
+		for(int i = 0; i < nums.length; i++){
+			if(map.containsKey(nums[i]) && map.get(nums[i]) != i){
+				return new int[]{i, map.get(nums[i])};
 			}
 		}
-		return result;
+		return new int[0];
 	}
 }
 
