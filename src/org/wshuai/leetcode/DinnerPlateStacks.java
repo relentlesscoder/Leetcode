@@ -3,6 +3,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+ * Created by Wei on 12/30/2019.
+ * #1172 https://leetcode.com/problems/dinner-plate-stacks/
+ */
 public class DinnerPlateStacks {
 
 	private Map<Integer, Stack<Integer>> map;
