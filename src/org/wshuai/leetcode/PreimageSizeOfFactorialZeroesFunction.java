@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 12/30/2019.
+ * Created by Wei on 12/31/2019.
  * #793 https://leetcode.com/problems/preimage-size-of-factorial-zeroes-function/
  */
 public class PreimageSizeOfFactorialZeroesFunction {
