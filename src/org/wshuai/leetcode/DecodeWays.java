@@ -6,36 +6,32 @@ package org.wshuai.leetcode;
  */
 public class DecodeWays {
 	public int numDecodings(String s) {
-		if (s == null || s.isEmpty()) {
+		if(s == null || s.length() == 0 || s.charAt(0) == '0'){
 			return 0;
 		}
-		char[] arr = s.toCharArray();
-		int len = arr.length;
-		int[] result = new int[len + 1];
-		result[0] = 1;
-
-		if (arr[0] <= '0' || arr[0] > '9') {
-			return 0;
-		} else {
-			result[1] = 1;
-		}
-		for (int i = 2; i <= len; i++) {
-			char curr = arr[i - 1];
-			char last = arr[i - 2];
-			if (curr < '0' || curr > '9') {
-				return 0;
-			} else if (curr == '0' && (last < '1' || last > '2')) {
+		int N = s.length();
+		int[] dp = new int[N + 1];
+		dp[0] = 1;
+		dp[1] = 1;
+		for(int i = 2; i <= N; i++){
+			char cur = s.charAt(i - 1);
+			char prev = s.charAt(i - 2);
+			if(cur < '0' || cur > '9'){
 				return 0;
 			}
-			if (curr != '0') {
-				result[i] += result[i - 1];
+			//xxxxx4
+			if(cur >= '1' && cur <= '9'){
+				dp[i] += dp[i - 1];
 			}
-			if ((last == '1' && curr >= '0' && curr <= '9')
-					|| (last == '2' && curr >= '0' && curr <= '6')) {
-				result[i] += result[i - 2];
+			//xxxx16
+			if(cur >= '0' && cur <= '9' && prev == '1'){
+				dp[i] += dp[i - 2];
+			}
+			//xxxx25
+			if(cur >= '0' && cur <= '6' && prev == '2'){
+				dp[i] += dp[i - 2];
 			}
 		}
-
-		return result[len];
+		return dp[N];
 	}
 }

@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/21/16.
+ * Created by Wei on 11/21/19.
  * #471 https://leetcode.com/problems/encode-string-with-shortest-length/
  */
 public class EncodeStringWithShortestLength {

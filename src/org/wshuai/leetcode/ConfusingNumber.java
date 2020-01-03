@@ -1,8 +1,6 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.Arrays;
 
 /**
  * Created by Wei on 8/20/19.
@@ -10,31 +8,23 @@ import java.util.Stack;
  */
 public class ConfusingNumber {
 	public boolean confusingNumber(int N) {
-		List<Integer> arr = new ArrayList<>();
-		Stack<Integer> stack = new Stack<>();
-		while (N != 0) {
-			int curr = N % 10;
-			arr.add(curr);
-			if (curr == 2
-					|| curr == 3
-					|| curr == 4
-					|| curr == 5
-					|| curr == 7) {
+		int[] map = new int[10];
+		Arrays.fill(map, -1);
+		map[0] = 0;
+		map[1] = 1;
+		map[6] = 9;
+		map[8] = 8;
+		map[9] = 6;
+		long x = 0;
+		long y = N;
+		while(y > 0){
+			int i = (int)(y % 10);
+			if(map[i] == -1){
 				return false;
-			} else if (curr == 6) {
-				stack.push(9);
-			} else if (curr == 9) {
-				stack.push(6);
-			} else {
-				stack.push(curr);
 			}
-			N /= 10;
+			x = x * 10 + map[i];
+			y /= 10;
 		}
-		for (int i : arr) {
-			if (stack.pop() != i) {
-				return true;
-			}
-		}
-		return false;
+		return (int)x != N;
 	}
 }

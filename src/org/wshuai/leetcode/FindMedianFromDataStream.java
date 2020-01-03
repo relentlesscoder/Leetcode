@@ -8,38 +8,43 @@ import java.util.PriorityQueue;
  * #295 https://leetcode.com/problems/find-median-from-data-stream/
  */
 public class FindMedianFromDataStream {
-	PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
-	PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+	private PriorityQueue<Integer> maxHeap;
+	private PriorityQueue<Integer> minHeap;
 
-	/**
-	 * initialize your data structure here.
-	 */
+	/** initialize your data structure here. */
 	public FindMedianFromDataStream() {
-
+		maxHeap = new PriorityQueue<>((a, b) -> b - a);
+		minHeap = new PriorityQueue<>();
 	}
 
 	public void addNum(int num) {
-		if (num < findMedian()) {
+		if(maxHeap.size() == 0 || num <= maxHeap.peek()){
 			maxHeap.offer(num);
-		} else {
+		}else{
 			minHeap.offer(num);
 		}
-		if (maxHeap.size() > minHeap.size()) {
+		while(maxHeap.size() > minHeap.size() + 1){
 			minHeap.offer(maxHeap.poll());
 		}
-		if (minHeap.size() - maxHeap.size() > 1) {
+		while(minHeap.size() > maxHeap.size()){
 			maxHeap.offer(minHeap.poll());
 		}
 	}
 
 	public double findMedian() {
-		if (minHeap.size() == 0 && maxHeap.size() == 0) {
-			return 0;
+		if(maxHeap.size() == 0 && minHeap.size() == 0){
+			return -1;
 		}
-		if (minHeap.size() == maxHeap.size()) {
-			return ((double) minHeap.peek() + (double) maxHeap.peek()) / 2.0;
-		} else {
-			return (double) minHeap.peek();
+		if(maxHeap.size() == minHeap.size()){
+			return (maxHeap.peek() + minHeap.peek())/2.0;
 		}
+		return (double)maxHeap.peek();
 	}
 }
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder obj = new MedianFinder();
+ * obj.addNum(num);
+ * double param_2 = obj.findMedian();
+ */

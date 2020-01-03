@@ -1,61 +1,40 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-
 /**
- * Created by Wei on 10/6/16.
+ * Created by Wei on 11/28/19.
+ * #63 https://leetcode.com/problems/unique-paths-ii/
  */
 public class UniquePathsII {
-
-	public int uniquePathsWithObstaclesSimple(int[][] obstacleGrid) {
-		if (obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0].length == 0) {
-			return 0;
-		}
-
-		int m = obstacleGrid.length;
-		int n = obstacleGrid[0].length;
-
-		int[] aux = new int[n];
-		Arrays.fill(aux, 1);
-		aux[0] = obstacleGrid[0][0] == 1 ? 0 : 1;
-		for (int i = 1; i < n; i++) {
-			aux[i] = obstacleGrid[0][i] == 1 ? 0 : aux[i - 1];
-		}
-
-		for (int i = 1; i < m; i++) {
-			aux[0] = obstacleGrid[i][0] == 1 ? 0 : aux[0];
-			for (int j = 1; j < n; j++) {
-				aux[j] = obstacleGrid[i][j] == 1 ? 0 : aux[j] + aux[j - 1];
-			}
-		}
-
-		return aux[n - 1];
-	}
-
 	public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-		if (obstacleGrid == null || obstacleGrid.length == 0 || obstacleGrid[0].length == 0) {
+		if(obstacleGrid == null
+				|| obstacleGrid.length == 0
+				|| obstacleGrid[0].length == 0){
 			return 0;
 		}
-
-		int m = obstacleGrid.length;
-		int n = obstacleGrid[0].length;
-
-		int[] aux = new int[n];
-		boolean blocked = false;
-		for (int i = 0; i < n; i++) {
-			aux[i] = blocked || obstacleGrid[0][i] == 1 ? 0 : 1;
-			blocked = blocked || (aux[i] == 0);
+		int r = obstacleGrid.length;
+		int c = obstacleGrid[0].length;
+		if(obstacleGrid[0][0] == 1
+				|| obstacleGrid[r - 1][c - 1] == 1){
+			return 0;
 		}
-
-		blocked = (aux[0] == 0);
-		for (int i = 1; i < m; i++) {
-			aux[0] = blocked || obstacleGrid[i][0] == 1 ? 0 : 1;
-			blocked = blocked || (aux[0] == 0);
-			for (int j = 1; j < n; j++) {
-				aux[j] = obstacleGrid[i][j] == 1 ? 0 : aux[j] + aux[j - 1];
+		int[][] dp = new int[r][c];
+		for(int i = 0; i < r; i++){
+			for(int j = 0; j < c; j++){
+				if(obstacleGrid[i][j] == 1){
+					dp[i][j] = 0;
+					continue;
+				}
+				if(i == 0 && j == 0){
+					dp[i][j] = 1;
+				}else if(i == 0){
+					dp[i][j] = dp[i][j - 1];
+				}else if(j == 0){
+					dp[i][j] = dp[i - 1][j];
+				}else{
+					dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+				}
 			}
 		}
-
-		return aux[n - 1];
+		return dp[r - 1][c - 1];
 	}
 }

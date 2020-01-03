@@ -1,6 +1,5 @@
 package org.wshuai.leetcode;
 
-import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
@@ -8,63 +7,47 @@ import java.util.PriorityQueue;
  * #480 https://leetcode.com/problems/sliding-window-median/
  */
 public class SlidingWindowMedian {
-	PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
-	PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+	private PriorityQueue<Long> maxHeap;
+	private PriorityQueue<Long> minHeap;
 
 	public double[] medianSlidingWindow(int[] nums, int k) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0 || k == 0 || k > nums.length){
 			return new double[0];
 		}
-		int len = nums.length - k + 1;
-		double[] res = new double[len];
-		for (int i = 0; i <= nums.length; i++) {
-			if (i >= k) {
-				res[i - k] = getMedian();
-				removeNum(nums[i - k]);
+		double[] res = new double[nums.length - k + 1];
+		int j = 0;
+		boolean even = k % 2 == 0;
+		maxHeap = new PriorityQueue<>((Long a, Long b) -> b.compareTo(a));
+		minHeap = new PriorityQueue<>();
+		for(int i = 0; i < nums.length; i++){
+			if(maxHeap.isEmpty() || nums[i] <= maxHeap.peek()){
+				maxHeap.offer((long)nums[i]);
+			}else{
+				minHeap.offer((long)nums[i]);
 			}
-			if (i < nums.length) {
-				addNum(nums[i]);
+			balance();
+			int count = maxHeap.size() + minHeap.size();
+			if(count == k){
+				double median = even ? (maxHeap.peek() + minHeap.peek()) / 2.0 : (double)maxHeap.peek();
+				res[j++] = median;
+				long toDelete = nums[i - k + 1];
+				if(toDelete <= maxHeap.peek()){
+					maxHeap.remove(toDelete);
+				}else{
+					minHeap.remove(toDelete);
+				}
+				balance();
 			}
 		}
 		return res;
 	}
 
-	private double getMedian() {
-		if (minHeap.size() == 0 && maxHeap.size() == 0) {
-			return 0;
-		}
-		if (minHeap.size() == maxHeap.size()) {
-			return ((double) minHeap.peek() + (double) maxHeap.peek()) / 2.0;
-		} else {
-			return (double) minHeap.peek();
-		}
-	}
-
-	private void removeNum(int num) {
-		if (num < getMedian()) {
-			maxHeap.remove(num);
-		} else {
-			minHeap.remove(num);
-		}
-		if (minHeap.size() - maxHeap.size() > 1) {
-			maxHeap.offer(minHeap.poll());
-		}
-		if (maxHeap.size() > minHeap.size()) {
+	private void balance(){
+		while(maxHeap.size() > minHeap.size() + 1){
 			minHeap.offer(maxHeap.poll());
 		}
-	}
-
-	private void addNum(int num) {
-		if (num < getMedian()) {
-			maxHeap.offer(num);
-		} else {
-			minHeap.offer(num);
-		}
-		if (minHeap.size() - maxHeap.size() > 1) {
+		while(minHeap.size() > maxHeap.size()){
 			maxHeap.offer(minHeap.poll());
-		}
-		if (maxHeap.size() > minHeap.size()) {
-			minHeap.offer(maxHeap.poll());
 		}
 	}
 }

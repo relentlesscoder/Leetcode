@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/21/16.
+ * Created by Wei on 11/21/19.
  * #517 https://leetcode.com/problems/super-washing-machines/
  */
 public class SuperWashingMachines {
