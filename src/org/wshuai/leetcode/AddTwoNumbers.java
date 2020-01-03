@@ -1,34 +1,25 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/9/15.
- * #2 https://leetcode.com/problems/add-two-numbers/
+ * Created by Wei on 08/09/2015.
+ * #0002 https://leetcode.com/problems/add-two-numbers/
  */
 public class AddTwoNumbers {
-	public static LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
-		int sum = l1.val + l2.val;
-		int carry = sum / 10;
-		int remainder = sum % 10;
-		LinkedListNode current = new LinkedListNode(remainder);
-		LinkedListNode root = current;
-		while (l1 != null || l2 != null) {
-			if (l1 != null) {
-				l1 = l1.next;
-			}
-			if (l2 != null) {
-				l2 = l2.next;
-			}
-			//no need to add one more node
-			if (l1 == null && l2 == null && carry == 0) {
-				break;
-			}
-			sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + carry;
-			carry = sum / 10;
-			remainder = sum % 10;
-			current.next = new LinkedListNode(remainder);
-			current = current.next;
+	// time O(m + n)
+	public LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
+		LinkedListNode root = new LinkedListNode(-1);
+		LinkedListNode cur = root;
+		int sum = 0;
+		while(l1 != null || l2 != null || sum > 0){
+			int num1 = l1 == null ? 0 : l1.val;
+			int num2 = l2 == null ? 0 : l2.val;
+			sum = num1 + num2 + sum;
+			cur.next = new LinkedListNode(sum % 10);
+			cur = cur.next;
+			l1 = l1 == null ? l1 : l1.next;
+			l2 = l2 == null ? l2 : l2.next;
+			sum /= 10;
 		}
-
-		return root;
+		return root.next;
 	}
 }
