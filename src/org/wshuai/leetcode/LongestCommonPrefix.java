@@ -1,50 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/13/2016.
- * #14 https://leetcode.com/problems/longest-common-prefix/
+ * Created by Wei on 08/13/2016.
+ * #0014 https://leetcode.com/problems/longest-common-prefix/
  */
 public class LongestCommonPrefix {
-	public static String longestCommonPrefix(String[] strs) {
-		if (strs == null) {
-			throw new IllegalArgumentException("Invalid input");
-		}
-		int len = strs.length;
-		if (len == 0) {
+	public String longestCommonPrefix(String[] strs) {
+		if(strs == null || strs.length == 0){
 			return "";
 		}
-		int sLen = 100000;
-		for (int i = 0; i < len; i++) {
-			if (strs[i] == null || strs[i].isEmpty()) {
-				sLen = 0;
-				break;
-			} else {
-				int cLen = strs[i].length();
-				sLen = cLen < sLen ? cLen : sLen;
-			}
+		if(strs.length == 1){
+			return strs[0];
 		}
-		if (sLen == 0) {
-			return "";
-		} else {
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < sLen; i++) {
-				boolean equal = true;
-				char x = strs[0].charAt(i);
-				for (int j = 0; j < len; j++) {
-					if (strs[j].charAt(i) == x) {
-						continue;
-					} else {
-						equal = false;
-						break;
-					}
-				}
-				if (equal) {
-					sb.append(x);
-				} else {
-					break;
+		String s = strs[0];
+		int n = s.length();
+		int i = 0;
+		for(; i < n; i++){
+			char cur = s.charAt(i);
+			for(int j = 1; j < strs.length; j++){
+				if(strs[j].length() <= i || strs[j].charAt(i) != cur){
+					return s.substring(0, i);
 				}
 			}
-			return sb.toString();
 		}
+		return s;
 	}
 }
