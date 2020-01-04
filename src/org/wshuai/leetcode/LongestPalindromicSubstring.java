@@ -5,7 +5,39 @@ package org.wshuai.leetcode;
  * #0005 https://leetcode.com/problems/longest-palindromic-substring/
  */
 public class LongestPalindromicSubstring {
-	// time O(n^2), space O(n^2)
+
+	// time O(n^2), space O(1), 6ms
+	public String longestPalindromeExtendFromCenter(String s) {
+		int[] max = new int[]{0, -1, -1};
+		char[] arr = s.toCharArray();
+		for(int i = 0; i < arr.length; i++){
+			expand(arr, i, i, max);
+			if(i > 0){
+				expand(arr, i - 1, i, max);
+			}
+		}
+		return max[0] > 0 ? s.substring(max[1], max[2]) : "";
+	}
+
+	private void expand(char[] arr, int l, int r, int[] max){
+		int len = 0;
+		while(l >= 0 && r < arr.length){
+			if(arr[l] == arr[r]){
+				len += l == r ? 1 : 2;
+				l--;
+				r++;
+			}else{
+				break;
+			}
+		}
+		if(len > max[0]){
+			max[0] = len;
+			max[1] = l + 1;
+			max[2] = r;
+		}
+	}
+
+	// time O(n^2), space O(n^2), 80ms
 	// https://leetcode.com/articles/longest-palindromic-substring/
 	public String longestPalindromeDP(String s) {
 		int n = s.length();

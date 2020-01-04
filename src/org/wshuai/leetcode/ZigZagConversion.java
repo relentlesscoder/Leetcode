@@ -1,34 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/12/2016.
- * #6 https://leetcode.com/problems/zigzag-conversion/
+ * Created by Wei on 08/12/2016.
+ * #0006 https://leetcode.com/problems/zigzag-conversion/
  */
 public class ZigZagConversion {
-	public static String convert(String s, int numRows) {
-		if (numRows <= 0) {
-			throw new IllegalArgumentException("Invalid input.");
-		}
-
-		if (s == null || s.isEmpty()) {
-			return "";
-		}
-		if (numRows == 1) {
-			return s;
-		}
-		int len = s.length();
-		if (len <= numRows) {
+	// time O(n)
+	public String convert(String s, int numRows) {
+		if(numRows <= 1){
 			return s;
 		}
 		StringBuilder sb = new StringBuilder();
-		//Each section has numRows + (numRows-2) elements
 		int size = 2 * numRows - 2;
-		for (int i = 0; i < numRows; i++) {
-			for (int j = i; j < len; j += size) {
+		for(int i = 0; i < numRows; i++){
+			for(int j = i; j < s.length(); j += size){
 				sb.append(s.charAt(j));
-				if (i != 0 && i != (numRows - 1)) {
+				if(i != 0 && i != numRows - 1){
 					int index = j + size - 2 * i;
-					if (index < len) {
+					if(index < s.length()){
 						sb.append(s.charAt(index));
 					}
 				}
