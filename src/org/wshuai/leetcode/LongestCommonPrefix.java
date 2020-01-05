@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0014 https://leetcode.com/problems/longest-common-prefix/
  */
 public class LongestCommonPrefix {
+	// time O(n*m)
 	public String longestCommonPrefix(String[] strs) {
 		if(strs == null || strs.length == 0){
 			return "";
