@@ -1,26 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/10/16.
- * #26 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ * Created by Wei on 10/10/2016.
+ * #0026 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
  */
 public class RemoveDuplicatesFromSortedArray {
+	// time O(n)
 	public int removeDuplicates(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return 0;
+		if(nums.length <= 1){
+			return nums.length;
 		}
-		if (nums.length == 1) {
-			return 1;
-		}
-		int i = -1;
-		int current = nums[0] - 1;
-		for (int j = 0; j < nums.length; j++) {
-			if (nums[j] > current) {
-				i++;
-				nums[i] = nums[j];
-				current = nums[j];
+		int i = 1;
+		int cur = nums[0];
+		for(int j = 1; j < nums.length; j++){
+			if(nums[j] != cur){
+				nums[i++] = nums[j];
+				cur = nums[j];
 			}
 		}
-		return i + 1;
+		return i;
 	}
 }
