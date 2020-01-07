@@ -11,13 +11,14 @@ public class ImplementStrStr {
 		if(needle.length() == 0){
 			return 0;
 		}
-		if(haystack.length() == 0 || haystack.length() < needle.length()){
+		if(haystack.length() < needle.length()){
 			return -1;
 		}
-		char[] text = haystack.toCharArray();
-		char[] pattern = needle.toCharArray();
-		int[] lsp = computeLsp(pattern);
+		return kmp(haystack.toCharArray(), needle.toCharArray());
+	}
 
+	private int kmp(char[] text, char[] pattern){
+		int[] lsp = constructLsp(pattern);
 		int j = 0;
 		for(int i = 0; i < text.length; i++){
 			while(j > 0 && text[i] != pattern[j]){
@@ -26,15 +27,14 @@ public class ImplementStrStr {
 			if(text[i] == pattern[j]){
 				j++;
 				if(j == pattern.length){
-					return i - (j - 1);
+					return i - j + 1;
 				}
 			}
 		}
-
 		return -1;
 	}
 
-	private int[] computeLsp(char[] pattern){
+	private int[] constructLsp(char[] pattern){
 		int[] lsp = new int[pattern.length];
 		lsp[0] = 0;
 		for(int i = 1; i < pattern.length; i++){
