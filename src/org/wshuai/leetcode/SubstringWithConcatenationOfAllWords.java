@@ -10,7 +10,10 @@ import java.util.Map;
  * #0030 https://leetcode.com/problems/substring-with-concatenation-of-all-words/
  */
 public class SubstringWithConcatenationOfAllWords {
-	// time O(m*n), space O(n)
+	// time O(wl * n), space O(w + n)
+	// time complexity of O(wordLen * Slen) as it is O(Slen/wordLen) for the loop,
+	// then O(wordLen) for substr, then also O(wordLen) for the first loop, in
+	// total O(wordLen * Slen)
 	// https://segmentfault.com/a/1190000002625580
 	public List<Integer> findSubstring(String s, String[] words) {
 		List<Integer> res = new ArrayList<>();
@@ -64,7 +67,7 @@ public class SubstringWithConcatenationOfAllWords {
 		return res;
 	}
 
-	//O(n^2), using hash map
+	//O(n^3), using hash map
 	public List<Integer> findSubstringNaive(String s, String[] words) {
 		List<Integer> lst = new ArrayList<Integer>();
 		if (s == null || s.isEmpty() || words == null || words.length == 0) {
