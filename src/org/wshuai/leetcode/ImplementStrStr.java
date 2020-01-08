@@ -40,6 +40,16 @@ public class ImplementStrStr {
 		for(int i = 1; i < pattern.length; i++){
 			int j = lsp[i - 1];
 			while(j > 0 && pattern[i] != pattern[j]){
+				// consider the case when pattern is AAACAAAA
+				// when i = 7, the LSP is
+				// 0,1,2,0,1,2,3
+				// since S[i] != S[LSP[i - 1]] (A != C), we can extend
+				// the previous matching prefix suffix
+				// LSP[6] = 3 -> S[0-2] == S[4-6] -> S[1-2] == S[5,6]
+				// LSP[3 - 1] = 2 -> S[0-1] == S[1-2]
+				// -> S[5,6] == S[0-1]
+				// if S[2] == S[7], we can extend this matching prefix
+				// postfix to 3
 				j = lsp[j - 1];
 			}
 			if(pattern[i] == pattern[j]){
