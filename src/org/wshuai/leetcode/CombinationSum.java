@@ -6,37 +6,31 @@ import java.util.List;
 
 /**
  * Created by Wei on 10/28/2016.
- * #39 https://leetcode.com/problems/combination-sum/
+ * #0039 https://leetcode.com/problems/combination-sum/
  */
 public class CombinationSum {
 	public List<List<Integer>> combinationSum(int[] candidates, int target) {
-		List<List<Integer>> lst = new ArrayList<List<Integer>>();
-		if (candidates == null || candidates.length == 0) {
-			return lst;
-		}
-
+		List<List<Integer>> res = new ArrayList<>();
 		Arrays.sort(candidates);
-		int len = candidates.length;
-		getCombinationSum(candidates, target, lst, len, 0, new ArrayList<Integer>(), 0);
-		return lst;
+		dfs(candidates, 0, target, new ArrayList<Integer>(), res);
+		return res;
 	}
 
-	private void getCombinationSum(int[] cans, int target, List<List<Integer>> lst, int len, int sum, List<Integer> vals, int start) {
-		if (sum > target) {
+	private void dfs(int[] nums, int start, int target, List<Integer> cur, List<List<Integer>> res){
+		if(target <= 0){
+			if(target == 0){
+				res.add(new ArrayList<>(cur));
+			}
 			return;
 		}
-		if (sum == target) {
-			lst.add(vals);
-			return;
-		}
-		int newSum = 0;
-		for (int i = start; i < len; i++) {
-			int x = cans[i];
-			List<Integer> last = new ArrayList<Integer>(vals);
-			newSum = sum;
-			newSum += x;
-			last.add(x);
-			getCombinationSum(cans, target, lst, len, newSum, last, i);
+		for(int i = start; i < nums.length; i++){
+			// pruning the current branch because the array is sorted
+			if(nums[i] > target){
+				return;
+			}
+			cur.add(nums[i]);
+			dfs(nums, i, target - nums[i], cur, res);
+			cur.remove(cur.size() - 1);
 		}
 	}
 }
