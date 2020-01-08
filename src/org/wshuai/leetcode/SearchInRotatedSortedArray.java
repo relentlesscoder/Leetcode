@@ -5,7 +5,6 @@ package org.wshuai.leetcode;
  * #0033 https://leetcode.com/problems/search-in-rotated-sorted-array/
  */
 public class SearchInRotatedSortedArray {
-
 	// time O(log(n))
 	public int search(int[] nums, int target) {
 		int left = 0;
@@ -17,7 +16,7 @@ public class SearchInRotatedSortedArray {
 			}
 
 			// turning point is in the right half
-			if(nums[mid] > nums[right]){
+			if(nums[left] < nums[mid]){
 				// left half is sorted
 				if(target < nums[mid] && target >= nums[left]){
 					right = mid - 1;
@@ -25,7 +24,7 @@ public class SearchInRotatedSortedArray {
 					left = mid + 1;
 				}
 				// turning point is in the left half
-			}else if(nums[mid] < nums[left]){
+			}else if(nums[left] > nums[mid]){
 				// right half is sorted
 				if(target > nums[mid] && target <= nums[right]){
 					left = mid + 1;
