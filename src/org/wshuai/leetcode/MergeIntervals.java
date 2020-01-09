@@ -7,7 +7,6 @@ import java.util.*;
  * #0056 https://leetcode.com/problems/merge-intervals/
  */
 public class MergeIntervals {
-
 	// time O(n)
 	public int[][] merge(int[][] intervals) {
 		int n = intervals.length;
