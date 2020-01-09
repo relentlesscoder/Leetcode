@@ -4,40 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 10/3/16.
- * #57 https://leetcode.com/problems/insert-interval/
+ * Created by Wei on 10/03/2016.
+ * #0057 https://leetcode.com/problems/insert-interval/
  */
 public class InsertInterval {
-
-	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-		if (newInterval == null) {
-			return intervals;
-		}
-		List<Interval> lst = new ArrayList<Interval>();
-		lst.add(newInterval);
-		if (intervals == null || intervals.size() == 0) {
-			return lst;
-		}
-
+	// time O(n)
+	public int[][] insert(int[][] intervals, int[] newInterval) {
+		List<int[]> res = new ArrayList<>();
+		int n = intervals.length;
 		int i = 0;
-		int len = intervals.size();
-		while (i < len) {
-			Interval curr = intervals.get(i);
-			int size = lst.size();
-			Interval tail = lst.get(size - 1);
-			if (curr.end < tail.start) {
-				lst.set(size - 1, curr);
-				lst.add(tail);
-			} else if (curr.start > tail.end) {
-				lst.add(curr);
-			} else {
-				Interval ni = new Interval(Math.min(curr.start, tail.start),
-						Math.max(curr.end, tail.end));
-				lst.set(size - 1, ni);
-			}
+		// non-overlapping intervals on the left
+		while(i < n && intervals[i][1] < newInterval[0]){
+			res.add(intervals[i]);
 			i++;
 		}
-
-		return lst;
+		// merge overlapping intervals
+		while(i < n && intervals[i][0] <= newInterval[1]){
+			int[] cur = intervals[i];
+			newInterval = new int[]{Math.min(newInterval[0], cur[0]),
+					Math.max(newInterval[1], cur[1])};
+			i++;
+		}
+		res.add(newInterval);
+		// non-overlapping intervals on the right
+		while(i < n){
+			res.add(intervals[i]);
+			i++;
+		}
+		return res.toArray(new int[res.size()][]);
 	}
 }

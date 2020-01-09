@@ -2,66 +2,50 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/12/2016.
- * #53 https://leetcode.com/problems/maximum-subarray/
+ * #0053 https://leetcode.com/problems/maximum-subarray/
  */
 public class MaximumSubarray {
 
-	// O(n)
+	// time O(n), Kadane's algorithm
 	public int maxSubArray(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return 0;
+		int res = nums[0];
+		for(int i = 1; i < nums.length; i++){
+			if(nums[i - 1] > 0){
+				nums[i] += nums[i - 1];
+			}
+			res = Math.max(res, nums[i]);
 		}
-		int max = nums[0];
-		int curr = nums[0];
-		for (int i = 1; i < nums.length; i++) {
-			int x = curr + nums[i];
-			curr = x > nums[i] ? x : nums[i];
-			max = curr > max ? curr : max;
-		}
-		return max;
+		return res;
 	}
 
-	// O(nlog(n)) divide and conquer
+	// time O(n*log(n)), divide and conquer
+	// good picture at https://leetcode.com/problems/maximum-subarray/solution/
 	public int maxSubArrayDC(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return 0;
-		}
-
-		int i = 0;
-		int j = nums.length - 1;
-		return maxSubArrayDCUtil(nums, i, j);
+		return maxSubArrayUtil(nums, 0, nums.length - 1);
 	}
 
-	private int maxSubArrayDCUtil(int[] nums, int i, int j) {
-		if (i == j) {
+	private int maxSubArrayUtil(int[] nums, int i, int j){
+		if(i == j){
 			return nums[i];
-		} else {
-			int m = i + (j - i) / 2;
-			int left = maxSubArrayDCUtil(nums, i, m);
-			int right = maxSubArrayDCUtil(nums, m + 1, j);
-			int mid = getMiddleMaxSubArray(nums, m, i, j);
-			int max = left > right ? left : right;
-			max = mid > max ? mid : max;
-			return max;
+		}else{
+			int mid = i + (j - i) / 2;
+			int left = maxSubArrayUtil(nums, i, mid);
+			int right = maxSubArrayUtil(nums, mid + 1, j);
+			int middle = findMiddleMaxSubarray(nums, mid, i, j);
+			return Math.max(left, Math.max(right, middle));
 		}
 	}
 
-	private int getMiddleMaxSubArray(int[] nums, int mid, int i, int j) {
-		int sum = 0;
-		int left = Integer.MIN_VALUE;
-		int k = mid;
-		while (k >= i) {
+	private int findMiddleMaxSubarray(int[] nums, int m, int i, int j){
+		int left = Integer.MIN_VALUE, right = Integer.MIN_VALUE, sum = 0;
+		for(int k = m; k >= i; k--){
 			sum += nums[k];
-			left = sum > left ? sum : left;
-			k--;
+			left = Math.max(left, sum);
 		}
 		sum = 0;
-		int right = Integer.MIN_VALUE;
-		k = mid + 1;
-		while (k <= j) {
+		for(int k = m + 1; k <= j; k++){
 			sum += nums[k];
-			right = sum > right ? sum : right;
-			k++;
+			right = Math.max(right, sum);
 		}
 		return left + right;
 	}
