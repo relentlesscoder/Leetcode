@@ -1,51 +1,69 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
- * Created by Wei on 11/9/16.
- * #45 https://leetcode.com/problems/jump-game-ii/
+ * Created by Wei on 11/09/2016.
+ * #0045 https://leetcode.com/problems/jump-game-ii/
  */
 public class JumpGameII {
 
-	//O(n)
+	// time O(n)
 	public int jump(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return 0;
-		}
-		int len = nums.length;
-		int min = 0;
-		int curr = 0;
-		int last = 0;
-		for (int i = 0; i < len; i++) {
-			if (i > last) {
-				last = curr;
-				min++;
+		int max = 0, res = 0, cur = 0;
+		for(int i = 0; i < nums.length; i++){
+			// only advance to the next range if necessary
+			if(i > cur){
+				cur = max;
+				res++;
 			}
-			curr = Math.max(curr, i + nums[i]);
+			max = Math.max(max, i + nums[i]);
 		}
-		return min;
+		return res;
 	}
 
-	//TLE
+	// time O(n^2) TLE
 	public int jumpDP(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return 0;
-		}
-		int len = nums.length;
-		int[] aux = new int[len];
-		Arrays.fill(aux, Integer.MAX_VALUE);
-		aux[len - 1] = 0;
-		for (int i = len - 2; i >= 0; i--) {
-			int step = nums[i];
-			int min = Integer.MAX_VALUE;
-			for (int j = 1; j <= step; j++) {
-				if (i + j < len && aux[i + j] != Integer.MAX_VALUE) {
-					min = Math.min(1 + aux[i + j], min);
+		int n = nums.length;
+		int[] dp = new int[n];
+		dp[0] = 0;
+		for(int i = 1; i < n; i++){
+			dp[i] = Integer.MAX_VALUE;
+			for(int j = i - 1; j >= 0; j--){
+				if(j + nums[j] >= i){
+					dp[i] = Math.min(dp[j] + 1, dp[i]);
 				}
 			}
-			aux[i] = min;
 		}
-		return aux[0];
+		return dp[n - 1];
+	}
+
+	// TLE
+	public int jumpBFS(int[] nums) {
+		int n = nums.length;
+		boolean[] visited = new boolean[n];
+		LinkedList<Integer> queue = new LinkedList<>();
+		queue.offerLast(0);
+		visited[0] = true;
+		int res = 0;
+		while(!queue.isEmpty()){
+			int size = queue.size();
+			while(size-- > 0){
+				int cur = queue.pollFirst();
+				int max = nums[cur];
+				for(int i = 1; i <= max; i++){
+					int next = cur + i;
+					if(next == n - 1){
+						return res + 1;
+					}
+					if(next < n && !visited[next]){
+						visited[next] = true;
+						queue.offerLast(next);
+					}
+				}
+			}
+			res++;
+		}
+		return 0;
 	}
 }

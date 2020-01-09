@@ -1,135 +1,67 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
+
 /**
- * Created by Wei on 8/30/2016.
- * #44 https://leetcode.com/submissions/detail/72305496/
+ * Created by Wei on 08/30/2016.
+ * #0044 https://leetcode.com/problems/wildcard-matching/
  */
 public class WildcardMatching {
 
-	//O(len(p)) space
-	public static boolean isMatchDP(String s, String p) {
-		if (s == null || p == null) {
-			return false;
-		}
-		while (p.contains("**")) {
-			p = p.replaceAll("\\*\\*", "*");
-		}
-		if (s.isEmpty() && p.isEmpty()) {
-			return true;
-		}
-		if (s.isEmpty() && p.equals("*")) {
-			return true;
-		}
-		if (p.isEmpty() && !s.isEmpty()) {
-			return false;
-		}
-		char[] sArr = s.toCharArray();
-		char[] pArr = p.toCharArray();
-		int sLen = s.length();
-		int pLen = p.length();
-
-		int[] mtx = new int[pLen + 1];
-		mtx[0] = 1;
-		if (pArr[0] == '*') {
-			mtx[1] = 1;
-		}
-
-		for (int i = 1; i <= sLen; i++) {
-			int[] mtx1 = new int[pLen + 1];
-			for (int j = 1; j <= pLen; j++) {
-				if (sArr[i - 1] == pArr[j - 1] || pArr[j - 1] == '?') {
-					mtx1[j] = mtx[j - 1];
-				} else if (pArr[j - 1] == '*') {
-					mtx1[j] = (mtx[j] == 1 || mtx1[j - 1] == 1) ? 1 : 0;
+	// time O(m * n), space O(n)
+	public boolean isMatch(String s, String p) {
+		int c = s.length();
+		int r = p.length();
+		boolean[][] dp = new boolean[2][c + 1];
+		dp[0][0] = true;
+		int prev = 0, cur = 1;
+		for(int i = 1; i <= r; i++){
+			for(int j = 0; j <= c; j++){
+				dp[cur][j] = false;
+				char pc = p.charAt(i - 1);
+				if(j == 0){
+					if(pc == '*' && dp[prev][j]){
+						dp[cur][j] = true;
+					}
+					continue;
+				}
+				char sc = s.charAt(j - 1);
+				if(sc == pc || pc == '?'){
+					dp[cur][j] = dp[prev][j - 1];
+				}else if(pc == '*'){
+					dp[cur][j] = dp[prev][j] || dp[cur][j - 1];
 				}
 			}
-			mtx = mtx1;
+			prev = cur;
+			cur = 1 - prev;
 		}
-
-		return (mtx[pLen] == 1);
+		return dp[prev][c];
 	}
 
-	// O(len(s)*len(p)) space
-	public static boolean isMatchDP2(String s, String p) {
-		if (s == null || p == null) {
-			return false;
-		}
-		while (p.contains("**")) {
-			p = p.replaceAll("\\*\\*", "*");
-		}
-		if (s.isEmpty() && p.isEmpty()) {
-			return true;
-		}
-		if (s.isEmpty() && p.equals("*")) {
-			return true;
-		}
-		if (p.isEmpty() && !s.isEmpty()) {
-			return false;
-		}
-		char[] sArr = s.toCharArray();
-		char[] pArr = p.toCharArray();
-		int sLen = s.length();
-		int pLen = p.length();
-
-		int[][] mtx = new int[sLen + 1][pLen + 1];
-		mtx[0][0] = 1;
-		if (pArr[0] == '*') {
-			mtx[0][1] = 1;
-		}
-
-		for (int i = 1; i <= sLen; i++) {
-			for (int j = 1; j <= pLen; j++) {
-				if (sArr[i - 1] == pArr[j - 1] || pArr[j - 1] == '?') {
-					mtx[i][j] = mtx[i - 1][j - 1];
-				} else if (pArr[j - 1] == '*') {
-					mtx[i][j] = (mtx[i - 1][j] == 1 || mtx[i][j - 1] == 1) ? 1 : 0;
+	// time O(m * n), space O(m * n)
+	public boolean isMatch2DDP(String s, String p) {
+		int c = s.length();
+		int r = p.length();
+		boolean[][] dp = new boolean[r + 1][c + 1];
+		Arrays.fill(dp[0], false);
+		dp[0][0] = true;
+		for(int i = 1; i <= r; i++){
+			for(int j = 0; j <= c; j++){
+				char pc = p.charAt(i - 1);
+				if(j == 0){
+					if(pc == '*' && dp[i - 1][j]){
+						dp[i][j] = true;
+					}
+					continue;
+				}
+				char sc = s.charAt(j - 1);
+				if(sc == pc || pc == '?'){
+					dp[i][j] = dp[i - 1][j - 1];
+				}else if(pc == '*'){
+					dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
 				}
 			}
 		}
-
-		return (mtx[sLen][pLen] == 1);
-	}
-
-	public static boolean isMatchRecursive(String s, String p) {
-		if (s == null || p == null) {
-			return false;
-		}
-		while (p.contains("**")) {
-			p = p.replaceAll("\\*\\*", "*");
-		}
-		if (s.isEmpty() && p.isEmpty()) {
-			return true;
-		}
-		if (s.isEmpty() && p.equals("*")) {
-			return true;
-		}
-		if (p.isEmpty() && !s.isEmpty()) {
-			return false;
-		}
-		char[] sArr = s.toCharArray();
-		char[] pArr = p.toCharArray();
-		return matchRecursive(sArr, pArr, 0, 0, sArr.length, pArr.length);
-	}
-
-	private static boolean matchRecursive(char[] s, char[] p, int i, int j, int sLen, int pLen) {
-		if (i == sLen && (j == pLen || (j == pLen - 1 && p[j] == '*'))) {
-			return true;
-		} else if (i == sLen || j == pLen) {
-			return false;
-		}
-
-		char pChr = p[j];
-		if (pChr == '?' || pChr == s[i]) {
-			return matchRecursive(s, p, i + 1, j + 1, sLen, pLen);
-		} else if (pChr == '*') {
-			for (int x = i; x <= sLen; x++) {
-				if (matchRecursive(s, p, x, j + 1, sLen, pLen)) {
-					return true;
-				}
-			}
-			return false;
-		} else {
-			return false;
-		}
+		return dp[r][c];
 	}
 }
