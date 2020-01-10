@@ -5,30 +5,28 @@ import java.util.List;
 
 /**
  * Created by Wei on 10/28/2016.
- * #77 https://leetcode.com/problems/combinations/
+ * #0077 https://leetcode.com/problems/combinations/
  */
 public class Combinations {
+	// time O(n!/(n-k)!)
 	public List<List<Integer>> combine(int n, int k) {
-		List<List<Integer>> lst = new ArrayList<List<Integer>>();
-		combineDFS(1, n, k, lst, new ArrayList<Integer>());
-		return lst;
+		List<List<Integer>> res = new ArrayList<>();
+		if(k > n){
+			return res;
+		}
+		dfs(new ArrayList<Integer>(), 1, k, n, res);
+		return res;
 	}
 
-	private void combineDFS(int start, int n, int k, List<List<Integer>> lst, List<Integer> curr) {
-		int size = curr.size();
-		if (size > k) {
+	private void dfs(List<Integer> cur, int start, int k, int n, List<List<Integer>> res){
+		if(k == 0){
+			res.add(new ArrayList<>(cur));
 			return;
 		}
-		if (size == k) {
-			List<Integer> res = new ArrayList<Integer>(curr);
-			lst.add(res);
-			return;
-		} else {
-			for (int i = start; i <= n; i++) {
-				curr.add(i);
-				combineDFS(i + 1, n, k, lst, curr);
-				curr.remove(curr.size() - 1);
-			}
+		for(int i = start; i <= n; i++){
+			cur.add(i);
+			dfs(cur, i + 1, k - 1, n, res);
+			cur.remove(cur.size() - 1);
 		}
 	}
 }

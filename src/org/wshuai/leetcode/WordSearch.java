@@ -1,24 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 2/14/17.
- * #79 https://leetcode.com/problems/word-search/
+ * Created by Wei on 02/14/2017.
+ * #0079 https://leetcode.com/problems/word-search/
  */
 public class WordSearch {
-	//DFS
+	private static final int[][] dirs = new int[][]{
+			{1, -1, 0, 0},
+			{0, 0, 1, -1}
+	};
+	private char[][] board;
+	private int r, c;
+
+	// time O(m*n*4^l)
 	public boolean exist(char[][] board, String word) {
-		if (word == null || word.isEmpty()) {
+		if(board == null || board.length == 0 || board[0].length == 0 || word == null || word.isEmpty()){
 			return false;
 		}
-		if (board == null || board.length == 0 || board[0].length == 0) {
-			return false;
-		}
-		int rows = board.length;
-		int cols = board[0].length;
-		boolean[][] used = new boolean[rows][cols];
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				if (existUtil(i, j, 0, board, used, word, rows, cols)) {
+		this.board = board;
+		r = board.length;
+		c = board[0].length;
+		char[] chars = word.toCharArray();
+		for(int i = 0; i < r; i++){
+			for(int j = 0; j < c; j++){
+				if(dfs(i, j, chars, 0)){
 					return true;
 				}
 			}
@@ -26,30 +31,23 @@ public class WordSearch {
 		return false;
 	}
 
-	private boolean existUtil(int i, int j, int index, char[][] board, boolean[][] used, String word, int rows, int cols) {
-		if (index == word.length()) {
-			return true;
-		}
-		if (i < 0 || j < 0 || i >= rows || j >= cols || used[i][j]) {
+	private boolean dfs(int i, int j, char[] arr, int l){
+		if(i < 0 || i >= r || j < 0 || j >= c || board[i][j] == '*' || board[i][j] != arr[l]){
 			return false;
 		}
-		char curr = word.charAt(index);
-		if (curr == board[i][j]) {
-			used[i][j] = true;
-			if (existUtil(i - 1, j, index + 1, board, used, word, rows, cols)) {
-				return true;
-			}
-			if (existUtil(i + 1, j, index + 1, board, used, word, rows, cols)) {
-				return true;
-			}
-			if (existUtil(i, j - 1, index + 1, board, used, word, rows, cols)) {
-				return true;
-			}
-			if (existUtil(i, j + 1, index + 1, board, used, word, rows, cols)) {
-				return true;
-			}
-			used[i][j] = false;
+		if(l == arr.length - 1){
+			return true;
 		}
+		char val = board[i][j];
+		board[i][j] = '*';
+		for(int k = 0; k < 4; k++){
+			int x = i + dirs[0][k];
+			int y = j + dirs[1][k];
+			if(dfs(x, y, arr, l + 1)){
+				return true;
+			}
+		}
+		board[i][j] = val;
 		return false;
 	}
 }
