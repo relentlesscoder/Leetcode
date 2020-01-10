@@ -1,10 +1,11 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/16/16.
- * #65 https://leetcode.com/problems/valid-number/
+ * Created by Wei on 10/16/2016.
+ * #0065 https://leetcode.com/problems/valid-number/
  */
 public class ValidNumber {
+	// time O(n)
 	public boolean isNumber(String s) {
 		if (s == null || s.isEmpty()) {
 			return false;

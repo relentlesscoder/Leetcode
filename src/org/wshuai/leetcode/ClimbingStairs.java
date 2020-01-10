@@ -2,25 +2,27 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/26/2016.
- * #70 https://leetcode.com/problems/climbing-stairs/
+ * #0070 https://leetcode.com/problems/climbing-stairs/
  */
 public class ClimbingStairs {
-	//Dynamic programming
+	// time O(n), space O(1)
+	public int climbStairsConstantSpace(int n) {
+		int s1 = 1, s2 = 1;
+		for(int i = 2; i <= n; i++){
+			int temp = s2;
+			s2 += s1;
+			s1 = temp;
+		}
+		return s2;
+	}
+
+	// time O(n), space O(n)
 	public int climbStairs(int n) {
-		if (n == 1) {
-			return 1;
+		int[] dp = new int[n + 1];
+		dp[0] = dp[1] = 1;
+		for(int i = 2; i <= n; i++){
+			dp[i] = dp[i - 1] + dp[i - 2];
 		}
-		if (n == 2) {
-			return 2;
-		}
-		int n1 = 1;
-		int n2 = 2;
-		int r = 0;
-		for (int i = 2; i < n; i++) {
-			r = n2 + n1;
-			n1 = n2;
-			n2 = r;
-		}
-		return r;
+		return dp[n];
 	}
 }
