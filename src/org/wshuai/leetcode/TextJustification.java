@@ -8,6 +8,7 @@ import java.util.List;
  * #0068 https://leetcode.com/problems/text-justification/
  */
 public class TextJustification {
+	// time O(n)
 	public List<String> fullJustify(String[] words, int maxWidth) {
 		List<String> res = new ArrayList<>();
 		int n = words.length;
