@@ -5,50 +5,38 @@ import java.util.List;
 
 /**
  * Created by Wei on 11/10/2016.
- * #93 https://leetcode.com/problems/restore-ip-addresses/
+ * #0093 https://leetcode.com/problems/restore-ip-addresses/
  */
 public class RestoreIPAddresses {
 	public List<String> restoreIpAddresses(String s) {
-		List<String> lst = new ArrayList<String>();
-		if (s == null || s.isEmpty()) {
-			return lst;
+		List<String> res = new ArrayList<>();
+		if(s == null || s.isEmpty() || s.length() > 12){
+			return res;
 		}
-		int len = s.length();
-		List<Integer> pos = new ArrayList<Integer>();
-		restoreIpAddressesUtil(s, pos, lst, len);
-		return lst;
+		dfs(0, s, "", res);
+		return res;
 	}
 
-	private void restoreIpAddressesUtil(String s, List<Integer> pos, List<String> lst, int len) {
-		int size = pos.size();
-		if (size == 4) {
-			if (pos.get(3) == len - 1) {
-				int last = 0;
-				String x = "";
-				for (int idx : pos) {
-					x += s.substring(last, idx + 1) + ".";
-					last = idx + 1;
-				}
-				lst.add(x.substring(0, x.length() - 1));
+	private void dfs(int count, String s, String cur, List<String> res){
+		if(count == 3){
+			if(isValid(s)){
+				res.add(cur + "." + s);
 			}
-		} else {
-			int idx = pos.size() > 0 ? pos.get(pos.size() - 1) : -1;
-			for (int i = 1; i <= 3; i++) {
-				if (idx + i < len && isValid(s.substring(idx + 1, idx + i + 1))) {
-					pos.add(idx + i);
-					restoreIpAddressesUtil(s, pos, lst, len);
-					pos.remove(pos.size() - 1);
-				}
+			return;
+		}
+		for(int i = 1; i <= Math.min(3, s.length()); i++){
+			String str = s.substring(0, i);
+			if(isValid(str)){
+				dfs(count + 1, s.substring(i), cur + (count == 0 ? "" : ".") + str, res);
 			}
 		}
 	}
 
-	private boolean isValid(String input) {
-		int len = input.length();
-		if ((len == 2 || len == 3) && input.charAt(0) == '0') {
+	private boolean isValid(String s){
+		if(s.length() == 0 || (s.length() > 1 && s.charAt(0) == '0')){
 			return false;
 		}
-		int val = Integer.parseInt(input);
+		int val = Integer.parseInt(s);
 		return val >= 0 && val <= 255;
 	}
 }

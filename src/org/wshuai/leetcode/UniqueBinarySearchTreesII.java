@@ -4,41 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 11/19/16.
- * #95 https://leetcode.com/problems/unique-binary-search-trees-ii/
+ * Created by Wei on 11/19/2016.
+ * #0095 https://leetcode.com/problems/unique-binary-search-trees-ii/
  */
 public class UniqueBinarySearchTreesII {
-	//O(n^2), Divide & Conquer
-	//Same idea as https://leetcode.com/problems/different-ways-to-add-parentheses/
+	// time O(n^2)
 	public List<TreeNode> generateTrees(int n) {
-		List<TreeNode> lst = new ArrayList<TreeNode>();
-		if (n <= 0) {
-			return lst;
+		if(n < 1){
+			return new ArrayList<>();
 		}
-		lst = generateTreesUtil(1, n);
-		return lst;
+		return dfs(1, n);
 	}
 
-	private List<TreeNode> generateTreesUtil(int start, int end) {
-		List<TreeNode> nodes = new ArrayList<TreeNode>();
-		if (start > end) {
-			nodes.add(null);
-			return nodes;
+	private List<TreeNode> dfs(int start, int end){
+		List<TreeNode> res = new ArrayList<>();
+		if(start > end){
+			res.add(null);
+			return res;
 		}
-		for (int i = start; i <= end; i++) {
-			List<TreeNode> lNodes = generateTreesUtil(start, i - 1);
-			List<TreeNode> rNodes = generateTreesUtil(i + 1, end);
-			int lsize = lNodes.size();
-			int rsize = rNodes.size();
-			for (int j = 0; j < lsize; j++) {
-				for (int k = 0; k < rsize; k++) {
-					TreeNode root = new TreeNode(i);
-					root.left = lNodes.get(j);
-					root.right = rNodes.get(k);
-					nodes.add(root);
+		for(int k = start; k <= end; k++){
+			List<TreeNode> left = dfs(start, k - 1);
+			List<TreeNode> right = dfs(k + 1, end);
+			for(int i = 0; i < left.size(); i++){
+				for(int j = 0; j < right.size(); j++){
+					TreeNode root = new TreeNode(k);
+					root.left = left.get(i);
+					root.right = right.get(j);
+					res.add(root);
 				}
 			}
 		}
-		return nodes;
+		return res;
 	}
 }
