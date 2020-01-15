@@ -3,43 +3,36 @@ package org.wshuai.leetcode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
- * Created by Wei on 9/19/2016.
+ * Created by Wei on 09/19/2016.
+ * #0107 https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
  */
 public class BinaryTreeLevelOrderTraversalII {
+	// time O(n), space O(n)
 	public List<List<Integer>> levelOrderBottom(TreeNode root) {
-		List<List<Integer>> lst = new ArrayList<List<Integer>>();
-		if (root == null) {
-			return lst;
+		LinkedList<List<Integer>> res = new LinkedList<>();
+		if(root == null){
+			return res;
 		}
-		List<List<Integer>> aux = new ArrayList<List<Integer>>();
-		List<Integer> ls = new ArrayList<Integer>();
-		Queue<TreeNode> last = new LinkedList<TreeNode>();
-		last.offer(root);
-		Queue<TreeNode> curr = new LinkedList<TreeNode>();
-		while (!last.isEmpty()) {
-			TreeNode node = last.poll();
-			ls.add(node.val);
-			if (node.left != null) {
-				curr.offer(node.left);
+		List<Integer> cur = new ArrayList<>();
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		queue.offerLast(root);
+		while(!queue.isEmpty()){
+			cur = new ArrayList<>();
+			int size = queue.size();
+			while(size-- > 0){
+				TreeNode node = queue.pollFirst();
+				cur.add(node.val);
+				if(node.left != null){
+					queue.offerLast(node.left);
+				}
+				if(node.right != null){
+					queue.offerLast(node.right);
+				}
 			}
-			if (node.right != null) {
-				curr.offer(node.right);
-			}
-			if (last.isEmpty()) {
-				aux.add(ls);
-				ls = new ArrayList<Integer>();
-				last = curr;
-				curr = new LinkedList<TreeNode>();
-			}
+			res.offerFirst(cur);
 		}
-		int len = aux.size();
-		for (int i = len - 1; i >= 0; i--) {
-			lst.add(aux.get(i));
-		}
-
-		return lst;
+		return res;
 	}
 }

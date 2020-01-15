@@ -1,38 +1,37 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by Wei on 1/31/16.
- * #109 https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+ * Created by Wei on 01/31/2016.
+ * #0109 https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
  */
 public class ConvertSortedListToBinarySearchTree {
+	// time O(n)
 	public TreeNode sortedListToBST(LinkedListNode head) {
-		if (head == null) {
+		List<Integer> list = new ArrayList<>();
+		while(head != null){
+			list.add(head.val);
+			head = head.next;
+		}
+		if(list.size() == 0){
 			return null;
 		}
-
-		int len = 0;
-		LinkedListNode curr = head;
-		while (curr != null) {
-			curr = curr.next;
-			len++;
-		}
-		return sortedListToBSTUtil(head, 0, len - 1);
+		return dfs(list, 0, list.size() - 1);
 	}
 
-	private TreeNode sortedListToBSTUtil(LinkedListNode head, int p, int q) {
-		if (p > q) {
+	private TreeNode dfs(List<Integer> list, int i, int j){
+		if(i > j){
 			return null;
 		}
-		int mid = p + (q - p) / 2;
-		int s = p;
-		LinkedListNode curr = head;
-		while (s < mid) {
-			curr = curr.next;
-			s++;
+		if(i == j){
+			return new TreeNode(list.get(i));
 		}
-		TreeNode root = new TreeNode(curr.val);
-		root.left = sortedListToBSTUtil(head, p, mid - 1);
-		root.right = sortedListToBSTUtil(curr.next, mid + 1, q);
+		int mid = i + (j - i) / 2;
+		TreeNode root = new TreeNode(list.get(mid));
+		root.left = dfs(list, i, mid - 1);
+		root.right = dfs(list, mid + 1, j);
 		return root;
 	}
 }

@@ -10,8 +10,39 @@ import java.util.Stack;
  */
 public class BinaryTreeInorderTraversal {
 
+	// time O(n), space O(1)
+	// https://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html
+	public List<Integer> inorderTraversalMorris(TreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		if(root == null){
+			return res;
+		}
+		TreeNode cur = root, prev = null;
+		while(cur != null){
+			if(cur.left == null){
+				res.add(cur.val);
+				cur = cur.right;
+			}else{
+				// find predecessor
+				prev = cur.left;
+				while(prev.right != null && prev.right != cur){
+					prev = prev.right;
+				}
+				if(prev.right == null){
+					prev.right = cur;
+					cur = cur.left;
+				}else{
+					prev.right = null;
+					res.add(cur.val);
+					cur = cur.right;
+				}
+			}
+		}
+		return res;
+	}
+
 	// time O(n), space O(n)
-	public List<Integer> inorderTraversal(TreeNode root) {
+	public List<Integer> inorderTraversalStack(TreeNode root) {
 		List<Integer> res = new ArrayList<>();
 		if(root == null){
 			return res;
