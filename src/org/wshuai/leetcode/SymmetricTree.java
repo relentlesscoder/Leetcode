@@ -1,77 +1,72 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Wei on 10/14/2016.
- * #101 https://leetcode.com/problems/symmetric-tree/
+ * #0101 https://leetcode.com/problems/symmetric-tree/
  */
 public class SymmetricTree {
-	public boolean isSymmetricRecursive(TreeNode root) {
-		if (root == null) {
+	// time O(n)
+	public boolean isSymmetricDFS(TreeNode root) {
+		if(root == null){
 			return true;
 		}
-
-		return isSymmetricUtil(root.left, root.right);
+		return dfs(root.left, root.right);
 	}
 
-	private boolean isSymmetricUtil(TreeNode left, TreeNode right) {
-		if (left == null && right == null) {
+	private boolean dfs(TreeNode left, TreeNode right){
+		if(left == null && right == null){
 			return true;
 		}
-		if (left == null || right == null) {
+		if(left == null || right == null){
 			return false;
 		}
 		return left.val == right.val
-				&& isSymmetricUtil(left.right, right.left)
-				&& isSymmetricUtil(left.left, right.right);
+			&& dfs(left.left, right.right)
+			&& dfs(left.right, right.left);
 	}
 
-	//Tree level order traversal
-	public boolean isSymmetric(TreeNode root) {
-		if (root == null) {
+	// time O(n), space O(n)
+	public boolean isSymmetricBFS(TreeNode root) {
+		if(root == null){
 			return true;
 		}
-		LinkedList<TreeNode> last = new LinkedList<TreeNode>();
-		LinkedList<TreeNode> current = new LinkedList<TreeNode>();
-		last.add(root);
-		while (!last.isEmpty()) {
-			TreeNode node = last.remove();
-			if (node != null) {
-				current.add(node.left);
-				current.add(node.right);
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		List<Integer> cur = new ArrayList<>();
+		queue.offerLast(root);
+		while(!queue.isEmpty()){
+			cur = new ArrayList<>();
+			int size = queue.size();
+			while(size-- > 0){
+				TreeNode node = queue.pollFirst();
+				if(node != null){
+					queue.offerLast(node.left);
+					queue.offerLast(node.right);
+				}
+				cur.add(node == null ? null : node.val);
 			}
-			if (last.isEmpty()) {
-				if (!isSymLst(current)) {
-					return false;
-				}
-				if (!current.isEmpty()) {
-					last = current;
-					current = new LinkedList<TreeNode>();
-				}
+			if(!isLevelSymmetric(cur)){
+				return false;
 			}
 		}
 		return true;
 	}
 
-	private boolean isSymLst(LinkedList<TreeNode> nodes) {
-		if (nodes.isEmpty()) {
-			return true;
-		}
-		int len = nodes.size();
-		int l = 0;
-		int r = len - 1;
-		while (l <= r) {
-			TreeNode ln = nodes.get(l);
-			TreeNode rn = nodes.get(r);
-			if (ln == null && rn == null) {
-			} else if (ln == null || rn == null) {
-				return false;
-			} else if (ln.val != rn.val) {
+	private boolean isLevelSymmetric(List<Integer> cur){
+		int left = 0;
+		int right = cur.size() - 1;
+		while(left <= right){
+			Integer i1 = cur.get(left++);
+			Integer i2 = cur.get(right--);
+			if(i1 == null && i2 == null){
+				continue;
+			}
+			if(i1 == null || i2 == null || i1 != i2){
 				return false;
 			}
-			l++;
-			r--;
 		}
 		return true;
 	}
