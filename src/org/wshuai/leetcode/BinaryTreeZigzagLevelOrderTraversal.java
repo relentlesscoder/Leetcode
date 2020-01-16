@@ -3,8 +3,8 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 10/1/2016.
- * #103 https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+ * Created by Wei on 10/01/2016.
+ * #0103 https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
  */
 public class BinaryTreeZigzagLevelOrderTraversal {
 	// time O(n), space O(n)
