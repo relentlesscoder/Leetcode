@@ -1,30 +1,27 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/2/2016.
- * #260 https://leetcode.com/problems/single-number-iii/
+ * Created by Wei on 11/02/2016.
+ * #0260 https://leetcode.com/problems/single-number-iii/
  */
 public class SingleNumberIII {
+	// time O(n), space O(1)
+	// https://leetcode.com/problems/single-number-iii/discuss/68900/Accepted-C%2B%2BJava-O(n)-time-O(1)-space-Easy-Solution-with-Detail-Explanations
 	public int[] singleNumber(int[] nums) {
-		int[] res = new int[2];
 		int xor = 0;
-		int len = nums.length;
-		for (int i = 0; i < len; i++) {
-			xor ^= nums[i];
+		for(int i : nums){
+			xor ^= i;
 		}
-
-		//Find the first 1 bit, set all other bits to 0
-		//Use two examples to help understanding: 01010101 -> 00000001, 10111000 -> 00001000
-		int flag = xor & (~(xor - 1));
-		//Divide the array into two groups by flag bit
-		for (int i = 0; i < len; i++) {
-			if ((nums[i] & flag) == 0) {
-				res[0] ^= nums[i];
-			} else {
-				res[1] ^= nums[i];
+		// nums & it's two's complement will get the only different set bit
+		xor &= ~(xor - 1);
+		int[] res = new int[]{0, 0};
+		for(int i : nums){
+			if((xor & i) == 0){
+				res[0] ^= i;
+			}else{
+				res[1] ^= i;
 			}
 		}
-
 		return res;
 	}
 }
