@@ -39,7 +39,7 @@ public class BinaryTreePreorderTraversal {
 	}
 
 	// time O(n), space O(n)
-	public List<Integer> preorderTraversalStack(TreeNode root) {
+	public List<Integer> preorderTraversal(TreeNode root) {
 		List<Integer> res = new ArrayList<>();
 		if(root == null){
 			return res;
@@ -49,6 +49,7 @@ public class BinaryTreePreorderTraversal {
 		while(!stack.isEmpty()){
 			TreeNode cur = stack.pop();
 			res.add(cur.val);
+
 			if(cur.right != null){
 				stack.push(cur.right);
 			}
