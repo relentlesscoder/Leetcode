@@ -5,7 +5,7 @@ package org.wshuai.leetcode;
  * #0137 https://leetcode.com/problems/single-number-ii/
  */
 public class SingleNumberII {
-	// O(n)
+	// time O(n)
 	// https://leetcode.com/problems/single-number-ii/discuss/43295/Detailed-explanation-and-generalization-of-the-bitwise-operation-method-for-single-numbers
 	public int singleNumberBitCounter(int[] nums) {
 		int x1 = 0, x2 = 0, mask = 0;
