@@ -1,35 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 6/7/2017.
- * #135 https://leetcode.com/problems/candy/
+ * Created by Wei on 06/07/2017.
+ * #0135 https://leetcode.com/problems/candy/
  */
 public class Candy {
-	//Greedy, see http://fisherlei.blogspot.com/2013/11/leetcode-candy-solution.html
+	// time O(n), space O(n)
+	// http://fisherlei.blogspot.com/2013/11/leetcode-candy-solution.html
 	public int candy(int[] ratings) {
-		if (ratings == null) {
-			return 0;
+		int n = ratings.length;
+		int[] left = new int[n], right = new int[n];
+		left[0] = right[n - 1] = 1;
+		for(int i = 1; i < n; i++){
+			left[i] = ratings[i] > ratings[i - 1] ? left[i - 1] + 1 : 1;
 		}
-		if (ratings.length <= 1) {
-			return ratings.length;
+		for(int i = n - 2; i >= 0; i--){
+			right[i] = ratings[i] > ratings[i + 1] ? right[i + 1] + 1 : 1;
 		}
-		int len = ratings.length;
-		int[] candies = new int[len];
-		candies[0] = 1;
-		for (int i = 1; i < len; i++) {
-			if (ratings[i] > ratings[i - 1]) {
-				candies[i] = candies[i - 1] + 1;
-			} else {
-				candies[i] = 1;
-			}
+		int res = 0;
+		for(int i = 0; i < n; i++){
+			// number of candies at i is decided by the longer
+			// increasing subsets end at i from left and right
+			res += Math.max(left[i], right[i]);
 		}
-		int sum = candies[len - 1];
-		for (int i = len - 2; i >= 0; i--) {
-			if (ratings[i] > ratings[i + 1]) {
-				candies[i] = Math.max(candies[i], candies[i + 1] + 1);
-			}
-			sum += candies[i];
-		}
-		return sum;
+		return res;
 	}
 }
