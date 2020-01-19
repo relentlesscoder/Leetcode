@@ -3,11 +3,12 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 9/26/19.
+ * Created by Wei on 09/26/2019.
  * #1024 https://leetcode.com/problems/video-stitching/
  */
 public class VideoStitching {
-
+	// time O(n)
+	// same as #1326
 	public int videoStitching(int[][] clips, int T) {
 		Arrays.sort(clips, (a, b) -> a[0] - b[0]);
 		int count = 0;
