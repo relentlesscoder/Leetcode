@@ -4,106 +4,84 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 8/18/2016.
- * #146 https://leetcode.com/problems/lru-cache/
+ * Created by Wei on 08/18/2016.
+ * #0146 https://leetcode.com/problems/lru-cache/
  */
 public class LRUCache {
 
-	private Map<Integer, DListNode> kMap = new HashMap<Integer, DListNode>();
-	private int capacity = 0;
-	private DListNode lru = null;
-	private DListNode mru = null;
+	private Map<Integer, DoublyLinkedListNode> cache = new HashMap<>();
+	private int count;
+	private int capacity;
+	private DoublyLinkedListNode head, tail;
 
 	public LRUCache(int capacity) {
+		this.count = 0;
 		this.capacity = capacity;
+		head = new DoublyLinkedListNode();
+		head.prev = null;
+		tail = new DoublyLinkedListNode();
+		tail.next = null;
+		head.next = tail;
+		tail.prev = head;
 	}
 
 	public int get(int key) {
-		DListNode x = kMap.get(key);
-		if (x == null) {
+		DoublyLinkedListNode node = cache.get(key);
+		if(node == null){
 			return -1;
-		} else {
-			if (mru != x) {
-				if (lru == x) {
-					if (x.prev != null) {
-						lru = x.prev;
-						x.prev.next = null;
-					}
-				} else {
-					x.prev.next = x.next;
-					x.next.prev = x.prev;
-				}
-				mru.prev = x;
-				x.next = mru;
-				mru = x;
+		}
+		moveToHead(node);
+		return node.value;
+	}
+
+	public void put(int key, int value) {
+		DoublyLinkedListNode node = cache.get(key);
+		if(node == null){
+			node = new DoublyLinkedListNode();
+			node.key = key;
+			node.value = value;
+			cache.put(key, node);
+			addNode(node);
+			if(++count > capacity){
+				DoublyLinkedListNode tail = this.popTail();
+				cache.remove(tail.key);
+				--count;
 			}
-			return x.value;
+		}else{
+			node.value = value;
+			moveToHead(node);
 		}
 	}
 
-	public void set(int key, int value) {
-		int size = kMap.size();
-		DListNode x = kMap.get(key);
-		if (x == null) {
-			if (size < capacity) {
-				DListNode n = new DListNode(value, key);
-				if (size == 0) {
-					lru = n;
-					mru = n;
-				} else {
-					mru.prev = n;
-					n.next = mru;
-					mru = n;
-				}
-				kMap.put(key, n);
-			} else {
-				DListNode o = lru;
-				int rKey = o.key;
-				kMap.remove(rKey);
-				kMap.put(key, o);
-				o.value = value;
-				o.key = key;
-				// only one entry
-				if (lru.prev != null) {
-					lru.prev.next = null;
-					lru = lru.prev;
-					mru.prev = o;
-					o.next = mru;
-					o.prev = null;
-					mru = o;
-				}
-			}
-		} else {
-			if (mru == x) {
-				x.value = value;
-			} else {
-				x.value = value;
-				if (lru == x) {
-					if (x.prev != null) {
-						lru = x.prev;
-						x.prev.next = null;
-					}
-				} else {
-					x.prev.next = x.next;
-					x.next.prev = x.prev;
-				}
-				mru.prev = x;
-				x.next = mru;
-				x.prev = null;
-				mru = x;
-			}
-		}
+	private void addNode(DoublyLinkedListNode node){
+		node.prev = head;
+		node.next = head.next;
+		head.next.prev = node;
+		head.next = node;
 	}
-}
 
-class DListNode {
-	int value = 0;
-	int key = 0;
-	DListNode prev = null;
-	DListNode next = null;
+	private void removeNode(DoublyLinkedListNode node){
+		DoublyLinkedListNode prev = node.prev;
+		DoublyLinkedListNode next = node.next;
+		prev.next = next;
+		next.prev = prev;
+	}
 
-	public DListNode(int value, int key) {
-		this.value = value;
-		this.key = key;
+	private void moveToHead(DoublyLinkedListNode node){
+		removeNode(node);
+		addNode(node);
+	}
+
+	private DoublyLinkedListNode popTail(){
+		DoublyLinkedListNode res = tail.prev;
+		removeNode(res);
+		return res;
+	}
+
+	class DoublyLinkedListNode{
+		int key;
+		int value;
+		DoublyLinkedListNode prev;
+		DoublyLinkedListNode next;
 	}
 }
