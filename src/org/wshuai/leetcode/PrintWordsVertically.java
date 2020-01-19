@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Created by Wei on 01/18/2020.
- * #0000 https://leetcode.com/problems/print-words-vertically/
+ * #1324 https://leetcode.com/problems/print-words-vertically/
  */
 public class PrintWordsVertically {
 	// time O(n)

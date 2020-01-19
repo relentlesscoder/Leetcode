@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 01/18/2020.
- * #0000 https://leetcode.com/problems/maximum-69-number/
+ * #1323 https://leetcode.com/problems/maximum-69-number/
  */
 public class Maximum69Number {
 	// time O(n)

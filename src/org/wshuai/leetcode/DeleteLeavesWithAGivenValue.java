@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 01/18/2020.
- * #0000 https://leetcode.com/problems/delete-leaves-with-a-given-value/
+ * #1325 https://leetcode.com/problems/delete-leaves-with-a-given-value/
  */
 public class DeleteLeavesWithAGivenValue {
 	// time O(n)
