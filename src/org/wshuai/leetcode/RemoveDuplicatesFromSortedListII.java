@@ -1,36 +1,26 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/10/16.
- * #82 https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+ * Created by Wei on 10/10/2016.
+ * #0082 https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
  */
 public class RemoveDuplicatesFromSortedListII {
+	// time O(n)
 	public LinkedListNode deleteDuplicates(LinkedListNode head) {
-		if (head == null) {
-			return null;
-		}
-
-		LinkedListNode root = new LinkedListNode(-1);
-		LinkedListNode prev = root;
-		LinkedListNode curr = head;
-		while (curr != null) {
-			int val = curr.val;
-			LinkedListNode nxt = curr.next;
-			while (nxt != null && nxt.val == val) {
-				nxt = nxt.next;
-			}
-			if (curr.next == nxt) {
-				prev.next = curr;
-				prev = curr;
-				curr = curr.next;
-			} else {
-				if (nxt == null) {
-					prev.next = null;
+		LinkedListNode root = new LinkedListNode(0), cur = head, prev = root;
+		root.next = head;
+		while(cur != null){
+			if(cur.next != null && cur.val == cur.next.val){
+				int val = cur.val;
+				while(cur != null && cur.val == val){
+					cur = cur.next;
 				}
-				curr = nxt;
+				prev.next = cur;
+			}else{
+				prev = cur;
+				cur = cur.next;
 			}
 		}
-
 		return root.next;
 	}
 }

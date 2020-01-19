@@ -1,53 +1,40 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/13/2016.
+ * Created by Wei on 08/13/2016.
+ * #0008 https://leetcode.com/problems/string-to-integer-atoi/
  */
 public class StringToInteger {
-	public static int myAtoi(String str) {
-		if (str == null) {
-			throw new IllegalArgumentException("Invalid input");
+	public int myAtoi(String str) {
+		long res = 0;
+		int i = 0;
+		while(i < str.length() && str.charAt(i) == ' '){
+			i++;
 		}
-		if (str.isEmpty()) {
+		if(i == str.length()){
 			return 0;
 		}
-
-		int len = str.length();
-		int index = 0;
-		while (str.charAt(index) == ' ') {
-			index++;
-		}
-		if (index >= len) {
-			return 0;
-		}
-		long temp = 0;
-		boolean negative = false;
-		for (int i = index; i < len; i++) {
-			char val = str.charAt(i);
-			if (i == index && val == '-') {
-				negative = true;
-				continue;
-			} else if (i == index && val == '+') {
-				continue;
-			}
-			if (val <= '9' && val >= '0') {
-				int num = (int) val - 48;
-				if (negative) {
-					temp = temp * 10 + num * (-1);
-					if (temp < Integer.MIN_VALUE) {
-						return Integer.MIN_VALUE;
-					}
-				} else {
-					temp = temp * 10 + num;
-					if (temp > Integer.MAX_VALUE) {
-						return Integer.MAX_VALUE;
-					}
-				}
-			} else {
-				break;
+		long num = 0;
+		char c = str.charAt(i);
+		boolean neg = false;
+		if(c == '+' || c == '-'){
+			i++;
+			if(c == '-'){
+				neg = true;
 			}
 		}
-
-		return (int) temp;
+		while(i < str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9'){
+			res *= 10;
+			int d = str.charAt(i) - '0';
+			res += neg ? -d : d;
+			if(res > Integer.MAX_VALUE){
+				return Integer.MAX_VALUE;
+			}
+			if(res < Integer.MIN_VALUE){
+				return Integer.MIN_VALUE;
+			}
+			i++;
+		}
+		return (int)res;
 	}
 }

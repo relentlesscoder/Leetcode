@@ -1,86 +1,63 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/13/2016.
- * #13 https://leetcode.com/problems/roman-to-integer/
+ * Created by Wei on 08/13/2016.
+ * #0013 https://leetcode.com/problems/roman-to-integer/
  */
 public class RomanToInteger {
-	public static int romanToInt(String s) {
-		if (s == null) {
-			throw new IllegalArgumentException("Invalid input.");
-		}
-		if (s.isEmpty()) {
-			return 0;
-		}
-		int result = 0;
-		int len = s.length();
-		for (int i = 0; i < len; i++) {
-			char x = s.charAt(i);
-			switch (x) {
-				case 'I':
-					// IV
-					if (i != len - 1 && s.charAt(i + 1) == 'V') {
-						result += 4;
-						i++;
-					}
-					// IX
-					else if (i != len - 1 && s.charAt(i + 1) == 'X') {
-						result += 9;
-						i++;
-					}
-					// Single I
-					else {
-						result += 1;
-					}
-					break;
-				case 'X':
-					// XL
-					if (i != len - 1 && s.charAt(i + 1) == 'L') {
-						result += 40;
-						i++;
-					}
-					// XC
-					else if (i != len - 1 && s.charAt(i + 1) == 'C') {
-						result += 90;
-						i++;
-					}
-					// Single X
-					else {
-						result += 10;
-					}
-					break;
-				case 'C':
-					// CD
-					if (i != len - 1 && s.charAt(i + 1) == 'D') {
-						result += 400;
-						i++;
-					}
-					// CM
-					else if (i != len - 1 && s.charAt(i + 1) == 'M') {
-						result += 900;
-						i++;
-					}
-					// Single C
-					else {
-						result += 100;
-					}
-					break;
-				case 'V':
-					result += 5;
-					break;
-				case 'L':
-					result += 50;
-					break;
-				case 'D':
-					result += 500;
-					break;
-				case 'M':
-					result += 1000;
-					break;
-				default:
-					break;
+	public int romanToInt(String s) {
+		int res = 0;
+		int i = 0;
+		int n = s.length();
+		while(i < n){
+			char cur = s.charAt(i);
+			if(cur == 'I'){
+				if(i != n - 1 && s.charAt(i +1) == 'V'){
+					res += 4;
+					i++;
+				}else if(i != n - 1 && s.charAt(i + 1) == 'X'){
+					res += 9;
+					i++;
+				}else{
+					res++;
+				}
 			}
+			if(cur == 'X'){
+				if(i != n - 1 && s.charAt(i +1) == 'L'){
+					res += 40;
+					i++;
+				}else if(i != n - 1 && s.charAt(i + 1) == 'C'){
+					res += 90;
+					i++;
+				}else{
+					res += 10;
+				}
+			}
+			if(cur == 'C'){
+				if(i != n - 1 && s.charAt(i +1) == 'D'){
+					res += 400;
+					i++;
+				}else if(i != n - 1 && s.charAt(i + 1) == 'M'){
+					res += 900;
+					i++;
+				}else{
+					res += 100;
+				}
+			}
+			if(cur == 'M'){
+				res += 1000;
+			}
+			if(cur == 'V'){
+				res += 5;
+			}
+			if(cur == 'L'){
+				res += 50;
+			}
+			if(cur == 'D'){
+				res += 500;
+			}
+			i++;
 		}
-		return result;
+		return res;
 	}
 }

@@ -1,44 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/2/16.
- * #92 https://leetcode.com/problems/reverse-linked-list-ii/
+ * Created by Wei on 11/02/2016.
+ * #0092 https://leetcode.com/problems/reverse-linked-list-ii/
  */
 public class ReverseLinkedListII {
+	// time O(n)
 	public LinkedListNode reverseBetween(LinkedListNode head, int m, int n) {
-		if (m >= n) {
-			return head;
+		int i = 0;
+		LinkedListNode root = new LinkedListNode(0), cur = head, prev = root, start = null;
+		root.next = head;
+		while(cur != null && ++i < m){
+			prev = cur;
+			cur = cur.next;
 		}
-
-		LinkedListNode prev = null;
-		LinkedListNode curr = head;
-		LinkedListNode front = null;
-		LinkedListNode tail = null;
-		int i = 1;
-		while (i <= n) {
-			if (i < m) {
-				prev = curr;
-				curr = curr.next;
-			}
-			if (i == m) {
-				front = prev;
-				tail = curr;
-				prev = null;
-			}
-			if (i >= m) {
-				LinkedListNode next = curr.next;
-				curr.next = prev;
-				prev = curr;
-				curr = next;
-			}
-			i++;
+		start = cur;
+		LinkedListNode next = null;
+		while(cur != null && i++ <= n){
+			LinkedListNode temp = cur.next;
+			cur.next = next;
+			next = cur;
+			cur = temp;
 		}
-		tail.next = curr;
-		if (front != null) {
-			front.next = prev;
-			return head;
-		} else {
-			return prev;
-		}
+		prev.next = next;
+		start.next = cur;
+		return root.next;
 	}
 }

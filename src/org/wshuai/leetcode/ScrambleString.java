@@ -1,75 +1,43 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 2/5/17.
- * #87 https://leetcode.com/problems/scramble-string/
+ * Created by Wei on 02/05/2017.
+ * #0087 https://leetcode.com/problems/scramble-string/
  */
 public class ScrambleString {
 
-	//DP
+	// time O(n^4), space O(n^3)
 	public boolean isScramble(String s1, String s2) {
-		if (s1 == null || s2 == null) {
+		int n = s1.length();
+		if(n != s2.length()){
 			return false;
 		}
-		if (s1.equals(s2)) {
+		if(s1.equals(s2)){
 			return true;
 		}
-		int len1 = s1.length();
-		int len2 = s2.length();
-		if (len1 != len2) {
-			return false;
-		}
-		boolean[][][] aux = new boolean[len1][len1][len1 + 1];
-		for (int len = 1; len <= len1; len++) {
-			for (int i = 0; i <= len1 - len; i++) {
-				for (int j = 0; j <= len1 - len; j++) {
-					if (len == 1) {
-						aux[i][j][len] = (s1.charAt(i) == s2.charAt(j));
+		boolean[][][] dp = new boolean[n + 1][n][n];
+		for(int l = 1; l <= n; l++){
+			for(int i = 0; i + l - 1 < n; i++){
+				for(int j = 0; j + l - 1 < n; j++){
+					// base case
+					if(l == 1){
+						dp[l][i][j] = s1.charAt(i) == s2.charAt(j);
 						continue;
 					}
-
-					aux[i][j][len] = false;
-					for (int cLen = 1; cLen < len; cLen++) {
-						if ((aux[i][j][cLen] && aux[i + cLen][j + cLen][len - cLen])
-								|| (aux[i][j + len - cLen][cLen] && aux[i + cLen][j][len - cLen])) {
-							aux[i][j][len] = true;
+					// if two string are scramble strings,
+					// there are two cases:
+					// 1. great and rgtea
+					// 2. tearg and great
+					for(int k = 1; k < l; k++){
+						if((dp[k][i][j] && dp[l - k][i + k][j + k])
+							|| (dp[k][i][j + l - k] && dp[l - k][i + k][j])){
+							dp[l][i][j] = true;
 							break;
 						}
 					}
 				}
 			}
 		}
-
-		return aux[0][0][len1];
-	}
-
-	//TLE
-	public boolean isScrambleRecursive(String s1, String s2) {
-		if (s1 == null || s2 == null) {
-			return false;
-		}
-		if (s1.equals(s2)) {
-			return true;
-		}
-		int len1 = s1.length();
-		int len2 = s2.length();
-		if (len1 != len2) {
-			return false;
-		}
-		if (len1 == 1) {
-			return s1.equals(s2);
-		}
-		for (int i = 1; i < len1; i++) {
-			if (isScrambleRecursive(s1.substring(0, i), s2.substring(0, i))
-					&& isScrambleRecursive(s1.substring(i), s2.substring(i))) {
-				return true;
-			}
-
-			if (isScrambleRecursive(s1.substring(0, i), s2.substring(len1 - i))
-					&& isScrambleRecursive(s1.substring(i), s2.substring(0, len1 - i))) {
-				return true;
-			}
-		}
-		return false;
+		return dp[n][0][0];
 	}
 }

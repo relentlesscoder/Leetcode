@@ -1,64 +1,32 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/2/2016.
- * #76 https://leetcode.com/problems/minimum-window-substring/
+ * Created by Wei on 10/02/2016.
+ * #0076 https://leetcode.com/problems/minimum-window-substring/
  */
 public class MinimumWindowSubstring {
+	// time O(n), space O(256)
+	// https://leetcode.com/problems/minimum-window-substring/discuss/26808/Here-is-a-10-line-template-that-can-solve-most-'substring'-problems
 	public String minWindow(String s, String t) {
-		if (s == null || t == null) {
-			return "";
+		int[] target = new int[256];
+		for(char c : t.toCharArray()){
+			target[c]++;
 		}
-
-		int sLen = s.length();
-		int tLen = t.length();
-		if (sLen < tLen) {
-			return "";
-		}
-
-		int[] expected = new int[256];
-		int[] found = new int[256];
-
-		int i = 0;
-		while (i < tLen) {
-			expected[t.charAt(i)]++;
-			i++;
-		}
-
-		int minStart = 0;
-		int winStart = 0;
-		int min = Integer.MAX_VALUE;
-		int count = 0;
-		for (int winEnd = 0; winEnd < sLen; winEnd++) {
-			char curr = s.charAt(winEnd);
-			if (expected[curr] > 0) {
-				found[curr]++;
-				if (expected[curr] >= found[curr]) {
-					count++;
-				}
+		int j = 0, counter = t.length(), min = Integer.MAX_VALUE, head = 0;
+		for(int i = 0; i < s.length(); i++){
+			if(target[s.charAt(i)]-- > 0){
+				counter--;
 			}
-
-			if (count == tLen) {
-				char start = s.charAt(winStart);
-				while (expected[start] == 0 || found[start] > expected[start]) {
-					if (expected[start] > 0) {
-						found[start]--;
-					}
-					winStart++;
-					start = s.charAt(winStart);
+			while(counter == 0){
+				if(i - j + 1 < min){
+					min = i - j + 1;
+					head = j;
 				}
-
-				int winSize = winEnd - winStart + 1;
-				if (winSize < min) {
-					min = winSize;
-					minStart = winStart;
+				if(target[s.charAt(j++)]++ == 0){
+					counter++;
 				}
 			}
 		}
-
-		if (min == Integer.MAX_VALUE) {
-			return "";
-		}
-		return s.substring(minStart, minStart + min);
+		return min == Integer.MAX_VALUE ? "" : s.substring(head, head + min);
 	}
 }

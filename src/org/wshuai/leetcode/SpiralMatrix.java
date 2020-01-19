@@ -4,53 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 10/8/16.
+ * Created by Wei on 10/08/2016.
+ * #0054 https://leetcode.com/problems/spiral-matrix/
  */
 public class SpiralMatrix {
+	// O(m*n)
 	public List<Integer> spiralOrder(int[][] matrix) {
-		List<Integer> lst = new ArrayList<Integer>();
-		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-			return lst;
+		List<Integer> res = new ArrayList<>();
+		if(matrix == null || matrix.length == 0){
+			return res;
 		}
-
-		int rows = matrix.length;
-		int cols = matrix[0].length;
-		int top = 0;
-		int bottom = rows - 1;
-		int left = 0;
-		int right = cols - 1;
-
-		while (top <= bottom && left <= right) {
-			if (top == bottom) {
-				for (int i = left; i <= right; i++) {
-					lst.add(matrix[top][i]);
-				}
-				break;
+		int n = matrix.length, m = matrix[0].length;
+		int up = 0, down = n - 1, left = 0, right = m - 1, total = n*m;
+		while(res.size() < total){
+			// left to right
+			for(int j = left; j <= right && res.size() < total; j++){
+				res.add(matrix[up][j]);
 			}
-			if (left == right) {
-				for (int i = top; i <= bottom; i++) {
-					lst.add(matrix[i][left]);
-				}
-				break;
+			// up to down
+			for(int i = up + 1; i <= down - 1 && res.size() < total; i++){
+				res.add(matrix[i][right]);
 			}
-			for (int i = left; i <= right; i++) {
-				lst.add(matrix[top][i]);
+			//right to left
+			for(int j = right; j >= left && res.size() < total; j--){
+				res.add(matrix[down][j]);
 			}
-			for (int i = top + 1; i <= bottom; i++) {
-				lst.add(matrix[i][right]);
+			//down to up
+			for(int i = down - 1; i >= up + 1 && res.size() < total; i--){
+				res.add(matrix[i][left]);
 			}
-			for (int i = right - 1; i >= left; i--) {
-				lst.add(matrix[bottom][i]);
-			}
-			for (int i = bottom - 1; i > top; i--) {
-				lst.add(matrix[i][left]);
-			}
-			top++;
-			bottom--;
 			left++;
 			right--;
+			up++;
+			down--;
 		}
-
-		return lst;
+		return res;
 	}
 }

@@ -4,71 +4,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 10/1/2016.
- * #51 https://leetcode.com/problems/n-queens/
+ * Created by Wei on 10/01/2016.
+ * #0051 https://leetcode.com/problems/n-queens/
  */
 public class NQueens {
-	//DFS
+	// time O(n^n), space O(n)
 	public List<List<String>> solveNQueens(int n) {
-		List<List<String>> lst = new ArrayList<List<String>>();
-		if (n == 1) {
-			List<String> l = new ArrayList<String>();
-			l.add("Q");
-			lst.add(l);
-			return lst;
-		}
-		if (n <= 3) {
-			return lst;
-		}
-		char[][] board = new char[n][n];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				board[i][j] = '.';
-			}
-		}
-		List<Integer> pos = new ArrayList<Integer>();
-		solveNQueensUtil(board, n, lst, 0, pos);
-		return lst;
+		List<List<String>> res = new ArrayList<>();
+		solve(0, n, new ArrayList<Integer>(), res, new boolean[n],
+				new boolean[n], new boolean[2*n - 1], new boolean[2*n - 1]);
+		return res;
 	}
 
-	private void solveNQueensUtil(char[][] board, int n, List<List<String>> lst, int cnt, List<Integer> pos) {
-		if (cnt == n) {
-			lst.add(printBoard(board, n));
-		} else {
-			for (int i = 0; i < n; i++) {
-				if (isValidMove(pos, cnt, i, n)) {
-					board[cnt][i] = 'Q';
-					pos.add(cnt * n + i);
-					solveNQueensUtil(board, n, lst, cnt + 1, pos);
-					board[cnt][i] = '.';
-					pos.remove(pos.size() - 1);
-				}
+	private void solve(int row, int n, List<Integer> cur, List<List<String>> res,
+	                   boolean[] rows, boolean[] columns, boolean[] diagonals, boolean[] antiDiagonals){
+		if(row == n){
+			res.add(populateBoard(cur, n));
+			return;
+		}
+		for(int i = 0; i < n; i++){
+			if(rows[row] || columns[i] || diagonals[row - i + n - 1] || antiDiagonals[row + i]){
+				continue;
 			}
+			cur.add(i);
+			rows[row] = true;
+			columns[i] = true;
+			antiDiagonals[row + i] = true;
+			diagonals[row - i + n - 1] = true;
+			solve(row + 1, n, cur, res, rows, columns, diagonals, antiDiagonals);
+			cur.remove(cur.size() - 1);
+			rows[row] = false;
+			columns[i] = false;
+			antiDiagonals[row + i] = false;
+			diagonals[row - i + n - 1] = false;
 		}
 	}
 
-	private List<String> printBoard(char[][] board, int n) {
-		List<String> lst = new ArrayList<String>();
-		for (int i = 0; i < n; i++) {
-			StringBuilder row = new StringBuilder();
-			for (int j = 0; j < n; j++) {
-				row.append(board[i][j]);
+	private List<String> populateBoard(List<Integer> cur, int n){
+		List<String> board = new ArrayList<>();
+		for(int i = 0; i < cur.size(); i++){
+			StringBuilder sb = new StringBuilder();
+			for(int j = 0; j < n; j++){
+				sb.append(cur.get(i) == j ? "Q" : ".");
 			}
-			lst.add(row.toString());
+			board.add(sb.toString());
 		}
-		return lst;
-	}
-
-	private boolean isValidMove(List<Integer> pos, int r, int c, int n) {
-		int len = pos.size();
-		for (int i = 0; i < len; i++) {
-			int val = pos.get(i);
-			int r1 = val / n;
-			int c1 = val % n;
-			if (r1 == r || c1 == c || Math.abs(r1 - r) == Math.abs(c1 - c)) {
-				return false;
-			}
-		}
-		return true;
+		return board;
 	}
 }

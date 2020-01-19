@@ -1,38 +1,33 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/9/16.
- * #61 https://leetcode.com/problems/rotate-list/
+ * Created by Wei on 10/09/2016.
+ * #0061 https://leetcode.com/problems/rotate-list/
  */
 public class RotateList {
 	public LinkedListNode rotateRight(LinkedListNode head, int k) {
-		if (head == null || k <= 0) {
-			return head;
+		if(head == null){
+			return null;
 		}
-		int count = 0;
-		LinkedListNode curr = head;
-		LinkedListNode prev = null;
-		while (curr != null) {
-			prev = curr;
-			curr = curr.next;
-			count++;
+		// find the tail
+		int n = 1;
+		LinkedListNode tail = head;
+		while(tail.next != null){
+			tail = tail.next;
+			n++;
 		}
-
-		k = k % count;
-		if (k > 0) {
-			prev.next = head;
-			curr = head;
-			prev = null;
-			while (count > k) {
-				prev = curr;
-				curr = curr.next;
-				count--;
+		// connect tail to head and advance n - k steps from tail
+		tail.next = head;
+		if(k % n > 0){
+			int i = n - k % n;
+			while(i > 0){
+				tail = tail.next;
+				i--;
 			}
-
-			prev.next = null;
-			return curr;
 		}
-
-		return head;
+		// split the linked list and return the new head
+		LinkedListNode res = tail.next;
+		tail.next = null;
+		return res;
 	}
 }

@@ -1,21 +1,19 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/10/16.
- * #27 https://leetcode.com/problems/remove-element/
+ * Created by Wei on 10/10/2016.
+ * #0027 https://leetcode.com/problems/remove-element/
  */
 public class RemoveElement {
+	// time O(n)
 	public int removeElement(int[] nums, int val) {
-		if (nums == null || nums.length == 0) {
-			return 0;
-		}
-		int i = -1;
-		for (int j = 0; j < nums.length; j++) {
-			if (nums[j] != val) {
-				i++;
-				nums[i] = nums[j];
+		int i = 0;
+		for(int j = 0; j < nums.length; j++){
+			if(nums[j] == val){
+				continue;
 			}
+			nums[i++] = nums[j];
 		}
-		return i + 1;
+		return i;
 	}
 }

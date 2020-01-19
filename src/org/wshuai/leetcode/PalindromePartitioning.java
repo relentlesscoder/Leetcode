@@ -4,42 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 11/11/16.
- * #131 https://leetcode.com/problems/palindrome-partitioning/
+ * Created by Wei on 11/11/2016.
+ * #0131 https://leetcode.com/problems/palindrome-partitioning/
  */
 public class PalindromePartitioning {
-	//O(n^2), DFS & DP
+	// time O(n^2), space O(n^2)
 	public List<List<String>> partition(String s) {
-		List<List<String>> lst = new ArrayList<List<String>>();
-		if (s == null || s.isEmpty()) {
-			return lst;
+		List<List<String>> res = new ArrayList<>();
+		if(s == null || s.length() == 0){
+			return res;
 		}
-		int len = s.length();
-		boolean[][] aux = new boolean[len][len];
-		for (int k = 0; k < len; k++) {
-			for (int i = 0; i + k < len; i++) {
-				int j = i + k;
-				aux[i][j] = (i == j) || (s.charAt(i) == s.charAt(j)
-						&& (i + 1 == j || aux[i + 1][j - 1]));
+		int n = s.length();
+		boolean[][] dp = new boolean[n][n];
+		for(int l = 1; l <= n; l++){
+			for(int i = 0; i + l - 1 < n; i++){
+				int j = i + l - 1;
+				dp[i][j] = (s.charAt(i) == s.charAt(j))
+						&& (l <= 2 || dp[i + 1][j - 1]);
 			}
 		}
-		partitionUtil(s, len, lst, aux, 0, new ArrayList<String>());
-		return lst;
+		dfs(0, n, s, dp, res, new ArrayList<String>());
+		return res;
 	}
 
-	private void partitionUtil(String s, int len, List<List<String>> lst, boolean[][] aux,
-	                           int i, List<String> curr) {
-		if (i == len) {
-			List<String> val = new ArrayList<String>(curr);
-			lst.add(val);
-		} else {
-			for (int j = i; j < len; j++) {
-				if (aux[i][j]) {
-					curr.add(s.substring(i, j + 1));
-					partitionUtil(s, len, lst, aux, j + 1, curr);
-					curr.remove(curr.size() - 1);
-				}
+	private void dfs(int i, int n, String s, boolean[][] dp, List<List<String>> res, List<String> cur){
+		if(i == n){
+			res.add(new ArrayList<>(cur));
+			return;
+		}
+		for(int j = 0; j < n; j++){
+			if(!dp[i][j]){
+				continue;
 			}
+			cur.add(s.substring(i, j + 1));
+			dfs(j + 1, n, s, dp, res, cur);
+			cur.remove(cur.size() - 1);
 		}
 	}
 }

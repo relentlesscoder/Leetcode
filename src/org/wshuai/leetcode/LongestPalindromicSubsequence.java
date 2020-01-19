@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/20/19.
- * #516 https://leetcode.com/problems/longest-palindromic-subsequence/
+ * Created by Wei on 09/20/2019.
+ * #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
  */
 public class LongestPalindromicSubsequence {
 	// see https://www.youtube.com/watch?v=OZX1nqaQ_9M

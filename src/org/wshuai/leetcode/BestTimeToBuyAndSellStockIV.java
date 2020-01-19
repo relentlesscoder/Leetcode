@@ -1,38 +1,35 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
+
 /**
- * Created by Wei on 4/3/2017.
- * #188 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
+ * Created by Wei on 04/03/2017.
+ * #0188 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
  */
 public class BestTimeToBuyAndSellStockIV {
-	//See http://www.cnblogs.com/grandyang/p/4295761.html
+	// time O(n*k), space O(k)
 	public int maxProfit(int k, int[] prices) {
-		if (prices == null || prices.length == 0) {
-			return 0;
-		}
-		int len = prices.length;
-		if (k >= len) {
-			return solveMaxProfit(prices);
-		}
-		int[] global = new int[k + 1];
-		int[] local = new int[k + 1];
-		for (int i = 0; i < len - 1; i++) {
-			int diff = prices[i + 1] - prices[i];
-			for (int j = k; j >= 1; j--) {
-				local[j] = Math.max(global[j - 1] + Math.max(diff, 0), local[j] + diff);
-				global[j] = Math.max(global[j], local[j]);
+		int n = prices.length;
+		// the same as infinite transactions
+		if(k >= n / 2){
+			int c = 0, h = Integer.MIN_VALUE;
+			for(int p : prices){
+				int old = c;
+				c = Math.max(c, h + p);
+				h = Math.max(h, old - p);
 			}
+			return c;
 		}
-		return global[k];
-	}
 
-	private int solveMaxProfit(int[] prices) {
-		int res = 0;
-		for (int i = 1; i < prices.length; i++) {
-			if (prices[i] > prices[i - 1]) {
-				res += prices[i] - prices[i - 1];
+		// the same idea as two transactions
+		int[] cash = new int[k + 1], hold = new int[k + 1];
+		Arrays.fill(hold, Integer.MIN_VALUE);
+		for(int p : prices){
+			for(int j = 1; j <= k; j++){
+				cash[j] = Math.max(cash[j], hold[j] + p);
+				hold[j] = Math.max(hold[j], cash[j - 1] - p);
 			}
 		}
-		return res;
+		return cash[k];
 	}
 }

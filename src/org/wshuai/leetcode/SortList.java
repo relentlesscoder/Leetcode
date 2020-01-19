@@ -1,35 +1,44 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/20/16.
- * #148 https://leetcode.com/problems/sort-list/
+ * Created by Wei on 08/20/2016.
+ * #0148 https://leetcode.com/problems/sort-list/
  */
 public class SortList {
-	public static LinkedListNode sortList(LinkedListNode head) {
-		if (head != null && head.next != null) {
-			if (head.next.next == null) {
-				if (head.val > head.next.val) {
-					int temp = head.val;
-					head.val = head.next.val;
-					head.next.val = temp;
-				}
-				return head;
-			} else {
-				LinkedListNode curr = head;
-				LinkedListNode mid = head;
-				while (curr != null && curr.next != null) {
-					curr = curr.next.next;
-					mid = mid.next;
-				}
-				LinkedListNode nxt = mid.next;
-				mid.next = null;
-				LinkedListNode l = sortList(head);
-				LinkedListNode r = sortList(nxt);
-				MergeTwoSortedList mt = new MergeTwoSortedList();
-				return mt.mergeTwoLists(l, r);
-			}
-		} else {
+	// time O(n*log(n))
+	public LinkedListNode sortList(LinkedListNode head) {
+		if(head == null || head.next == null){
 			return head;
 		}
+		LinkedListNode fast = head, slow = head, prev = null;
+		while(fast != null && fast.next != null){
+			fast = fast.next.next;
+			prev = slow;
+			slow = slow.next;
+		}
+		prev.next = null;
+		LinkedListNode right = sortList(slow);
+		LinkedListNode left = sortList(head);
+		return merge(right, left);
+	}
+
+	private LinkedListNode merge(LinkedListNode l1, LinkedListNode l2){
+		LinkedListNode root = new LinkedListNode(0), cur = root;
+		while(l1 != null || l2 != null){
+			int v1 = l1 == null ? Integer.MAX_VALUE : l1.val;
+			int v2 = l2 == null ? Integer.MAX_VALUE : l2.val;
+			LinkedListNode next = null;
+			if(v1 < v2){
+				next = l1;
+				l1 = l1.next;
+			}else{
+				next = l2;
+				l2 = l2.next;
+			}
+			next.next = null;
+			cur.next = next;
+			cur = next;
+		}
+		return root.next;
 	}
 }

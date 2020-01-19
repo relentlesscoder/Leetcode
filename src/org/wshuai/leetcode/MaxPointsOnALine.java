@@ -4,56 +4,49 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 10/3/16.
- * #149 https://leetcode.com/problems/max-points-on-a-line/
+ * Created by Wei on 10/03/2016.
+ * #0149 https://leetcode.com/problems/max-points-on-a-line/
  */
 public class MaxPointsOnALine {
-	public int maxPoints(Point[] points) {
-		if (points == null) {
+	// time O(n^2), space O(n)
+	public int maxPoints(int[][] points) {
+		if(points == null || points.length == 0 || points[0].length != 2){
 			return 0;
 		}
-		if (points.length <= 2) {
-			return points.length;
+		int n = points.length;
+		if(n <= 2){
+			return n;
 		}
 		int max = 2;
-		int len = points.length;
-		Map<Double, Integer> map = new HashMap<Double, Integer>();
-		for (int i = 0; i < len - 1; i++) {
-			Point p1 = points[i];
-			int same = 0;
-			int vertical = 0;
-			for (int j = i + 1; j < len; j++) {
-				Point p2 = points[j];
-				if (p1.x == p2.x) {
-					if (p1.y == p2.y) {
+		Map<String, Integer> map = new HashMap<>();
+		for(int i = 0; i < n; i++){
+			int[] p1 = points[i];
+			int same = 0, vertical = 0, cmax = 0;
+			for(int j = i + 1; j < n; j++){
+				int[] p2 = points[j];
+				if(p1[0] == p2[0]){
+					if(p1[1] == p2[1]){
 						same++;
-					} else {
+					}else{
 						vertical++;
 					}
-				} else {
-					Double slope = 1.0 * (p2.y - p1.y) / (p2.x - p1.x);
-					//Important corner case!!
-					slope = slope == -0.0 ? 0.0 : slope;
-					if (map.containsKey(slope)) {
-						int count = map.get(slope);
-						map.put(slope, count + 1);
-					} else {
-						map.put(slope, 1);
-					}
+				}else{
+					int x = p2[1] - p1[1], y = p2[0] - p1[0], gcd = gcd(x, y);
+					String slope = (x / gcd) + "_" + (y / gcd);
+					map.put(slope, map.getOrDefault(slope, 0) + 1);
 				}
 			}
-			int cmax = 0;
-			for (int count : map.values()) {
-				cmax = count > cmax ? count : cmax;
+			for(int count : map.values()){
+				cmax = Math.max(count, cmax);
 			}
-			same++;
-			cmax += same;
-			vertical += same;
-			cmax = vertical > cmax ? vertical : cmax;
-			max = cmax > max ? cmax : max;
+			cmax = Math.max(cmax, vertical);
+			max = Math.max(cmax + same + 1, max);
 			map.clear();
 		}
-
 		return max;
+	}
+
+	private int gcd(int x, int y){
+		return x == 0 ? y : gcd(y % x, x);
 	}
 }

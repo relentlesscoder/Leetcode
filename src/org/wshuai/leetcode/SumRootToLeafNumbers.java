@@ -1,30 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/29/16.
- * #129 https://leetcode.com/problems/sum-root-to-leaf-numbers/
+ * Created by Wei on 10/29/2016.
+ * #0129 https://leetcode.com/problems/sum-root-to-leaf-numbers/
  */
 public class SumRootToLeafNumbers {
-	public int sumNumbers(TreeNode root) {
-		if (root == null) {
-			return 0;
-		}
+	private int sum;
 
-		RefType res = new RefType();
-		sumNumbersUtil(root, 0, res);
-		return res.val;
+	// time O(n)
+	public int sumNumbers(TreeNode root) {
+		sum = 0;
+		dfs(root, 0);
+		return sum;
 	}
 
-	private void sumNumbersUtil(TreeNode root, int csum, RefType res) {
-		if (root == null) {
+	private void dfs(TreeNode root, int cur){
+		if(root == null){
 			return;
 		}
-		int nsum = csum * 10 + root.val;
-		if (root.left == null && root.right == null) {
-			res.val += nsum;
+		cur = cur * 10 + root.val;
+		if(root.left == null && root.right == null){
+			sum += cur;
 			return;
 		}
-		sumNumbersUtil(root.left, nsum, res);
-		sumNumbersUtil(root.right, nsum, res);
+		dfs(root.left, cur);
+		dfs(root.right, cur);
 	}
 }

@@ -1,64 +1,38 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/13/2016.
- * #11 https://leetcode.com/problems/container-with-most-water/
+ * Created by Wei on 08/13/2016.
+ * #0011 https://leetcode.com/problems/container-with-most-water/
  */
 public class ContainerWithMostWater {
-
-	// O(n) time
-	public static int maxArea(int[] height) {
-		int len = height.length;
-		if (len <= 0) {
-			throw new IllegalArgumentException("Input is empty.");
-		}
-		if (len == 1) {
-			return 0;
-		}
-
-		int max = 0;
-		int lindex = 0;
-		int rindex = len - 1;
-		while (lindex < rindex) {
-			int leftLen = height[lindex];
-			int rightLen = height[rindex];
-			int lineLen = leftLen < rightLen ? leftLen : rightLen;
-			int area = (rindex - lindex) * lineLen;
-			max = area > max ? area : max;
-			if (leftLen < rightLen) {
-				while (lindex < len && height[lindex] <= leftLen) {
-					lindex++;
+	// time O(n)
+	public int maxArea(int[] height) {
+		int n = height.length;
+		int left = 0;
+		int right = n - 1;
+		int res = 0;
+		while(left < right){
+			int leftHeight = height[left];
+			int rightHeight = height[right];
+			res = Math.max(res, Math.min(leftHeight, rightHeight) * (right - left));
+			// since the shorter side height decides the final area,
+			// move the shorter side to create a better solution if possible
+			if(leftHeight < rightHeight){
+				while(left < right && height[left] <= leftHeight){
+					left++;
 				}
-			} else {
-				while (rindex >= 0 && height[rindex] <= rightLen) {
-					rindex--;
+				/* simpler code below but slower due to unnecessary calculations
+				left++;
+				 */
+			}else{
+				while(left < right && height[right] <= rightHeight){
+					right--;
 				}
+				/*
+				right--;
+				 */
 			}
 		}
-
-		return max;
-	}
-
-	// Time complexity n^2
-	public static int maxAreaBrutalForce(int[] height) {
-		int len = height.length;
-		if (len <= 0) {
-			throw new IllegalArgumentException("Input is empty.");
-		}
-		if (len == 1) {
-			return 0;
-		}
-
-		int max = 0;
-		for (int i = 0; i < len; i++) {
-			if (i == len - 1) {
-				break;
-			}
-			for (int j = i + 1; j < len; j++) {
-				int area = (j - i) * (height[i] < height[j] ? height[i] : height[j]);
-				max = area > max ? area : max;
-			}
-		}
-		return max;
+		return res;
 	}
 }

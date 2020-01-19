@@ -1,28 +1,26 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 1/31/16.
- * #108 https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+ * Created by Wei on 01/31/2016.
+ * #0108 https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
  */
 public class ConvertSortedArrayToBinarySearchTree {
+	// time O(n)
 	public TreeNode sortedArrayToBST(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return null;
-		}
-		return GetRootNode(nums, 0, nums.length - 1);
+		return dfs(nums, 0, nums.length - 1);
 	}
 
-	private TreeNode GetRootNode(int[] input, int p, int q) {
-		TreeNode root;
-		if (p > q) {
+	private TreeNode dfs(int[] nums, int i, int j){
+		if(i > j){
 			return null;
 		}
-
-		int idx = p + (q - p) / 2;
-		int index = (p + q) % 2 == 0 ? idx : idx + 1;
-		root = new TreeNode(input[index]);
-		root.left = GetRootNode(input, p, index - 1);
-		root.right = GetRootNode(input, index + 1, q);
+		if(i == j){
+			return new TreeNode(nums[i]);
+		}
+		int mid = i + (j - i) / 2;
+		TreeNode root = new TreeNode(nums[mid]);
+		root.left = dfs(nums, i, mid - 1);
+		root.right = dfs(nums, mid + 1, j);
 		return root;
 	}
 }

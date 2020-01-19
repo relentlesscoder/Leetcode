@@ -2,58 +2,62 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/21/2016.
- * #48 https://leetcode.com/problems/rotate-image/
+ * #0048 https://leetcode.com/problems/rotate-image/
  */
 public class RotateImage {
-
-	//Use property temp[j][i] = matrix[rows-i-1][j];
+	/*
+	 * clockwise rotate
+	 * first reverse up to down, then swap the symmetry
+	 * 1 2 3     7 8 9     7 4 1
+	 * 4 5 6  => 4 5 6  => 8 5 2
+	 * 7 8 9     1 2 3     9 6 3
+	 */
 	public void rotate(int[][] matrix) {
-		if (matrix == null) {
+		if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
 			return;
 		}
-		int rows = matrix.length;
-		if (rows == 0) {
-			return;
+		int r = matrix.length;
+		int c = matrix[0].length;
+		for(int i = 0, j = r - 1; i < j; i++, j--){
+			int[] temp = matrix[i];
+			matrix[i] = matrix[j];
+			matrix[j] = temp;
 		}
-		int cols = matrix[0].length;
-		if (rows != cols) {
-			return;
-		}
-		int len = rows;
-		int start = 0;
-		int end = len - 1;
-		while (start < end) {
-			for (int i = start; i < end; i++) {
-				int temp = matrix[start][i];
-				matrix[start][i] = matrix[len - i - 1][start];
-				matrix[len - i - 1][start] = matrix[len - start - 1][len - i - 1];
-				matrix[len - start - 1][len - i - 1] = matrix[i][len - start - 1];
-				matrix[i][len - start - 1] = temp;
+		for(int i = 0; i < r; i++){
+			for(int j = i + 1; j < c; j++){
+				int temp = matrix[i][j];
+				matrix[i][j] = matrix[j][i];
+				matrix[j][i] = temp;
 			}
-			start++;
-			end--;
 		}
 	}
 
-	//Use extra space
-	public int[][] rotateExtraSpace(int[][] matrix) {
-		if (matrix == null) {
-			return matrix;
+	/*
+	 * anticlockwise rotate
+	 * first reverse left to right, then swap the symmetry
+	 * 1 2 3     3 2 1     3 6 9
+	 * 4 5 6  => 6 5 4  => 2 5 8
+	 * 7 8 9     9 8 7     1 4 7
+	 */
+	/*public void antiRotate(int[][] matrix) {
+		if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
+			return;
 		}
-		int rows = matrix.length;
-		if (rows == 0) {
-			return matrix;
-		}
-		int cols = matrix[0].length;
-		if (rows != cols) {
-			return matrix;
-		}
-		int[][] temp = new int[rows][rows];
-		for (int i = rows - 1; i >= 0; i--) {
-			for (int j = 0; j < rows; j++) {
-				temp[j][i] = matrix[rows - i - 1][j];
+		int r = matrix.length;
+		int c = matrix[0].length;
+		for(int i = 0, j = c - 1; i < j; i++, j--){
+			for(int k = 0; k < r; k++){
+				int temp = matrix[k][i];
+				matrix[k][i] = matrix[k][j];
+				matrix[k][j] = temp;
 			}
 		}
-		return temp;
-	}
+		for(int i = 0; i < r; i++){
+			for(int j = i + 1; j < c; j++){
+				int temp = matrix[i][j];
+				matrix[i][j] = matrix[j][i];
+				matrix[j][i] = temp;
+			}
+		}
+	}*/
 }

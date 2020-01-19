@@ -3,48 +3,29 @@ package org.wshuai.leetcode;
 import java.util.Stack;
 
 /**
- * Created by Wei on 10/25/16.
- * #71 https://leetcode.com/problems/simplify-path/
+ * Created by Wei on 10/25/2016.
+ * #0071 https://leetcode.com/problems/simplify-path/
  */
 public class SimplifyPath {
 	public String simplifyPath(String path) {
-		StringBuilder sb = new StringBuilder();
-		if (path == null || path.isEmpty()) {
-			return "";
-		}
-		Stack<String> stack = new Stack<String>();
-		int i = 0;
-		int len = path.length();
-
-		if (path.charAt(i) != '/') {
-			return "";
-		}
-		while (i < len && i >= 0) {
-			if (i == len - 1) {
-				break;
+		String[] strs = path.split("/");
+		Stack<String> stack = new Stack<>();
+		for(String v : strs){
+			if(v.length() == 0 || v.equals(".")){
+				continue;
 			}
-			int j = path.indexOf("/", i + 1);
-			String val;
-			if (j == -1) {
-				val = path.substring(i);
-			} else {
-				val = path.substring(i, j);
-			}
-			if (val.equals("/..")) {
-				if (!stack.isEmpty()) {
+			if(v.equals("..")){
+				if(!stack.isEmpty()){
 					stack.pop();
 				}
-			} else if (val.equals("/.") || val.equals("/")) {
-			} else {
-				stack.push(val);
+			}else{
+				stack.push(v);
 			}
-			i = j;
 		}
-
-		while (!stack.isEmpty()) {
-			sb.insert(0, stack.pop());
+		StringBuilder sb = new StringBuilder();
+		for(String v : stack){
+			sb.append("/").append(v);
 		}
-		String res = sb.toString();
-		return res.isEmpty() ? "/" : res;
+		return sb.length() == 0 ? "/" : sb.toString();
 	}
 }

@@ -3,52 +3,69 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 10/10/16.
- * #133 https://leetcode.com/problems/clone-graph/
+ * Created by Wei on 10/10/2016.
+ * #0133 https://leetcode.com/problems/clone-graph/
  */
 public class CloneGraph {
-	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-		if (node == null) {
+	// time O(n)
+	public UndirectedGraphNode cloneGraphDFS(UndirectedGraphNode node) {
+		if(node == null){
 			return null;
 		}
+		Map<UndirectedGraphNode, UndirectedGraphNode> mapping = new HashMap<>();
+		mapping.put(node, new UndirectedGraphNode(node.val));
+		dfs(node, mapping);
+		return mapping.get(node);
+	}
 
-		Map<UndirectedGraphNode, UndirectedGraphNode> map =
-				new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-		Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
-		queue.offer(node);
-		UndirectedGraphNode root = new UndirectedGraphNode(node.label);
-		map.put(node, root);
-		while (!queue.isEmpty()) {
-			UndirectedGraphNode old = queue.poll();
-			Iterator<UndirectedGraphNode> it = old.neighbors.listIterator();
-			while (it.hasNext()) {
-				UndirectedGraphNode nxt = it.next();
-				if (!map.containsKey(nxt)) {
-					UndirectedGraphNode clone = new UndirectedGraphNode(nxt.label);
-					map.put(nxt, clone);
-					map.get(old).neighbors.add(clone);
-					queue.offer(nxt);
-				} else {
-					map.get(old).neighbors.add(map.get(nxt));
+	private void dfs(UndirectedGraphNode node, Map<UndirectedGraphNode, UndirectedGraphNode> mapping){
+		for(UndirectedGraphNode next : node.neighbors){
+			if(mapping.containsKey(next)){
+				mapping.get(node).neighbors.add(mapping.get(next));
+				continue;
+			}else{
+				UndirectedGraphNode copy = new UndirectedGraphNode(next.val);
+				mapping.put(next, copy);
+				mapping.get(node).neighbors.add(copy);
+				dfs(next, mapping);
+			}
+		}
+	}
+
+	// time O(n), space O(n)
+	public UndirectedGraphNode cloneGraphBFS(UndirectedGraphNode node) {
+		if(node == null){
+			return null;
+		}
+		Map<UndirectedGraphNode, UndirectedGraphNode> mapping = new HashMap<>();
+		LinkedList<UndirectedGraphNode> queue = new LinkedList<>();
+		queue.offerLast(node);
+		mapping.put(node, new UndirectedGraphNode(node.val));
+		while(!queue.isEmpty()){
+			UndirectedGraphNode cur = queue.pollFirst();
+			for(UndirectedGraphNode next : cur.neighbors){
+				if(!mapping.containsKey(next)){
+					UndirectedGraphNode copy = new UndirectedGraphNode(next.val);
+					mapping.put(next, copy);
+					mapping.get(cur).neighbors.add(copy);
+					queue.offerLast(next);
+				}else{
+					mapping.get(cur).neighbors.add(mapping.get(next));
 				}
 			}
 		}
-
-		return root;
+		return mapping.get(node);
 	}
-}
 
-/**
- * Definition for undirected graph.
- */
-class UndirectedGraphNode {
-	int label;
+	private class UndirectedGraphNode {
+		int val;
 
-	List<UndirectedGraphNode> neighbors;
+		List<UndirectedGraphNode> neighbors;
 
-	UndirectedGraphNode(int x) {
-		label = x;
-		neighbors = new ArrayList<UndirectedGraphNode>();
+		UndirectedGraphNode(int x) {
+			val = x;
+			neighbors = new ArrayList<UndirectedGraphNode>();
+		}
 	}
 }
 

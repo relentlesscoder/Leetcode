@@ -4,63 +4,23 @@ import java.util.Stack;
 
 /**
  * Created by Wei on 10/26/2016.
- * #20 https://leetcode.com/problems/valid-parentheses/
+ * #0020 https://leetcode.com/problems/valid-parentheses/
  */
 public class ValidParentheses {
-
+	// time O(n), space O(n)
 	public boolean isValid(String s) {
-		int count = 0;
-
-		for (int i = 0; i < s.length(); i++) {
+		Stack<Character> openBrackets = new Stack<>();
+		for(int i = 0; i < s.length(); i++){
 			char c = s.charAt(i);
-			if (c == '(') {
-				count++;
-			}
-			if (c == ')' && count-- == 0) {
-				return false;
-			}
-		}
-
-		return count == 0;
-	}
-
-	public boolean isValidStack(String s) {
-		if (s == null || s.isEmpty()) {
-			return false;
-		}
-		int len = s.length();
-		if (len % 2 == 1) {
-			return false;
-		}
-		char first = s.charAt(0);
-		if (first != '(' && first != '{' && first != '[') {
-			return false;
-		}
-		Stack<Character> stk = new Stack<Character>();
-		for (int i = 0; i < len; i++) {
-			char x = s.charAt(i);
-			if (x == '(' || x == '{' || x == '[') {
-				stk.push(x);
-			} else {
-				if (stk.empty()) {
+			if(c == '}' || c == ']' || c == ')'){
+				if(openBrackets.isEmpty() || openBrackets.peek() != c){
 					return false;
-				} else {
-					char y = stk.pop();
-					if (y == '(' && x == ')') {
-						continue;
-					} else if (y == '[' && x == ']') {
-						continue;
-					} else if (y == '{' && x == '}') {
-						continue;
-					} else {
-						return false;
-					}
 				}
+				openBrackets.pop();
+			}else{
+				openBrackets.push(c == '{' ? '}' : (c == '(' ? ')' : ']'));
 			}
 		}
-		if (!stk.empty()) {
-			return false;
-		}
-		return true;
+		return openBrackets.isEmpty();
 	}
 }

@@ -1,59 +1,39 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by Wei on 11/9/16.
- * #52 https://leetcode.com/problems/n-queens-ii/
+ * Created by Wei on 11/09/2016.
+ * #0052 https://leetcode.com/problems/n-queens-ii/
  */
 public class NQueensII {
-	//DFS
+	private int res;
+
+	// time O(n^n), space O(n)
 	public int totalNQueens(int n) {
-		if (n == 1) {
-			return 1;
-		}
-		if (n <= 3) {
-			return 0;
-		}
-		char[][] board = new char[n][n];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				board[i][j] = '.';
-			}
-		}
-		RefType rt = new RefType();
-		List<Integer> pos = new ArrayList<Integer>();
-		solveNQueensUtil(board, n, rt, 0, pos);
-		return rt.val;
+		res = 0;
+		solve(0, n, new boolean[n], new boolean[n],
+				new boolean[2*n - 1], new boolean[2*n - 1]);
+		return res;
 	}
 
-	private void solveNQueensUtil(char[][] board, int n, RefType rt, int cnt, List<Integer> pos) {
-		if (cnt == n) {
-			rt.val++;
-		} else {
-			for (int i = 0; i < n; i++) {
-				if (isValidMove(pos, cnt, i, n)) {
-					board[cnt][i] = 'Q';
-					pos.add(cnt * n + i);
-					solveNQueensUtil(board, n, rt, cnt + 1, pos);
-					board[cnt][i] = '.';
-					pos.remove(pos.size() - 1);
-				}
-			}
+	private void solve(int row, int n, boolean[] rows, boolean[] columns,
+	                   boolean[] diagonals, boolean[] antiDiagonals){
+		if(row == n){
+			res++;
+			return;
 		}
-	}
-
-	private boolean isValidMove(List<Integer> pos, int r, int c, int n) {
-		int len = pos.size();
-		for (int i = 0; i < len; i++) {
-			int val = pos.get(i);
-			int r1 = val / n;
-			int c1 = val % n;
-			if (r1 == r || c1 == c || Math.abs(r1 - r) == Math.abs(c1 - c)) {
-				return false;
+		for(int i = 0; i < n; i++){
+			if(rows[row] || columns[i] || diagonals[row - i + n - 1] || antiDiagonals[row + i]){
+				continue;
 			}
+			rows[row] = true;
+			columns[i] = true;
+			antiDiagonals[row + i] = true;
+			diagonals[row - i + n - 1] = true;
+			solve(row + 1, n, rows, columns, diagonals, antiDiagonals);
+			rows[row] = false;
+			columns[i] = false;
+			antiDiagonals[row + i] = false;
+			diagonals[row - i + n - 1] = false;
 		}
-		return true;
 	}
 }

@@ -1,44 +1,25 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/20/16.
- * #67 https://leetcode.com/problems/add-binary/
+ * Created by Wei on 11/20/2016.
+ * #0067 https://leetcode.com/problems/add-binary/
  */
 public class AddBinary {
+	// O(Math.max(a, b))
 	public String addBinary(String a, String b) {
-		if (a == null || a.isEmpty()) {
-			return b;
-		}
-		if (b == null || b.isEmpty()) {
-			return a;
-		}
-		char[] a1 = a.toCharArray();
-		char[] a2 = b.toCharArray();
-		int len1 = a1.length;
-		int len2 = a2.length;
+		char[] A = new StringBuilder(a).reverse().toString().toCharArray();
+		char[] B = new StringBuilder(b).reverse().toString().toCharArray();
+		int carry = 0, i = 0, j = 0;
 		StringBuilder sb = new StringBuilder();
-		int carry = 0;
-		int sum = 0;
-		while (len1 > 0 || len2 > 0) {
-			if (len1 == 0) {
-				sum = Character.getNumericValue(a2[len2 - 1]) + carry;
-				len2--;
-			} else if (len2 == 0) {
-				sum = Character.getNumericValue(a1[len1 - 1]) + carry;
-				len1--;
-			} else {
-				sum = Character.getNumericValue(a1[len1 - 1]) + Character.getNumericValue(a2[len2 - 1]) + carry;
-				len1--;
-				len2--;
-			}
+		while(i < A.length || j < B.length || carry > 0){
+			int v1 = i >= A.length || A[i] == '0' ? 0 : 1;
+			int v2 = j >= B.length || B[j] == '0' ? 0 : 1;
+			int sum = v1 + v2 + carry;
+			sb.append(sum % 2);
 			carry = sum / 2;
-			sum = sum % 2;
-			sb.append(Integer.toString(sum));
+			i++;
+			j++;
 		}
-		if (carry > 0) {
-			sb.append(Integer.toString(carry));
-		}
-
 		return sb.reverse().toString();
 	}
 }

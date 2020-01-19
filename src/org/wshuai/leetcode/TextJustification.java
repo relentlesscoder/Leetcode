@@ -5,79 +5,62 @@ import java.util.List;
 
 /**
  * Created by Wei on 10/11/2016.
- * #68 https://leetcode.com/problems/text-justification/
+ * #0068 https://leetcode.com/problems/text-justification/
  */
 public class TextJustification {
+	// time O(n)
 	public List<String> fullJustify(String[] words, int maxWidth) {
-		List<String> lst = new ArrayList<String>();
-		if (words == null || words.length == 0) {
-			return lst;
+		List<String> res = new ArrayList<>();
+		int n = words.length;
+		if(n == 0){
+			return res;
 		}
-
-		int len = words.length;
-		int s = 0;
-		int i = 0;
-		int cLen = 0;
-		while (i < len) {
-			int wLen = words[i].length();
-			cLen += wLen;
-			if (cLen + (i - s) <= maxWidth) {
-				if (i == len - 1) {
-					String line = createLine(words, maxWidth, s, i, true);
-					lst.add(line);
-					break;
-				}
-				i++;
-			} else {
-				String line = createLine(words, maxWidth, s, i - 1, false);
-				lst.add(line);
-				cLen = 0;
-				s = i;
+		int start = 0, charCount = words[0].length();
+		for(int end = 1; end < n; end++){
+			int nextWidth = words[end].length() + 1;
+			// check if the current word can be append to the current line
+			if(charCount + nextWidth > maxWidth){
+				res.add(createNewLine(words, start, end - 1, charCount, maxWidth));
+				start = end;
+				charCount = words[end].length();
+			}else{
+				charCount += nextWidth;
 			}
 		}
-
-		return lst;
+		// add last line if any words left
+		if(charCount > 0){
+			res.add(createNewLine(words, start, n - 1, charCount, maxWidth));
+		}
+		return res;
 	}
 
-	private String createLine(String[] words, int max, int s, int e, boolean last) {
-		StringBuilder sb = new StringBuilder();
-
-		int count = e - s;
-		for (int i = s; i <= e; i++) {
-			max -= words[i].length();
+	private String createNewLine(String[] words, int start, int end, int charCount, int maxWidth){
+		boolean leftJustification = (start == end || end == words.length - 1);
+		int evenSpace = 0, remainingSpace = 0;
+		if(!leftJustification){
+			int extraSpace = maxWidth - charCount;
+			// calculate number of extra spaces to distribute evenly for each gap
+			evenSpace = extraSpace / (end - start);
+			// calculate the remaining extra space to fill gap from the left
+			remainingSpace = extraSpace % (end - start);
 		}
-		// only one word
-		if (count == 0 || last) {
-			for (int i = s; i <= e; i++) {
-				sb.append(words[i]);
-				if (max > 0) {
-					sb.append(" ");
-					max--;
-				}
-			}
-			while (max > 0) {
-				sb.append(" ");
-				max--;
-			}
-		} else {
-			int space = max / count;
-			int offset = max % count;
-			for (int i = s; i <= e; i++) {
-				sb.append(words[i]);
-				if (i != e) {
-					int sp = space;
-					while (sp > 0) {
-						sb.append(" ");
-						sp--;
-					}
-					if (offset > 0) {
-						sb.append(" ");
-						offset--;
-					}
-				}
-			}
+		// add back the one "necessary" space
+		String spacing = " ";
+		while(evenSpace-- > 0){
+			spacing += " ";
 		}
-
-		return sb.toString();
+		StringBuilder line = new StringBuilder();
+		for(int i = start; i <= end; i++){
+			line.append(words[i]);
+			line.append(i == end ? "" : spacing);
+			// append the remaining spaces until exhausted
+			line.append(remainingSpace-- > 0 ? " " : "");
+		}
+		// for left justification, just fill all the spaces to the end
+		int spaceToAppend = maxWidth - line.length();
+		while(spaceToAppend-- > 0){
+			line.append(" ");
+		}
+		return line.toString();
 	}
 }

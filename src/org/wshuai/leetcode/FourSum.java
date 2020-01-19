@@ -5,59 +5,62 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Wei on 10/25/16.
- * #18 https://leetcode.com/problems/4sum/
+ * Created by Wei on 10/25/2016.
+ * #0018 https://leetcode.com/problems/4sum/
  */
 public class FourSum {
-	//O(n^3)
+	// time O(n^3)
+	// more reading https://leetcode.com/problems/4sum/discuss/8609/My-solution-generalized-for-kSums-in-JAVA
 	public List<List<Integer>> fourSum(int[] nums, int target) {
-		List<List<Integer>> lst = new ArrayList<List<Integer>>();
-		if (nums == null || nums.length == 0) {
-			return lst;
+		List<List<Integer>> res = new ArrayList<>();
+		if(nums == null || nums.length < 4){
+			return res;
 		}
-
 		Arrays.sort(nums);
-		int len = nums.length;
-		for (int i = 0; i < len - 3; i++) {
-			int first = nums[i];
-			if (i != 0 && first == nums[i - 1]) {
+		int n = nums.length;
+		for(int i = 0; i < n - 3; i++){
+			// pruning
+			if(nums[i] * 4 > target){
+				break;
+			}
+			// avoid duplicates
+			if(i > 0 && nums[i] == nums[i - 1]){
 				continue;
 			}
-			for (int j = i + 1; j < len - 2; j++) {
-				int second = nums[j];
-				if (j != i + 1 && second == nums[j - 1]) {
+			for(int j = i + 1; j < n - 2; j++){
+				// pruning
+				if(nums[j] * 3 > target - nums[i]){
+					break;
+				}
+				// avoid duplicates
+				if(j > i + 1 && nums[j] == nums[j - 1]){
 					continue;
 				}
-				int l = j + 1;
-				int r = len - 1;
-				while (l < r) {
-					int third = nums[l];
-					int fouth = nums[r];
-					int sum = first + second + third + fouth;
-					if (sum == target) {
-						List<Integer> ls = new ArrayList<Integer>();
-						ls.add(first);
-						ls.add(second);
-						ls.add(third);
-						ls.add(fouth);
-						lst.add(ls);
-						l++;
-						r--;
-
-						while (l < r && nums[l] == third) {
-							l++;
+				int sum = nums[i] + nums[j];
+				int left = j + 1;
+				int right = n - 1;
+				while(left < right){
+					int lval = nums[left];
+					int rval = nums[right];
+					int cur = sum + lval + rval;
+					if(cur == target){
+						res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+						// avoid duplicates
+						while(left < right && nums[left] == lval){
+							left++;
 						}
-						while (l < r && nums[r] == fouth) {
-							r--;
+						// avoid duplicates
+						while(left < right && nums[right] == rval){
+							right--;
 						}
-					} else if (sum < target) {
-						l++;
-					} else {
-						r--;
+					}else if(cur < target){
+						left++;
+					}else{
+						right--;
 					}
 				}
 			}
 		}
-		return lst;
+		return res;
 	}
 }

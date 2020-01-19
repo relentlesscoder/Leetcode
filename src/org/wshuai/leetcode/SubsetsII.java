@@ -5,31 +5,26 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Wei on 11/5/16.
- * #90 https://leetcode.com/problems/subsets-ii/
+ * Created by Wei on 11/05/2016.
+ * #0090 https://leetcode.com/problems/subsets-ii/
  */
 public class SubsetsII {
 	public List<List<Integer>> subsetsWithDup(int[] nums) {
-		List<List<Integer>> lst = new ArrayList<List<Integer>>();
-		lst.add(new ArrayList<Integer>());
+		List<List<Integer>> res = new ArrayList<>();
 		Arrays.sort(nums);
-		getAllSubsets(nums, 0, lst, new ArrayList<Integer>());
-		return lst;
+		dfs(nums, 0, new ArrayList<Integer>(), res);
+		return res;
 	}
 
-	private void getAllSubsets(int[] nums, int idx, List<List<Integer>> lst, List<Integer> last) {
-		int len = nums.length;
-		if (idx == len) {
-			return;
-		}
-		for (int i = idx; i < len; i++) {
-			last.add(nums[i]);
-			lst.add(new ArrayList<Integer>(last));
-			getAllSubsets(nums, i + 1, lst, last);
-			last.remove(last.size() - 1);
-			while (i < len - 1 && nums[i] == nums[i + 1]) {
-				i++;
+	private void dfs(int[] nums, int start, List<Integer> cur, List<List<Integer>> res){
+		res.add(new ArrayList<>(cur));
+		for(int i = start; i < nums.length; i++){
+			if(i > start && nums[i] == nums[i - 1]){
+				continue;
 			}
+			cur.add(nums[i]);
+			dfs(nums, i + 1, cur, res);
+			cur.remove(cur.size() - 1);
 		}
 	}
 }
