@@ -1,50 +1,43 @@
 package org.wshuai.leetcode;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
  * Created by Wei on 10/26/2016.
- * #155 https://leetcode.com/problems/min-stack/
+ * #0155 https://leetcode.com/problems/min-stack/
  */
 public class MinStack {
-	private int min = Integer.MAX_VALUE;
-	;
-	private Stack<Integer> s1;
-	//Auxiliary stack saves the current min
-	private Stack<Integer> s2;
+	// single stack solution - 
+	// https://leetcode.com/problems/min-stack/discuss/49014/Java-accepted-solution-using-one-stack
+	private Stack<Integer> stack;
+	private Stack<Integer> mins;
 
-	/**
-	 * initialize your data structure here.
-	 */
+	/** initialize your data structure here. */
 	public MinStack() {
-		s1 = new Stack<Integer>();
-		s2 = new Stack<Integer>();
+		stack = new Stack<>();
+		mins = new Stack<>();
 	}
 
 	public void push(int x) {
-		if (x < min) {
-			min = x;
-		}
-		s1.push(x);
-		s2.push(min);
+		stack.push(x);
+		mins.push(mins.isEmpty() ? x : Math.min(x, mins.peek()));
 	}
 
 	public void pop() {
-		s1.pop();
-		s2.pop();
-		if (!s1.empty()) {
-			min = s2.peek();
-		} else {
-			min = Integer.MAX_VALUE;
+		if(stack.isEmpty()){
+			return;
 		}
+		stack.pop();
+		mins.pop();
 	}
 
-	public int top() {
-		return s1.peek();
+	public int top() throws EmptyStackException {
+		return stack.peek();
 	}
 
-	public int getMin() {
-		return s2.peek();
+	public int getMin() throws EmptyStackException {
+		return mins.peek();
 	}
 }
 
