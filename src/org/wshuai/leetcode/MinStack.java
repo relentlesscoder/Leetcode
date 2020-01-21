@@ -8,7 +8,7 @@ import java.util.Stack;
  * #0155 https://leetcode.com/problems/min-stack/
  */
 public class MinStack {
-	// single stack solution - 
+	// single stack solution -
 	// https://leetcode.com/problems/min-stack/discuss/49014/Java-accepted-solution-using-one-stack
 	private Stack<Integer> stack;
 	private Stack<Integer> mins;
