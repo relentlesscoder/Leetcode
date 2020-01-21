@@ -4,72 +4,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 10/26/16.
- * #163 https://leetcode.com/problems/missing-ranges/
+ * Created by Wei on 10/26/2016.
+ * #0163 https://leetcode.com/problems/missing-ranges/
  */
 public class MissingRanges {
+	// time O(n)
 	public List<String> findMissingRanges(int[] nums, int lower, int upper) {
-		List<String> lst = new ArrayList<String>();
-		//Corner case 1
-		if (lower > upper) {
-			return lst;
+		List<String> res = new ArrayList<>();
+		if(lower > upper){
+			return res;
 		}
-		//Corner case 2
-		if (nums == null || nums.length == 0) {
-			if (lower == upper) {
-				lst.add(Integer.toString(lower));
-			} else {
-				lst.add(Integer.toString(lower) + "->" + Integer.toString(upper));
-			}
-			return lst;
+		int n = nums.length;
+		if(n == 0 || (lower > nums[n - 1] || upper < nums[0])){
+			res.add(lower == upper ? lower + "" : lower + "->" + upper);
+			return res;
 		}
-
-		int len = nums.length;
-		//If lower is the left boundary
-		if (lower < nums[0]) {
-			if (lower == nums[0] - 1) {
-				lst.add(Integer.toString(lower));
-			} else {
-				lst.add(Integer.toString(lower) + "->" + Integer.toString(nums[0] - 1));
-			}
+		int left = 0, right = n - 1;
+		while(left < n && nums[left] < lower){
+			left++;
 		}
-
-		for (int i = 0; i < len - 1; i++) {
-			int curr = nums[i];
-			int next = nums[i + 1];
-			if (curr == next || curr == next - 1) {
+		while(right >= 0 && nums[right] > upper){
+			right--;
+		}
+		if(lower < nums[left]){
+			int e = nums[left] - 1;
+			res.add(lower == e ? lower + "" : lower + "->" + e);
+		}
+		for(int i = left; i < right; i++){
+			if(nums[i] == nums[i + 1] || nums[i] + 1 == nums[i + 1]){
 				continue;
 			}
-			if (curr >= upper) {
-				break;
-			}
-			if (next <= lower) {
-				continue;
-			}
-			int left = curr + 1;
-			int right = next - 1;
-			if (curr < lower && lower < next) {
-				left = lower;
-			}
-			if (curr < upper && upper < next) {
-				right = upper;
-			}
-			if (left == right) {
-				lst.add(Integer.toString(left));
-			} else {
-				lst.add(Integer.toString(left) + "->" + Integer.toString(right));
-			}
+			int s = nums[i] + 1;
+			int e = nums[i + 1] - 1;
+			res.add(s == e ? s + "" : s + "->" + e);
 		}
-
-		//If upper is the right boundary
-		if (upper > nums[len - 1]) {
-			if (upper == nums[len - 1] + 1) {
-				lst.add(Integer.toString(upper));
-			} else {
-				lst.add(Integer.toString(nums[len - 1] + 1) + "->" + Integer.toString(upper));
-			}
+		if(upper > nums[right]){
+			int s = nums[right] + 1;
+			res.add(s == upper ? s + "" : s + "->" + upper);
 		}
-
-		return lst;
+		return res;
 	}
 }

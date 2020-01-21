@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 6/7/2017.
- * #158 https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/
+ * Created by Wei on 06/07/2017.
+ * #0158 https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/
  */
 public class ReadNCharactersGivenRead4IICallMultipleTimes {
 	/**
@@ -14,6 +14,7 @@ public class ReadNCharactersGivenRead4IICallMultipleTimes {
 	private int prevSize = 0;
 	private int prevIndex = 0;
 
+	// time O(n)
 	public int read(char[] buf, int n) {
 		int counter = 0;
 

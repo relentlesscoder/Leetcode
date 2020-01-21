@@ -10,6 +10,7 @@ public class ReadNCharactersGivenRead4 {
 	 * @param n   Maximum number of characters to read
 	 * @return The number of characters read
 	 */
+	// time O(n)
 	public int read(char[] buf, int n) {
 		int total = 0;
 		boolean eof = false;

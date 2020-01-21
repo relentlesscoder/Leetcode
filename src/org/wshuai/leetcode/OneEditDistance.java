@@ -1,46 +1,30 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/5/16.
- * #161 https://leetcode.com/problems/one-edit-distance/
+ * Created by Wei on 11/05/2016.
+ * #0161 https://leetcode.com/problems/one-edit-distance/
  */
 public class OneEditDistance {
-	//O(n)
+	// time O(n)
 	public boolean isOneEditDistance(String s, String t) {
-		if (s == null || t == null) {
+		if(s == null || t == null || s.equals(t)
+			|| Math.abs(s.length() - t.length()) > 1){
 			return false;
 		}
-		if (s.equals(t)) {
-			return false;
-		}
-		int sLen = s.length();
-		int tLen = t.length();
-		boolean sMin = sLen < tLen;
-		int diff = Math.abs(sLen - tLen);
-		if (diff > 1) {
-			return false;
-		}
-		int i = 0;
-		int j = 0;
-		boolean sec = false;
-		while (i < sLen || j < tLen) {
-			if (i < sLen && j < tLen && s.charAt(i) == t.charAt(j)) {
+		int m = s.length(), n = t.length(), i = 0, j = 0;
+		boolean seen = false;
+		while(i < m || j < n){
+			if(i < m && j < n && s.charAt(i) == t.charAt(j)){
 				i++;
 				j++;
-			} else {
-				if (sec) {
-					return false;
-				}
-				if (diff == 0) {
-					i++;
-					j++;
-				} else if (sMin) {
-					j++;
-				} else {
-					i++;
-				}
-				sec = true;
+				continue;
 			}
+			if(seen){
+				return false;
+			}
+			seen = true;
+			i = m > n || m == n ? i + 1 : i;
+			j = n > m || m == n ? j + 1 : j;
 		}
 		return true;
 	}
