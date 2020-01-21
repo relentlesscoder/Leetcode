@@ -1,33 +1,22 @@
 package org.wshuai.leetcode;
 
-import org.wshuai.algorithm.sorting.QuickSort;
-
 /**
- * Created by Wei on 8/18/2016.
- * #169 https://leetcode.com/problems/majority-element/
+ * Created by Wei on 08/18/2016.
+ * #0169 https://leetcode.com/problems/majority-element/
  */
 public class MajorityElement {
-	//O(n)
+	// time O(n)
+	// http://www.cs.utexas.edu/~moore/best-ideas/mjrty/
 	public int majorityElement(int[] nums) {
-		int count = 1;
-		int can = nums[0];
-		int len = nums.length;
-		for (int i = 1; i < len; i++) {
-			if (nums[i] == can) {
-				count++;
-			} else if (count == 0) {
-				can = nums[i];
+		int cur = nums[0], count = 1, n = nums.length;
+		for(int i = 1; i < n; i++){
+			if(count == 0){
+				cur = nums[i];
 				count = 1;
-			} else {
-				count--;
+			}else{
+				count += nums[i] == cur ? 1 : -1;
 			}
 		}
-		return can;
-	}
-
-	public int majorityElementSort(int[] nums) {
-		int len = nums.length;
-		QuickSort.quickSort(nums, 0, len - 1);
-		return nums[len / 2];
+		return cur;
 	}
 }
