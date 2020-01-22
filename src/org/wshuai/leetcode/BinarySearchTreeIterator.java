@@ -1,53 +1,57 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
- * Created by Wei on 1/26/16.
- * #173 https://leetcode.com/problems/binary-search-tree-iterator/
- * This problem is just another way of implement inorder iterative traversal
- * http://articles.leetcode.com/2010/04/binary-search-tree-in-order-traversal.html
+ * Created by Wei on 01/26/2016.
+ * #0173 https://leetcode.com/problems/binary-search-tree-iterator/
  */
 public class BinarySearchTreeIterator {
 
-	private Stack<TreeNode> stack;
-	TreeNode current;
-	TreeNode rootNode;
+	private List<Integer> list;
+	private Iterator<Integer> itr;
 
 	public BinarySearchTreeIterator(TreeNode root) {
-		stack = new Stack<TreeNode>();
-		current = root;
-		rootNode = root;
+		inorderTraversal(root);
+		itr = list.iterator();
 	}
 
-	/**
-	 * @return whether we have a next smallest number
-	 */
-	public boolean hasNext() {
-		if (rootNode == null) {
-			return false;
-		}
-
-		return (!stack.isEmpty() || current != null);
-	}
-
-	/**
-	 * @return the next smallest number
-	 */
+	/** @return the next smallest number */
 	public int next() {
-		while (!stack.isEmpty() || current != null) {
-			if (current != null) {
-				stack.push(current);
-				current = current.left;
-			} else {
-				TreeNode next = stack.peek();
-				current = stack.pop();
-				current = current.right;
-				return next.val;
+		return itr.next();
+	}
+
+	/** @return whether we have a next smallest number */
+	public boolean hasNext() {
+		return itr.hasNext();
+	}
+
+	// time O(n), space O(1)
+	// morris traversal
+	private void inorderTraversal(TreeNode root){
+		list = new ArrayList<>();
+		TreeNode cur = root;
+		while(cur != null){
+			if(cur.left != null){
+				TreeNode prev = cur.left;
+				while(prev.right != null && prev.right != cur){
+					prev = prev.right;
+				}
+				if(prev.right == null){
+					prev.right = cur;
+					cur = cur.left;
+				}else{
+					prev.right = null;
+					list.add(cur.val);
+					cur = cur.right;
+				}
+			}else{
+				list.add(cur.val);
+				cur = cur.right;
 			}
 		}
-
-		return 0;
 	}
 }
 

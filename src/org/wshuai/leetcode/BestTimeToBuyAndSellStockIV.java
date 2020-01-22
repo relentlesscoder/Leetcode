@@ -10,26 +10,23 @@ public class BestTimeToBuyAndSellStockIV {
 	// time O(n*k), space O(k)
 	public int maxProfit(int k, int[] prices) {
 		int n = prices.length;
-		// the same as infinite transactions
 		if(k >= n / 2){
-			int c = 0, h = Integer.MIN_VALUE;
+			int cash = 0, hold = Integer.MIN_VALUE;
 			for(int p : prices){
-				int old = c;
-				c = Math.max(c, h + p);
-				h = Math.max(h, old - p);
+				int old = cash;
+				cash = Math.max(cash, hold + p);
+				hold = Math.max(hold, old - p);
 			}
-			return c;
+			return cash;
 		}
-
-		// the same idea as two transactions
-		int[] cash = new int[k + 1], hold = new int[k + 1];
-		Arrays.fill(hold, Integer.MIN_VALUE);
+		int[][] dp = new int[2][k + 1];
+		Arrays.fill(dp[1], Integer.MIN_VALUE);
 		for(int p : prices){
-			for(int j = 1; j <= k; j++){
-				cash[j] = Math.max(cash[j], hold[j] + p);
-				hold[j] = Math.max(hold[j], cash[j - 1] - p);
+			for(int i = 1; i <= k; i++){
+				dp[0][i] = Math.max(dp[0][i], dp[1][i] + p);
+				dp[1][i] = Math.max(dp[1][i], dp[0][i - 1] - p);
 			}
 		}
-		return cash[k];
+		return dp[0][k];
 	}
 }
