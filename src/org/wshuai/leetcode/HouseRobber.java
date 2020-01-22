@@ -1,25 +1,21 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/17/16.
- * #198 https://leetcode.com/problems/house-robber/
+ * Created by Wei on 10/17/2016.
+ * #0198 https://leetcode.com/problems/house-robber/
  */
 public class HouseRobber {
+	// time O(n), space O(n)
 	public int rob(int[] nums) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
-		int mx = nums[0];
-		int len = nums.length;
-		int[] max = new int[len + 1];
-		max[0] = 0;
-		max[1] = nums[0];
-		for (int i = 2; i < len + 1; i++) {
-			int m1 = max[i - 1];
-			int m2 = max[i - 2] + nums[i - 1];
-			max[i] = m1 > m2 ? m1 : m2;
-			mx = max[i] > mx ? max[i] : mx;
+		int res = 0, n = nums.length;
+		int[] dp = new int[n + 1];
+		dp[1] = nums[0];
+		for(int i = 2; i <= n; i++){
+			dp[i] = Math.max(dp[i - 2] + nums[i - 1], dp[i - 1]);
 		}
-		return mx;
+		return dp[n];
 	}
 }
