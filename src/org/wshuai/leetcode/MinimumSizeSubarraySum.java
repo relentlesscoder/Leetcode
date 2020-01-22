@@ -2,30 +2,48 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 11/10/2016.
- * #209 https://leetcode.com/problems/minimum-size-subarray-sum/
+ * #0209 https://leetcode.com/problems/minimum-size-subarray-sum/
  */
 public class MinimumSizeSubarraySum {
-
-	//O(n), same idea as https://leetcode.com/problems/minimum-window-substring/
+	// time O(n)
+	// same idea as https://leetcode.com/problems/minimum-window-substring/
 	public int minSubArrayLen(int s, int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return 0;
+		int n = nums.length, res = Integer.MAX_VALUE, i = 0, j = 0, sum = 0;
+		while(i < n){
+			sum += nums[i++];
+			while(sum >= s){
+				res = Math.min(res, i - j);
+				sum -= nums[j++];
+			}
 		}
-		int min = Integer.MAX_VALUE;
-		int len = nums.length;
+		return res == Integer.MAX_VALUE ? 0 : res;
+	}
+
+	// time O(n*log(n))
+	public int minSubArrayLenBinarySearch(int s, int[] nums) {
+		int left = 1, right = nums.length;
+		while(left < right){
+			int mid = left + (right - left) / 2;
+			if(!windowExist(nums, s, mid)){
+				left = mid + 1;
+			}else{
+				right = mid;
+			}
+		}
+		return windowExist(nums, s, left) ? left : 0;
+	}
+
+	private boolean windowExist(int[] nums, int s, int size){
 		int sum = 0;
-		int j = 0;
-		for (int i = 0; i < len; i++) {
-			sum += nums[i];
-			while (sum - nums[j] >= s) {
-				sum -= nums[j];
-				j++;
+		for(int i = 0; i < nums.length; i++){
+			if(i >= size){
+				sum -= nums[i - size];
 			}
-			if (sum >= s) {
-				int cLen = i - j + 1;
-				min = cLen < min ? cLen : min;
+			sum += nums[i];
+			if(sum >= s){
+				return true;
 			}
 		}
-		return min == Integer.MAX_VALUE ? 0 : min;
+		return false;
 	}
 }
