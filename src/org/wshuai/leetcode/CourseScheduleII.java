@@ -1,60 +1,41 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 /**
- * Created by Wei on 12/4/16.
- * #210 https://leetcode.com/problems/course-schedule-ii/
+ * Created by Wei on 12/04/2016.
+ * #0210 https://leetcode.com/problems/course-schedule-ii/
  */
 public class CourseScheduleII {
-	public int[] findOrderDFS(int numCourses, int[][] prerequisites) {
-		if (numCourses <= 0 || prerequisites == null) {
-			return new int[0];
+	// time O(V + E)
+	public int[] findOrder(int numCourses, int[][] prerequisites) {
+		List<Integer>[] adj = new ArrayList[numCourses];
+		int[] res = new int[numCourses], indegree = new int[numCourses];
+		for(int i = 0; i < numCourses; i++){
+			adj[i] = new ArrayList<>();
 		}
-		int len = prerequisites.length;
-		List<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[numCourses];
-		for (int i = 0; i < len; i++) {
-			int[] arr = prerequisites[i];
-			int idx = arr[1];
-			if (adj[idx] == null) {
-				adj[idx] = new ArrayList<Integer>();
-			}
-			adj[idx].add(arr[0]);
+		for(int[] edge : prerequisites){
+			adj[edge[1]].add(edge[0]);
+			indegree[edge[0]]++;
 		}
-		Stack<Integer> stack = new Stack<Integer>();
-		int[] aux = new int[numCourses];
-		for (int i = 0; i < numCourses; i++) {
-			if (!findOrderUtil(i, adj, aux, stack)) {
-				return new int[0];
+		LinkedList<Integer> queue = new LinkedList<>();
+		for(int i = 0; i < numCourses; i++){
+			if(indegree[i] == 0){
+				queue.offerLast(i);
 			}
 		}
-		int[] res = new int[numCourses];
-		int i = 0;
-		while (!stack.isEmpty()) {
-			res[i++] = stack.pop();
-		}
-		return res;
-	}
-
-	private boolean findOrderUtil(int i, List<Integer>[] adj, int[] aux, Stack<Integer> stack) {
-		if (aux[i] == -1) {
-			return false;
-		}
-		if (aux[i] == 1) {
-			return true;
-		}
-		aux[i] = -1;
-		if (adj[i] != null) {
-			for (int j : adj[i]) {
-				if (!findOrderUtil(j, adj, aux, stack)) {
-					return false;
+		int k = 0;
+		while(!queue.isEmpty()){
+			int cur = queue.pollFirst();
+			res[k++] = cur;
+			for(int next : adj[cur]){
+				if(--indegree[next] == 0){
+					queue.offerLast(next);
 				}
 			}
 		}
-		aux[i] = 1;
-		stack.add(i);
-		return true;
+		return k == numCourses ? res : new int[0];
 	}
 }

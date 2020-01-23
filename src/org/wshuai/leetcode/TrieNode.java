@@ -1,8 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/5/16.
- * Updated by Wei on 9/8/19.
+ * Created by Wei on 11/05/2016.
  */
 public class TrieNode {
 

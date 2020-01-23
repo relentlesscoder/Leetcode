@@ -2,9 +2,10 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/24/2019.
- * #204 https://leetcode.com/problems/count-primes/
+ * #0204 https://leetcode.com/problems/count-primes/
  */
 public class CountPrimes {
+	// time O(n*log(log(n))), space O(n)
 	// a good explanation - https://www.youtube.com/watch?v=Kwo2jkHOyPY
 	// https://www.geeksforgeeks.org/sieve-of-eratosthenes/
 	public int countPrimes(int n) {
