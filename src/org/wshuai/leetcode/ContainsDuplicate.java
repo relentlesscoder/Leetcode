@@ -4,19 +4,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Wei on 10/10/16.
- * #217 https://leetcode.com/problems/contains-duplicate/
+ * Created by Wei on 10/10/2016.
+ * #0217 https://leetcode.com/problems/contains-duplicate/
  */
 public class ContainsDuplicate {
+	// time O(n), space O(n)
 	public boolean containsDuplicate(int[] nums) {
-		if (nums == null || nums.length < 2) {
+		if(nums == null || nums.length < 2){
 			return false;
 		}
-
-		int len = nums.length;
-		Set<Integer> s = new HashSet<Integer>();
-		for (int i = 0; i < len; i++) {
-			if (!s.add(nums[i])) {
+		Set<Integer> set = new HashSet<>();
+		for(int i : nums){
+			if(!set.add(i)){
 				return true;
 			}
 		}

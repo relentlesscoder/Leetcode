@@ -5,37 +5,34 @@ import java.util.List;
 
 /**
  * Created by Wei on 10/28/2016.
- * #216 https://leetcode.com/problems/combination-sum-iii/
+ * #0216 https://leetcode.com/problems/combination-sum-iii/
  */
 public class CombinationSumIII {
+	// time O(9!/(9 - k)!)
 	public List<List<Integer>> combinationSum3(int k, int n) {
-		List<List<Integer>> lst = new ArrayList<List<Integer>>();
-		combinationSum3DFS(1, k, n, lst, new ArrayList<Integer>(), 0);
-		return lst;
+		List<List<Integer>> res = new ArrayList<>();
+		int[] nums = new int[9];
+		for(int i = 0; i < 9; i++){
+			nums[i] = i + 1;
+		}
+		dfs(0, nums, k, n, new ArrayList<>(), res);
+		return res;
 	}
 
-	private void combinationSum3DFS(int start, int k, int n, List<List<Integer>> lst, List<Integer> curr, int sum) {
-		int size = curr.size();
-		if (size > k) {
-			return;
-		}
-		if (sum > n) {
-			return;
-		}
-		if (size == k) {
-			if (sum == n) {
-				List<Integer> x = new ArrayList<Integer>(curr);
-				lst.add(x);
+	private void dfs(int start, int[] nums, int k, int n, List<Integer> cur, List<List<Integer>> res){
+		if(k == 0){
+			if(n == 0){
+				res.add(new ArrayList<>(cur));
 			}
 			return;
-		} else {
-			for (int i = start; i < 10; i++) {
-				int nsum = sum;
-				nsum += i;
-				curr.add(i);
-				combinationSum3DFS(i + 1, k, n, lst, curr, nsum);
-				curr.remove(curr.size() - 1);
-			}
+		}
+		if(n < 0){
+			return;
+		}
+		for(int i = start; i < nums.length; i++){
+			cur.add(nums[i]);
+			dfs(i + 1, nums, k - 1, n - nums[i], cur, res);
+			cur.remove(cur.size() - 1);
 		}
 	}
 }
