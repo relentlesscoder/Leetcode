@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/31/2019.
- * #562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
+ * #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
  */
 public class LongestLineOfConsecutiveOneInMatrix {
 	public int longestLine(int[][] M) {
