@@ -1,29 +1,24 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/8/16.
- * #238 https://leetcode.com/problems/product-of-array-except-self/
+ * Created by Wei on 10/08/2016.
+ * #0238 https://leetcode.com/problems/product-of-array-except-self/
  */
 public class ProductOfArrayExceptSelf {
-
-	//O(1) space
+	// time O(n), space O(1)
 	public int[] productExceptSelf(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return null;
+		int n = nums.length, right = 1;
+		int[] res = new int[n];
+		res[0] = 1;
+		// calculate product from left
+		for(int i = 1; i < n; i++){
+			res[i] = res[i - 1] * nums[i - 1];
 		}
-		int len = nums.length;
-		int[] out = new int[len];
-		int p = 1;
-		for (int i = 1; i < len; i++) {
-			p *= nums[i - 1];
-			out[i] = p;
+		// multiply product from right
+		for(int i = n - 2; i >= 0; i--){
+			right *= nums[i + 1];
+			res[i] *= right;
 		}
-		int m = 1;
-		for (int i = len - 2; i >= 0; i--) {
-			m *= nums[i + 1];
-			out[i] = out[i] * m;
-		}
-		out[0] = m;
-		return out;
+		return res;
 	}
 }

@@ -1,26 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 2/20/17.
- * #222 https://leetcode.com/problems/count-complete-tree-nodes/
+ * Created by Wei on 02/20/2017.
+ * #0222 https://leetcode.com/problems/count-complete-tree-nodes/
  */
 public class CountCompleteTreeNodes {
-	//109 ms
+	// time O(log(n)*log(n))
+	// https://leetcode.com/problems/count-complete-tree-nodes/discuss/61953/Easy-short-c%2B%2B-recursive-solution
 	public int countNodes(TreeNode root) {
-		TreeNode left = root;
-		TreeNode right = root;
-		int lh = 0;
-		int rh = 0;
-		while (left != null) {
-			lh++;
+		if(root == null){
+			return 0;
+		}
+		TreeNode left = root, right = root;
+		int leftHeight = 0, rightHeight = 0;
+		while(left != null){
+			leftHeight++;
 			left = left.left;
 		}
-		while (right != null) {
-			rh++;
+		while(right != null){
+			rightHeight++;
 			right = right.right;
 		}
-		if (lh == rh) {
-			return (1 << lh) - 1; //(int)Math.pow(2, lh)-1
+		if(leftHeight == rightHeight){
+			return (1 << leftHeight) - 1;
 		}
 		return countNodes(root.left) + countNodes(root.right) + 1;
 	}

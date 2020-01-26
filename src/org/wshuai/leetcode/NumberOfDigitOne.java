@@ -1,10 +1,11 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 7/2/17.
- * #233 https://leetcode.com/problems/number-of-digit-one/
+ * Created by Wei on 07/02/2017.
+ * #0233 https://leetcode.com/problems/number-of-digit-one/
  */
 public class NumberOfDigitOne {
+	// time O(log(n))
 	// Stupid math problem, see https://leetcode.com/articles/number-of-digit-one/
 	public int countDigitOne(int n) {
 		int count = 0;
@@ -21,7 +22,7 @@ public class NumberOfDigitOne {
 			 1. (n / divider) * i -> total number of 1s in group less to
 			 200 (the first left two columns) -> (212 / 100) * 10
 			 2. Math.min(Math.max(n % divider - i + 1, 0), i) -> the
-			 total number of 1s between 200 to 212.
+			 total number of 1s at 10th position between 200 to 212.
 			 12 - 10 + 1 = 3 is 210, 211, 212.
 			 why we need to use Math.max(..., 0) ?
 			 think about example 205 -> the remainder is less than 10 thus

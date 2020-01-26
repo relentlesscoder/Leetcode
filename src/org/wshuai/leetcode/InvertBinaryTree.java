@@ -1,23 +1,19 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 1/23/16.
- * #226 https://leetcode.com/problems/invert-binary-tree/
+ * Created by Wei on 01/23/2016.
+ * #0226 https://leetcode.com/problems/invert-binary-tree/
  */
 public class InvertBinaryTree {
-	public static TreeNode invertTree(TreeNode root) {
-		if (root == null) {
-			return root;
+	// time O(n)
+	public TreeNode invertTree(TreeNode root) {
+		if(root == null){
+			return null;
 		}
-
-		if (root.left == null && root.right == null) {
-			return root;
-		}
-
-		TreeNode right = root.right;
-		TreeNode left = root.left;
-		root.right = invertTree(left);
-		root.left = invertTree(right);
+		TreeNode left = invertTree(root.left);
+		TreeNode right = invertTree(root.right);
+		root.left = right;
+		root.right = left;
 		return root;
 	}
 }
