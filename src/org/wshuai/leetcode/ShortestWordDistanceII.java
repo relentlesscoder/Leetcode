@@ -7,49 +7,36 @@ import java.util.Map;
 
 /**
  * Created by Wei on 10/11/2016.
- * #244 https://leetcode.com/problems/shortest-word-distance-ii/
+ * #0244 https://leetcode.com/problems/shortest-word-distance-ii/
  */
 public class ShortestWordDistanceII {
-	private Map<String, List<Integer>> pMap;
-	private String[] words;
+	private Map<String, List<Integer>> map;
 
 	public ShortestWordDistanceII(String[] words) {
-		this.pMap = new HashMap<String, List<Integer>>();
-		this.words = words;
-		int len = words.length;
-		for (int i = 0; i < len; i++) {
-			String val = words[i];
-			if (pMap.containsKey(val)) {
-				List<Integer> ls = pMap.get(val);
-				ls.add(i);
-			} else {
-				List<Integer> ls = new ArrayList<Integer>();
-				ls.add(i);
-				pMap.put(val, ls);
-			}
+		map = new HashMap<>();
+		for(int i = 0; i < words.length; i++){
+			String cur = words[i];
+			map.putIfAbsent(cur, new ArrayList<>());
+			map.get(cur).add(i);
 		}
 	}
 
+	// time O(n), space O(n)
 	public int shortest(String word1, String word2) {
-		List<Integer> lst1 = pMap.get(word1);
-		List<Integer> lst2 = pMap.get(word2);
-
-		int min = Integer.MAX_VALUE;
-		int p1 = 0;
-		int p2 = 0;
-		int len1 = lst1.size();
-		int len2 = lst2.size();
-		while (p1 < len1 && p2 < len2) {
-			int idx1 = lst1.get(p1);
-			int idx2 = lst2.get(p2);
-			min = Math.min(min, Math.abs(idx1 - idx2));
-			if (idx1 < idx2) {
-				p1++;
-			} else {
-				p2++;
+		List<Integer> list1 = map.get(word1);
+		List<Integer> list2 = map.get(word2);
+		int res = Integer.MAX_VALUE, i = 0, j = 0;
+		while(i < list1.size() && j < list2.size()){
+			int w1 = list1.get(i), w2 = list2.get(j);
+			if(w1 < w2){
+				res = Math.min(res, w2 - w1);
+				i++;
+			}else{
+				res = Math.min(res, w1 - w2);
+				j++;
 			}
 		}
-		return min;
+		return res;
 	}
 }
 

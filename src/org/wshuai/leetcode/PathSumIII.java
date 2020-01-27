@@ -10,10 +10,13 @@ import java.util.Queue;
  * #437 https://leetcode.com/problems/path-sum-iii/
  */
 public class PathSumIII {
+	private int res;
+
 	public int pathSum(TreeNode root, int sum) {
 		if (root == null) {
 			return 0;
 		}
+		res = 0;
 		List<TreeNode> lst = new ArrayList<TreeNode>();
 		Queue<TreeNode> queue = new LinkedList<TreeNode>();
 		queue.offer(root);
@@ -27,23 +30,22 @@ public class PathSumIII {
 				queue.offer(node.right);
 			}
 		}
-		CountObj cnt = new CountObj();
 		for (TreeNode node : lst) {
-			pathSumUtil(node, sum, 0, cnt);
+			pathSumUtil(node, sum, 0);
 		}
-		return cnt.count;
+		return res;
 	}
 
-	public void pathSumUtil(TreeNode root, int sum, int csum, CountObj cnt) {
+	public void pathSumUtil(TreeNode root, int sum, int csum) {
 		if (root == null) {
 			return;
 		}
 		int nsum = csum + root.val;
 		if (nsum == sum) {
-			cnt.count++;
+			res++;
 		}
 
-		pathSumUtil(root.left, sum, nsum, cnt);
-		pathSumUtil(root.right, sum, nsum, cnt);
+		pathSumUtil(root.left, sum, nsum);
+		pathSumUtil(root.right, sum, nsum);
 	}
 }

@@ -1,32 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/13/16.
- * #250 https://leetcode.com/problems/count-univalue-subtrees/
+ * Created by Wei on 11/13/2016.
+ * #0250 https://leetcode.com/problems/count-univalue-subtrees/
  */
 public class CountUnivalueSubtrees {
-	//O(n), recursive
+	private int res;
+
+	// time O(n)
 	public int countUnivalSubtrees(TreeNode root) {
-		CountObj co = new CountObj();
-		countUnivalSubtreesUtil(root, co);
-		return co.count;
+		res = 0;
+		dfs(root);
+		return res;
 	}
 
-	private boolean countUnivalSubtreesUtil(TreeNode root, CountObj co) {
-		if (root == null) {
+	private boolean dfs(TreeNode root){
+		if(root == null){
 			return true;
 		}
-		if (root.left == null && root.right == null) {
-			co.count++;
-			return true;
-		}
-		boolean left = countUnivalSubtreesUtil(root.left, co);
-		boolean right = countUnivalSubtreesUtil(root.right, co);
-		//Criteria: both left and right subtree are univalue subtree
-		// and root.left.val = root.right.val == root.val
-		if (left && right && (root.left == null || root.left.val == root.val)
-				&& (root.right == null || root.right.val == root.val)) {
-			co.count++;
+		boolean left = dfs(root.left);
+		boolean right = dfs(root.right);
+		if(left && right
+				&& (root.left == null || root.val == root.left.val)
+				&& (root.right == null || root.val == root.right.val)){
+			res++;
 			return true;
 		}
 		return false;

@@ -1,32 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/2/16.
- * #243 https://leetcode.com/problems/shortest-word-distance/
+ * Created by Wei on 10/02/2016.
+ * #0243 https://leetcode.com/problems/shortest-word-distance/
  */
 public class ShortestWordDistance {
+	// time O(n)
 	public int shortestDistance(String[] words, String word1, String word2) {
-		int min = Integer.MAX_VALUE;
-		int w1 = -1;
-		int w2 = -1;
-		int len = words.length;
-		for (int i = 0; i < len; i++) {
-			String val = words[i];
-			if (val.equals(word1)) {
+		int dist = Integer.MAX_VALUE, n = words.length, w1 = -n, w2 = -n;
+		for(int i = 0; i < words.length; i++){
+			if(words[i].equals(word1)){
 				w1 = i;
-				if (w2 != -1) {
-					int dis = w1 - w2;
-					min = dis < min ? dis : min;
-				}
+				dist = Math.min(dist, w1 - w2);
 			}
-			if (val.equals(word2)) {
+			if(words[i].equals(word2)){
 				w2 = i;
-				if (w1 != -1) {
-					int dis = w2 - w1;
-					min = dis < min ? dis : min;
-				}
+				dist = Math.min(dist, w2 - w1);
 			}
 		}
-		return min;
+		return dist;
 	}
 }

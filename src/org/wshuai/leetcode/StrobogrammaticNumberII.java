@@ -4,49 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 9/24/2016.
- * #247 https://leetcode.com/problems/strobogrammatic-number-ii/
+ * Created by Wei on 09/24/2016.
+ * #0247 https://leetcode.com/problems/strobogrammatic-number-ii/
  */
 public class StrobogrammaticNumberII {
+	// time O(5^(n/2))
 	public List<String> findStrobogrammatic(int n) {
-		List<String> lst = new ArrayList<String>();
-		if (n < 1) {
-			return lst;
+		List<String> res = new ArrayList<>();
+		if(n <= 0){
+			return res;
 		}
-		boolean odd = (n % 2 == 1);
-		if (odd) {
-			n--;
-			lst.add("0");
-			lst.add("1");
-			lst.add("8");
-		} else {
-			n -= 2;
-			lst.add("00");
-			lst.add("11");
-			lst.add("88");
-			lst.add("69");
-			lst.add("96");
-		}
-		while (n > 0) {
-			List<String> temp = new ArrayList<String>();
-			for (String s : lst) {
-				temp.add("0" + s + "0");
-				temp.add("1" + s + "1");
-				temp.add("8" + s + "8");
-				temp.add("6" + s + "9");
-				temp.add("9" + s + "6");
+		char[][] map = new char[][]{
+				{'0','0'},{'1','1'},{'6','9'},{'8','8'},{'9','6'}
+		};
+		char[] mid = new char[]{'0','1','8'};
+		int m = (n - 1)/2;
+		if(n % 2 == 1){
+			for(char c : mid){
+				char[] arr = new char[n];
+				arr[m] = c;
+				dfs(n - 1, m - 1, m + 1, map, arr, res);
 			}
-			lst = temp;
-			n -= 2;
+		}else{
+			dfs(n, m, m + 1, map, new char[n], res);
 		}
-		List<String> r = new ArrayList<String>();
-		for (String s : lst) {
-			if (s.length() > 1 && s.charAt(0) == '0') {
-				continue;
-			} else {
-				r.add(s);
+		return res;
+	}
+
+	private void dfs(int n, int i, int j, char[][] map, char[] cur, List<String> res){
+		if(n == 0){
+			if(cur.length > 1 && cur[0] == '0'){
+				return;
 			}
+			res.add(new String(cur));
+			return;
 		}
-		return r;
+		for(int k = 0; k < 5; k++){
+			char c1 = cur[i], c2 = cur[j];
+			cur[i] = map[k][0];
+			cur[j] = map[k][1];
+			dfs(n - 2, i - 1, j + 1, map, cur, res);
+			cur[i] = c1;
+			cur[j] = c2;
+		}
 	}
 }

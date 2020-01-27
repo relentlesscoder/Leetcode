@@ -1,54 +1,28 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by Wei on 8/28/16.
- * #242 https://leetcode.com/problems/valid-anagram/
+ * Created by Wei on 08/28/2016.
+ * #0242 https://leetcode.com/problems/valid-anagram/
  */
 public class ValidAnagram {
-	public static boolean isAnagram(String s, String t) {
-		if (s == null || t == null) {
+	// time O(n)
+	public boolean isAnagram(String s, String t) {
+		int n1 = s.length(), n2 = t.length();
+		if(n1 != n2){
 			return false;
 		}
-		if (s.isEmpty() && t.isEmpty()) {
-			return true;
+		int[] c1 = new int[256], c2 = new int[256];
+		for(char c : s.toCharArray()){
+			c1[c]++;
 		}
-		if (s.length() != t.length()) {
-			return false;
+		for(char c : t.toCharArray()){
+			c2[c]++;
 		}
-
-		Map<Character, Integer> mp = new HashMap<Character, Integer>();
-		char[] ss = s.toCharArray();
-		char[] ts = t.toCharArray();
-		int len = ss.length;
-		for (int i = 0; i < len; i++) {
-			char x = ss[i];
-			if (mp.containsKey(x)) {
-				int val = mp.get(x);
-				val++;
-				mp.put(x, val);
-			} else {
-				mp.put(x, 1);
-			}
-		}
-
-		for (int i = 0; i < len; i++) {
-			char x = ts[i];
-			if (!mp.containsKey(x)) {
+		for(int i = 0; i < 256; i++){
+			if(c1[i] != c2[i]){
 				return false;
-			} else {
-				int val = mp.get(x);
-				val--;
-				if (val == 0) {
-					mp.remove(x);
-				} else {
-					mp.put(x, val);
-				}
 			}
 		}
-
-		return mp.size() == 0;
+		return true;
 	}
 }
