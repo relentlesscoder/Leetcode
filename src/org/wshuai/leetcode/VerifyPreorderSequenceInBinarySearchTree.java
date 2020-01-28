@@ -3,28 +3,24 @@ package org.wshuai.leetcode;
 import java.util.Stack;
 
 /**
- * Created by Wei on 11/19/16.
- * #255 https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/
+ * Created by Wei on 11/19/2016.
+ * #0255 https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/
  */
 public class VerifyPreorderSequenceInBinarySearchTree {
-	//O(n)
+	// time O(n), space O(n)
 	public boolean verifyPreorder(int[] preorder) {
-		if (preorder == null || preorder.length == 0) {
-			return true;
-		}
-		int len = preorder.length;
 		int min = Integer.MIN_VALUE;
-		Stack<Integer> stk = new Stack<Integer>();
-		for (int i = 0; i < len; i++) {
-			//All nodes of the right subtree are greater than the root
-			if (preorder[i] < min) {
+		Stack<Integer> stack = new Stack<>();
+		for(int p : preorder){
+			if(p < min){
 				return false;
 			}
-			//Keep polling the stack until finding the parent of the current node
-			while (!stk.isEmpty() && preorder[i] > stk.peek()) {
-				min = stk.pop();
+			// pop out all the left tree nodes if we see right tree node
+			while(!stack.isEmpty() && p > stack.peek()){
+				min = stack.pop();
 			}
-			stk.push(preorder[i]);
+			// push the left subtree nodes
+			stack.push(p);
 		}
 		return true;
 	}

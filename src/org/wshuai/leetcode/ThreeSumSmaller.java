@@ -4,32 +4,27 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 10/28/2016.
- * #259 https://leetcode.com/problems/3sum-smaller/
+ * #0259 https://leetcode.com/problems/3sum-smaller/
  */
 public class ThreeSumSmaller {
+	// time O(n^2)
 	public int threeSumSmaller(int[] nums, int target) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
-
+		int res = 0, n = nums.length;
 		Arrays.sort(nums);
-		int count = 0;
-		int len = nums.length;
-		for (int i = 0; i < len - 2; i++) {
-			int left = i + 1;
-			int right = len - 1;
-			while (left < right) {
-				int sum = nums[i] + nums[left] + nums[right];
-				if (sum >= target) {
-					right--;
-				} else {
-					//right is the maximum val, if left+right < target
-					//then all values (between left and right) + left < target
-					count += right - left;
-					left++;
+		for(int i = 0; i < n - 2; i++){
+			int j = i + 1, k = n - 1;
+			while(j < k){
+				if(nums[i] + nums[j] + nums[k] >= target){
+					k--;
+				}else{
+					res += (k - j);
+					j++;
 				}
 			}
 		}
-		return count;
+		return res;
 	}
 }
