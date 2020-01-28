@@ -25,9 +25,13 @@ public class FactorCombinations {
 				continue;
 			}
 			cur.add(i);
+			// start from i since the next factor will not be less than i,
+			// if it n / i can be divided by some factor less than i then n
+			// can also be divided by it.
 			dfs(n / i, i, cur, res);
 			cur.remove(cur.size() - 1);
 		}
+		// force to add the last factor
 		cur.add(n);
 		dfs(1, n, cur, res);
 		cur.remove(cur.size() - 1);
