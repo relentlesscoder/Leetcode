@@ -4,27 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 9/19/2016.
+ * Created by Wei on 09/19/2016.
+ * #0293 https://leetcode.com/problems/flip-game/
  */
 public class FlipGame {
+	// time O(n^2) (counting the cost of arr to string)
 	public List<String> generatePossibleNextMoves(String s) {
-		List<String> lst = new ArrayList<String>();
-		if (s == null || s.isEmpty()) {
-			return lst;
-		}
-		char[] chars = s.toCharArray();
-		int len = chars.length;
-
-		for (int i = 0; i < len - 1; i++) {
-			if (chars[i] == '+' && chars[i + 1] == '+') {
-				String x = s.substring(0, i) + "--";
-				if (i + 2 < len) {
-					x += s.substring(i + 2);
-				}
-				lst.add(x);
+		List<String> res = new ArrayList<>();
+		char[] arr = s.toCharArray();
+		for(int i = 1; i < arr.length; i++){
+			if(arr[i] == '+' && arr[i - 1] == '+'){
+				arr[i] = '-';
+				arr[i - 1] = '-';
+				// time O(n)
+				res.add(new String(arr));
+				arr[i] = '+';
+				arr[i - 1] = '+';
 			}
 		}
-
-		return lst;
+		return res;
 	}
 }

@@ -1,41 +1,32 @@
 package org.wshuai.leetcode;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
- * Created by Wei on 10/2/2016.
- * #297 https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+ * Created by Wei on 10/02/2016.
+ * #0297 https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
  */
 public class SerializeAndDeserializeBinaryTree {
 	// Encodes a tree to a single string.
 	public String serialize(TreeNode root) {
 		if (root == null) {
-			return "";
+			return null;
 		}
-
 		StringBuilder sb = new StringBuilder();
-		Queue<TreeNode> curr = new LinkedList<TreeNode>();
-		Queue<TreeNode> next = new LinkedList<TreeNode>();
-		curr.offer(root);
-		while (!curr.isEmpty()) {
-			TreeNode tn = curr.poll();
-			if (tn != null) {
-				next.offer(tn.left);
-				next.offer(tn.right);
-				sb.append(tn.val + ",");
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		queue.offerLast(root);
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			TreeNode node = queue.pollFirst();
+			if (node != null) {
+				sb.append(Integer.toString(node.val) + ",");
+				queue.offer(node.left);
+				queue.offer(node.right);
 			} else {
-				sb.append("null,");
-			}
-
-			if (curr.isEmpty()) {
-				curr = next;
-				next = new LinkedList<TreeNode>();
+				sb.append("n,");
 			}
 		}
-
-		String val = sb.toString();
-		return val.substring(0, val.length() - 1);
+		return sb.substring(0, sb.length() - 1);
 	}
 
 	// Decodes your encoded data to tree.
@@ -43,34 +34,31 @@ public class SerializeAndDeserializeBinaryTree {
 		if (data == null || data.isEmpty()) {
 			return null;
 		}
-		String[] arr = data.split(",");
-		Queue<TreeNode> queue = new LinkedList<TreeNode>();
-		TreeNode root = new TreeNode(Integer.parseInt(arr[0]));
+		String[] vals = data.split(",");
+		int len = vals.length;
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
 		queue.offer(root);
-		int len = arr.length;
 		int i = 1;
 		while (i < len && !queue.isEmpty()) {
 			TreeNode parent = queue.poll();
-			String lVal = arr[i];
-			String rVal = arr[i + 1];
-			if (lVal.equals("null")) {
-				parent.left = null;
-			} else {
-				TreeNode left = new TreeNode(Integer.parseInt(lVal));
-				parent.left = left;
-				queue.offer(left);
+			String left = vals[i], right = vals[i + 1];
+			if (!left.equals("n")) {
+				TreeNode LeftNode = new TreeNode(Integer.parseInt(left));
+				parent.left = LeftNode;
+				queue.offer(LeftNode);
 			}
-
-			if (rVal.equals("null")) {
-				parent.right = null;
-			} else {
-				TreeNode right = new TreeNode(Integer.parseInt(rVal));
-				parent.right = right;
-				queue.offer(right);
+			if (!right.equals("n")) {
+				TreeNode rightNode = new TreeNode(Integer.parseInt(right));
+				parent.right = rightNode;
+				queue.offer(rightNode);
 			}
-
-			i = i + 2;
+			i += 2;
 		}
 		return root;
 	}
 }
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.deserialize(codec.serialize(root));

@@ -1,32 +1,45 @@
 package org.wshuai.leetcode;
 
+import java.util.HashMap;
+
 /**
- * Created by Wei on 11/2/2016.
- * #294 https://leetcode.com/problems/flip-game-ii/
+ * Created by Wei on 11/02/2016.
+ * #0294 https://leetcode.com/problems/flip-game-ii/
  */
 public class FlipGameII {
+	private HashMap<String, Boolean> map;
+
+	// time O(n!)
+	// with memorization
 	public boolean canWin(String s) {
-		if (s == null || s.isEmpty()) {
+		if(s == null || s.length() < 2){
 			return false;
 		}
-
-		return canWinUtil(s.toCharArray(), s.length());
+		map = new HashMap();
+		return dfs(s.toCharArray());
 	}
 
-	private boolean canWinUtil(char[] arr, int len) {
-		for (int i = 0; i < len - 1; i++) {
-			if (arr[i] == '+' && arr[i + 1] == '+') {
+	private boolean dfs(char[] arr){
+		for(int i = 1; i < arr.length; i++){
+			if(arr[i] == '+' && arr[i - 1] == '+'){
 				arr[i] = '-';
-				arr[i + 1] = '-';
-				boolean win = canWinUtil(arr, len);
+				arr[i - 1] = '-';
+				boolean res;
+				String key = new String(arr);
+				if(map.containsKey(key)){
+					res = map.get(key);
+				}else{
+					res = dfs(arr);
+					map.put(key, res);
+				}
+				// needs to reset status
 				arr[i] = '+';
-				arr[i + 1] = '+';
-				if (!win) {
+				arr[i - 1] = '+';
+				if(!res){
 					return true;
 				}
 			}
 		}
-
 		return false;
 	}
 }

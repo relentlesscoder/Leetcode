@@ -5,37 +5,32 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Wei on 7/19/17.
- * #296 https://leetcode.com/problems/best-meeting-point/
+ * Created by Wei on 07/19/17.
+ * #0296 https://leetcode.com/problems/best-meeting-point/
  */
 public class BestMeetingPoint {
+	// time O(r*c)
 	// http://www.cnblogs.com/grandyang/p/5291058.html
 	public int minTotalDistance(int[][] grid) {
-		if (grid == null || grid.length == 0 || grid[0].length == 0) {
+		if(grid == null || grid.length == 0 || grid[0].length == 0){
 			return 0;
 		}
-		int r = grid.length;
-		int c = grid[0].length;
-		List<Integer> rows = new ArrayList<Integer>();
-		List<Integer> cols = new ArrayList<Integer>();
-		for (int i = 0; i < r; i++) {
-			for (int j = 0; j < c; j++) {
-				if (grid[i][j] == 1) {
-					rows.add(i);
-					cols.add(j);
+		int r = grid.length, c = grid[0].length;
+		List<Integer> xs = new ArrayList<>(), ys = new ArrayList<>();
+		for(int i = 0; i < r; i++){
+			for(int j = 0; j < c; j++){
+				if(grid[i][j] == 1){
+					xs.add(i);
+					ys.add(j);
 				}
 			}
 		}
-		Collections.sort(rows);
-		Collections.sort(cols);
-		int i = 0;
-		int j = rows.size() - 1;
-		int min = 0;
-		while (i < j) {
-			min += rows.get(j) - rows.get(i) + cols.get(j) - cols.get(i);
-			j--;
-			i++;
+		int res = 0, i = 0, j = xs.size() - 1;
+		Collections.sort(xs);
+		Collections.sort(ys);
+		while(i < j){
+			res += xs.get(j) - xs.get(i) + ys.get(j--) - ys.get(i++);
 		}
-		return min;
+		return res;
 	}
 }

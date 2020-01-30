@@ -1,69 +1,47 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
- * Created by Wei on 3/13/17.
- * #291 https://leetcode.com/problems/word-pattern-ii/
+ * Created by Wei on 03/13/2017.
+ * #0291 https://leetcode.com/problems/word-pattern-ii/
  */
 public class WordPatternII {
 	public boolean wordPatternMatch(String pattern, String str) {
-		if (pattern == null || str == null) {
-			return false;
-		}
-		if (pattern.equals("") && str.equals("")) {
-			return true;
-		}
-		if (pattern.equals("")) {
-			return false;
-		}
-		if (str.equals("")) {
-			return false;
-		}
-
-		int i = 0;
-		int j = 0;
-		int pLen = pattern.length();
-		int sLen = str.length();
-		Map<Character, String> map = new HashMap<Character, String>();
-		Set<String> set = new HashSet<String>();
-		return wordPatternMatchUtil(i, j, pLen, sLen, map, set, pattern, str);
+		String[] map = new String[26];
+		Arrays.fill(map, "");
+		return dfs(0, 0, pattern, str, map, new HashSet<String>());
 	}
 
-	private boolean wordPatternMatchUtil(int i, int j, int pLen, int sLen,
-	                                     Map<Character, String> map, Set<String> set,
-	                                     String pattern, String str) {
-		if (i == pLen && j == sLen) {
-			return true;
-		}
-		if (i >= pLen || j >= sLen) {
-			return false;
+	private boolean dfs(int i, int j, String pattern, String str, String[] map, Set<String> used){
+		if(i == pattern.length()){
+			return j == str.length();
 		}
 		char c = pattern.charAt(i);
-		if (map.containsKey(c)) {
-			String val = map.get(c);
-			int len = val.length();
-			if (j + len <= sLen) {
-				String nxt = str.substring(j, j + len);
-				if (nxt.equals(val)) {
-					return wordPatternMatchUtil(i + 1, j + len, pLen, sLen, map, set, pattern, str);
+		String val = map[c - 'a'];
+		int len = val.length();
+		// next substring does not match that in the map
+		if(len > 0 && (j + len > str.length()
+				|| !val.equals(str.substring(j, j + len)))){
+			return false;
+		}
+		if(len > 0){
+			// matching the next substring
+			return dfs(i + 1, j + len, pattern, str, map, used);
+		}else{
+			// new character seen, try all possible substrings
+			for(int k = j; k < str.length(); k++){
+				String substr = str.substring(j, k + 1);
+				if(used.contains(substr)){
+					continue;
 				}
-			}
-		} else {
-			for (int k = j; k < sLen; k++) {
-				String val = str.substring(j, k + 1);
-				if (!set.contains(val)) {
-					map.put(c, val);
-					set.add(val);
-					if (wordPatternMatchUtil(i + 1, k + 1, pLen, sLen, map, set, pattern, str)) {
-						return true;
-					}
-					map.remove(c);
-					set.remove(val);
+				used.add(substr);
+				map[c - 'a'] = substr;
+				if(dfs(i + 1, k + 1, pattern, str, map, used)){
+					return true;
 				}
+				used.remove(substr);
+				map[c - 'a'] = "";
 			}
 		}
 		return false;
