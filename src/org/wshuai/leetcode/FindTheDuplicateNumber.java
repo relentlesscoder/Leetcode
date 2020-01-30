@@ -1,27 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 1/29/17.
- * #287 https://leetcode.com/problems/find-the-duplicate-number/
+ * Created by Wei on 01/29/2017.
+ * #0287 https://leetcode.com/problems/find-the-duplicate-number/
  */
 public class FindTheDuplicateNumber {
+	// time O(n)
+	// same as #0142 https://leetcode.com/problems/linked-list-cycle/
 	public int findDuplicate(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return -1;
+		if(nums == null || nums.length == 0){
+			return 0;
 		}
-		int len = nums.length;
-		for (int i = 0; i < len; i++) {
-			while (nums[i] != i + 1 && nums[nums[i] - 1] != nums[i]) {
-				int val = nums[i];
-				nums[i] = nums[val - 1];
-				nums[val - 1] = val;
+		int slow = nums[0], fast = nums[0];
+		while(true){
+			slow = nums[slow];
+			fast = nums[nums[fast]];
+			if(fast == slow){
+				break;
 			}
 		}
-		for (int i = 0; i < len; i++) {
-			if (nums[i] != i + 1) {
-				return nums[i];
-			}
+		fast = nums[0];
+		while(fast != slow){
+			slow = nums[slow];
+			fast = nums[fast];
 		}
-		return -1;
+		return slow;
 	}
 }
