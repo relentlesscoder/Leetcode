@@ -24,7 +24,7 @@ public class RangeSumQuery2DImmutable {
 
 	// time O(c)
 	public int sumRegion(int row1, int col1, int row2, int col2) {
-		if(!validateIdx(row1, col1) || !validateIdx(row2, col2)){
+		if(!validate(row1, col1) || !validate(row2, col2)){
 			return -1;
 		}
 		int sum = 0;
@@ -34,7 +34,7 @@ public class RangeSumQuery2DImmutable {
 		return sum;
 	}
 
-	private boolean validateIdx(int row, int col) {
+	private boolean validate(int row, int col) {
 		return row >= 0 && col >= 0 && row < R && col < C;
 	}
 }

@@ -20,6 +20,7 @@ public class RangeSumQueryMutable {
 		}
 	}
 
+	// time log(n)
 	public void update(int i, int val) {
 		if (i < 0 || i >= n) {
 			return;
@@ -29,6 +30,7 @@ public class RangeSumQueryMutable {
 		updateUtil(0, n - 1, i, diff, 0);
 	}
 
+	// time log(n)
 	public int sumRange(int i, int j) {
 		if (i < 0 || j >= n || i > j) {
 			return -1;
@@ -36,6 +38,7 @@ public class RangeSumQueryMutable {
 		return sumRangeUtil(0, n - 1, i, j, 0);
 	}
 
+	// time O(n)
 	private int build(int start, int end, int index) {
 		if (start == end) {
 			st[index] = arr[start];

@@ -11,6 +11,7 @@ import java.util.List;
 public class NumberOfIslandsII {
 	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
 
+	// time O(k*log(m*n))
 	public List<Integer> numIslands2(int m, int n, int[][] positions) {
 		List<Integer> res = new ArrayList<>();
 		if (positions == null || positions.length == 0) {
