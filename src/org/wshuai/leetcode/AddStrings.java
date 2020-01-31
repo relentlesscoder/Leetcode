@@ -1,40 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/23/16.
- * #415 https://leetcode.com/problems/add-strings/
+ * Created by Wei on 10/23/2016.
+ * #0415 https://leetcode.com/problems/add-strings/
  */
 public class AddStrings {
+	// time O(n)
 	public String addStrings(String num1, String num2) {
-		if (num1 == null || num1.length() == 0) {
-			return num2;
-		}
-		if (num2 == null || num2.length() == 0) {
-			return num1;
-		}
 		StringBuilder sb = new StringBuilder();
-		int carry = 0;
-		char[] arr1 = num1.toCharArray();
-		char[] arr2 = num2.toCharArray();
-		int len1 = arr1.length;
-		int len2 = arr2.length;
-		int i = len1 - 1;
-		int j = len2 - 1;
-		while (i >= 0 || j >= 0 || carry > 0) {
-			int x = 0;
-			int y = 0;
-			if (j >= 0) {
-				x = Character.getNumericValue(arr2[j]);
-			}
-			if (i >= 0) {
-				y = Character.getNumericValue(arr1[i]);
-			}
-			int sum = x + y + carry;
-			sb.insert(0, Integer.toString(sum % 10));
-			carry = sum / 10;
-			i--;
-			j--;
+		char[] rs = new StringBuilder(num1).reverse().toString().toCharArray();
+		char[] rt = new StringBuilder(num2).reverse().toString().toCharArray();
+		int i = 0, j = 0, c = 0;
+		while (i < rs.length || j < rt.length || c > 0) {
+			int v1 = i < rs.length ? rs[i++] - '0' : 0;
+			int v2 = j < rt.length ? rt[j++] - '0' : 0;
+			int sum = v1 + v2 + c;
+			sb.append(sum % 10);
+			c = sum / 10;
 		}
-		return sb.toString();
+		return sb.reverse().toString();
 	}
 }
