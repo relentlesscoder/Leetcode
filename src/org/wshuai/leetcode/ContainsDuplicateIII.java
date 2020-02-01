@@ -12,18 +12,16 @@ public class ContainsDuplicateIII {
 		if(nums == null || nums.length == 0){
 			return false;
 		}
+		int n = nums.length;
 		TreeSet<Long> set = new TreeSet<>();
-		for(int i = 0; i < nums.length; i++){
-			Long floor = set.floor((long)nums[i] + t);
-			Long ceil = set.ceiling((long)nums[i] - t);
-
-			if((floor != null && floor >= nums[i]) ||
-				(ceil != null && ceil <= nums[i])){
+		for(int i = 0; i < n; i++){
+			long val = (long)nums[i];
+			Long floor = set.floor(val + t);
+			if(floor != null && floor >= val - t){
 				return true;
 			}
-
-			set.add((long)nums[i]);
-			if(i >= k){
+			set.add(val);
+			if(set.size() > k){
 				set.remove((long)nums[i - k]);
 			}
 		}
