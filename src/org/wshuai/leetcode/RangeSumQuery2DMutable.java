@@ -24,33 +24,35 @@ public class RangeSumQuery2DMutable {
 		}
 	}
 
-	// time O(log(m) * log(n))
 	public void update(int row, int col, int val) {
 		if(m == 0 || n == 0){
 			return;
 		}
 		int diff = val - nums[row][col];
 		nums[row][col] = val;
-		for(int i = row + 1; i <= m; i += (i & -i)){
-			for(int j = col + 1; j <= n; j += (j & -j)){
+		row++;
+		col++;
+		for(int i = row; i <= m; i += (i & -i)){
+			for(int j = col; j <= n; j += (j & -j)){
 				bit[i][j] += diff;
 			}
 		}
 	}
 
-	// time O(log(m) * log(n))
 	public int sumRegion(int row1, int col1, int row2, int col2) {
 		if(m == 0 || n == 0){
 			return 0;
 		}
-		return sum(row2 + 1, col2 + 1)
-			+ sum(row1, col1)
-			- sum(row1, col2 + 1)
-			- sum(row2 + 1, col1);
+		return sum(row2, col2)
+			+ sum(row1 - 1, col1 - 1)
+			- sum(row1 - 1, col2)
+			- sum(row2, col1 - 1);
 	}
 
 	private int sum(int row, int col){
 		int sum = 0;
+		row++;
+		col++;
 		for(int i = row; i > 0; i -= (i & -i)){
 			for(int j = col; j > 0; j -= (j & -j)){
 				sum += bit[i][j];
@@ -59,3 +61,10 @@ public class RangeSumQuery2DMutable {
 		return sum;
 	}
 }
+
+/**
+ * Your NumMatrix object will be instantiated and called as such:
+ * NumMatrix obj = new NumMatrix(matrix);
+ * obj.update(row,col,val);
+ * int param_2 = obj.sumRegion(row1,col1,row2,col2);
+ */
