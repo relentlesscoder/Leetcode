@@ -5,7 +5,7 @@ package org.wshuai.leetcode;
  * #0307 https://leetcode.com/problems/range-sum-query-mutable/
  */
 public class RangeSumQueryMutable {
-	private int[] segmentTree;
+	private int[] st;
 	private int[] arr;
 	private int n;
 
@@ -15,11 +15,12 @@ public class RangeSumQueryMutable {
 			arr = nums;
 			int x = (int) (Math.ceil(Math.log(n) / Math.log(2)));
 			int size = 2 * (int) Math.pow(2, x) - 1;
-			segmentTree = new int[size];
+			st = new int[size];
 			build(0, n - 1, 0);
 		}
 	}
 
+	// time log(n)
 	public void update(int i, int val) {
 		if (i < 0 || i >= n) {
 			return;
@@ -29,6 +30,7 @@ public class RangeSumQueryMutable {
 		updateUtil(0, n - 1, i, diff, 0);
 	}
 
+	// time log(n)
 	public int sumRange(int i, int j) {
 		if (i < 0 || j >= n || i > j) {
 			return -1;
@@ -36,22 +38,23 @@ public class RangeSumQueryMutable {
 		return sumRangeUtil(0, n - 1, i, j, 0);
 	}
 
+	// time O(n)
 	private int build(int start, int end, int index) {
 		if (start == end) {
-			segmentTree[index] = arr[start];
+			st[index] = arr[start];
 			return arr[start];
 		}
 		int mid = start + (end - start) / 2;
-		segmentTree[index] = build(start, mid, index * 2 + 1)
-			+ build(mid + 1, end, index * 2 + 2);
-		return segmentTree[index];
+		st[index] = build(start, mid, index * 2 + 1)
+				+ build(mid + 1, end, index * 2 + 2);
+		return st[index];
 	}
 
 	private void updateUtil(int start, int end, int i, int diff, int index) {
 		if (i < start || i > end) {
 			return;
 		}
-		segmentTree[index] = segmentTree[index] + diff;
+		st[index] += diff;
 		if (start != end) {
 			int mid = start + (end - start) / 2;
 			updateUtil(start, mid, i, diff, 2 * index + 1);
@@ -60,19 +63,21 @@ public class RangeSumQueryMutable {
 	}
 
 	private int sumRangeUtil(int start, int end, int i, int j, int index) {
+		// the query range fully covers the current range
 		if (i <= start && j >= end) {
-			return segmentTree[index];
+			return st[index];
 		}
+		// the query range completely miss the current range
 		if (i > end || j < start) {
 			return 0;
 		}
 		int mid = start + (end - start) / 2;
 		return sumRangeUtil(start, mid, i, j, 2 * index + 1)
-			+ sumRangeUtil(mid + 1, end, i, j, 2 * index + 2);
+				+ sumRangeUtil(mid + 1, end, i, j, 2 * index + 2);
 	}
 }
 
-/* Binary Index Tree solution
+/* Binary Indexed Tree solution
 
 class RangeSumQueryMutable {
 	private int[] bit;

@@ -3,68 +3,68 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 7/20/2017.
- * #301 https://leetcode.com/problems/remove-invalid-parentheses/
+ * Created by Wei on 07/20/2017.
+ * #0301 https://leetcode.com/problems/remove-invalid-parentheses/
  */
 public class RemoveInvalidParentheses {
-	//BFS
+	// time O(2^(l+r)), space O((l+r)^2)
+	// https://www.youtube.com/watch?v=2k_rS_u6EBk
 	public List<String> removeInvalidParentheses(String s) {
-		List<String> res = new ArrayList<String>();
-
-		if (s == null) {
+		List<String> res = new ArrayList<>();
+		if(s == null || s.isEmpty()){
+			res.add("");
 			return res;
 		}
-
-		Set<String> visited = new HashSet<String>();
-		Queue<String> queue = new LinkedList<String>();
-
-		queue.add(s);
-		visited.add(s);
-
-		boolean found = false;
-
-		while (!queue.isEmpty()) {
-			s = queue.poll();
-
-			if (isValid(s)) {
-				res.add(s);
-				found = true;
-			}
-
-			if (found) {
+		int l = 0, r = 0;
+		for(char c : s.toCharArray()){
+			if(c != '(' && c != ')'){
 				continue;
 			}
-
-			for (int i = 0; i < s.length(); i++) {
-				if (s.charAt(i) != '(' && s.charAt(i) != ')') {
-					continue;
-				}
-
-				String t = s.substring(0, i) + s.substring(i + 1);
-
-				if (!visited.contains(t)) {
-					queue.add(t);
-					visited.add(t);
-				}
+			l += (c == '(' ? 1 : 0);
+			if(l == 0){
+				r += (c == ')' ? 1 : 0);
+			}else{
+				l -= (c == ')' ? 1 : 0);
 			}
 		}
-
+		dfs(s, 0, l, r, res);
 		return res;
 	}
 
-	private boolean isValid(String s) {
-		int count = 0;
-
-		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
-			if (c == '(') {
-				count++;
+	private void dfs(String s, int start, int open, int close, List<String> res){
+		if(open == 0 && close == 0){
+			if(valid(s)){
+				res.add(s);
 			}
-			if (c == ')' && count-- == 0) {
+			return;
+		}
+		for(int i = start; i < s.length(); i++){
+			char cur = s.charAt(i);
+			if(i != start && cur == s.charAt(i - 1)){
+				continue;
+			}
+			if(cur == '(' || cur == ')'){
+				String t = s.substring(0, i) + s.substring(i + 1);
+				if(close > 0 && cur == ')'){
+					dfs(t, i, open, close - 1, res);
+				}else if(open > 0 && cur == '('){
+					dfs(t, i, open - 1, close, res);
+				}
+			}
+		}
+	}
+
+	private boolean valid(String s){
+		int count = 0;
+		for(char c : s.toCharArray()){
+			if(c != '(' && c != ')'){
+				continue;
+			}
+			count += c == '(' ? 1 : -1;
+			if(count < 0){
 				return false;
 			}
 		}
-
 		return count == 0;
 	}
 }
