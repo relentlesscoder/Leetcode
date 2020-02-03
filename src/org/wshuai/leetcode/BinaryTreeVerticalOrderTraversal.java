@@ -3,59 +3,49 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 11/15/16.
- * #314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
+ * Created by Wei on 11/15/2016.
+ * #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
  */
 public class BinaryTreeVerticalOrderTraversal {
-	//O(n), level order traversal
+	// time O(n)
 	public List<List<Integer>> verticalOrder(TreeNode root) {
-		List<List<Integer>> lst = new ArrayList<List<Integer>>();
-		if (root == null) {
-			return lst;
+		List<List<Integer>> res = new ArrayList<>();
+		if(root == null){
+			return res;
 		}
-		List<TreeNode> nodes = new ArrayList<TreeNode>();
-		List<Integer> dis = new ArrayList<Integer>();
-		nodes.add(root);
-		dis.add(0);
-		int i = 0;
-		int min = 0;
-		Set<Integer> set = new HashSet<Integer>();
-		set.add(0);
-		while (i < nodes.size()) {
-			TreeNode node = nodes.get(i);
-			int nd = dis.get(i);
-			if (node.left != null) {
-				nodes.add(node.left);
-				int d = nd - 1;
-				min = d < min ? d : min;
-				dis.add(d);
-				set.add(d);
+		int[] range = new int[2];
+		getColumnRange(root, range, 0);
+		for(int i = range[0]; i <= range[1]; i++){
+			res.add(new ArrayList<>());
+		}
+		LinkedList<TreeNode> nodes = new LinkedList<>();
+		LinkedList<Integer> columns = new LinkedList<>();
+		nodes.offerLast(root);
+		columns.offerLast(-range[0]);
+		while(!nodes.isEmpty()){
+			TreeNode cur = nodes.pollFirst();
+			int col = columns.pollFirst();
+			res.get(col).add(cur.val);
+			if(cur.left != null){
+				nodes.offerLast(cur.left);
+				columns.offerLast(col - 1);
 			}
-			if (node.right != null) {
-				nodes.add(node.right);
-				int d = nd + 1;
-				dis.add(d);
-				set.add(d);
-			}
-			i++;
-		}
-		int diff = 0 - min;
-		int size = nodes.size();
-		for (int j = 0; j < set.size(); j++) {
-			lst.add(null);
-		}
-		for (int j = 0; j < size; j++) {
-			int idx = dis.get(j) + diff;
-			int val = nodes.get(j).val;
-			List<Integer> ls = lst.get(idx);
-			if (ls == null) {
-				ls = new ArrayList<Integer>();
-				ls.add(val);
-				lst.set(idx, ls);
-			} else {
-				ls.add(val);
+			if(cur.right != null){
+				nodes.offerLast(cur.right);
+				columns.offerLast(col + 1);
 			}
 		}
-		return lst;
+		return res;
+	}
+
+	private void getColumnRange(TreeNode root, int[] range, int cur){
+		if(root == null){
+			return;
+		}
+		range[0] = Math.min(cur, range[0]);
+		range[1] = Math.max(cur, range[1]);
+
+		getColumnRange(root.left, range, cur - 1);
+		getColumnRange(root.right, range, cur + 1);
 	}
 }

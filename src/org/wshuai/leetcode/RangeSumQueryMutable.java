@@ -5,6 +5,58 @@ package org.wshuai.leetcode;
  * #0307 https://leetcode.com/problems/range-sum-query-mutable/
  */
 public class RangeSumQueryMutable {
+	private int[] bit;
+	private int[] nums;
+	private int n;
+
+	public RangeSumQueryMutable(int[] nums) {
+		n = nums.length;
+		if (n > 0) {
+			this.nums = nums;
+			bit = new int[n + 1];
+			build();
+		}
+	}
+
+	// time log(n)
+	public void update(int i, int val) {
+		int diff = val - nums[i];
+		nums[i] = val;
+		updateUtil(i, diff);
+	}
+
+	// time log(n)
+	public int sumRange(int i, int j) {
+		return sumUtil(j) - sumUtil(i - 1);
+	}
+
+	private int sumUtil(int index) {
+		int sum = 0;
+		index++;
+		while (index > 0) {
+			sum += bit[index];
+			index -= (index & -index);
+		}
+		return sum;
+	}
+
+	private void updateUtil(int index, int val) {
+		index++;
+		while (index <= n) {
+			bit[index] += val;
+			index += (index & -index);
+		}
+	}
+
+	private void build() {
+		for (int i = 0; i < n; i++) {
+			updateUtil(i, nums[i]);
+		}
+	}
+}
+
+/* Segment Tree
+public class RangeSumQueryMutable {
 	private int[] st;
 	private int[] arr;
 	private int n;
@@ -76,54 +128,5 @@ public class RangeSumQueryMutable {
 				+ sumRangeUtil(mid + 1, end, i, j, 2 * index + 2);
 	}
 }
+*/
 
-/* Binary Indexed Tree solution
-
-class RangeSumQueryMutable {
-	private int[] bit;
-	private int[] nums;
-	private int n;
-
-	public RangeSumQueryMutable(int[] nums) {
-		n = nums.length;
-		if (n > 0) {
-			this.nums = nums;
-			bit = new int[n + 1];
-			build();
-		}
-	}
-
-	public void update(int i, int val) {
-		int diff = val - nums[i];
-		nums[i] = val;
-		updateUtil(i, diff);
-	}
-
-	public int sumRange(int i, int j) {
-		return sumUtil(j) - sumUtil(i - 1);
-	}
-
-	private int sumUtil(int index) {
-		int sum = 0;
-		index++;
-		while (index > 0) {
-			sum += bit[index];
-			index -= (index & -index);
-		}
-		return sum;
-	}
-
-	private void updateUtil(int index, int val) {
-		index++;
-		while (index <= n) {
-			bit[index] += val;
-			index += (index & -index);
-		}
-	}
-
-	private void build() {
-		for (int i = 0; i < n; i++) {
-			updateUtil(i, nums[i]);
-		}
-	}
-}*/
