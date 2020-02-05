@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class CountOfRangeSum {
 
 	// time O(n*log(n))
+	// https://leetcode.com/problems/count-of-range-sum/discuss/78006/Summary-of-the-Divide-and-Conquer-based-and-Binary-Indexed-Tree-based-solutions
 	public int countRangeSum(int[] nums, int lower, int upper) {
 		if(nums == null || nums.length == 0 || lower > upper){
 			return 0;
@@ -29,15 +30,17 @@ public class CountOfRangeSum {
 		cand[index] = Long.MIN_VALUE;
 		Arrays.sort(cand);
 
+		// build up the binary indexed tree with only elements from the prefix array "sum"
 		int[] bit = new int[cand.length];
 		for(int i = 0; i < sum.length; i++){
 			add(bit, Arrays.binarySearch(cand, sum[i]), 1);
 		}
 		for(int i = 0; i < sum.length; i++){
+			// get rid of visited elements by adding -1 to the corresponding tree nodes
 			add(bit, Arrays.binarySearch(cand, sum[i]), -1);
-
+			// add the total number of valid elements with upper bound (upper + sum[i])
 			count += query(bit, Arrays.binarySearch(cand, upper + sum[i]));
-
+			// minus the total number of valid elements with lower bound (lower + sum[i] - 1)
 			count -= query(bit, Arrays.binarySearch(cand, lower + sum[i] - 1));
 		}
 

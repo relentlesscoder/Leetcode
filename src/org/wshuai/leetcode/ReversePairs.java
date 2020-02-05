@@ -1,78 +1,88 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
+
 /**
- * Created by Wei on 7/23/17.
- * #493 https://leetcode.com/problems/reverse-pairs/
+ * Created by Wei on 07/23/2017.
+ * #0493 https://leetcode.com/problems/reverse-pairs/
  */
 public class ReversePairs {
-	//Segment tree, 183ms
-	public int reversePairs(int[] nums) {
-		if (nums == null || nums.length == 0) {
+	// time O(n*log(n))
+	public int reversePairsMergeSort(int[] nums) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
-		int len = nums.length;
-		long max = Long.MIN_VALUE;
-		long min = Long.MAX_VALUE;
-		int i = 0;
-		for (int num : nums) {
-			long prod = 2 * ((long) num);
-			max = Math.max(prod, max);
-			min = Math.min(prod, min);
+		return mergeSort(nums, 0, nums.length - 1);
+	}
+
+	private int mergeSort(int[] nums, int l, int r){
+		if(l >= r){
+			return 0;
 		}
-		SegmentTreeNodeLong root = new SegmentTreeNodeLong(min, max);
-		int res = 0;
-		for (i = len - 1; i >= 0; i--) {
-			long val = (long) nums[i];
-			res += search(root, val);
-			add(root, 2 * val);
+		int m = l + (r - l) / 2, i = l, j = m + 1, k = 0, p = m + 1;
+		int[] merge = new int[r - l + 1];
+		int res = mergeSort(nums, l, m) + mergeSort(nums, m + 1, r);
+		while(i <= m){
+			while(p <= r && nums[i] > 2L * nums[p]){
+				p++;
+			}
+			res += p - m - 1;
+			while(j <= r && nums[j] < nums[i]){
+				merge[k++] = nums[j++];
+			}
+			merge[k++] = nums[i++];
+		}
+		while(j <= r){
+			merge[k++] = nums[j++];
+		}
+		System.arraycopy(merge, 0, nums, l, r - l + 1);
+		return res;
+	}
+
+	// time O(n*log(n)), space O(n)
+	public int reversePairs(int[] nums) {
+		if(nums == null || nums.length == 0){
+			return 0;
+		}
+		int n = nums.length, res = 0;
+		int[] sorted = new int[n], bit = new int[n + 1];
+		System.arraycopy(nums, 0, sorted, 0, n);
+		Arrays.sort(sorted);
+		for(int i = 0; i < n; i++){
+			res += i - getSum(bit, searchIndex(sorted, 2L*nums[i]));
+			add(bit, searchIndex(sorted, nums[i]));
 		}
 		return res;
 	}
 
-	private void add(SegmentTreeNodeLong node, long val) {
-		if (node.start == node.end && node.start == val) {
-			node.sum++;
-			return;
-		}
-		long mid = node.start + (node.end - node.start) / 2;
-		if (val <= mid) {
-			if (node.left == null) {
-				node.left = new SegmentTreeNodeLong(node.start, mid);
+	private int searchIndex(int[] nums, long t){
+		int left = 0, right = nums.length - 1;
+		while(left < right){
+			int mid = left + (right - left) / 2;
+			if(nums[mid] <= t){
+				left = mid + 1;
+			}else{
+				right = mid;
 			}
-			add(node.left, val);
-		} else {
-			if (node.right == null) {
-				node.right = new SegmentTreeNodeLong(mid + 1, node.end);
-			}
-			add(node.right, val);
 		}
-		node.sum = (node.left == null ? 0 : node.left.sum) + (node.right == null ? 0 : node.right.sum);
+		return nums[left] <= t ? left : left - 1;
 	}
 
-	private int search(SegmentTreeNodeLong node, long val) {
-		if (node == null) {
-			return 0;
+	private int getSum(int[] bit, int index){
+		int sum = 0;
+		index++;
+		while(index > 0){
+			sum += bit[index];
+			index -= (index & -index);
 		}
-		if (val < node.start) {
-			return 0;
-		}
-		if (val > node.end) {
-			return node.sum;
-		}
-		return search(node.left, val) + search(node.right, val);
+		return sum;
 	}
-}
 
-class SegmentTreeNodeLong {
-	long start;
-	long end;
-	int sum;
-	SegmentTreeNodeLong left;
-	SegmentTreeNodeLong right;
-
-	public SegmentTreeNodeLong(long start, long end) {
-		this.start = start;
-		this.end = end;
-		this.sum = 0;
+	private void add(int[] bit, int index){
+		index++;
+		while(index < bit.length){
+			bit[index] += 1;
+			index += (index & -index);
+		}
 	}
 }
