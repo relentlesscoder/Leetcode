@@ -1,66 +1,46 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by Wei on 2/20/17.
- * #333 https://leetcode.com/problems/largest-bst-subtree/
+ * Created by Wei on 02/20/2017.
+ * #0333 https://leetcode.com/problems/largest-bst-subtree/
  */
 public class LargestBSTSubtree {
-	//Recursive
+	private int res;
+
+	// time O(n)
 	public int largestBSTSubtree(TreeNode root) {
-		Map<TreeNode, int[]> map = new HashMap<TreeNode, int[]>();
-		RefType rf = new RefType();
-		largestBSTSubtreeUtil(root, map, rf);
-		return rf.val;
+		res = 0;
+		dfs(root);
+		return res;
 	}
 
-	private void largestBSTSubtreeUtil(TreeNode root, Map<TreeNode, int[]> map, RefType rf) {
-		if (root == null) {
-			return;
+	private TreeNodeInfo dfs(TreeNode root){
+		if(root == null){
+			return new TreeNodeInfo(0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
 		}
-		largestBSTSubtreeUtil(root.left, map, rf);
-		largestBSTSubtreeUtil(root.right, map, rf);
-		int[] arr = new int[3];
-		if (root.left == null && root.right == null) {
-			arr[0] = 1;
-			arr[1] = root.val;
-			arr[2] = root.val;
-			map.put(root, arr);
-			rf.val = rf.val < 1 ? 1 : rf.val;
-		} else if (root.left == null) {
-			if (map.containsKey(root.right)) {
-				int[] arr1 = map.get(root.right);
-				if (arr1[1] > root.val) {
-					arr[0] = 1 + arr1[0];
-					arr[1] = root.val;
-					arr[2] = arr1[2];
-					map.put(root, arr);
-					rf.val = rf.val < arr[0] ? arr[0] : rf.val;
-				}
-			}
-		} else if (root.right == null) {
-			if (map.containsKey(root.left)) {
-				int[] arr1 = map.get(root.left);
-				if (arr1[2] < root.val) {
-					arr[0] = 1 + arr1[0];
-					arr[1] = arr1[1];
-					arr[2] = root.val;
-					map.put(root, arr);
-					rf.val = rf.val < arr[0] ? arr[0] : rf.val;
-				}
-			}
-		} else if (map.containsKey(root.left) && map.containsKey(root.right)) {
-			int[] arr1 = map.get(root.left);
-			int[] arr2 = map.get(root.right);
-			if (root.val > arr1[2] && root.val < arr2[1]) {
-				arr[0] = 1 + arr1[0] + arr2[0];
-				arr[1] = arr1[1];
-				arr[2] = arr2[2];
-				map.put(root, arr);
-				rf.val = rf.val < arr[0] ? arr[0] : rf.val;
-			}
+		TreeNodeInfo left = dfs(root.left);
+		TreeNodeInfo right = dfs(root.right);
+		boolean bst = left.bst && right.bst && root.val > left.max && root.val < right.min;
+		int size = bst ? 1 + left.size + right.size : 0;
+		if(bst){
+			res = Math.max(size, res);
+		}
+		int max = Math.max(Math.max(left.max, right.max), root.val);
+		int min = Math.min(Math.min(left.min, right.min), root.val);
+		return new TreeNodeInfo(size, max, min, bst);
+	}
+
+	private class TreeNodeInfo{
+		int size;
+		int max;
+		int min;
+		boolean bst;
+
+		public TreeNodeInfo(int size, int max, int min, boolean bst){
+			this.size = size;
+			this.max = max;
+			this.min = min;
+			this.bst = bst;
 		}
 	}
 }

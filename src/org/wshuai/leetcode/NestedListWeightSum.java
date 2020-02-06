@@ -3,28 +3,20 @@ package org.wshuai.leetcode;
 import java.util.List;
 
 /**
- * Created by Wei on 9/18/2016.
- * #339 https://leetcode.com/problems/nested-list-weight-sum/
+ * Created by Wei on 09/18/2016.
+ * #0339 https://leetcode.com/problems/nested-list-weight-sum/
  */
 public class NestedListWeightSum {
+	// time O(n)
 	public int depthSum(List<NestedInteger> nestedList) {
-		return getDepthSum(nestedList, 1);
+		return dfs(nestedList, 1);
 	}
 
-	public int getDepthSum(List<NestedInteger> nestedList, int depth) {
-		if (nestedList == null || nestedList.size() == 0) {
-			return 0;
+	private int dfs(List<NestedInteger> nestedList, int depth){
+		int res = 0;
+		for(NestedInteger cur : nestedList){
+			res += cur.isInteger() ? cur.getInteger() * depth : dfs(cur.getList(), depth + 1);
 		}
-		int sum = 0;
-		int len = nestedList.size();
-		for (int i = 0; i < len; i++) {
-			NestedInteger ni = nestedList.get(i);
-			if (ni.isInteger()) {
-				sum += ni.getInteger() * depth;
-			} else {
-				sum += getDepthSum(ni.getList(), depth + 1);
-			}
-		}
-		return sum;
+		return res;
 	}
 }
