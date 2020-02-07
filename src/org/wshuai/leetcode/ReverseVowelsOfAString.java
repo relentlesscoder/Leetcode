@@ -1,34 +1,42 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
- * Created by Wei on 9/19/2016.
+ * Created by Wei on 09/19/2016.
+ * #0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
  */
 public class ReverseVowelsOfAString {
+	// time O(n)
 	public String reverseVowels(String s) {
-		if (s == null || s.isEmpty()) {
+		if(s == null || s.isEmpty()){
 			return "";
 		}
+		int i = 0, j = s.length() - 1;
 		char[] arr = s.toCharArray();
-		int len = arr.length;
-		Queue<Character> lst = new LinkedList<Character>();
-		for (int i = 0; i < len; i++) {
-			char x = arr[i];
-			if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u' || x == 'A' || x == 'E' || x == 'I' || x == 'O' || x == 'U') {
-				lst.offer(x);
-			}
-		}
-		if (lst.isEmpty()) {
-			return s;
-		}
-		for (int i = len - 1; i >= 0; i--) {
-			char x = arr[i];
-			if (x == 'a' || x == 'e' || x == 'i' || x == 'o' || x == 'u' || x == 'A' || x == 'E' || x == 'I' || x == 'O' || x == 'U') {
-				arr[i] = lst.poll();
+		while(i < j){
+			boolean b1 = isVowel(arr[i]), b2 = isVowel(arr[j]);
+			if(!b1){
+				i++;
+			}else if(!b2){
+				j--;
+			}else{
+				char temp = arr[i];
+				arr[i++] = arr[j];
+				arr[j--] = temp;
 			}
 		}
 		return new String(arr);
+	}
+
+	private boolean isVowel(char c){
+		return c == 'a'
+				|| c == 'e'
+				|| c == 'i'
+				|| c == 'o'
+				|| c == 'u'
+				|| c == 'A'
+				|| c == 'E'
+				|| c == 'I'
+				|| c == 'O'
+				|| c == 'U';
 	}
 }
