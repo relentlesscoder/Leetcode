@@ -3,32 +3,35 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 2/20/17.
- * #332 https://leetcode.com/problems/reconstruct-itinerary/
+ * Created by Wei on 02/20/2017.
+ * #0332 https://leetcode.com/problems/reconstruct-itinerary/
  */
 public class ReconstructItinerary {
-	//Graph DFS
-	public List<String> findItinerary(String[][] tickets) {
-		List<String> res = new ArrayList<String>();
-		if (tickets == null || tickets.length == 0) {
+	public List<String> findItinerary(List<List<String>> tickets) {
+		LinkedList<String> res = new LinkedList<>();
+		if(tickets == null || tickets.size() == 0){
 			return res;
 		}
-		int len = tickets.length;
-		Map<String, PriorityQueue<String>> adj = new HashMap<String, PriorityQueue<String>>();
-		for (int i = 0; i < len; i++) {
-			String[] loc = tickets[i];
-			adj.putIfAbsent(loc[0], new PriorityQueue<String>());
-			adj.get(loc[0]).add(loc[1]);
+		Map<String, PriorityQueue<String>> adj = new HashMap<>();
+		for(List<String> t : tickets){
+			String from = t.get(0), to = t.get(1);
+			adj.putIfAbsent(from, new PriorityQueue<>());
+			adj.get(from).add(to);
 		}
-		findItineraryUtil("JFK", adj, res);
+		dfs("JFK", adj, res);
 		return res;
 	}
 
-	private void findItineraryUtil(String dep, Map<String, PriorityQueue<String>> adj, List<String> res) {
-		PriorityQueue<String> arrs = adj.get(dep);
-		while (arrs != null && !arrs.isEmpty()) {
-			findItineraryUtil(arrs.poll(), adj, res);
+	private void dfs(String cur, Map<String, PriorityQueue<String>> adj, LinkedList<String> res){
+		if(!adj.containsKey(cur) || adj.get(cur).isEmpty()){
+			res.offerFirst(cur);
+			return;
 		}
-		res.add(0, dep);
+		PriorityQueue<String> pq = adj.get(cur);
+		while(!pq.isEmpty()){
+			String next = pq.poll();
+			dfs(next, adj, res);
+		}
+		res.offerFirst(cur);
 	}
 }
