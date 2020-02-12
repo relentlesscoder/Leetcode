@@ -1,49 +1,32 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 /**
- * Created by Wei on 9/18/2016.
- * #346 https://leetcode.com/problems/moving-average-from-data-stream/
+ * Created by Wei on 09/18/2016.
+ * #0346 https://leetcode.com/problems/moving-average-from-data-stream/
  */
 public class MovingAverageFromDataStream {
 
-	private List<Integer> lst;
-	private double sum;
-	private int count;
+	private LinkedList<Integer> queue;
 	private int size;
-	private int head;
+	private double sum;
 
-	/**
-	 * Initialize your data structure here.
-	 */
+	/** Initialize your data structure here. */
 	public MovingAverageFromDataStream(int size) {
-		if (size <= 0) {
-			throw new IllegalArgumentException("Invalid param.");
-		}
-
-		this.lst = new ArrayList<Integer>();
-		this.sum = 0.0d;
-		this.count = 0;
+		queue = new LinkedList<>();
 		this.size = size;
-		this.head = 0;
+		sum = 0;
 	}
 
+	// time O(1), space O(k)
 	public double next(int val) {
-		if (count < size) {
-			lst.add(val);
-			count++;
-			sum += val;
-			return sum / count;
-		} else {
-			lst.add(val);
-			int hVal = lst.get(head);
-			head++;
-			sum -= hVal;
-			sum += val;
-			return sum / size;
+		sum += val;
+		if(queue.size() == size){
+			sum -= queue.pollFirst();
 		}
+		queue.offerLast(val);
+		return sum / queue.size();
 	}
 }
 

@@ -1,32 +1,21 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/2/2016.
- * #343 https://leetcode.com/problems/integer-break/
- * http://www.cnblogs.com/grandyang/p/5411919.html
+ * Created by Wei on 11/02/2016.
+ * #0343 https://leetcode.com/problems/integer-break/
  */
 public class IntegerBreak {
-	// 2 -> 1+1
-	// 3 -> 2+1
-	// 4 -> 2+2
-	// 5 -> 3+2
-	// 6 -> 3+3
-	// 7 -> 3+4
-	// 8 -> 3+3+2
-	// 9 -> 3+3+3
-	//10 -> 3+3+4
+	// time O(n)
+	// https://leetcode.com/problems/integer-break/discuss/80694/Java-DP-solution
 	public int integerBreak(int n) {
-		if (n <= 1) {
-			return 0;
+		int[] dp = new int[n + 1];
+		dp[1] = 1;
+		for(int i = 2; i <= n; i++){
+			for(int j = 1; j <= i / 2; j++){
+				dp[i] = Math.max(dp[i], Math.max(j, dp[j])
+						* Math.max(i - j, dp[i - j]));
+			}
 		}
-		if (n == 2 || n == 3) {
-			return n - 1;
-		}
-		int r = 1;
-		while (n > 4) {
-			n -= 3;
-			r *= 3;
-		}
-		return r * n;
+		return dp[n];
 	}
 }
