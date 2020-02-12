@@ -3,45 +3,49 @@ package org.wshuai.leetcode;
 import java.util.TreeMap;
 
 /**
- * Created by Wei on 8/26/19.
- * #352 https://leetcode.com/problems/data-stream-as-disjoint-intervals/
+ * Created by Wei on 08/26/2019.
+ * #0352 https://leetcode.com/problems/data-stream-as-disjoint-intervals/
  */
 public class DataStreamAsDisjointIntervals {
-	TreeMap<Integer, int[]> map;
+	private TreeMap<Integer, int[]> map;
 
-	/**
-	 * Initialize your data structure here.
-	 */
+	/** Initialize your data structure here. */
 	public DataStreamAsDisjointIntervals() {
 		map = new TreeMap<>();
 	}
 
-	// Log(N)
+	// time O(log(n))
 	public void addNum(int val) {
-		if (map.containsKey(val)) {
+		// val exists in the map
+		if(map.containsKey(val)){
 			return;
 		}
-		Integer l = map.lowerKey(val);
-		Integer h = map.higherKey(val);
-		if (l != null && h != null && map.get(l)[1] + 1 == val && h == val + 1) {
-			map.get(l)[1] = map.get(h)[1];
-			map.remove(h);
-		} else if (l != null && map.get(l)[1] + 1 >= val) {
-			map.get(l)[1] = Math.max(map.get(l)[1], val);
-		} else if (h != null && h == val + 1) {
-			int[] in = new int[2];
-			in[0] = val;
-			in[1] = map.get(h)[1];
-			map.put(val, in);
-			map.remove(h);
-		} else {
-			int[] in = new int[2];
-			in[0] = val;
-			in[1] = val;
-			map.put(val, in);
+		Integer lower = map.lowerKey(val), higher = map.higherKey(val);
+		// val exists in the range of [lower, map.get(lower)]
+		if(lower != null && val <= map.get(lower)[1]){
+			return;
+		}
+		// map.get(lower) + 1 = val = higher - 1
+		// merge the two intervals
+		if(lower != null && higher != null && map.get(lower)[1] + 1 == val && val + 1 == higher){
+			map.get(lower)[1] = map.get(higher)[1];
+			map.remove(higher);
+		// map.get(lower) + 1 = val
+		// merge val to the left interval
+		}else if(lower != null && map.get(lower)[1] + 1 == val){
+			map.get(lower)[1] = val;
+		// val = higher - 1
+		// merge val to the right interval
+		}else if(higher != null && val + 1 == higher){
+			map.put(val, new int[]{val, map.get(higher)[1]});
+			map.remove(higher);
+		// add val as an new interval
+		}else{
+			map.put(val, new int[]{val, val});
 		}
 	}
 
+	// time O(n)
 	public int[][] getIntervals() {
 		return map.values().toArray(new int[map.size()][2]);
 	}

@@ -5,8 +5,36 @@ package org.wshuai.leetcode;
  * #0300 https://leetcode.com/problems/longest-increasing-subsequence/
  */
 public class LongestIncreasingSubsequence {
-    // time O(n^2)
+
+	// time O(n*log(n))
+	// https://github.com/RodneyShag/LeetCode_solutions/blob/master/Solutions/Longest%20Increasing%20Subsequence.md
+	// https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
 	public int lengthOfLIS(int[] nums) {
+		if(nums == null || nums.length == 0){
+			return 0;
+		}
+		int res = 0, n = nums.length;
+		int[] sorted = new int[n];
+		for(int num : nums){
+			int left = 0, right = res;
+			while(left < right){
+				int mid = left + (right - left) / 2;
+				if(sorted[mid] < num){
+					left = mid + 1;
+				}else{
+					right = mid;
+				}
+			}
+			sorted[left] = num;
+			if(left == res){
+				res++;
+			}
+		}
+		return res;
+	}
+
+    // time O(n^2)
+	public int lengthOfLISDP(int[] nums) {
 		if (nums == null || nums.length == 0) {
 			return 0;
 		}
