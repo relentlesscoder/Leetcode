@@ -3,63 +3,50 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 8/26/19.
- * #358 https://leetcode.com/problems/rearrange-string-k-distance-apart/
+ * Created by Wei on 08/26/2019.
+ * #0358 https://leetcode.com/problems/rearrange-string-k-distance-apart/
  */
 public class RearrangeStringKDistanceApart {
+	// time O(n/k*log(d)), space O(d), d is count of unique characters in s
 	public String rearrangeString(String s, int k) {
-		if (k == 0) {
+		if(s == null || s.length() == 0){
+			return "";
+		}
+		if(k == 0){
 			return s;
 		}
-		Map<Character, Integer> map = new HashMap<>();
-		for (char c : s.toCharArray()) {
-			map.put(c, map.getOrDefault(c, 0) + 1);
-		}
-
-		PriorityQueue<Character> queue = new PriorityQueue<>(new Comparator<Character>() {
-			public int compare(Character c1, Character c2) {
-				if (map.get(c1).intValue() != map.get(c2).intValue()) {
-					return map.get(c2) - map.get(c1);
-				} else {
-					return c1.compareTo(c2);
-				}
-			}
-		});
-
-		for (char c : map.keySet()) {
-			queue.offer(c);
-		}
-
 		StringBuilder sb = new StringBuilder();
-
-		int len = s.length();
-
-		while (!queue.isEmpty()) {
-			int cnt = Math.min(k, len);
-			ArrayList<Character> temp = new ArrayList<>();
-
-			for (int i = 0; i < cnt; i++) {
-				if (queue.isEmpty()) {
-					return "";
-				}
-
-				char c = queue.poll();
-				sb.append(String.valueOf(c));
-
-				map.put(c, map.get(c) - 1);
-
-				if (map.get(c) > 0) {
-					temp.add(c);
-				}
-
-				len--;
+		int[] count = new int[26];
+		for(char c : s.toCharArray()){
+			count[c - 'a']++;
+		}
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] == b[1] ? a[0] - b[0] : b[1] - a[1]);
+		for(int i = 0; i < 26; i++){
+			if(count[i] == 0){
+				continue;
 			}
-
-			for (char c : temp) {
-				queue.offer(c);
+			pq.offer(new int[]{i, count[i]});
+		}
+		while(pq.size() >= k){
+			List<int[]> next = new ArrayList<>();
+			for(int i = 0; i < k; i++){
+				next.add(pq.poll());
+			}
+			for(int[] cur : next){
+				sb.append((char)('a' + cur[0]));
+				cur[1]--;
+				if(cur[1] > 0){
+					pq.offer(cur);
+				}
 			}
 		}
-
+		while(!pq.isEmpty()){
+			int[] cur = pq.poll();
+			if(cur[1] > 1){
+				return "";
+			}
+			sb.append((char)('a' + cur[0]));
+		}
 		return sb.toString();
 	}
 }
