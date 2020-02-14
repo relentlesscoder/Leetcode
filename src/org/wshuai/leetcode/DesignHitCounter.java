@@ -3,51 +3,37 @@ package org.wshuai.leetcode;
 import java.util.LinkedList;
 
 /**
- * Created by Wei on 10/31/16.
+ * Created by Wei on 10/31/2016.
+ * #0362 https://leetcode.com/problems/design-hit-counter/
  */
 public class DesignHitCounter {
-	private int sum;
-	private LinkedList<int[]> hits;
+	private int count;
+	private LinkedList<int[]> queue;
 
-	/**
-	 * Initialize your data structure here.
-	 */
+	/** Initialize your data structure here. */
 	public DesignHitCounter() {
-		sum = 0;
-		hits = new LinkedList<int[]>();
+		count = 0;
+		queue = new LinkedList<int[]>();
 	}
 
-	/**
-	 * Record a hit.
-	 *
-	 * @param timestamp - The current timestamp (in seconds granularity).
-	 */
+	/** Record a hit.
+	 @param timestamp - The current timestamp (in seconds granularity). */
 	public void hit(int timestamp) {
-		sum++;
-		int[] last = hits.peekLast();
-		if (last != null && last[0] == timestamp) {
-			last[1]++;
-		} else {
-			int[] curr = new int[2];
-			curr[0] = timestamp;
-			curr[1] = 1;
-			hits.offer(curr);
+		count++;
+		if(!queue.isEmpty() && queue.peekLast()[0] == timestamp){
+			queue.peekLast()[1]++;
+		}else{
+			queue.offerLast(new int[]{timestamp, 1});
 		}
 	}
 
-	/**
-	 * Return the number of hits in the past 5 minutes.
-	 *
-	 * @param timestamp - The current timestamp (in seconds granularity).
-	 */
+	/** Return the number of hits in the past 5 minutes.
+	 @param timestamp - The current timestamp (in seconds granularity). */
 	public int getHits(int timestamp) {
-		int[] head = hits.peek();
-		while (head != null && timestamp - head[0] >= 300) {
-			hits.poll();
-			sum -= head[1];
-			head = hits.peek();
+		while(!queue.isEmpty() && timestamp - queue.peekFirst()[0] >= 300){
+			count -= queue.pollFirst()[1];
 		}
-		return sum;
+		return count;
 	}
 }
 
