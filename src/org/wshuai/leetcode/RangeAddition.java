@@ -1,31 +1,24 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/31/16.
- * #370 https://leetcode.com/problems/range-addition/
+ * Created by Wei on 10/31/2016.
+ * #0370 https://leetcode.com/problems/range-addition/
  */
 public class RangeAddition {
-	//O(n+k)
+	// time O(n)
 	public int[] getModifiedArray(int length, int[][] updates) {
-		int[] result = new int[length];
-		int len = updates.length;
-		for (int i = 0; i < len; i++) {
-			int start = updates[i][0];
-			int end = updates[i][1];
-			int inc = updates[i][2];
-			if (start < length) {
-				result[start] += inc;
-			}
-			if (end < length - 1) {
-				result[end + 1] -= inc;
+		int[] res = new int[length];
+		for(int[] u : updates){
+			res[u[0]] += u[2];
+			if(u[1] + 1 < length){
+				res[u[1] + 1] -= u[2];
 			}
 		}
-
 		int sum = 0;
-		for (int i = 0; i < length; i++) {
-			sum += result[i];
-			result[i] = sum;
+		for(int i = 0; i < length; i++){
+			sum += res[i];
+			res[i] = sum;
 		}
-		return result;
+		return res;
 	}
 }
