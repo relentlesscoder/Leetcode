@@ -1,43 +1,41 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Created by Wei on 11/19/16.
- * #384 https://leetcode.com/problems/shuffle-an-array/
+ * Created by Wei on 11/19/2016.
+ * #0384 https://leetcode.com/problems/shuffle-an-array/
  */
 public class ShuffleAnArray {
 	private int[] nums;
-	private int[] out;
-	private Random random;
+	private Random rand;
 
 	public ShuffleAnArray(int[] nums) {
 		this.nums = nums;
-		this.out = Arrays.copyOf(nums, nums.length);
-		this.random = new Random();
+		rand = new Random();
 	}
 
-	/**
-	 * Resets the array to its original configuration and return it.
-	 */
+	/** Resets the array to its original configuration and return it. */
 	public int[] reset() {
-		this.out = Arrays.copyOf(nums, nums.length);
-		return out;
+		return nums;
 	}
 
-	/**
-	 * Returns a random shuffling of the array.
-	 */
+	/** Returns a random shuffling of the array. */
 	public int[] shuffle() {
-		int len = nums.length;
-		for (int i = 0; i < len; i++) {
-			int pos = random.nextInt(len - i) + i;
-			int temp = out[pos];
-			out[pos] = out[i];
-			out[i] = temp;
+		int[] copy = nums.clone();
+		for(int i = 0; i < copy.length; i++){
+			int j = rand.nextInt(i + 1);
+			if(j == i){
+				continue;
+			}
+			// probability of nums[i] in any position
+			// in range 0 to i - 1:
+			// (1 - 1 / (i + 1)) * 1 / i = 1 / (i + 1)
+			int temp = copy[i];
+			copy[i] = copy[j];
+			copy[j] = temp;
 		}
-		return out;
+		return copy;
 	}
 }
 
