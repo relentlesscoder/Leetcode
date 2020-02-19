@@ -3,58 +3,49 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 3/27/2017.
- * #380 https://leetcode.com/problems/insert-delete-getrandom-o1/
+ * Created by Wei on 03/27/2017.
+ * #0380 https://leetcode.com/problems/insert-delete-getrandom-o1/
  */
 public class InsertDeleteGetRandomO1 {
 	private Map<Integer, Integer> map;
-	private List<Integer> lst;
+	private List<Integer> list;
 	private Random rand;
 
-	/**
-	 * Initialize your data structure here.
-	 */
+	/** Initialize your data structure here. */
 	public InsertDeleteGetRandomO1() {
-		map = new HashMap<Integer, Integer>();
-		lst = new ArrayList<Integer>();
+		map = new HashMap<>();
+		list = new ArrayList<>();
 		rand = new Random();
 	}
 
-	/**
-	 * Inserts a value to the set. Returns true if the set did not already contain the specified element.
-	 */
+	/** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
 	public boolean insert(int val) {
-		if (map.containsKey(val)) {
+		if(map.containsKey(val)){
 			return false;
 		}
-		lst.add(val);
-		map.put(val, lst.size() - 1);
+		list.add(val);
+		map.put(val, list.size() - 1);
 		return true;
 	}
 
-	/**
-	 * Removes a value from the set. Returns true if the set contained the specified element.
-	 */
+	/** Removes a value from the set. Returns true if the set contained the specified element. */
 	public boolean remove(int val) {
-		if (map.containsKey(val)) {
-			int idx = map.get(val);
-			if (idx != lst.size() - 1) {
-				int last = lst.get(lst.size() - 1);
-				lst.set(idx, last);
-				map.put(last, idx);
-			}
-			lst.remove(lst.size() - 1);
-			map.remove(val);
-			return true;
+		if(!map.containsKey(val)){
+			return false;
 		}
-		return false;
+		int index = map.get(val), last = list.get(list.size() - 1);
+		if(index != list.size() - 1){
+			list.set(index, last);
+			map.put(last, index);
+		}
+		list.remove(list.size() - 1);
+		map.remove(val);
+		return true;
 	}
 
-	/**
-	 * Get a random element from the set.
-	 */
+	/** Get a random element from the set. */
 	public int getRandom() {
-		return lst.get(rand.nextInt(lst.size()));
+		return list.get(rand.nextInt(list.size()));
 	}
 }
 

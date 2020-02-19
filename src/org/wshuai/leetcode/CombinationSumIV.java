@@ -4,76 +4,52 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 10/28/2016.
- * #377 https://leetcode.com/problems/combination-sum-iv/
+ * #0377 https://leetcode.com/problems/combination-sum-iv/
  */
 public class CombinationSumIV {
-
-	//Optimal solution - http://www.cnblogs.com/grandyang/p/5705750.html
+	// time O(n^2)
+	// http://www.cnblogs.com/grandyang/p/5705750.html
 	public int combinationSum4(int[] nums, int target) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
-
-		int len = nums.length;
+		int[] dp = new int[target + 1];
+		dp[0] = 1;
 		Arrays.sort(nums);
-		int[] aux = new int[target + 1];
-		aux[0] = 1;
-		for (int i = 1; i <= target; i++) {
-			for (int j = 0; j < len; j++) {
-				int val = nums[j];
-				if (i < val) {
+		for(int i = 1; i <= target; i++){
+			for(int j = 0; j < nums.length; j++){
+				if(nums[j] > i){
 					break;
 				}
-				aux[i] += aux[i - val];
+				dp[i] += dp[i - nums[j]];
 			}
 		}
-
-		return aux[target];
+		return dp[target];
 	}
 
-	//Dynamic Programming
-	public int combinationSum4DP(int[] nums, int target) {
-		if (nums == null || nums.length == 0) {
+	private int[] dp;
+
+	public int combinationSum4RecursionWithMemo(int[] nums, int target) {
+		if(nums.length == 0){
 			return 0;
 		}
-
-		int len = nums.length;
-		int[] aux = new int[target + 1];
-		aux[0] = 1;
-		for (int i = 1; i <= target; i++) {
-			for (int j = 0; j < len; j++) {
-				int val = nums[j];
-				if (i >= val) {
-					aux[i] += aux[i - val];
-				}
-			}
-		}
-
-		return aux[target];
+		dp = new int[target + 1];
+		Arrays.fill(dp, -1);
+		return dfs(nums, target, dp);
 	}
 
-	// TLE
-	public int combinationSum4DFS(int[] nums, int target) {
-		if (nums == null || nums.length == 0) {
-			return 0;
+	private int dfs(int[] nums, int target, int[] dp){
+		if(target <= 0){
+			return target == 0 ? 1 : 0;
 		}
-		RefType rt = new RefType();
-		int len = nums.length;
-		combinationSum4DFSUtil(nums, rt, len, target, 0);
-		return rt.val;
-	}
-
-	private void combinationSum4DFSUtil(int[] nums, RefType rt, int len, int target, int sum) {
-		if (sum > target) {
-			return;
+		if(dp[target] != -1){
+			return dp[target];
 		}
-		if (sum == target) {
-			rt.val++;
-			return;
-		} else {
-			for (int i = 0; i < len; i++) {
-				combinationSum4DFSUtil(nums, rt, len, target, sum + nums[i]);
-			}
+		int res = 0;
+		for(int i = 0; i < nums.length; i++){
+			res += dfs(nums, target - nums[i], dp);
 		}
+		dp[target] = res;
+		return res;
 	}
 }
