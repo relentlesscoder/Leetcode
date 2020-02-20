@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/6/19.
- * #393 https://leetcode.com/problems/utf-8-validation/
+ * Created by Wei on 08/06/2019.
+ * #0393 https://leetcode.com/problems/utf-8-validation/
  */
 public class UTF8Validation {
 	public boolean validUtf8(int[] data) {

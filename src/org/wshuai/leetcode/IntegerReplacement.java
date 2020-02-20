@@ -1,41 +1,43 @@
 package org.wshuai.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Created by Wei on 11/7/2016.
- * #397 https://leetcode.com/problems/integer-replacement/
+ * Created by Wei on 11/07/2016.
+ * #0397 https://leetcode.com/problems/integer-replacement/
  */
 public class IntegerReplacement {
-	//4ms
-	public int integerReplacement(int n) {
-		long t = n;
-		int count = 0;
-		while (t > 1) {
-			if (t % 2 == 0) {
-				t >>= 1;
-			} else {
-				if ((t + 1) % 4 == 0 && t != 3) {
-					t += 1;
-				} else {
-					t -= 1;
-				}
-			}
-			count++;
-		}
-		return count;
+	// time O(log(n)), space O(n)
+	public int integerReplacementRecursionWithMemo(int n) {
+		Map<Integer, Integer> map = new HashMap<>();
+		return dfs(n, map);
 	}
 
-	//11ms
-	public int integerReplacementRecursive(int n) {
-		if (n == 1) {
+	private int dfs(int n, Map<Integer, Integer> map){
+		if(n <= 1){
 			return 0;
 		}
-		if (n % 2 == 0) {
-			return 1 + integerReplacementRecursive(n / 2);
-		} else {
-			long x = n;
-			int p = (int) ((x + 1) / 2);
-			int m = (int) ((x - 1) / 2);
-			return 2 + Math.min(integerReplacementRecursive(p), integerReplacementRecursive(m));
+		if(!map.containsKey(n)){
+			if(n % 2 == 0){
+				map.put(n, 1 + dfs(n / 2, map));
+			}else{
+				map.put(n, 2 + Math.min(dfs(n / 2, map), dfs(n / 2 + 1, map)));
+			}
 		}
+		return map.get(n);
+	}
+
+	// MLE
+	public int integerReplacementDP(int n) {
+		int[] dp = new int[n + 1];
+		for(int i = 2; i <= n; i++){
+			if(i % 2 == 0){
+				dp[i] = dp[i / 2] + 1;
+			}else{
+				dp[i] = Math.min(dp[i / 2], dp[i / 2 + 1]) + 2;
+			}
+		}
+		return dp[n];
 	}
 }
