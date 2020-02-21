@@ -1,21 +1,15 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/31/16.
- * #413 https://leetcode.com/problems/arithmetic-slices/
+ * Created by Wei on 10/31/2016.
+ * #0413 https://leetcode.com/problems/arithmetic-slices/
  */
 public class ArithmeticSlices {
+	// time O(n), space O(1)
 	public int numberOfArithmeticSlices(int[] A) {
 		int curr = 0;
 		int res = 0;
 		for(int i = 2; i < A.length; i++){
-			// since curr starts to accumulate from the third number
-			// curr = LAS (the length of the current arithmetic slice) - 2
-			// each time we extend the current arithmetic slice
-			// we have LAS - 2 new arithmetic slice so we simply add curr
-			// to the result.
-			// example: [1, 2, 3, 4]
-			// add 5 to it we have [1, 2, 3, 4, 5], [2, 3, 4, 5], [3, 4, 5]
 			if(A[i] - A[i - 1] == A[i - 1] - A[i - 2]){
 				curr += 1;
 				res += curr;
@@ -26,6 +20,7 @@ public class ArithmeticSlices {
 		return res;
 	}
 
+	// time O(n), space O(n)
 	public int numberOfArithmeticSlicesDP(int[] A) {
 		int res = 0;
 		int N = A.length;
@@ -34,14 +29,14 @@ public class ArithmeticSlices {
 		}
 		int[] dp = new int[N];
 		for(int i = 2; i < N; i++){
+			// example: [1, 2, 3, 4]
+			// the number of slices end at 4 starts at 1, 2
+			// add 5 to it,  the number of slices end at 5 starts at 1, 2, 3
+			// we have [1, 2, 3, 4, 5], [2, 3, 4, 5], [3, 4, 5]
+			// so count(5) = count(4) + 1
 			if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]){
 				dp[i] = dp[i - 1] + 1;
 			}
-			/*
-			else{
-				dp[i] = 0;
-			}
-			*/
 			res += dp[i];
 		}
 		return res;
