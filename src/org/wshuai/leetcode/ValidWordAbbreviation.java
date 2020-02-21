@@ -2,47 +2,44 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/27/2016.
- * #408 https://leetcode.com/problems/valid-word-abbreviation/
+ * #0408 https://leetcode.com/problems/valid-word-abbreviation/
  */
 public class ValidWordAbbreviation {
+	// time O(n)
 	public boolean validWordAbbreviation(String word, String abbr) {
-		if (word == null || abbr == null) {
-			return false;
-		}
-		int wLen = word.length();
-		int aLen = abbr.length();
-		int i = 0;
-		int s = 0;
-		int j = 0;
-		while (i < aLen) {
-			char val = abbr.charAt(i);
-			if (Character.isDigit(val)) {
-				i++;
-			} else {
-				if (i > s) {
-					if (abbr.charAt(s) == '0') {
+		int i = 0, j = 0, m = word.length(), n = abbr.length();
+		StringBuilder sb = new StringBuilder();
+		while (j < n) {
+			char c = abbr.charAt(j);
+			if (c >= '0' && c <= '9') {
+				sb.append(c);
+				j++;
+			} else if (c >= 'a' && c <= 'z') {
+				if (sb.length() > 0) {
+					if (sb.charAt(0) == '0') {
 						return false;
 					}
-					int num = Integer.parseInt(abbr.substring(s, i));
-					j += num;
-					s = i;
+					int count = Integer.parseInt(sb.toString());
+					i += count;
+					sb = new StringBuilder();
 				}
-				if (j < wLen && word.charAt(j) == abbr.charAt(i)) {
+				if (i < m && word.charAt(i) == c) {
 					i++;
-					s++;
 					j++;
 				} else {
 					return false;
 				}
-			}
-		}
-		if (i > s) {
-			if (abbr.charAt(s) == '0') {
+			} else {
 				return false;
 			}
-			int num = Integer.parseInt(abbr.substring(s, i));
-			j += num;
 		}
-		return (j == wLen);
+		if (sb.length() > 0) {
+			if (sb.charAt(0) == '0') {
+				return false;
+			}
+			int count = Integer.parseInt(sb.toString());
+			i += count;
+		}
+		return i == m;
 	}
 }
