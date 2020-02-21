@@ -2,10 +2,10 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 09/21/2016.
- *
+ * #0400 https://leetcode.com/problems/nth-digit/
  */
 public class NthDigit {
-	// time 
+	// time O(log(n))
 	// https://leetcode.com/problems/nth-digit/discuss/88363/Java-solution
 	public int findNthDigit(int n) {
 		int len = 1, start = 1;
