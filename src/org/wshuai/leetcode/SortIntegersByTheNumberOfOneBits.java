@@ -27,10 +27,10 @@ public class SortIntegersByTheNumberOfOneBits {
 			mask3 = 0x0f0f0f0f, mask4 = 0x00ff00ff,
 			mask5 = 0x0000ffff;
 		int res = ((num >> 1) & mask1) + (num & mask1);
-		res = ((res >> 2) & mask2) + (res & mask2);;
-		res = ((res >> 4) & mask3) + (res & mask3);;
-		res = ((res >> 8) & mask4) + (res & mask4);;
-		res = ((res >> 16) & mask5) + (res & mask5);;
+		res = ((res >> 2) & mask2) + (res & mask2);
+		res = ((res >> 4) & mask3) + (res & mask3);
+		res = ((res >> 8) & mask4) + (res & mask4);
+		res = ((res >> 16) & mask5) + (res & mask5);
 		return res;
 	}
 }
