@@ -2,34 +2,22 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 11/18/2016.
- * #424 https://leetcode.com/problems/longest-repeating-character-replacement/
+ * #0424 https://leetcode.com/problems/longest-repeating-character-replacement/
  */
 public class LongestRepeatingCharacterReplacement {
+	// time O(n)
+	// https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation
 	public int characterReplacement(String s, int k) {
-		if (s == null || s.isEmpty() || k < 0) {
-			return 0;
-		}
-		int left = 0;
-		int len = s.length();
-		int max = 0;
-		int[] aux = new int[26];
-		int maxCnt = 0;
-		for (int i = 0; i < len; i++) {
-			char val = s.charAt(i);
-			int idx = val - 'A';
-			aux[idx]++;
-			maxCnt = Math.max(aux[idx], maxCnt);
-			while (i - left + 1 - maxCnt > k) {
-				aux[s.charAt(left) - 'A']--;
-				int cMax = 0;
-				for (int j = 0; j < 26; j++) {
-					cMax = Math.max(cMax, aux[j]);
-				}
-				maxCnt = cMax;
-				left++;
+		int n = s.length(), start = 0, maxCount = 0, maxLength = 0;
+		int[] count = new int[26];
+		for(int end = 0; end < n; end++){
+			maxCount = Math.max(maxCount, ++count[s.charAt(end) - 'A']);
+			while(end - start + 1 - maxCount > k){
+				count[s.charAt(start) - 'A']--;
+				start++;
 			}
-			max = Math.max(i - left + 1, max);
+			maxLength = Math.max(maxLength, end - start + 1);
 		}
-		return max;
+		return maxLength;
 	}
 }

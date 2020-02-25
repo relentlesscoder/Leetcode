@@ -1,110 +1,94 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/10/16.
- * #423 https://leetcode.com/problems/reconstruct-original-digits-from-english/
+ * Created by Wei on 11/10/2016.
+ * #0423 https://leetcode.com/problems/reconstruct-original-digits-from-english/
  */
 public class ReconstructOriginalDigitsFromEnglish {
+	// time O(n)
 	public String originalDigits(String s) {
-		if (s == null || s.isEmpty()) {
-			return "";
+		int[] res = new int[10];
+		int[] count = new int[26];
+		for (char c : s.toCharArray()) {
+			count[c - 'a']++;
 		}
-		int[] arr = new int[10];
-		int[] map = new int[26];
-		int len = s.length();
-		for (int i = 0; i < len; i++) {
-			char val = s.charAt(i);
-			map[val - 'a']++;
+		/*
+		count digits by the order below to avoid conflicts
+		z 0 zero
+		x 6 six
+		u 4 four
+		w 2 two
+		g 8 eight
+		f 5 five
+		v 7 seven
+		i 9 nine
+		t 3 three
+		o 1 one
+
+		count array index to character mapping
+		0-a 1-b 2-c 3-d 4-e 5-f 6-g 7-h 8-i 9-j 10-k 11-l 12-m 13-n 14-o 15-p 16-q 17-r 18-s 19-t 20-u 21-v 22-w 23-x 24-y 25-z
+		*/
+		while (count[25]-- > 0) {
+			res[0]++;
+			count[4]--;
+			count[14]--;
+			count[17]--;
 		}
-		//z - zero
-		if (map[25] > 0) {
-			int cnt = map[25];
-			map[25] -= cnt;
-			arr[0] = cnt;
-			map[4] -= cnt;
-			map[17] -= cnt;
-			map[14] -= cnt;
+		while (count[23]-- > 0) {
+			res[6]++;
+			count[8]--;
+			count[18]--;
 		}
-		//w - two
-		if (map[22] > 0) {
-			int cnt = map[22];
-			arr[2] = cnt;
-			map[22] -= cnt;
-			map[19] -= cnt;
-			map[14] -= cnt;
+		while (count[20]-- > 0) {
+			res[4]++;
+			count[5]--;
+			count[14]--;
+			count[17]--;
 		}
-		//x - six
-		if (map[23] > 0) {
-			int cnt = map[23];
-			map[23] -= cnt;
-			arr[6] = cnt;
-			map[18] -= cnt;
-			map[8] -= cnt;
+		while (count[22]-- > 0) {
+			res[2]++;
+			count[14]--;
+			count[19]--;
 		}
-		//g - eight
-		if (map[6] > 0) {
-			int cnt = map[6];
-			map[6] -= cnt;
-			arr[8] = cnt;
-			map[4] -= cnt;
-			map[8] -= cnt;
-			map[7] -= cnt;
-			map[19] -= cnt;
+		while (count[6]-- > 0) {
+			res[8]++;
+			count[4]--;
+			count[8]--;
+			count[7]--;
+			count[19]--;
 		}
-		//u - four
-		if (map[20] > 0) {
-			int cnt = map[20];
-			map[20] -= cnt;
-			arr[4] = cnt;
-			map[5] -= cnt;
-			map[14] -= cnt;
-			map[17] -= cnt;
+		while (count[5]-- > 0) {
+			res[5]++;
+			count[4]--;
+			count[8]--;
+			count[21]--;
 		}
-		//o - one
-		if (map[14] > 0) {
-			int cnt = map[14];
-			map[14] -= cnt;
-			arr[1] = cnt;
-			map[13] -= cnt;
-			map[4] -= cnt;
+		while (count[21]-- > 0) {
+			res[7]++;
+			count[4] -= 2;
+			count[13]--;
+			count[18]--;
 		}
-		//f - five
-		if (map[5] > 0) {
-			int cnt = map[5];
-			map[5] -= cnt;
-			arr[5] = cnt;
-			map[8] -= cnt;
-			map[21] -= cnt;
-			map[4] -= cnt;
+		while (count[8]-- > 0) {
+			res[9]++;
+			count[4]--;
+			count[13] -= 2;
 		}
-		//t - three
-		if (map[19] > 0) {
-			int cnt = map[19];
-			map[19] -= cnt;
-			arr[3] = cnt;
-			map[7] -= cnt;
-			map[17] -= cnt;
-			map[4] -= 2 * cnt;
+		while (count[19]-- > 0) {
+			res[3]++;
+			count[4] -= 2;
+			count[7]--;
+			count[17]--;
 		}
-		//v - seven
-		if (map[21] > 0) {
-			int cnt = map[21];
-			map[21] -= cnt;
-			arr[7] = cnt;
-			map[18] -= cnt;
-			map[13] -= cnt;
-			map[4] -= 2 * cnt;
-		}
-		//i - nine
-		if (map[8] > 0) {
-			arr[9] = map[8];
+		while (count[14]-- > 0) {
+			res[1]++;
+			count[4]--;
+			count[13]--;
 		}
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 10; i++) {
-			int cnt = arr[i];
-			while (cnt > 0) {
-				sb.append(Integer.toString(i));
-				cnt--;
+			while (res[i]-- > 0) {
+				sb.append(i);
 			}
 		}
 		return sb.toString();

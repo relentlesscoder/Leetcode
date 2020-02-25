@@ -1,30 +1,33 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Wei on 8/9/19.
- * #429 https://leetcode.com/problems/n-ary-tree-level-order-traversal/
+ * Created by Wei on 08/09/2019.
+ * #0429 https://leetcode.com/problems/n-ary-tree-level-order-traversal/
  */
 public class NaryTreeLevelOrderTraversal {
+	// time O(n), space O(n)
 	public List<List<Integer>> levelOrder(NaryTreeNode root) {
-		List<List<Integer>> res = new ArrayList<List<Integer>>();
-		if (root == null) {
+		List<List<Integer>> res = new ArrayList<>();
+		if(root == null){
 			return res;
 		}
-		List<NaryTreeNode> curr = new ArrayList<NaryTreeNode>();
-		List<NaryTreeNode> next = new ArrayList<NaryTreeNode>();
-		curr.add(root);
-		while (!curr.isEmpty()) {
-			List<Integer> lst = new ArrayList<Integer>();
-			for (NaryTreeNode node : curr) {
-				lst.add(node.val);
-				next.addAll(node.children);
+		LinkedList<NaryTreeNode> queue = new LinkedList<>();
+		queue.offerLast(root);
+		while(!queue.isEmpty()){
+			int size = queue.size();
+			List<Integer> levelNodes = new ArrayList<>();
+			while(size-- > 0){
+				NaryTreeNode cur = queue.pollFirst();
+				levelNodes.add(cur.val);
+				for(NaryTreeNode child : cur.children){
+					queue.offerLast(child);
+				}
 			}
-			res.add(lst);
-			curr = next;
-			next = new ArrayList<NaryTreeNode>();
+			res.add(levelNodes);
 		}
 		return res;
 	}
