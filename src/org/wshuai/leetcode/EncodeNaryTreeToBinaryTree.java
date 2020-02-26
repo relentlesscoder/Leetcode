@@ -3,13 +3,15 @@ package org.wshuai.leetcode;
 import java.util.ArrayList;
 
 /**
- * Created by Wei on 12/3/19.
- * #431 https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree/
+ * Created by Wei on 12/03/2019.
+ * #0431 https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree/
  */
 public class EncodeNaryTreeToBinaryTree {
-	// Next level first -> left, same level -> right
+
+	// time O(n)
 	// Encodes an n-ary tree to a binary tree.
 	public TreeNode encode(NaryTreeNode root) {
+		// Next level first -> left, same level -> right
 		if(root == null){
 			return null;
 		}
@@ -25,6 +27,7 @@ public class EncodeNaryTreeToBinaryTree {
 		return result;
 	}
 
+	// time O(n)
 	// Decodes your binary tree to an n-ary tree.
 	public NaryTreeNode decode(TreeNode root) {
 		if(root == null){
