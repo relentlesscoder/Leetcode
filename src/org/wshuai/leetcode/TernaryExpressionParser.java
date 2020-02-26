@@ -3,30 +3,25 @@ package org.wshuai.leetcode;
 import java.util.Stack;
 
 /**
- * Created by Wei on 10/30/16.
- * #439 https://leetcode.com/problems/ternary-expression-parser/
+ * Created by Wei on 10/30/2016.
+ * #0439 https://leetcode.com/problems/ternary-expression-parser/
  */
 public class TernaryExpressionParser {
+	// time O(n)
 	public String parseTernary(String expression) {
-		if (expression == null || expression.length() == 0) {
-			return "";
-		}
 		Stack<Character> stack = new Stack<Character>();
-		int len = expression.length();
-		int i = len - 1;
-		//The expression needs to be parsed from right to left
-		while (i >= 0) {
-			stack.push(expression.charAt(i));
-			i--;
+		char[] arr = expression.toCharArray();
+		int n = arr.length, i = n - 1;
+		while(i >= 0){
+			stack.push(arr[i--]);
 			int size = stack.size();
-			while (size >= 5 && stack.get(size - 2) == '?' && stack.get(size - 4) == ':') {
-				char[] arr = new char[5];
-				for (int j = 0; j < 5; j++) {
-					arr[j] = stack.pop();
+			while(size >= 5 && stack.get(size - 2) == '?' && stack.get(size - 4) == ':'){
+				char[] temp = new char[5];
+				for(int j = 0; j < 5; j++){
+					temp[j] = stack.pop();
 				}
-				char x = arr[0] == 'T' ? arr[2] : arr[4];
-				stack.push(x);
-				size = stack.size();
+				stack.push(temp[0] == 'T' ? temp[2] : temp[4]);
+				size -= 4;
 			}
 		}
 		return Character.toString(stack.peek());
