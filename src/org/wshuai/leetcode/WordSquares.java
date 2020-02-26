@@ -3,48 +3,52 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 11/18/19.
- * #425 https://leetcode.com/problems/word-squares/
+ * Created by Wei on 11/18/2019.
+ * #0425 https://leetcode.com/problems/word-squares/
  */
 public class WordSquares {
+	// time O(m*n)
 	public List<List<String>> wordSquares(String[] words) {
-		int N = words[0].length();
-		Map<String, Set<String>> prefix = new HashMap<>();
+		List<List<String>> res = new ArrayList<>();
+		if(words == null || words.length == 0){
+			return res;
+		}
+		int n = words[0].length();
+		Map<String, Set<String>> map = new HashMap<>();
 		for(String word : words){
-			for(int i = 1; i <= word.length(); i++){
-				String str = word.substring(0, i);
-				prefix.putIfAbsent(str, new HashSet<>());
-				prefix.get(str).add(word);
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < word.length(); i++){
+				sb.append(word.charAt(i));
+				String prefix = sb.toString();
+				map.putIfAbsent(prefix, new HashSet<>());
+				map.get(prefix).add(word);
 			}
 		}
-
-		List<List<String>> res = new ArrayList<>();
-		List<String> curr = null;
 		for(String word : words){
-			curr = new ArrayList<>();
-			curr.add(word);
-			dfs(1, N, curr, prefix, res);
+			List<String> cur = new ArrayList<>();
+			cur.add(word);
+			dfs(1, n, cur, res, map);
 		}
 		return res;
 	}
 
-	private void dfs(int i, int N, List<String> curr, Map<String, Set<String>> prefix, List<List<String>> res){
-		if(i == N){
-			res.add(new ArrayList<>(curr));
+	private void dfs(int i, int n, List<String> cur, List<List<String>> res, Map<String, Set<String>> map){
+		if(i == n){
+			res.add(new ArrayList<>(cur));
 			return;
 		}
 		StringBuilder sb = new StringBuilder();
-		for(String s : curr){
+		for(String s : cur){
 			sb.append(s.charAt(i));
 		}
-		String p = sb.toString();
-		if(!prefix.containsKey(p)){
+		String prefix = sb.toString();
+		if(!map.containsKey(prefix)){
 			return;
 		}
-		for(String next : prefix.get(p)){
-			curr.add(next);
-			dfs(i + 1, N, curr, prefix, res);
-			curr.remove(curr.size() - 1);
+		for(String s : map.get(prefix)){
+			cur.add(s);
+			dfs(i + 1, n, cur, res, map);
+			cur.remove(cur.size() - 1);
 		}
 	}
 }
