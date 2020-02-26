@@ -1,35 +1,39 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/22/19.
- * #430 https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
+ * Created by Wei on 09/22/2019.
+ * #0430 https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/
  */
 public class FlattenAMultilevelDoublyLinkedList {
+	// time O(n)
 	public DoublyLinkedListNode flatten(DoublyLinkedListNode head) {
-		DoublyLinkedListNode curr = head;
-		flattenUtil(curr);
+		if(head == null){
+			return head;
+		}
+		dfs(head);
 		return head;
 	}
 
-	private DoublyLinkedListNode flattenUtil(DoublyLinkedListNode curr) {
-		while (curr != null) {
-			if (curr.child != null) {
-				DoublyLinkedListNode next = curr.next;
-				DoublyLinkedListNode child = curr.child;
-				curr.next = curr.child;
-				child.prev = curr;
-				curr.child = null;
-				DoublyLinkedListNode tail = flattenUtil(child);
-				if (next != null) {
+	private DoublyLinkedListNode dfs(DoublyLinkedListNode head){
+		DoublyLinkedListNode cur = head;
+		while(cur != null){
+			if(cur.child != null){
+				DoublyLinkedListNode child = cur.child;
+				DoublyLinkedListNode next = cur.next;
+				cur.next = cur.child;
+				child.prev = cur;
+				cur.child = null;
+				DoublyLinkedListNode tail = dfs(child);
+				if(next != null){
 					tail.next = next;
 					next.prev = tail;
 				}
-				curr = tail;
+				cur = tail;
 			}
-			if (curr.next == null) {
-				return curr;
+			if(cur.next == null){
+				return cur;
 			}
-			curr = curr.next;
+			cur = cur.next;
 		}
 		return null;
 	}
