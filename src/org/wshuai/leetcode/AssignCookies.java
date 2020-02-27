@@ -4,31 +4,20 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 11/18/2016.
- * #455 https://leetcode.com/problems/assign-cookies/
+ * #0455 https://leetcode.com/problems/assign-cookies/
  */
 public class AssignCookies {
-	//O(n)
+	// time O(n)
 	public int findContentChildren(int[] g, int[] s) {
-		if (g == null || s == null) {
-			return 0;
-		}
+		int res = 0;
 		Arrays.sort(g);
 		Arrays.sort(s);
-		int gLen = g.length;
-		int sLen = s.length;
-		int cnt = 0;
-		int j = 0;
-		for (int i = 0; i < gLen; i++) {
-			while (j < sLen && s[j] < g[i]) {
-				j++;
-			}
-			if (j < sLen) {
-				cnt++;
-				j++;
-			} else {
-				break;
+		for(int i = s.length - 1, j = g.length - 1; i >= 0 && j >= 0; j--){
+			if(g[j] <= s[i]){
+				i--;
+				res++;
 			}
 		}
-		return cnt;
+		return res;
 	}
 }
