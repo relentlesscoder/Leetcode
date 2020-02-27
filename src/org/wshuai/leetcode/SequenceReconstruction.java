@@ -3,8 +3,8 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 11/11/19.
- * #444 https://leetcode.com/problems/sequence-reconstruction/
+ * Created by Wei on 11/11/2019.
+ * #0444 https://leetcode.com/problems/sequence-reconstruction/
  */
 public class SequenceReconstruction {
 
