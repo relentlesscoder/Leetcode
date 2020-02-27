@@ -1,43 +1,54 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/12/19.
- * #457 https://leetcode.com/problems/circular-array-loop/
+ * Created by Wei on 11/12/2019.
+ * #0457 https://leetcode.com/problems/circular-array-loop/
  */
 public class CircularArrayLoop {
 	public boolean circularArrayLoop(int[] nums) {
-		int n = nums.length;
-		for (int i = 0; i < n; i++) {
-			if (nums[i] == 0) {
+		if(nums == null || nums.length < 2){
+			return false;
+		}
+		int len = nums.length;
+		for(int i = 0; i < len; i++){
+			// skip visited nodes
+			if(nums[i] == 0){
 				continue;
 			}
-			// slow/fast pointer
-			int j = i, k = getIndex(i, nums);
-			while (nums[k] * nums[i] > 0 && nums[getIndex(k, nums)] * nums[i] > 0) {
-				if (j == k) {
-					// check for loop with only one element
-					if (j == getIndex(j, nums)) {
+			// advance fast once to avoid erroneous check
+			int slow = i, fast = advance(nums, slow);
+			while(nums[i] * nums[fast] > 0 &&
+				nums[i] * nums[advance(nums, fast)] > 0){
+				if(slow == fast){
+					// one element infinite loop
+					if(slow == advance(nums, slow)){
 						break;
 					}
 					return true;
 				}
-				j = getIndex(j, nums);
-				k = getIndex(getIndex(k, nums), nums);
+				slow = advance(nums, slow);
+				fast = advance(nums, advance(nums, fast));
 			}
-			// loop not found, set all element along the way to 0
-			j = i;
-			int val = nums[i];
-			while (nums[j] * val > 0) {
-				int next = getIndex(j, nums);
-				nums[j] = 0;
-				j = next;
+
+			// set visited path to 0
+			slow = i;
+			int sign = nums[i];
+			while(sign * nums[slow] > 0){
+				int temp = advance(nums, slow);
+				nums[slow] = 0;
+				slow = temp;
 			}
 		}
 		return false;
 	}
 
-	public int getIndex(int i, int[] nums) {
-		int n = nums.length;
-		return i + nums[i] >= 0? (i + nums[i]) % n: (n + ((i + nums[i]) % n)) % n;
+	private int advance(int[] nums, int i){
+		int len = nums.length;
+		i += nums[i];
+		i %= len;
+		if(i < 0){
+			i += len;
+		}
+		return i;
 	}
 }

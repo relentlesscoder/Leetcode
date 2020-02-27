@@ -4,29 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 1/7/2017.
- * #442 https://leetcode.com/problems/find-all-duplicates-in-an-array/
+ * Created by Wei on 01/07/2017.
+ * #0442 https://leetcode.com/problems/find-all-duplicates-in-an-array/
  */
 public class FindAllDuplicatesInAnArray {
-	//O(n), inline bucket sort
+	// time O(n), space O(1)
+	// in-place bucket sort
 	public List<Integer> findDuplicates(int[] nums) {
-		List<Integer> lst = new ArrayList<Integer>();
-		if (nums == null || nums.length == 0) {
-			return lst;
+		List<Integer> res = new ArrayList<>();
+		if(nums == null || nums.length == 0){
+			return res;
 		}
-		int len = nums.length;
-		for (int i = 0; i < len; i++) {
-			while (nums[i] != i + 1 && nums[nums[i] - 1] != nums[i]) {
-				int tmp = nums[i];
-				nums[i] = nums[tmp - 1];
-				nums[tmp - 1] = tmp;
+		int n = nums.length;
+		for(int i = 0; i < n; i++){
+			while(nums[i] != i + 1 && nums[i] <= n && nums[nums[i] - 1] != nums[i]){
+				int temp = nums[nums[i] - 1];
+				nums[nums[i] - 1] = nums[i];
+				nums[i] = temp;
 			}
 		}
-		for (int i = 0; i < len; i++) {
-			if (nums[i] != i + 1) {
-				lst.add(nums[i]);
+		for(int i = 0; i < n; i++){
+			if(nums[i] != i + 1){
+				res.add(nums[i]);
 			}
 		}
-		return lst;
+		return res;
 	}
 }
