@@ -1,27 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/8/19.
- * #478 https://leetcode.com/problems/generate-random-point-in-a-circle/
+ * Created by Wei on 11/08/2019.
+ * #0478 https://leetcode.com/problems/generate-random-point-in-a-circle/
  */
 public class GenerateRandomPointInACircle {
-	private double rad, xc, yc;
+	private double radius, xc, yc, area, diameter;
 
 	public GenerateRandomPointInACircle(double radius, double x_center, double y_center) {
-		rad = radius;
+		this.radius = radius;
 		xc = x_center;
 		yc = y_center;
+		area = radius * radius;
+		diameter = radius * 2;
 	}
 
 	public double[] randPoint() {
-		// get the bottom left corner of the square
-		double x0 = xc - rad;
-		double y0 = yc - rad;
+		double x0 = xc - radius;
+		double y0 = yc - radius;
 
 		while(true){
-			double x = x0 + Math.random() * rad * 2;
-			double y = y0 + Math.random() * rad * 2;
-			if((x - xc) * (x - xc) + (y - yc) * (y - yc) <= rad * rad){
+			double x = x0 + Math.random() * diameter;
+			double y = y0 + Math.random() * diameter;
+			if((x - xc) * (x - xc) + (y - yc) * (y - yc) <= area){
 				return new double[]{x, y};
 			}
 		}
