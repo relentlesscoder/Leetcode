@@ -1,29 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 2/15/17.
- * #485 https://leetcode.com/problems/max-consecutive-ones/
+ * Created by Wei on 02/15/2017.
+ * #0485 https://leetcode.com/problems/max-consecutive-ones/
  */
 public class MaxConsecutiveOnes {
+	// time O(n)
 	public int findMaxConsecutiveOnes(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			return 0;
-		}
-		int len = nums.length;
-		int max = 0;
-		for (int i = 0; i < len; i++) {
-			if (nums[i] == 0) {
-				continue;
+		int res = 0, n = nums.length, cur = 0;
+		for (int i = 0; i < n; i++) {
+			if (nums[i] == 1) {
+				if (i == 0 || nums[i - 1] == 0) {
+					cur = 1;
+				} else {
+					cur++;
+				}
+				res = Math.max(res, cur);
 			}
-			int cnt = 0;
-			int j = i;
-			while (j < len && nums[j] == 1) {
-				cnt++;
-				j++;
-			}
-			max = cnt > max ? cnt : max;
-			i = j;
 		}
-		return max;
+		return res;
 	}
 }
