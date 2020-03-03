@@ -1,23 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 3/5/17.
- * #495 https://leetcode.com/problems/teemo-attacking/
+ * Created by Wei on 03/05/2017.
+ * #0495 https://leetcode.com/problems/teemo-attacking/
  */
 public class TeemoAttacking {
+	// time O(n)
 	public int findPoisonedDuration(int[] timeSeries, int duration) {
-		int sum = 0;
-		int len = timeSeries.length;
-		int start = -1;
-		int end = -1;
-		for (int i = 0; i < len; i++) {
-			int time = timeSeries[i];
-			if (time >= end) {
-				sum += (end - start);
-				start = time;
-			}
-			end = time + duration;
+		if(timeSeries == null || timeSeries.length == 0){
+			return 0;
 		}
-		return sum + (end - start);
+		int res = duration, lastEnd = timeSeries[0] + duration;
+		for(int i = 1; i < timeSeries.length; i++){
+			res += duration;
+			if(timeSeries[i] < lastEnd){
+				res -= lastEnd - timeSeries[i];
+			}
+			lastEnd = timeSeries[i] + duration;
+		}
+		return res;
 	}
 }

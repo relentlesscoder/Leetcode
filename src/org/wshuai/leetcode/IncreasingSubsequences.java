@@ -1,38 +1,41 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
- * Created by Wei on 1/29/17.
- * #491 https://leetcode.com/problems/increasing-subsequences/
+ * Created by Wei on 01/29/2017.
+ * #0491 https://leetcode.com/problems/increasing-subsequences/
  */
 public class IncreasingSubsequences {
 	public List<List<Integer>> findSubsequences(int[] nums) {
-		List<List<Integer>> list = new ArrayList<List<Integer>>();
+		List<List<Integer>> res = new ArrayList<List<Integer>>();
 		if (nums == null || nums.length < 2) {
-			return list;
+			return res;
 		}
-		findSubsequencesDFS(nums, list, new ArrayList<Integer>(), 0);
-		return list;
+		dfs(0, nums, new ArrayList<Integer>(), res);
+		return res;
 	}
 
-	private void findSubsequencesDFS(int[] nums, List<List<Integer>> list, List<Integer> curr, int index) {
-		if (curr.size() > 1) {
-			list.add(new ArrayList<Integer>(curr));
+	private void dfs(int start, int[] nums, List<Integer> cur, List<List<Integer>> res) {
+		if (cur.size() > 1) {
+			res.add(new ArrayList<Integer>(cur));
 		}
-		List<Integer> unique = new ArrayList<Integer>();
-		for (int i = index; i < nums.length; i++) {
-			if (index > 0 && nums[i] < nums[index - 1]) {
+		Set<Integer> used = new HashSet<Integer>();
+		for (int i = start; i < nums.length; i++) {
+			if(cur.size() > 0 && nums[i] < cur.get(cur.size() - 1)){
 				continue;
 			}
-			if (unique.contains(nums[i])) {
+			// remove duplicate on the same level
+			if (used.contains(nums[i])) {
 				continue;
 			}
-			unique.add(nums[i]);
-			curr.add(nums[i]);
-			findSubsequencesDFS(nums, list, curr, i + 1);
-			curr.remove(curr.size() - 1);
+			used.add(nums[i]);
+			cur.add(nums[i]);
+			dfs(i + 1, nums, cur, res);
+			cur.remove(cur.size() - 1);
 		}
 	}
 }

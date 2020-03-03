@@ -1,53 +1,40 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 2/19/17.
- * #498 https://leetcode.com/problems/diagonal-traverse/?tab=Description
+ * Created by Wei on 02/19/2017.
+ * #0498 https://leetcode.com/problems/diagonal-traverse/?tab=Description
  */
 public class DiagonalTraverse {
+	// time O(m*n)
 	public int[] findDiagonalOrder(int[][] matrix) {
-		if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+		if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
 			return new int[0];
 		}
-		int rows = matrix.length;
-		int cols = matrix[0].length;
-		int len = rows * cols;
-		int[] res = new int[len];
-		int i = 0;
-		int j = 0;
-		for (int idx = 0; idx < len; idx++) {
-			res[idx] = matrix[i][j];
-			if (i == 0 && j != cols - 1) {
-				j++;
-				while (j > 0 && i < rows - 1) {
-					res[++idx] = matrix[i][j];
-					i++;
-					j--;
-				}
-			} else if (i == rows - 1) {
-				j++;
-				while (j < cols - 1 && i > 0) {
-					res[++idx] = matrix[i][j];
-					i--;
-					j++;
-				}
-			} else if (j == 0) {
-				i++;
-				while (i > 0 && j < cols - 1) {
-					res[++idx] = matrix[i][j];
-					i--;
-					j++;
-				}
-			} else if (j == cols - 1) {
-				i++;
-				while (i < rows - 1 && j > 0) {
-					res[++idx] = matrix[i][j];
-					i++;
-					j--;
-				}
+		int m = matrix.length, n = matrix[0].length, i = 0, j = 0, d = 1;
+		int[] res = new int[m * n];
+		for(int k = 0; k < res.length; k++){
+			res[k] = matrix[i][j];
+			i -= d;
+			j += d;
+			if(i == m){
+				i = m - 1;
+				j += 2;
+				d = -d;
+			}
+			if(j == n){
+				j = n - 1;
+				i += 2;
+				d = -d;
+			}
+			if(i < 0){
+				i = 0;
+				d = -d;
+			}
+			if(j < 0){
+				j = 0;
+				d = -d;
 			}
 		}
-
 		return res;
 	}
 }
