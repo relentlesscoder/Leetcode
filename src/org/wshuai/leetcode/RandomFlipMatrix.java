@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * Created by Wei on 11/5/2019.
- * #519 https://leetcode.com/problems/random-flip-matrix/
+ * Created by Wei on 11/05/2019.
+ * #0519 https://leetcode.com/problems/random-flip-matrix/
  */
 public class RandomFlipMatrix {
 	private Map<Integer, Integer> map;
