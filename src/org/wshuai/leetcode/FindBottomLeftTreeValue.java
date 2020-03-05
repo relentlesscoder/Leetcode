@@ -1,35 +1,27 @@
 package org.wshuai.leetcode;
 
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
- * Created by Wei on 2/26/17.
- * #513 https://leetcode.com/problems/find-bottom-left-tree-value/
+ * Created by Wei on 02/26/2017.
+ * #0513 https://leetcode.com/problems/find-bottom-left-tree-value/
  */
 public class FindBottomLeftTreeValue {
-	//O(n)
+	// time O(n), space O(n)
 	public int findBottomLeftValue(TreeNode root) {
-		TreeNode first = root;
-		Queue<TreeNode> curr = new LinkedList<TreeNode>();
-		Queue<TreeNode> nxt = new LinkedList<TreeNode>();
-		curr.offer(root);
-		while (!curr.isEmpty()) {
-			TreeNode node = curr.poll();
-			if (node.left != null) {
-				nxt.offer(node.left);
+		int res = -1;
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		queue.offerLast(root);
+		while(!queue.isEmpty()){
+			TreeNode cur = queue.pollFirst();
+			res = cur.val;
+			if(cur.right != null){
+				queue.offerLast(cur.right);
 			}
-			if (node.right != null) {
-				nxt.offer(node.right);
-			}
-			if (curr.isEmpty()) {
-				if (!nxt.isEmpty()) {
-					first = nxt.peek();
-				}
-				curr = nxt;
-				nxt = new LinkedList<TreeNode>();
+			if(cur.left != null){
+				queue.offerLast(cur.left);
 			}
 		}
-		return first.val;
+		return res;
 	}
 }
