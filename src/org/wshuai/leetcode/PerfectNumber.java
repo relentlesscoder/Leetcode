@@ -1,21 +1,24 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 4/4/2017.
- * #507 https://leetcode.com/problems/perfect-number/
+ * Created by Wei on 04/04/2017.
+ * #0507 https://leetcode.com/problems/perfect-number/
  */
 public class PerfectNumber {
+	// time O(log(n))
 	public boolean checkPerfectNumber(int num) {
-		if (num <= 1) {
+		// note that 1 is a special case
+		if(num <= 1){
 			return false;
 		}
-		//1 is always valid
-		int sum = 1;
-		for (int i = 2; i <= Math.sqrt(num); i++) {
-			if (num % i == 0) {
+		int sum = 1, div = 0;
+		for(int i = 2; i*i <= num; i++){
+			if(num % i == 0){
 				sum += i;
-				int rem = num / i;
-				sum += rem != i ? rem : 0;
+				div = num / i;
+				if(div != i){
+					sum += div;
+				}
 			}
 		}
 		return sum == num;

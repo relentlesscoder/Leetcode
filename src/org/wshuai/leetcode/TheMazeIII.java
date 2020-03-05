@@ -26,7 +26,6 @@ public class TheMazeIII {
 			if (curr.x == hole[0] && curr.y == hole[1]) {
 				return curr.moves;
 			}
-
 			if (!visited[curr.x][curr.y]) {
 				visited[curr.x][curr.y] = true;
 				for (int dir = 0; dir < 4; dir++) {
