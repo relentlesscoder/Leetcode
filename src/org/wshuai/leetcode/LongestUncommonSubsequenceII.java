@@ -1,12 +1,11 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/5/2019.
- * #522 https://leetcode.com/problems/longest-uncommon-subsequence-ii/
+ * Created by Wei on 11/05/2019.
+ * #0522 https://leetcode.com/problems/longest-uncommon-subsequence-ii/
  */
 public class LongestUncommonSubsequenceII {
-
-	// bad question
+	// time O(n^2)
 	public int findLUSlength(String[] strs) {
 		int res = -1;
 		for(int i = 0; i < strs.length; i++){
