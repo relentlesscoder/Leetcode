@@ -1,55 +1,85 @@
 package org.wshuai.leetcode;
 
+import java.util.LinkedList;
+
 /**
- * Created by Wei on 9/12/2019.
- * #529 https://leetcode.com/problems/minesweeper/
+ * Created by Wei on 09/12/2019.
+ * #0529 https://leetcode.com/problems/minesweeper/
  */
 public class Minesweeper {
-	private int[][] adj;
-	private char[][] board;
 
+	private static final int[][] dirs = new int[][]{
+		{1, -1, 0, 0, -1, 1, 1, -1},
+		{0, 0, 1, -1, -1, 1, -1, 1}
+	};
+
+	// time O(m*n), space O(m*n)
 	public char[][] updateBoard(char[][] board, int[] click) {
-		this.adj = new int[2][8];
-		this.adj[0] = new int[]{1, -1, 0, 0, -1, 1, -1, 1};
-		this.adj[1] = new int[]{0, 0, 1, -1, -1, 1, 1, -1};
-		this.board = board;
-		int r = click[0];
-		int c = click[1];
-		if (board[r][c] == 'M') {
-			this.board[r][c] = 'X';
-		} else {
-			dfs(r, c);
+		int m = board.length, n = board[0].length;
+		if(board[click[0]][click[1]] == 'M'){
+			board[click[0]][click[1]] = 'X';
+			return board;
 		}
-		return this.board;
+		dfs(click[0], click[1], m, n, board);
+		return board;
 	}
 
-	private void dfs(int r, int c) {
-		int mine = calculateMine(r, c);
-		if (mine == 0) {
-			board[r][c] = 'B';
-		} else {
-			board[r][c] = (char) (mine + '0');
-			// key point: only when the cell is updated to 'B', the process continue to do the DFS
+	private void dfs(int i, int j, int m, int n, char[][] board){
+		if(board[i][j] != 'E'){
 			return;
 		}
-		for (int i = 0; i < 8; i++) {
-			int x = r + adj[0][i];
-			int y = c + adj[1][i];
-			if (x >= 0 && x < board.length && y >= 0 && y < board[0].length && board[x][y] == 'E') {
-				dfs(x, y);
+		board[i][j] = 'B';
+		int mines = 0;
+		for(int k = 0; k < 8; k++){
+			int x = i + dirs[0][k], y = j + dirs[1][k];
+			if(x >= 0 && x < m && y >= 0 && y < n && board[x][y] == 'M'){
+				mines++;
+			}
+		}
+		if(mines > 0){
+			board[i][j] = (char)(mines + '0');
+			return;
+		}else{
+			for(int k = 0; k < 8; k++){
+				int x = i + dirs[0][k], y = j + dirs[1][k];
+				if(x >= 0 && x < m && y >= 0 && y < n && board[x][y] == 'E'){
+					dfs(x, y, m, n, board);
+				}
 			}
 		}
 	}
 
-	private int calculateMine(int r, int c) {
-		int count = 0;
-		for (int i = 0; i < 8; i++) {
-			int x = r + adj[0][i];
-			int y = c + adj[1][i];
-			if (x >= 0 && x < board.length && y >= 0 && y < board[0].length && board[x][y] == 'M') {
-				count++;
+	// time O(m*n), space O(m*n)
+	public char[][] updateBoardBFS(char[][] board, int[] click) {
+		int m = board.length, n = board[0].length;
+		if(board[click[0]][click[1]] == 'M'){
+			board[click[0]][click[1]] = 'X';
+			return board;
+		}
+		LinkedList<int[]> queue = new LinkedList<>();
+		queue.offerLast(click);
+		board[click[0]][click[1]] = 'B';
+		while(!queue.isEmpty()){
+			int[] cur = queue.pollFirst();
+			int mines = 0;
+			for(int k = 0; k < 8; k++){
+				int x = cur[0] + dirs[0][k], y = cur[1] + dirs[1][k];
+				if(x >= 0 && x < m && y >= 0 && y < n && board[x][y] == 'M'){
+					mines++;
+				}
+			}
+			if(mines == 0){
+				for(int k = 0; k < 8; k++){
+					int x = cur[0] + dirs[0][k], y = cur[1] + dirs[1][k];
+					if(x >= 0 && x < m && y >= 0 && y < n && board[x][y] == 'E'){
+						board[x][y] = 'B';
+						queue.offerLast(new int[]{x, y});
+					}
+				}
+			}else{
+				board[cur[0]][cur[1]] = (char)('0' + mines);
 			}
 		}
-		return count;
+		return board;
 	}
 }
