@@ -1,23 +1,30 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 4/3/17.
- * #543 https://leetcode.com/problems/diameter-of-binary-tree/
+ * Created by Wei on 04/03/2017.
+ * #0543 https://leetcode.com/problems/diameter-of-binary-tree/
  */
 public class DiameterOfBinaryTree {
-	public int diameterOfBinaryTree(TreeNode root) {
-		int[] max = new int[1];
-		maxDepth(root, max);
-		return max[0];
-	}
+	private int diameter;
 
-	private int maxDepth(TreeNode root, int[] max) {
-		if (root == null) {
+	// time O(n)
+	public int diameterOfBinaryTree(TreeNode root) {
+		diameter = 0;
+		if(root == null){
 			return 0;
 		}
-		int left = maxDepth(root.left, max);
-		int right = maxDepth(root.right, max);
-		max[0] = Math.max(max[0], left + right);
-		return Math.max(left, right) + 1;
+		dfs(root);
+		return diameter;
+	}
+
+	private int dfs(TreeNode root){
+		if(root == null){
+			return 0;
+		}
+		int left = root.left == null ? 0 : 1 + dfs(root.left);
+		int right = root.right == null ? 0 : 1 + dfs(root.right);
+		int res = Math.max(left, right);
+		diameter = Math.max(left + right, diameter);
+		return res;
 	}
 }
