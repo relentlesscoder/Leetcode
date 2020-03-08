@@ -2,9 +2,10 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/11/2019.
- * #468 https://leetcode.com/problems/validate-ip-address/
+ * #0468 https://leetcode.com/problems/validate-ip-address/
  */
 public class ValidateIPAddress {
+	// time O(n)
 	public String validIPAddress(String IP) {
 		if(IP == null || IP.length() == 0){
 			return "Neither";

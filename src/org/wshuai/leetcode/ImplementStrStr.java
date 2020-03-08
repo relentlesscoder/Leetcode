@@ -5,9 +5,8 @@ package org.wshuai.leetcode;
  * #0028 https://leetcode.com/problems/implement-strstr/
  */
 public class ImplementStrStr {
-
 	// time O(m + n), space O(n), 2ms
-	public int strStrKMP(String haystack, String needle) {
+	public int strStr(String haystack, String needle) {
 		if(needle.length() == 0){
 			return 0;
 		}
@@ -37,19 +36,19 @@ public class ImplementStrStr {
 	private int[] constructLsp(char[] pattern){
 		int[] lsp = new int[pattern.length];
 		lsp[0] = 0;
+		int j = 0;
 		for(int i = 1; i < pattern.length; i++){
-			int j = lsp[i - 1];
+			// consider the case when pattern is AAACAAAA
+			// when i = 7, the LSP is
+			// 0,1,2,0,1,2,3
+			// since S[i] != S[LSP[i - 1]] (A != C), we can extend
+			// the previous matching prefix suffix
+			// LSP[6] = 3 -> S[0-2] == S[4-6] -> S[1-2] == S[5,6]
+			// LSP[3 - 1] = 2 -> S[0-1] == S[1-2]
+			// -> S[5,6] == S[0-1]
+			// if S[2] == S[7], we can extend this matching prefix
+			// postfix to 3
 			while(j > 0 && pattern[i] != pattern[j]){
-				// consider the case when pattern is AAACAAAA
-				// when i = 7, the LSP is
-				// 0,1,2,0,1,2,3
-				// since S[i] != S[LSP[i - 1]] (A != C), we can extend
-				// the previous matching prefix suffix
-				// LSP[6] = 3 -> S[0-2] == S[4-6] -> S[1-2] == S[5,6]
-				// LSP[3 - 1] = 2 -> S[0-1] == S[1-2]
-				// -> S[5,6] == S[0-1]
-				// if S[2] == S[7], we can extend this matching prefix
-				// postfix to 3
 				j = lsp[j - 1];
 			}
 			if(pattern[i] == pattern[j]){

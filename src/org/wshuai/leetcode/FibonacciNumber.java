@@ -1,20 +1,21 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/9/19.
- * #509 https://leetcode.com/problems/fibonacci-number/
+ * Created by Wei on 08/09/2019.
+ * #0509 https://leetcode.com/problems/fibonacci-number/
  */
 public class FibonacciNumber {
+	// time O(n), space O(1)
 	public int fib(int N) {
-		if (N < 2) {
+		if(N < 2){
 			return N;
 		}
-		int[] res = new int[N + 1];
-		res[0] = 0;
-		res[1] = 1;
-		for (int i = 2; i <= N; i++) {
-			res[i] = res[i - 1] + res[i - 2];
+		int first = 0, second = 1, temp = 0;
+		for(int i = 2; i <= N; i++){
+			temp = first + second;
+			first = second;
+			second = temp;
 		}
-		return res[N];
+		return second;
 	}
 }

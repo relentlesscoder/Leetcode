@@ -1,50 +1,48 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/22/19.
- * #215 https://leetcode.com/problems/kth-largest-element-in-an-array/
+ * Created by Wei on 10/22/2019.
+ * #0215 https://leetcode.com/problems/kth-largest-element-in-an-array/
  */
 public class KthLargestElementInAnArray {
-
-	// average: O(n * log(n)) worst: O(n^2)
+	// time - average: O(n * log(n)) worst: O(n^2)
 	// after randomization, expected: O (n)
-	public int findKthLargestQuickSelectionWithRandomization(int[] nums, int k) {
-		return getKthLargestUtil(nums, k, 0, nums.length - 1);
+	public int findKthLargest(int[] nums, int k) {
+		return getKthLargest(nums, 0, nums.length - 1, k);
 	}
 
-	private int getKthLargestUtil(int[] nums, int k, int l, int r){
-		if(k > 0 && k <= r - l + 1){
-			int p = partition(nums, l, r);
-			int count = p - l + 1;
+	private int getKthLargest(int[] nums, int left, int right, int k){
+		if(k > 0 && k <= right - left + 1){
+			int pivot = partition(nums, left, right);
+			int count = pivot - left + 1;
 			if(count == k){
-				return nums[p];
+				return nums[pivot];
 			}else if(count > k){
-				return getKthLargestUtil(nums, k, l, p - 1);
+				return getKthLargest(nums, left, pivot - 1, k);
 			}else{
-				return getKthLargestUtil(nums, k - count, p + 1, r);
+				return getKthLargest(nums, pivot + 1, right, k - count);
 			}
 		}
 		return Integer.MAX_VALUE;
 	}
 
-	private int partition(int[] nums, int l, int r){
-		// choose pivot number randomly, 33 ms -> 1 ms
-		int rand = (int)(Math.random() * (r - l));
-		int index = l + rand;
+	private int partition(int[] nums, int left, int right){
+		// randomization 33ms -> 3ms
+		int index = left + (int)(Math.random()*(right - left));
 		int temp = nums[index];
-		nums[index] = nums[r];
-		nums[r] = temp;
+		nums[index] = nums[right];
+		nums[right] = temp;
 
-		int pivot = nums[r];
-		int i = l;
-		for(int j = l; j < r; j++){
+		int pivot = nums[right];
+		int i = left, j = left;
+		for(; j < right; j++){
 			int val = nums[j];
 			if(val > pivot){
 				nums[j] = nums[i];
 				nums[i++] = val;
 			}
 		}
-		nums[r] = nums[i];
+		nums[right] = nums[i];
 		nums[i] = pivot;
 		return i;
 	}

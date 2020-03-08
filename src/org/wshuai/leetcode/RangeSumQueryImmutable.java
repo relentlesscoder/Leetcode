@@ -1,37 +1,22 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/2/2016.
- * #303 https://leetcode.com/problems/range-sum-query-immutable/
+ * Created by Wei on 11/02/2016.
+ * #0303 https://leetcode.com/problems/range-sum-query-immutable/
  */
 public class RangeSumQueryImmutable {
-	private int[] arr;
-	private int len;
+	private int[] prefixSum;
 
 	public RangeSumQueryImmutable(int[] nums) {
-		if (nums == null || nums.length == 0) {
-			arr = null;
-		} else {
-			len = nums.length;
-			arr = new int[len];
-			arr[0] = nums[0];
-			for (int i = 1; i < len; i++) {
-				arr[i] = arr[i - 1] + nums[i];
-			}
+		int n = nums.length;
+		prefixSum = new int[n + 1];
+		for(int i = 1; i <= n; i++){
+			prefixSum[i] = prefixSum[i - 1] + nums[i - 1];
 		}
 	}
 
 	public int sumRange(int i, int j) {
-		if (i > j || i < 0 || j >= len) {
-			throw new IllegalArgumentException("Invalid input.");
-		}
-		if (arr == null) {
-			return -1;
-		}
-		if (i == 0) {
-			return arr[j];
-		}
-		return arr[j] - arr[i - 1];
+		return prefixSum[j + 1] - prefixSum[i];
 	}
 }
 

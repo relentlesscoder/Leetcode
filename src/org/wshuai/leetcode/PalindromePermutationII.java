@@ -1,82 +1,71 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by Wei on 11/11/16.
- * #267 https://leetcode.com/problems/palindrome-permutation-ii/
+ * Created by Wei on 11/11/2016.
+ * #0267 https://leetcode.com/problems/palindrome-permutation-ii/
  */
 public class PalindromePermutationII {
+	// time O((n/2)!)
 	public List<String> generatePalindromes(String s) {
-		List<String> lst = new ArrayList<String>();
-		if (s == null || s.isEmpty()) {
-			return lst;
+		List<String> res = new ArrayList<>();
+		if(s == null || s.length() == 0){
+			return res;
 		}
-		int len = s.length();
-		char sig = ' ';
-		Map<Character, Integer> map = new HashMap<Character, Integer>();
-		for (int i = 0; i < len; i++) {
-			char key = s.charAt(i);
-			if (map.containsKey(key)) {
-				map.put(key, map.get(key) + 1);
-			} else {
-				map.put(key, 1);
+		int n = s.length() / 2, odd = 0;
+		String mid = "";
+		char[] arr = new char[n];
+		int[] count = new int[256];
+		for(char c : s.toCharArray()){
+			count[c]++;
+		}
+		for(int i = 0, j = 0; i < 256; i++){
+			int cnt = count[i];
+			if(cnt == 0){
+				continue;
+			}
+			char c =  (char)i;
+			if(cnt % 2 == 0){
+				int k = cnt / 2;
+				while(k-- > 0){
+					arr[j++] = c;
+				}
+			}else if(odd == 1){
+				return res;
+			}else{
+				mid = Character.toString(c);
+				int k = (cnt - 1) / 2;
+				while(k-- > 0){
+					arr[j++] = c;
+				}
+				odd++;
 			}
 		}
-		List<Character> chars = new ArrayList<Character>();
-		for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-			int cnt = entry.getValue();
-			char key = entry.getKey();
-			if (cnt % 2 == 0) {
-				int c = cnt / 2;
-				while (c > 0) {
-					chars.add(key);
-					c--;
-				}
-			} else if (sig == ' ') {
-				sig = key;
-				int c = cnt / 2;
-				while (c > 0) {
-					chars.add(key);
-					c--;
-				}
-			} else {
-				return lst;
-			}
-		}
-
-		int nLen = chars.size();
-		boolean[] aux = new boolean[nLen];
-		generatePalindromesUtil(chars, sig, aux, new ArrayList<Character>(), nLen, lst);
-		return lst;
+		dfs(0, arr, new boolean[n], new char[n], res, mid);
+		return res;
 	}
 
-	//DFS
-	private void generatePalindromesUtil(List<Character> chars, char sig, boolean[] used, List<Character> curr, int len, List<String> lst) {
-		if (curr.size() == len) {
-			StringBuilder sb = new StringBuilder();
-			for (char val : curr) {
-				sb.append(val);
+	private void dfs(int start, char[] arr, boolean[] used, char[] cur, List<String> res, String mid){
+		if(start == arr.length){
+			String val = new String(cur);
+			res.add(val + mid + new StringBuilder(val).reverse().toString());
+			return;
+		}
+		for(int i = 0; i < arr.length; i++){
+			if(used[i]){
+				continue;
 			}
-			String r = sb.toString() + (sig == ' ' ? "" : sig) + sb.reverse().toString();
-			lst.add(r);
-		} else {
-			for (int i = 0; i < len; i++) {
-				if (used[i]) {
-					continue;
-				}
-				if (i > 0 && chars.get(i) == chars.get(i - 1) && !used[i - 1]) {
-					continue;
-				}
-				used[i] = true;
-				curr.add(chars.get(i));
-				generatePalindromesUtil(chars, sig, used, curr, len, lst);
-				curr.remove(curr.size() - 1);
-				used[i] = false;
+			if(i > 0 && arr[i] == arr[i - 1] && !used[i - 1]){
+				continue;
 			}
+			used[i] = true;
+			char prev = cur[start];
+			cur[start] = arr[i];
+			dfs(start + 1, arr, used, cur, res, mid);
+			cur[start] = prev;
+			used[i] = false;
 		}
 	}
 }

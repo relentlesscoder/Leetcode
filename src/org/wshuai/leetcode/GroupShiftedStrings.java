@@ -6,48 +6,32 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Wei on 9/21/2016.
+ * Created by Wei on 09/21/2016.
+ * #0249 https://leetcode.com/problems/group-shifted-strings/
  */
 public class GroupShiftedStrings {
+	// time O(n), space O(n)
 	public List<List<String>> groupStrings(String[] strings) {
-		List<List<String>> lst = new ArrayList<List<String>>();
-		Map<String, List<String>> map = new HashMap<String, List<String>>();
-		if (strings == null || strings.length == 0) {
-			return lst;
+		List<List<String>> res = new ArrayList<>();
+		Map<String, List<String>> map = new HashMap<>();
+		for(String s : strings){
+			String key = getKey(s.toCharArray());
+			map.putIfAbsent(key, new ArrayList<>());
+			map.get(key).add(s);
 		}
-		int len = strings.length;
-		for (int i = 0; i < len; i++) {
-			String val = strings[i];
-			String key = getKeyValue(val);
-			if (map.containsKey(key)) {
-				List<String> ls = map.get(key);
-				ls.add(val);
-			} else {
-				List<String> ls = new ArrayList<String>();
-				ls.add(val);
-				map.put(key, ls);
-			}
+		for(List<String> list : map.values()){
+			res.add(list);
 		}
-
-		for (List<String> ls : map.values()) {
-			lst.add(ls);
-		}
-		return lst;
+		return res;
 	}
 
-	private String getKeyValue(String val) {
-		char[] chs = val.toCharArray();
-		if (chs[0] == 'a') {
-			return val;
-		} else {
-			int diff = chs[0] - 'a';
-			int len = chs.length;
-			for (int i = 0; i < len; i++) {
-				int cdiff = chs[i] - diff;
-				cdiff = cdiff < 97 ? cdiff + 26 : cdiff;
-				chs[i] = (char) (cdiff);
-			}
-			return new String(chs);
+	private String getKey(char[] arr){
+		int diff = arr[0] - 'a';
+		char[] res = new char[arr.length];
+		for(int i = 0; i < arr.length; i++){
+			int cur = (arr[i] - diff + 26) % 26;
+			res[i] = (char)('a' + cur);
 		}
+		return new String(res);
 	}
 }

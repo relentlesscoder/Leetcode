@@ -1,28 +1,24 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/1/2016.
- * #367 https://leetcode.com/problems/valid-perfect-square/
+ * Created by Wei on 10/01/2016.
+ * #0367 https://leetcode.com/problems/valid-perfect-square/
  */
 public class ValidPerfectSquare {
+	// time O(log(n))
 	public boolean isPerfectSquare(int num) {
-		if (num < 0) {
-			return false;
+		if(num == 1){
+			return true;
 		}
-		long val = num;
-		long left = 0;
-		long right = num;
-		while (left <= right) {
+		long left = 1, right = num / 2;
+		while(left < right){
 			long mid = left + (right - left) / 2;
-			long prod = mid * mid;
-			if (val == prod) {
-				return true;
-			} else if (val < prod) {
-				right = mid - 1;
-			} else {
+			if(mid * mid < num){
 				left = mid + 1;
+			}else{
+				right = mid;
 			}
 		}
-		return false;
+		return left*left == num;
 	}
 }

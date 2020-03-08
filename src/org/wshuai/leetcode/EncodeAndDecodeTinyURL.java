@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * Created by Wei on 4/8/17.
- * #535 https://leetcode.com/problems/encode-and-decode-tinyurl/
+ * Created by Wei on 04/08/2017.
+ * #0535 https://leetcode.com/problems/encode-and-decode-tinyurl/
  */
 public class EncodeAndDecodeTinyURL {
 	private Map<String, String> map = new HashMap<String, String>();

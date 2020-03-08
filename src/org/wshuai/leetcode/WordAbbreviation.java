@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Created by Wei on 12/16/2019.
- * #527 https://leetcode.com/problems/word-abbreviation/
+ * #0527 https://leetcode.com/problems/word-abbreviation/
  */
 public class WordAbbreviation {
 	public List<String> wordsAbbreviation(List<String> dict) {

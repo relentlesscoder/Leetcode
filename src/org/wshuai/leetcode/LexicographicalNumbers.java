@@ -4,32 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 11/19/16.
- * #386 https://leetcode.com/problems/lexicographical-numbers/
+ * Created by Wei on 11/19/2016.
+ * #0386 https://leetcode.com/problems/lexicographical-numbers/
  */
 public class LexicographicalNumbers {
-	//DFS
+	// time O(10^d)
 	public List<Integer> lexicalOrder(int n) {
-		List<Integer> lst = new ArrayList<Integer>();
-		if (n < 1) {
-			return lst;
+		List<Integer> res = new ArrayList<>();
+		for(int i = 1; i <= 9; i++){
+			dfs(i, n, res);
 		}
-		for (int i = 1; i <= 9; i++) {
-			lexicalOrderUtil(i, n, lst);
-		}
-		return lst;
+		return res;
 	}
 
-	private void lexicalOrderUtil(int curr, int n, List<Integer> lst) {
-		if (curr > n) {
+	private void dfs(int cur, int n, List<Integer> res){
+		if(cur > n){
 			return;
 		}
-		lst.add(curr);
-		for (int i = 0; i <= 9; i++) {
-			int nxt = curr * 10 + i;
-			if (nxt <= n) {
-				lexicalOrderUtil(nxt, n, lst);
-			}
+		res.add(cur);
+		for(int i = 0; i < 10; i++){
+			dfs(cur * 10 + i, n, res);
 		}
 	}
 }

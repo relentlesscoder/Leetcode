@@ -1,33 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/30/16.
- * #213 https://leetcode.com/problems/house-robber-ii/
+ * Created by Wei on 10/30/2016.
+ * #0213 https://leetcode.com/problems/house-robber-ii/
  */
 public class HouseRobberII {
+	// time O(n), space O(n)
 	public int rob(int[] nums) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
-		int len = nums.length;
-		if (len == 1) {
+		if(nums.length == 1){
 			return nums[0];
 		}
-		//Exclude the first and last house respectively
-		int max1 = robUtil(nums, 0, len - 2);
-		int max2 = robUtil(nums, 1, len - 1);
-
-		return max1 > max2 ? max1 : max2;
+		return Math.max(helper(nums, 0, nums.length - 2),
+			helper(nums, 1, nums.length - 1));
 	}
 
-	private int robUtil(int[] nums, int s, int e) {
-		int len = e - s + 2;
-		int[] aux = new int[len];
-		aux[0] = 0;
-		aux[1] = nums[s];
-		for (int i = 2; i < len; i++) {
-			aux[i] = Math.max(aux[i - 1], aux[i - 2] + nums[s + i - 1]);
+	private int helper(int[] nums, int i, int j){
+		int[] dp = new int[nums.length + 1];
+		dp[i] = 0;
+		dp[i + 1] = nums[i];
+		for(int k = i + 2; k <= j + 1; k++){
+			dp[k] = Math.max(dp[k - 1], dp[k - 2] + nums[k - 1]);
 		}
-		return aux[len - 1];
+		return dp[j + 1];
 	}
 }

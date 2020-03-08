@@ -1,30 +1,30 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/2/2016.
+ * Created by Wei on 09/02/2016.
+ * #0165 https://leetcode.com/problems/compare-version-numbers/
  */
 public class CompareVersionNumbers {
-	public static int compareVersion(String version1, String version2) {
-		String[] arr1 = version1.split("\\.");
-		String[] arr2 = version2.split("\\.");
-
-		int result = 0;
-		int idx = 0;
-		int len1 = arr1.length;
-		int len2 = arr2.length;
-		while (idx < len1 || idx < len2) {
-			int n1 = idx < len1 ? Integer.parseInt(arr1[idx]) : 0;
-			int n2 = idx < len2 ? Integer.parseInt(arr2[idx]) : 0;
-			if (n1 > n2) {
-				return 1;
+	// time O(max(m, n))
+	public int compareVersion(String version1, String version2) {
+		int i = 0, j = 0, s = 0, t = 0, v1 = -1, v2 = -1,
+			m = version1.length(), n = version2.length();
+		while(i < m || s < n){
+			while(i < m && version1.charAt(i) != '.'){
+				i++;
 			}
-			if (n1 < n2) {
-				return -1;
+			while(s < n && version2.charAt(s) != '.'){
+				s++;
 			}
-
-			idx++;
+			v1 = i == j ? 0 : Integer.parseInt(version1.substring(j, i));
+			v2 = s == t ? 0 : Integer.parseInt(version2.substring(t, s));
+			if(v1 == v2){
+				j = ++i;
+				t = ++s;
+				continue;
+			}
+			return v1 > v2 ? 1 : -1;
 		}
-
-		return result;
+		return 0;
 	}
 }

@@ -1,32 +1,25 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/3/16.
+ * Created by Wei on 10/03/2016.
+ * #0404 https://leetcode.com/problems/sum-of-left-leaves/
  */
 public class SumOfLeftLeaves {
-	public int sumOfLeftLeavesRecursive(TreeNode root) {
-		if (root == null) {
+	// time O(n)
+	public int sumOfLeftLeaves(TreeNode root) {
+		if(root == null){
 			return 0;
 		}
-		int sum = 0;
-		sum += sumOfLeftLeavesUtil(root.left, true)
-				+ sumOfLeftLeavesUtil(root.right, false);
-
-		return sum;
+		return dfs(root.left, true) + dfs(root.right, false);
 	}
 
-	private int sumOfLeftLeavesUtil(TreeNode node, boolean left) {
-		if (node == null) {
+	private int dfs(TreeNode root, boolean isLeft){
+		if(root == null){
 			return 0;
 		}
-		if (node.left == null && node.right == null) {
-			if (left) {
-				return node.val;
-			} else {
-				return 0;
-			}
+		if(root.left == null && root.right == null && isLeft){
+			return root.val;
 		}
-		return sumOfLeftLeavesUtil(node.left, true)
-				+ sumOfLeftLeavesUtil(node.right, false);
+		return dfs(root.left, true) + dfs(root.right, false);
 	}
 }

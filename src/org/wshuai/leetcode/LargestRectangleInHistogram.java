@@ -8,14 +8,13 @@ import java.util.Stack;
  */
 public class LargestRectangleInHistogram {
 	// time O(n), space O(n)
-	// https://www.youtube.com/watch?v=ZmnqCZp9bBs
+	// https://www.youtube.com/watch?v=ZmnqCZp9bBsN
 	// https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28900/O(n)-stack-based-JAVA-solution
 	public int largestRectangleArea(int[] heights) {
 		if(heights == null || heights.length == 0){
 			return 0;
 		}
-		int res = 0;
-		int n = heights.length;
+		int res = 0, n = heights.length;
 		Stack<Integer> stack = new Stack<>();
 		for(int i = 0; i <= n; i++){
 			int h = i == n ? 0 : heights[i];

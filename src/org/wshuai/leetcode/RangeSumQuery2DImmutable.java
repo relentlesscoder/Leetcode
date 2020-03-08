@@ -1,49 +1,40 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/25/16.
- * #304 https://leetcode.com/problems/range-sum-query-2d-immutable/
+ * Created by Wei on 09/25/2016.
+ * #0304 https://leetcode.com/problems/range-sum-query-2d-immutable/
  */
 public class RangeSumQuery2DImmutable {
-	private int[][] mtx;
-	private int rLen;
-	private int cLen;
+	private int[][] prefixSum;
+	private int R, C;
 
+	// time O(r*c)
 	public RangeSumQuery2DImmutable(int[][] matrix) {
-		if (matrix == null) {
-			return;
-		}
-		rLen = matrix.length;
-		if (rLen == 0) {
-			return;
-		}
-		cLen = matrix[0].length;
-		if (cLen == 0) {
-			return;
-		}
-		mtx = new int[rLen][cLen];
-		for (int i = 0; i < rLen; i++) {
-			mtx[i][0] = matrix[i][0];
-			for (int j = 1; j < cLen; j++) {
-				mtx[i][j] = mtx[i][j - 1] + matrix[i][j];
+		if(matrix != null && matrix.length > 0 && matrix[0].length > 0){
+			int R = matrix.length;
+			int C = matrix[0].length;
+			prefixSum = new int[R][C + 1];
+			for(int i = 0; i < R; i++){
+				for(int j = 1; j <= C; j++){
+					prefixSum[i][j] = prefixSum[i][j - 1] + matrix[i][j - 1];
+				}
 			}
 		}
 	}
 
+	// time O(c)
 	public int sumRegion(int row1, int col1, int row2, int col2) {
-		if (rLen == 0 || cLen == 0) {
-			return 0;
+		if(!validate(row1, col1) || !validate(row2, col2)){
+			return -1;
 		}
 		int sum = 0;
-		if (validateIdx(row1, col1) && validateIdx(row2, col2)) {
-			for (int i = row1; i <= row2; i++) {
-				sum += mtx[i][col2] - (col1 == 0 ? 0 : mtx[i][col1 - 1]);
-			}
+		for(int i = row1; i <= row2; i++){
+			sum += prefixSum[i][col2 + 1] - prefixSum[i][col1];
 		}
 		return sum;
 	}
 
-	private boolean validateIdx(int row, int col) {
-		return row >= 0 && col >= 0 && row < rLen && col < cLen;
+	private boolean validate(int row, int col) {
+		return row >= 0 && col >= 0 && row < R && col < C;
 	}
 }

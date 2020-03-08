@@ -1,64 +1,42 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/2/2016.
+ * Created by Wei on 09/02/2016.
+ * #0234 https://leetcode.com/problems/palindrome-linked-list/
  */
 public class PalindromeLinkedList {
-	public static boolean isPalindrome(LinkedListNode head) {
-		// base cases
-		if (head == null) {
+	// time O(n), space O(1)
+	public boolean isPalindrome(LinkedListNode head) {
+		if(head == null){
 			return true;
 		}
-		if (head.next == null) {
-			return true;
-		}
-		if (head.next.next == null) {
-			return head.val == head.next.val;
-		}
-		if (head.next.next.next == null) {
-			return head.val == head.next.next.val;
-		}
-
-		LinkedListNode slow = head;
-		LinkedListNode fast = head;
-		boolean odd = false;
-
-		while (fast != null) {
+		LinkedListNode slow = head, fast = head, tail = null;
+		// find the middle node
+		while(fast != null && fast.next != null){
+			fast = fast.next.next;
 			slow = slow.next;
-			fast = fast.next;
-			if (fast != null) {
-				fast = fast.next;
-				if (fast != null && fast.next == null) {
-					odd = true;
-					break;
-				}
-			}
 		}
-
-		LinkedListNode prev = null;
-		LinkedListNode curr = head;
-		LinkedListNode next = head.next;
-		while (curr != slow) {
-			curr.next = prev;
-			prev = curr;
-			curr = next;
-			next = next.next;
-		}
-
-		LinkedListNode left = prev;
-		LinkedListNode right = slow;
-		if (odd) {
-			right = right.next;
-		}
-
-		while (left != null && right != null) {
-			if (left.val != right.val) {
+		// reverse the right half and compare to the left half
+		tail = reverse(fast == null ? slow : slow.next);
+		fast = head;
+		while(tail != null){
+			if(tail.val != fast.val){
 				return false;
 			}
-			left = left.next;
-			right = right.next;
+			tail = tail.next;
+			fast = fast.next;
 		}
-
 		return true;
+	}
+
+	private LinkedListNode reverse(LinkedListNode head){
+		LinkedListNode prev = null, cur = head;
+		while(cur != null){
+			LinkedListNode next = cur.next;
+			cur.next = prev;
+			prev = cur;
+			cur = next;
+		}
+		return prev;
 	}
 }

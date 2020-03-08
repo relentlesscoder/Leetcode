@@ -3,32 +3,30 @@ package org.wshuai.leetcode;
 import java.util.Random;
 
 /**
- * Created by Wei on 11/18/16.
- * #398 https://leetcode.com/problems/random-pick-index/
+ * Created by Wei on 11/18/2016.
+ * #0398 https://leetcode.com/problems/random-pick-index/
  */
 public class RandomPickIndex {
 	private int[] nums;
-	private Random random;
+	private Random rand;
 
 	public RandomPickIndex(int[] nums) {
 		this.nums = nums;
-		this.random = new Random();
+		rand = new Random();
 	}
 
 	public int pick(int target) {
-		int idx = 0;
-		int cnt = 0;
-		int len = nums.length;
-		for (int i = 0; i < len; i++) {
+		int res = -1, count = 0;
+		for (int i = 0; i < nums.length; i++) {
 			if (nums[i] != target) {
 				continue;
 			}
-			cnt++;
-			if (random.nextInt(cnt) == 0) {
-				idx = i;
+			count++;
+			if (rand.nextInt(count) == 0) {
+				res = i;
 			}
 		}
-		return idx;
+		return res;
 	}
 }
 

@@ -1,81 +1,48 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/7/2016.
- * #189 https://leetcode.com/problems/rotate-array/
+ * Created by Wei on 11/07/2016.
+ * #0189 https://leetcode.com/problems/rotate-array/
  */
 public class RotateArray {
+
+	// time O(n), space O(1)
 	public void rotate(int[] nums, int k) {
-		if (nums == null) {
+		if(nums == null || nums.length == 0 || k <= 0){
 			return;
 		}
-
-		int n = nums.length;
-		if (n <= 1) {
-			return;
-		}
-
-		k = k % n;
-
-		int pv = 0;
-		int rv = 0;
-		int next = 0;
-		for (int i = 0; i < gcd(n, k); i++) {
-			next = i + k;
-			pv = nums[i];
-			while (true) {
-				if (next >= n) {
-					next %= n;
-				}
-
-				rv = nums[next];
-				nums[next] = pv;
-				pv = rv;
-
-				if (next == i) {
-					break;
-				}
-
-				next += k;
-			}
+		int n = nums.length, count = 0;
+		k %= n;
+		for(int start = 0; count < n; start++){
+			int cur = start;
+			int prev = nums[start];
+			do{
+				int next = (cur + k) % n;
+				int temp = nums[next];
+				nums[next] = prev;
+				cur = next;
+				prev = temp;
+				count++;
+			}while(start != cur);
 		}
 	}
 
-	private int gcd(int l, int n) {
-		if (l == n) {
-			return l;
-		}
-		int d = l < n ? l : n;
-		while (d > 1) {
-			if ((l % d == 0) && (n % d == 0)) {
-				return d;
-			}
-			d--;
-		}
-		return 1;
-	}
-
+	// time O(n), space O(1)
 	public void rotateReverse(int[] nums, int k) {
-		if (nums == null || nums.length == 0) {
-			return;
-		}
-		int len = nums.length;
-		k = k % len;
-		reverse(nums, 0, len - 1);
+		int n = nums.length;
+		k %= n;
+		reverse(nums, 0, n - 1);
 		reverse(nums, 0, k - 1);
-		reverse(nums, k, len - 1);
+		reverse(nums, k, n - 1);
 	}
 
-	private void reverse(int[] nums, int s, int e) {
-		int left = s;
-		int right = e;
-		while (left < right) {
-			int temp = nums[left];
-			nums[left] = nums[right];
-			nums[right] = temp;
-
-			left++;
-			right--;
+	private void reverse(int[] nums, int i, int j){
+		while(i < j){
+			int temp = nums[i];
+			nums[i] = nums[j];
+			nums[j] = temp;
+			i++;
+			j--;
 		}
 	}
 }

@@ -2,55 +2,59 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/15/2019.
- * #450 https://leetcode.com/problems/delete-node-in-a-bst/
+ * #0450 https://leetcode.com/problems/delete-node-in-a-bst/
  */
 public class DeleteNodeInABST {
-
+	// time O(log(n))
 	// book CLRS p297
 	public TreeNode deleteNode(TreeNode root, int key) {
-		TreeNode R = new TreeNode(0);
-		R.left = root;
-		TreeNode parent = R;
-		TreeNode curr = root;
-		while(curr != null){
-			if(curr.val == key){
+		TreeNode dummy = new TreeNode(0), parent = dummy, cur = root;
+		dummy.left = root;
+		// search for node
+		while(cur != null){
+			if(cur.val == key){
 				break;
 			}
-			parent = curr;
-			if(curr.val > key){
-				curr = curr.left;
+			parent = cur;
+			if(cur.val > key){
+				cur = cur.left;
 			}else{
-				curr = curr.right;
+				cur = cur.right;
 			}
 		}
-		if(curr != null){
-			if(curr.left == null){
-				replace(curr, curr.right, parent);
-			}else if(curr.right == null){
-				replace(curr, curr.left, parent);
+		// delete node
+		if(cur != null){
+			if(cur.left == null){
+				replace(cur, cur.right, parent);
+			}else if(cur.right == null){
+				replace(cur, cur.left, parent);
 			}else{
-				TreeNode prev = null;
-				TreeNode node = curr.right;
-				while(node.left != null){
-					prev = node;
-					node = node.left;
+				// find successor
+				TreeNode prev = null, successor = cur.right;
+				while(successor.left != null){
+					prev = successor;
+					successor = successor.left;
 				}
-				curr.val = node.val;
-				if(node == curr.right){
-					curr.right = node.right;
+				// update value of node with that of successor
+				cur.val = successor.val;
+				if(successor == cur.right){
+					// if successor is the right child of the node,
+					// set node's right to successor's right
+					cur.right = successor.right;
 				}else{
-					replace(node, node.right, prev);
+					// otherwise, replace successor with it's right child
+					replace(successor, successor.right, prev);
 				}
 			}
 		}
-		return R.left;
+		return dummy.left;
 	}
 
-	private void replace(TreeNode c, TreeNode r, TreeNode p){
-		if(p.left == c){
-			p.left = r;
+	private void replace(TreeNode original, TreeNode replace, TreeNode parent){
+		if(parent.left == original){
+			parent.left = replace;
 		}else{
-			p.right = r;
+			parent.right = replace;
 		}
 	}
 }

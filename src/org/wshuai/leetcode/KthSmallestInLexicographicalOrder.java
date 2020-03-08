@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 01/03/2020.
- * #440 https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/
+ * #0440 https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/
  */
 public class KthSmallestInLexicographicalOrder {
 	// https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/discuss/369094/Java-100-Solution-()

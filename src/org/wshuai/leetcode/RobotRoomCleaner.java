@@ -1,46 +1,37 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Wei on 9/11/2019.
- * #489 https://leetcode.com/problems/robot-room-cleaner/
+ * Created by Wei on 09/11/2019.
+ * #0489 https://leetcode.com/problems/robot-room-cleaner/
  */
 public class RobotRoomCleaner {
-	private int[][] mov;
+	private int[] dirs;
 	private Set<List<Integer>> visited;
 	private Robot robot;
 
 	public void cleanRoom(Robot robot) {
 		this.robot = robot;
-		mov = new int[2][4];
-		mov[0] = new int[]{-1, 0, 1, 0};
-		mov[1] = new int[]{0, 1, 0, -1};
+		dirs = new int[]{-1, 0, 1, 0, -1};
 		visited = new HashSet<>();
 		dfs(0, 0, 0);
 	}
 
 	private void dfs(int r, int c, int d) {
 		robot.clean();
-		List<Integer> p = new ArrayList<>();
-		p.add(r);
-		p.add(c);
-		visited.add(p);
+		List<Integer> cur = Arrays.asList(r, c);
+		visited.add(cur);
 		for (int i = 0; i < 4; i++) {
-			int z = (d + i) % 4;
-			int x = r + mov[0][z];
-			int y = c + mov[1][z];
-			List<Integer> l = new ArrayList<>();
-			l.add(x);
-			l.add(y);
-			if (!visited.contains(l) && robot.move()) {
+			int z = (d + i) % 4, x = r + dirs[z], y = c + dirs[z + 1];
+			List<Integer> next = Arrays.asList(x, y);
+			if (!visited.contains(next) && robot.move()) {
 				dfs(x, y, z);
 				reset();
 			}
-
 			robot.turnRight();
 		}
 	}

@@ -1,49 +1,30 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.Arrays;
 
 /**
  * Created by Wei on 10/12/2016.
- * #205 https://leetcode.com/problems/isomorphic-strings/
+ * #0205 https://leetcode.com/problems/isomorphic-strings/
  */
 public class IsomorphicStrings {
+	// time O(n), space O(1)
 	public boolean isIsomorphic(String s, String t) {
-		if (s == null && t == null) {
-			return true;
-		}
-		if (s == null) {
-			return false;
-		}
-		if (t == null) {
-			return false;
-		}
-		int sLen = s.length();
-		int tLen = t.length();
-		if (sLen != tLen) {
-			return false;
-		}
-
-		Map<Character, Character> map = new HashMap<Character, Character>();
-		Set<Character> used = new HashSet<Character>();
-		for (int i = 0; i < sLen; i++) {
-			char x = s.charAt(i);
-			char y = t.charAt(i);
-			if (map.containsKey(x)) {
-				char val = map.get(x);
-				if (val != y) {
-					return false;
-				}
-			} else if (used.contains(y)) {
+		int n = s.length();
+		int[] map1 = new int[256], map2 = new int[256];
+		Arrays.fill(map1, -1);
+		Arrays.fill(map2, -1);
+		for(int i = 0; i < n; i++){
+			char c1 = s.charAt(i), c2 = t.charAt(i);
+			int v1 = (int)c1, v2 = (int)c2;
+			if(map1[c1] == -1 && map2[c2] == -1){
+				map1[c1] = v2;
+				map2[c2] = v1;
+				continue;
+			}
+			if(map1[c1] != v2 || map2[c2] != v1){
 				return false;
-			} else {
-				map.put(x, y);
-				used.add(y);
 			}
 		}
-
 		return true;
 	}
 }

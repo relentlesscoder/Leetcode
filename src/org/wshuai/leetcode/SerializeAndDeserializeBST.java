@@ -1,75 +1,68 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by Wei on 2/25/17.
- * #449 https://leetcode.com/problems/serialize-and-deserialize-bst/
+ * Created by Wei on 02/25/2017.
+ * #0449 https://leetcode.com/problems/serialize-and-deserialize-bst/
  */
 public class SerializeAndDeserializeBST {
 	// Encodes a tree to a single string.
 	public String serialize(TreeNode root) {
-		if (root == null) {
-			return null;
+		if(root == null){
+			return "";
 		}
-
 		StringBuilder sb = new StringBuilder();
-		Queue<TreeNode> curr = new LinkedList<TreeNode>();
-		Queue<TreeNode> next = new LinkedList<TreeNode>();
-		curr.offer(root);
-		while (!curr.isEmpty()) {
-			TreeNode node = curr.poll();
-			if (node != null) {
-				sb.append(Integer.toString(node.val) + ",");
-				next.offer(node.left);
-				next.offer(node.right);
-			} else {
-				sb.append("null,");
-			}
-			if (curr.isEmpty()) {
-				curr = next;
-				next = new LinkedList<TreeNode>();
-			}
-		}
-
-		String s = sb.toString();
-		return s.substring(0, s.length() - 1);
+		preorder(root, sb);
+		return sb.substring(0, sb.length() - 1);
 	}
 
 	// Decodes your encoded data to tree.
 	public TreeNode deserialize(String data) {
-		if (data == null || data.isEmpty()) {
+		if(data.isEmpty()){
 			return null;
 		}
-		String[] vals = data.split(",");
-		int len = vals.length;
-		Queue<TreeNode> queue = new LinkedList<TreeNode>();
-		TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
-		queue.offer(root);
-		int i = 1;
-		while (i < len && !queue.isEmpty()) {
-			TreeNode parent = queue.poll();
-			String left = vals[i];
-			String right = vals[i + 1];
-
-			if (left.equals("null")) {
-				parent.left = null;
-			} else {
-				TreeNode ln = new TreeNode(Integer.parseInt(left));
-				parent.left = ln;
-				queue.offer(ln);
-			}
-
-			if (right.equals("null")) {
-				parent.right = null;
-			} else {
-				TreeNode rn = new TreeNode(Integer.parseInt(right));
-				parent.right = rn;
-				queue.offer(rn);
-			}
-			i += 2;
+		String[] strs = data.split(",");
+		int[] preorder = new int[strs.length], inorder = new int[strs.length];
+		for(int i = 0; i < preorder.length; i++){
+			preorder[i] = Integer.parseInt(strs[i]);
+			inorder[i] = preorder[i];
 		}
+		Arrays.sort(inorder);
+		return buildTree(preorder, inorder);
+	}
+
+	private void preorder(TreeNode root, StringBuilder sb){
+		if(root == null){
+			return;
+		}
+		sb.append(root.val + ",");
+		preorder(root.left, sb);
+		preorder(root.right, sb);
+	}
+
+	// #0105 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+	public TreeNode buildTree(int[] preorder, int[] inorder) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for(int i = 0; i < inorder.length; i++){
+			map.put(inorder[i], i);
+		}
+		return dfs(preorder, 0, preorder.length - 1, 0, preorder.length - 1, map);
+	}
+
+	private TreeNode dfs(int[] preorder, int i, int j, int m, int n, Map<Integer, Integer> map){
+		if(i > j){
+			return null;
+		}
+		TreeNode root = new TreeNode(preorder[i]);
+		if(i == j){
+			return root;
+		}
+		int k = map.get(preorder[i]) - m;
+		root.left = dfs(preorder, i + 1, i + k, m, m + k - 1, map);
+		root.right = dfs(preorder, i + k + 1, j, m + k + 1, n, map);
 		return root;
 	}
 }

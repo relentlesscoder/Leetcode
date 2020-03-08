@@ -2,26 +2,18 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/26/2016.
- * #171 https://leetcode.com/problems/excel-sheet-column-number/
+ * #0171 https://leetcode.com/problems/excel-sheet-column-number/
  */
 public class ExcelSheetColumnNumber {
+	// time O(n)
 	public int titleToNumber(String s) {
-		if (s == null || s.isEmpty()) {
+		if(s == null || s.isEmpty()){
 			return 0;
 		}
-
-		int len = s.length();
-		char[] arr = s.toCharArray();
-		int val = 0;
-		int ct = 1;
-		for (int i = len - 1; i >= 0; i--) {
-			char c = arr[i];
-			int v = c - 64;
-			v *= ct;
-			val += v;
-			ct *= 26;
+		int res = 0, n = s.length();
+		for(int i = 0; i < n; i++){
+			res = res * 26 + (s.charAt(i) - 'A') + 1;
 		}
-
-		return val;
+		return res;
 	}
 }

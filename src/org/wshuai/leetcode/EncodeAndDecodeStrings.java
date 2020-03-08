@@ -4,39 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 9/24/2016.
+ * Created by Wei on 09/24/2016.
+ * #0271 https://leetcode.com/problems/encode-and-decode-strings/
  */
 public class EncodeAndDecodeStrings {
 	// Encodes a list of strings to a single string.
 	public String encode(List<String> strs) {
-		if (strs == null || strs.size() == 0) {
-			return "";
+		StringBuilder sb = new StringBuilder();
+		for(String s : strs){
+			sb.append(s.length()).append(",").append(s);
 		}
-		StringBuilder lens = new StringBuilder();
-		StringBuilder vals = new StringBuilder();
-		for (String str : strs) {
-			lens.append(str.length() + ",");
-			vals.append(str);
-		}
-		return lens.toString() + "#" + vals.toString();
+		return sb.toString();
 	}
 
 	// Decodes a single string to a list of strings.
 	public List<String> decode(String s) {
-		List<String> lst = new ArrayList<String>();
-		if (s == null || s.isEmpty()) {
-			return lst;
+		List<String> res = new ArrayList<>();
+		int i = 0, j = 0;
+		while(i < s.length()){
+			j = s.indexOf(",", i);
+			int len = Integer.parseInt(s.substring(i, j));
+			res.add(s.substring(j + 1, j + 1 + len));
+			i = j + 1 + len;
 		}
-		int idx = s.indexOf("#");
-		int vidx = idx + 1;
-		int lidx = 0;
-		while (lidx != idx) {
-			int nxt = s.indexOf(",", lidx);
-			int length = Integer.parseInt(s.substring(lidx, nxt));
-			lst.add(s.substring(vidx, vidx + length));
-			lidx = nxt + 1;
-			vidx += length;
-		}
-		return lst;
+		return res;
 	}
 }
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec = new Codec();
+// codec.decode(codec.encode(strs));

@@ -4,23 +4,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Wei on 9/13/2019.
- * #391 https://leetcode.com/problems/perfect-rectangle/
+ * Created by Wei on 09/13/2019.
+ * #0391 https://leetcode.com/problems/perfect-rectangle/
  */
 public class PerfectRectangle {
-	// see https://leetcode.com/problems/perfect-rectangle/discuss/87181/Really-Easy-Understanding-Solution(O(n)-Java)
+	// time O(n)
+	// https://leetcode.com/problems/perfect-rectangle/discuss/87181/Really-Easy-Understanding-Solution(O(n)-Java)
 	public boolean isRectangleCover(int[][] rectangles) {
 		if (rectangles.length == 0 || rectangles[0].length == 0) {
 			return false;
 		}
 
+		int area = 0;
 		int x1 = Integer.MAX_VALUE;
 		int x2 = Integer.MIN_VALUE;
 		int y1 = Integer.MAX_VALUE;
 		int y2 = Integer.MIN_VALUE;
-
 		Set<String> set = new HashSet<>();
-		int area = 0;
 
 		for (int[] rect : rectangles) {
 			x1 = Math.min(rect[0], x1);

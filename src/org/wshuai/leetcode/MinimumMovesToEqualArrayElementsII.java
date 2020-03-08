@@ -4,20 +4,19 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 11/23/2016.
- * #462 https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/
+ * #0462 https://leetcode.com/problems/minimum-moves-to-equal-array-elements-ii/
  */
 public class MinimumMovesToEqualArrayElementsII {
+	// time O(n*log(n))
 	public int minMoves2(int[] nums) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
-		int len = nums.length;
 		Arrays.sort(nums);
-		int mid = nums[len / 2];
-		int min = 0;
-		for (int i = 0; i < len; i++) {
-			min += Math.abs(nums[i] - mid);
+		int res = 0, n = nums.length, target = nums[n / 2];
+		for(int num : nums){
+			res += Math.abs(target - num);
 		}
-		return min;
+		return res;
 	}
 }

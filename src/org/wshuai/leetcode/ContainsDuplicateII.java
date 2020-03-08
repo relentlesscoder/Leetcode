@@ -4,25 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 10/10/16.
+ * Created by Wei on 10/10/2016.
  */
 public class ContainsDuplicateII {
+	// time O(n), space O(n)
 	public boolean containsNearbyDuplicate(int[] nums, int k) {
-		if (nums == null || nums.length == 0) {
-			return false;
-		}
-		int len = nums.length;
-		Map<Integer, Integer> set = new HashMap<Integer, Integer>();
-		for (int i = 0; i < len; i++) {
-			int val = nums[i];
-			Integer x = set.get(val);
-			if (x != null && i - x <= k) {
+		Map<Integer, Integer> map = new HashMap<>();
+		for(int i = 0; i < nums.length; i++){
+			if(map.containsKey(nums[i])
+				&& Math.abs(map.get(nums[i]) - i) <= k){
 				return true;
-			} else {
-				set.put(val, i);
 			}
+			map.put(nums[i], i);
 		}
-
 		return false;
 	}
 }

@@ -3,8 +3,8 @@ package org.wshuai.leetcode;
 import java.util.Random;
 
 /**
- * Created by Wei on 11/18/16.
- * #382 https://leetcode.com/problems/linked-list-random-node/
+ * Created by Wei on 11/18/2016.
+ * #0382 https://leetcode.com/problems/linked-list-random-node/
  */
 public class LinkedListRandomNode {
 
@@ -23,7 +23,8 @@ public class LinkedListRandomNode {
 	/**
 	 * Returns a random node's value.
 	 */
-	//O(n), reservoir sampling. http://www.geeksforgeeks.org/reservoir-sampling/
+	// time O(n)
+	// reservoir sampling http://www.geeksforgeeks.org/reservoir-sampling/
 	public int getRandom() {
 		int result = 0;
 		LinkedListNode curr = head;

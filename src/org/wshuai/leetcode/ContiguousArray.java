@@ -4,32 +4,30 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 2/27/17.
- * #525 https://leetcode.com/problems/contiguous-array/
+ * Created by Wei on 02/27/2017.
+ * #0525 https://leetcode.com/problems/contiguous-array/
  */
 public class ContiguousArray {
+	// time O(n), space O(n)
 	public int findMaxLength(int[] nums) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
 		int len = nums.length;
-		for (int i = 0; i < len; i++) {
-			if (nums[i] == 0) {
+		for(int i = 0; i < len; i++){
+			if(nums[i] == 0){
 				nums[i] = -1;
 			}
 		}
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> map = new HashMap<>();
 		map.put(0, -1);
-		int max = 0;
-		int sum = 0;
-		for (int i = 0; i < len; i++) {
+		int max = 0, sum = 0;
+		for(int i = 0; i < len; i++){
 			sum += nums[i];
-			//in order to get longest sub-array,
-			//don't update the map
-			if (map.containsKey(sum)) {
+			if(map.containsKey(sum)){
 				int idx = map.get(sum);
 				max = Math.max(max, i - idx);
-			} else {
+			}else{
 				map.put(sum, i);
 			}
 		}

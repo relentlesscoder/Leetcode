@@ -4,32 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 11/3/16.
- * #448 https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+ * Created by Wei on 11/03/2016.
+ * #0448 https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
  */
 public class FindAllNumbersDisappearedInAnArray {
-	//O(n) time, in-place bucket sort
+	// time O(n), space O(1)
+	// In-place bucket sort
 	public List<Integer> findDisappearedNumbers(int[] nums) {
-		List<Integer> lst = new ArrayList<Integer>();
-		if (nums == null || nums.length == 0) {
-			return lst;
+		List<Integer> res = new ArrayList<>();
+		int n = nums.length;
+		for(int i = 0; i < n; i++){
+			while(nums[i] != i + 1 && nums[i] <= n && nums[nums[i] - 1] != nums[i]){
+				int temp = nums[nums[i] - 1];
+				nums[nums[i] - 1] = nums[i];
+				nums[i] = temp;
+			}
 		}
-		int len = nums.length;
-		for (int i = 0; i < len; i++) {
-			if (nums[i] == i + 1) {
+		for(int i = 0; i < n; i++){
+			if(nums[i] == i + 1){
 				continue;
 			}
-			while (nums[i] != i + 1 && nums[i] != nums[nums[i] - 1]) {
-				int temp = nums[i];
-				nums[i] = nums[temp - 1];
-				nums[temp - 1] = temp;
-			}
+			res.add(i + 1);
 		}
-		for (int i = 0; i < len; i++) {
-			if (nums[i] != i + 1) {
-				lst.add(i + 1);
-			}
-		}
-		return lst;
+		return res;
 	}
 }

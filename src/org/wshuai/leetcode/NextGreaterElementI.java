@@ -5,24 +5,23 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
- * Created by Wei on 2/21/17.
- * #496 https://leetcode.com/problems/next-greater-element-i/
+ * Created by Wei on 02/21/2017.
+ * #0496 https://leetcode.com/problems/next-greater-element-i/
  */
 public class NextGreaterElementI {
-	public int[] nextGreaterElement(int[] findNums, int[] nums) {
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-		Stack<Integer> stack = new Stack<Integer>();
-		for (int num : nums) {
-			while (!stack.isEmpty() && stack.peek() < num) {
-				map.put(stack.pop(), num);
+	// time O(m+n), space O(m)
+	public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+		Map<Integer, Integer> map = new HashMap<>();
+		Stack<Integer> stack = new Stack<>();
+		for(int i = 0; i < nums2.length; i++){
+			while(!stack.isEmpty() && stack.peek() < nums2[i]){
+				map.put(stack.pop(), nums2[i]);
 			}
-			stack.push(num);
+			stack.push(nums2[i]);
 		}
-		int len = findNums.length;
-		int[] res = new int[len];
-		for (int i = 0; i < len; i++) {
-			res[i] = map.getOrDefault(findNums[i], -1);
+		for(int i = 0; i < nums1.length; i++){
+			nums1[i] = map.getOrDefault(nums1[i], -1);
 		}
-		return res;
+		return nums1;
 	}
 }

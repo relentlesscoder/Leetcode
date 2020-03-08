@@ -1,35 +1,35 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
-
 /**
  * Created by Wei on 10/20/2019.
- * #510 https://leetcode.com/problems/inorder-successor-in-bst-ii/
+ * #0510 https://leetcode.com/problems/inorder-successor-in-bst-ii/
  */
 public class InorderSuccessorInBSTII {
-	public TreeNodeWithParent inorderSuccessor(TreeNodeWithParent x) {
-		TreeNodeWithParent y = x;
-		while(y.parent != null){
-			y = y.parent;
-		}
-		boolean next = false;
-		Stack<TreeNodeWithParent> stack = new Stack<>();
-		TreeNodeWithParent curr = y;
-		while(!stack.isEmpty() || curr != null){
-			if(curr != null){
-				stack.push(curr);
-				curr = curr.left;
-			}else{
-				TreeNodeWithParent node = stack.pop();
-				if(next){
-					return node;
-				}
-				if(node == x){
-					next = true;
-				}
-				curr = node.right;
+	// time O(log(n))
+	public TreeNodeWithParent inorderSuccessor(TreeNodeWithParent node) {
+		if(node.right != null){
+			TreeNodeWithParent successor = node.right;
+			while(successor != null && successor.left != null){
+				successor = successor.left;
 			}
+			return successor;
+		}else{
+			TreeNodeWithParent successor = node.parent;
+			while (successor != null && successor.val < node.val) {
+				successor = successor.parent;
+			}
+			return successor;
 		}
-		return null;
+	}
+
+	private class TreeNodeWithParent{
+		public int val;
+
+		public TreeNodeWithParent left;
+
+		public TreeNodeWithParent right;
+
+		public TreeNodeWithParent parent;
+
 	}
 }

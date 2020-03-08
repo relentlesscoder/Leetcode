@@ -1,33 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/25/16.
- * #151 https://leetcode.com/problems/reverse-words-in-a-string/
+ * Created by Wei on 10/25/2016.
+ * #0151 https://leetcode.com/problems/reverse-words-in-a-string/
  */
 public class ReverseWordsInAString {
+	// time O(n)
 	public String reverseWords(String s) {
-		if (s == null || s.isEmpty()) {
-			return s;
+		if(s == null || s.isEmpty()){
+			return "";
 		}
 		StringBuilder sb = new StringBuilder();
-		char[] chars = s.toCharArray();
-		int len = chars.length;
-		int end = len - 1;
-		int begin = len - 1;
-		while (begin >= 0) {
-			while (end >= 0 && chars[end] == ' ') {
-				end--;
+		String[] strs = s.split(" ");
+		for(int i = strs.length - 1; i >= 0; i--){
+			if(strs[i].isEmpty()){
+				continue;
 			}
-			if (end < 0) {
-				break;
-			}
-			begin = end;
-			while (begin >= 0 && chars[begin] != ' ') {
-				begin--;
-			}
-			sb.append(s.substring(begin + 1, end + 1) + " ");
-			end = begin;
+			sb.append(strs[i] + " ");
 		}
-		return sb.toString().trim();
+		return sb.length() == 0 ? "" : sb.substring(0, sb.length() - 1);
 	}
 }

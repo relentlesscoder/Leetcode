@@ -1,35 +1,26 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/2/16.
- * #244 https://leetcode.com/problems/shortest-word-distance-iii/
+ * Created by Wei on 10/02/2016.
+ * #0244 https://leetcode.com/problems/shortest-word-distance-iii/
  */
 public class ShortestWordDistanceIII {
 	public int shortestWordDistance(String[] words, String word1, String word2) {
-		int min = Integer.MAX_VALUE;
-		int w1 = -1;
-		int w2 = -1;
-		int len = words.length;
-		boolean last = false;
-		boolean same = word1.equals(word2);
-		for (int i = 0; i < len; i++) {
-			String val = words[i];
-			if (val.equals(word1) && (!same || !last)) {
+		int dist = Integer.MAX_VALUE, n = words.length, w1 = -n, w2 = -n;
+		boolean same = word1.equals(word2), set = false;
+		for(int i = 0; i < words.length; i++){
+			// if word1 and word2 are same, only set w1 when w1 is not set
+			if(words[i].equals(word1) && (!same || !set)){
 				w1 = i;
-				if (w2 != -1) {
-					int dis = w1 - w2;
-					min = dis < min ? dis : min;
-				}
-				last = true;
-			} else if (val.equals(word2) && (!same || last)) {
+				dist = Math.min(dist, w1 - w2);
+				set = true;
+			// 	if word1 and word2 are same, only set w2 when w1 is already set
+			}else if(words[i].equals(word2) && (!same || set)){
 				w2 = i;
-				if (w1 != -1) {
-					int dis = w2 - w1;
-					min = dis < min ? dis : min;
-				}
-				last = false;
+				dist = Math.min(dist, w2 - w1);
+				set = false;
 			}
 		}
-		return min;
+		return dist;
 	}
 }

@@ -1,30 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/5/2019.
- * #467 https://leetcode.com/problems/unique-substrings-in-wraparound-string/
+ * Created by Wei on 11/05/2019.
+ * #0467 https://leetcode.com/problems/unique-substrings-in-wraparound-string/
  */
 public class UniqueSubstringsInWraparoundString {
+	// time O(n)
+	// https://leetcode.com/problems/unique-substrings-in-wraparound-string/discuss/95439/Concise-Java-solution-using-DP
 	public int findSubstringInWraproundString(String p) {
-		int[] count = new int[26];
-
-		int maxLengthCurr = 0;
-
+		int[] maxLengthEndWith = new int[26];
+		int res = 0, curLengthEndWith = 0;
+		char[] arr = p.toCharArray();
 		for(int i = 0; i < p.length(); i++){
-			if(i > 0 && (p.charAt(i) - p.charAt(i - 1) == 1 || p.charAt(i - 1) - p.charAt(i) == 25)){
-				maxLengthCurr++;
+			if(i > 0 && (arr[i] - arr[i - 1] == 1 || arr[i - 1] - arr[i] == 25)){
+				curLengthEndWith++;
 			}else{
-				maxLengthCurr = 1;
+				curLengthEndWith = 1;
 			}
-
-			int index = p.charAt(i) - 'a';
-			count[index] = Math.max(count[index], maxLengthCurr);
+			int index = arr[i] - 'a';
+			maxLengthEndWith[index] = Math.max(maxLengthEndWith[index], curLengthEndWith);
 		}
-
-		int sum = 0;
-		for(int i = 0; i < 26; i++){
-			sum += count[i];
+		for(int max : maxLengthEndWith){
+			res += max;
 		}
-		return sum;
+		return res;
 	}
 }

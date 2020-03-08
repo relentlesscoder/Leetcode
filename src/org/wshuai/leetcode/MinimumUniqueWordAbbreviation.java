@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  * Created by Wei on 12/31/2019.
- * #411 https://leetcode.com/problems/minimum-unique-word-abbreviation/
+ * #0411 https://leetcode.com/problems/minimum-unique-word-abbreviation/
  */
 public class MinimumUniqueWordAbbreviation {
 	private int minLen;

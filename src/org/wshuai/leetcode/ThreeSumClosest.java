@@ -9,37 +9,31 @@ import java.util.Arrays;
 public class ThreeSumClosest {
 	// time O(n^2)
 	public int threeSumClosest(int[] nums, int target) {
-		int[] res = new int[]{0, Integer.MAX_VALUE};
+		if(nums == null || nums.length < 3){
+			return -1;
+		}
 		Arrays.sort(nums);
-		int n = nums.length;
+		int n = nums.length, res = 0, diff = Integer.MAX_VALUE;
 		for(int i = 0; i < n - 2; i++){
-			if(i > 0 && nums[i] == nums[i - 1]){
-				continue;
-			}
-			int left = i + 1;
-			int right = n - 1;
-			while(left < right){
-				int lval = nums[left];
-				int rval = nums[right];
-				int sum = lval + rval + nums[i];
-				int diff = Math.abs(sum - target);
-				if(diff < res[1]){
-					res[1] = diff;
-					res[0] = sum;
-				}
+			int j = i + 1, k = n - 1;
+			while(j < k){
+				int sum = nums[i] + nums[j] + nums[k];
 				if(sum == target){
-					return sum;
-				}else if(sum < target){
-					while(left < right && nums[left] == lval){
-						left++;
-					}
+					return target;
 				}else{
-					while(left < right && nums[right] == rval){
-						right--;
+					int cur = Math.abs(sum - target);
+					if(cur < diff){
+						diff = cur;
+						res = sum;
+					}
+					if(sum > target){
+						k--;
+					}else{
+						j++;
 					}
 				}
 			}
 		}
-		return res[0];
+		return res;
 	}
 }

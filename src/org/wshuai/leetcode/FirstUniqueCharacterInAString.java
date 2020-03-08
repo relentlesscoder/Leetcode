@@ -1,37 +1,22 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by Wei on 9/19/2016.
+ * Created by Wei on 09/19/2016.
+ * #0387 https://leetcode.com/problems/first-unique-character-in-a-string/
  */
 public class FirstUniqueCharacterInAString {
+	// time O(n)
 	public int firstUniqChar(String s) {
-		if (s == null) {
-			throw new IllegalArgumentException("Invalid input.");
+		int[] count = new int[26];
+		char[] chars = s.toCharArray();
+		for(char c : chars){
+			count[c - 'a']++;
 		}
-		char[] arr = s.toCharArray();
-		int len = arr.length;
-		Map<Character, Integer> map = new HashMap<Character, Integer>();
-		for (int i = 0; i < len; i++) {
-			char k = arr[i];
-			if (map.containsKey(k)) {
-				int c = map.get(k);
-				map.put(k, c + 1);
-			} else {
-				map.put(k, 1);
-			}
-		}
-
-		for (int i = 0; i < len; i++) {
-			char k = arr[i];
-			int c = map.get(k);
-			if (c == 1) {
+		for(int i = 0; i < chars.length; i++){
+			if(count[chars[i] - 'a'] == 1){
 				return i;
 			}
 		}
-
 		return -1;
 	}
 }

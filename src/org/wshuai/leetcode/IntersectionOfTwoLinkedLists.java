@@ -2,36 +2,20 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/26/2016.
- * #160 https://leetcode.com/problems/intersection-of-two-linked-lists/
+ * #0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
  */
 public class IntersectionOfTwoLinkedLists {
+	// time O(n)
+	// https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/49785/Java-solution-without-knowing-the-difference-in-len!
 	public LinkedListNode getIntersectionNode(LinkedListNode headA, LinkedListNode headB) {
-		if (headA == null || headB == null) {
+		if(headA == null && headB == null){
 			return null;
 		}
-		LinkedListNode x = headA;
-		LinkedListNode y = headB;
-		boolean af = true;
-		boolean bf = true;
-		while (x != null && y != null) {
-			if (x == y) {
-				return x;
-			}
-
-			if (x.next == null && af) {
-				x = headB;
-				af = false;
-			} else {
-				x = x.next;
-			}
-
-			if (y.next == null && bf) {
-				y = headA;
-				bf = false;
-			} else {
-				y = y.next;
-			}
+		LinkedListNode a = headA, b = headB;
+		while(a != b){
+			a = a == null ? headB : a.next;
+			b = b == null ? headA : b.next;
 		}
-		return null;
+		return a;
 	}
 }

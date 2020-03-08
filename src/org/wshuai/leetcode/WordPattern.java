@@ -3,54 +3,28 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 9/19/2016.
+ * Created by Wei on 09/19/2016.
+ * #0290 https://leetcode.com/problems/word-pattern/
  */
 public class WordPattern {
+	// time O(n)
 	public boolean wordPattern(String pattern, String str) {
-		if (pattern == null || str == null) {
-			throw new IllegalArgumentException("Invalid input.");
-		}
-		char[] pArr = pattern.toCharArray();
-		char[] sArr = str.toCharArray();
-		int pLen = pArr.length;
-		int sLen = sArr.length;
-		Map<Character, String> map = new HashMap<Character, String>();
-		List<String> lst = new ArrayList<String>();
-		Set<String> used = new HashSet<String>();
-		for (int i = 0; i < sLen; ) {
-			int j = i;
-			while (j < sLen && sArr[j] != ' ') {
-				j++;
-			}
-			String val = str.substring(i, j);
-			lst.add(val);
-			if (j == sLen) {
-				break;
-			} else {
-				i = j + 1;
-			}
-		}
-		int size = lst.size();
-		if (size != pLen) {
+		String[] strs = str.split(" ");
+		if(strs.length != pattern.length()){
 			return false;
 		}
-
-		for (int i = 0; i < pLen; i++) {
-			char k = pArr[i];
-			String s = lst.get(i);
-			if (map.containsKey(k)) {
-				String val = map.get(k);
-				if (!val.equals(s)) {
-					return false;
-				}
-			} else if (!used.contains(s)) {
-				map.put(k, s);
-				used.add(s);
-			} else {
+		Map<Character, String> map = new HashMap<>();
+		Set<String> mapped = new HashSet<>();
+		for(int i = 0; i < strs.length; i++){
+			char c = pattern.charAt(i);
+			if(map.containsKey(c) && !map.get(c).equals(strs[i])){
 				return false;
 			}
+			if(!map.containsKey(c) && !mapped.add(strs[i])){
+				return false;
+			}
+			map.put(c, strs[i]);
 		}
-
 		return true;
 	}
 }

@@ -1,72 +1,38 @@
 package org.wshuai.leetcode;
 
-import java.util.Iterator;
-import java.util.List;
-
 /**
- * Created by Wei on 11/6/16.
- * #251 https://leetcode.com/problems/flatten-2d-vector/
+ * Created by Wei on 11/06/2016.
+ * #0251 https://leetcode.com/problems/flatten-2d-vector/
  */
-public class Flatten2DVector implements Iterator<Integer> {
-	private List<List<Integer>> data;
-	private int x;
-	private int y;
+public class Flatten2DVector{
+	private int[][] v;
+	private int i, j;
 
-	public Flatten2DVector(List<List<Integer>> vec2d) {
-		data = vec2d;
-		x = 0;
-		y = 0;
+	public Flatten2DVector(int[][] v) {
+		this.v = v;
+		i = j = 0;
 	}
 
-	@Override
-	public Integer next() {
-		List<Integer> lst = data.get(x);
-		int res = lst.get(y);
-		if (y < lst.size() - 1) {
-			y++;
-		} else {
-			x++;
-			y = 0;
+	public int next() {
+		while(j == v[i].length){
+			i++;
+			j = 0;
 		}
-		return res;
+		return v[i][j++];
 	}
 
-	@Override
 	public boolean hasNext() {
-		if (data == null || data.size() == 0) {
-			return false;
+		while(i < v.length && j == v[i].length){
+			i++;
+			j = 0;
 		}
-		int len1 = data.size();
-		if (x < len1) {
-			List<Integer> lst = data.get(x);
-			while (lst == null || lst.size() == 0) {
-				x++;
-				if (x == len1) {
-					break;
-				}
-				lst = data.get(x);
-			}
-			if (x == len1) {
-				return false;
-			}
-			int len2 = lst.size();
-			if (y >= len2) {
-				return false;
-			}
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public void remove() {
-		//fake implementation
+		return i < v.length;
 	}
 }
 
 /**
  * Your Vector2D object will be instantiated and called as such:
- * Vector2D i = new Vector2D(vec2d);
- * while (i.hasNext()) v[f()] = i.next();
+ * Vector2D obj = new Vector2D(v);
+ * int param_1 = obj.next();
+ * boolean param_2 = obj.hasNext();
  */

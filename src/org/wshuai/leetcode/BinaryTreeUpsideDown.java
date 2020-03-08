@@ -1,23 +1,33 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/2/2016.
+ * Created by Wei on 10/02/2016.
+ * #0156 https://leetcode.com/problems/binary-tree-upside-down/
  */
 public class BinaryTreeUpsideDown {
+	private TreeNode res;
+
+	// time O(n)
 	public TreeNode upsideDownBinaryTree(TreeNode root) {
-		TreeNode node = root;
-		TreeNode parent = null;
-		TreeNode right = null;
-
-		while (node != null) {
-			TreeNode left = node.left;
-			node.left = right;
-			right = node.right;
-			node.right = parent;
-			parent = node;
-			node = left;
+		res = null;
+		if(root == null){
+			return res;
 		}
+		dfs(root);
+		return res;
+	}
 
-		return parent;
+	private TreeNode dfs(TreeNode root){
+		if(root.left == null){
+			res = root;
+			return root;
+		}
+		TreeNode left  = dfs(root.left);
+		TreeNode right = root.right;
+		root.left = null;
+		root.right = null;
+		left.left = right;
+		left.right = root;
+		return root;
 	}
 }

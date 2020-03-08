@@ -1,23 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/2/2016.
- * #348 https://leetcode.com/problems/design-tic-tac-toe/
+ * Created by Wei on 11/02/2016.
+ * #0348 https://leetcode.com/problems/design-tic-tac-toe/
  */
 public class DesignTicTacToe {
-	private int len;
-	private int[] rows;
-	private int[] cols;
-	private int dia = 0;
-	private int anti = 0;
+	private int n, winner, diagonalSum, antidiagonalSum;
+	private int[] rowSum, colSum;
 
 	/**
 	 * Initialize your data structure here.
 	 */
 	public DesignTicTacToe(int n) {
-		len = n;
-		rows = new int[n];
-		cols = new int[n];
+		this.n = n;
+		winner = 0;
+		rowSum = new int[n];
+		colSum = new int[n];
+		diagonalSum = 0;
+		antidiagonalSum = 0;
 	}
 
 	/**
@@ -32,39 +32,28 @@ public class DesignTicTacToe {
 	 * 2: Player 2 wins.
 	 */
 	public int move(int row, int col, int player) {
+		if (winner != 0) {
+			return winner;
+		}
 		int val = player == 1 ? 1 : -1;
-		int rlen = -1 * len;
-		rows[row] += val;
-		int x = rows[row];
-		if (x == len) {
-			return 1;
-		} else if (x == rlen) {
-			return 2;
-		}
-		cols[col] += val;
-		x = cols[col];
-		if (x == len) {
-			return 1;
-		} else if (x == rlen) {
-			return 2;
-		}
+		rowSum[row] += val;
+		colSum[col] += val;
 		if (row == col) {
-			dia += val;
-			if (dia == len) {
-				return 1;
-			} else if (dia == rlen) {
-				return 2;
-			}
+			diagonalSum += val;
 		}
-		if (row + col == len - 1) {
-			anti += val;
-			if (anti == len) {
-				return 1;
-			} else if (anti == rlen) {
-				return 2;
-			}
+		if (row + col == n - 1) {
+			antidiagonalSum += val;
 		}
-		return 0;
+		if (Math.abs(rowSum[row]) == n) {
+			winner = player;
+		} else if (Math.abs(colSum[col]) == n) {
+			winner = player;
+		} else if (Math.abs(diagonalSum) == n) {
+			winner = player;
+		} else if (Math.abs(antidiagonalSum) == n) {
+			winner = player;
+		}
+		return winner;
 	}
 }
 

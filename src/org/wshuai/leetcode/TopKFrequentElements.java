@@ -3,49 +3,31 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 11/2/2016.
- * #347 https://leetcode.com/problems/top-k-frequent-elements/
+ * Created by Wei on 11/02/2016.
+ * #0347 https://leetcode.com/problems/top-k-frequent-elements/
  */
 public class TopKFrequentElements {
+	// time O(n*log(k)), space O(k)
 	public List<Integer> topKFrequent(int[] nums, int k) {
-		List<Integer> lst = new ArrayList<Integer>();
-		PriorityQueue<ValueCount> pq = new PriorityQueue<ValueCount>(new ValueCountComparator());
-		Arrays.sort(nums);
-		int len = nums.length;
-		int val = nums[0];
-		int count = 0;
-		for (int i = 0; i < len; i++) {
-			if (nums[i] != val) {
-				pq.offer(new ValueCount(val, count));
-				val = nums[i];
-				count = 0;
+		List<Integer> res = new ArrayList<>();
+		if(nums == null || nums.length == 0 || k <= 0){
+			return res;
+		}
+		Map<Integer, Integer> map = new HashMap<>();
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+		for(int num : nums){
+			map.put(num, map.getOrDefault(num, 0) + 1);
+		}
+		for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+			pq.offer(new int[]{entry.getKey(), entry.getValue()});
+			if(pq.size() > k){
+				pq.poll();
 			}
-			count++;
 		}
-		pq.offer(new ValueCount(val, count));
-		int i = 0;
-		while (i < k) {
-			ValueCount vc = pq.poll();
-			lst.add(vc.val);
-			i++;
+		while(!pq.isEmpty()){
+			res.add(pq.poll()[0]);
 		}
-		return lst;
-	}
-}
-
-class ValueCount {
-	int val;
-	int count;
-
-	public ValueCount(int val, int count) {
-		this.val = val;
-		this.count = count;
-	}
-}
-
-class ValueCountComparator implements Comparator<ValueCount> {
-	@Override
-	public int compare(ValueCount x, ValueCount y) {
-		return y.count - x.count;
+		Collections.reverse(res);
+		return res;
 	}
 }

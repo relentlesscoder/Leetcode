@@ -1,41 +1,34 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/24/2016.
- * #323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+ * Created by Wei on 09/24/2016.
+ * #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
  */
 public class NumberOfConnectedComponentsInAnUndirectedGraph {
+	// time O(V + E*log(V)), union find
+	// see DFS & BFS at https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/77578/Java-concise-DFS
 	public int countComponents(int n, int[][] edges) {
-		if (n <= 0) {
-			return 0;
+		int[] root = new int[n];
+		for(int i = 0; i < n; i++){
+			root[i] = i;
 		}
-		if (edges == null || edges.length == 0) {
-			return n;
-		}
-		int len = edges.length;
-		int count = 0;
-		int[] visited = new int[n];
-		for (int i = 0; i < n; i++) {
-			if (visited[i] != 1) {
-				countComponentsDFS(i, edges, len, visited);
-				count++;
+		int res = n;
+		for(int[] e : edges){
+			int r1 = findRoot(e[0], root);
+			int r2 = findRoot(e[1], root);
+			if(r1 == r2){
+				continue;
 			}
+			root[r1] = r2;
+			res--;
 		}
-		return count;
+		return res;
 	}
 
-	private void countComponentsDFS(int v, int[][] edges, int len, int[] visited) {
-		visited[v] = 1;
-		for (int j = 0; j < len; j++) {
-			int[] edge = edges[j];
-			int fst = edge[0];
-			int sec = edge[1];
-			if (fst == v || sec == v) {
-				int vertex = fst == v ? sec : fst;
-				if (visited[vertex] != 1) {
-					countComponentsDFS(vertex, edges, len, visited);
-				}
-			}
+	private int findRoot(int i, int[] root){
+		if(i != root[i]){
+			root[i] = findRoot(root[i], root);
 		}
+		return root[i];
 	}
 }

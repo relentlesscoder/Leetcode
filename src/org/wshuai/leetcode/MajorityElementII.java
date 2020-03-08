@@ -4,54 +4,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 11/5/16.
- * #229 https://leetcode.com/problems/majority-element-ii/
+ * Created by Wei on 11/05/2016.
+ * #0229 https://leetcode.com/problems/majority-element-ii/
  */
 public class MajorityElementII {
+	// tim O(n)
+	// https://leetcode.com/problems/majority-element-ii/discuss/63537/My-understanding-of-Boyer-Moore-Majority-Vote
 	public List<Integer> majorityElement(int[] nums) {
-		List<Integer> lst = new ArrayList<Integer>();
-		if (nums == null || nums.length == 0) {
-			return lst;
+		List<Integer> res = new ArrayList<>();
+		if(nums == null || nums.length == 0){
+			return res;
 		}
-		int len = nums.length;
-		int c1 = 1;
-		int c2 = 0;
-		int n1 = nums[0];
-		int n2 = 0;
-		for (int i = 1; i < len; i++) {
-			if (nums[i] == n1) {
-				c1++;
-			} else if (nums[i] == n2) {
-				c2++;
-			} else if (c1 != 0 && c2 != 0) {
-				c1--;
-				c2--;
-			} else {
-				if (c1 == 0) {
-					n1 = nums[i];
-					c1 = 1;
-				} else {
-					n2 = nums[i];
-					c2 = 1;
-				}
+		int n = nums.length, t = n / 3, cand1 = 0, cand2 = 0, count1 = 0, count2 = 0;
+		for(int i = 0; i < n; i++){
+			int num = nums[i];
+			if(num == cand1){
+				count1++;
+			}else if(num == cand2){
+				count2++;
+			}else if(count1 == 0){
+				cand1 = num;
+				count1 = 1;
+			}else if(count2 == 0){
+				cand2 = num;
+				count2 = 1;
+			}else{
+				count1--;
+				count2--;
 			}
 		}
-		c1 = 0;
-		c2 = 0;
-		for (int i = 0; i < len; i++) {
-			if (nums[i] == n1) {
-				c1++;
-			} else if (nums[i] == n2) {
-				c2++;
+		count1 = 0;
+		count2 = 0;
+		for(int i : nums){
+			if(i == cand1){
+				count1++;
+			}else if(i == cand2){
+				count2++;
 			}
 		}
-		int x = len / 3;
-		if (c1 > x) {
-			lst.add(n1);
+		if(count1 > t){
+			res.add(cand1);
 		}
-		if (c2 > x) {
-			lst.add(n2);
+		if(count2 > t){
+			res.add(cand2);
 		}
-		return lst;
+		return res;
 	}
 }

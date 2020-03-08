@@ -1,35 +1,29 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by Wei on 9/27/19.
- * #531 https://leetcode.com/problems/lonely-pixel-i/
+ * Created by Wei on 09/27/2019.
+ * #0531 https://leetcode.com/problems/lonely-pixel-i/
  */
 public class LonelyPixelI {
+	// time O(m*n), space O(m+n)
 	public int findLonelyPixel(char[][] picture) {
-		int r = picture.length;
-		int c = picture[0].length;
-		int[] rows = new int[r];
-		int[] cols = new int[c];
-		List<int[]> blacks = new ArrayList<>();
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
+		int res = 0, m = picture.length, n = picture[0].length;
+		int[] rows = new int[m], cols = new int[n];
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
 				if(picture[i][j] == 'B'){
-					blacks.add(new int[]{i, j});
 					rows[i]++;
 					cols[j]++;
 				}
 			}
 		}
-		int count = 0;
-		for(int[] b: blacks){
-			if(rows[b[0]] > 1 || cols[b[1]] > 1){
-				continue;
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
+				if(picture[i][j] == 'B' && rows[i] == 1 && cols[j] == 1){
+					res++;
+				}
 			}
-			count++;
 		}
-		return count;
+		return res;
 	}
 }

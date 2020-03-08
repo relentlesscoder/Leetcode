@@ -1,28 +1,24 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/19/2016.
+ * Created by Wei on 09/19/2016.
+ * #0389 https://leetcode.com/problems/find-the-difference/
  */
 public class FindTheDifference {
+	// time O(n)
 	public char findTheDifference(String s, String t) {
-		if (s == null || t == null) {
-			throw new IllegalArgumentException("Invalid input.");
+		int[] count = new int[26];
+		for(char c : t.toCharArray()){
+			count[c - 'a']++;
 		}
-		if (t.isEmpty()) {
-			throw new IllegalArgumentException("Invalid input.");
+		for(char c : s.toCharArray()){
+			count[c - 'a']--;
 		}
-
-		int sum = 0;
-		char[] arr1 = s.toCharArray();
-		char[] arr2 = t.toCharArray();
-		int len1 = arr1.length;
-		int len2 = arr2.length;
-		for (int i = 0; i < len2; i++) {
-			sum += (int) arr2[i];
+		for(int i = 0; i < 26; i++){
+			if(count[i] > 0){
+				return (char)('a' + i);
+			}
 		}
-		for (int i = 0; i < len1; i++) {
-			sum -= (int) arr1[i];
-		}
-		return (char) sum;
+		return ' ';
 	}
 }

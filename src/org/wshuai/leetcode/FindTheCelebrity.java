@@ -1,35 +1,30 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/1/2016.
- * #277 https://leetcode.com/problems/find-the-celebrity/
+ * Created by Wei on 10/01/2016.
+ * #0277 https://leetcode.com/problems/find-the-celebrity/
  */
 public class FindTheCelebrity {
+	// time O(n)
 	public int findCelebrity(int n) {
-		if (n <= 0) {
-			return -1;
-		}
-		int a = 0;
-		int b = n - 1;
-		while (a < b) {
-			boolean k = knows(a, b);
-			if (k) {
-				a++;
-			} else {
-				b--;
+		int cand = 0;
+		for(int i = 1; i < n; i++){
+			if(knows(cand, i)){
+				cand = i;
 			}
 		}
-
-		for (int i = 0; i < n; i++) {
-			if (i != a && (!knows(i, a) || knows(a, i))) {
+		for(int i = 0; i < n; i++){
+			if(cand == i){
+				continue;
+			}
+			if(!knows(i, cand) || knows(cand, i)){
 				return -1;
 			}
 		}
-
-		return a;
+		return cand;
 	}
 
-	// Fake method for compiling
+	// dummy method
 	private boolean knows(int a, int b) {
 		return false;
 	}

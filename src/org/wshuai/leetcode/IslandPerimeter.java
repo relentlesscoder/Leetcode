@@ -2,38 +2,33 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 11/21/2016.
- * #463 https://leetcode.com/problems/island-perimeter/
+ * #0463 https://leetcode.com/problems/island-perimeter/
  */
 public class IslandPerimeter {
-	//O(n^2), DFS
+	// time O(m*n)
 	public int islandPerimeter(int[][] grid) {
-		if (grid == null || grid.length == 0 || grid[0].length == 0) {
+		if(grid == null || grid.length == 0 || grid[0].length == 0){
 			return 0;
 		}
-		int rLen = grid.length;
-		int cLen = grid[0].length;
-		boolean[][] visited = new boolean[rLen][cLen];
-		RefType rt = new RefType();
-		for (int i = 0; i < rLen; i++) {
-			for (int j = 0; j < cLen; j++) {
-				if (grid[i][j] == 1 && !visited[i][j]) {
-					islandPerimeterUtil(grid, visited, rt, rLen, cLen, i, j);
-					break;
+		int[] dirs = new int[]{0, 1, 0, -1, 0};
+		int res = 0, m = grid.length, n = grid[0].length;
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
+				if(grid[i][j] == 0){
+					continue;
+				}
+				for(int k = 0; k < 4; k++){
+					int x = i + dirs[k], y = j + dirs[k + 1];
+					if(x < 0 || x >= m || y < 0 || y >= n){
+						res++;
+						continue;
+					}
+					if(grid[x][y] == 0){
+						res++;
+					}
 				}
 			}
 		}
-		return rt.val;
-	}
-
-	private void islandPerimeterUtil(int[][] grid, boolean[][] visited, RefType rt, int rLen, int cLen, int i, int j) {
-		if (i < 0 || i >= rLen || j < 0 || j >= cLen || grid[i][j] == 0) {
-			rt.val++;
-		} else if (!visited[i][j]) {
-			visited[i][j] = true;
-			islandPerimeterUtil(grid, visited, rt, rLen, cLen, i - 1, j);
-			islandPerimeterUtil(grid, visited, rt, rLen, cLen, i + 1, j);
-			islandPerimeterUtil(grid, visited, rt, rLen, cLen, i, j - 1);
-			islandPerimeterUtil(grid, visited, rt, rLen, cLen, i, j + 1);
-		}
+		return res;
 	}
 }

@@ -1,38 +1,31 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 1/24/17.
- * #481 https://leetcode.com/problems/magical-string/
+ * Created by Wei on 01/24/2017.
+ * #0481 https://leetcode.com/problems/magical-string/
  */
 public class MagicalString {
+	// time O(n), space O(n)
 	public int magicalString(int n) {
-		StringBuilder sb = new StringBuilder("1221121221221121122");
-		int pt1 = 12;
-		int pt2 = sb.length();
-		int count = 0;
-		while (sb.length() < n) {
-			if (sb.charAt(pt1) == '1') {
-				if (sb.charAt(pt2 - 1) == '1') {
-					sb.append("2");
-				} else {
-					sb.append("1");
-				}
-				pt2++;
-			} else {
-				if (sb.charAt(pt2 - 1) == '1') {
-					sb.append("22");
-				} else {
-					sb.append("11");
-				}
-				pt2 += 2;
-			}
-			pt1++;
+		if(n <= 0){
+			return 0;
 		}
-		for (int i = 0; i < n; i++) {
-			if (sb.charAt(i) == '1') {
-				count++;
+		if(n <= 3){
+			return 1;
+		}
+		int[] arr = new int[n + 1];
+		arr[1] = 1;
+		arr[2] = 2;
+		arr[3] = 2;
+		int res = 1, i = 3, j = 4;
+		while(j <= n){
+			int count = arr[i++];
+			int val = (arr[j - 1] ^ 3);
+			while(count-- > 0 && j <= n){
+				arr[j++] = val;
+				res += val == 1 ? 1 : 0;
 			}
 		}
-		return count;
+		return res;
 	}
 }

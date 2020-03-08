@@ -1,70 +1,60 @@
 package org.wshuai.leetcode;
 
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.TreeMap;
 
 /**
- * Created by Wei on 11/12/16.
- * #436 https://leetcode.com/problems/find-right-interval/
+ * Created by Wei on 11/12/2016.
+ * #0436 https://leetcode.com/problems/find-right-interval/
  */
 public class FindRightInterval {
-	//O(n*lg(n)) binary search
-	public int[] findRightInterval(Interval[] intervals) {
-		if (intervals == null || intervals.length == 0) {
+	// time O(n*log(n))
+	public int[] findRightInterval(int[][] intervals) {
+		if(intervals == null || intervals.length == 0){
 			return new int[0];
 		}
-		int len = intervals.length;
-		Pair[] aux = new Pair[len];
-		int k = 0;
-		for (Interval i : intervals) {
-			aux[k] = new Pair(i.start, k);
-			k++;
+		int n = intervals.length;
+		int[] res = new int[n];
+		int[][] starts = new int[n][2];
+		for(int i = 0; i < n; i++){
+			starts[i] = new int[]{intervals[i][0], i};
 		}
-		Arrays.sort(aux, new PairComparator());
-		int[] res = new int[len];
-		for (int i = 0; i < len; i++) {
-			Interval in = intervals[i];
-			int end = in.end;
-			int min = searchIn(end, aux, len);
-			res[i] = min;
+		Arrays.sort(starts, (a, b) -> a[0] - b[0]);
+		for(int i = 0; i < n; i++){
+			int index = binarySearch(starts, intervals[i][1]);
+			res[i] = index < n ? starts[index][1] : -1;
 		}
 		return res;
 	}
 
-	private int searchIn(int end, Pair[] aux, int len) {
-		int i = 0;
-		int j = len - 1;
-		while (i <= j) {
-			int mid = i + (j - i) / 2;
-			Pair p = aux[mid];
-			if (p.key >= end) {
-				if (mid == 0 || aux[mid - 1].key < end) {
-					return p.val;
-				} else {
-					j = mid - 1;
-				}
-			} else {
-				i = mid + 1;
+	private int binarySearch(int[][] starts, int target){
+		int left = 0, right = starts.length;
+		while(left < right){
+			int mid = left + (right - left) / 2;
+			if(starts[mid][0] < target){
+				left = mid + 1;
+			}else{
+				right = mid;
 			}
 		}
-
-		return -1;
+		return left;
 	}
-}
 
-class Pair {
-	int key;
-	int val;
-
-	public Pair(int key, int val) {
-		this.key = key;
-		this.val = val;
-	}
-}
-
-class PairComparator implements Comparator<Pair> {
-	@Override
-	public int compare(Pair x, Pair y) {
-		return x.key - y.key;
+	// time O(n*log(n))
+	public int[] findRightIntervalTreeMap(int[][] intervals) {
+		if(intervals == null || intervals.length == 0){
+			return new int[0];
+		}
+		int n = intervals.length;
+		int[] res = new int[n];
+		TreeMap<Integer, Integer> map = new TreeMap<>();
+		for(int i = 0; i < n; i++){
+			map.put(intervals[i][0], i);
+		}
+		for(int i = 0; i < n; i++){
+			Integer key = map.ceilingKey(intervals[i][1]);
+			res[i] = key == null ? -1 : (int)map.get(key);
+		}
+		return res;
 	}
 }

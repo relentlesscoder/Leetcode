@@ -5,20 +5,19 @@ import java.util.TreeMap;
 
 /**
  * Created by Wei on 10/29/2019.
- * #1182 https://leetcode.com/problems/shortest-distance-to-target-color/
+ * #0497 https://leetcode.com/problems/random-point-in-non-overlapping-rectangles/
  */
 public class RandomPointInNonOverlappingRectangles {
-	TreeMap<Integer, Integer> map;
-	int[][] arrays;
-	int sum;
-	Random rnd;
+	private TreeMap<Integer, Integer> map;
+	private int[][] rects;
+	private int sum;
+	private Random rnd;
 
 	public RandomPointInNonOverlappingRectangles(int[][] rects) {
 		rnd = new Random();
-		arrays = rects;
+		this.rects = rects;
 		map = new TreeMap<>();
 		sum = 0;
-
 		for(int i = 0; i < rects.length; i++){
 			int[] rect = rects[i];
 			sum += (rect[2] - rect[0] + 1) * (rect[3] - rect[1] + 1);
@@ -27,13 +26,12 @@ public class RandomPointInNonOverlappingRectangles {
 	}
 
 	public int[] pick() {
-		int c = map.ceilingKey(rnd.nextInt(sum) + 1);
-		return pickPoint(arrays[map.get(c)]);
-	}
-
-	private int[] pickPoint(int[] rect){
-		int left = rect[0], right = rect[2], bottom = rect[1], top = rect[3];
-		return new int[]{left + rnd.nextInt(right - left + 1), bottom + rnd.nextInt(top - bottom + 1)};
+		int randInt = rnd.nextInt(sum);
+		int key = map.higherKey(randInt);
+		int[] rect = rects[map.get(key)];
+		int x = rect[0] + (key - randInt - 1) % (rect[2] - rect[0] + 1);
+		int y = rect[1] + (key - randInt - 1) / (rect[2] - rect[0] + 1);
+		return new int[]{x, y};
 	}
 }
 

@@ -1,28 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 2/19/17.
- * #476 https://leetcode.com/problems/number-complement/
+ * Created by Wei on 02/19/2017.
+ * #0476 https://leetcode.com/problems/number-complement/
  */
 public class NumberComplement {
+	// time O(1)
 	public int findComplement(int num) {
-		int res = 0;
-		int mask1 = 0x1;
-		int mask2 = 0x80000000;
-		int cnt = 0;
-		for (int i = 0; i < 32; i++) {
-			int d = (num << i) & mask2;
-			if (d == 0) {
-				cnt++;
-			} else {
-				break;
+		int msb = -1, i = 0, res = 0;
+		// flip all the digits and find the msb
+		// 0x0000 0000 0000 0000 0000 0000 0000 0101 ->
+		// 0x1111 1111 1111 1111 1111 1111 1111 1010
+		while(i < 32){
+			if(((1 << i) & num) > 0){
+				msb = i;
+			}else{
+				res = res | (1 << i);
 			}
+			i++;
 		}
-		cnt = 32 - cnt;
-		for (int i = cnt - 1; i >= 0; i--) {
-			int d = (num >> i) & mask1;
-			res += ((~d) & mask1) << i;
-		}
-		return res;
+		msb++;
+		// create a mask based on the msb to remove all extra leading bits
+		// 0000 0000 0000 0000 0000 0000 0000 1000
+		int mask = (1 << msb) - 1;
+		return res & mask;
 	}
 }

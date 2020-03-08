@@ -1,51 +1,48 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 /**
- * Created by Wei on 3/14/2017.
- * #227 https://leetcode.com/problems/basic-calculator-ii/
+ * Created by Wei on 03/14/2017.
+ * #0227 https://leetcode.com/problems/basic-calculator-ii/
  */
 public class BasicCalculatorII {
+	// time O(n)
 	public int calculate(String s) {
-		if (s == null || s.isEmpty()) {
+		if(s == null || s.isEmpty()){
 			return 0;
 		}
-		int len = s.length();
-		List<String> lst = new ArrayList<String>();
-		int i = 0;
-		int j = 0;
-		while (j < len) {
-			char op = s.charAt(j);
-			if (j == len - 1 || op == '+' || op == '+' || op == '-' || op == '*' || op == '/') {
-				j = (j == len - 1) ? len : j;
-				String val = s.substring(i, j).trim();
-				String tail = lst.size() > 0 ? lst.get(lst.size() - 1) : "";
-				if (tail.equals("*") || tail.equals("/")) {
-					String opr = lst.get(lst.size() - 2);
-					int left = Integer.parseInt(opr);
-					int right = Integer.parseInt(val);
-					int res = tail.equals("*") ? left * right : left / right;
-					lst.remove(lst.size() - 1);
-					lst.remove(lst.size() - 1);
-					lst.add(Integer.toString(res));
-				} else {
-					lst.add(val);
+		Stack<Integer> stack = new Stack<>();
+		int res = 0, n = s.length(), val = 0;
+		char oper = ' ';
+		for(int i = 0; i < s.length(); i++){
+			char c = s.charAt(i);
+			if(c == ' '){
+				continue;
+			}
+			if(c == '+' || c == '-' || c == '*' || c == '/'){
+				oper = c;
+			}else{
+				val = val * 10 + (int)(c - '0');
+				if(i == n - 1 || !Character.isDigit(s.charAt(i + 1))){
+					if(oper == ' ' || oper == '+'){
+						stack.push(val);
+					}
+					if(oper == '-'){
+						stack.push(-val);
+					}
+					if(oper == '*'){
+						stack.push(stack.pop() * val);
+					}
+					if(oper == '/'){
+						stack.push(stack.pop() / val);
+					}
+					val = 0;
 				}
-				lst.add(Character.toString(op));
-				j++;
-				i = j;
-			} else {
-				j++;
 			}
 		}
-		int res = Integer.parseInt(lst.get(0));
-		int size = lst.size();
-		for (int k = 2; k < size; k += 2) {
-			String op = lst.get(k - 1);
-			int right = Integer.parseInt(lst.get(k));
-			res = op.equals("+") ? res + right : res - right;
+		for(int i : stack){
+			res += i;
 		}
 		return res;
 	}

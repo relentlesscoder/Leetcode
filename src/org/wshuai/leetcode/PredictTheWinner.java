@@ -1,15 +1,11 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Created by Wei on 10/8/2019.
- * #486 https://leetcode.com/problems/predict-the-winner/
+ * Created by Wei on 10/08/2019.
+ * #0486 https://leetcode.com/problems/predict-the-winner/
  */
 public class PredictTheWinner {
-
-	// beats 100%
+	// time O(n^2), space(n^2)
 	public boolean predictTheWinner(int[] nums) {
 		int n = nums.length;
 		int[][] dp = new int[n][n];
@@ -27,23 +23,23 @@ public class PredictTheWinner {
 		return dp[0][n - 1] >= 0;
 	}
 
-	Map<Integer, Integer> map;
-
-	public boolean predictTheWinnerMiniMax(int[] nums) {
-		map = new HashMap<>();
-		return getScore(nums, 0, nums.length - 1) >= 0;
+	// time O(n^2), space O(n^2)
+	public boolean predictTheWinnerMemo(int[] nums) {
+		int n = nums.length;
+		int[][] dp = new int[n][n];
+		return dfs(0, n - 1, nums, dp) >= 0;
 	}
 
-	private int getScore(int[] nums, int l, int r){
-		if(l == r){
-			return nums[l];
+	private int dfs(int i, int j, int[] nums, int[][] dp){
+		if(i > j){
+			return 0;
 		}
-		int key = l * nums.length + r;
-		if(map.containsKey(key)){
-			return map.get(key);
+		if(dp[i][j] != 0){
+			return dp[i][j];
 		}
-		map.put(key, Math.max(nums[l] - getScore(nums, l + 1, r),
-				nums[r] - getScore(nums, l, r - 1)));
-		return map.get(key);
+		int score = Math.max(nums[i] - dfs(i + 1, j, nums, dp),
+			nums[j] - dfs(i, j - 1, nums, dp));
+		dp[i][j] = score;
+		return score;
 	}
 }

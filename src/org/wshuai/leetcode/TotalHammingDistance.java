@@ -1,22 +1,21 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 3/7/17.
- * #477 https://leetcode.com/problems/total-hamming-distance/
+ * Created by Wei on 03/07/2017.
+ * #0477 https://leetcode.com/problems/total-hamming-distance/
  */
 public class TotalHammingDistance {
+	// time O(n)
 	public int totalHammingDistance(int[] nums) {
-		int count = 0;
-		int len = nums.length;
-		//for each bit position, if the number of ones are k,
-		// then the total of hamming distance at that bit position is k*(n-k)
-		for (int i = 0; i < 32; i++) {
-			int ones = 0;
-			for (int j = 0; j < len; j++) {
-				ones += (nums[j] >> i) & 1;
+		int res = 0, ones = 0, n = nums.length;
+		for(int i = 0; i < 32; i++){
+			ones = 0;
+			for(int j = 0; j < n; j++){
+				ones += (nums[j] & 1);
+				nums[j] >>= 1;
 			}
-			count += ones * (len - ones);
+			res += ones * (n - ones);
 		}
-		return count;
+		return res;
 	}
 }

@@ -3,72 +3,34 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 10/1/2016.
- * #364 https://leetcode.com/problems/nested-list-weight-sum-ii/
+ * Created by Wei on 10/01/2016.
+ * #0364 https://leetcode.com/problems/nested-list-weight-sum-ii/
  */
 public class NestedListWeightSumII {
-
+	// time O(n), space O(n)
 	public int depthSumInverse(List<NestedInteger> nestedList) {
-		int sum = 0;
-
-		if (nestedList == null || nestedList.size() == 0) {
-			return sum;
+		if(nestedList == null){
+			return 0;
 		}
-
-		LinkedList<NestedInteger> curr = new LinkedList<NestedInteger>();
-		Stack<Integer> sizes = new Stack<Integer>();
-		List<Integer> lst = new ArrayList<Integer>();
-
-		int csize = 0;
-		int nsize = 0;
-		int count = 0;
-
-		for (NestedInteger ni : nestedList) {
-			if (ni.isInteger()) {
-				lst.add(ni.getInteger());
-				count++;
-			} else {
-				curr.offer(ni);
-				csize++;
-			}
+		int res = 0, prev = 0;
+		LinkedList<NestedInteger> queue = new LinkedList<>();
+		for(NestedInteger ni : nestedList){
+			queue.offerLast(ni);
 		}
-
-		sizes.push(count);
-		count = 0;
-		while (csize > 0) {
-			NestedInteger ni = curr.poll();
-			csize--;
-			List<NestedInteger> nested = ni.getList();
-			for (NestedInteger nip : nested) {
-				if (nip.isInteger()) {
-					lst.add(nip.getInteger());
-					count++;
-				} else {
-					curr.offer(nip);
-					nsize++;
+		while(!queue.isEmpty()){
+			int size = queue.size(), levelSum = 0;
+			while(size-- > 0){
+				NestedInteger cur = queue.pollFirst();
+				if(cur.isInteger()){
+					levelSum += cur.getInteger();
+				}
+				for(NestedInteger ni : cur.getList()){
+					queue.offerLast(ni);
 				}
 			}
-
-			if (csize == 0) {
-				sizes.push(count);
-				count = 0;
-				csize = nsize;
-				nsize = 0;
-			}
+			prev += levelSum;
+			res += prev;
 		}
-
-		int depth = 1;
-		int idx = lst.size() - 1;
-		while (idx >= 0) {
-			int countx = sizes.pop();
-			while (countx > 0) {
-				sum += (lst.get(idx)) * depth;
-				countx--;
-				idx--;
-			}
-			depth++;
-		}
-
-		return sum;
+		return res;
 	}
 }

@@ -1,23 +1,30 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-
 /**
- * Created by Wei on 9/24/2016.
+ * Created by Wei on 09/24/2016.
+ * #0274 https://leetcode.com/problems/h-index/
  */
 public class HIndex {
 	public int hIndex(int[] citations) {
-		if (citations == null) {
-			throw new IllegalArgumentException("Invalid input");
+		if(citations == null || citations.length == 0){
+			return 0;
 		}
-		int len = citations.length;
-		int hidx = 0;
-		Arrays.sort(citations);
-		for (int i = 0; i < len; i++) {
-			int val = citations[i];
-			int cidx = Math.min(val, len - i);
-			hidx = Math.max(hidx, cidx);
+		int n = citations.length;
+		int[] buckets = new int[n + 1];
+		for(int c : citations){
+			if(c >= n){
+				buckets[n]++;
+			}else{
+				buckets[c]++;
+			}
 		}
-		return hidx;
+		int count = 0;
+		for(int i = n; i >= 0; i--){
+			count += buckets[i];
+			if(count >= i){
+				return i;
+			}
+		}
+		return 0;
 	}
 }

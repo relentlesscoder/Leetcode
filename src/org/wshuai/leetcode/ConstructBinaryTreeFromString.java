@@ -1,42 +1,50 @@
 package org.wshuai.leetcode;
 
+import java.util.Stack;
+
 /**
- * Created by Wei on 10/9/2019.
- * #536 https://leetcode.com/problems/construct-binary-tree-from-string/
+ * Created by Wei on 10/09/2019.
+ * #0536 https://leetcode.com/problems/construct-binary-tree-from-string/
  */
 public class ConstructBinaryTreeFromString {
+	// time O(n), space O(n)
 	public TreeNode str2tree(String s) {
-		// handle corner case
-		if(s.length() == 0){
+		if(s == null || s.isEmpty()){
 			return null;
 		}
-		// parse root value
-		int idx = s.indexOf("(");
-		idx = idx == -1 ? s.length() : idx;
-		TreeNode root = new TreeNode(Integer.parseInt(s.substring(0, idx)));
-		String children = s.substring(idx);
-		if(children.length() == 0){
-			return root;
-		}
-		int i = 1;
-		int count = 0;
-		while(i < s.length()){
-			if(s.charAt(i) == '('){
-				count++;
-			}else if(s.charAt(i) == ')'){
-				count--;
-				if(count == 0){
-					break;
+		TreeNode cur = null, parent = null;
+		char[] arr = s.toCharArray();
+		Stack<TreeNode> stack = new Stack<>();
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < arr.length; i++){
+			char c = arr[i];
+			if(c == '(' || c == ')'){
+				if(sb.length() > 0){
+					cur = new TreeNode(Integer.parseInt(sb.toString()));
+					sb = new StringBuilder();
+					if(!stack.isEmpty()){
+						parent = stack.peek();
+						if(parent.left == null){
+							parent.left = cur;
+						}else{
+							parent.right = cur;
+						}
+					}
+					stack.push(cur);
+				}
+				if(c == ')'){
+					stack.pop();
 				}
 			}
-			i++;
+			else{
+				sb.append(c);
+			}
 		}
-		// construct left tree
-		root.left = str2tree(s.substring(idx + 1, i));
-		// construct right tree
-		if(i + 1 != s.length()){
-			root.right = str2tree(s.substring(i + 2, s.length() - 1));
+		// corner case
+		if(sb.length() > 0){
+			cur = new TreeNode(Integer.parseInt(sb.toString()));
+			stack.push(cur);
 		}
-		return root;
+		return stack.peek();
 	}
 }

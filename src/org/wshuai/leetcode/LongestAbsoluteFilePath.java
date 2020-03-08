@@ -4,37 +4,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 9/21/2016.
- * #388 https://leetcode.com/problems/longest-absolute-file-path/
+ * Created by Wei on 09/21/2016.
+ * #0388 https://leetcode.com/problems/longest-absolute-file-path/
  */
 public class LongestAbsoluteFilePath {
+	// time O(n)
 	public int lengthLongestPath(String input) {
 		if (input == null || input.length() == 0) {
 			return 0;
 		}
-		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> map = new HashMap<>();
 		map.put(0, 0);
-		int len = input.length();
-		int level = 0;
-		int max = 0;
-		for (int i = 0; i < len; i++) {
-			int s = i;
-			while (i < len && input.charAt(i) != '\n' && input.charAt(i) != '\t') {
+		char[] chars = input.toCharArray();
+		int res = 0, n = input.length(), depth = 0;
+		for (int i = 0; i < n; i++) {
+			int start = i;
+			// none special characters
+			while (i < n && chars[i] != '\n' && chars[i] != '\t') {
 				i++;
 			}
-			if (i >= len || input.charAt(i) == '\n') {
-				String str = input.substring(s, i);
+			if (i >= n || chars[i] == '\n') {
+				String str = input.substring(start, i);
 				if (str.contains(".")) {
-					max = Math.max(max, map.get(level) + str.length());
+					// find a file
+					res = Math.max(res, map.get(depth) + str.length());
 				} else {
-					level++;
-					map.put(level, map.get(level - 1) + str.length() + 1);
+					depth++;
+					// depth - 1 now stores the length of path from root to the current parent folder
+					map.put(depth, map.get(depth - 1) + str.length() + 1);
 				}
-				level = 0;
+				// need to reset depth each time
+				depth = 0;
 			} else {
-				level++;
+				// \t is seen
+				depth++;
 			}
 		}
-		return max;
+		return res;
 	}
 }

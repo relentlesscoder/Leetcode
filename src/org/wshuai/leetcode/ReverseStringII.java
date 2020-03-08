@@ -1,29 +1,26 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 3/13/17.
- * #541 https://leetcode.com/problems/reverse-string-ii/
+ * Created by Wei on 03/13/2017.
+ * #0541 https://leetcode.com/problems/reverse-string-ii/
  */
 public class ReverseStringII {
+	// time O(n/4)
 	public String reverseStr(String s, int k) {
 		char[] arr = s.toCharArray();
-		int i = 0;
-		int len = s.length();
-		while (i < len) {
-			int j = Math.min(i + k - 1, len - 1);
-			swap(i, j, arr);
-			i += 2 * k;
+		int n = arr.length, i = 0, d = k << 1;
+		while(i < n){
+			reverse(arr, i, Math.min(i + k - 1, n - 1));
+			i += d;
 		}
-		return String.valueOf(arr);
+		return new String(arr);
 	}
 
-	private void swap(int i, int j, char[] arr) {
-		while (i < j) {
-			char temp = arr[i];
-			arr[i] = arr[j];
-			arr[j] = temp;
-			i++;
-			j--;
+	private void reverse(char[] arr, int start, int end){
+		while(start < end){
+			char temp = arr[start];
+			arr[start++] = arr[end];
+			arr[end--] = temp;
 		}
 	}
 }

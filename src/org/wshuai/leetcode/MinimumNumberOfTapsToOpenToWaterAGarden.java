@@ -8,6 +8,7 @@ import java.util.Arrays;
  */
 public class MinimumNumberOfTapsToOpenToWaterAGarden {
 	// time O(n)
+	// same as #1024
 	public int minTaps(int n, int[] ranges) {
 		int[][] taps = new int[n + 1][2];
 		for(int i = 0; i < ranges.length; i++){

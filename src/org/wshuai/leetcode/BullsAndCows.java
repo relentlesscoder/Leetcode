@@ -1,97 +1,83 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.Arrays;
 
 /**
- * Created by Wei on 9/21/2016.
- * #299 https://leetcode.com/problems/bulls-and-cows/
+ * Created by Wei on 09/21/2016.
+ * #0299 https://leetcode.com/problems/bulls-and-cows/
  */
 public class BullsAndCows {
-
-	// Use sorting
-	public String getHintSorting(String secret, String guess) {
-		if (secret == null || guess == null) {
-			throw new IllegalArgumentException("Invalid input");
-		}
-		char[] sArr = secret.toCharArray();
-		char[] gArr = guess.toCharArray();
-		int len = sArr.length;
-		int bulls = 0;
-		int cows = 0;
-		int total = 0;
-
-		for (int i = 0; i < len; i++) {
-			char sc = sArr[i];
-			char gc = gArr[i];
-			if (sc == gc) {
-				bulls++;
+	// time O(n)
+	public String getHint(String secret, String guess) {
+		int a = 0, b = 0, n = secret.length();
+		int[] map = new int[10];
+		for(int i = 0; i < n; i++){
+			int n1 = secret.charAt(i) - '0', n2 = guess.charAt(i) - '0';
+			if(n1 == n2){
+				a++;
+			}else{
+				if(map[n2] > 0){
+					b++;
+				}
+				if(map[n1] < 0){
+					b++;
+				}
+				map[n1]++;
+				map[n2]--;
 			}
 		}
-
-		Arrays.sort(sArr);
-		Arrays.sort(gArr);
-		int l = 0;
-		int r = 0;
-
-		while (l < len && r < len) {
-			char sc = sArr[l];
-			char gc = gArr[r];
-			if (sc == gc) {
-				total++;
-				l++;
-				r++;
-			} else if (sc < gc) {
-				l++;
-			} else {
-				r++;
-			}
-		}
-		cows = total - bulls;
-
-		return bulls + "A" + cows + "B";
+		return a + "A" + b + "B";
 	}
 
-	// Use hash table, exceed time limit
-	public String getHintHT(String secret, String guess) {
-		if (secret == null || guess == null) {
-			throw new IllegalArgumentException("Invalid input");
-		}
-		char[] sArr = secret.toCharArray();
-		char[] gArr = guess.toCharArray();
-		int len = sArr.length;
-		int bulls = 0;
-		int cows = 0;
-		Set<Integer> same = new HashSet<Integer>();
-		Map<Character, Integer> map = new HashMap<Character, Integer>();
-		for (int i = 0; i < len; i++) {
-			char sc = sArr[i];
-			char gc = gArr[i];
-			if (sc == gc) {
-				bulls++;
-				same.add(i);
-			} else {
-				if (map.containsKey(sc)) {
-					int c = map.get(sc);
-					map.put(sc, c + 1);
-				} else {
-					map.put(sc, 1);
-				}
-			}
-		}
-		for (int i = 0; i < len; i++) {
-			if (same.contains(i)) {
+	// time O(n)
+	public String getHintMap(String secret, String guess) {
+		int a = 0, b = 0;
+		int[] map1 = new int[10], map2 = new int[10];
+		for(int i = 0; i < secret.length(); i++){
+			char c1 = secret.charAt(i), c2 = guess.charAt(i);
+			int k1 = c1 - '0', k2 = c2 - '0';
+			if(c1 == c2){
+				a++;
 				continue;
 			}
-			char gc = gArr[i];
-			if (map.containsKey(gc)) {
-				int c = map.get(gc);
-				if (c > 0) {
-					cows++;
-					map.put(gc, c - 1);
-				}
-
+			if(map1[k2] > 0){
+				map1[k2]--;
+				b++;
+			}else{
+				map2[k2]++;
+			}
+			if(map2[k1] > 0){
+				map2[k1]--;
+				b++;
+			}else{
+				map1[k1]++;
 			}
 		}
-		return bulls + "A" + cows + "B";
+		return a + "A" + b + "B";
+	}
+
+	// time O(n*log(n))
+	public String getHintSorting(String secret, String guess) {
+		int a = 0, b = 0, n = secret.length(), i = 0, j = 0;
+		char[] arr1 = secret.toCharArray(), arr2 = guess.toCharArray();
+		for(int k = 0; k < n; k++){
+			if(arr1[k] == arr2[k]){
+				a++;
+			}
+		}
+		Arrays.sort(arr1);
+		Arrays.sort(arr2);
+		while(i < n && j < n){
+			if(arr1[i] == arr2[j]){
+				i++;
+				j++;
+				b++;
+			}else if(arr1[i] > arr2[j]){
+				j++;
+			}else{
+				i++;
+			}
+		}
+		return a + "A" + (b - a) + "B";
 	}
 }

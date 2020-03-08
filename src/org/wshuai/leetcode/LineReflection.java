@@ -10,36 +10,32 @@ import java.util.Set;
  * #356 https://leetcode.com/problems/line-reflection/
  */
 public class LineReflection {
+	// time O(n), space O(n)
 	public boolean isReflected(int[][] points) {
 		if (points == null || points.length == 0) {
 			return true;
 		}
-		int len = points.length;
-		int min = Integer.MAX_VALUE;
-		int max = Integer.MIN_VALUE;
+		int n = points.length, min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
 		Map<Integer, Set<Integer>> map = new HashMap<Integer, Set<Integer>>();
-		for (int i = 0; i < len; i++) {
+		for (int i = 0; i < n; i++) {
 			int val = points[i][0];
 			min = val < min ? val : min;
 			max = val > max ? val : max;
-			if (map.containsKey(val)) {
-				Set<Integer> set = map.get(val);
-				set.add(points[i][1]);
-			} else {
-				Set<Integer> set = new HashSet<Integer>();
-				set.add(points[i][1]);
-				map.put(val, set);
-			}
+			map.putIfAbsent(val, new HashSet<>());
+			map.get(val).add(points[i][1]);
 		}
+		// sum of min and max can be odd, e.g. 0 and 5
 		double mid = 1.0 * (max + min) / 2;
-		for (int i = 0; i < len; i++) {
-			int xVal = points[i][0];
-			int key = (int) (2 * mid - xVal);
-			if (map.containsKey(key) && map.get(key).contains(points[i][1])) {
+		for (int i = 0; i < n; i++) {
+			int x = points[i][0];
+			// x1 - mid = mid - x2 if x1 and x2 is symmetric to mid
+			int key = (int) (2 * mid - x);
+			// x is symmetric and y is the same
+			if (map.containsKey(key)
+					&& map.get(key).contains(points[i][1])) {
 				continue;
-			} else {
-				return false;
 			}
+			return false;
 		}
 		return true;
 	}

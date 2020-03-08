@@ -1,10 +1,11 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/24/19.
- * #518 https://leetcode.com/problems/coin-change-2/
+ * Created by Wei on 09/24/2019.
+ * #0518 https://leetcode.com/problems/coin-change-2/
  */
 public class CoinChange2 {
+	// time O(m*n), space O(m)
 	// Knapsack, see https://leetcode.com/problems/coin-change-2/discuss/99222/Video-explaining-how-dynamic-programming-works-with-the-Coin-Change-problem
 	public int change(int amount, int[] coins) {
 		int[] dp = new int[amount + 1];
@@ -19,7 +20,7 @@ public class CoinChange2 {
 		return dp[amount];
 	}
 
-	// Knapsack without space optimization
+	// time O(m*n), space O(m*n)
 	public int changeDP(int amount, int[] coins) {
 		int[][] dp = new int[coins.length + 1][amount + 1];
 		dp[0][0] = 1;

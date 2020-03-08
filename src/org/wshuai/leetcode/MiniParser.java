@@ -3,44 +3,38 @@ package org.wshuai.leetcode;
 import java.util.Stack;
 
 /**
- * Created by Wei on 3/10/17.
- * #385 https://leetcode.com/problems/mini-parser/
+ * Created by Wei on 03/10/2017.
+ * #0385 https://leetcode.com/problems/mini-parser/
  */
 public class MiniParser {
+	// time O(n), space O(n)
 	public NestedInteger deserialize(String s) {
-		if (s == null || s.isEmpty()) {
-			return null;
-		}
-		if (s.charAt(0) != '[') {
+		if(!s.startsWith("[")){
 			return new NestedInteger(Integer.parseInt(s));
 		}
-		Stack<NestedInteger> stack = new Stack<NestedInteger>();
-		int len = s.length();
-		int i = 0;
-		while (i < len) {
-			char c = s.charAt(i);
-			if (c == '[') {
-				NestedInteger ni = new NestedInteger();
-				stack.push(ni);
-			} else if (c == ']') {
-				if (stack.size() > 1) {
-					NestedInteger ni = stack.pop();
-					stack.peek().add(ni);
+		int i = 1, j = 1, n = s.length();
+		NestedInteger res = new NestedInteger();
+		Stack<NestedInteger> stack = new Stack<>();
+		stack.push(res);
+		while(j < n){
+			char c = s.charAt(j);
+			if(c == '['){
+				NestedInteger cur = new NestedInteger();
+				stack.peek().add(cur);
+				stack.push(cur);
+				i = j + 1;
+			}else if(c == ']' || c == ','){
+				String str = s.substring(i, j);
+				if(str.length() > 0){
+					stack.peek().add(new NestedInteger(Integer.parseInt(str)));
 				}
-			} else if (c != ',') {
-				int idx = (c == '-' ? i + 1 : i);
-				while (s.charAt(idx) >= '0' && s.charAt(idx) <= '9') {
-					idx++;
+				if(c == ']'){
+					stack.pop();
 				}
-				String val = s.substring(i, idx);
-				if (!val.isEmpty()) {
-					NestedInteger ni = stack.peek();
-					ni.add(new NestedInteger(Integer.parseInt(val)));
-				}
-				i = idx - 1;
+				i = j + 1;
 			}
-			i++;
+			j++;
 		}
-		return stack.peek();
+		return res;
 	}
 }

@@ -1,44 +1,44 @@
 package org.wshuai.leetcode;
 
-import java.util.Collections;
 import java.util.PriorityQueue;
 
 /**
- * Created by Wei on 7/17/17.
- * #295 https://leetcode.com/problems/find-median-from-data-stream/
+ * Created by Wei on 07/17/2017.
+ * #0295 https://leetcode.com/problems/find-median-from-data-stream/
  */
 public class FindMedianFromDataStream {
-	private PriorityQueue<Integer> maxHeap;
-	private PriorityQueue<Integer> minHeap;
+	private PriorityQueue<Integer> minQueue;
+	private PriorityQueue<Integer> maxQueue;
 
 	/** initialize your data structure here. */
 	public FindMedianFromDataStream() {
-		maxHeap = new PriorityQueue<>((a, b) -> b - a);
-		minHeap = new PriorityQueue<>();
+		minQueue = new PriorityQueue<>();
+		maxQueue = new PriorityQueue<>((a, b) -> b - a);
 	}
 
 	public void addNum(int num) {
-		if(maxHeap.size() == 0 || num <= maxHeap.peek()){
-			maxHeap.offer(num);
+		if(minQueue.size() == 0 || num >= minQueue.peek()){
+			minQueue.offer(num);
 		}else{
-			minHeap.offer(num);
+			maxQueue.offer(num);
 		}
-		while(maxHeap.size() > minHeap.size() + 1){
-			minHeap.offer(maxHeap.poll());
+		while(minQueue.size() > maxQueue.size() + 1){
+			maxQueue.offer(minQueue.poll());
 		}
-		while(minHeap.size() > maxHeap.size()){
-			maxHeap.offer(minHeap.poll());
+		while(minQueue.size() < maxQueue.size()){
+			minQueue.offer(maxQueue.poll());
 		}
 	}
 
 	public double findMedian() {
-		if(maxHeap.size() == 0 && minHeap.size() == 0){
+		int n = minQueue.size() + maxQueue.size();
+		if(n == 0){
 			return -1;
 		}
-		if(maxHeap.size() == minHeap.size()){
-			return (maxHeap.peek() + minHeap.peek())/2.0;
+		if(n % 2 == 0){
+			return (minQueue.peek() + maxQueue.peek()) / 2.0;
 		}
-		return (double)maxHeap.peek();
+		return (double)minQueue.peek();
 	}
 }
 
