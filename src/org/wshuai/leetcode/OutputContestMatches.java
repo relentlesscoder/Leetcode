@@ -1,28 +1,22 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 4/8/17.
- * #544 https://leetcode.com/problems/output-contest-matches/
+ * Created by Wei on 04/08/2017.
+ * #0544 https://leetcode.com/problems/output-contest-matches/
  */
 public class OutputContestMatches {
+	// time O(log(n)), space O(n)
 	public String findContestMatch(int n) {
-		String[] aux = new String[n];
-		for (int i = 1; i <= n; i++) {
-			aux[i - 1] = Integer.toString(i);
+		String[] res = new String[n];
+		for(int i = 0; i < n; i++){
+			res[i] = String.valueOf(i + 1);
 		}
-		findContestMatch(aux, n);
-		return aux[0];
-	}
-
-	private void findContestMatch(String[] strs, int len) {
-		if (len == 1) {
-			return;
+		while(n > 1){
+			for(int i = 0; i < n / 2; i++){
+				res[i] = "(" + res[i] + "," + res[n - 1 - i] + ")";
+			}
+			n /= 2;
 		}
-		int h = len / 2;
-		int idx = len - 1;
-		for (int i = 0; i < h; i++) {
-			strs[i] = "(" + strs[i] + "," + strs[idx--] + ")";
-		}
-		findContestMatch(strs, h);
+		return res[0];
 	}
 }

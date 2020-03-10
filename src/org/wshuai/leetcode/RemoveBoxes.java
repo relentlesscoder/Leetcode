@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/21/19.
- * #546 https://leetcode.com/problems/remove-boxes/
+ * Created by Wei on 11/21/2019.
+ * #0546 https://leetcode.com/problems/remove-boxes/
  */
 public class RemoveBoxes {
 	//https://www.youtube.com/watch?v=wT7aS5fHZhs
