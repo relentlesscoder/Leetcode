@@ -17,7 +17,7 @@ public class NumberOfIslandsII {
 		if (positions == null || positions.length == 0) {
 			return res;
 		}
-		int lands = 0, count = 0;
+		int count = 0;
 		int[] root = new int[m * n];
 		Arrays.fill(root, -1);
 		for (int[] p : positions) {

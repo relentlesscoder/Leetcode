@@ -1,8 +1,5 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Wei on 10/31/2019.
  * #0549 https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii/
