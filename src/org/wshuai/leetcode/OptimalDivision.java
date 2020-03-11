@@ -2,26 +2,27 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/21/2019.
- * #553 https://leetcode.com/problems/optimal-division/
+ * #0553 https://leetcode.com/problems/optimal-division/
  */
 public class OptimalDivision {
 
-	// math,
-	// a2/a3/a4/a5 ... -> a2/(a3*a4*a5 ...)
-	// a1/(a2/a3/a4/a5 ...) -> a1/a2 * (a3*a4*a5 ...)
+	// time O(n)
 	public String optimalDivision(int[] nums) {
-		String res = "" + nums[0];
-		if(nums.length == 1){
-			return res;
+		int n = nums.length;
+		if(n == 1){
+			return "" + nums[0];
 		}
-		if(nums.length == 2){
-			return res + "/" + nums[1];
+		if(n == 2){
+			return nums[0] + "/" + nums[1];
 		}
-		res += "/(" + nums[1];
-		for(int i = 2; i < nums.length; i++){
-			res += "/" + nums[i];
+		// a1/(a2/a3/a4/a5 ...) -> (a1/a2) * (a3*a4*a5 ...)
+		StringBuilder sb = new StringBuilder();
+		sb.append(nums[0] + "/(" + nums[1]);
+		for(int i = 2; i < n; i++){
+			sb.append("/" + nums[i]);
 		}
-		res += ")";
-		return res;
+		sb.append(")");
+		return sb.toString();
 	}
+
 }
