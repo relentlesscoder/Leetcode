@@ -1,21 +1,31 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 7/25/2017.
- * #572 https://leetcode.com/problems/subtree-of-another-tree/
+ * Created by Wei on 07/25/2017.
+ * #0572 https://leetcode.com/problems/subtree-of-another-tree/
  */
 public class SubtreeOfAnotherTree {
-
-	//59ms
-	public boolean isSubtreeRecursive(TreeNode s, TreeNode t) {
-		String st = preOrderTraversal(s);
-		String tt = preOrderTraversal(t);
-		return st.contains(tt);
+	// time O(m*n)
+	public boolean isSubtree(TreeNode s, TreeNode t) {
+		if(s == null){
+			return false;
+		}
+		if(isSame(s, t)){
+			return true;
+		}
+		return isSubtree(s.left, t) || isSubtree(s.right, t);
 	}
 
-	private String preOrderTraversal(TreeNode node) {
-		String left = node.left == null ? "lnull" : preOrderTraversal(node.left);
-		String right = node.right == null ? "rnull" : preOrderTraversal(node.right);
-		return "#" + Integer.toString(node.val) + left + right;
+	private boolean isSame(TreeNode s, TreeNode t){
+		if(s == null && t == null){
+			return true;
+		}
+		if(s == null || t == null){
+			return false;
+		}
+		if(s.val != t.val){
+			return false;
+		}
+		return isSame(s.left, t.left) && isSame(s.right, t.right);
 	}
 }

@@ -4,15 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Wei on 7/18/17.
- * #575 https://leetcode.com/problems/distribute-candies/
+ * Created by Wei on 07/18/2017.
+ * #0575 https://leetcode.com/problems/distribute-candies/
  */
 public class DistributeCandies {
+	// time O(n), space O(n)
 	public int distributeCandies(int[] candies) {
-		Set<Integer> kinds = new HashSet<Integer>();
-		for (int candy : candies) {
-			kinds.add(candy);
+		int half = (candies.length >> 1);
+		Set<Integer> distinct = new HashSet<>();
+		for(int cand : candies){
+			distinct.add(cand);
 		}
-		return kinds.size() >= candies.length / 2 ? candies.length / 2 : kinds.size();
+		if(distinct.size() < half){
+			return distinct.size();
+		}
+		return half;
 	}
 }

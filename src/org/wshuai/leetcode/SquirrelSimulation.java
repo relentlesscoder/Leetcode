@@ -1,29 +1,25 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/1/19.
- * #573 https://leetcode.com/problems/squirrel-simulation/
+ * Created by Wei on 10/01/2019.
+ * #0573 https://leetcode.com/problems/squirrel-simulation/
  */
 public class SquirrelSimulation {
-  public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {
-    int min = Integer.MAX_VALUE;
-    int sum = 0;
-    int[] distance = new int[nuts.length];
-    for(int i = 0; i < nuts.length; i++){
-      int dist = getDistance(nuts[i], tree);
-      sum += 2 * dist;
-      distance[i] = dist;
-    }
-    for(int i = 0; i < nuts.length; i++){
-      int local = sum;
-      local += getDistance(squirrel, nuts[i]);
-      local -= distance[i];
-      min = Math.min(local, min);
-    }
-    return min;
-  }
+	// time O(n), space O(n)
+	public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {
+		int res = Integer.MAX_VALUE, n = nuts.length, sum = 0;
+		int[] dist = new int[n];
+		for (int i = 0; i < n; i++) {
+			dist[i] = distance(tree, nuts[i]);
+			sum += (dist[i] << 1);
+		}
+		for (int i = 0; i < n; i++) {
+			res = Math.min(res, sum + distance(nuts[i], squirrel) - dist[i]);
+		}
+		return res;
+	}
 
-  private int getDistance(int[] p1, int[] p2){
-    return Math.abs(p1[0] - p2[0]) + Math.abs(p1[1] - p2[1]);
-  }
+	private int distance(int[] p1, int[] p2) {
+		return Math.abs(p1[0] - p2[0]) + Math.abs(p1[1] - p2[1]);
+	}
 }
