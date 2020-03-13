@@ -4,26 +4,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Wei on 8/8/19.
- * #590 https://leetcode.com/problems/n-ary-tree-postorder-traversal/
+ * Created by Wei on 08/08/2019.
+ * #0590 https://leetcode.com/problems/n-ary-tree-postorder-traversal/
  */
 public class NaryTreePostorderTraversal {
+	// time O(n), space O(n)
 	public List<Integer> postorder(NaryTreeNode root) {
-		LinkedList<Integer> lst = new LinkedList<Integer>();
-		if (root == null) {
-			return lst;
+		LinkedList<Integer> res = new LinkedList<>();
+		if(root == null){
+			return res;
 		}
-		LinkedList<NaryTreeNode> stack = new LinkedList<NaryTreeNode>();
-		stack.add(root);
-		while (!stack.isEmpty()) {
-			NaryTreeNode node = stack.pollLast();
-			lst.addFirst(node.val);
-			for (NaryTreeNode child : node.children) {
-				if (child != null) {
-					stack.add(child);
-				}
+		LinkedList<NaryTreeNode> queue = new LinkedList<>();
+		queue.offerLast(root);
+		while(!queue.isEmpty()){
+			NaryTreeNode cur = queue.pollLast();
+			res.offerFirst(cur.val);
+			for(NaryTreeNode child : cur.children){
+				queue.offerLast(child);
 			}
 		}
-		return lst;
+		return res;
 	}
 }
