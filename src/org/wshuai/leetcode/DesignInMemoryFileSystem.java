@@ -4,9 +4,11 @@ import java.util.*;
 
 /**
  * Created by Wei on 12/13/2019.
- * #588 https://leetcode.com/problems/design-in-memory-file-system/
+ * #0588 https://leetcode.com/problems/design-in-memory-file-system/
  */
 public class DesignInMemoryFileSystem {
+	// directories stores directory to directory elements, e.g. /a/b/c/ -> [d, e, f]
+	// files stores file name to file content, e.g. /a/b/c/d -> "Hello!"
 	private Map<String, TreeSet<String>> directories;
 	private Map<String, StringBuilder> files;
 
@@ -21,21 +23,23 @@ public class DesignInMemoryFileSystem {
 			int index = path.lastIndexOf("/");
 			return Arrays.asList(path.substring(index + 1));
 		}else{
-			return new ArrayList<String>(directories.get(path + (path.equals("/") ? "" : "/")));
+			return new ArrayList<String>(
+				directories.get(path + (path.equals("/") ? "" : "/")));
 		}
 	}
 
 	public void mkdir(String path) {
+		path += "/";
 		for(int i = 0; i < path.length(); i++){
 			if(path.charAt(i) == '/'){
 				String dir = path.substring(0, i + 1);
 				directories.putIfAbsent(dir, new TreeSet<>());
 				int next = path.indexOf("/", i + 1);
-				next = next == -1 ? path.length() : next;
-				directories.get(dir).add(path.substring(i + 1, next));
+				if(next != -1){
+					directories.get(dir).add(path.substring(i + 1, next));
+				}
 			}
 		}
-		directories.putIfAbsent(path + "/", new TreeSet<>());
 	}
 
 	public void addContentToFile(String filePath, String content) {
