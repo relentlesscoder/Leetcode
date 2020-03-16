@@ -3,12 +3,15 @@ package org.wshuai.leetcode;
 import java.util.Scanner;
 
 /**
- * Created by Wei on 11/12/19.
- * #592 https://leetcode.com/problems/fraction-addition-and-subtraction/
+ * Created by Wei on 11/12/2019.
+ * #0592 https://leetcode.com/problems/fraction-addition-and-subtraction/
  */
 public class FractionAdditionAndSubtraction {
+	// time O(n)
 	// a/b + x/y = (a*y+b*x)/b*y
 	public String fractionAddition(String expression) {
+		// https://leetcode.com/problems/fraction-addition-and-subtraction/discuss/103384/Small-simple-C%2B%2BJavaPython
+		// https://stackoverflow.com/questions/2973436/regex-lookahead-lookbehind-and-atomic-groups
 		Scanner sc = new Scanner(expression).useDelimiter("/|(?=[-+])");
 		int A = 0, B = 1;
 		while (sc.hasNext()) {
