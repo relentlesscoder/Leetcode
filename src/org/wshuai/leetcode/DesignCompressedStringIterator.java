@@ -1,45 +1,40 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 7/29/2017.
- * #604 https://leetcode.com/problems/design-compressed-string-iterator/
+ * Created by Wei on 07/29/2017.
+ * #0604 https://leetcode.com/problems/design-compressed-string-iterator/
  */
 public class DesignCompressedStringIterator {
-	private final String val;
-	private char curr = ' ';
-	private int count = 0;
-	private int idx = 0;
+	private String data;
+	private int count, index;
+	private char cur;
 
 	public DesignCompressedStringIterator(String compressedString) {
-		if (compressedString == null) {
-			this.val = "";
-		} else {
-			this.val = compressedString;
-		}
+		data = compressedString;
+		count = 0;
+		index = 0;
+		cur = ' ';
 	}
 
 	public char next() {
-		if (!hasNext()) {
+		if(!hasNext()){
 			return ' ';
 		}
-		if (count > 0) {
-			count--;
-			return curr;
-		} else if (idx < val.length()) {
-			int i = idx;
-			curr = val.charAt(i++);
-			while (i < val.length() && val.charAt(i) >= '0' && val.charAt(i) <= '9') {
+		if(count == 0){
+			cur = data.charAt(index++);
+			int i = index;
+			while(i < data.length() && Character.isDigit(data.charAt(i))){
 				i++;
 			}
-			count = Integer.parseInt(val.substring(idx + 1, i)) - 1;
-			idx = i;
-			return curr;
+			count = Integer.parseInt(data.substring(index, i));
+			index = i;
 		}
-		return ' ';
+		count--;
+		return cur;
 	}
 
 	public boolean hasNext() {
-		return !(count <= 0 && idx >= val.length());
+		return count > 0 || index < data.length();
 	}
 }
 
