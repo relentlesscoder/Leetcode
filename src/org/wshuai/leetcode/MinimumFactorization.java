@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 11/12/19.
- * #625 https://leetcode.com/problems/minimum-factorization/
+ * Created by Wei on 11/12/2019.
+ * #0625 https://leetcode.com/problems/minimum-factorization/
  */
 public class MinimumFactorization {
+	// time O(log(a)), space O(log(a))
 	public int smallestFactorization(int a) {
 		if(a < 10){
 			return a;
@@ -16,6 +17,7 @@ public class MinimumFactorization {
 		List<Integer> res = new ArrayList<>();
 		// array list will be ordered by desc
 		for(int i = 9; i > 1; i--){
+			// always try to find the max factor
 			while(a % i == 0){
 				a /= i;
 				res.add(i);
