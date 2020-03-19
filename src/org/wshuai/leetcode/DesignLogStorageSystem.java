@@ -1,33 +1,45 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
- * Created by Wei on 8/3/17.
- * #635 https://leetcode.com/problems/design-log-storage-system/
+ * Created by Wei on 08/03/2017.
+ * #0635 https://leetcode.com/problems/design-log-storage-system/
  */
 public class DesignLogStorageSystem {
-	List<String[]> timestamps = new LinkedList<String[]>();
-	List<String> units = Arrays.asList("Year", "Month", "Day", "Hour", "Minute", "Second");
-	int[] indices = new int[]{4, 7, 10, 13, 16, 19};
+
+	private String min, max;
+	private TreeMap<String, LinkedList<Integer>> logs;
+	private Map<String, Integer> units;
 
 	public DesignLogStorageSystem() {
-
+		min = "2000:01:01:00:00:00";
+		max = "2017:12:31:23:59:59";
+		logs = new TreeMap<>();
+		units = new HashMap<>(){{
+			put("Year", 4);
+			put("Month", 7);
+			put("Day", 10);
+			put("Hour", 13);
+			put("Minute", 16);
+			put("Second", 19);
+		}};
 	}
 
 	public void put(int id, String timestamp) {
-		timestamps.add(new String[]{Integer.toString(id), timestamp});
+		logs.putIfAbsent(timestamp, new LinkedList<>());
+		logs.get(timestamp).offerLast(id);
 	}
 
+	// time O(log(n))
 	public List<Integer> retrieve(String s, String e, String gra) {
-		List<Integer> res = new LinkedList<Integer>();
-		int idx = indices[units.indexOf(gra)];
-		for (String[] timestamp : timestamps) {
-			if (timestamp[1].substring(0, idx).compareTo(s.substring(0, idx)) >= 0 &&
-					timestamp[1].substring(0, idx).compareTo(e.substring(0, idx)) <= 0)
-				res.add(Integer.parseInt(timestamp[0]));
+		LinkedList<Integer> res = new LinkedList<>();
+		int index = units.get(gra);
+		String start = s.substring(0, index) + min.substring(index);
+		String end = e.substring(0, index) + max.substring(index);
+		NavigableMap<String, LinkedList<Integer>> sub = logs.subMap(start, true, end, true);
+		for(Map.Entry<String, LinkedList<Integer>> entry : sub.entrySet()){
+			res.addAll(entry.getValue());
 		}
 		return res;
 	}
