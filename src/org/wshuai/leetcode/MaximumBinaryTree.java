@@ -1,10 +1,13 @@
 package org.wshuai.leetcode;
 
+import java.util.LinkedList;
+
 /**
- * Created by Wei on 8/30/2019.
- * #654 https://leetcode.com/problems/maximum-binary-tree/
+ * Created by Wei on 08/30/2019.
+ * #0654 https://leetcode.com/problems/maximum-binary-tree/
  */
 public class MaximumBinaryTree {
+	// time O(n*log(n))
 	public TreeNode constructMaximumBinaryTree(int[] nums) {
 		TreeNode root = buildTree(nums, 0, nums.length - 1);
 		return root;
@@ -26,5 +29,21 @@ public class MaximumBinaryTree {
 		node.left = buildTree(nums, l, idx - 1);
 		node.right = buildTree(nums, idx + 1, r);
 		return node;
+	}
+
+	// time O(n), space O(n)
+	public TreeNode constructMaximumBinaryTreeQueue(int[] nums) {
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		for(int num : nums){
+			TreeNode cur = new TreeNode(num);
+			while(!queue.isEmpty() && queue.peekLast().val < num){
+				cur.left = queue.pollLast();
+			}
+			if(!queue.isEmpty()){
+				queue.peekLast().right = cur;
+			}
+			queue.offerLast(cur);
+		}
+		return queue.isEmpty() ? null : queue.pollFirst();
 	}
 }
