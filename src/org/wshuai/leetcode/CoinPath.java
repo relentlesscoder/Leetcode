@@ -15,9 +15,7 @@ public class CoinPath {
 			return new ArrayList<>();
 		}
 		int N = A.length;
-		int[] dp = new int[N];
-		int[] path = new int[N]; // previous index
-		int[] len = new int[N]; // length
+		int[] dp = new int[N], path = new int[N], len = new int[N];
 		for(int i = 0; i < N; i++){
 			dp[i] = Integer.MAX_VALUE;
 			path[i] = -1;
