@@ -7,36 +7,32 @@ import java.util.Map;
 
 /**
  * Created by Wei on 10/20/2019.
- * #652 https://leetcode.com/problems/find-duplicate-subtrees/
+ * #0652 https://leetcode.com/problems/find-duplicate-subtrees/
  */
 public class FindDuplicateSubtrees {
-	private Map<String, List<TreeNode>> map;
-
+	// time O(n), space O(n)
 	public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-		map = new HashMap<>();
-		findDuplicateSubtreesUtil(root);
 		List<TreeNode> res = new ArrayList<>();
-		for(List<TreeNode> lst: map.values()){
-			if(lst.size() > 1){
-				res.add(lst.get(0));
+		Map<String, List<TreeNode>> map = new HashMap<>();
+		dfs(root, map);
+		for(String key : map.keySet()){
+			List<TreeNode> cur = map.get(key);
+			if(cur.size() > 1){
+				res.add(cur.get(0));
 			}
 		}
 		return res;
 	}
 
-	private String findDuplicateSubtreesUtil(TreeNode node){
-		if(node == null){
-			return "";
+	private String dfs(TreeNode root, Map<String, List<TreeNode>> map){
+		if(root == null){
+			return "#";
 		}
-		String left = findDuplicateSubtreesUtil(node.left);
-		String right = findDuplicateSubtreesUtil(node.right);
-		String key = left.equals("") ? "" : "L" + left;
-		key += "M" + node.val;
-		key += right.equals("") ? "" : "R" + right;
-		if(!map.containsKey(key)){
-			map.put(key, new ArrayList<TreeNode>());
-		}
-		map.get(key).add(node);
-		return key;
+		String res = "L" + dfs(root.left, map);
+		res += "M" + root.val;
+		res += "R" + dfs(root.right, map);
+		map.putIfAbsent(res, new ArrayList<>());
+		map.get(res).add(root);
+		return res;
 	}
 }
