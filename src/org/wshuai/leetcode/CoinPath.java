@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 11/26/19.
- * #656 https://leetcode.com/problems/coin-path/
+ * Created by Wei on 11/26/2019.
+ * #0656 https://leetcode.com/problems/coin-path/
  */
 public class CoinPath {
+	// time O(n^2), space O(n)
 	// see proof at https://leetcode.com/problems/coin-path/discuss/106291/Java-22-lines-solution-with-proof
 	public List<Integer> cheapestJump(int[] A, int B) {
 		if(A[0] == -1){
