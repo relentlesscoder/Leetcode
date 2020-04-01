@@ -1,63 +1,92 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
-
 /**
- * Created by Wei on 9/18/2019.
- * #676 https://leetcode.com/problems/implement-magic-dictionary/
+ * Created by Wei on 09/18/2019.
+ * #0676 https://leetcode.com/problems/implement-magic-dictionary/
  */
 public class ImplementMagicDictionary {
-	private Map<Integer, Set<String>> map;
 
-	/**
-	 * Initialize your data structure here.
-	 */
+	private TrieNode root;
+
+	/** Initialize your data structure here. */
+	public ImplementMagicDictionary() {
+		root = new TrieNode();
+	}
+
+	/** Build a dictionary through a list of words */
+	public void buildDict(String[] dict) {
+		for(String word : dict){
+			insert(word);
+		}
+	}
+
+	/** Returns if there is any word in the trie that equals to the given word after modifying exactly one character */
+	public boolean search(String word) {
+		return search(word, root, 0, 0);
+	}
+
+	private void insert(String word){
+		TrieNode node = root;
+		for(char c : word.toCharArray()){
+			if(!node.containsKey(c)){
+				node.put(c, new TrieNode());
+			}
+			node = node.get(c);
+		}
+		node.setEnd();
+	}
+
+	private boolean search(String word, TrieNode cur, int i, int missed){
+		if(i == word.length() && cur.isEnd() && missed == 1){
+			return true;
+		}
+		if(i == word.length() || missed > 1){
+			return false;
+		}
+		char c = word.charAt(i);
+		for(char x = 'a'; x <= 'z'; x++){
+			if(cur.containsKey(x) && search(word, cur.get(x), i + 1, missed + (x == c ? 0 : 1))){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/* implementation using hash map
+
+	private Map<String, List<int[]>> map;
+
+	*//** Initialize your data structure here. *//*
 	public ImplementMagicDictionary() {
 		map = new HashMap<>();
 	}
 
-	/**
-	 * Build a dictionary through a list of words
-	 */
+	*//** Build a dictionary through a list of words *//*
 	public void buildDict(String[] dict) {
-		for (String word : dict) {
-			int len = word.length();
-			if (!map.containsKey(len)) {
-				map.put(len, new HashSet<>());
+		for(String word : dict){
+			for(int i = 0; i < word.length(); i++){
+				String key = word.substring(0, i) + word.substring(i + 1);
+				map.putIfAbsent(key, new ArrayList<>());
+				map.get(key).add(new int[]{i, word.charAt(i)});
 			}
-			List<String> vals = getAllOptions(word);
-			map.get(len).addAll(vals);
 		}
 	}
 
-	/**
-	 * Returns if there is any word in the trie that equals to the given word after modifying exactly one character
-	 */
+	*//** Returns if there is any word in the trie that equals to the given word after modifying exactly one character *//*
 	public boolean search(String word) {
-		int len = word.length();
-		Set<String> set = map.get(len);
-		if (set == null) {
-			return false;
-		}
-		return set.contains(word);
-	}
-
-	private List<String> getAllOptions(String word) {
-		List<String> res = new ArrayList<>();
-		char[] arr = word.toCharArray();
-		for (int i = 0; i < arr.length; i++) {
-			char v = arr[i];
-			for (int j = 0; j < 26; j++) {
-				char c = (char) ('a' + j);
-				if (c != v) {
-					arr[i] = c;
-					res.add(new String(arr));
+		for(int i = 0; i < word.length(); i++){
+			String key = word.substring(0, i) + word.substring(i + 1);
+			if(!map.containsKey(key)){
+				continue;
+			}
+			for(int[] arr : map.get(key)){
+				if(arr[0] == i && arr[1] != word.charAt(i)){
+					return true;
 				}
 			}
-			arr[i] = v;
 		}
-		return res;
-	}
+		return false;
+	}*/
 }
 
 /**
