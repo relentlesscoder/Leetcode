@@ -3,41 +3,40 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 10/4/2019.
- * #673 https://leetcode.com/problems/number-of-longest-increasing-subsequence/
+ * Created by Wei on 10/04/2019.
+ * #0673 https://leetcode.com/problems/number-of-longest-increasing-subsequence/
  */
 public class NumberOfLongestIncreasingSubsequence {
+	// time O(n^2), space O(n)
 	public int findNumberOfLIS(int[] nums) {
-		int N = nums.length;
-		if(N <= 1){
-			return N;
+		int res = 0, n = nums.length, max = 1;
+		if (n <= 1) {
+			return n;
 		}
-		int[] lengths = new int[N];
-		int[] counts = new int[N];
-		Arrays.fill(counts, 1);
-
-		for(int j = 0; j < N; j++){
-			for(int i = 0; i < j; i++){
-				if(nums[i] < nums[j]){
-					if(lengths[i] >= lengths[j]){
-						lengths[j] = lengths[i] + 1;
-						counts[j] = counts[i];
-					}else if(lengths[i] + 1 == lengths[j]){
-						counts[j] += counts[i];
-					}
+		int[] length = new int[n], count = new int[n];
+		Arrays.fill(length, 1);
+		Arrays.fill(count, 1);
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < i; j++) {
+				if (nums[i] <= nums[j]) {
+					continue;
+				}
+				// longer subsequence can be formed by adding i to those end of j
+				if (length[j] >= length[i]) {
+					length[i] = length[j] + 1;
+					count[i] = count[j];
+				// same length (as current max length) can be formed by adding i to those end of j
+				} else if (length[j] + 1 == length[i]) {
+					count[i] += count[j];
 				}
 			}
+			max = Math.max(max, length[i]);
 		}
-
-		int longest = 0, ans = 0;
-		for(int length: lengths){
-			longest = Math.max(longest, length);
-		}
-		for(int i = 0; i < N; i++){
-			if(lengths[i] == longest){
-				ans += counts[i];
+		for (int i = 0; i < n; i++) {
+			if (length[i] == max) {
+				res += count[i];
 			}
 		}
-		return ans;
+		return res;
 	}
 }

@@ -2,9 +2,23 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 12/21/2019.
- * #668 https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
+ * #0668 https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
  */
 public class KthSmallestNumberInMultiplicationTable {
+	// time O(m*log(m*n))
+	public int findKthNumber(int m, int n, int k) {
+		int low = 1, high = m * n + 1;
+		while(low < high){
+			int mid = low + (high - low) / 2;
+			if(lessOrEqual(m, n, mid) < k){
+				low = mid + 1;
+			}else{
+				high = mid;
+			}
+		}
+		return low;
+	}
+
 	/*
 	1*1, 1*2, 1*3, ... 1*n
 	2*1, 2*2, 2*3, ... 2*n
@@ -12,25 +26,11 @@ public class KthSmallestNumberInMultiplicationTable {
 	...
 	for row i, number of elements less than or equal to v is v/i
 	*/
-	public int findKthNumber(int m, int n, int k) {
-		int left = 1;
-		int right = m * n + 1;
-		while(left < right){
-			int mid = left + (right - left) / 2;
-			if(lex(m, n, mid) < k){
-				left = mid + 1;
-			}else{
-				right = mid;
-			}
-		}
-		return left;
-	}
-
-	private int lex(int m, int n, int mid){
-		int cnt = 0;
+	private int lessOrEqual(int m, int n, int mid){
+		int res = 0;
 		for(int i = 1; i <= m; i++){
-			cnt += Math.min(mid / i, n);
+			res += Math.min(mid / i, n);
 		}
-		return cnt;
+		return res;
 	}
 }
