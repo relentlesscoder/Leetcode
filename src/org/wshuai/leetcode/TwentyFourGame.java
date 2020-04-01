@@ -6,43 +6,54 @@ import java.util.List;
 
 /**
  * Created by Wei on 12/12/2019.
- * #679 https://leetcode.com/problems/24-game/
+ * #0679 https://leetcode.com/problems/24-game/
  */
 public class TwentyFourGame {
-	boolean res = false;
-	final double eps = 0.001;
+
+	private boolean res;
+	private double eps;
 
 	public boolean judgePoint24(int[] nums) {
-		List<Double> arr = new ArrayList<>();
-		for(int n: nums) arr.add((double) n);
-		dfs(arr);
+		res = false;
+		eps = 0.001;
+		List<Double> doubles = new ArrayList<>();
+		for(int num : nums){
+			doubles.add((double)num);
+		}
+		dfs(doubles);
 		return res;
 	}
 
-	private void dfs(List<Double> arr){
-		if(res) return;
-		if(arr.size() == 1){
-			if(Math.abs(arr.get(0) - 24.0) < eps)
-				res = true;
+	private void dfs(List<Double> nums){
+		if(res){
 			return;
 		}
-		for (int i = 0; i < arr.size(); i++) {
-			for (int j = 0; j < i; j++) {
+		if(nums.size() == 1){
+			if(Math.abs(nums.get(0) - 24.0) < eps){
+				res = true;
+			}
+			return;
+		}
+		for(int i = 0; i < nums.size(); i++){
+			for(int j = 0; j < i; j++){
+				double m = nums.get(i), n = nums.get(j);
 				List<Double> next = new ArrayList<>();
-				Double p1 = arr.get(i), p2 = arr.get(j);
-				next.addAll(Arrays.asList(p1 + p2, p1 - p2, p2 - p1, p1 * p2));
-				if(Math.abs(p2) > eps)  next.add(p1 / p2);
-				if(Math.abs(p1) > eps)  next.add(p2 / p1);
-
-				arr.remove(i);
-				arr.remove(j);
-				for (Double n: next){
-					arr.add(n);
-					dfs(arr);
-					arr.remove(arr.size()-1);
+				next.addAll(Arrays.asList(m + n, m - n, n - m, m * n));
+				if(m > eps){
+					next.add(n / m);
 				}
-				arr.add(j, p2);
-				arr.add(i, p1);
+				if(n > eps){
+					next.add(m / n);
+				}
+				nums.remove(i);
+				nums.remove(j);
+				for(double d : next){
+					nums.add(d);
+					dfs(nums);
+					nums.remove(nums.size() - 1);
+				}
+				nums.add(j, n);
+				nums.add(i, m);
 			}
 		}
 	}
