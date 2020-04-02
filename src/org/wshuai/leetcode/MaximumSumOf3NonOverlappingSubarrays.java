@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/28/19.
- * #689 https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/
+ * Created by Wei on 11/28/2019.
+ * #0689 https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/
  */
 public class MaximumSumOf3NonOverlappingSubarrays {
 	public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
