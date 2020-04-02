@@ -1,34 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/5/19.
- * #687 https://leetcode.com/problems/longest-univalue-path/
+ * Created by Wei on 09/05/2019.
+ * #0687 https://leetcode.com/problems/longest-univalue-path/
  */
 public class LongestUnivaluePath {
-	int max;
+	private int res;
 
+	// time O(n)
 	public int longestUnivaluePath(TreeNode root) {
-		max = 0;
-		longestUnivaluePathUtil(root);
-		return max;
+		res = 0;
+		dfs(root);
+		return res;
 	}
 
-	private int longestUnivaluePathUtil(TreeNode root) {
-		if (root == null) {
+	private int dfs(TreeNode root){
+		if(root == null){
 			return 0;
 		}
-		int l = longestUnivaluePathUtil(root.left);
-		int r = longestUnivaluePathUtil(root.right);
-		int cl = 0;
-		int cr = 0;
-		if (root.left != null && root.val == root.left.val) {
-			cl = l + 1;
-		}
-		if (root.right != null && root.val == root.right.val) {
-			cr = r + 1;
-		}
-		// cl+cr represents the arrow that pass through current node
-		max = Math.max(max, cl + cr);
-		return Math.max(cl, cr);
+		int left = dfs(root.left);
+		int right = dfs(root.right);
+		left = (root.left != null && root.left.val == root.val) ? left + 1 : 1;
+		right = (root.right != null && root.right.val == root.val) ? right + 1 : 1;
+		// number of edges = number of nodes - 1 - 1 (double counted root node)
+		res = Math.max(left + right - 2, res);
+		return Math.max(left, right);
 	}
 }
