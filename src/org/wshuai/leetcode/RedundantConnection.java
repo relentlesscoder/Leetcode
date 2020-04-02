@@ -2,41 +2,31 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/24/2019.
- * #684 https://leetcode.com/problems/redundant-connection/
+ * #0684 https://leetcode.com/problems/redundant-connection/
  */
 public class RedundantConnection {
-	private int[] roots;
-
-	// union find
+	// time O(n), space O(n)
 	public int[] findRedundantConnection(int[][] edges) {
-		int N = edges.length;
-		roots = new int[N];
-		for(int i = 0; i < N; i++){
-			roots[i] = i;
+		int n = edges.length;
+		int[] root = new int[n];
+		for(int i = 0; i < n; i++){
+			root[i] = i;
 		}
-		for(int[] edge: edges){
-			if(!union(edge[0] - 1, edge[1] - 1)){
-				return edge;
+		for(int[] e : edges){
+			int r1 = findRoot(e[0] - 1, root);
+			int r2 = findRoot(e[1] - 1, root);
+			if(r1 == r2){
+				return e;
 			}
+			root[r2] = r1;
 		}
 		return new int[0];
 	}
 
-	private boolean union(int u, int v){
-		int r1 = find(u);
-		int r2 = find(v);
-		if(r1 == r2){
-			return false;
+	private int findRoot(int r, int[] root){
+		if(root[r] != r){
+			root[r] = findRoot(root[r], root);
 		}
-		roots[r2] = r1;
-		return true;
-	}
-
-	private int find(int n){
-		if(roots[n] != n){
-			// update root to boost future search
-			roots[n] = find(roots[n]);
-		}
-		return roots[n];
+		return root[r];
 	}
 }
