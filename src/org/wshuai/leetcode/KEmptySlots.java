@@ -4,21 +4,22 @@ import java.util.TreeSet;
 
 /**
  * Created by Wei on 12/30/2019.
- * #683 https://leetcode.com/problems/k-empty-slots/
+ * #0683 https://leetcode.com/problems/k-empty-slots/
  */
 public class KEmptySlots {
+	// time O(n*log(n)), space O(n)
 	public int kEmptySlots(int[] bulbs, int K) {
 		TreeSet<Integer> set = new TreeSet<>();
 		for(int i = 0; i < bulbs.length; i++){
-			Integer h = set.higher(bulbs[i]);
-			Integer l = set.lower(bulbs[i]);
-			if(h != null && h.intValue() - bulbs[i] - 1 == K){
+			int cur = bulbs[i];
+			Integer high = set.higher(cur), low = set.lower(cur);
+			if(high != null && high.intValue() - cur - 1 == K){
 				return i + 1;
 			}
-			if(l != null && bulbs[i] - l.intValue() - 1 == K){
+			if(low != null && cur - low.intValue() - 1 == K){
 				return i + 1;
 			}
-			set.add(bulbs[i]);
+			set.add(cur);
 		}
 		return -1;
 	}
