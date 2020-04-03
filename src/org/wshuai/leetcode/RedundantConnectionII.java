@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0685 https://leetcode.com/problems/redundant-connection-ii/
  */
 public class RedundantConnectionII {
+	// time O(n), space O(n)
 	// https://leetcode.com/problems/redundant-connection-ii/discuss/278105/topic
 	public int[] findRedundantDirectedConnection(int[][] edges) {
 		int n = edges.length;
