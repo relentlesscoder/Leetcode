@@ -3,28 +3,25 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 8/6/19.
- * #692 https://leetcode.com/problems/top-k-frequent-words/
+ * Created by Wei on 08/06/2019.
+ * #0692 https://leetcode.com/problems/top-k-frequent-words/
  */
 public class TopKFrequentWords {
+	// time O(n*log(k)), space O(n)
 	public List<String> topKFrequent(String[] words, int k) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		for (String str : words) {
-			map.put(str, map.getOrDefault(str, 0) + 1);
+		List<String> res = new ArrayList<>();
+		PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a, b) ->
+			a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : b.getValue() - a.getValue());
+		Map<String, Integer> map = new HashMap<>();
+		for(String word : words){
+			map.put(word, map.getOrDefault(word, 0) + 1);
 		}
-		PriorityQueue<String> queue = new PriorityQueue<String>(
-				(w1, w2) -> map.get(w1).intValue() == map.get(w2).intValue() ? w1.compareTo(w2) : map.get(w2) - map.get(w1)
-		);
-
-		for (String key : map.keySet()) {
-			queue.offer(key);
+		for(Map.Entry<String, Integer> entry : map.entrySet()){
+			pq.offer(entry);
 		}
-		List<String> lst = new ArrayList<String>();
-		int i = 0;
-		while (i < k) {
-			lst.add(queue.poll());
-			i++;
+		while(k-- > 0 && !pq.isEmpty()){
+			res.add(pq.poll().getKey());
 		}
-		return lst;
+		return res;
 	}
 }
