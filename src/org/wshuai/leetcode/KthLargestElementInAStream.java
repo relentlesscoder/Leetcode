@@ -3,30 +3,26 @@ package org.wshuai.leetcode;
 import java.util.PriorityQueue;
 
 /**
- * Created by Wei on 8/21/19.
- * #703 https://leetcode.com/problems/kth-largest-element-in-a-stream/
+ * Created by Wei on 08/21/2019.
+ * #0703 https://leetcode.com/problems/kth-largest-element-in-a-stream/
  */
 public class KthLargestElementInAStream {
 	private PriorityQueue<Integer> queue;
-	private int num;
+	private int k;
 
+	// time O(n*log(k)), space O(k)
 	public KthLargestElementInAStream(int k, int[] nums) {
-		this.num = k;
 		queue = new PriorityQueue<>();
-		for (int n : nums) {
-			queue.offer(n);
-		}
-		while (queue.size() > k) {
-			queue.poll();
+		this.k = k;
+		for(int num : nums){
+			add(num);
 		}
 	}
 
 	public int add(int val) {
-		if (queue.size() == num && val > queue.peek()) {
-			queue.offer(val);
+		queue.offer(val);
+		if(queue.size() > k){
 			queue.poll();
-		} else if (queue.size() < num) {
-			queue.offer(val);
 		}
 		return queue.peek();
 	}
