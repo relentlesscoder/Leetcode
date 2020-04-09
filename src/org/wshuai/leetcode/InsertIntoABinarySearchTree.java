@@ -1,30 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/30/2019.
- * #701 https://leetcode.com/problems/insert-into-a-binary-search-tree/
+ * Created by Wei on 08/30/2019.
+ * #0701 https://leetcode.com/problems/insert-into-a-binary-search-tree/
  */
 public class InsertIntoABinarySearchTree {
-	// CLRS, page 294
+	// time O(log(n))
+	// book CLRS, page 294
 	public TreeNode insertIntoBST(TreeNode root, int val) {
-		TreeNode parent = null;
-		TreeNode node = root;
-		while (node != null) {
-			parent = node;
-			if (val < node.val) {
-				node = node.left;
+		TreeNode node = new TreeNode(val), cur = root, parent = null;
+		while (cur != null) {
+			parent = cur;
+			if (cur.val > val) {
+				cur = cur.left;
 			} else {
-				node = node.right;
+				cur = cur.right;
 			}
 		}
-		TreeNode add = new TreeNode(val);
 		if (parent == null) {
-			return add;
+			return node;
 		}
-		if (val < parent.val) {
-			parent.left = add;
+		if (parent.val > val) {
+			parent.left = node;
 		} else {
-			parent.right = add;
+			parent.right = node;
 		}
 		return root;
 	}
