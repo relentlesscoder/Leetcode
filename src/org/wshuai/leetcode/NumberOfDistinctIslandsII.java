@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Created by Wei on 12/18/2019.
- * #711 https://leetcode.com/problems/number-of-distinct-islands-ii/
+ * #0711 https://leetcode.com/problems/number-of-distinct-islands-ii/
  */
 public class NumberOfDistinctIslandsII {
 	private static int[][] dirs = new int[][]{

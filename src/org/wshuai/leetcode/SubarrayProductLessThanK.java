@@ -1,27 +1,24 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/4/19.
- * #713 https://leetcode.com/problems/subarray-product-less-than-k/
+ * Created by Wei on 09/04/2019.
+ * #0713 https://leetcode.com/problems/subarray-product-less-than-k/
  */
 public class SubarrayProductLessThanK {
 
-	// sliding window
+	// time O(n)
 	public int numSubarrayProductLessThanK(int[] nums, int k) {
-		if (k <= 1) {
-			return 0;
-		}
-		int prod = 1;
-		int ans = 0;
-		int left = 0;
-		for (int right = 0; right < nums.length; right++) {
-			prod *= nums[right];
-			while (prod >= k) {
-				prod /= nums[left++];
+		int res = 0, n = nums.length, cur = 1;
+		for(int i = 0, j = 0; j < n; j++){
+			cur *= nums[j];
+			while(i <= j && cur >= k){
+				cur /= nums[i++];
 			}
-			ans += right - left + 1;
+			if(cur < k){
+				res += j - i + 1;
+			}
 		}
-		return ans;
+		return res;
 	}
 
 }
