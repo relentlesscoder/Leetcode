@@ -10,6 +10,8 @@ public class BestTimeToBuyAndSellStock {
 		int cash = 0, hold = Integer.MIN_VALUE;
 		for(int p : prices){
 			cash = Math.max(cash, hold + p);
+			// since only one transaction is allowed,
+			// cash is always 0 before the buy.
 			hold = Math.max(hold, -p);
 		}
 		return cash;
