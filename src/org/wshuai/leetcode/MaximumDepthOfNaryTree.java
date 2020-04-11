@@ -1,27 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/9/19.
- * #559 https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
+ * Created by Wei on 08/09/2019.
+ * #0559 https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
  */
 public class MaximumDepthOfNaryTree {
-	public int maxDepth(NaryTreeNode root) {
-		return DFS(root, 0);
-	}
 
-	private int DFS(NaryTreeNode root, int curr) {
+	// time O(n)
+	public int maxDepth(NaryTreeNode root) {
 		if (root == null) {
 			return 0;
 		}
-		curr++;
-		if (root.children == null || root.children.size() == 0) {
-			return curr;
+		return dfs(root);
+	}
+
+	private int dfs(NaryTreeNode root) {
+		if (root == null) {
+			return 0;
 		}
 		int max = 0;
 		for (NaryTreeNode child : root.children) {
-			int depth = DFS(child, curr);
-			max = max > depth ? max : depth;
+			max = Math.max(max, dfs(child));
 		}
-		return max;
+		return max + 1;
 	}
+
 }

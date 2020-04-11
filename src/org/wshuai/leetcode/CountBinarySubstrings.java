@@ -1,33 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/8/19.
- * #696 https://leetcode.com/problems/count-binary-substrings/
+ * Created by Wei on 10/08/2019.
+ * #0696 https://leetcode.com/problems/count-binary-substrings/
  */
 public class CountBinarySubstrings {
+	// time O(n)
+	// https://leetcode.com/problems/count-binary-substrings/discuss/108625/PythonC%2B%2BJava-Easy-and-Concise-with-Explanation
 	public int countBinarySubstrings(String s) {
-		int res = 0;
-		char prev = '#';
-		int p = -1;
-		s += "#";
-		int last = -1;
-		// get the first 1/0 of each 1/0 group
-		// difference of two contiguous index identifies
-		// the length of a 1/0 group
-		for(int i = 0; i < s.length(); i++){
-			if(s.charAt(i) != prev){
-				if(p != -1){
-					int c = i - p;
-					if(last > 0){
-						// 11100 contains 2 binary substring
-						res += Math.min(c, last);
-					}
-					last = c;
-				}
-				prev = s.charAt(i);
-				p = i;
+		int res = 0, n = s.length(), pre = 0, cur = 1;
+		for(int i = 1; i < n; i++){
+			if(s.charAt(i) == s.charAt(i - 1)){
+				cur++;
+			}else{
+				res += Math.min(cur, pre);
+				pre = cur;
+				cur = 1;
 			}
 		}
-		return res;
+		return res + Math.min(cur, pre);
 	}
 }

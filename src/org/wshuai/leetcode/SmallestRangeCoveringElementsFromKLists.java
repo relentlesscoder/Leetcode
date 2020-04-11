@@ -4,39 +4,36 @@ import java.util.*;
 
 /**
  * Created by Wei on 12/16/2019.
- * #632 https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/
+ * #0632 https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/
  */
 public class SmallestRangeCoveringElementsFromKLists {
-	// same idea as merge sorted list
+	// time O(n*log(k)), space O(k)
 	public int[] smallestRange(List<List<Integer>> nums) {
-		int k = nums.size();
-		PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[2] - b[2]);
-		int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
-		for (int i = 0; i < k; i++) {
-			// e = int[] {row, index, value}
-			int[] e = new int[]{i, 0, nums.get(i).get(0)};
-			pq.offer(e);
-			max = Math.max(max, nums.get(i).get(0));
+		int start = -1, end = -1, range = Integer.MAX_VALUE, max = Integer.MIN_VALUE, k = nums.size();
+		// maintain priority queue of size k and use a variable to track current maximum
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+		for(int i = 0; i < k; i++){
+			int val = nums.get(i).get(0);
+			pq.offer(new int[]{i, 0, val});
+			max = Math.max(max, val);
 		}
-		int range = Integer.MAX_VALUE;
-		int start = -1, end = -1;
-		while (pq.size() == k) {
-			int[] curr = pq.poll();
-			if (max - curr[2] < range) {
-				range = max - curr[2];
-				start = curr[2];
+		while(pq.size() == k){
+			int[] cur = pq.poll();
+			// each time, we poll the current minimum from the queue and calculate the current range
+			if(max - cur[2] < range){
+				range = max - cur[2];
+				start = cur[2];
 				end = max;
 			}
-			if (curr[1] + 1 < nums.get(curr[0]).size()) {
-				curr[1] = curr[1] + 1;
-				curr[2] = nums.get(curr[0]).get(curr[1]);
-				pq.offer(curr);
-				if (curr[2] > max) {
-					max = curr[2];
-				}
+			// advance the list contains the polled element by 1 and push back to the priority queue
+			// this will always guarantee that the priority queue contains 1 element from each list and
+			// the current max - head of the queue is the smallest range possible
+			if(cur[1] + 1 < nums.get(cur[0]).size()){
+				int[] next = new int[]{cur[0], ++cur[1], nums.get(cur[0]).get(cur[1])};
+				pq.offer(next);
+				max = Math.max(max, next[2]);
 			}
 		}
-
-		return new int[] { start, end };
+		return new int[]{start, end};
 	}
 }

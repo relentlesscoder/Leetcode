@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * Created by Wei on 12/13/2019.
- * #591 https://leetcode.com/problems/tag-validator/
+ * #0591 https://leetcode.com/problems/tag-validator/
  */
 public class TagValidator {
 	public boolean isValid(String code) {

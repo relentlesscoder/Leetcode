@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/26/19.
- * #629 https://leetcode.com/problems/k-inverse-pairs-array/
+ * Created by Wei on 11/26/2019.
+ * #0629 https://leetcode.com/problems/k-inverse-pairs-array/
  */
 public class KInversePairsArray {
 	// https://leetcode.com/problems/k-inverse-pairs-array/discuss/104815/Java-DP-O(nk)-solution

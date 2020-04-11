@@ -4,12 +4,13 @@ import java.util.*;
 
 /**
  * Created by Wei on 12/26/2019.
- * #699 https://leetcode.com/problems/falling-squares/
+ * #0699 https://leetcode.com/problems/falling-squares/
  */
 public class FallingSquares {
 	private int[] tree;
 	private int n;
 
+	// time O(n*log(n)), space O(n)
 	public List<Integer> fallingSquares(int[][] positions) {
 		Integer[] res = new Integer[positions.length];
 		TreeSet<Integer> set = new TreeSet<>();

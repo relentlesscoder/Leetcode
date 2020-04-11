@@ -1,16 +1,17 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 12/5/2019.
- * #600 https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/
+ * Created by Wei on 12/05/2019.
+ * #0600 https://leetcode.com/problems/non-negative-integers-without-consecutive-ones/
  */
 public class NonNegativeIntegersWithoutConsecutiveOnes {
+	// time O(n), space O(n)
 	public int findIntegers(int num) {
 		StringBuilder bin = new StringBuilder(Integer.toBinaryString(num)).reverse();
 		int n = bin.length();
 		// DP see https://www.geeksforgeeks.org/count-number-binary-strings-without-consecutive-1s/
-		int[] endWithOne = new int[n];
-		int[] endWithZero = new int[n];
+		// endWithOne is the ith bit from left set to one
+		int[] endWithOne = new int[n], endWithZero = new int[n];
 		endWithOne[0] = 1;
 		endWithZero[0] = 1;
 		for(int i = 1; i < n; i++){
@@ -21,7 +22,7 @@ public class NonNegativeIntegersWithoutConsecutiveOnes {
 		// from MSB to LSB
 		for (int i = n - 2; i >= 0; i--) {
 			// if num has two consecutive 11 at current bit, then from the
-			// current bbit then it is greater than all the numbers does not
+			// current bit then it is greater than all the numbers does not
 			// have consecutive 1s
 			if (bin.charAt(i) == '1' && bin.charAt(i + 1) == '1'){
 				break;

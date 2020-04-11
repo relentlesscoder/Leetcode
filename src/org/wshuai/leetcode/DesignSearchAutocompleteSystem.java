@@ -3,106 +3,102 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 9/9/2019.
- * #642 https://leetcode.com/problems/design-search-autocomplete-system/
+ * Created by Wei on 09/09/2019.
+ * #0642 https://leetcode.com/problems/design-search-autocomplete-system/
  */
 public class DesignSearchAutocompleteSystem {
-	private AutoCompleteTrieNode root;
 
-	private String curr;
+	private TrieNode trie;
+
+	private String in;
 
 	public DesignSearchAutocompleteSystem(String[] sentences, int[] times) {
-		root = new AutoCompleteTrieNode();
-		curr = "";
-
-		for (int i = 0; i < sentences.length; i++) {
-			add(sentences[i], times[i]);
+		in = "";
+		trie = new TrieNode();
+		for(int i = 0; i < sentences.length; i++){
+			insert(sentences[i], times[i]);
 		}
 	}
 
 	public List<String> input(char c) {
 		List<String> res = new ArrayList<>();
 
-		if (c == '#') {
-			add(curr, 1);
-			curr = "";
+		// if the current input is '#', increment the current sentence by 1
+		// and reset it to empty.
+		if(c == '#'){
+			insert(in, 1);
+			in = "";
 			return res;
 		}
 
-		curr += c;
+		in += c;
 
-		AutoCompleteTrieNode node = root;
-		for (int i = 0; i < curr.length(); i++) {
-			char key = curr.charAt(i);
-			if (node.containsKey(key)) {
-				node = node.get(key);
-			} else {
+		TrieNode node = trie;
+		for(int i = 0; i < in.length(); i++){
+			char cur = in.charAt(i);
+			if(!node.containsKey(cur)){
 				return res;
 			}
+			node = node.get(cur);
 		}
 
-		PriorityQueue<Map.Entry<String, Integer>> queue =
-				new PriorityQueue<>((a, b) -> a.getValue() != b.getValue() ? b.getValue() - a.getValue() : a.getKey().compareTo(b.getKey()));
-		for (Map.Entry<String, Integer> entry : node.getWordCount()) {
-			queue.offer(entry);
+		PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a, b) ->
+				a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey()) : b.getValue() - a.getValue());
+		for(Map.Entry<String, Integer> entry : node.getWordCount()){
+			pq.offer(entry);
 		}
-
-		int k = 3;
-		while (k > 0 && !queue.isEmpty()) {
-			res.add(queue.poll().getKey());
-			k--;
+		int count = 0;
+		while(count++ < 3 && !pq.isEmpty()){
+			res.add(pq.poll().getKey());
 		}
-
 		return res;
 	}
 
-	private void add(String word, int count) {
-		AutoCompleteTrieNode node = root;
-		for (int i = 0; i < word.length(); i++) {
-			char key = word.charAt(i);
-			if (!node.containsKey(key)) {
-				node.put(key, new AutoCompleteTrieNode());
+	private void insert(String word, int count){
+		TrieNode node = trie;
+		for(int i = 0; i < word.length(); i++){
+			char cur = word.charAt(i);
+			if(!node.containsKey(cur)){
+				node.put(cur, new TrieNode());
 			}
-			node = node.get(key);
+			node = node.get(cur);
+			// each trie node record the word (with the current prefix) and it's count
 			node.addWordCount(word, count);
 		}
 	}
-}
 
-class AutoCompleteTrieNode {
+	private class TrieNode{
 
-	private final int R = 27;
+		private final int R = 27;
 
-	private AutoCompleteTrieNode[] links;
+		private TrieNode[] links;
 
-	private Map<String, Integer> counts;
+		private Map<String, Integer> map;
 
-	public AutoCompleteTrieNode() {
-		links = new AutoCompleteTrieNode[R];
+		public TrieNode(){
+			links = new TrieNode[R];
+			map = new HashMap<>();
+		}
 
-		counts = new HashMap<>();
-	}
+		public boolean containsKey(char key){
+			return (key == ' ' ? links[26] : links[key - 'a']) != null;
+		}
 
-	public boolean containsKey(char key) {
-		AutoCompleteTrieNode node = (key == ' ' ? links[26] : links[key - 'a']);
-		return node != null;
-	}
+		public TrieNode get(char key){
+			return key == ' ' ? links[26] : links[key - 'a'];
+		}
 
-	public AutoCompleteTrieNode get(char key) {
-		AutoCompleteTrieNode node = (key == ' ' ? links[26] : links[key - 'a']);
-		return node;
-	}
+		public void put(char key, TrieNode node){
+			int index = key == ' ' ? 26 : key - 'a';
+			links[index] = node;
+		}
 
-	public void put(char key, AutoCompleteTrieNode node) {
-		int index = (key == ' ' ? 26 : (int) (key - 'a'));
-		links[index] = node;
-	}
+		public void addWordCount(String word, int count){
+			map.put(word, map.getOrDefault(word, 0) + count);
+		}
 
-	public void addWordCount(String word, int count) {
-		counts.put(word, counts.getOrDefault(word, 0) + count);
-	}
-
-	public Set<Map.Entry<String, Integer>> getWordCount() {
-		return counts.entrySet();
+		public Set<Map.Entry<String, Integer>> getWordCount(){
+			return map.entrySet();
+		}
 	}
 }

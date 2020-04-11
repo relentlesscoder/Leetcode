@@ -1,42 +1,35 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Created by Wei on 10/14/2019.
- * #616 https://leetcode.com/problems/add-bold-tag-in-string/
+ * #0616 https://leetcode.com/problems/add-bold-tag-in-string/
  */
 public class AddBoldTagInString {
+	// time O(n*k), space O(n)
 	public String addBoldTag(String s, String[] dict) {
-		List<int[]> intervals = new ArrayList<>();
-		for(String word: dict){
-			int start = 0;
-			int next;
-			while((next = s.indexOf(word, start)) != -1){
-				intervals.add(new int[]{next, next + word.length() - 1});
-				start = next + 1;
+		int n = s.length();
+		boolean[] bold = new boolean[n];
+		for(String word : dict){
+			int start = 0, index = 0, len = word.length();
+			while((index = s.indexOf(word, start)) != -1){
+				for(int i = index; i < index + len; i++){
+					bold[i] = true;
+				}
+				start = index + 1;
 			}
 		}
-		Collections.sort(intervals, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
 		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		int k = 0;
-		while(i < intervals.size()){
-			int[] curr = intervals.get(i);
-			sb.append(s.substring(k, curr[0]));
-			int j = i + 1;
-			while(j < intervals.size() && intervals.get(j)[0] <= curr[1] + 1){
-				curr[1] = Math.max(intervals.get(j)[1], curr[1]);
+		for(int i = 0, j = 0; i < n; i++){
+			if(!bold[i]){
+				sb.append(s.charAt(i));
+				continue;
+			}
+			j = i;
+			while(j < n && bold[j]){
 				j++;
 			}
-			sb.append("<b>" + s.substring(curr[0], curr[1] + 1) + "</b>");
-			i = j;
-			k = curr[1] + 1;
-		}
-		if(k < s.length()){
-			sb.append(s.substring(k));
+			sb.append("<b>" + s.substring(i, j) + "</b>");
+			i = j - 1;
 		}
 		return sb.toString();
 	}

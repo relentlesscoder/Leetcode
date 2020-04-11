@@ -1,10 +1,11 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/24/19.
- * #667 https://leetcode.com/problems/beautiful-arrangement-ii/
+ * Created by Wei on 10/24/2019.
+ * #0667 https://leetcode.com/problems/beautiful-arrangement-ii/
  */
 public class BeautifulArrangementII {
+	// time O(n)
 	// beautiful solution -
 	// https://leetcode.com/problems/beautiful-arrangement-ii/discuss/106948/C%2B%2B-Java-Clean-Code-4-liner
 	public int[] constructArray(int n, int k) {

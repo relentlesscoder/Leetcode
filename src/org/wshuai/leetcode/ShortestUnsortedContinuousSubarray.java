@@ -1,25 +1,29 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-
 /**
- * Created by Wei on 7/28/2017.
- * #645 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
+ * Created by Wei on 07/28/2017.
+ * #0581 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
  */
 public class ShortestUnsortedContinuousSubarray {
-	//Copy array
+	// time O(n)
 	public int findUnsortedSubarray(int[] nums) {
-		int len = nums.length;
-		int[] aux = Arrays.copyOf(nums, len);
-		Arrays.sort(aux);
-		int left = 0;
-		int right = len - 1;
-		while (left < len - 1 && aux[left] == nums[left]) {
-			left++;
+		if(nums == null || nums.length <= 1){
+			return 0;
 		}
-		while (right >= 0 && aux[right] == nums[right]) {
-			right--;
+		int max = Integer.MIN_VALUE, end = -2;
+		for(int i = 0; i < nums.length; i++){
+			max = Math.max(max, nums[i]);
+			if(nums[i] < max){
+				end = i;
+			}
 		}
-		return right > left ? right - left + 1 : 0;
+		int min = Integer.MAX_VALUE, begin = -1;
+		for(int i = nums.length - 1; i >= 0; i--){
+			min = Math.min(min, nums[i]);
+			if(nums[i] > min){
+				begin = i;
+			}
+		}
+		return end - begin + 1;
 	}
 }

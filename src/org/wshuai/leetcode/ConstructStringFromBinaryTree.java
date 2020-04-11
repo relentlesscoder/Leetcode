@@ -1,27 +1,32 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 7/20/2017.
- * #606 https://leetcode.com/problems/construct-string-from-binary-tree/
+ * Created by Wei on 07/20/2017.
+ * #0606 https://leetcode.com/problems/construct-string-from-binary-tree/
  */
 public class ConstructStringFromBinaryTree {
+	// time O(n)
 	public String tree2str(TreeNode t) {
-		if (t == null) {
-			return "";
-		}
-		String res = t.val + "";
-		String left = tree2str(t.left);
-		String right = tree2str(t.right);
+		StringBuilder res = new StringBuilder();
+		dfs(t, res);
+		return res.toString();
+	}
 
-		if (t.left == null && t.right == null) {
-			return res;
+	private void dfs(TreeNode root, StringBuilder res){
+		if(root == null){
+			return;
 		}
-		if (t.left == null) {
-			return res + "()(" + right + ")";
+		res.append("" + root.val);
+		if(root.left == null && root.right == null){
+			return;
 		}
-		if (t.right == null) {
-			return res + "(" + left + ")";
+		res.append("(");
+		dfs(root.left, res);
+		res.append(")");
+		if(root.right != null){
+			res.append("(");
+			dfs(root.right, res);
+			res.append(")");
 		}
-		return res + "(" + left + ")(" + right + ")";
 	}
 }

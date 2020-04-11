@@ -4,35 +4,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 11/12/19.
- * #678 https://leetcode.com/problems/valid-parenthesis-string/
+ * Created by Wei on 11/12/2019.
+ * #0678 https://leetcode.com/problems/valid-parenthesis-string/
  */
 public class ValidParenthesisString {
 
-	// very smart solution - https://leetcode.com/problems/valid-parenthesis-string/discuss/107577/Short-Java-O(n)-time-O(1)-space-one-pass
+	// time O(n)
+	// https://leetcode.com/problems/valid-parenthesis-string/discuss/107577/Short-Java-O(n)-time-O(1)-space-one-pass
 	public boolean checkValidString(String s) {
-		int low = 0;
-		int high = 0;
-		for(int i = 0; i < s.length(); i++){
-			if(s.charAt(i) == '('){
-				low++;
-				high++;
-			}else if(s.charAt(i) == ')'){
-				if(low > 0){
-					low--;
-				}
-				high--;
-			}else{
-				if(low > 0){
-					low--;
-				}
-				high++;
+		int lowerBound = 0, higherBound = 0;
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			if (c == '(') {
+				lowerBound++;
+				higherBound++;
+			} else if (c == ')') {
+				lowerBound -= lowerBound > 0 ? 1 : 0;
+				higherBound--;
+			} else {
+				lowerBound -= lowerBound > 0 ? 1 : 0;
+				higherBound++;
 			}
-			if(high < 0){
+			if (higherBound < 0) {
 				return false;
 			}
 		}
-		return low == 0;
+		return lowerBound == 0;
 	}
 
 	Map<String, Boolean> map;
@@ -42,29 +39,29 @@ public class ValidParenthesisString {
 		return dfs(0, 0, s);
 	}
 
-	private boolean dfs(int s, int cur, String str){
-		if(cur < 0){
+	private boolean dfs(int s, int cur, String str) {
+		if (cur < 0) {
 			return false;
 		}
-		if(s == str.length() && cur == 0){
+		if (s == str.length() && cur == 0) {
 			return true;
 		}
 		String key = s + "|" + cur;
-		if(map.containsKey(key)){
+		if (map.containsKey(key)) {
 			return map.get(key);
 		}
 		int score = cur;
-		for(int i = s; i < str.length(); i++){
-			if(str.charAt(i) == '('){
+		for (int i = s; i < str.length(); i++) {
+			if (str.charAt(i) == '(') {
 				score++;
-			}else if(str.charAt(i) == ')'){
+			} else if (str.charAt(i) == ')') {
 				score--;
-				if(score < 0){
+				if (score < 0) {
 					return false;
 				}
-			}else{
-				for(int j = -1; j <= 1; j++){
-					if(dfs(i + 1, score + j, str)){
+			} else {
+				for (int j = -1; j <= 1; j++) {
+					if (dfs(i + 1, score + j, str)) {
 						return true;
 					}
 				}

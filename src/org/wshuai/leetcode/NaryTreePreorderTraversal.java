@@ -5,24 +5,44 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by Wei on 8/8/19.
- * #589 https://leetcode.com/problems/n-ary-tree-preorder-traversal/
+ * Created by Wei on 08/08/2019.
+ * #0589 https://leetcode.com/problems/n-ary-tree-preorder-traversal/
  */
 public class NaryTreePreorderTraversal {
-	public List<Integer> preorder(NaryTreeNode root) {
-		List<Integer> lst = new ArrayList<Integer>();
-		if (root == null) {
-			return lst;
+	// time O(n), space O(n)
+	public List<Integer> preorderIterative(NaryTreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		if(root == null){
+			return res;
 		}
-		LinkedList<NaryTreeNode> stack = new LinkedList<NaryTreeNode>();
-		stack.add(root);
-		while (!stack.isEmpty()) {
-			NaryTreeNode node = stack.pollFirst();
-			lst.add(node.val);
-			for (int i = node.children.size() - 1; i >= 0; i--) {
-				stack.addFirst(node.children.get(i));
+		LinkedList<NaryTreeNode> queue = new LinkedList<>();
+		queue.offerFirst(root);
+		while(!queue.isEmpty()){
+			NaryTreeNode cur = queue.pollFirst();
+			res.add(cur.val);
+			for(int i = cur.children.size() - 1; i >= 0; i--){
+				queue.offerFirst(cur.children.get(i));
 			}
 		}
-		return lst;
+		return res;
+	}
+
+	// time O(n)
+	public List<Integer> preorderRecursive(NaryTreeNode root) {
+		List<Integer> res = new ArrayList<>();
+		if(root == null){
+			return res;
+		}
+		dfs(root, res);
+		return res;
+	}
+
+	private void dfs(NaryTreeNode root, List<Integer> res){
+		res.add(root.val);
+		if(root.children != null && root.children.size() > 0){
+			for(NaryTreeNode child : root.children){
+				dfs(child, res);
+			}
+		}
 	}
 }

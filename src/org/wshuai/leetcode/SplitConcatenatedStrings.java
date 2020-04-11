@@ -1,29 +1,37 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/12/19.
- * #555 https://leetcode.com/problems/split-concatenated-strings/
+ * Created by Wei on 11/12/2019.
+ * #0555 https://leetcode.com/problems/split-concatenated-strings/
  */
 public class SplitConcatenatedStrings {
+	// time O(2*n^2*l)
 	public String splitLoopedString(String[] strs) {
-		for (int i = 0; i < strs.length; i++) {
-			String rev = new StringBuilder(strs[i]).reverse().toString();
-			if (strs[i].compareTo(rev) < 0)
-				strs[i] = rev;
-		}
 		String res = "";
-		for (int i = 0; i < strs.length; i++) {
+		int n = strs.length;
+		for (int i = 0; i < n; i++) {
 			String rev = new StringBuilder(strs[i]).reverse().toString();
-			for (String st: new String[] {strs[i], rev}) {
-				for (int k = 0; k < st.length(); k++) {
-					StringBuilder t = new StringBuilder(st.substring(k));
-					for (int j = i + 1; j < strs.length; j++)
-						t.append(strs[j]);
-					for (int j = 0; j < i; j++)
-						t.append(strs[j]);
-					t.append(st.substring(0, k));
-					if (t.toString().compareTo(res) > 0)
-						res = t.toString();
+			if (strs[i].compareTo(rev) < 0) {
+				strs[i] = rev;
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			String rev = new StringBuilder(strs[i]).reverse().toString();
+			for (String str : new String[]{strs[i], rev}) {
+				for (int k = 0; k < str.length(); k++) {
+					StringBuilder sb = new StringBuilder();
+					sb.append(str.substring(k));
+					for (int j = i + 1; j < n; j++) {
+						sb.append(strs[j]);
+					}
+					for (int j = 0; j < i; j++) {
+						sb.append(strs[j]);
+					}
+					sb.append(str.substring(0, k));
+					String temp = sb.toString();
+					if (res.compareTo(temp) < 0) {
+						res = temp;
+					}
 				}
 			}
 		}

@@ -1,10 +1,11 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/8/19.
- * #657 https://leetcode.com/problems/robot-return-to-origin/
+ * Created by Wei on 08/08/2019.
+ * #0657 https://leetcode.com/problems/robot-return-to-origin/
  */
 public class RobotReturnToOrigin {
+	// time O(n)
 	public boolean judgeCircle(String moves) {
 		if (moves == null || moves.length() == 0) {
 			return true;

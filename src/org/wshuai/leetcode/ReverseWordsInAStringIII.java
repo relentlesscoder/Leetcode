@@ -1,29 +1,30 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 7/17/17.
- * #557 https://leetcode.com/problems/reverse-words-in-a-string-iii/
+ * Created by Wei on 07/17/2017.
+ * #0557 https://leetcode.com/problems/reverse-words-in-a-string-iii/
  */
 public class ReverseWordsInAStringIII {
+
+	// time O(n)
 	public String reverseWords(String s) {
-		if (s == null || s.isEmpty()) {
-			return "";
-		}
-		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		int j = 0;
-		while (j < s.length()) {
-			if (s.charAt(j) != ' ') {
-				j++;
-			} else {
-				String word = (new StringBuilder(s.substring(i, j))).reverse().toString();
-				sb.append(word);
-				sb.append(" ");
+		char[] arr = s.toCharArray();
+		int i = 0, j = 0;
+		for (; j < arr.length; j++) {
+			if (arr[j] == ' ') {
+				reverse(arr, i, j - 1);
 				i = j + 1;
-				j = i;
 			}
 		}
-		sb.append((new StringBuilder(s.substring(i, j))).reverse().toString());
-		return sb.toString();
+		reverse(arr, i, j - 1);
+		return new String(arr);
+	}
+
+	private void reverse(char[] arr, int left, int right) {
+		while (left < right) {
+			char temp = arr[left];
+			arr[left++] = arr[right];
+			arr[right--] = temp;
+		}
 	}
 }

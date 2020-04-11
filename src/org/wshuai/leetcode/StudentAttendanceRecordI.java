@@ -1,25 +1,24 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 7/25/2017.
- * #551 https://leetcode.com/problems/student-attendance-record-i/
+ * Created by Wei on 07/25/2017.
+ * #0551 https://leetcode.com/problems/student-attendance-record-i/
  */
 public class StudentAttendanceRecordI {
+	// time O(n)
 	public boolean checkRecord(String s) {
-		if (s == null || s.isEmpty()) {
-			return false;
+		if(s == null || s.isEmpty()){
+			return true;
 		}
-		int len = s.length();
-		int i = 0;
-		int cnt = 0;
-		while (i < len) {
-			char c = s.charAt(i);
-			if (c == 'A' && ++cnt >= 2) {
-				return false;
-			} else if (c == 'L' && i < len - 2 && s.charAt(i + 1) == 'L' && s.charAt(i + 2) == 'L') {
+		char[] arr = s.toCharArray();
+		int n = arr.length, absent = 0;
+		for(int i = 0; i < n; i++){
+			if(arr[i] == 'A' && ++absent > 1){
 				return false;
 			}
-			i++;
+			if(arr[i] == 'L' && i < n - 2 && arr[i + 1] == 'L' && arr[i + 2] == 'L'){
+				return false;
+			}
 		}
 		return true;
 	}

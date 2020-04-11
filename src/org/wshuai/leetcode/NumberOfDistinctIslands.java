@@ -4,42 +4,42 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Wei on 9/9/19.
- * #694 https://leetcode.com/problems/number-of-distinct-islands/
+ * Created by Wei on 09/09/2019.
+ * #0694 https://leetcode.com/problems/number-of-distinct-islands/
  */
 public class NumberOfDistinctIslands {
-	int[][] grid;
-	boolean[][] seen;
-	Set<Integer> shape;
 
-	private void explore(int r, int c, int r0, int c0) {
-		if (r >= 0 && r < grid.length && c >= 0 && c < grid[0].length &&
-				grid[r][c] == 1 && !seen[r][c]) {
-			seen[r][c] = true;
-			shape.add((r - r0) * 2 * grid[0].length + (c - c0));
-			explore(r + 1, c, r0, c0);
-			explore(r - 1, c, r0, c0);
-			explore(r, c + 1, r0, c0);
-			explore(r, c - 1, r0, c0);
-		}
-	}
+	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
 
-	// https://stackoverflow.com/questions/35702631/why-does-the-hashcode-of-an-arraylist-change-every-time-you-add-a-new-element?rq=1
+	// time O(m*n), space O(1)
 	public int numDistinctIslands(int[][] grid) {
-		this.grid = grid;
-		seen = new boolean[grid.length][grid[0].length];
-		Set shapes = new HashSet<HashSet<Integer>>();
-
-		for (int i = 0; i < grid.length; i++) {
-			for (int j = 0; j < grid[0].length; j++) {
-				shape = new HashSet<Integer>();
-				explore(i, j, i, j);
-				if (!shape.isEmpty()) {
-					shapes.add(shape);
+		if(grid == null || grid.length == 0 || grid[0].length == 0){
+			return 0;
+		}
+		int m = grid.length, n = grid[0].length;
+		Set<String> islands = new HashSet<>();
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
+				if(grid[i][j] == 1){
+					StringBuilder sb = new StringBuilder();
+					dfs(i, j, i, j, m, n, grid, sb);
+					islands.add(sb.toString());
 				}
 			}
 		}
+		return islands.size();
+	}
 
-		return shapes.size();
+	private void dfs(int r, int c, int i, int j, int m, int n, int[][] grid, StringBuilder sb){
+		grid[r][c] = 0;
+		int hash = (r - i) * n + (c - j);
+		sb.append(hash);
+		for(int k = 0; k < 4; k++){
+			int x = r + dirs[k], y = c + dirs[k + 1];
+			if(x < 0 || x >= m || y < 0 || y >= n || grid[x][y] == 0){
+				continue;
+			}
+			dfs(x, y, i, j, m, n, grid, sb);
+		}
 	}
 }

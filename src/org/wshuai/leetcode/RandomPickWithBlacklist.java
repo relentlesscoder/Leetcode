@@ -5,21 +5,27 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * Created by Wei on 1/1/2020.
- * #710 https://leetcode.com/problems/random-pick-with-blacklist/
+ * Created by Wei on 01/01/2020.
+ * #0710 https://leetcode.com/problems/random-pick-with-blacklist/
  */
 public class RandomPickWithBlacklist {
-	private int M;
-	private Random r;
-	private Map<Integer, Integer> map;
 
+	private int M;
+	private Random rand = new Random();
+	private Map<Integer, Integer> map = new HashMap<>();
+
+	// time O(n)
 	// https://leetcode.com/problems/random-pick-with-blacklist/discuss/144624/Java-O(B)-O(1)-HashMap
 	public RandomPickWithBlacklist(int N, int[] blacklist) {
-		map = new HashMap<>();
+
+		// M is the number of valid number in [0, N) that
+		// are not on blacklist
+		M = N - blacklist.length;
 		for(int b : blacklist){
 			map.put(b, -1);
 		}
-		M = N - map.size();
+		// if a number less than M is on the black list,
+		// find a valid number from range [M, N) to map it
 		for(int b : blacklist){
 			if(b < M){
 				while(map.containsKey(N - 1)){
@@ -29,14 +35,10 @@ public class RandomPickWithBlacklist {
 				N--;
 			}
 		}
-		r = new Random();
 	}
 
 	public int pick() {
-		int p = r.nextInt(M);
-		if(map.containsKey(p)){
-			return map.get(p);
-		}
-		return p;
+		int r = rand.nextInt(M);
+		return map.getOrDefault(r, r);
 	}
 }

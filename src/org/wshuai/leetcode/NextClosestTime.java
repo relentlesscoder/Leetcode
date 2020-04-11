@@ -1,45 +1,41 @@
 package org.wshuai.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.TreeSet;
 
 /**
- * Created by Wei on 11/9/2019.
- * #681 https://leetcode.com/problems/next-closest-time/
+ * Created by Wei on 11/09/2019.
+ * #0681 https://leetcode.com/problems/next-closest-time/
  */
 public class NextClosestTime {
 	public String nextClosestTime(String time) {
-		String res = "";
-		String[] arr = time.split(":");
-		int h = Integer.parseInt(arr[0]);
-		int m = Integer.parseInt(arr[1]);
-		int target = h * 60 + m;
-		Set<Integer> d1 = new HashSet<>();
-		for(char c : time.toCharArray()){
-			if(Character.isDigit(c)){
-				d1.add(c - '0');
-			}
+		char[] result = time.toCharArray();
+		Character[] digits = new Character[]{result[0], result[1], result[3], result[4]};
+		TreeSet<Character> set = new TreeSet<Character>(Arrays.asList(digits));
+
+		result[4] = findNext(result[4], '9', set);
+		if(result[4] > time.charAt(4)){
+			return String.valueOf(result);
 		}
-		int minDiff = 3_601;
-		for(int f: d1){
-			for(int s: d1){
-				for(int t: d1){
-					for(int k: d1){
-						int hour = f * 10 + s;
-						int min = t * 10 + k;
-						if(hour >= 24 || min >= 60){
-							continue;
-						}
-						int val = hour * 60 + min;
-						int diff = val <= target ? val + 3_600 - target : val - target;
-						if(diff < minDiff){
-							minDiff = diff;
-							res = (hour < 10 ? "0" : "") + hour + ":" + (min < 10 ? "0" : "") + min;
-						}
-					}
-				}
-			}
+
+		result[3] = findNext(result[3], '5', set);
+		if(result[3] > time.charAt(3)){
+			return String.valueOf(result);
 		}
-		return res;
+
+		result[1] = findNext(result[1], result[0] == '2' ? '3' : '9', set);
+		if(result[1] > time.charAt(1)){
+			return String.valueOf(result);
+		}
+
+		result[0] = findNext(result[0], '2', set);
+		return String.valueOf(result);
+	}
+
+	private char findNext(char cur, char limit, TreeSet<Character> set){
+		// find the next valid larger digit, if not return the smallest digit
+		// and try find the next valid larger digit in a higher position
+		Character c = set.higher(cur);
+		return c == null || c > limit ? set.first() : c;
 	}
 }

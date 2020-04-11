@@ -1,43 +1,45 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/25/19.
- * #698 https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
+ * Created by Wei on 09/25/2019.
+ * #0698 https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
  */
 public class PartitionToKEqualSumSubsets {
-	private int[] visited;
-
+	// time O(k*2^n)
 	public boolean canPartitionKSubsets(int[] nums, int k) {
-		int sum = 0;
-		for(int v: nums){
-			sum += v;
+		int sum = 0, n = nums.length;
+		for (int num : nums) {
+			sum += num;
 		}
-		if(sum % k != 0){
+		if (sum % k != 0) {
 			return false;
 		}
-		visited = new int[nums.length];
-		return dfs(nums, 0, 0, k, sum/k);
+		int target = sum / k;
+		return dfs(0, k, 0, target, nums, new boolean[n]);
 	}
 
-	private boolean dfs(int[] nums, int start, int curr, int k, int target){
-		if(k == 1){
+	private boolean dfs(int start, int k, int sum, int target, int[] nums, boolean[] used) {
+		if (sum == 0 && k == 1) {
 			return true;
 		}
-		if(curr > target){
+		if (start == nums.length) {
 			return false;
 		}
-		if(curr == target){
-			return dfs(nums, 0, 0, k-1, target);
+		if (sum > target) {
+			return false;
 		}
-		for(int j = start; j < nums.length; j++){
-			if(visited[j] == 1){
+		if (sum == target) {
+			return dfs(0, k - 1, 0, target, nums, used);
+		}
+		for (int i = start; i < nums.length; i++) {
+			if (used[i]) {
 				continue;
 			}
-			visited[j] = 1;
-			if(dfs(nums, j, curr + nums[j], k, target)){
+			used[i] = true;
+			if (dfs(i + 1, k, sum + nums[i], target, nums, used)) {
 				return true;
 			}
-			visited[j] = 0;
+			used[i] = false;
 		}
 		return false;
 	}

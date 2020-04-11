@@ -1,13 +1,10 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.PriorityQueue;
-import java.util.Stack;
+import java.util.*;
 
 /**
- * Created by Wei on 9/12/2019.
- * #621 https://leetcode.com/problems/task-scheduler/
+ * Created by Wei on 09/12/2019.
+ * #0621 https://leetcode.com/problems/task-scheduler/
  */
 public class TaskScheduler {
 
@@ -21,6 +18,9 @@ public class TaskScheduler {
 		while (count[25] > 0) {
 			int i = 0;
 			while (i <= n) {
+				// tricky - if the max count of character is 1 then
+				// just write the character one by one, otherwise
+				// write n + 1 characters each time
 				if (count[25] == 0) {
 					break;
 				}
@@ -39,41 +39,37 @@ public class TaskScheduler {
 		if (n == 0) {
 			return tasks.length;
 		}
-		int[] count = new int[26];
-		for (char t : tasks) {
-			count[t - 'A']++;
-		}
-		PriorityQueue<Integer> queue = new PriorityQueue<Integer>(26, Collections.reverseOrder());
-		for (int i = 0; i < 26; i++) {
-			if (count[i] > 0) {
-				queue.offer(count[i]);
-			}
-		}
 		int res = 0;
-		int c = n + 1;
-		Stack<Integer> stack = new Stack<>();
-		while (c > 0) {
-			if (!queue.isEmpty()) {
-				int tc = queue.poll();
-				tc--;
-				if (tc > 0) {
-					stack.push(tc);
-				}
-				res++;
-			} else {
-				if (!stack.isEmpty()) {
-					res++;
+		// time O(l)
+		int[] map = new int[26];
+		for (char c : tasks) {
+			map[c - 'A']++;
+		}
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[1] - a[1]);
+		// time O(d*log(d))
+		for (int i = 0; i < 26; i++) {
+			if (map[i] > 0) {
+				pq.offer(new int[]{i, map[i]});
+			}
+		}
+		// time O(n*log(d))
+		while (!pq.isEmpty()) {
+			List<int[]> next = new ArrayList<>();
+			int i = 0;
+			for (; i <= n && !pq.isEmpty(); i++) {
+				int[] cur = pq.poll();
+				if (cur[1] > 1) {
+					cur[1]--;
+					next.add(cur);
 				}
 			}
-			c--;
-			if (c == 0) {
-				while (!stack.isEmpty()) {
-					queue.offer(stack.pop());
+			if (next.size() > 0) {
+				res += n + 1;
+				for (int[] arr : next) {
+					pq.offer(arr);
 				}
-				if (queue.isEmpty()) {
-					break;
-				}
-				c = n + 1;
+			} else {
+				res += i;
 			}
 		}
 		return res;

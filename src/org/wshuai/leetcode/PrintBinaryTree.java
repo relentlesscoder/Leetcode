@@ -4,59 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 9/27/19.
- * #655 https://leetcode.com/problems/print-binary-tree/
+ * Created by Wei on 09/27/2019.
+ * #0655 https://leetcode.com/problems/print-binary-tree/
  */
 public class PrintBinaryTree {
-	private int height;
-	private List<List<String>> res;
-
+	// time O(n)
 	public List<List<String>> printTree(TreeNode root) {
-		height = 0;
-		getHeight(root, 0);
-		int N = getLength(height);
-
-		res = new ArrayList<>();
-		for(int i = 0; i <= height; i++){
-			List<String> lst = new ArrayList<>();
-			for(int k = 0; k < N; k++){
-				lst.add("");
-			}
-			res.add(lst);
+		List<List<String>> res = new ArrayList<>();
+		int row = getHeight(root), col = (int) Math.pow(2, row) - 1;
+		List<String> ans = new ArrayList<>();
+		for(int i = 0; i < col; i++){
+			ans.add("");
 		}
-		dfs(root, 0, N - 1, 0);
+		for(int i = 0; i < row; i++){
+			res.add(new ArrayList<>(ans));
+		}
+		populateResult(root, res, 0, row, 0, col - 1);
 		return res;
 	}
 
-	private void dfs(TreeNode root, int left, int right, int level){
-		if(root == null){
+	private void populateResult(TreeNode root, List<List<String>> res, int curRow, int totalRow, int i, int j){
+		if(root == null || curRow == totalRow){
 			return;
 		}
-		List<String> curr = res.get(level);
-		int mid = (left + right) / 2;
-		curr.set(mid, "" + root.val);
-		dfs(root.left, left, mid, level + 1);
-		dfs(root.right, mid + 1, right, level + 1);
+		res.get(curRow).set((i + j) / 2, String.valueOf(root.val));
+		populateResult(root.left, res, curRow + 1, totalRow, i, (i + j) / 2 - 1);
+		populateResult(root.right, res, curRow + 1, totalRow, (i + j) / 2 + 1, j);
 	}
 
-	private void getHeight(TreeNode root, int curr){
+	private int getHeight(TreeNode root){
 		if(root == null){
-			height = Math.max(curr - 1, height);
-			return;
+			return 0;
 		}
-		getHeight(root.left, curr + 1);
-		getHeight(root.right, curr + 1);
-	}
-
-	private int getLength(int h){
-		int res = 0;
-		int num = 1;
-		int count = 0;
-		while(count <= h){
-			res += num;
-			num <<= 1;
-			count++;
-		}
-		return res;
+		return 1 + Math.max(getHeight(root.left), getHeight(root.right));
 	}
 }

@@ -1,33 +1,27 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/6/19.
- * #680 https://leetcode.com/problems/valid-palindrome-ii/
+ * Created by Wei on 09/06/2019.
+ * #0680 https://leetcode.com/problems/valid-palindrome-ii/
  */
 public class ValidPalindromeII {
-	private int diff;
-	private char[] arr;
-
+	// time O(n)
 	public boolean validPalindrome(String s) {
-		diff = 0;
-		arr = s.toCharArray();
-		boolean valid = validPalindromeUtil(0, arr.length - 1);
-		return valid;
+		return isValid(s.toCharArray(), 0, s.length() - 1, 1);
 	}
 
-	private boolean validPalindromeUtil(int left, int right) {
-		if (left >= right) {
+	private boolean isValid(char[] s, int i, int j, int k){
+		if(k < 0){
+			return false;
+		}
+		while(i < j && s[i] == s[j]){
+			i++;
+			j--;
+		}
+		if(i >= j){
 			return true;
 		}
-		if (arr[left] == arr[right]) {
-			return validPalindromeUtil(left + 1, right - 1);
-		} else if (diff == 1) {
-			return false;
-		} else {
-			diff++;
-			// if the current left does not equal to the current right
-			// either remove the left or the right
-			return validPalindromeUtil(left + 1, right) || validPalindromeUtil(left, right - 1);
-		}
+		return isValid(s, i + 1, j, k - 1)
+				|| isValid(s, i, j - 1, k - 1);
 	}
 }

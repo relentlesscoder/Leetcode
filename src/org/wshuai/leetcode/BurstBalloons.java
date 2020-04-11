@@ -16,6 +16,8 @@ public class BurstBalloons {
 			for(int i = 0; i + l - 1 < n; i++){
 				int j = i + l - 1;
 				for(int k = i; k <= j; k++){
+					// If last balloon to burst within i and j is at k, the coins we earned
+					// is nums[i - 1] * nums[k] * nums[j + 1] + dp[i][k - 1] + dp[k + 1][j]
 					int coins = nums[k] * (i >= 1 ? nums[i - 1] : 1)
 							* (j < n - 1 ? nums[j + 1] : 1);
 					coins += k != i ? dp[i][k - 1] : 0;

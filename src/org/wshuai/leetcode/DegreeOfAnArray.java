@@ -1,41 +1,33 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Wei on 8/20/19.
- * #697 https://leetcode.com/problems/degree-of-an-array/
+ * Created by Wei on 08/20/2019.
+ * #0697 https://leetcode.com/problems/degree-of-an-array/
  */
 public class DegreeOfAnArray {
+	// time O(n), space O(n)
 	public int findShortestSubArray(int[] nums) {
-		int degree = 0;
-		Map<Integer, List<Integer>> map = new HashMap<>();
-		for (int i = 0; i < nums.length; i++) {
-			List<Integer> lst = map.getOrDefault(nums[i], null);
-			if (lst == null) {
-				lst = new ArrayList<>();
-				lst.add(i);
-				lst.add(i);
-				lst.add(0);
-				map.put(nums[i], lst);
+		Map<Integer, int[]> map = new HashMap<>();
+		int n = nums.length, res = n, maxFreq = 0;
+		for(int i = 0; i < n; i++){
+			map.putIfAbsent(nums[i], new int[]{0, -1, -1});
+			int[] cur = map.get(nums[i]);
+			cur[0]++;
+			if(cur[0] > maxFreq){
+				maxFreq = cur[0];
 			}
-			int fre = lst.get(2) + 1;
-			degree = fre > degree ? fre : degree;
-			lst.set(1, i);
-			lst.set(2, fre);
+			cur[1] = cur[1] == -1 ? i : cur[1];
+			cur[2] = i;
 		}
-		int min = nums.length;
-		for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
-			List<Integer> lst = entry.getValue();
-			if (lst.get(2) != degree) {
+		for(int[] cur : map.values()){
+			if(cur[0] != maxFreq){
 				continue;
 			}
-			int len = lst.get(1) - lst.get(0) + 1;
-			min = len < min ? len : min;
+			res = Math.min(res, cur[2] - cur[1] + 1);
 		}
-		return min;
+		return res;
 	}
 }

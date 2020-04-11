@@ -1,13 +1,18 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/21/19.
- * #546 https://leetcode.com/problems/remove-boxes/
+ * Created by Wei on 11/21/2019.
+ * #0546 https://leetcode.com/problems/remove-boxes/
  */
 public class RemoveBoxes {
-	//https://www.youtube.com/watch?v=wT7aS5fHZhs
+
+	// dp[i][j][k] is the max score of range from boxes[i]
+	// to boxes[j] if there are k boxes that are same color
+	// as boxes[j] following boxes[j]
 	private int[][][] dp;
 
+	// time O(n^4), space O(n^3)
+	//https://www.youtube.com/watch?v=wT7aS5fHZhs
 	public int removeBoxes(int[] boxes) {
 		int N = boxes.length;
 		dp = new int[N][N][N];

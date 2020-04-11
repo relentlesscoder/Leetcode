@@ -3,41 +3,35 @@ package org.wshuai.leetcode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
- * Created by Wei on 7/19/17.
- * #637 https://leetcode.com/problems/average-of-levels-in-binary-tree/
+ * Created by Wei on 07/19/2017.
+ * #0637 https://leetcode.com/problems/average-of-levels-in-binary-tree/
  */
 public class AverageOfLevelsInBinaryTree {
-	//Tree Level Order Traversal
+
+	// time O(n), space O(n)
 	public List<Double> averageOfLevels(TreeNode root) {
-		List<Double> res = new ArrayList<Double>();
-		if (root == null) {
+		List<Double> res = new ArrayList<>();
+		if(root == null){
 			return res;
 		}
-		Queue<TreeNode> curr = new LinkedList<TreeNode>();
-		Queue<TreeNode> next = new LinkedList<TreeNode>();
-		curr.offer(root);
-		int cnt = 0;
-		long total = 0;
-		while (!curr.isEmpty()) {
-			TreeNode nxt = curr.poll();
-			cnt++;
-			total += nxt.val;
-			if (nxt.left != null) {
-				next.offer(nxt.left);
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		queue.offerLast(root);
+		while(!queue.isEmpty()){
+			int size = queue.size(), count = size;
+			double sum = 0.0;
+			while(count-- > 0){
+				TreeNode cur = queue.pollFirst();
+				sum += cur.val;
+				if(cur.left != null){
+					queue.offerLast(cur.left);
+				}
+				if(cur.right != null){
+					queue.offerLast(cur.right);
+				}
 			}
-			if (nxt.right != null) {
-				next.offer(nxt.right);
-			}
-			if (curr.isEmpty()) {
-				curr = next;
-				next = new LinkedList<TreeNode>();
-				res.add((double) total / (double) cnt);
-				cnt = 0;
-				total = 0;
-			}
+			res.add(sum / size);
 		}
 		return res;
 	}

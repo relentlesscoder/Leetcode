@@ -3,10 +3,11 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 9/25/19.
- * #259 https://leetcode.com/problems/3sum-smaller/
+ * Created by Wei on 09/25/2019.
+ * #0611 https://leetcode.com/problems/valid-triangle-number/
  */
 public class ValidTriangleNumber {
+	// time O(n^2)
 	// similar question as #259
 	public int triangleNumber(int[] nums) {
 		int len = nums.length;

@@ -1,19 +1,21 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/8/19.
- * #693 https://leetcode.com/problems/binary-number-with-alternating-bits/
+ * Created by Wei on 10/08/2019.
+ * #0693 https://leetcode.com/problems/binary-number-with-alternating-bits/
  */
 public class BinaryNumberWithAlternatingBits {
+	// time O(d)
 	public boolean hasAlternatingBits(int n) {
-		int curr = n % 2;
-		n /= 2;
+		int prev = (n & 1), cur;
+		n >>= 1;
 		while(n > 0){
-			if(curr == n % 2){
+			cur = (n & 1);
+			if(cur == prev){
 				return false;
 			}
-			curr = n % 2;
-			n /= 2;
+			prev = cur;
+			n >>= 1;
 		}
 		return true;
 	}
