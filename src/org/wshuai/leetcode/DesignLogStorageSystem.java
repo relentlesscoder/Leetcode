@@ -16,7 +16,7 @@ public class DesignLogStorageSystem {
 		min = "2000:01:01:00:00:00";
 		max = "2017:12:31:23:59:59";
 		logs = new TreeMap<>();
-		units = new HashMap<>(){{
+		units = new HashMap<String, Integer>(){{
 			put("Year", 4);
 			put("Month", 7);
 			put("Day", 10);
