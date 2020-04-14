@@ -3,26 +3,25 @@ package org.wshuai.leetcode;
 import java.util.TreeMap;
 
 /**
- * Created by Wei on 9/19/19.
- * #729 https://leetcode.com/problems/my-calendar-i/
+ * Created by Wei on 09/19/2019.
+ * #0729 https://leetcode.com/problems/my-calendar-i/
  */
 public class MyCalendarI {
-	private TreeMap<Integer, Integer> calendar;
+	private TreeMap<Integer, Integer> map;
 
-	// In Java, TreeMap keeps elements sorted and supports fast insertion
 	public MyCalendarI() {
-		calendar = new TreeMap<>();
+		map = new TreeMap<>();
 	}
 
+	// time O(log(n)), space O(n)
 	public boolean book(int start, int end) {
-		Integer prev = calendar.floorKey(start);
-		Integer next = calendar.ceilingKey(start);
-		if ((prev == null || calendar.get(prev) <= start)
-				&& (next == null || end <= next)) {
-			calendar.put(start, end);
-			return true;
+		Integer low = map.floorKey(start), high = map.higherKey(start);
+		if((low != null && map.get(low) > start)
+			|| (high != null && high.intValue() < end)){
+			return false;
 		}
-		return false;
+		map.put(start, end);
+		return true;
 	}
 }
 
