@@ -2,37 +2,36 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/16/2019.
- * #725 https://leetcode.com/problems/split-linked-list-in-parts/
+ * #0725 https://leetcode.com/problems/split-linked-list-in-parts/
  */
 public class SplitLinkedListInParts {
+	// time O(n)
 	public LinkedListNode[] splitListToParts(LinkedListNode root, int k) {
-		int len = 0;
-		LinkedListNode curr = root;
-		while(curr != null){
-			len++;
-			curr = curr.next;
-		}
-
-		int n = len / k;
-		int r = len % k;
-		curr = root;
 		LinkedListNode[] res = new LinkedListNode[k];
-		for(int i = 0; i < k; i++){
-			res[i] = curr;
-			int c = n;
-			if(r > 0){
-				r--;
-				c++;
+		if (k == 1) {
+			res[0] = root;
+			return res;
+		}
+		if (root == null) {
+			return res;
+		}
+		int count = 0;
+		LinkedListNode cur = root, prev = null;
+		while (cur != null) {
+			cur = cur.next;
+			count++;
+		}
+		cur = root;
+		int base = count / k, extra = count % k, i = 0, j;
+		while (cur != null && i < k) {
+			res[i++] = cur;
+			j = 0;
+			int group = base + (extra-- > 0 ? 1 : 0);
+			while (cur != null && j++ < group) {
+				prev = cur;
+				cur = cur.next;
 			}
-			LinkedListNode prev = null;
-			while(c > 0){
-				prev = curr;
-				curr = curr.next;
-				c--;
-			}
-			if(prev != null){
-				prev.next = null;
-			}
+			prev.next = null;
 		}
 		return res;
 	}
