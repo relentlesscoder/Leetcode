@@ -1,39 +1,40 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/24/19.
- * #748 https://leetcode.com/problems/shortest-completing-word/
+ * Created by Wei on 08/24/2019.
+ * #0748 https://leetcode.com/problems/shortest-completing-word/
  */
 public class ShortestCompletingWord {
+	// time O(n)
 	public String shortestCompletingWord(String licensePlate, String[] words) {
-		int[] arr = count(licensePlate);
 		String res = "";
-		for (String word : words) {
-			if (res != "" && word.length() >= res.length()) {
+		int n = words.length, diff = 'a' - 'A';
+		int[] target = new int[26];
+		for (char c : licensePlate.toCharArray()) {
+			if (c >= 'a' && c <= 'z') {
+				target[c - 'a']++;
+			} else if (c >= 'A' && c <= 'Z') {
+				target[c + diff - 'a']++;
+			}
+		}
+		for (int i = 0; i < n; i++) {
+			if (!res.isEmpty() && words[i].length() >= res.length()) {
 				continue;
 			}
-			int[] curr = count(word);
-			boolean good = true;
-			for (int i = 0; i < 26; i++) {
-				if (curr[i] < arr[i]) {
-					good = false;
-					break;
+			int[] cur = target.clone();
+			for (char c : words[i].toCharArray()) {
+				if (cur[c - 'a'] > 0) {
+					cur[c - 'a']--;
 				}
 			}
-			if (good) {
-				res = word;
+			int sum = 0;
+			for (int v : cur) {
+				sum += v;
+			}
+			if (sum == 0) {
+				res = words[i];
 			}
 		}
 		return res;
-	}
-
-	public int[] count(String word) {
-		int[] arr = new int[26];
-		for (char c : word.toCharArray()) {
-			if (Character.isLetter(c)) {
-				arr[Character.toLowerCase(c) - 'a']++;
-			}
-		}
-		return arr;
 	}
 }
