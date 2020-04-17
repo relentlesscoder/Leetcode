@@ -5,7 +5,7 @@ package org.wshuai.leetcode;
  * #0750 https://leetcode.com/problems/number-of-corner-rectangles/
  */
 public class NumberOfCornerRectangles {
-	
+
 	// time O(m^2*n)
 	public int countCornerRectangles(int[][] grid) {
 		int res = 0, m = grid.length, n = grid[0].length;
