@@ -3,11 +3,13 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 9/12/2019.
- * #741 https://leetcode.com/problems/cherry-pickup/
+ * Created by Wei on 09/12/2019.
+ * #0741 https://leetcode.com/problems/cherry-pickup/
  */
 public class CherryPickup {
-	// see https://leetcode.com/problems/cherry-pickup/discuss/165218/Java-O(N3)-DP-solution-w-specific-explanation
+	// time O(n^3), space O(n^3)
+	// https://zxi.mytechroad.com/blog/dynamic-programming/leetcode-741-cherry-pickup/
+	// https://leetcode.com/problems/cherry-pickup/discuss/165218/Java-O(N3)-DP-solution-w-specific-explanation
 	public int cherryPickup(int[][] grid) {
 		int n = grid.length;
 		int[][][] dp = new int[n + 1][n + 1][n + 1];
