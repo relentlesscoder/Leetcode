@@ -1,42 +1,36 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/20/19.
- * #758 https://leetcode.com/problems/bold-words-in-string/
+ * Created by Wei on 09/20/2019.
+ * #0758 https://leetcode.com/problems/bold-words-in-string/
  */
 public class BoldWordsInString {
+	// time O(n*k), space O(n)
+	// same as #616
 	public String boldWords(String[] words, String S) {
-		int len = S.length();
-		if (len == 0) {
-			return "";
-		}
-		int[] mask = new int[len];
-		int i = 0;
-		while (i < len) {
-			for (String word : words) {
-				int m = i;
-				int n = 0;
-				while (m < len && n < word.length() && S.charAt(m) == word.charAt(n)) {
-					m++;
-					n++;
+		int n = S.length();
+		boolean[] bold = new boolean[n];
+		for(String word : words){
+			int start = 0, index = 0, len = word.length();
+			while((index = S.indexOf(word, start)) != -1){
+				for(int i = index; i < index + len; i++){
+					bold[i] = true;
 				}
-				if (n == word.length()) {
-					for (int k = i; k < m; k++) {
-						mask[k] = 1;
-					}
-				}
+				start = index + 1;
 			}
-			i++;
 		}
 		StringBuilder sb = new StringBuilder();
-		for (int j = 0; j < len; j++) {
-			if (mask[j] == 1 && (j == 0 || mask[j - 1] == 0)) {
-				sb.append("<b>");
+		for(int i = 0, j = 0; i < n; i++){
+			if(!bold[i]){
+				sb.append(S.charAt(i));
+				continue;
 			}
-			sb.append("" + S.charAt(j));
-			if (mask[j] == 1 && (j == len - 1 || mask[j + 1] == 0)) {
-				sb.append("</b>");
+			j = i;
+			while(j < n && bold[j]){
+				j++;
 			}
+			sb.append("<b>" + S.substring(i, j) + "</b>");
+			i = j - 1;
 		}
 		return sb.toString();
 	}

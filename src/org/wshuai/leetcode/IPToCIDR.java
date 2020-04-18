@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Created by Wei on 10/21/2019.
- * #751 https://leetcode.com/problems/ip-to-cidr/
+ * #0751 https://leetcode.com/problems/ip-to-cidr/
  */
 public class IPToCIDR {
 	public List<String> ipToCIDR(String ip, int n) {
