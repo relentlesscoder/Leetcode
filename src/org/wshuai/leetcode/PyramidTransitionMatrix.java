@@ -4,54 +4,33 @@ import java.util.*;
 
 /**
  * Created by Wei on 10/24/2019.
- * #756 https://leetcode.com/problems/pyramid-transition-matrix/
+ * #0756 https://leetcode.com/problems/pyramid-transition-matrix/
  */
 public class PyramidTransitionMatrix {
-	private Map<String, Set<Character>> map;
-
-	// backtracking
+	// time O(k^n), k is the size of allowed
 	public boolean pyramidTransition(String bottom, List<String> allowed) {
-		map = new HashMap<>();
-		for(String s: allowed){
+		Map<String, Set<Character>> map = new HashMap<>();
+		for (String s : allowed) {
 			String key = s.substring(0, 2);
 			map.putIfAbsent(key, new HashSet<>());
 			map.get(key).add(s.charAt(2));
 		}
-		return dfs(bottom);
+		return dfs(0, bottom, "", map);
 	}
 
-	private boolean dfs(String s){
-		if(map.containsKey(s)){
-			return true;
+	private boolean dfs(int start, String cur, String next, Map<String, Set<Character>> map) {
+		if (cur.length() == 2) {
+			return map.containsKey(cur);
 		}
-		int len = s.length();
-		if(len == 2){
+		if (start == cur.length() - 1) {
+			return dfs(0, next, "", map);
+		}
+		String key = cur.substring(start, start + 2);
+		if (!map.containsKey(key)) {
 			return false;
 		}
-		LinkedList<String> next = new LinkedList<>();
-		for(int i = 0; i < len - 1; i++){
-			String key = s.charAt(i) + "" + s.charAt(i + 1);
-			if(!map.containsKey(key)){
-				return false;
-			}
-			Set<Character> chars = map.get(key);
-			if(i == 0){
-				for(char c: chars){
-					next.offerLast("" + c);
-				}
-			}else{
-				int size = next.size();
-				while(size > 0){
-					String curr = next.pollFirst();
-					for(char c: chars){
-						next.offerLast(curr + c);
-					}
-					size--;
-				}
-			}
-		}
-		for(String n: next){
-			if(dfs(n)){
+		for (char c : map.get(key)) {
+			if (dfs(start + 1, cur, next + c, map)) {
 				return true;
 			}
 		}
