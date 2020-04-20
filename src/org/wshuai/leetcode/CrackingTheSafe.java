@@ -4,43 +4,39 @@ import java.util.*;
 
 /**
  * Created by Wei on 12/13/2019.
- * #753 https://leetcode.com/problems/cracking-the-safe/
+ * #0753 https://leetcode.com/problems/cracking-the-safe/
  */
 public class CrackingTheSafe {
-	private Set<String> visited;
-	private List<Integer> edges;
 
+	// time O(k^n)
 	// https://leetcode.com/problems/cracking-the-safe/discuss/153039/DFS-with-Explanations
 	// https://en.wikipedia.org/wiki/De_Bruijn_sequence
 	public String crackSafe(int n, int k) {
-		visited = new HashSet<>();
-		edges = new ArrayList<>();
-
+		Set<String> visited = new HashSet<>();
 		char[] arr = new char[n];
 		Arrays.fill(arr, '0');
-		String startingNode = new String(arr);
-		visited.add(startingNode);
-		StringBuilder res = new StringBuilder(startingNode);
-		int count = (int)Math.pow(k, n);
-		dfs(k, n, res, count);
-		return res.toString();
+		String start = String.valueOf(arr);
+		visited.add(start);
+		StringBuilder cur = new StringBuilder(start);
+		dfs(cur, visited, n, k, (int)Math.pow(k, n));
+		return cur.toString();
 	}
 
-	private boolean dfs(int k, int n, StringBuilder res, int count){
+	private boolean dfs(StringBuilder cur, Set<String> visited, int n, int k, int count){
 		if(visited.size() == count){
 			return true;
 		}
-		String lastDigits = res.substring(res.length() - n + 1);
+		String prev = cur.substring(cur.length() - n + 1);
 		for(char i = '0'; i < '0' + k; i++){
-			String nextNode = lastDigits + i;
-			if(!visited.contains(nextNode)){
-				res.append(i);
-				visited.add(nextNode);
-				if(dfs(k, n, res, count)){
+			String next  = prev + i;
+			if(!visited.contains(next)){
+				cur.append(i);
+				visited.add(next);
+				if(dfs(cur, visited, n, k, count)){
 					return true;
 				}
-				visited.remove(nextNode);
-				res.deleteCharAt(res.length() - 1);
+				visited.remove(next);
+				cur.deleteCharAt(cur.length() - 1);
 			}
 		}
 		return false;
