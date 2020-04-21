@@ -4,27 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 8/31/2019.
- * #763 https://leetcode.com/problems/partition-labels/
+ * Created by Wei on 08/31/2019.
+ * #0763 https://leetcode.com/problems/partition-labels/
  */
 public class PartitionLabels {
+	// time O(n)
 	public List<Integer> partitionLabels(String S) {
-		int[] last = new int[26];
-		for (int i = 0; i < S.length(); i++) {
-			last[S.charAt(i) - 'a'] = i;
+		List<Integer> res = new ArrayList<>();
+		int n = S.length();
+		int[] map = new int[26];
+		for(int i = 0; i < n; i++){
+			map[S.charAt(i) - 'a'] = i;
 		}
-
-		int j = 0;
-		int anchor = 0;
-		List<Integer> ans = new ArrayList<>();
-		for (int i = 0; i < S.length(); i++) {
+		for(int i = 0, j = 0, k = 0; i < n; i++){
 			// find the last index of the current character to extend the substring as long as possible
-			j = Math.max(j, last[S.charAt(i) - 'a']);
-			if (i == j) {
-				ans.add(i - anchor + 1);
-				anchor = i + 1;
+			k = Math.max(k, map[S.charAt(i) - 'a']);
+			if(k == i){
+				res.add(i - j + 1);
+				j = i + 1;
 			}
 		}
-		return ans;
+		return res;
 	}
 }
