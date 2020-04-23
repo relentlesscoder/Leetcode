@@ -1,22 +1,21 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/12/19.
- * #775 https://leetcode.com/problems/global-and-local-inversions/
+ * Created by Wei on 11/12/2019.
+ * #0775 https://leetcode.com/problems/global-and-local-inversions/
  */
 public class GlobalAndLocalInversions {
 
-	/*
-	If the number of global inversions is equal to the number of local inversions,
-	it means that all global inversions in permutations are local inversions.
-	It also means that we can not find A[i] > A[j] with i+2<=j.
-	In other words, max(A[i]) < A[i+2]
-	*/
+	// time O(n)
+	// https://leetcode.com/problems/global-and-local-inversions/discuss/150991/Logical-Thinking-with-Clear-Code
 	public boolean isIdealPermutation(int[] A) {
 		int cmax = 0;
-		for(int i = 0; i < A.length - 2; i++){
-			cmax = Math.max(cmax, A[i]);
-			if(cmax > A[i + 2]){
+		// the only possible permutation satisfy the condition
+		// that the number of local inversions equals to that
+		// of global inversions is:
+		// 0 1 3 2 4 5 7 6
+		for(int i = 0; i < A.length; i++){
+			if (Math.abs(i - A[i]) > 1){
 				return false;
 			}
 		}
