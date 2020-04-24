@@ -53,6 +53,49 @@ public class SlidingPuzzle {
 		return -1;
 	}
 
+	public int slidingPuzzleBiDirectionalBFS(int[][] board) {
+		String original = "" + board[0][0] + board[0][1] + board[0][2] + board[1][0] + board[1][1] + board[1][2], target = "123450";
+		if(original.equals(target)){
+			return 0;
+		}
+		int moves = 0;
+		Set<String> from = new HashSet<>(), to = new HashSet<>(), visited = new HashSet<>(), next;
+		from.add(original);
+		to.add(target);
+		visited.add(original);
+		while(from.size() > 0 && to.size() > 0){
+			if(from.size() > to.size()){
+				Set<String> temp = from;
+				from = to;
+				to = temp;
+			}
+			next = new HashSet<>();
+			for(String val : from){
+				char[] cur = val.toCharArray();
+				int i = 0;
+				for(; i < 6; i++){
+					if(cur[i] == '0'){
+						break;
+					}
+				}
+				for(int j : dirs[i]){
+					swap(cur, i, j);
+					String str = String.valueOf(cur);
+					if(to.contains(str)){
+						return moves + 1;
+					}
+					if(visited.add(str)){
+						next.add(str);
+					}
+					swap(cur, i, j);
+				}
+			}
+			from = next;
+			moves++;
+		}
+		return -1;
+	}
+
 	private void swap(char[] arr, int from, int to){
 		char temp = arr[from];
 		arr[from] = arr[to];
