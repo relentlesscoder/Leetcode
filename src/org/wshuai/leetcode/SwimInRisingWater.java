@@ -1,55 +1,83 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * Created by Wei on 11/17/2019.
- * #778 https://leetcode.com/problems/swim-in-rising-water/
+ * #0778 https://leetcode.com/problems/swim-in-rising-water/
  */
 public class SwimInRisingWater {
+
+	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
+
 	public int swimInWater(int[][] grid) {
-		int[][] dirs = new int[][]{
-			{1, -1, 0, 0},
-			{0, 0, 1, -1}
-		};
-		int N = grid.length;
-		int t = N * N - 1;
-		int[] root = new int[N * N];
-		for(int i = 0; i < root.length; i++){
-			root[i] = i;
+		int time = 0, n = grid.length;
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+		pq.offer(new int[]{0, 0, grid[0][0]});
+		while(!pq.isEmpty() && grid[n - 1][n - 1] >= 0){
+			// poll the next unexplored cell with the smallest time
+			int[] cur = pq.poll();
+			time = cur[2];
+			// dfs to search the reachable cells (grid[x][y] <= time) and add
+			// their unreachable neighbors to the priority queue
+			dfs(cur[0], cur[1], n, time, grid, pq);
 		}
-		Map<Integer, int[]> map = new HashMap<>();
-		for(int i = 0; i < N; i++){
-			for(int j = 0; j < N; j++){
-				map.put(grid[i][j], new int[]{i, j, i * N + j});
+		return time;
+	}
+
+	private void dfs(int i, int j, int n, int time, int[][] grid, PriorityQueue<int[]> pq){
+		// set -1 to mark visited cells
+		grid[i][j] = -1;
+		for(int k = 0; k < 4; k++){
+			int x = i + dirs[k], y = j + dirs[k + 1];
+			if(x < 0 || x >= n || y < 0 || y >= n || grid[x][y] == -1){
+				continue;
+			}
+			if(grid[x][y] > time){
+				pq.offer(new int[]{x, y, grid[x][y]});
+			}else{
+				dfs(x, y, n, time, grid, pq);
 			}
 		}
-		for(int i = 0; i < N * N; i++){
-			int[] pos = map.get(i);
+	}
+
+	public int swimInWaterUnionFind(int[][] grid) {
+		int n = grid.length, len = n*n;
+		int[] root = new int[len];
+		for(int i = 0; i < len; i++){
+			root[i] = i;
+		}
+		int[][] map = new int[len][3];
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				map[grid[i][j]] = new int[]{i, j, i * n + j};
+			}
+		}
+		for(int time = 0; time < len; time++){
+			int[] cur = map[time];
 			for(int k = 0; k < 4; k++){
-				int x = pos[0] + dirs[0][k];
-				int y = pos[1] + dirs[1][k];
-				if(x >= 0 && y >= 0 && x < N && y < N && grid[x][y] <= i){
-					int r1 = find(pos[2], root);
-					int r2 = find(map.get(grid[x][y])[2], root);
-					if((r1 == 0 && r2 == t) || (r2 == 0 && r1 == t)){
-						return i;
-					}
-					if(r1 == 0 || r1 == t){
-						root[r2] = r1;
-					}else{
-						root[r1] = r2;
-					}
+				int x = cur[0] + dirs[k], y = cur[1] + dirs[k + 1];
+				if(x < 0 || x >= n || y < 0 || y >= n || grid[x][y] > time){
+					continue;
+				}
+				int[] next = map[grid[x][y]];
+				int rootNext = findRoot(next[2], root), rootCur = findRoot(cur[2], root);
+				if((rootCur == 0 && rootNext == len - 1) || (rootCur == len - 1 && rootNext == 0)){
+					return time;
+				}
+				if(rootCur == 0 || rootCur == len - 1){
+					root[rootNext] = rootCur;
+				}else{
+					root[rootCur] = rootNext;
 				}
 			}
 		}
 		return -1;
 	}
 
-	private int find(int r, int[] root){
-		if(root[r] != r){
-			root[r] = find(root[r], root);
+	private int findRoot(int r, int[] root){
+		if(r != root[r]){
+			root[r] = findRoot(root[r], root);
 		}
 		return root[r];
 	}
