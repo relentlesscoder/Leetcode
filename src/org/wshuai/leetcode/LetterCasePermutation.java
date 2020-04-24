@@ -4,27 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 8/19/19.
- * #784 https://leetcode.com/problems/letter-case-permutation/
+ * Created by Wei on 08/19/2019.
+ * #0784 https://leetcode.com/problems/letter-case-permutation/
  */
 public class LetterCasePermutation {
+	// time O(2^n)
 	public List<String> letterCasePermutation(String S) {
-		List<String> lst = new ArrayList<>();
-		letterCasePermutationUtil(S, "", 0, lst);
-		return lst;
+		List<String> res = new ArrayList<>();
+		dfs(0, S.length(), S.toCharArray(), res);
+		return res;
 	}
 
-	private void letterCasePermutationUtil(String S, String curr, int idx, List<String> lst) {
-		if (idx >= S.length()) {
-			lst.add(curr);
+	private void dfs(int start, int n, char[] cur, List<String> res) {
+		if (start == n) {
+			res.add(new String(cur));
 			return;
 		}
-		char c = S.charAt(idx);
-		if (Character.isDigit(c)) {
-			letterCasePermutationUtil(S, curr + c, idx + 1, lst);
-		} else {
-			letterCasePermutationUtil(S, curr + Character.toLowerCase(c), idx + 1, lst);
-			letterCasePermutationUtil(S, curr + Character.toUpperCase(c), idx + 1, lst);
+		dfs(start + 1, n, cur, res);
+		char c = cur[start];
+		if (Character.isAlphabetic(c)) {
+			if (cur[start] >= 'a' && cur[start] <= 'z') {
+				cur[start] = (char) (c - 32);
+				dfs(start + 1, n, cur, res);
+			} else {
+				cur[start] = (char) (c + 32);
+				dfs(start + 1, n, cur, res);
+			}
+			cur[start] = c;
 		}
 	}
 }
