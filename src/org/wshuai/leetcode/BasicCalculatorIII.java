@@ -3,8 +3,8 @@ package org.wshuai.leetcode;
 import java.util.LinkedList;
 
 /**
- * Created by Wei on 9/17/19.
- * #772 https://leetcode.com/problems/basic-calculator-iii/
+ * Created by Wei on 09/17/2019.
+ * #0772 https://leetcode.com/problems/basic-calculator-iii/
  */
 public class BasicCalculatorIII {
 	public int calculate(String s) {
