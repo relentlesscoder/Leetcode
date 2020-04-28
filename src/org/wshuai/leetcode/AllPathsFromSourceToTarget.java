@@ -4,40 +4,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 9/4/19.
- * #797 https://leetcode.com/problems/all-paths-from-source-to-target/
+ * Created by Wei on 09/04/2019.
+ * #0797 https://leetcode.com/problems/all-paths-from-source-to-target/
  */
 public class AllPathsFromSourceToTarget {
-	// DFS
+	// time O(2^n)
 	public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
 		List<List<Integer>> res = new ArrayList<>();
-		List<Integer> path = new ArrayList<>();
-		path.add(0);
-		dfs(0, graph, path, res);
+		dfs(0, graph, res, new ArrayList<Integer>(), new boolean[graph.length]);
 		return res;
 	}
 
-	private void dfs(int v, int[][] graph, List<Integer> path, List<List<Integer>> res) {
-		int[] adj = graph[v];
-		if (adj.length == 0) {
+	private void dfs(int i, int[][] graph, List<List<Integer>> res, List<Integer> cur, boolean[] visited){
+		if(i == graph.length - 1){
+			cur.add(i);
+			res.add(new ArrayList<>(cur));
+			cur.remove(cur.size() - 1);
 			return;
 		}
-		for (int i : adj) {
-			path.add(i);
-			if (i == graph.length - 1) {
-				res.add(copyList(path));
-			} else {
-				dfs(i, graph, path, res);
-			}
-			path.remove(path.size() - 1);
+		if(visited[i]){
+			return;
 		}
-	}
-
-	private List<Integer> copyList(List<Integer> path) {
-		List<Integer> res = new ArrayList<>();
-		for (int i : path) {
-			res.add(i);
+		visited[i] = true;
+		cur.add(i);
+		for(int j : graph[i]){
+			dfs(j, graph, res, cur, visited);
 		}
-		return res;
+		visited[i] = false;
+		cur.remove(cur.size() - 1);
 	}
 }
