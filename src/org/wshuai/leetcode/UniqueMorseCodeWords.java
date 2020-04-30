@@ -4,30 +4,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Wei on 8/7/19.
- * #804 https://leetcode.com/problems/unique-morse-code-words/
+ * Created by Wei on 08/07/2019.
+ * #0804 https://leetcode.com/problems/unique-morse-code-words/
  */
 public class UniqueMorseCodeWords {
+	// time O(n)
 	public int uniqueMorseRepresentations(String[] words) {
-		if (words == null || words.length == 0) {
-			return 0;
+		String[] map = new String[]{".-","-...","-.-.","-..",".","..-.",
+				"--.","....","..",".---","-.-",".-..","--","-.","---",
+				".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+		Set<String> res = new HashSet<>();
+		for(String word : words){
+			res.add(getMorseCode(word, map));
 		}
-		String[] MORSE = new String[]{".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-				"....", "..", ".---", "-.-", ".-..", "--", "-.",
-				"---", ".--.", "--.-", ".-.", "...", "-", "..-",
-				"...-", ".--", "-..-", "-.--", "--.."};
-		Set<String> set = new HashSet<String>();
-		for (int i = 0; i < words.length; i++) {
-			int sLen = words[i].length();
-			int j = 0;
-			StringBuilder sb = new StringBuilder();
-			while (j < sLen) {
-				int idx = words[i].charAt(j) - 'a';
-				sb.append(MORSE[idx]);
-				j++;
-			}
-			set.add(sb.toString());
+		return res.size();
+	}
+
+	private String getMorseCode(String word, String[] map){
+		StringBuilder res = new StringBuilder();
+		for(char c : word.toCharArray()){
+			res.append(map[c - 'a']);
 		}
-		return set.size();
+		return res.toString();
 	}
 }
