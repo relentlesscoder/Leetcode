@@ -6,6 +6,7 @@ package org.wshuai.leetcode;
  */
 public class SoupServings {
 
+	// time O(4^N)
 	// https://leetcode.com/problems/soup-servings/discuss/121711/C%2B%2BJavaPython-When-N-greater-4800-just-return-1
 	public double soupServings(int N) {
 		// check the link to see why 3500
