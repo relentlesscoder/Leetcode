@@ -67,8 +67,7 @@ public class SplitArrayWithSameAverage {
 	}
 
 	public boolean splitArraySameAverageDFS(int[] A) {
-		int n = A.length;
-		int sum = 0;
+		int n = A.length, sum = 0;
 		for(int a : A){
 			sum += a;
 		}
@@ -85,6 +84,7 @@ public class SplitArrayWithSameAverage {
 		if(len == 0){
 			return target == 0;
 		}
+		// Optimization, A is sorted from large to small
 		if(target > len * A[idx]){
 			return false;
 		}
