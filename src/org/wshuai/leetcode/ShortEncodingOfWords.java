@@ -4,81 +4,80 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 10/31/2019.
- * #820 https://leetcode.com/problems/short-encoding-of-words/
+ * #0820 https://leetcode.com/problems/short-encoding-of-words/
  */
 public class ShortEncodingOfWords {
 
-	// 43 ms trie
+	// time O(n*d), space O(26^d)
 	public int minimumLengthEncoding(String[] words) {
-		Arrays.sort(words, (a, b) -> b.length() - a.length());
 		int res = 0;
 		TrieNode root = new TrieNode();
-		for(String s : words){
-			if(tryInsert(s, root)){
-				res += s.length() + 1;
+		Arrays.sort(words, (a, b) -> b.length() - a.length());
+		for(String word : words){
+			if(searchPostfix(word, root)){
+				continue;
 			}
+			insertReverse(word, root);
+			res += word.length() + 1;
 		}
 		return res;
 	}
 
-	private boolean tryInsert(String s, TrieNode root){
-		boolean res = false;
-		char[] arr = s.toCharArray();
-		TrieNode curr = root;
-		for(int i = arr.length - 1; i >= 0; i--){
-			if(!curr.containsKey(arr[i])){
-				res = true;
-				curr.put(arr[i], new TrieNode());
+	private void insertReverse(String word, TrieNode root){
+		TrieNode cur = root;
+		for(int i = word.length() - 1; i >= 0; i--){
+			char c = word.charAt(i);
+			if(!cur.containsKey(c)){
+				cur.put(c, new TrieNode());
 			}
-			curr = curr.get(arr[i]);
+			cur = cur.get(c);
 		}
-		if(res){
-			curr.setEnd();
-		}
-		return res;
+		cur.setEnd();
 	}
 
-	// 406 ms slow
-	public int minimumLengthEncodingUnionFind(String[] words) {
-		int N = words.length;
-		int[] root = new int[N];
-		for(int i = 0; i < N; i++){
-			root[i] = i;
-		}
-		for(int i = 0; i < N; i++){
-			for(int j = i + 1; j < N; j++){
-				int r1 = find(i, root);
-				int r2 = find(j, root);
-				String s1 = words[r1];
-				String s2 = words[r2];
-				if(s1.equals(s2)){
-					root[r2] = r1;
-					continue;
-				}
-				if(s1.length() > s2.length() && s1.endsWith(s2)){
-					root[r2] = r1;
-				}
-				if(s2.length() > s1.length() && s2.endsWith(s1)){
-					root[r1] = r2;
-				}
+	private boolean searchPostfix(String word, TrieNode root){
+		TrieNode cur = root;
+		for(int i = word.length() - 1; i >= 0; i--){
+			char c = word.charAt(i);
+			if(!cur.containsKey(c)){
+				return false;
 			}
+			cur = cur.get(c);
 		}
-		int res = 0;
-		int cnt = 0;
-		for(int i = 0; i < N; i++){
-			if(root[i] == i){
-				cnt++;
-				res += words[i].length();
-			}
-		}
-		res += cnt;
-		return res;
+		return true;
 	}
 
-	private int find(int i, int[] root){
-		if(root[i] != i){
-			root[i] = find(root[i], root);
+	private class TrieNode{
+
+		private static final int R = 26;
+
+		private TrieNode[] links;
+
+		private boolean end;
+
+		public TrieNode(){
+			links = new TrieNode[R];
+			end = false;
 		}
-		return root[i];
+
+		public boolean containsKey(char key){
+			return links[key - 'a'] != null;
+		}
+
+		public TrieNode get(char key){
+			return links[key - 'a'];
+		}
+
+		public void put(char key, TrieNode node){
+			links[key - 'a'] = node;
+		}
+
+		public boolean isEnd(){
+			return end;
+		}
+
+		public void setEnd(){
+			end = true;
+		}
 	}
 }
