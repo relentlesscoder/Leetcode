@@ -1,12 +1,13 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/9/2019.
- * #812 https://leetcode.com/problems/largest-triangle-area/
+ * Created by Wei on 10/09/2019.
+ * #0812 https://leetcode.com/problems/largest-triangle-area/
  */
 public class LargestTriangleArea {
 
-	// bad math question - https://en.wikipedia.org/wiki/Shoelace_formula
+	// time O(n^3)
+	// https://en.wikipedia.org/wiki/Shoelace_formula
 	public double largestTriangleArea(int[][] points) {
 		int N = points.length;
 		double ans = 0;
