@@ -7,6 +7,8 @@ import java.util.List;
  * #1428 https://leetcode.com/problems/leftmost-column-with-at-least-a-one/
  */
 public class LeftmostColumnWithAtLeastAOne {
+
+    // time O(m*log(n))
     public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
         List<Integer> dim = binaryMatrix.dimensions();
         int res = Integer.MAX_VALUE, m = dim.get(0), n = dim.get(1);
