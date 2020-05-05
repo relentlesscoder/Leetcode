@@ -5,54 +5,53 @@ import java.util.List;
 
 /**
  * Created by Wei on 11/11/2019.
- * #816 https://leetcode.com/problems/ambiguous-coordinates/
+ * #0816 https://leetcode.com/problems/ambiguous-coordinates/
  */
 public class AmbiguousCoordinates {
+	// time O(n^3), space O(n^2)
 	public List<String> ambiguousCoordinates(String S) {
 		S = S.substring(1, S.length() - 1);
-		List<String> set = new ArrayList<>();
+		List<String> res = new ArrayList<>();
 		for(int i = 1; i < S.length(); i++){
-			String s1 = S.substring(0, i);
-			String s2 = S.substring(i);
-			List<String> ss1 = parse(s1);
-			List<String> ss2 = parse(s2);
-			if(ss1.size() > 0 && ss2.size() > 0){
-				for(String v1 : ss1){
-					for(String v2 : ss2){
-						set.add("(" + v1 + ", " + v2 + ")");
+			String s1 = S.substring(0, i), s2 = S.substring(i);
+			List<String> l1 = parse(s1), l2 = parse(s2);
+			if(l1.size() > 0 && l2.size() > 0){
+				for(String v1 : l1){
+					for(String v2 : l2){
+						res.add("(" + v1 + ", " + v2 + ")");
 					}
 				}
 			}
 		}
-		return set;
+		return res;
 	}
 
-	private List<String> parse(String S){
-		int len = S.length();
-		List<String> res = new ArrayList<>();
-		// "00012300"
-		if(S.startsWith("00") && S.charAt(len - 1) == '0'){
-			return res;
+	private List<String> parse(String s){
+		int n = s.length();
+		List<String> result = new ArrayList<>();
+		// "0xxxx0" invalid unless a single "0"
+		if (s.charAt(0) == '0' && s.charAt(n - 1) == '0') {
+			if (n == 1) {
+				result.add("0");
+			}
+			return result;
 		}
-		// "00", "010"
-		if(len > 1 && S.charAt(0) == '0' && S.charAt(len - 1) == '0'){
-			return res;
+		// "0xxxxx" the only valid result is "0.xxxxx"
+		if (s.charAt(0) == '0') {
+			result.add("0." + s.substring(1));
+			return result;
 		}
-		// not "012"
-		if(!(S.charAt(0) == '0' && len > 1)){
-			res.add(S);
+		// "xxxxx0" the only valid result is itself
+		if (s.charAt(n - 1) == '0') {
+			result.add(s);
+			return result;
 		}
-		// "0", "1"
-		if(len == 1 || S.charAt(len - 1) == '0'){
-			return res;
+		// add itself
+		result.add(s);
+		// "xxxx" -> "x.xxx", "xx.xx", "xxx.x"
+		for (int i = 1; i < n; i++) {
+			result.add(s.substring(0, i) + '.' + s.substring(i));
 		}
-		if(S.charAt(0) == '0'){
-			res.add("0." + S.substring(1));
-			return res;
-		}
-		for(int i = 1; i < len; i++){
-			res.add(S.substring(0, i) + "." + S.substring(i));
-		}
-		return res;
+		return result;
 	}
 }
