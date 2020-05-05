@@ -1,32 +1,30 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Wei on 8/21/19.
- * #830 https://leetcode.com/problems/positions-of-large-groups/
+ * Created by Wei on 08/21/2019.
+ * #0830 https://leetcode.com/problems/positions-of-large-groups/
  */
 public class PositionsOfLargeGroups {
+	// time O(n)
 	public List<List<Integer>> largeGroupPositions(String S) {
 		List<List<Integer>> res = new ArrayList<>();
-		// add a postfix to avoid missing the last character group
-		S += ".";
-		char[] arr = S.toCharArray();
-		char curr = '-';
+		S += "#";
 		int count = 0;
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] == curr) {
+		char prev = S.charAt(0);
+		char[] arr = S.toCharArray();
+		for(int i = 0; i < arr.length; i++){
+			if(arr[i] == prev){
 				count++;
-			} else {
-				if (curr != '-' && count >= 3) {
-					List<Integer> lst = new ArrayList<>();
-					lst.add(i - count);
-					lst.add(i - 1);
-					res.add(lst);
+			}else{
+				if(count >= 3){
+					res.add(Arrays.asList(i - count, i - 1));
 				}
 				count = 1;
-				curr = arr[i];
+				prev = arr[i];
 			}
 		}
 		return res;

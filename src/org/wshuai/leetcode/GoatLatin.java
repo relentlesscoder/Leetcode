@@ -1,32 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/9/19.
- * #824 https://leetcode.com/problems/goat-latin/
+ * Created by Wei on 08/09/2019.
+ * #0824 https://leetcode.com/problems/goat-latin/
  */
 public class GoatLatin {
+	// time O(n), space O(n)
 	public String toGoatLatin(String S) {
 		StringBuilder res = new StringBuilder();
-		String[] arr = S.split(" ");
-		for (int i = 0; i < arr.length; i++) {
-			StringBuilder sb = new StringBuilder();
-			char first = arr[i].charAt(0);
-			if (first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u'
-					|| first == 'A' || first == 'E' || first == 'I' || first == 'O' || first == 'U') {
-				sb.append(arr[i]);
-			} else {
-				sb.append(arr[i].substring(1));
-				sb.append("" + arr[i].charAt(0));
+		String[] strs = S.split("\\s");
+		for(int i = 0; i < strs.length; i++){
+			char c = strs[i].charAt(0);
+			if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+					|| c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U'){
+				res.append(strs[i]);
+			}else{
+				res.append(strs[i].substring(1) + c);
 			}
-			sb.append("ma");
-			int j = i + 1;
-			while (j > 0) {
-				sb.append("a");
-				j--;
+			res.append("ma");
+			for(int j = 0; j <= i; j++){
+				res.append("a");
 			}
-			res.append(sb.toString() + " ");
+			res.append(" ");
 		}
-		String s = res.toString();
-		return s.substring(0, s.length() - 1);
+		return res.substring(0, res.length() - 1);
 	}
 }
