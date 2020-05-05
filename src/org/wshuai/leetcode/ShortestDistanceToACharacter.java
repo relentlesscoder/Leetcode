@@ -1,40 +1,28 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
+
 /**
- * Created by Wei on 8/10/19.
- * #821 https://leetcode.com/problems/shortest-distance-to-a-character/
+ * Created by Wei on 08/10/2019.
+ * #0821 https://leetcode.com/problems/shortest-distance-to-a-character/
  */
 public class ShortestDistanceToACharacter {
+	// time O(n)
 	public int[] shortestToChar(String S, char C) {
-		int[] res = new int[S.length()];
-		for (int i = 0; i < res.length; i++) {
-			res[i] = Integer.MAX_VALUE;
-		}
 		char[] arr = S.toCharArray();
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] != C) {
+		int n = arr.length;
+		int[] res = new int[n];
+		Arrays.fill(res, Integer.MAX_VALUE);
+		for(int i = 0; i < n; i++){
+			if(arr[i] != C){
 				continue;
 			}
 			res[i] = 0;
-			int j = i - 1;
-			while (j >= 0 && arr[j] != C) {
-				int dis = i - j;
-				if (res[j] > dis) {
-					res[j] = dis;
-				} else {
-					break;
-				}
-				j--;
+			for(int j = i - 1, k = 0; j >= 0 && arr[j] != C; j--){
+				res[j] = Math.min(res[j], ++k);
 			}
-			int k = i + 1;
-			while (k < res.length && arr[k] != C) {
-				int dis = k - i;
-				if (res[k] > dis) {
-					res[k] = dis;
-				} else {
-					break;
-				}
-				k++;
+			for(int j = i + 1, k = 0; j < n && arr[j] != C; j++){
+				res[j] = Math.min(res[j], ++k);
 			}
 		}
 		return res;
