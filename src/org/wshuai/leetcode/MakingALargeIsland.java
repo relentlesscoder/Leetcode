@@ -6,60 +6,63 @@ import java.util.Set;
 
 /**
  * Created by Wei on 12/20/2019.
- * #827 https://leetcode.com/problems/making-a-large-island/
+ * #0827 https://leetcode.com/problems/making-a-large-island/
  */
 public class MakingALargeIsland {
-	private static final int[][] dirs = new int[][]{
-			{1, -1, 0, 0},
-			{0, 0, 1, -1}
-	};
 
+	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
+
+	// time O(m*n)
 	public int largestIsland(int[][] grid) {
-		int r = grid.length;
-		int c = grid[0].length;
-		int[][] count = new int[r][c];
-		LinkedList<int[]> queue = new LinkedList<>();
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
+		int res = Integer.MIN_VALUE, m = grid.length, n = grid[0].length;
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
 				if(grid[i][j] == 1){
-					int island = 0;
-					Set<Integer> border = new HashSet<>();
-					queue = new LinkedList<>();
-					queue.offerLast(new int[]{i, j});
-					grid[i][j] = -1;
-					while(!queue.isEmpty()){
-						int[] cur = queue.pollFirst();
-						island++;
-						for(int k = 0; k < 4; k++){
-							int x = cur[0] + dirs[0][k];
-							int y = cur[1] + dirs[1][k];
-							if(x >= 0 && x < r && y >= 0 && y < c && grid[x][y] != -1){
-								if(grid[x][y] == 0){
-									border.add(x * c + y);
-								}
-								if(grid[x][y] == 1){
-									grid[x][y] = -1;
-									queue.offerLast(new int[]{x, y});
-								}
-							}
-						}
-					}
-					for(int cell : border){
-						count[cell / c][cell % c] += island;
-					}
+					bfs(i, j, m, n, grid);
 				}
 			}
 		}
-		int maxIsland = 0;
-		int zeros = 0;
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
-				if(grid[i][j] == 0){
-					zeros++;
-					maxIsland = Math.max(count[i][j] + 1, maxIsland);
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
+				if(grid[i][j] == 5_000){
+					continue;
+				}
+				res = Math.max(res, Math.abs(grid[i][j]));
+			}
+		}
+		return res == Integer.MIN_VALUE ? m*n : res + 1;
+	}
+
+	private void bfs(int i, int j, int m, int n, int[][] grid){
+		int count = 0;
+		Set<Integer> board = new HashSet<>();
+		LinkedList<int[]> queue = new LinkedList<>();
+		queue.offerLast(new int[]{i, j});
+		// 5_000 denotes visited cells
+		grid[i][j] = 5_000;
+		while(!queue.isEmpty()){
+			int[] cur = queue.pollFirst();
+			count++;
+			for(int k = 0; k < 4; k++){
+				int x = cur[0] + dirs[k], y = cur[1] + dirs[k + 1];
+				if(x < 0 || x >= m || y < 0 || y >= n || grid[x][y] == 5_000){
+					continue;
+				}
+				// board cell
+				if(grid[x][y] <= 0){
+					board.add(x * n + y);
+				}
+				// unvisited cell
+				if(grid[x][y] == 1){
+					grid[x][y] = 5_000;
+					queue.offerLast(new int[]{x, y});
 				}
 			}
 		}
-		return zeros > 0 ? maxIsland : r * c;
+		// assign the board the size (negative)
+		// of the current island for future merging.
+		for(int b : board){
+			grid[b / n][b % n] -= count;
+		}
 	}
 }
