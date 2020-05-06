@@ -1,17 +1,18 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/7/19.
- * #832 https://leetcode.com/problems/flipping-an-image/
+ * Created by Wei on 08/07/2019.
+ * #0832 https://leetcode.com/problems/flipping-an-image/
  */
 public class FlippingAnImage {
+
+	// time O(m*n), space O(m*n)
 	public int[][] flipAndInvertImage(int[][] A) {
-		int len = A.length;
-		int[][] res = new int[len][len];
-		for (int i = 0; i < len; i++) {
-			for (int j = 0; j < len; j++) {
-				res[j][i] = A[j][len - 1 - i];
-				res[j][i] = res[j][i] == 1 ? 0 : 1;
+		int m = A.length, n = A[0].length;
+		int[][] res = new int[m][n];
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
+				res[i][n - 1 - j] = 1 - A[i][j];
 			}
 		}
 		return res;
