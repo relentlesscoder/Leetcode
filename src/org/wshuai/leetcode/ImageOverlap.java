@@ -7,33 +7,33 @@ import java.util.Map;
 
 /**
  * Created by Wei on 10/21/2019.
- * #835 https://leetcode.com/problems/image-overlap/
+ * #0835 https://leetcode.com/problems/image-overlap/
  */
 public class ImageOverlap {
+
+	// time O(n^2), space O(2*n)
 	public int largestOverlap(int[][] A, int[][] B) {
-		int rows = A.length, cols = A[0].length;
-		List<int[]> la = new ArrayList<>(), lb = new ArrayList<>();
-		for(int r = 0; r < rows; r++){
-			for(int c = 0; c < cols; c++){
-				if(A[r][c] == 1){
-					la.add(new int[]{r, c});
-				}
-				if(B[r][c] == 1){
-					lb.add(new int[]{r, c});
-				}
-			}
-		}
+		int res = 0, n = A.length;
 		Map<String, Integer> map = new HashMap<>();
-		for(int[] pa: la){
-			for(int[] pb: lb){
-				String s = (pa[0] - pb[0]) + " " + (pa[1] - pb[1]);
-				map.put(s, map.getOrDefault(s, 0) + 1);
+		List<int[]> la = new ArrayList<>(), lb = new ArrayList<>();
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				if(A[i][j] == 1){
+					la.add(new int[]{i, j});
+				}
+				if(B[i][j] == 1){
+					lb.add(new int[]{i, j});
+				}
 			}
 		}
-		int max = 0;
-		for(int count : map.values()){
-			max = Math.max(max, count);
+		for(int[] a : la){
+			for(int[] b : lb){
+				String key = (a[0] - b[0]) + "," + (a[1] - b[1]);
+				int d = map.getOrDefault(key, 0) + 1;
+				map.put(key, d);
+				res = Math.max(res, d);
+			}
 		}
-		return max;
+		return res;
 	}
 }
