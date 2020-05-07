@@ -1,42 +1,25 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Created by Wei on 9/19/19.
- * #833 https://leetcode.com/problems/find-and-replace-in-string/
+ * Created by Wei on 09/19/2019.
+ * #0833 https://leetcode.com/problems/find-and-replace-in-string/
  */
 public class FindAndReplaceInString {
+	// time O(n^2)
 	public String findReplaceString(String S, int[] indexes, String[] sources, String[] targets) {
-		if (indexes.length == 0) {
-			return S;
+		List<int[]> sorted = new ArrayList<>();
+		for(int i = 0; i < indexes.length; i++){
+			sorted.add(new int[]{indexes[i], i});
 		}
-		Map<Integer, String[]> map = new HashMap<>();
-		for (int x = 0; x < indexes.length; x++) {
-			map.put(indexes[x], new String[]{sources[x], targets[x]});
-		}
-		StringBuilder sb = new StringBuilder();
-		int i = 0;
-		char[] arr = S.toCharArray();
-		while (i < arr.length) {
-			if (map.containsKey(i)) {
-				char[] source = map.get(i)[0].toCharArray();
-				int m = i;
-				int n = 0;
-				while (m < arr.length && n < source.length && arr[m] == source[n]) {
-					m++;
-					n++;
-				}
-				if (n == source.length) {
-					sb.append(map.get(i)[1]);
-					i = m;
-					continue;
-				}
+		Collections.sort(sorted, (a, b) -> b[0] - a[0]);
+		for(int[] in : sorted){
+			int start = in[0], end = start + sources[in[1]].length();
+			if(S.substring(start, end).equals(sources[in[1]])){
+				S = S.substring(0, start) + targets[in[1]] + S.substring(end);
 			}
-			sb.append("" + arr[i]);
-			i++;
 		}
-		return sb.toString();
+		return S;
 	}
 }
