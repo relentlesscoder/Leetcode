@@ -1,58 +1,77 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Wei on 12/12/2019.
- * #644 https://leetcode.com/problems/maximum-average-subarray-ii/
+ * #0843 https://leetcode.com/problems/guess-the-word/
  */
 public class GuessTheWord {
 
+	// time O(n^2), space O(n)
 	// https://leetcode.com/problems/guess-the-word/discuss/133862/Random-Guess-and-Minimax-Guess-with-Comparison
 	public void findSecretWord(String[] wordlist, Master master) {
-		for (int i = 0, x = 0; i < 10 && x < 6; ++i) {
-			HashMap<String, Integer> count = new HashMap<>();
-			for (String w1 : wordlist)
-				for (String w2 : wordlist)
-					if (match(w1, w2) == 0)
-						count.put(w1, count.getOrDefault(w1 , 0) + 1);
-			int[] minimax = new int[]{-1, 1000};
-			for (int k = 0; k < wordlist.length; k++){
-				if (count.getOrDefault(wordlist[k], 0) < minimax[1]){
-					minimax = new int[]{k, count.getOrDefault(wordlist[k], 0)};
+		for(int i = 0, x = 0; i < 10 && x < 6; i++){
+			// try to use the word has fewest 0 matches with the rest word in
+			// the list, which means has match characters with most of the other
+			// words so we can filter out more words in one round
+			Map<String, Integer> count = new HashMap<>();
+			for(String w1 : wordlist){
+				for(String w2 : wordlist){
+					if(match(w1, w2) == 0){
+						count.put(w1, count.getOrDefault(w1, 0) + 1);
+					}
 				}
 			}
-			x = master.guess(wordlist[minimax[0]]);
-			List<String> wordlist2 = new ArrayList<String>();
-			for (String w : wordlist)
-				if (match(wordlist[minimax[0]], w) == x)
-					wordlist2.add(w);
-			wordlist = wordlist2.toArray(new String[0]);
+			String guess = "";
+			int min = 1_000;
+			for(String w : wordlist){
+				if(count.getOrDefault(w, 0) < min){
+					min = count.getOrDefault(w, 0);
+					guess = w;
+				}
+			}
+			// if the guess has x matched character with the final word,
+			// for all the candidates eligible for the next round must
+			// has x match with the current guess
+			x = master.guess(guess);
+			List<String> next = new ArrayList<>();
+			for(String word : wordlist){
+				if(match(guess, word) == x){
+					next.add(word);
+				}
+			}
+			wordlist = next.toArray(new String[next.size()]);
 		}
 	}
 
-	public void findSecretWordNaive(String[] wordlist, Master master) {
+	// time O(n), space O(n)
+	public void findSecretWordRandom(String[] wordlist, Master master) {
 		for(int i = 0, x = 0; i < 10 && x < 6; i++){
 			String guess = wordlist[new Random().nextInt(wordlist.length)];
 			x = master.guess(guess);
-			List<String> wordlist2 = new ArrayList<>();
-			for (String w : wordlist)
-				if (match(guess, w) == x)
-					wordlist2.add(w);
-			wordlist = wordlist2.toArray(new String[wordlist2.size()]);
+			List<String> next = new ArrayList<>();
+			for(String word : wordlist){
+				if(match(guess, word) == x){
+					next.add(word);
+				}
+			}
+			wordlist = next.toArray(new String[next.size()]);
 		}
 	}
 
-	private int match(String a, String b) {
-		int matches = 0;
-		for (int i = 0; i < a.length(); ++i) if (a.charAt(i) == b.charAt(i)) matches ++;
-		return matches;
+	private int match(String S, String T){
+		int matched = 0;
+		for(int i = 0; i < 6; i++){
+			if(S.charAt(i) == T.charAt(i)){
+				matched++;
+			}
+		}
+		return matched;
+	}
+
+	private interface Master {
+		public int guess(String word);
 	}
 }
 
- interface Master {
-	public int guess(String word);
- }
