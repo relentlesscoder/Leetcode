@@ -9,27 +9,25 @@ public class MaxDotProductOfTwoSubsequences {
 	// time O(m*n), space O(m*n)
 	public int maxDotProduct(int[] nums1, int[] nums2) {
 		int m = nums1.length, n = nums2.length;
-		// denotes max dot product ends at nums1[i]
-		// and nums2[j] (i or j may not be used)
-		int[][] dp = new int[m][n];
-		for(int i = 0; i < m; i++){
-			for(int j = 0; j < n; j++){
-				// base case, length of subsequence is 1
-				dp[i][j] = nums1[i] * nums2[j];
-				// use the product of nums1[i] and nums2[j]
-				if(i > 0 && j > 0){
-					dp[i][j] += Math.max(0, dp[i - 1][j - 1]);
-				}
-				// skip nums1[i]
-				if(i > 0){
-					dp[i][j] = Math.max(dp[i][j], dp[i - 1][j]);
-				}
-				// skip nums2[j]
-				if(j > 0){
-					dp[i][j] = Math.max(dp[i][j], dp[i][j - 1]);
-				}
+		// dp[i][j] denotes the max dot product of sub-problem
+		// nums1[0 .. i - 1] and nums2[0 .. j - 1]
+		int[][] dp = new int[m + 1][n + 1];
+		// handle edge cases
+		for(int i = 0; i <= m; i++){
+			dp[i][0] = Integer.MIN_VALUE;
+		}
+		for(int i = 0; i <= n; i++){
+			dp[0][i] = Integer.MIN_VALUE;
+		}
+		for(int i = 1; i <= m; i++){
+			for(int j = 1; j <= n; j++){
+				// 1. use dot product of nums1[i - 1] and nums2[j - 1]
+				// 2. only use nums1[i - 1]
+				// 3. only use nums2[j - 1]
+				dp[i][j] = Math.max(nums1[i - 1] * nums2[j - 1] + Math.max(dp[i - 1][j - 1], 0),
+					Math.max(dp[i - 1][j], dp[i][j - 1]));
 			}
 		}
-		return dp[m - 1][n - 1];
+		return dp[m][n];
 	}
 }
