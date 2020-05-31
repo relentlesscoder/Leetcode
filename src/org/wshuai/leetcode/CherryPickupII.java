@@ -28,7 +28,9 @@ public class CherryPickupII {
 							}
 							next.putIfAbsent(j, new HashMap<>());
 							Map<Integer, Integer> cur = next.get(j);
-							cur.put(k, Math.max(c + (j == k ? grid[i][j] : grid[i][j] + grid[i][k]), cur.getOrDefault(k, 0)));
+							cur.put(k, Math.max(c + (j == k ?
+								grid[i][j] : grid[i][j] + grid[i][k]),
+								cur.getOrDefault(k, 0)));
 							res = Math.max(res, cur.get(k));
 						}
 					}
