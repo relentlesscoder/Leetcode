@@ -6,7 +6,7 @@ import java.util.Map;
 
 /**
  * Created by Wei on 06/14/2020.
- * #5454 https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/
+ * #1481 https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/
  */
 public class LeastNumberOfUniqueIntegersAfterKRemovals {
 

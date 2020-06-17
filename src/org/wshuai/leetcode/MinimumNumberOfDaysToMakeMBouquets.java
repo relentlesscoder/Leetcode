@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 /**
  * Created by Wei on 06/14/2020.
- * #5455 https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
+ * #1482 https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
  */
 public class MinimumNumberOfDaysToMakeMBouquets {
 

@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 06/14/2020.
- * #5453 https://leetcode.com/problems/running-sum-of-1d-array/
+ * #1480 https://leetcode.com/problems/running-sum-of-1d-array/
  */
 public class RunningSumOf1dArray {
 
