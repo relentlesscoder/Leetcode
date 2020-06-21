@@ -1,44 +1,45 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/12/2019.
- * #723 https://leetcode.com/problems/candy-crush/
+ * Created by Wei on 09/12/2019.
+ * #0723 https://leetcode.com/problems/candy-crush/
  */
 public class CandyCrush {
+	// time O((m*n)*(m*n))
 	public int[][] candyCrush(int[][] board) {
-		int R = board.length;
-		int C = board[0].length;
+		int m = board.length, n = board[0].length;
 		boolean todo = false;
-		for (int r = 0; r < R; ++r) {
-			for (int c = 0; c + 2 < C; ++c) {
-				int v = Math.abs(board[r][c]);
-				if (v != 0 && v == Math.abs(board[r][c + 1]) && v == Math.abs(board[r][c + 2])) {
-					board[r][c] = board[r][c + 1] = board[r][c + 2] = -v;
+		// mark all candy to be crushed to negative
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j + 2 < n; j++){
+				int v = Math.abs(board[i][j]);
+				if(v > 0 && Math.abs(board[i][j + 1]) == v && Math.abs(board[i][j + 2]) == v){
+					board[i][j] = board[i][j + 1] = board[i][j + 2] = -v;
 					todo = true;
 				}
 			}
 		}
-		for (int r = 0; r + 2 < R; ++r) {
-			for (int c = 0; c < C; ++c) {
-				int v = Math.abs(board[r][c]);
-				if (v != 0 && v == Math.abs(board[r + 1][c]) && v == Math.abs(board[r + 2][c])) {
-					board[r][c] = board[r + 1][c] = board[r + 2][c] = -v;
+		for(int j = 0; j < n; j++){
+			for(int i = 0; i + 2 < m; i++){
+				int v = Math.abs(board[i][j]);
+				if(v > 0 && Math.abs(board[i + 1][j]) == v && Math.abs(board[i + 2][j]) == v){
+					board[i][j] = board[i + 1][j] = board[i + 2][j] = -v;
 					todo = true;
 				}
 			}
 		}
-		for (int c = 0; c < C; ++c) {
-			int wr = R - 1;
-			for (int r = R - 1; r >= 0; --r) {
-				if (board[r][c] > 0) {
-					board[wr--][c] = board[r][c];
+		// for each column, drop the candies vertically
+		for(int j = 0; j < n; j++){
+			int row = m - 1;
+			for(int i = m - 1; i >= 0; i--){
+				if(board[i][j] > 0){
+					board[row--][j] = board[i][j];
 				}
 			}
-			while (wr >= 0) {
-				board[wr--][c] = 0;
+			while(row >= 0){
+				board[row--][j] = 0;
 			}
 		}
-
 		return todo ? candyCrush(board) : board;
 	}
 }

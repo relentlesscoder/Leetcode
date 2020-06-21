@@ -5,52 +5,100 @@ import java.util.LinkedList;
 import java.util.Set;
 
 /**
- * Created by Wei on 11/22/19.
- * #773 https://leetcode.com/problems/sliding-puzzle/
+ * Created by Wei on 11/22/2019.
+ * #0773 https://leetcode.com/problems/sliding-puzzle/
  */
 public class SlidingPuzzle {
+
+	// valid moves from each index in [0, 5]
+	private static final int[][] dirs = new int[][]{
+		{1, 3}, {0, 2, 4}, {1, 5}, {0, 4}, {1, 3, 5}, {2, 4}
+	};
+
 	public int slidingPuzzle(int[][] board) {
-		String target = "123450";
-		String start = "" + board[0][0] + board[0][1] + board[0][2]
-			+ board[1][0] + board[1][1] + board[1][2];
-		if(start.equals(target)){
+		int moves = 0;
+		String original = "" + board[0][0] + board[0][1] + board[0][2]
+			+ board[1][0] + board[1][1] + board[1][2], target = "123450";
+		if(original.equals(target)){
 			return 0;
 		}
-		int[][] dirs = new int[][]{
-			{1, 3}, {0, 2, 4}, {1, 5},
-			{0, 4}, {3, 1, 5}, {2, 4}
-		};
-		Set<String> visited = new HashSet<String>();
 		LinkedList<String> queue = new LinkedList<>();
-		queue.offerLast(start);
-		visited.add(start);
-		int step = 0;
+		Set<String> visited = new HashSet<>();
+		queue.offerLast(original);
+		visited.add(original);
 		while(!queue.isEmpty()){
 			int size = queue.size();
-			step++;
 			while(size-- > 0){
-				String prev = queue.pollFirst();
+				char[] cur = queue.pollFirst().toCharArray();
 				int i = 0;
 				for(; i < 6; i++){
-					if(prev.charAt(i) == '0'){
+					if(cur[i] == '0'){
 						break;
 					}
 				}
-				int[] swap = dirs[i];
-				for(int s : swap){
-					char[] p = prev.toCharArray();
-					p[i] = p[s];
-					p[s] = '0';
-					String next = new String(p);
-					if(next.equals(target)){
-						return step;
+				for(int j : dirs[i]){
+					swap(cur, i, j);
+					String next = String.valueOf(cur);
+					if(target.equals(next)){
+						return moves + 1;
 					}
 					if(visited.add(next)){
 						queue.offerLast(next);
 					}
+					swap(cur, i, j);
 				}
 			}
+			moves++;
 		}
 		return -1;
+	}
+
+	public int slidingPuzzleBiDirectionalBFS(int[][] board) {
+		String original = "" + board[0][0] + board[0][1] + board[0][2] + board[1][0] + board[1][1] + board[1][2], target = "123450";
+		if(original.equals(target)){
+			return 0;
+		}
+		int moves = 0;
+		Set<String> from = new HashSet<>(), to = new HashSet<>(), visited = new HashSet<>(), next;
+		from.add(original);
+		to.add(target);
+		visited.add(original);
+		while(from.size() > 0 && to.size() > 0){
+			if(from.size() > to.size()){
+				Set<String> temp = from;
+				from = to;
+				to = temp;
+			}
+			next = new HashSet<>();
+			for(String val : from){
+				char[] cur = val.toCharArray();
+				int i = 0;
+				for(; i < 6; i++){
+					if(cur[i] == '0'){
+						break;
+					}
+				}
+				for(int j : dirs[i]){
+					swap(cur, i, j);
+					String str = String.valueOf(cur);
+					if(to.contains(str)){
+						return moves + 1;
+					}
+					if(visited.add(str)){
+						next.add(str);
+					}
+					swap(cur, i, j);
+				}
+			}
+			from = next;
+			moves++;
+		}
+		return -1;
+	}
+
+	private void swap(char[] arr, int from, int to){
+		char temp = arr[from];
+		arr[from] = arr[to];
+		arr[to] = temp;
 	}
 }

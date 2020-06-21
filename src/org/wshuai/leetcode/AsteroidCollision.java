@@ -1,43 +1,37 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.Stack;
 
 /**
- * Created by Wei on 9/17/19.
- * #735 https://leetcode.com/problems/asteroid-collision/
+ * Created by Wei on 09/17/2019.
+ * #0735 https://leetcode.com/problems/asteroid-collision/
  */
 public class AsteroidCollision {
+	// time O(n), space O(n)
 	public int[] asteroidCollision(int[] asteroids) {
-		if (asteroids.length == 0) {
+		if(asteroids == null || asteroids.length == 0){
 			return new int[0];
 		}
-		LinkedList<Integer> stack = new LinkedList<>();
-		stack.offerLast(asteroids[0]);
-		int i = 1;
-		while (i < asteroids.length) {
-			// need to consider following cases:
-			// stack 10, 3, 2 | next -5
-			// stack      3, 2 | next -5
-			// stack  5, 3, 2 | next -5
-			// stack -5, 3, 2 | next -5
-			if (asteroids[i] < 0 && !stack.isEmpty() && stack.peekLast() > 0) {
-				while (!stack.isEmpty() && stack.peekLast() > 0 && Math.abs(stack.peekLast()) < Math.abs(asteroids[i])) {
-					stack.pollLast();
+		int n = asteroids.length;
+		Stack<Integer> stack = new Stack<>();
+		for(int i = 0; i < n; i++){
+			if(asteroids[i] < 0 && !stack.isEmpty() && stack.peek() > 0){
+				while(!stack.isEmpty() && stack.peek() > 0 && Math.abs(asteroids[i]) > stack.peek()){
+					stack.pop();
 				}
-				if (stack.isEmpty() || stack.peekLast() < 0) {
-					stack.offerLast(asteroids[i]);
-				} else if (Math.abs(stack.peekLast()) == Math.abs(asteroids[i])) {
-					stack.pollLast();
+				if(stack.isEmpty() || stack.peek() < 0){
+					stack.push(asteroids[i]);
+				}else if(Math.abs(asteroids[i]) == stack.peek()){
+					stack.pop();
 				}
-			} else {
-				stack.offerLast(asteroids[i]);
+			}else{
+				stack.push(asteroids[i]);
 			}
-			i++;
 		}
-		int[] res = new int[stack.size()];
-		int j = 0;
-		while (!stack.isEmpty()) {
-			res[j++] = stack.pollFirst();
+		int m = stack.size();
+		int[] res = new int[m];
+		for(int i = m - 1; i >= 0; i--){
+			res[i] = stack.pop();
 		}
 		return res;
 	}

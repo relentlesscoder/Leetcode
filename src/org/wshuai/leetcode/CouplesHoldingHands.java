@@ -4,57 +4,53 @@ import java.util.*;
 
 /**
  * Created by Wei on 11/14/2019.
- * #765 https://leetcode.com/problems/couples-holding-hands/
+ * #0765 https://leetcode.com/problems/couples-holding-hands/
  */
 public class CouplesHoldingHands {
+	// time O(n*log(n)), space O(n)
 	public int minSwapsCouples(int[] row) {
-		int N = row.length;
-		int M = N >> 1;
+		int res = 0, m = row.length, n = m >> 1;
+		int[] seats = new int[n];
 		List<int[]> edges = new ArrayList<>();
-		int[] couches = new int[M];
-		Arrays.fill(couches, -1);
-		for(int i = 0; i < N; i++){
-			int v = row[i] >> 1;
-			if(couches[v] >= 0){
-				edges.add(new int[]{i >> 1, couches[v]});
+		Arrays.fill(seats, -1);
+		for(int i = 0; i < m; i++){
+			int s = (row[i] >> 1);
+			if(seats[s] >= 0){
+				edges.add(new int[]{i >> 1, seats[s]});
 			}else{
-				couches[v] = (i >> 1);
+				seats[s] = (i >> 1);
 			}
 		}
-		int[] root = new int[M];
-		int[] rank = new int[M];
-		for(int i = 0; i < M; i++){
+		int[] root = new int[n], rank = new int[n];
+		for(int i = 0; i < n; i++){
 			root[i] = i;
 			rank[i] = 1;
 		}
-		int res = 0;
-		for(int i = 0; i < edges.size(); i++){
-			int c1 = edges.get(i)[0];
-			int c2 = edges.get(i)[1];
-			if(c1 == c2){
-				continue;
-			}
-			int r1 = find(c1, root);
-			int r2 = find(c2, root);
-			if(r1 == r2){
+		// for each cyclic swap sets with k nodes, we need k - 1 swap
+		
+		// for instance [0, 2, 1, 4, 5, 3]
+		// we have cyclic swap set 0->1, 0->2, 1->2 and 2 swap needed
+		for(int[] e : edges){
+			int ru = findRoot(e[0], root), rv = findRoot(e[1], root);
+			if(ru == rv){
 				continue;
 			}
 			res++;
-			if(rank[r1] > rank[r2]){
-				root[r2] = r1;
-				rank[r1] += rank[r2];
+			if(rank[ru] > rank[rv]){
+				rank[ru] += rank[rv];
+				root[rv] = ru;
 			}else{
-				root[r1] = r2;
-				rank[r2] += rank[r1];
+				rank[rv] += rank[ru];
+				root[ru] = rv;
 			}
 		}
 		return res;
 	}
 
-	private int find(int i, int[] root){
-		if(i != root[i]){
-			root[i] = find(root[i], root);
+	private int findRoot(int r, int[] root){
+		if(r != root[r]){
+			root[r] = findRoot(root[r], root);
 		}
-		return root[i];
+		return root[r];
 	}
 }

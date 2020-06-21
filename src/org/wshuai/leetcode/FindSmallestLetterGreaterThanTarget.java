@@ -1,31 +1,21 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/21/19.
- * #744 https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+ * Created by Wei on 08/21/2019.
+ * #0744 https://leetcode.com/problems/find-smallest-letter-greater-than-target/
  */
 public class FindSmallestLetterGreaterThanTarget {
-
-	public char nextGreatestLetterBinarySearch(char[] letters, char target) {
-		int lo = 0;
-		int hi = letters.length;
-		while (lo < hi) {
-			int mi = (lo + hi) / 2;
-			if (letters[mi] <= target) {
-				lo = mi + 1;
-			} else {
-				hi = mi;
+	// time O(log(n))
+	public char nextGreatestLetter(char[] letters, char target) {
+		int low = 0, high = letters.length;
+		while(low < high){
+			int mid = low + ((high - low) >> 1);
+			if(letters[mid] <= target){
+				low = mid + 1;
+			}else{
+				high = mid;
 			}
 		}
-		return letters[lo % letters.length];
-	}
-
-	public char nextGreatestLetterLinearScan(char[] letters, char target) {
-		for (char c : letters) {
-			if (c > target) {
-				return c;
-			}
-		}
-		return letters[0];
+		return letters[low % letters.length];
 	}
 }

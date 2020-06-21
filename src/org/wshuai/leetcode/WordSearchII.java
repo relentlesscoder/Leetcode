@@ -71,8 +71,11 @@ public class WordSearchII {
 	}
 
 	private class TrieNode{
+
 		private static final int R = 26;
+
 		private TrieNode[] links;
+
 		private boolean isEnd;
 
 		public TrieNode(){
@@ -98,5 +101,6 @@ public class WordSearchII {
 		public void setEnd(){
 			isEnd = true;
 		}
+
 	}
 }

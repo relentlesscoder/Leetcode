@@ -1,36 +1,29 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
+
 /**
- * Created by Wei on 8/24/19.
- * #807 https://leetcode.com/problems/max-increase-to-keep-city-skyline/
+ * Created by Wei on 08/24/2019.
+ * #0807 https://leetcode.com/problems/max-increase-to-keep-city-skyline/
  */
 public class MaxIncreaseToKeepCitySkyline {
-	// same idea as #883, #892
+	// time O(m*n), space O(m+n)
 	public int maxIncreaseKeepingSkyline(int[][] grid) {
-		int r = grid.length;
-		int c = grid[0].length;
-		int[] rmax = new int[r];
-		int[] cmax = new int[c];
-		for (int i = 0; i < r; i++) {
-			int rm = 0;
-			for (int j = 0; j < c; j++) {
-				rm = grid[i][j] > rm ? grid[i][j] : rm;
-			}
-			rmax[i] = rm;
-		}
-		for (int i = 0; i < c; i++) {
-			int cm = 0;
-			for (int j = 0; j < r; j++) {
-				cm = grid[j][i] > cm ? grid[j][i] : cm;
-			}
-			cmax[i] = cm;
-		}
-		int sum = 0;
-		for (int i = 0; i < r; i++) {
-			for (int j = 0; j < c; j++) {
-				sum += Math.min(rmax[i], cmax[j]) - grid[i][j];
+		int res = 0, m = grid.length, n = grid[0].length;
+		int[] rowMax = new int[m], colMax = new int[n];
+		Arrays.fill(rowMax, -1);
+		Arrays.fill(colMax, -1);
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
+				rowMax[i] = Math.max(rowMax[i], grid[i][j]);
+				colMax[j] = Math.max(colMax[j], grid[i][j]);
 			}
 		}
-		return sum;
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
+				res += Math.min(rowMax[i], colMax[j]) - grid[i][j];
+			}
+		}
+		return res;
 	}
 }

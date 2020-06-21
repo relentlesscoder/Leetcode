@@ -1,22 +1,25 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/20/19.
- * #840 https://leetcode.com/problems/magic-squares-in-grid/
+ * Created by Wei on 08/20/2019.
+ * #0840 https://leetcode.com/problems/magic-squares-in-grid/
  */
 public class MagicSquaresInGrid {
+
+	// https://www.dr-mikes-math-games-for-kids.com/3x3-magic-square.html
 	public int numMagicSquaresInside(int[][] grid) {
-		int r = grid.length;
-		int c = grid[0].length;
-		int res = 0;
-		for (int i = 0; i < r - 2; i++) {
-			for (int j = 0; j < c - 2; j++) {
-				if (grid[i + 1][j + 1] != 5) {
+		int res = 0, m = grid.length, n = grid[0].length;
+		if(m < 3 || n < 3){
+			return 0;
+		}
+		for(int i = 0; i <= m - 3; i++){
+			for(int j = 0; j <= n - 3; j++){
+				if(grid[i + 1][j + 1] != 5){
 					continue;
 				}
-				if (isMagic(grid[i][j], grid[i][j + 1], grid[i][j + 2]
-						, grid[i + 1][j], grid[i + 1][j + 1], grid[i + 1][j + 2]
-						, grid[i + 2][j], grid[i + 2][j + 1], grid[i + 2][j + 2])) {
+				if(magicSqaure(grid[i][j], grid[i][j + 1], grid[i][j + 2]
+						,grid[i + 1][j], grid[i + 1][j + 1], grid[i + 1][j + 2]
+						,grid[i + 2][j], grid[i + 2][j + 1], grid[i + 2][j + 2])){
 					res++;
 				}
 			}
@@ -24,13 +27,13 @@ public class MagicSquaresInGrid {
 		return res;
 	}
 
-	private boolean isMagic(int... nums) {
+	private boolean magicSqaure(int... nums){
 		int[] count = new int[16];
-		for (int n : nums) {
+		for(int n: nums){
 			count[n]++;
 		}
-		for (int i = 1; i < 10; i++) {
-			if (count[i] != 1) {
+		for(int i = 1; i < 10; i++){
+			if(count[i] != 1){
 				return false;
 			}
 		}

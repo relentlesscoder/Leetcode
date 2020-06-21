@@ -5,45 +5,105 @@ import java.util.LinkedList;
 import java.util.Set;
 
 /**
- * Created by Wei on 10/25/19.
- * #752 https://leetcode.com/problems/open-the-lock/
+ * Created by Wei on 10/25/2019.
+ * #0752 https://leetcode.com/problems/open-the-lock/
  */
 public class OpenTheLock {
-	public int openLock(String[] deadends, String target) {
-		Set<String> dd = new HashSet<>();
-		Set<String> visited = new HashSet<>();
-		for(String s: deadends){
-			dd.add(s);
-		}
-		LinkedList<String> queue = new LinkedList<>();
-		queue.offer("0000");
-		visited.add("0000");
+
+	// time O(10^4), space O(10^4)
+	// Bidirectional BFS 19 ms
+	public int openLockBidirectionalBFS(String[] deadends, String target) {
 		int res = 0;
-		while(!queue.isEmpty()){
-			int size = queue.size();
-			while(size > 0){
-				String curr = queue.poll();
-				if(dd.contains(curr)){
-					size--;
-					continue;
+		if (target.equals("0000")) {
+			return res;
+		}
+		Set<String> visited = new HashSet<>(), invalid = new HashSet<>(), from = new HashSet<>(), to = new HashSet<>();
+		for (String s : deadends) {
+			if (s.equals(target) || s.equals("0000")) {
+				return -1;
+			}
+			invalid.add(s);
+		}
+		visited.add("0000");
+		from.add("0000");
+		to.add(target);
+		while (from.size() > 0 && to.size() > 0) {
+			if (from.size() > to.size()) {
+				Set<String> temp = from;
+				from = to;
+				to = temp;
+			}
+			Set<String> next = new HashSet<>();
+			for (String cur : from) {
+				char[] arr = cur.toCharArray();
+				for (int i = 0; i < 4; i++) {
+					char digit = arr[i];
+					char up = digit == '9' ? '0' : (char) (digit + 1);
+					char down = digit == '0' ? '9' : (char) (digit - 1);
+					arr[i] = up;
+					String upStr = new String(arr);
+					if (to.contains(upStr)) {
+						return res + 1;
+					}
+					if (!invalid.contains(upStr) && visited.add(upStr)) {
+						next.add(upStr);
+					}
+					arr[i] = down;
+					String downStr = new String(arr);
+					if (to.contains(downStr)) {
+						return res + 1;
+					}
+					if (!invalid.contains(downStr) && visited.add(downStr)) {
+						next.add(downStr);
+					}
+					arr[i] = digit;
 				}
-				if(curr.equals(target)){
+			}
+			from = next;
+			res++;
+		}
+		return -1;
+	}
+
+	// time O(10^4), space O(10^4)
+	// BFS 74 ms
+	public int openLock(String[] deadends, String target) {
+		int res = 0;
+		LinkedList<String> queue = new LinkedList<>();
+		Set<String> visited = new HashSet<>();
+		Set<String> invalid = new HashSet<>();
+		for (String s : deadends) {
+			if (s.equals(target) || s.equals("0000")) {
+				return -1;
+			}
+			invalid.add(s);
+		}
+		queue.offerLast("0000");
+		visited.add("0000");
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			while (size-- > 0) {
+				String cur = queue.pollFirst();
+				if (cur.equals(target)) {
 					return res;
 				}
-				for(int i = 0; i < 4; i++){
-					char c = curr.charAt(i);
-					String s1 = curr.substring(0, i) + (c == '9' ? 0 : c - '0' + 1) + curr.substring(i + 1);
-					if(!dd.contains(s1) && !visited.contains(s1)){
-						queue.offer(s1);
-						visited.add(s1);
+				char[] arr = cur.toCharArray();
+				for (int i = 0; i < 4; i++) {
+					char digit = arr[i];
+					char up = digit == '9' ? '0' : (char) (digit + 1);
+					char down = digit == '0' ? '9' : (char) (digit - 1);
+					arr[i] = up;
+					String upStr = new String(arr);
+					if (!invalid.contains(upStr) && visited.add(upStr)) {
+						queue.offerLast(upStr);
 					}
-					String s2 = curr.substring(0, i) + (c == '0' ? 9 : c - '0' - 1) + curr.substring(i + 1);
-					if(!dd.contains(s2) && !visited.contains(s2)){
-						queue.offer(s2);
-						visited.add(s2);
+					arr[i] = down;
+					String downStr = new String(arr);
+					if (!invalid.contains(downStr) && visited.add(downStr)) {
+						queue.offerLast(downStr);
 					}
+					arr[i] = digit;
 				}
-				size--;
 			}
 			res++;
 		}

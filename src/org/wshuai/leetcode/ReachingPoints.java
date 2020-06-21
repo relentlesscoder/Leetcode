@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 12/5/2019.
- * #780 https://leetcode.com/problems/reaching-points/
+ * Created by Wei on 12/05/2019.
+ * #0780 https://leetcode.com/problems/reaching-points/
  */
 public class ReachingPoints {
 	// https://leetcode.com/problems/reaching-points/discuss/375429/Detailed-explanation.-or-full-through-process-or-Java-100-beat

@@ -4,16 +4,17 @@ import java.util.TreeMap;
 
 /**
  * Created by Wei on 10/15/2019.
- * #731 https://leetcode.com/problems/my-calendar-ii/
+ * #0731 https://leetcode.com/problems/my-calendar-ii/
  */
 public class MyCalendarII {
-	TreeMap<Integer, Integer> map;
+	private TreeMap<Integer, Integer> map;
 
-	// same idea as #1094
+	// same idea as #1094, running sum
 	public MyCalendarII() {
 		map = new TreeMap<>();
 	}
 
+	// time O(log(n))
 	public boolean book(int start, int end) {
 		map.put(start, map.getOrDefault(start, 0) + 1);
 		map.put(end, map.getOrDefault(end, 0) - 1);

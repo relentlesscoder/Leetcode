@@ -10,9 +10,8 @@ public class BestTimeToBuyAndSellStockWithTransactionFee {
 	public int maxProfit(int[] prices, int fee) {
 		int cash = 0, hold = Integer.MIN_VALUE;
 		for(int p : prices){
-			int prev = cash;
 			cash = Math.max(cash, hold + p);
-			hold = Math.max(hold, prev - p - fee);
+			hold = Math.max(hold, cash - p - fee);
 		}
 		return cash;
 	}

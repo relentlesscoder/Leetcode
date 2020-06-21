@@ -1,28 +1,26 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/8/19.
- * #717 https://leetcode.com/problems/1-bit-and-2-bit-characters/
+ * Created by Wei on 10/08/2019.
+ * #0717 https://leetcode.com/problems/1-bit-and-2-bit-characters/
  */
 public class OneBitAndTwoBitCharacters {
-	private int[] bits;
 
+	// time O(n)
 	public boolean isOneBitCharacter(int[] bits) {
-		this.bits = bits;
-		return dfs(0);
+		return dfs(0, bits, bits.length);
 	}
 
-	private boolean dfs(int s){
-		if(s >= bits.length){
-			return false;
-		}
-		if(s == bits.length - 1){
+	private boolean dfs(int cur, int[] bits, int n){
+		if(cur == n - 1){
 			return true;
 		}
-		if(bits[s] == 1){
-			return dfs(s + 2);
-		}else{
-			return dfs(s + 1);
+		if(cur >= n){
+			return false;
 		}
+		if(bits[cur] == 1){
+			return dfs(cur + 2, bits, n);
+		}
+		return dfs(cur + 1, bits, n);
 	}
 }

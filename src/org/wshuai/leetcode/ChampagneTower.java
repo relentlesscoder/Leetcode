@@ -2,23 +2,22 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 10/19/2019.
- * #799 https://leetcode.com/problems/champagne-tower/
+ * #0799 https://leetcode.com/problems/champagne-tower/
  */
 public class ChampagneTower {
+	// time O(n^2)
 	public double champagneTower(int poured, int query_row, int query_glass) {
-		double[] cups = new double[100];
-		int row = 0;
-		cups[0] = poured;
-		while(row < query_row){
-			int cnt = row + 1;
-			double[] next = new double[100];
-			for(int i = 0; i < cnt; i++){
-				next[i] += 0.5 * (cups[i] > 1 ? cups[i] - 1 : 0);
-				next[i + 1] += 0.5 * (cups[i] > 1 ? cups[i] - 1 : 0);
+		double[] cur = new double[100], next = new double[100];
+		cur[0] = poured;
+		for(int i = 0, j = 1; i < query_row; i++, j++){
+			for(int k = 0; k < j; k++){
+				double fall = cur[k] > 1 ? cur[k] - 1 : 0;
+				next[k] += 0.5 * fall;
+				next[k + 1] += 0.5 * fall;
 			}
-			cups = next;
-			row++;
+			cur = next;
+			next = new double[100];
 		}
-		return cups[query_glass] > 1 ? 1 : cups[query_glass];
+		return cur[query_glass] > 1 ? 1 : cur[query_glass];
 	}
 }

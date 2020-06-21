@@ -5,24 +5,20 @@ import java.util.Map;
 import java.util.Stack;
 
 /**
- * Created by Wei on 8/7/19.
- * #760 https://leetcode.com/problems/find-anagram-mappings/
+ * Created by Wei on 08/07/2019.
+ * #0760 https://leetcode.com/problems/find-anagram-mappings/
  */
 public class FindAnagramMappings {
+	// time O(n), space O(n)
 	public int[] anagramMappings(int[] A, int[] B) {
-		int len = A.length;
-		Map<Integer, Stack<Integer>> map = new HashMap<Integer, Stack<Integer>>();
-		for (int i = 0; i < len; i++) {
-			if (map.containsKey(B[i])) {
-				map.get(B[i]).push(i);
-			} else {
-				Stack<Integer> lst = new Stack<Integer>();
-				lst.push(i);
-				map.put(B[i], lst);
-			}
+		int n = A.length;
+		int[] res = new int[n];
+		Map<Integer, Stack<Integer>> map = new HashMap<>();
+		for(int i = 0; i < n; i++){
+			map.putIfAbsent(B[i], new Stack<>());
+			map.get(B[i]).push(i);
 		}
-		int[] res = new int[len];
-		for (int i = 0; i < len; i++) {
+		for(int i = 0; i < n; i++){
 			res[i] = map.get(A[i]).pop();
 		}
 		return res;

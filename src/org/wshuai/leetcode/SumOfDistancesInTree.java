@@ -1,63 +1,58 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Created by Wei on 12/18/2019.
- * #834 https://leetcode.com/problems/sum-of-distances-in-tree/
+ * #0834 https://leetcode.com/problems/sum-of-distances-in-tree/
  */
 public class SumOfDistancesInTree {
-	private int[] res;
-	private int[] subtreeNodes;
-	private List<Integer>[] adj;
-	private int N;
 
+	// time O(n), space O(n)
 	// https://leetcode.com/problems/sum-of-distances-in-tree/discuss/130567/Two-traversals-O(N)-python-solution-with-Explanation
 	public int[] sumOfDistancesInTree(int N, int[][] edges) {
-		this.N = N;
-		res = new int[N];
-		subtreeNodes = new int[N];
-
-		adj = new ArrayList[N];
+		int[] dist = new int[N], subtree = new int[N];
+		LinkedList<Integer>[] adj = new LinkedList[N];
 		for(int i = 0; i < N; i++){
-			adj[i] = new ArrayList<>();
+			adj[i] = new LinkedList<>();
 		}
 		for(int[] e : edges){
-			adj[e[0]].add(e[1]);
-			adj[e[1]].add(e[0]);
+			adj[e[0]].offerLast(e[1]);
+			adj[e[1]].offerLast(e[0]);
 		}
-		dfs(-1, 0);
-		distanceSum(0, 0);
-
-		return res;
+		dfs1(-1, 0, adj, dist, subtree);
+		dfs2(0, 0, N, adj, dist, subtree);
+		return dist;
 	}
 
-	private int[] dfs(int prev, int cur){
-		int num = 0;
-		int sum = 0;
-		for(int i : adj[cur]){
-			if(i == prev){
+	private int[] dfs1(int prev, int cur, LinkedList<Integer>[] adj, int[] dist, int[] subtree){
+		// sum denotes the sum of the subtree rooted at cur
+		// nodes denotes the count of nodes of the subtree rooted at cur
+		int sum = 0, nodes = 0;
+		for(int next : adj[cur]){
+			if(next == prev){
 				continue;
 			}
-			int[] countSum = dfs(cur, i);
-			sum += countSum[0] + countSum[1];
-			num += countSum[0];
+			int[] res = dfs1(cur, next, adj, dist, subtree);
+			// since each nodes from child to the current adds one edge to reach the current
+			sum += res[0] + res[1];
+			nodes += res[1];
 		}
-		subtreeNodes[cur] = num + 1;
-		res[cur] = sum;
-		return new int[]{subtreeNodes[cur], res[cur]};
+		dist[cur] = sum;
+		subtree[cur] = nodes + 1;
+		return new int[]{dist[cur], subtree[cur]};
 	}
 
-	private void distanceSum(int prev, int cur){
+	private void dfs2(int prev, int cur, int N, LinkedList<Integer>[] adj, int[] dist, int[] subtree){
+		// nodes at 0 already set
 		if(cur != 0){
-			res[cur] = res[prev] - 2 * subtreeNodes[cur] + N;
+			dist[cur] = dist[prev] + N - (subtree[cur] << 1);
 		}
-		for(int i : adj[cur]){
-			if(i == prev){
+		for(int next : adj[cur]){
+			if(next == prev){
 				continue;
 			}
-			distanceSum(cur, i);
+			dfs2(cur, next, N, adj, dist, subtree);
 		}
 	}
 }

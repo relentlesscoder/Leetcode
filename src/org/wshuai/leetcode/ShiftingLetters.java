@@ -1,22 +1,22 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/6/19.
- * #848 https://leetcode.com/problems/shifting-letters/
+ * Created by Wei on 11/06/2019.
+ * #0848 https://leetcode.com/problems/shifting-letters/
  */
 public class ShiftingLetters {
+
+	// time O(n), space O(n)
 	public String shiftingLetters(String S, int[] shifts) {
-		int N = shifts.length;
-		for(int i = N - 2; i >= 0; i--){
-			shifts[i] = (shifts[i] % 26 + shifts[i + 1]% 26) % 26;
+		int n = S.length(), sum = 0;
+		char[] res = new char[n];
+		// shift number at each index is the running sum
+		// staring from the end
+		for(int i = n - 1; i >= 0; i--){
+			char c = S.charAt(i);
+			sum = (sum + shifts[i] % 26) % 26;
+			res[i] = (char)('a' + (c - 'a' + sum) % 26);
 		}
-		StringBuilder sb = new StringBuilder();
-		char[] arr = S.toCharArray();
-		for(int i = 0; i < N; i++){
-			int x = arr[i] - 'a';
-			int f = (x + shifts[i]) % 26;
-			sb.append((char)(f + 'a'));
-		}
-		return sb.toString();
+		return new String(res);
 	}
 }

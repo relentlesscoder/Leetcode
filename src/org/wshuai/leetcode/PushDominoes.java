@@ -1,49 +1,60 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/6/2019.
- * #838 https://leetcode.com/problems/push-dominoes/
+ * Created by Wei on 11/06/2019.
+ * #0838 https://leetcode.com/problems/push-dominoes/
  */
 public class PushDominoes {
+	// time O(n)
 	public String pushDominoes(String dominoes) {
-		String d = 'L' + dominoes + 'R';
+		/*
+		4 cases:
+			L.....L -> LLLLLLL
+			R.....L -> RRR.LLL
+			R.....R -> RRRRRRR
+			L.....R -> L.....R
+		 */
+		dominoes = "L" + dominoes + "R";
 		StringBuilder res = new StringBuilder();
-		for (int i = 0, j = 1; j < d.length(); j++) {
-			if (d.charAt(j) == '.'){
+		int l = 0, r = -1;
+		for(int j = 1; j < dominoes.length(); j++){
+			char c = dominoes.charAt(j);
+			if(c == '.'){
 				continue;
 			}
-			// only rewrite the middle
-			int middle = j - i - 1;
-			// i > 0 exclude the prefix
-			if (i > 0){
-				// add the head of the current subarray
-				// the postfix will be excluded
-				res.append(d.charAt(i));
+			if(c == 'L'){
+				if(l > r){
+					for(int i = l + 1; i <= j; i++){
+						res.append("L");
+					}
+				}else{
+					int count = j - r + 1;
+					int rc = count / 2 - 1, lc = count / 2;
+					while(rc-- > 0){
+						res.append("R");
+					}
+					if(count % 2 != 0){
+						res.append(".");
+					}
+					while(lc-- > 0){
+						res.append("L");
+					}
+				}
+				l = j;
+			}else{
+				if(l < r){
+					for(int i = r + 1; i <= j; i++){
+						res.append("R");
+					}
+				}else{
+					for(int i = l + 1; i < j; i++){
+						res.append(".");
+					}
+					res.append("R");
+				}
+				r = j;
 			}
-			// L...L or R...R
-			if (d.charAt(i) == d.charAt(j)){
-				for (int k = 0; k < middle; k++){
-					res.append(d.charAt(i));
-				}
-			// L...R
-			}else if (d.charAt(i) == 'L' && d.charAt(j) == 'R'){
-				for (int k = 0; k < middle; k++){
-					res.append('.');
-				}
-			// R...L
-			}else {
-				for (int k = 0; k < middle / 2; k++){
-					res.append('R');
-				}
-				if (middle % 2 == 1) {
-					res.append('.');
-				}
-				for (int k = 0; k < middle / 2; k++){
-					res.append('L');
-				}
-			}
-			i = j;
 		}
-		return res.toString();
+		return res.substring(0, res.length() - 1);
 	}
 }

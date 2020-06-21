@@ -2,10 +2,11 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 12/25/2019.
- * #782 https://leetcode.com/problems/transform-to-chessboard/
+ * #0782 https://leetcode.com/problems/transform-to-chessboard/
  */
 public class TransformToChessboard {
-	//https://leetcode.com/problems/transform-to-chessboard/discuss/234984/C%2B%2B-solution-with-very-detailed-comments-especially-the-swap-counting-part
+	// time O(N^2)
+	// https://leetcode.com/problems/transform-to-chessboard/discuss/234984/C%2B%2B-solution-with-very-detailed-comments-especially-the-swap-counting-part
 	public int movesToChessboard(int[][] board) {
 		int N = board.length;
 		int rowCount = 0;

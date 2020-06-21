@@ -6,30 +6,29 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Wei on 8/6/19.
- * #811 https://leetcode.com/problems/subdomain-visit-count/
+ * Created by Wei on 08/06/2019.
+ * #0811 https://leetcode.com/problems/subdomain-visit-count/
  */
 public class SubdomainVisitCount {
+	// time O(n*d^2)
 	public List<String> subdomainVisits(String[] cpdomains) {
-		if (cpdomains == null || cpdomains.length == 0) {
-			return null;
-		}
-		List<String> res = new ArrayList<String>();
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		for (String str : cpdomains) {
-			String[] arr1 = str.split("\\s+");
-			int count = Integer.valueOf(arr1[0]);
-			String[] arr2 = arr1[1].split("\\.");
-			String cur = "";
-			int len = arr2.length;
-			for (int i = len - 1; i >= 0; i--) {
-				cur = arr2[i] + (i == len - 1 ? "" : ".") + cur;
-				map.put(cur, map.getOrDefault(cur, 0) + count);
+		Map<String, Integer> map = new HashMap<>();
+		for(String cp : cpdomains){
+			String[] strs = cp.split("\\s");
+			int count = Integer.parseInt(strs[0]);
+			String domain = strs[1], parent = "";
+			map.put(domain, map.getOrDefault(domain, 0) + count);
+			for(int i = 0; i < domain.length(); i++){
+				if(domain.charAt(i) == '.'){
+					parent = domain.substring(i + 1);
+					map.put(parent, map.getOrDefault(parent, 0) + count);
+				}
 			}
 		}
-		map.forEach((k, v) -> {
-			res.add("" + v + " " + k);
-		});
+		List<String> res = new ArrayList<>();
+		for(Map.Entry<String, Integer> entry : map.entrySet()){
+			res.add(entry.getValue() + " " + entry.getKey());
+		}
 		return res;
 	}
 }

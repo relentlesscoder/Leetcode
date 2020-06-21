@@ -1,14 +1,15 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/18/19.
- * #745 https://leetcode.com/problems/prefix-and-suffix-search/
+ * Created by Wei on 11/18/2019.
+ * #0745 https://leetcode.com/problems/prefix-and-suffix-search/
  */
 public class PrefixAndSuffixSearch {
-	private PrefixAndSuffixTrieNode root;
+
+	private TrieNode root;
 
 	public PrefixAndSuffixSearch(String[] words) {
-		root = new PrefixAndSuffixTrieNode();
+		root = new TrieNode();
 		for(int i = 0; i < words.length; i++){
 			String word = words[i];
 			insert("{" + word, i);
@@ -19,67 +20,66 @@ public class PrefixAndSuffixSearch {
 	}
 
 	public int f(String prefix, String suffix) {
-		PrefixAndSuffixTrieNode node = search(suffix + "{" + prefix);
+		TrieNode node = search(suffix + "{" + prefix);
 		return node == null ? -1 : node.getWeight();
 	}
 
 	private void insert(String word, int weight){
-		PrefixAndSuffixTrieNode curr = root;
-		root.setWeight(weight);
+		TrieNode node = root;
 		for(int i = 0; i < word.length(); i++){
 			char c = word.charAt(i);
-			if(!curr.containsKey(c)){
-				curr.put(c, new PrefixAndSuffixTrieNode());
+			if(!node.containsKey(c)){
+				node.put(c, new TrieNode());
 			}
-			curr = curr.get(c);
-			curr.setWeight(weight);
+			node = node.get(c);
+			node.setWeight(weight);
 		}
 	}
 
-	private PrefixAndSuffixTrieNode search(String word){
-		PrefixAndSuffixTrieNode curr = root;
+	private TrieNode search(String word){
+		TrieNode node = root;
 		for(int i = 0; i < word.length(); i++){
 			char c = word.charAt(i);
-			if(!curr.containsKey(c)){
+			if(!node.containsKey(c)){
 				return null;
 			}
-			curr = curr.get(c);
+			node = node.get(c);
 		}
-		return curr;
-	}
-}
-
-class PrefixAndSuffixTrieNode{
-
-	private final int R = 27;
-
-	private PrefixAndSuffixTrieNode[] links;
-
-	private int weight;
-
-	public PrefixAndSuffixTrieNode(){
-		links = new PrefixAndSuffixTrieNode[R];
-		weight = 0;
+		return node;
 	}
 
-	public boolean containsKey(char key){
-		return links[key - 'a'] != null;
-	}
+	private class TrieNode{
 
-	public PrefixAndSuffixTrieNode get(char key){
-		return links[key - 'a'];
-	}
+		private static final int R = 27;
 
-	public void put(char key, PrefixAndSuffixTrieNode node){
-		links[key - 'a'] = node;
-	}
+		private TrieNode[] links;
 
-	public void setWeight(int w){
-		weight = w;
-	}
+		private int weight;
 
-	public int getWeight(){
-		return weight;
+		public TrieNode(){
+			links = new TrieNode[R];
+		}
+
+		public boolean containsKey(char key){
+			return links[key - 'a'] != null;
+		}
+
+		public TrieNode get(char key){
+			return links[key - 'a'];
+		}
+
+		public void put(char key, TrieNode node){
+			links[key - 'a'] = node;
+		}
+
+		public int getWeight(){
+			return this.weight;
+		}
+
+		public void setWeight(int weight){
+			this.weight = weight;
+		}
+
 	}
 }
 

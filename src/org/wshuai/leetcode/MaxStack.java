@@ -3,49 +3,45 @@ package org.wshuai.leetcode;
 import java.util.Stack;
 
 /**
- * Created by Wei on 9/4/19.
- * #716 https://leetcode.com/problems/max-stack/
+ * Created by Wei on 09/04/2019.
+ * #0716 https://leetcode.com/problems/max-stack/
  */
 public class MaxStack {
-	Stack<Integer> stack;
-	Stack<Integer> maxStack;
+	private Stack<Integer> nums, maxs;
 
-	/**
-	 * initialize your data structure here.
-	 */
+	/** initialize your data structure here. */
 	public MaxStack() {
-		stack = new Stack<>();
-		maxStack = new Stack<>();
+		nums = new Stack<>();
+		maxs = new Stack<>();
 	}
 
 	public void push(int x) {
-		int max = maxStack.isEmpty() ? x : maxStack.peek();
-		maxStack.push(max > x ? max : x);
-		stack.push(x);
+		nums.push(x);
+		maxs.push(maxs.isEmpty() ? x : Math.max(maxs.peek(), x));
 	}
 
 	public int pop() {
-		maxStack.pop();
-		return stack.pop();
+		maxs.pop();
+		return nums.pop();
 	}
 
 	public int top() {
-		return stack.peek();
+		return nums.peek();
 	}
 
 	public int peekMax() {
-		return maxStack.peek();
+		return maxs.peek();
 	}
 
 	public int popMax() {
-		int max = peekMax();
-		Stack<Integer> buffer = new Stack<>();
-		while (top() != max) {
-			buffer.push(pop());
+		Stack<Integer> temp = new Stack<>();
+		int max = maxs.peek();
+		while(top() != max){
+			temp.push(pop());
 		}
 		pop();
-		while (!buffer.isEmpty()) {
-			push(buffer.pop());
+		while(!temp.isEmpty()){
+			push(temp.pop());
 		}
 		return max;
 	}

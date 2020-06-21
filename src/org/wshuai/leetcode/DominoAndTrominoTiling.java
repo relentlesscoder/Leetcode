@@ -2,9 +2,12 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 11/10/2019.
- * #790 https://leetcode.com/problems/domino-and-tromino-tiling/
+ * #0790 https://leetcode.com/problems/domino-and-tromino-tiling/
  */
 public class DominoAndTrominoTiling {
+
+	// time O(n), space O(n)
+	// https://leetcode.com/problems/domino-and-tromino-tiling/discuss/116581/Detail-and-explanation-of-O(n)-solution-why-dpn2*dn-1%2Bdpn-3
 	public int numTilings(int N) {
 		int MOD = 1_000_000_007;
 		int[] dp = new int[1_001];

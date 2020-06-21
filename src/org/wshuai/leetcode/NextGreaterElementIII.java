@@ -8,34 +8,27 @@ public class NextGreaterElementIII {
 	// time O(d)
 	// same as next permutation #0031
 	public int nextGreaterElement(int n) {
-		if (n < 10) {
-			return -1;
-		}
-		char[] digits = ("" + n).toCharArray();
-		int len = digits.length, left = len - 2;
-		while (left >= 0 && digits[left] >= digits[left + 1]) {
+		char[] nums = Integer.toString(n).toCharArray();
+		int len = nums.length, left = len - 2, right = len - 1;
+		while(left >= 0 && nums[left] >= nums[left + 1]){
 			left--;
 		}
-		if (left == -1) {
+		if(left == -1){
 			return -1;
 		}
-		char val = digits[left];
-		int right = len - 1;
-		while (right > left && digits[right] <= val) {
+		char val = nums[left];
+		while(right > left && nums[right] <= val){
 			right--;
 		}
-		digits[left] = digits[right];
-		digits[right] = val;
+		nums[left] = nums[right];
+		nums[right] = val;
 		int start = left + 1, end = len - 1;
-		while (start < end) {
-			char temp = digits[start];
-			digits[start++] = digits[end];
-			digits[end--] = temp;
+		while(start < end){
+			char temp = nums[start];
+			nums[start++] = nums[end];
+			nums[end--] = temp;
 		}
-		try {
-			return Integer.parseInt(new String(digits));
-		} catch (Exception ex) {
-			return -1;
-		}
+		long res = Long.parseLong(String.valueOf(nums));
+		return res > Integer.MAX_VALUE ? -1 : (int)res;
 	}
 }

@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/6/19.
- * #831 https://leetcode.com/problems/masking-personal-information/
+ * Created by Wei on 11/06/2019.
+ * #0831 https://leetcode.com/problems/masking-personal-information/
  */
 public class MaskingPersonalInformation {
 	public String maskPII(String S) {

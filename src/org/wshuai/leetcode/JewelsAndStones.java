@@ -1,23 +1,19 @@
 package org.wshuai.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
- * Created by Wei on 8/5/19.
- * #771 https://leetcode.com/problems/jewels-and-stones/
+ * Created by Wei on 08/05/2019.
+ * #0771 https://leetcode.com/problems/jewels-and-stones/
  */
 public class JewelsAndStones {
+	// time O(n)
 	public int numJewelsInStones(String J, String S) {
-		int res = 0;
-		Set<Character> types = new HashSet<Character>();
-		for (int i = 0; i < J.length(); i++) {
-			types.add(J.charAt(i));
+		boolean[] jewels = new boolean[128];
+		for(char j : J.toCharArray()){
+			jewels[j] = true;
 		}
-		for (int i = 0; i < S.length(); i++) {
-			if (types.contains(S.charAt(i))) {
-				res++;
-			}
+		int res = 0;
+		for(char s : S.toCharArray()){
+			res += jewels[s] ? 1 : 0;
 		}
 		return res;
 	}

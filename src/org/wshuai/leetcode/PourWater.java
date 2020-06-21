@@ -1,55 +1,28 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/20/19.
- * #755 https://leetcode.com/problems/pour-water/
+ * Created by Wei on 09/20/2019.
+ * #0755 https://leetcode.com/problems/pour-water/
  */
 public class PourWater {
-	private int[] heights;
-
+	// time O(n^2)
 	public int[] pourWater(int[] heights, int V, int K) {
-		this.heights = heights;
 		for (int i = 0; i < V; i++) {
-			int left;
-			int right;
-			if ((left = moveLeft(K)) != K) {
-				heights[left]++;
-			} else if ((right = moveRight(K)) != K) {
-				heights[right]++;
-			} else {
-				heights[K]++;
+			int cur = K;
+			// go left
+			while (cur > 0 && heights[cur] >= heights[cur - 1]) {
+				cur--;
 			}
+			// go right
+			while (cur < heights.length - 1 && heights[cur] >= heights[cur + 1]) {
+				cur++;
+			}
+			// stay
+			while (cur > K && heights[cur] >= heights[cur - 1]) {
+				cur--;
+			}
+			heights[cur]++;
 		}
 		return heights;
-	}
-
-	private int moveLeft(int k) {
-		int j = k - 1;
-		while (j >= 0) {
-			if (heights[j] < heights[k]) {
-				k = j;
-				j--;
-			} else if (heights[j] == heights[k]) {
-				j--;
-			} else {
-				return k;
-			}
-		}
-		return k;
-	}
-
-	private int moveRight(int k) {
-		int j = k + 1;
-		while (j < heights.length) {
-			if (heights[j] < heights[k]) {
-				k = j;
-				j++;
-			} else if (heights[j] == heights[k]) {
-				j++;
-			} else {
-				return k;
-			}
-		}
-		return k;
 	}
 }

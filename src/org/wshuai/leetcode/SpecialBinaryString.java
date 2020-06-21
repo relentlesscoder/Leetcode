@@ -6,9 +6,13 @@ import java.util.List;
 
 /**
  * Created by Wei on 12/16/2019.
- * #761 https://leetcode.com/problems/special-binary-string/
+ * #0761 https://leetcode.com/problems/special-binary-string/
  */
 public class SpecialBinaryString {
+	// time O(n^2)
+	// https://www.cnblogs.com/grandyang/p/8606024.html
+	// https://leetcode.com/problems/special-binary-string/discuss/155621/Logical-Thinking-with-Clear-Code
+	// https://leetcode.com/problems/special-binary-string/discuss/113211/JavaC%2B%2BPython-Easy-and-Concise-Recursion
 	public String makeLargestSpecial(String S) {
 		int count = 0;
 		int i = 0;
