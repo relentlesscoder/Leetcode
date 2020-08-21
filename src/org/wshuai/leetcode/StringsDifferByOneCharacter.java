@@ -3,6 +3,10 @@ package org.wshuai.leetcode;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Created by Wei on 08/20/2020.
+ * #1554 https://leetcode.com/problems/strings-differ-by-one-character/
+ */
 public class StringsDifferByOneCharacter {
 
 	// time O(n*m), space O(n*m)
