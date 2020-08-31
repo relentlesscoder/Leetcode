@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 08/30/2020.
+ * Created by Wei on 08/31/2020.
  * #1558 https://leetcode.com/problems/minimum-numbers-of-function-calls-to-make-target-array/
  */
 public class MinimumNumbersOfFunctionCallsToMakeTargetArray {
