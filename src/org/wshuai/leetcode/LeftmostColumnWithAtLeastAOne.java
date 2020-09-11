@@ -10,24 +10,29 @@ public class LeftmostColumnWithAtLeastAOne {
 
     // time O(m*log(n))
     public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
-        List<Integer> dim = binaryMatrix.dimensions();
-        int res = Integer.MAX_VALUE, m = dim.get(0), n = dim.get(1);
-        for (int i = 0; i < m; i++) {
-            int low = 0, high = n - 1;
-            while (low < high) {
-                int mid = low + (high - low) / 2, val = binaryMatrix.get(i, mid);
-                if (val == 0) {
-                    low = mid + 1;
-                } else {
-                    high = mid;
-                }
-            }
-            if (binaryMatrix.get(i, low) == 1) {
-                res = Math.min(res, low);
-            }
-        }
-        return res == Integer.MAX_VALUE ? -1 : res;
+	    List<Integer> dimension = binaryMatrix.dimensions();
+	    int m = dimension.get(0), n = dimension.get(1), res = n;
+	    for(int i = 0; i < m; i++){
+		    if(binaryMatrix.get(i, n - 1) == 0){
+			    continue;
+		    }
+		    res = Math.min(res, findLeftBound(binaryMatrix, i, n));
+	    }
+	    return res == n ? -1 : res;
     }
+
+	private int findLeftBound(BinaryMatrix binaryMatrix, int m, int n){
+		int left = 0, right = n;
+		while(left < right){
+			int mid = left + (right - left) / 2;
+			if(binaryMatrix.get(m, mid) == 0){
+				left = mid + 1;
+			}else{
+				right = mid;
+			}
+		}
+		return left;
+	}
 
     // This is the BinaryMatrix's API interface.
     // You should not implement it, or speculate about its implementation
