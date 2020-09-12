@@ -7,61 +7,63 @@ import java.util.*;
  * #0269 https://leetcode.com/problems/alien-dictionary/
  */
 public class AlienDictionary {
+
 	// time O(V + E)
 	// graph topological sort
 	public String alienOrder(String[] words) {
 		if(words == null || words.length == 0){
 			return "";
 		}
-		if(words.length == 1){
-			return words[0];
-		}
+		StringBuilder res = new StringBuilder();
 		Map<Character, Set<Character>> adj = new HashMap<>();
-		Map<Character, Integer> indegree = new HashMap<>();
-		for(int i = 0; i < words.length - 1; i++){
-			char[] s = words[i].toCharArray(), t = words[i + 1].toCharArray();
-			int j = 0, k = 0;
-			boolean set = false;
-			while(j < s.length || k < t.length){
-				if(j < s.length && k < t.length){
-					adj.putIfAbsent(s[j], new HashSet<>());
-					adj.putIfAbsent(t[k], new HashSet<>());
-					if(s[j] != t[k] && !set){
-						if(!adj.get(s[j]).contains(t[k])){
-							adj.get(s[j]).add(t[k]);
-							indegree.put(t[k], indegree.getOrDefault(t[k], 0) + 1);
-						}
-						set = true;
-					}
-				}else if(j < s.length){
-					adj.putIfAbsent(s[j], new HashSet<>());
-				}else{
-					adj.putIfAbsent(t[k], new HashSet<>());
-				}
-				j++;
-				k++;
+		Map<Character, Integer> degree = new HashMap<>();
+		for(String s: words){
+			for(char c: s.toCharArray()){
+				degree.put(c,0);
 			}
 		}
-		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < words.length - 1; i++){
+			String w1 = words[i], w2 = words[i + 1];
+			// prefix should go first
+			if(w1.length() > w2.length() && w1.startsWith(w2)){
+				return "";
+			}
+			for(int j = 0, k = 0; j < w1.length() && k < w2.length(); j++, k++){
+				char c1 = w1.charAt(j), c2 = w2.charAt(k);
+				if(c1 != c2){
+					adj.putIfAbsent(c1, new HashSet<>());
+					// avoid double counting
+					if(!adj.get(c1).contains(c2)){
+						adj.get(c1).add(c2);
+						degree.put(c2, degree.getOrDefault(c2, 0) + 1);
+					}
+					break;
+				}
+			}
+		}
 		LinkedList<Character> queue = new LinkedList<>();
-		for(char c : adj.keySet()){
-			if(indegree.getOrDefault(c, 0) == 0){
-				queue.offerLast(c);
+		for(Map.Entry<Character, Integer> entry : degree.entrySet()){
+			if(entry.getValue() == 0){
+				queue.offerLast(entry.getKey());
 			}
 		}
 		while(!queue.isEmpty()){
 			char cur = queue.pollFirst();
-			sb.append(cur);
-			for(char next : adj.get(cur)){
-				int d = indegree.getOrDefault(next, 0) - 1;
-				if(d == 0){
-					queue.offer(next);
-					indegree.remove(next);
-				}else{
-					indegree.put(next, d);
+			res.append(cur);
+			if(!adj.containsKey(cur)){
+				continue;
+			}
+			for(Character next : adj.get(cur)){
+				degree.put(next, degree.get(next) - 1);
+				if(degree.get(next) == 0){
+					queue.offerLast(next);
 				}
 			}
 		}
-		return indegree.size() == 0 ? sb.toString() : "";
+		// detect loop
+		if(res.length() != degree.size()){
+			return "";
+		}
+		return res.toString();
 	}
 }

@@ -5,21 +5,17 @@ package org.wshuai.leetcode;
  * #0067 https://leetcode.com/problems/add-binary/
  */
 public class AddBinary {
-	// O(Math.max(a, b))
+
+	// time O(n)
 	public String addBinary(String a, String b) {
-		char[] A = new StringBuilder(a).reverse().toString().toCharArray();
-		char[] B = new StringBuilder(b).reverse().toString().toCharArray();
-		int carry = 0, i = 0, j = 0;
-		StringBuilder sb = new StringBuilder();
-		while(i < A.length || j < B.length || carry > 0){
-			int v1 = i >= A.length || A[i] == '0' ? 0 : 1;
-			int v2 = j >= B.length || B[j] == '0' ? 0 : 1;
-			int sum = v1 + v2 + carry;
-			sb.append(sum % 2);
-			carry = sum / 2;
-			i++;
-			j++;
+		StringBuilder res = new StringBuilder();
+		for(int i = a.length() - 1, j = b.length() - 1, k = 0; i >= 0 || j >= 0 || k > 0; i--, j--){
+			int x = i >= 0 ? a.charAt(i) - '0' : 0;
+			int y = j >= 0 ? b.charAt(j) - '0' : 0;
+			int s = (x + y + k);
+			res.append((char)(s % 2 + '0'));
+			k = s >= 2 ? 1 : 0;
 		}
-		return sb.reverse().toString();
+		return res.reverse().toString();
 	}
 }
