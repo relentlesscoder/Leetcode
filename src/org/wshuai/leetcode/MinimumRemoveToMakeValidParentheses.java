@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -9,33 +7,34 @@ import java.util.Stack;
  * #1249 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
  */
 public class MinimumRemoveToMakeValidParentheses {
+
+	// time O(n), space O(n)
 	public String minRemoveToMakeValid(String s) {
-		Set<Integer> lst = new HashSet<>();
+		int n = s.length();
+		StringBuilder res = new StringBuilder();
 		Stack<Integer> stack = new Stack<>();
-		int i = 0;
-		while(i < s.length()){
-			if(s.charAt(i) == '('){
+		boolean[] delete = new boolean[n];
+		for(int i = 0; i < n; i++){
+			char c = s.charAt(i);
+			if(c == '('){
 				stack.push(i);
-			}else if(s.charAt(i) == ')'){
+			}else if(c == ')'){
 				if(stack.isEmpty()){
-					lst.add(i);
+					delete[i] = true;
 				}else{
 					stack.pop();
 				}
 			}
-			i++;
 		}
 		while(!stack.isEmpty()){
-			lst.add(stack.pop());
+			delete[stack.pop()] = true;
 		}
-		StringBuilder sb = new StringBuilder();
-		i = 0;
-		while(i < s.length()){
-			if(!lst.contains(i)){
-				sb.append(s.charAt(i));
+		for(int i = 0; i < n; i++){
+			if(delete[i]){
+				continue;
 			}
-			i++;
+			res.append(s.charAt(i));
 		}
-		return sb.toString();
+		return res.toString();
 	}
 }
