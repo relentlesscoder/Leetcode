@@ -4,87 +4,82 @@ package org.wshuai.leetcode;
  * Created by Wei on 11/05/2016.
  * #0211 https://leetcode.com/problems/add-and-search-word-data-structure-design/
  */
-public class AddAndSearchWordDataStructureDesign {
+public class DesignAddAndSearchWordsDataStructure {
+
 	private TrieNode root;
 
 	/** Initialize your data structure here. */
-	public AddAndSearchWordDataStructureDesign() {
+	public DesignAddAndSearchWordsDataStructure() {
 		root = new TrieNode();
 	}
 
 	/** Adds a word into the data structure. */
 	public void addWord(String word) {
-		if(word == null || word.length() == 0){
-			return;
-		}
-		TrieNode cur = root;
+		TrieNode node = root;
 		for(int i = 0; i < word.length(); i++){
 			char c = word.charAt(i);
-			if(!cur.containsKey(c)){
-				cur.put(c, new TrieNode());
+			if(!node.containsKey(c)){
+				node.put(c, new TrieNode());
 			}
-			cur = cur.get(c);
+			node = node.get(c);
 		}
-		cur.setEnd();
+		node.setEnd();
 	}
 
 	/** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
 	public boolean search(String word) {
-		if(word == null || word.length() == 0){
-			return false;
-		}
-		TrieNode cur = root;
-		return dfs(0, word, cur);
+		return dfs(root, word, 0);
 	}
 
-	private boolean dfs(int i, String word, TrieNode cur){
+	private boolean dfs(TrieNode node, String word, int i){
 		if(i == word.length()){
-			return cur != null && cur.isEnd();
+			return node != null && node.isEnd();
 		}
-		char c = word.charAt(i);
-		if(c != '.' && !cur.containsKey(c)){
+		if(node == null){
 			return false;
 		}
-		if(c != '.'){
-			return dfs(i + 1, word, cur.get(c));
-		}
-		for(char j = 'a'; j <= 'z'; j++){
-			if(!cur.containsKey(j)){
-				continue;
-			}
-			if(dfs(i + 1, word, cur.get(j))){
-				return true;
+		char k = word.charAt(i);
+		if(k != '.'){
+			return dfs(node.get(k), word, i + 1);
+		}else{
+			for(char c = 'a'; c <= 'z'; c++){
+				if(dfs(node.get(c), word, i + 1)){
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 
 	private class TrieNode{
+
 		private static final int R = 26;
+
 		private TrieNode[] links;
+
 		private boolean isEnd;
 
-		public TrieNode(){
+		private TrieNode(){
 			links = new TrieNode[R];
 		}
 
-		public boolean containsKey(char key){
+		private boolean containsKey(char key){
 			return links[key - 'a'] != null;
 		}
 
-		public TrieNode get(char key){
+		private TrieNode get(char key){
 			return links[key - 'a'];
 		}
 
-		public void put(char key, TrieNode node){
+		private void put(char key, TrieNode node){
 			links[key - 'a'] = node;
 		}
 
-		public boolean isEnd(){
+		private boolean isEnd(){
 			return isEnd;
 		}
 
-		public void setEnd(){
+		private void setEnd(){
 			isEnd = true;
 		}
 	}
