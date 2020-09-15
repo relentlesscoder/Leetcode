@@ -5,30 +5,37 @@ package org.wshuai.leetcode;
  * #0125 https://leetcode.com/problems/valid-palindrome/
  */
 public class ValidPalindrome {
+
 	// time O(n)
 	public boolean isPalindrome(String s) {
-		int n = s.length(), i = 0, j = n - 1;
-		if(n == 0){
+		if(s == null || s.isEmpty()){
 			return true;
 		}
-		char[] arr = s.toLowerCase().toCharArray();
-		while(i < j){
-			char l = arr[i], r = arr[j];
-			if(!isAlphaNumeric(l)){
-				i++;
-			}else if(!isAlphaNumeric(r)){
-				j--;
-			}else if(l != r){
+		int n = s.length();
+		for(int left = 0, right = n - 1; left <= right; left++, right--){
+			while(left < n && getCharacter(s.charAt(left)) == '#'){
+				left++;
+			}
+			while(right >= 0 && getCharacter(s.charAt(right)) == '#'){
+				right--;
+			}
+			if(left <= right && getCharacter(s.charAt(left)) != getCharacter(s.charAt(right))){
 				return false;
-			}else{
-				i++;
-				j--;
 			}
 		}
 		return true;
 	}
 
-	private boolean isAlphaNumeric(char c){
-		return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'z');
+	private char getCharacter(char c){
+		if(c >= 'a' && c <= 'z'){
+			return c;
+		}
+		if(c >= 'A' && c <= 'Z'){
+			return (char)('a' + (c - 'A'));
+		}
+		if(c >= '0' && c <= '9'){
+			return c;
+		}
+		return '#';
 	}
 }

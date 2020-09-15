@@ -25,6 +25,8 @@ public class RandomPickWithWeight {
 
 	// time O(log(n))
 	public int pickIndex() {
+		// for [5, 2, 3, 1, 4], the map is
+		// 1 -> 5, 6 -> 7, 8 -> 8, 9 -> 11, 12 -> 15
 		int idx = random.nextInt(sum) + 1;
 		int key = treeMap.ceilingKey(idx);
 		return treeMap.get(key);
