@@ -18,13 +18,14 @@ public class StringCompressionII {
 		for(int i = 1; i <= n; i++){
 			for(int j = 0; j <= k; j++){
 				if(j > 0){
-					dp[i][j] = dp[i - 1][j - 1]; // simply remove s(i - 1)
+					dp[i][j] = dp[i - 1][j - 1]; // remove s[i - 1]
 				}
+				// keep s[n - 1]
 				int removed = 0, count = 0;
 				for(int p = i; p > 0; p--){
-					if(s.charAt(p - 1) == s.charAt(i - 1)){ // the s(p - 1) is same as s(i - 1)
+					if(s.charAt(p - 1) == s.charAt(i - 1)){ // if s[p - 1] is same as s[i - 1]
 						count++;
-					}else if(++removed > j){ // otherwise removed it to make the current chain longer
+					}else if(++removed > j){ // otherwise remove it to keep the current chain
 						break;
 					}
 					dp[i][j] = Math.min(dp[i][j], dp[p - 1][j - removed]
