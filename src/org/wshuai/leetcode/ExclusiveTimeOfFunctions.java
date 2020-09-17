@@ -8,6 +8,7 @@ import java.util.Stack;
  * #0636 https://leetcode.com/problems/exclusive-time-of-functions/
  */
 public class ExclusiveTimeOfFunctions {
+
 	// time O(n), space O(n)
 	public int[] exclusiveTime(int n, List<String> logs) {
 		int[] res = new int[n];
