@@ -1,39 +1,27 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/5/19.
+ * Created by Wei on 09/05/2019.
  * #1026 https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/
  */
 public class MaximumDifferenceBetweenNodeAndAncestor {
-	private int maxDiff;
-	private int max;
-	private int min;
 
+	private int res;
+
+	// time O(n)
 	public int maxAncestorDiff(TreeNode root) {
-		maxDiff = 0;
-		max = root.val;
-		min = root.val;
-		maxAncestorDiffUtil(root);
-		return maxDiff;
+		res = 0;
+		dfs(root.left, root.val, root.val);
+		dfs(root.right, root.val, root.val);
+		return res;
 	}
 
-	private void maxAncestorDiffUtil(TreeNode node) {
-		if (node == null) {
+	private void dfs(TreeNode cur, int min, int max){
+		if(cur == null){
 			return;
 		}
-		// max diff can be the diff between max/min and current node
-		int curr1 = Math.abs(max - node.val);
-		int curr2 = Math.abs(node.val - min);
-		int curr = Math.max(curr1, curr2);
-		maxDiff = Math.max(curr, maxDiff);
-		int temp1 = max;
-		int temp2 = min;
-		max = Math.max(max, node.val);
-		min = Math.min(min, node.val);
-		maxAncestorDiffUtil(node.left);
-		maxAncestorDiffUtil(node.right);
-		//reset max/min after the current node
-		max = temp1;
-		min = temp2;
+		res = Math.max(res, Math.max(Math.abs(cur.val - min), Math.abs(cur.val - max)));
+		dfs(cur.left, Math.min(min, cur.val), Math.max(max, cur.val));
+		dfs(cur.right, Math.min(min, cur.val), Math.max(max, cur.val));
 	}
 }
