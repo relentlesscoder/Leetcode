@@ -7,14 +7,15 @@ import java.util.*;
  * #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
  */
 public class BinaryTreeVerticalOrderTraversal {
+
 	// time O(n)
 	public List<List<Integer>> verticalOrder(TreeNode root) {
 		List<List<Integer>> res = new ArrayList<>();
 		if(root == null){
 			return res;
 		}
-		int[] range = new int[2];
-		getColumnRange(root, range, 0);
+		int[] range = new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE};
+		columnRange(root, range, 0);
 		for(int i = range[0]; i <= range[1]; i++){
 			res.add(new ArrayList<>());
 		}
@@ -23,29 +24,28 @@ public class BinaryTreeVerticalOrderTraversal {
 		nodes.offerLast(root);
 		columns.offerLast(-range[0]);
 		while(!nodes.isEmpty()){
-			TreeNode cur = nodes.pollFirst();
+			TreeNode node = nodes.pollFirst();
 			int col = columns.pollFirst();
-			res.get(col).add(cur.val);
-			if(cur.left != null){
-				nodes.offerLast(cur.left);
+			res.get(col).add(node.val);
+			if(node.left != null){
+				nodes.offerLast(node.left);
 				columns.offerLast(col - 1);
 			}
-			if(cur.right != null){
-				nodes.offerLast(cur.right);
+			if(node.right != null){
+				nodes.offerLast(node.right);
 				columns.offerLast(col + 1);
 			}
 		}
 		return res;
 	}
 
-	private void getColumnRange(TreeNode root, int[] range, int cur){
+	private void columnRange(TreeNode root, int[] range, int cur){
 		if(root == null){
 			return;
 		}
-		range[0] = Math.min(cur, range[0]);
-		range[1] = Math.max(cur, range[1]);
-
-		getColumnRange(root.left, range, cur - 1);
-		getColumnRange(root.right, range, cur + 1);
+		range[0] = Math.min(range[0], cur);
+		range[1] = Math.max(range[1], cur);
+		columnRange(root.left, range, cur - 1);
+		columnRange(root.right, range, cur + 1);
 	}
 }
