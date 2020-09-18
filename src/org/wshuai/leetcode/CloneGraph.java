@@ -7,6 +7,7 @@ import java.util.*;
  * #0133 https://leetcode.com/problems/clone-graph/
  */
 public class CloneGraph {
+
 	// time O(n)
 	public UndirectedGraphNode cloneGraphDFS(UndirectedGraphNode node) {
 		if(node == null){
@@ -22,11 +23,9 @@ public class CloneGraph {
 		for(UndirectedGraphNode next : node.neighbors){
 			if(mapping.containsKey(next)){
 				mapping.get(node).neighbors.add(mapping.get(next));
-				continue;
 			}else{
-				UndirectedGraphNode copy = new UndirectedGraphNode(next.val);
-				mapping.put(next, copy);
-				mapping.get(node).neighbors.add(copy);
+				mapping.put(next, new UndirectedGraphNode(next.val));
+				mapping.get(node).neighbors.add(mapping.get(next));
 				dfs(next, mapping);
 			}
 		}

@@ -8,31 +8,30 @@ import java.util.*;
  */
 public class TaskScheduler {
 
-	public int leastIntervalSorting(char[] tasks, int n) {
+	// time O(d*n), d = tasks.length
+	public int leastInterval(char[] tasks, int n) {
+		int res = 0;
 		int[] count = new int[26];
-		for (char c : tasks) {
+		for(char c : tasks){
 			count[c - 'A']++;
 		}
 		Arrays.sort(count);
-		int time = 0;
-		while (count[25] > 0) {
-			int i = 0;
-			while (i <= n) {
-				// tricky - if the max count of character is 1 then
-				// just write the character one by one, otherwise
-				// write n + 1 characters each time
-				if (count[25] == 0) {
+		while(count[25] > 0){
+			// one cpu cycle
+			for(int i = 0; i <= n; i++){
+				// end immediately when all tasks are done
+				if(count[25] == 0){
 					break;
 				}
-				if (i < 26 && count[25 - i] > 0) {
+				// add any pending tasks
+				if(i < 26 && count[25 - i] > 0){
 					count[25 - i]--;
 				}
-				time++;
-				i++;
+				res++;
 			}
 			Arrays.sort(count);
 		}
-		return time;
+		return res;
 	}
 
 	public int leastIntervalPriorityQueue(char[] tasks, int n) {
