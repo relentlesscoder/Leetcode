@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Wei on 9/27/19.
- * #974 https://leetcode.com/problems/subarray-sums-divisible-by-k/
+ * Created by Wei on 09/27/2019.
+ * #0974 https://leetcode.com/problems/subarray-sums-divisible-by-k/
  */
 public class SubarraySumsDivisibleByK {
 
