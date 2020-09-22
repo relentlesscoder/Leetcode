@@ -19,7 +19,8 @@ public class CloneGraph {
 		return mapping.get(node);
 	}
 
-	private void dfs(UndirectedGraphNode node, Map<UndirectedGraphNode, UndirectedGraphNode> mapping){
+	private void dfs(UndirectedGraphNode node,
+	                 Map<UndirectedGraphNode, UndirectedGraphNode> mapping){
 		for(UndirectedGraphNode next : node.neighbors){
 			if(mapping.containsKey(next)){
 				mapping.get(node).neighbors.add(mapping.get(next));

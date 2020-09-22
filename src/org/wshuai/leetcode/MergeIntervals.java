@@ -7,23 +7,18 @@ import java.util.*;
  * #0056 https://leetcode.com/problems/merge-intervals/
  */
 public class MergeIntervals {
-	// time O(n)
+
+	// time O(n*log(n))
 	public int[][] merge(int[][] intervals) {
-		int n = intervals.length;
-		if(n <= 1){
-			return intervals;
-		}
-		Arrays.sort(intervals, (a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);
 		List<int[]> res = new ArrayList<>();
-		for(int i = 0; i < n; i++){
-			int[] cur = intervals[i];
-			if(res.size() == 0 || cur[0] > res.get(res.size() - 1)[1]){
-				res.add(cur);
+		Arrays.sort(intervals, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+		for(int[] in : intervals){
+			if(res.size() == 0 || res.get(res.size() - 1)[1] < in[0]){
+				res.add(in);
 			}else{
-				int[] prev = res.get(res.size() - 1);
-				prev[1] = Math.max(prev[1], cur[1]);
+				res.get(res.size() - 1)[1] = Math.max(res.get(res.size() - 1)[1], in[1]);
 			}
 		}
-		return res.toArray(new int[res.size()][]);
+		return res.toArray(new int[res.size()][2]);
 	}
 }
