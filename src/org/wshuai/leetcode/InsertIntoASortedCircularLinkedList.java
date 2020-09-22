@@ -5,8 +5,39 @@ package org.wshuai.leetcode;
  * #0708 https://leetcode.com/problems/insert-into-a-cyclic-sorted-list/
  */
 public class InsertIntoASortedCircularLinkedList {
+
 	// time O(n)
 	public LinkedListNode insert(LinkedListNode head, int insertVal) {
+		LinkedListNode insertNode = new LinkedListNode(insertVal);
+		if(head == null){
+			insertNode.next = insertNode;
+			return insertNode;
+		}
+		LinkedListNode cur = head, prev = null;
+		// find the last (max) node
+		while(cur.next != head && cur.val <= cur.next.val){
+			cur = cur.next;
+		}
+		// if value is larger than the max node, add it to tail
+		if(insertVal >= cur.val){
+			insertNode.next = cur.next;
+			cur.next = insertNode;
+			return head;
+		}
+		// find the insertion point
+		prev = cur;
+		cur = cur.next;
+		while(cur.val <= cur.next.val && insertVal > cur.val){
+			prev = cur;
+			cur = cur.next;
+		}
+		insertNode.next = cur;
+		prev.next = insertNode;
+		return head;
+	}
+
+	// time O(n)
+	public LinkedListNode insertMinMax(LinkedListNode head, int insertVal) {
 		if(head == null){
 			LinkedListNode root = new LinkedListNode(insertVal);
 			root.next = root;

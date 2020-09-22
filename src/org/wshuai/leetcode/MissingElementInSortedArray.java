@@ -1,10 +1,12 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/2/2019.
+ * Created by Wei on 10/02/2019.
  * #1060 https://leetcode.com/problems/missing-element-in-sorted-array/
  */
 public class MissingElementInSortedArray {
+
+	// time log(n)
 	public int missingElement(int[] nums, int k) {
 		int left = 0;
 		int right = nums.length - 1;

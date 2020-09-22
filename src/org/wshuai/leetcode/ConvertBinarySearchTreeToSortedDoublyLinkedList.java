@@ -8,53 +8,80 @@ import java.util.Stack;
  */
 public class ConvertBinarySearchTreeToSortedDoublyLinkedList {
 
-	private TreeNode prev = null;
-
 	// time O(n)
-	public TreeNode treeToDoublyList(TreeNode root) {
+	public Node treeToDoublyListDivideAndConquer(Node root) {
 		if(root == null){
 			return null;
 		}
-		TreeNode dummy = new TreeNode(0);
-		prev = dummy;
-		dfs(root);
-		prev.right = dummy.right;
-		dummy.right.left = prev;
-		return dummy.right;
+		Node left = treeToDoublyListDivideAndConquer(root.left);
+		Node right = treeToDoublyListDivideAndConquer(root.right);
+		root.left = root;
+		root.right = root;
+		return connect(connect(left, root), right);
 	}
 
-	private void dfs(TreeNode cur){
-		if(cur == null){
-			return;
+	private Node connect(Node n1, Node n2){
+		if(n1 == null){
+			return n2;
 		}
-		dfs(cur.left);
-		prev.right = cur;
-		cur.left = prev;
-		prev = cur;
-		dfs(cur.right);
+		if(n2 == null){
+			return n1;
+		}
+		Node tail1 = n1.left, tail2 = n2.left;
+		tail1.right = n2;
+		n2.left = tail1;
+		tail2.right = n1;
+		n1.left = tail2;
+
+		return n1;
 	}
 
 	// time O(n), space O(n)
-	public TreeNode treeToDoublyListStack(TreeNode root) {
-		if(root == null){
-			return null;
-		}
-		Stack<TreeNode> stack = new Stack<>();
-		TreeNode cur = root, dummy = new TreeNode(0), prev = dummy;
-		while(!stack.isEmpty() || cur != null){
-			if(cur != null){
-				stack.push(cur);
-				cur = cur.left;
-			}else{
-				TreeNode parent = stack.pop();
-				prev.right = parent;
-				parent.left = prev;
-				prev = parent;
-				cur = parent.right;
-			}
-		}
-		dummy.right.left = prev;
-		prev.right = dummy.right;
-		return dummy.right;
-	}
+    public Node treeToDoublyList(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Stack<Node> stack = new Stack<>();
+        Node cur = root, prev = null, head = root;
+        while (cur != null || !stack.isEmpty()) {
+            if (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                Node pred = stack.pop();
+                if (pred.val < head.val) {
+                    head = pred;
+                }
+                cur = pred.right;
+                if (prev != null) {
+                    prev.right = pred;
+                    pred.left = prev;
+                }
+                prev = pred;
+            }
+        }
+        head.left = prev;
+        prev.right = head;
+        return head;
+    }
+
+    // Definition for a Node.
+    private class Node {
+        public int val;
+        public Node left;
+        public Node right;
+
+        public Node() {
+        }
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, Node _left, Node _right) {
+            val = _val;
+            left = _left;
+            right = _right;
+        }
+    }
 }
