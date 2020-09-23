@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0395 https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
  */
 public class LongestSubstringWithAtLeastKRepeatingCharacters {
+
 	// time O(n)
 	public int longestSubstring(String s, int k) {
 		int d = 0;

@@ -7,22 +7,19 @@ import java.util.Arrays;
  * #0003 https://leetcode.com/problems/longest-substring-without-repeating-characters/
  */
 public class LongestSubstringWithoutRepeatingCharacters {
+
 	// time O(n)
-	public static int lengthOfLongestSubstring(String s) {
+	public int lengthOfLongestSubstring(String s) {
 		int res = 0;
-		int[] lastIndex = new int[128];
-		Arrays.fill(lastIndex, -1);
-		int i = 0, j = 0;
-		for(; i < s.length(); i++){
-			char c = s.charAt(i);
-			// the last occurrence needs to be grater than
-			// current starting index j
-			if(lastIndex[c] >= j){
-				res = Math.max(res, i - j);
-				j = lastIndex[c] + 1;
+		int[] index = new int[256];
+		Arrays.fill(index, -1);
+		for(int i = 0, j = 0; j < s.length(); j++){
+			if(index[s.charAt(j)] >= i){
+				i = ++index[s.charAt(j)];
 			}
-			lastIndex[c] = i;
+			res = Math.max(res, j - i + 1);
+			index[s.charAt(j)] = j;
 		}
-		return Math.max(res, i - j);
+		return res;
 	}
 }

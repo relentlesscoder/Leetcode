@@ -5,34 +5,23 @@ package org.wshuai.leetcode;
  * #0159 https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/
  */
 public class LongestSubstringWithAtMostTwoDistinctCharacters {
-	// time O(n), space O(1)
+
+	// time O(n)
 	public int lengthOfLongestSubstringTwoDistinct(String s) {
-		if(s == null || s.length() == 0){
-			return 0;
-		}
-		char[] arr = s.toCharArray();
-		int res = 0, i = 0, j = 0, c1 = -1, c2 = -1, i1 = -1, i2 = -1;
-		for(; i < arr.length; i++){
-			int cur = (int)arr[i];
-			if(c1 != -1 && c2 != -1 && cur != c1 && cur != c2){
-				res = Math.max(res, i - j);
-				if(i1 < i2){
-					j = i1 + 1;
-					c1 = cur;
-				}else{
-					j = i2 + 1;
-					c2 = cur;
+		int res = 0;
+		int[] count = new int[256];
+		for(int i = 0, j = 0, n = 0; j < s.length(); j++){
+			if(count[s.charAt(j)]++ == 0){
+				n++;
+			}
+			if(n == 3){
+				while(--count[s.charAt(i++)] > 0){
+
 				}
+				n--;
 			}
-			if(c1 == -1 || c1 == cur){
-				c1 = cur;
-				i1 = i;
-			}else{
-				c2 = cur;
-				i2 = i;
-			}
+			res = Math.max(res, j - i + 1);
 		}
-		res = Math.max(res, i - j);
 		return res;
 	}
 }
