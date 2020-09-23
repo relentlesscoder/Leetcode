@@ -7,6 +7,7 @@ import java.util.Stack;
  * #0042 https://leetcode.com/problems/trapping-rain-water/
  */
 public class TrappingRainWater {
+
 	// time O(n), space O(1), two pointers
 	public int trap(int[] height) {
 		int res = 0, left = 0, right = height.length - 1, leftMax = 0, rightMax = 0;

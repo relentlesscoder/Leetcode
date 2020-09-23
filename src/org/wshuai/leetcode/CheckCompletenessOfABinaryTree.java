@@ -4,10 +4,11 @@ import java.util.LinkedList;
 
 /**
  * Created by Wei on 10/11/2019.
- * #958 https://leetcode.com/problems/check-completeness-of-a-binary-tree/
+ * #0958 https://leetcode.com/problems/check-completeness-of-a-binary-tree/
  */
 public class CheckCompletenessOfABinaryTree {
 
+	// time O(n), space O(n)
 	public boolean isCompleteTree(TreeNode root) {
 		boolean end = false;
 		LinkedList<TreeNode> queue = new LinkedList<>();
@@ -28,6 +29,7 @@ public class CheckCompletenessOfABinaryTree {
 		return true;
 	}
 
+	// time O(n), space O(n)
 	public boolean isCompleteTreeAlternative(TreeNode root) {
 		LinkedList<TreeNode> bfs = new LinkedList<>();
 		bfs.offerLast(root);

@@ -5,21 +5,31 @@ package org.wshuai.leetcode;
  * #0050 https://leetcode.com/problems/powx-n/
  */
 public class PowXN {
+
 	// time log(n)
 	public double myPow(double x, int n) {
-		double res = getPow(x, Math.abs(n));
+		if (x == -1) {
+			return n % 2 == 0 ? 1 : -1;
+		}
+		if(x == 1){
+			return 1;
+		}
+		if (n == Integer.MIN_VALUE){
+			return 0;
+		}
+		double res = dfs(x, Math.abs(n));
 		return n < 0 ? 1 / res : res;
 	}
 
-	private double getPow(double x, int n){
-		if(n == 0){
-			return 1.0;
-		}
+	private double dfs(double x, int n){
 		if(n == 1){
 			return x;
 		}
-		double pow = getPow(x, n / 2);
-		double prod = pow * pow;
+		if(n == 0){
+			return 1;
+		}
+		double y = myPow(x, n/2);
+		double prod = y * y;
 		return n % 2 == 0 ? prod : prod * x;
 	}
 }

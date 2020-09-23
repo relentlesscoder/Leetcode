@@ -5,7 +5,8 @@ package org.wshuai.leetcode;
  * #0029 https://leetcode.com/problems/divide-two-integers/
  */
 public class DivideTwoIntegers {
-	// time O((logN)^2)
+
+	// time O((log(n))^2)
 	public int divide(int dividend, int divisor) {
 		if (dividend == Integer.MIN_VALUE && divisor == -1) {
 			return Integer.MAX_VALUE;
