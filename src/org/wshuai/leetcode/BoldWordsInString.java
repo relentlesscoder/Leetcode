@@ -5,33 +5,32 @@ package org.wshuai.leetcode;
  * #0758 https://leetcode.com/problems/bold-words-in-string/
  */
 public class BoldWordsInString {
-	// time O(n*k), space O(n)
+
+	// time O(k*n^2), space O(n)
 	// same as #616
 	public String boldWords(String[] words, String S) {
 		int n = S.length();
 		boolean[] bold = new boolean[n];
 		for(String word : words){
-			int start = 0, index = 0, len = word.length();
-			while((index = S.indexOf(word, start)) != -1){
-				for(int i = index; i < index + len; i++){
-					bold[i] = true;
+			int i = 0, j;
+			while((j = S.indexOf(word, i)) >= 0){
+				for(int k = 0; k < word.length(); k++){
+					bold[j + k] = true;
 				}
-				start = index + 1;
+				// advance one position to match entire "zzz" using pattern "zz"
+				i = j + 1;
 			}
 		}
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0, j = 0; i < n; i++){
-			if(!bold[i]){
-				sb.append(S.charAt(i));
-				continue;
+		StringBuilder res = new StringBuilder();
+		for(int i = 0; i < n; i++){
+			if(bold[i] && (i == 0 || !bold[i - 1])){
+				res.append("<b>");
 			}
-			j = i;
-			while(j < n && bold[j]){
-				j++;
+			res.append(S.charAt(i));
+			if(bold[i] && (i == n - 1 || !bold[i + 1])){
+				res.append("</b>");
 			}
-			sb.append("<b>" + S.substring(i, j) + "</b>");
-			i = j - 1;
 		}
-		return sb.toString();
+		return res.toString();
 	}
 }

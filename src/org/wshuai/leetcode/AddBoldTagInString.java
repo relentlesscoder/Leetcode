@@ -5,32 +5,31 @@ package org.wshuai.leetcode;
  * #0616 https://leetcode.com/problems/add-bold-tag-in-string/
  */
 public class AddBoldTagInString {
-	// time O(n*k), space O(n)
+
+	// time O(d*n^2), space O(n)
 	public String addBoldTag(String s, String[] dict) {
 		int n = s.length();
 		boolean[] bold = new boolean[n];
 		for(String word : dict){
-			int start = 0, index = 0, len = word.length();
-			while((index = s.indexOf(word, start)) != -1){
-				for(int i = index; i < index + len; i++){
-					bold[i] = true;
+			int i = 0, j;
+			while((j = s.indexOf(word, i)) >= 0){
+				for(int k = 0; k < word.length(); k++){
+					bold[j + k] = true;
 				}
-				start = index + 1;
+				// advance one position to match entire "zzz" using pattern "zz"
+				i = j + 1;
 			}
 		}
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0, j = 0; i < n; i++){
-			if(!bold[i]){
-				sb.append(s.charAt(i));
-				continue;
+		StringBuilder res = new StringBuilder();
+		for(int i = 0; i < n; i++){
+			if(bold[i] && (i == 0 || !bold[i - 1])){
+				res.append("<b>");
 			}
-			j = i;
-			while(j < n && bold[j]){
-				j++;
+			res.append(s.charAt(i));
+			if(bold[i] && (i == n - 1 || !bold[i + 1])){
+				res.append("</b>");
 			}
-			sb.append("<b>" + s.substring(i, j) + "</b>");
-			i = j - 1;
 		}
-		return sb.toString();
+		return res.toString();
 	}
 }
