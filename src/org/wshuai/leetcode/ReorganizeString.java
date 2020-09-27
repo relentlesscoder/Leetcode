@@ -7,35 +7,38 @@ import java.util.PriorityQueue;
  * #0767 https://leetcode.com/problems/reorganize-string/
  */
 public class ReorganizeString {
+
 	// time O(n*log(26))
 	public String reorganizeString(String S) {
-		StringBuilder res = new StringBuilder();
-		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[1] - a[1]);
 		int[] count = new int[26];
 		for(char c : S.toCharArray()){
 			count[c - 'a']++;
 		}
+		StringBuilder res = new StringBuilder();
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[0] - a[0]);
 		for(int i = 0; i < 26; i++){
-			if(count[i] > 0){
-				pq.offer(new int[]{i, count[i]});
+			if(count[i] == 0){
+				continue;
+			}
+			pq.offer(new int[]{count[i], i});
+		}
+		while(pq.size() >= 2){
+			int[] last = pq.poll(), prev = pq.poll();
+			res.append((char)(last[1] + 'a'));
+			res.append((char)(prev[1] + 'a'));
+			if(--last[0] > 0){
+				pq.offer(last);
+			}
+			if(--prev[0] > 0){
+				pq.offer(prev);
 			}
 		}
-		while(pq.size() > 1){
-			int[] arr1 = pq.poll(), arr2 = pq.poll();
-			res.append((char)('a' + arr1[0]));
-			res.append((char)('a' + arr2[0]));
-			if(--arr1[1] > 0){
-				pq.offer(arr1);
-			}
-			if(--arr2[1] > 0){
-				pq.offer(arr2);
-			}
-		}
-		if(pq.size() > 0){
-			if(pq.peek()[1] > 1){
+		if(!pq.isEmpty()){
+			if(pq.peek()[0] > 1){
 				return "";
+			}else{
+				res.append((char)(pq.peek()[1] + 'a'));
 			}
-			res.append((char)('a' + pq.peek()[0]));
 		}
 		return res.toString();
 	}
