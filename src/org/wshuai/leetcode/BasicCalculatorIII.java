@@ -1,69 +1,79 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Wei on 09/17/2019.
  * #0772 https://leetcode.com/problems/basic-calculator-iii/
  */
 public class BasicCalculatorIII {
+
+	private static final Map<Character, Integer> PRECEDENCE;
+
+	static{
+		PRECEDENCE = new HashMap<>();
+		PRECEDENCE.put('(', -1);
+		PRECEDENCE.put('+', 0);
+		PRECEDENCE.put('-', 0);
+		PRECEDENCE.put('*', 1);
+		PRECEDENCE.put('/', 1);
+	}
+
+	// time O(n), space O(n)
 	public int calculate(String s) {
-		LinkedList<String> stack = new LinkedList<>();
-		int i = 0;
-		while (i < s.length()) {
+		Deque<Integer> operands = new ArrayDeque<>();
+		Deque<Character> operators = new ArrayDeque<>();
+		int n = s.length();
+		for(int i = 0; i < n; i++){
 			char c = s.charAt(i);
-			if (c == '*' || c == '/' || c == '+' || c == '-') {
-				stack.offerLast("" + c);
-			} else if (Character.isDigit(c)) {
-				int j = i + 1;
-				while (j < s.length() && Character.isDigit(s.charAt(j))) {
-					j++;
-				}
-				String num = s.substring(i, j);
-				if (!stack.isEmpty() && (stack.peekLast().equals("*") || stack.peekLast().equals("/"))) {
-					String opr = stack.pollLast();
-					long last = Long.parseLong(stack.pollLast());
-					long curr = Long.parseLong(num);
-					long result = opr.equals("*") ? last * curr : last / curr;
-					stack.offerLast("" + result);
-				} else {
-					stack.offerLast(num);
-				}
-				i = j - 1;
-			} else if (c == '(') {
-				int count = 1;
-				int j = i + 1;
-				while (j < s.length() && count != 0) {
-					if (s.charAt(j) == '(') {
-						count++;
-					} else if (s.charAt(j) == ')') {
-						count--;
-					}
-					j++;
-				}
-				int mid = calculate(s.substring(i + 1, j - 1));
-				if (!stack.isEmpty() && (stack.peekLast().equals("*") || stack.peekLast().equals("/"))) {
-					String opr = stack.pollLast();
-					long last = Long.parseLong(stack.pollLast());
-					long curr = mid;
-					long result = opr.equals("*") ? last * curr : last / curr;
-					stack.offerLast("" + result);
-				} else {
-					stack.offerLast("" + mid);
-				}
-				i = j - 1;
+			if(c == ' '){
+				continue;
 			}
-			i++;
+			if(c >= '0' && c <= '9'){
+				int val = c - '0';
+				while(i + 1 < n && Character.isDigit(s.charAt(i + 1))){
+					val = val * 10 + (s.charAt(i + 1) - '0');
+					i++;
+				}
+				operands.push(val);
+			}else if(c == '('){
+				operators.push(c);
+			}else if(c == ')'){
+				while(operators.peek() != '('){
+					operands.push(calculate(operands, operators));
+				}
+				operators.pop();
+			}else{
+				while(!operators.isEmpty() && comparePrecedence(c, operators.peek()) <= 0){
+					operands.push(calculate(operands, operators));
+				}
+				operators.push(c);
+			}
 		}
-
-		while (!stack.isEmpty() && stack.size() > 1) {
-			long first = stack.peekFirst().equals("-") ? 0L : Long.parseLong(stack.pollFirst());
-			String opr = stack.pollFirst();
-			long second = Long.parseLong(stack.pollFirst());
-			long result = opr.equals("+") ? first + second : first - second;
-			stack.offerFirst("" + result);
+		while(!operators.isEmpty()){
+			operands.push(calculate(operands, operators));
 		}
+		return operands.pop();
+	}
 
-		return Integer.parseInt(stack.poll());
+	private int calculate(Deque<Integer> operands, Deque<Character> operators){
+		int a = operands.pop(), b = operands.isEmpty() ? 0 : operands.pop();
+		char c = operators.pop();
+
+		if(c == '-'){
+			return b - a;
+		}else if(c == '*'){
+			return b * a;
+		}else if(c == '/'){
+			return b / a;
+		}
+		return b + a;
+	}
+
+	private int comparePrecedence(char a, char b){
+		return PRECEDENCE.get(a) - PRECEDENCE.get(b);
 	}
 }

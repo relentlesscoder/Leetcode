@@ -8,10 +8,10 @@ import java.util.Stack;
  */
 public class BasicCalculatorII {
 
-	// time O(n)
+	// time O(n), space O(n)
 	public int calculate(String s) {
-		int res = 0, n = s.length(), cur = 0;
-		char operator = ' ';
+		int n = s.length(), res = 0, cur = 0;
+		char op = ' ';
 		Stack<Integer> stack = new Stack<>();
 		for(int i = 0; i < n; i++){
 			char c = s.charAt(i);
@@ -19,17 +19,17 @@ public class BasicCalculatorII {
 				continue;
 			}
 			if(c == '+' || c == '-' || c == '*' || c == '/'){
-				operator = c;
+				op = c;
 			}else{
-				cur = cur * 10 + (int)(c - '0');
+				cur = cur * 10 + (c - '0');
 				if(i == n - 1 || !Character.isDigit(s.charAt(i + 1))){
-					if(operator == ' ' || operator == '+'){
+					if(op == ' ' || op == '+'){
 						stack.push(cur);
-					}else if(operator == '-'){
+					}else if(op == '-'){
 						stack.push(-cur);
-					}else if(operator == '*'){
+					}else if(op == '*'){
 						stack.push(stack.pop() * cur);
-					}else if(operator == '/'){
+					}else{
 						stack.push(stack.pop() / cur);
 					}
 					cur = 0;

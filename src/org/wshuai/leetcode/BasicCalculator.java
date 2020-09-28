@@ -7,32 +7,31 @@ import java.util.Stack;
  * #0224 https://leetcode.com/problems/basic-calculator/
  */
 public class BasicCalculator {
+
 	// time O(n), space O(n)
 	// the top comment at https://leetcode.com/problems/basic-calculator/discuss/62361/Iterative-Java-solution-with-stack
 	public int calculate(String s) {
-		if(s == null || s.isEmpty()){
-			return 0;
-		}
-		int res = 0, sign = 1, num = 0;
+		int res = 0, sign = 1, cur = 0;
 		Stack<Integer> stack = new Stack<>();
 		stack.push(sign);
-
 		for(int i = 0; i < s.length(); i++){
 			char c = s.charAt(i);
+			if(c == ' '){
+				continue;
+			}
 			if(c >= '0' && c <= '9'){
-				num = num * 10 + (c - '0');
+				cur = cur * 10 + (c - '0');
 			}else if(c == '+' || c == '-'){
-				res += sign * num;
+				res += sign * cur;
+				cur = 0;
+				// calculate sign based on the sign of the current context
 				sign = stack.peek() * (c == '+' ? 1 : -1);
-				num = 0;
 			}else if(c == '('){
-				stack.push(sign);
-			}else if(c == ')'){
-				stack.pop();
+				stack.push(sign); // push current sign entering parentheses like "-("
+			}else{
+				stack.pop(); // pop current sign leaving parentheses like ")"
 			}
 		}
-
-		res += sign * num;
-		return res;
+		return res + sign * cur;
 	}
 }
