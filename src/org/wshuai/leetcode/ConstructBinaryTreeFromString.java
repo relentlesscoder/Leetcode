@@ -7,44 +7,30 @@ import java.util.Stack;
  * #0536 https://leetcode.com/problems/construct-binary-tree-from-string/
  */
 public class ConstructBinaryTreeFromString {
+
 	// time O(n), space O(n)
 	public TreeNode str2tree(String s) {
-		if(s == null || s.isEmpty()){
-			return null;
-		}
-		TreeNode cur = null, parent = null;
-		char[] arr = s.toCharArray();
 		Stack<TreeNode> stack = new Stack<>();
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < arr.length; i++){
-			char c = arr[i];
-			if(c == '(' || c == ')'){
-				if(sb.length() > 0){
-					cur = new TreeNode(Integer.parseInt(sb.toString()));
-					sb = new StringBuilder();
-					if(!stack.isEmpty()){
-						parent = stack.peek();
-						if(parent.left == null){
-							parent.left = cur;
-						}else{
-							parent.right = cur;
-						}
+		for(int i = 0, j = i; i < s.length(); i++, j = i){
+			char c = s.charAt(i);
+			if(c == ')'){
+				stack.pop();
+			}else if((c >= '0' && c <= '9') || c == '-'){
+				while(i + 1 < s.length() && s.charAt(i + 1) >= '0' && s.charAt(i + 1) <= '9'){
+					i++;
+				}
+				TreeNode node = new TreeNode(Integer.parseInt(s.substring(j, i + 1)));
+				if(!stack.isEmpty()){
+					TreeNode parent = stack.peek();
+					if(parent.left == null){
+						parent.left = node;
+					}else{
+						parent.right = node;
 					}
-					stack.push(cur);
 				}
-				if(c == ')'){
-					stack.pop();
-				}
-			}
-			else{
-				sb.append(c);
+				stack.push(node);
 			}
 		}
-		// corner case
-		if(sb.length() > 0){
-			cur = new TreeNode(Integer.parseInt(sb.toString()));
-			stack.push(cur);
-		}
-		return stack.peek();
+		return stack.isEmpty() ? null : stack.peek();
 	}
 }
