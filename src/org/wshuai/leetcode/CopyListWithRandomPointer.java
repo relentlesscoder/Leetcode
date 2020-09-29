@@ -8,25 +8,29 @@ import java.util.Map;
  * #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
  */
 public class CopyListWithRandomPointer {
+
 	// time O(n), space O(n)
 	public NodeWithRandomPointer copyRandomList(NodeWithRandomPointer head) {
 		if(head == null){
 			return null;
 		}
-		Map<NodeWithRandomPointer, NodeWithRandomPointer> mapping = new HashMap<>();
+		Map<NodeWithRandomPointer, NodeWithRandomPointer> map = new HashMap<>();
 		NodeWithRandomPointer cur = head;
 		while(cur != null){
-			mapping.put(cur, new NodeWithRandomPointer(cur.val));
+			map.put(cur, new NodeWithRandomPointer(cur.val));
 			cur = cur.next;
 		}
 		cur = head;
 		while(cur != null){
-			NodeWithRandomPointer copy = mapping.get(cur);
-			copy.next = cur.next == null ? null : mapping.get(cur.next);
-			copy.random = cur.random == null ? null : mapping.get(cur.random);
+			if(cur.next != null){
+				map.get(cur).next = map.get(cur.next);
+			}
+			if(cur.random != null){
+				map.get(cur).random = map.get(cur.random);
+			}
 			cur = cur.next;
 		}
-		return mapping.get(head);
+		return map.get(head);
 	}
 
 	private class NodeWithRandomPointer {

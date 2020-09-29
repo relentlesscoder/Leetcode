@@ -9,79 +9,85 @@ import java.util.Map;
  */
 public class LRUCache {
 
-	private Map<Integer, DoublyLinkedListNode> cache = new HashMap<>();
-	private int count;
 	private int capacity;
-	private DoublyLinkedListNode head, tail;
+
+	private DoublyLinkedListNode head;
+
+	private DoublyLinkedListNode tail;
+
+	private Map<Integer, DoublyLinkedListNode> map;
 
 	public LRUCache(int capacity) {
-		this.count = 0;
 		this.capacity = capacity;
-		head = new DoublyLinkedListNode();
-		head.prev = null;
-		tail = new DoublyLinkedListNode();
-		tail.next = null;
+		map = new HashMap<>();
+		head = new DoublyLinkedListNode(-1, -1);
+		tail = new DoublyLinkedListNode(-1, -1);
 		head.next = tail;
 		tail.prev = head;
 	}
 
+	// time O(1)
 	public int get(int key) {
-		DoublyLinkedListNode node = cache.get(key);
-		if(node == null){
-			return -1;
+		int res = -1;
+		if(map.containsKey(key)){
+			DoublyLinkedListNode cur = map.get(key);
+			res = cur.val;
+			remove(cur);
+			insertToFront(cur);
 		}
-		moveToHead(node);
-		return node.value;
+		return res;
 	}
 
+	// time O(1)
 	public void put(int key, int value) {
-		DoublyLinkedListNode node = cache.get(key);
-		if(node == null){
-			node = new DoublyLinkedListNode();
-			node.key = key;
-			node.value = value;
-			cache.put(key, node);
-			addNode(node);
-			if(++count > capacity){
-				DoublyLinkedListNode tail = this.popTail();
-				cache.remove(tail.key);
-				--count;
-			}
+		if(map.containsKey(key)){
+			DoublyLinkedListNode cur = map.get(key);
+			cur.val = value;
+			remove(cur);
+			insertToFront(cur);
 		}else{
-			node.value = value;
-			moveToHead(node);
+			DoublyLinkedListNode cur = new DoublyLinkedListNode(value, key);
+			map.put(key, cur);
+			insertToFront(cur);
+			// evict the least used entry
+			if(map.size() > capacity){
+				DoublyLinkedListNode last = tail.prev;
+				map.remove(last.key);
+				remove(last);
+			}
 		}
 	}
 
-	private void addNode(DoublyLinkedListNode node){
+	private void insertToFront(DoublyLinkedListNode node){
+		DoublyLinkedListNode after = head.next;
 		node.prev = head;
-		node.next = head.next;
-		head.next.prev = node;
 		head.next = node;
+		node.next = after;
+		after.prev = node;
 	}
 
-	private void removeNode(DoublyLinkedListNode node){
+	private void remove(DoublyLinkedListNode node){
 		DoublyLinkedListNode prev = node.prev;
 		DoublyLinkedListNode next = node.next;
 		prev.next = next;
 		next.prev = prev;
 	}
 
-	private void moveToHead(DoublyLinkedListNode node){
-		removeNode(node);
-		addNode(node);
-	}
+	private class DoublyLinkedListNode{
 
-	private DoublyLinkedListNode popTail(){
-		DoublyLinkedListNode res = tail.prev;
-		removeNode(res);
-		return res;
-	}
+		private int val;
 
-	class DoublyLinkedListNode{
-		int key;
-		int value;
-		DoublyLinkedListNode prev;
-		DoublyLinkedListNode next;
+		private int key;
+
+		private DoublyLinkedListNode prev;
+
+		private DoublyLinkedListNode next;
+
+		private DoublyLinkedListNode(int val, int key){
+			this.val = val;
+			this.key = key;
+			prev = null;
+			next = null;
+		}
 	}
 }
