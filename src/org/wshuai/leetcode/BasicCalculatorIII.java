@@ -24,29 +24,30 @@ public class BasicCalculatorIII {
 
 	// time O(n), space O(n)
 	public int calculate(String s) {
+		int n = s.length(), cur = 0;
 		Deque<Integer> operands = new ArrayDeque<>();
 		Deque<Character> operators = new ArrayDeque<>();
-		int n = s.length();
 		for(int i = 0; i < n; i++){
 			char c = s.charAt(i);
 			if(c == ' '){
 				continue;
 			}
 			if(c >= '0' && c <= '9'){
-				int val = c - '0';
-				while(i + 1 < n && Character.isDigit(s.charAt(i + 1))){
-					val = val * 10 + (s.charAt(i + 1) - '0');
-					i++;
+				cur = cur * 10 + (c - '0');
+				if(i == n - 1 || !Character.isDigit(s.charAt(i + 1))){
+					operands.push(cur);
+					cur = 0;
 				}
-				operands.push(val);
 			}else if(c == '('){
 				operators.push(c);
 			}else if(c == ')'){
-				while(operators.peek() != '('){
+				// calculate expression within the current parentheses
+				while(!operators.isEmpty() && operators.peek() != '('){
 					operands.push(calculate(operands, operators));
 				}
 				operators.pop();
 			}else{
+				// calculate all previous expression with higher precedence
 				while(!operators.isEmpty() && comparePrecedence(c, operators.peek()) <= 0){
 					operands.push(calculate(operands, operators));
 				}
@@ -60,17 +61,16 @@ public class BasicCalculatorIII {
 	}
 
 	private int calculate(Deque<Integer> operands, Deque<Character> operators){
-		int a = operands.pop(), b = operands.isEmpty() ? 0 : operands.pop();
-		char c = operators.pop();
-
-		if(c == '-'){
-			return b - a;
-		}else if(c == '*'){
-			return b * a;
-		}else if(c == '/'){
-			return b / a;
+		int b = operands.pop(), a = operands.pop();
+		char op = operators.pop();
+		if(op == '-'){
+			return a - b;
+		}else if(op == '*'){
+			return a * b;
+		}else if(op == '/'){
+			return a / b;
 		}
-		return b + a;
+		return a + b;
 	}
 
 	private int comparePrecedence(char a, char b){

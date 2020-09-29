@@ -18,7 +18,7 @@ public class BasicCalculatorII {
 			if(c == ' '){
 				continue;
 			}
-			if(c == '+' || c == '-' || c == '*' || c == '/'){
+			if(!Character.isDigit(c)){
 				op = c;
 			}else{
 				cur = cur * 10 + (c - '0');
