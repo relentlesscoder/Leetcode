@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0400 https://leetcode.com/problems/nth-digit/
  */
 public class NthDigit {
+
 	// time O(log(n))
 	// https://leetcode.com/problems/nth-digit/discuss/88363/Java-solution
 	public int findNthDigit(int n) {
