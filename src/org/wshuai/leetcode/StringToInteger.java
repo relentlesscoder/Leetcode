@@ -5,36 +5,36 @@ package org.wshuai.leetcode;
  * #0008 https://leetcode.com/problems/string-to-integer-atoi/
  */
 public class StringToInteger {
+
+	// time O(n)
 	public int myAtoi(String str) {
-		long res = 0;
-		int i = 0;
-		while(i < str.length() && str.charAt(i) == ' '){
-			i++;
-		}
-		if(i == str.length()){
+		if(str == null || str.isEmpty()){
 			return 0;
 		}
-		long num = 0;
-		char c = str.charAt(i);
-		boolean neg = false;
-		if(c == '+' || c == '-'){
+		int i = 0, n = str.length();
+		while(i < n && str.charAt(i) == ' '){
 			i++;
-			if(c == '-'){
-				neg = true;
-			}
 		}
-		while(i < str.length() && str.charAt(i) >= '0' && str.charAt(i) <= '9'){
-			res *= 10;
-			int d = str.charAt(i) - '0';
-			res += neg ? -d : d;
-			if(res > Integer.MAX_VALUE){
-				return Integer.MAX_VALUE;
-			}
-			if(res < Integer.MIN_VALUE){
+		if(i == n || (str.charAt(i) != '-' && str.charAt(i) != '+'
+				&& !Character.isDigit(str.charAt(i)))){
+			return 0;
+		}
+		boolean negative = false;
+		if(str.charAt(i) == '-' || str.charAt(i) == '+'){
+			negative = str.charAt(i) == '-';
+			i++;
+		}
+		long temp = 0;
+		while(i < n && Character.isDigit(str.charAt(i))){
+			temp = temp * 10 + (str.charAt(i) - '0');
+			if(negative && -temp < Integer.MIN_VALUE){
 				return Integer.MIN_VALUE;
 			}
+			if(!negative && temp > Integer.MAX_VALUE){
+				return Integer.MAX_VALUE;
+			}
 			i++;
 		}
-		return (int)res;
+		return (int)(negative ? -temp : temp);
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
  * #0046 https://leetcode.com/problems/permutations/
  */
 public class Permutations {
+
 	// time O(n!)
 	public List<List<Integer>> permute(int[] nums) {
 		List<List<Integer>> res = new ArrayList<>();
