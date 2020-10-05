@@ -7,30 +7,30 @@ import java.util.*;
  * #0332 https://leetcode.com/problems/reconstruct-itinerary/
  */
 public class ReconstructItinerary {
+
+	// time O(n*log(n)), space O(n)
 	public List<String> findItinerary(List<List<String>> tickets) {
 		LinkedList<String> res = new LinkedList<>();
 		if(tickets == null || tickets.size() == 0){
 			return res;
 		}
-		Map<String, PriorityQueue<String>> adj = new HashMap<>();
+		Map<String, PriorityQueue<String>> map = new HashMap<>();
 		for(List<String> t : tickets){
-			String from = t.get(0), to = t.get(1);
-			adj.putIfAbsent(from, new PriorityQueue<>());
-			adj.get(from).add(to);
+			map.putIfAbsent(t.get(0), new PriorityQueue<>());
+			map.get(t.get(0)).offer(t.get(1));
 		}
-		dfs("JFK", adj, res);
+		dfs("JFK", map, res);
 		return res;
 	}
 
-	private void dfs(String cur, Map<String, PriorityQueue<String>> adj, LinkedList<String> res){
-		if(!adj.containsKey(cur) || adj.get(cur).isEmpty()){
+	private void dfs(String cur, Map<String, PriorityQueue<String>> map, LinkedList<String> res){
+		if(!map.containsKey(cur) || map.get(cur).size() == 0){
 			res.offerFirst(cur);
 			return;
 		}
-		PriorityQueue<String> pq = adj.get(cur);
-		while(!pq.isEmpty()){
-			String next = pq.poll();
-			dfs(next, adj, res);
+		PriorityQueue<String> pq = map.get(cur);
+		while(pq.size() > 0){
+			dfs(pq.poll(), map, res);
 		}
 		res.offerFirst(cur);
 	}
