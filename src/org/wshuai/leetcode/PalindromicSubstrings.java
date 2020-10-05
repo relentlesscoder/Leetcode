@@ -18,7 +18,8 @@ public class PalindromicSubstrings {
 	}
 
 	private void extend(String s, int left, int right) {
-		while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+		while (left >= 0 && right < s.length()
+			&& s.charAt(left) == s.charAt(right)) {
 			count++;
 			left--;
 			right++;
@@ -32,7 +33,8 @@ public class PalindromicSubstrings {
 		for(int l = 1; l <= n; l++){
 			for(int i = 0; i + l - 1 < n; i++){
 				int j = i + l - 1;
-				if(l == 1 || (s.charAt(i) == s.charAt(j) && (i + 1 == j || dp[i + 1][j - 1]))){
+				if(l == 1 || (s.charAt(i) == s.charAt(j)
+					&& (i + 1 == j || dp[i + 1][j - 1]))){
 					dp[i][j] = true;
 					res++;
 				}

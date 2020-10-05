@@ -8,6 +8,8 @@ import java.util.List;
  * #0093 https://leetcode.com/problems/restore-ip-addresses/
  */
 public class RestoreIPAddresses {
+
+	// time O(3^3*n)
 	public List<String> restoreIpAddresses(String s) {
 		List<String> res = new ArrayList<>();
 		if(s == null || s.isEmpty() || s.length() > 12){
