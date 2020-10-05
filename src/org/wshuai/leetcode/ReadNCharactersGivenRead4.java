@@ -5,6 +5,11 @@ package org.wshuai.leetcode;
  * #0157 https://leetcode.com/problems/read-n-characters-given-read4/
  */
 public class ReadNCharactersGivenRead4 {
+
+	private char[] prevBuf = new char[4];
+	private int prevSize = 0;
+	private int prevIndex = 0;
+
 	/**
 	 * @param buf Destination buffer
 	 * @param n   Maximum number of characters to read
@@ -12,19 +17,20 @@ public class ReadNCharactersGivenRead4 {
 	 */
 	// time O(n)
 	public int read(char[] buf, int n) {
-		int total = 0;
-		boolean eof = false;
-		char[] temp = new char[4];
-		while(!eof && total < n){
-			int chars = read4(temp);
-			eof = chars < 4;
-
-			chars = Math.min(n - total, chars);
-			for(int i = 0; i < chars; i++){
-				buf[total++] = temp[i];
+		int counter = 0;
+		while (counter < n) {
+			if (prevIndex < prevSize) {
+				buf[counter++] = prevBuf[prevIndex++];
+			} else {
+				prevSize = read4(prevBuf);
+				prevIndex = 0;
+				if (prevSize == 0) {
+					// no more data to consume from stream
+					break;
+				}
 			}
 		}
-		return total;
+		return counter;
 	}
 
 	// Fake implementation

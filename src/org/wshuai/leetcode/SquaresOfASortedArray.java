@@ -1,22 +1,23 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 8/8/19.
- * #977 https://leetcode.com/problems/squares-of-a-sorted-array/
+ * Created by Wei on 08/08/2019.
+ * #0977 https://leetcode.com/problems/squares-of-a-sorted-array/
  */
 public class SquaresOfASortedArray {
+
+	// time O(n)
 	public int[] sortedSquares(int[] A) {
-		int[] res = new int[A.length];
-		int left = 0;
-		int right = A.length - 1;
-		for (int i = A.length - 1; i >= 0; i--) {
-			int val1 = A[left] * A[left];
-			int val2 = A[right] * A[right];
-			if (val1 >= val2) {
-				res[i] = val1;
+		int n = A.length, left = 0, right = n - 1;
+		int[] res = new int[n];
+		for(int i = n - 1; i >= 0; i--){
+			int leftSquare = A[left] * A[left];
+			int rightSquare = A[right] * A[right];
+			if(leftSquare >= rightSquare){
+				res[i] = leftSquare;
 				left++;
-			} else {
-				res[i] = val2;
+			}else{
+				res[i] = rightSquare;
 				right--;
 			}
 		}

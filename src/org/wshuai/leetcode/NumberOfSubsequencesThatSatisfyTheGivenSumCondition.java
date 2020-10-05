@@ -12,19 +12,21 @@ public class NumberOfSubsequencesThatSatisfyTheGivenSumCondition {
 
 	// time O(n), space O(n)
 	public int numSubseq(int[] nums, int target) {
-		int res = 0, n = nums.length, l = 0, r = n - 1;
+		int res = 0, n = nums.length, left = 0, right = n - 1;
 		Arrays.sort(nums);
 		int[] pow = new int[n];
 		pow[0] = 1;
 		for(int i = 1; i < n; i++){
-			pow[i] = pow[i - 1] * 2 % MOD;
+			pow[i] = (pow[i - 1] << 1) % MOD;
 		}
-		while(l <= r){
-			if(nums[l] + nums[r] > target){
-				r--;
+		while(left <= right){
+			if(nums[left] + nums[right] > target){
+				right--;
 			}else{
-				res = (res + pow[r - l]) % MOD;
-				l++;
+				// fix the min element, the other elements have 2^(r-l)
+				// possible combinations
+				res = (res + pow[right - left]) % MOD;
+				left++;
 			}
 		}
 		return res;

@@ -5,21 +5,18 @@ package org.wshuai.leetcode;
  * #0114 https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
  */
 public class FlattenBinaryTreeToLinkedList {
+
+	private TreeNode prev = null;
+
 	// time O(n)
 	public void flatten(TreeNode root) {
 		if(root == null){
 			return;
 		}
-		flatten(root.left);
 		flatten(root.right);
-		TreeNode temp = root.right;
-		if(root.left != null){
-			root.right = root.left;
-			root.left = null;
-			while(root.right != null){
-				root = root.right;
-			}
-		}
-		root.right = temp;
+		flatten(root.left);
+		root.right = prev;
+		root.left = null;
+		prev = root;
 	}
 }
