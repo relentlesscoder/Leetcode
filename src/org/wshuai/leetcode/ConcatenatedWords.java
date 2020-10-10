@@ -7,31 +7,36 @@ import java.util.*;
  * #0472 https://leetcode.com/problems/concatenated-words/
  */
 public class ConcatenatedWords {
-	// time O(n*l), space O(26*l)
+
+	private static TrieNode root;
+
+	// time O(n*l)
 	public List<String> findAllConcatenatedWordsInADict(String[] words) {
-		TrieNode root = new TrieNode();
 		List<String> res = new ArrayList<>();
-		Arrays.sort(words, (a, b) -> a.length() != b.length() ? a.length() - b.length() : a.compareTo(b));
-		for(String word : words){
-			if(search(word, 0, root, root)){
-				res.add(word);
+		if(words == null || words.length == 0){
+			return res;
+		}
+		root = new TrieNode();
+		Arrays.sort(words, (a, b) -> a.length() == b.length() ? a.compareTo(b) : a.length() - b.length());
+		for(int i = 0; i < words.length; i++){
+			if(search(words[i], 0, root)){
+				res.add(words[i]);
 			}else{
-				insert(word, root);
+				insert(words[i]);
 			}
 		}
 		return res;
 	}
 
-	private boolean search(String word, int start, TrieNode cur, TrieNode root){
-		int n = word.length();
-		for(int i = start; i < n; i++){
+	private boolean search(String word, int start, TrieNode cur){
+		for(int i = start; i < word.length(); i++){
 			char c = word.charAt(i);
 			if(!cur.containsKey(c)){
 				return false;
 			}
 			cur = cur.get(c);
-			if(cur.isEnd() && i != n - 1){
-				if(search(word, i + 1, cur, root) || search(word, i + 1, root, root)){
+			if(cur.isEnd() && i != word.length() - 1){
+				if(search(word, i + 1, cur) || search(word, i + 1, root)){
 					return true;
 				}
 			}
@@ -39,9 +44,10 @@ public class ConcatenatedWords {
 		return cur.isEnd();
 	}
 
-	private void insert(String word, TrieNode root){
+	private void insert(String word){
 		TrieNode cur = root;
-		for(char c : word.toCharArray()){
+		for(int i = 0; i < word.length(); i++){
+			char c = word.charAt(i);
 			if(!cur.containsKey(c)){
 				cur.put(c, new TrieNode());
 			}
@@ -50,33 +56,67 @@ public class ConcatenatedWords {
 		cur.setEnd();
 	}
 
-	// time O(n*l^2)
+	private class TrieNode{
+
+		private static final int R = 26;
+
+		private TrieNode[] links;
+
+		private boolean isEnd;
+
+		private TrieNode(){
+			links = new TrieNode[R];
+			isEnd = false;
+		}
+
+		private TrieNode get(char key){
+			return links[key - 'a'];
+		}
+
+		private void put(char key, TrieNode node){
+			links[key - 'a'] = node;
+		}
+
+		private boolean containsKey(char key){
+			return links[key - 'a'] != null;
+		}
+
+		private boolean isEnd(){
+			return isEnd;
+		}
+
+		private void setEnd(){
+			isEnd = true;
+		}
+	}
+
+	// time O(n*l^2), space O(n*l)
 	public List<String> findAllConcatenatedWordsInADictDP(String[] words) {
 		List<String> res = new ArrayList<>();
+		if(words == null || words.length == 0){
+			return res;
+		}
 		Arrays.sort(words, (a, b) -> a.length() - b.length());
-		Set<String> dict = new HashSet<>();
-		for(String s : words){
-			if(canForm(s, dict)){
-				res.add(s);
+		Set<String> dictionary = new HashSet<>();
+		for(int i = 0; i < words.length; i++){
+			if(canForm(words[i], dictionary)){
+				res.add(words[i]);
 			}
-			dict.add(s);
+			dictionary.add(words[i]);
 		}
 		return res;
 	}
 
-	private boolean canForm(String word, Set<String> dict){
-		if (dict.isEmpty()){
+	private boolean canForm(String s, Set<String> dictionary){
+		if(s.equals("")){
 			return false;
 		}
-		int n = word.length();
+		int n = s.length();
 		boolean[] dp = new boolean[n + 1];
 		dp[0] = true;
-		for (int i = 1; i <= n; i++) {
-			for (int j = 0; j < i; j++) {
-				if (!dp[j]){
-					continue;
-				}
-				if (dict.contains(word.substring(j, i))) {
+		for(int i = 1; i <= n; i++){
+			for(int j = i - 1; j >= 0; j--){
+				if(dp[j] && dictionary.contains(s.substring(j, i))){
 					dp[i] = true;
 					break;
 				}

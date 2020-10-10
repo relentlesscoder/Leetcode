@@ -8,32 +8,33 @@ import java.util.Set;
  * #0128 https://leetcode.com/problems/longest-consecutive-sequence/
  */
 public class LongestConsecutiveSequence {
+
 	// time O(n), space O(n)
 	public int longestConsecutive(int[] nums) {
-		if (nums == null || nums.length == 0) {
+		if(nums == null || nums.length == 0){
 			return 0;
 		}
-		int max = Integer.MIN_VALUE;
-		int n = nums.length;
-		Set<Integer> set = new HashSet<Integer>();
-		for (int num : nums) {
+		int res = 0;
+		Set<Integer> set = new HashSet<>();
+		for(int num : nums){
 			set.add(num);
 		}
-		for (int i = 0; i < n; i++) {
-			if (set.contains(nums[i])) {
-				int val = nums[i], cLen = 1, right = val, left = val;
-				while (set.contains(++right)) {
-					cLen++;
-					set.remove(right);
-				}
-				while (set.contains(--left)) {
-					cLen++;
-					set.remove(left);
-				}
-				set.remove(val);
-				max = cLen > max ? cLen : max;
+		for(int i = 0; i < nums.length; i++){
+			if(!set.contains(nums[i])){
+				continue;
 			}
+			int len = 1, left = nums[i], right = nums[i];
+			while(set.contains(--left)){
+				len++;
+				set.remove(left);
+			}
+			while(set.contains(++right)){
+				len++;
+				set.remove(right);
+			}
+			set.remove(nums[i]);
+			res = Math.max(res, len);
 		}
-		return max;
+		return res;
 	}
 }

@@ -6,10 +6,11 @@ import java.util.Set;
 
 /**
  * Created by Wei on 10/29/19.
- * #957 https://leetcode.com/problems/prison-cells-after-n-days/
+ * #0957 https://leetcode.com/problems/prison-cells-after-n-days/
  */
 public class PrisonCellsAfterNDays {
-	// bs question :(
+
+	// time O(n*c), space O(n*c)
 	public int[] prisonAfterNDays(int[] cells, int N) {
 		if(cells == null || cells.length == 0 || N <= 0){
 			return cells;
