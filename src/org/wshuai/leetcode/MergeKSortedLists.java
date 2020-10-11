@@ -50,7 +50,7 @@ public class MergeKSortedLists {
 	}
 
 	private LinkedListNode merge(LinkedListNode a, LinkedListNode b){
-		LinkedListNode root = new LinkedListNode(-1), cur = root, next = null;
+		LinkedListNode root = new LinkedListNode(-1), cur = root;
 		while(a != null || b != null){
 			int v1 = a != null ? a.val : Integer.MAX_VALUE;
 			int v2 = b != null ? b.val : Integer.MAX_VALUE;

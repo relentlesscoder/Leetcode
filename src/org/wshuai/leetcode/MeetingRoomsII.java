@@ -8,6 +8,7 @@ import java.util.PriorityQueue;
  * #0253 https://leetcode.com/problems/meeting-rooms-ii/
  */
 public class MeetingRoomsII {
+
 	// time O(n*lg(n)), space O(n)
 	public int minMeetingRooms(int[][] intervals) {
 		int res = 0;
@@ -17,6 +18,11 @@ public class MeetingRoomsII {
 		Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
 		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
 		for(int[] itr : intervals){
+			// if starting time of the current meeting is
+			// greater than the earliest ending time of all
+			// ongoing meetings, we can reuse its meeting
+			// room. Otherwise, we need one more room for
+			// the new meeting.
 			if(!pq.isEmpty() && itr[0] >= pq.peek()){
 				pq.poll();
 			}

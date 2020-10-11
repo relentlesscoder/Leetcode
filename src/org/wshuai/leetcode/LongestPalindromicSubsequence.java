@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
  */
 public class LongestPalindromicSubsequence {
+
 	// time O(n^2), space O(n)
 	public int longestPalindromeSubseq(String s) {
 		if(s == null || s.length() == 0){

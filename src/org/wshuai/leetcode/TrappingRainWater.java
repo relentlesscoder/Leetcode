@@ -15,11 +15,9 @@ public class TrappingRainWater {
 			leftMax = Math.max(leftMax, height[left]);
 			rightMax = Math.max(rightMax, height[right]);
 			if(leftMax < rightMax){
-				res += leftMax - height[left];
-				left++;
+				res += leftMax - height[left++];
 			}else{
-				res += rightMax - height[right];
-				right--;
+				res += rightMax - height[right--];
 			}
 		}
 		return res;
@@ -44,19 +42,21 @@ public class TrappingRainWater {
 
 	// time O(n), space O(n)
 	public int trapStack(int[] height) {
+		if(height == null || height.length == 0){
+			return 0;
+		}
+		int res = 0;
 		Stack<Integer> stack = new Stack<>();
-		int res = 0, i = 0;
-		while(i < height.length){
+		for(int i = 0; i < height.length; ){
 			if(stack.isEmpty() || height[i] <= height[stack.peek()]){
 				stack.push(i++);
 			}else{
-				// note that this will keep popping out index in the stack
-				// until hits a higher height or stack is empty
 				int low = stack.pop();
-				if(stack.size() == 0){
+				if(stack.isEmpty()){
 					continue;
 				}
-				res += (Math.min(height[i], height[stack.peek()]) - height[low]) * (i - stack.peek() - 1);
+				res += (Math.min(height[i], height[stack.peek()]) - height[low])
+					* (i - stack.peek() - 1);
 			}
 		}
 		return res;
