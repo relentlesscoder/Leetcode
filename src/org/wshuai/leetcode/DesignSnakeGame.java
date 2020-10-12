@@ -7,9 +7,10 @@ import java.util.*;
  * #0353 https://leetcode.com/problems/design-snake-game/
  */
 public class DesignSnakeGame {
+
 	private LinkedList<int[]> snake;
 	private Set<Integer> body;
-	private int width, height, cur;
+	private int width, height, index;
 	private int[][] food;
 
 	/** Initialize your data structure here.
@@ -20,12 +21,11 @@ public class DesignSnakeGame {
 	public DesignSnakeGame(int width, int height, int[][] food) {
 		snake = new LinkedList<>();
 		body = new HashSet<>();
-		snake.offerLast(new int[]{0, 0});
-		body.add(0);
 		this.width = width;
 		this.height = height;
 		this.food = food;
-		cur = 0;
+		snake.offerLast(new int[]{0, 0});
+		body.add(0);
 	}
 
 	/** Moves the snake.
@@ -33,39 +33,34 @@ public class DesignSnakeGame {
 	 @return The game's score after the move. Return -1 if game over.
 	 Game over when snake crosses the screen boundary or bites its body. */
 	public int move(String direction) {
-		int[] head = snake.peekLast(), next = new int[2];
-		char d = direction.charAt(0);
-		if(d == 'U'){
-			next[0] = head[0] - 1;
-			next[1] = head[1];
-		}else if(d == 'D'){
-			next[0] = head[0] + 1;
-			next[1] = head[1];
-		}else if(d == 'L'){
-			next[0] = head[0];
-			next[1] = head[1] - 1;
+		int[] head = snake.peekLast(), next = new int[]{head[0], head[1]};
+		char dir = direction.charAt(0);
+		if(dir == 'U'){
+			next[0] -= 1;
+		}else if(dir == 'L'){
+			next[1] -= 1;
+		}else if(dir == 'R'){
+			next[1] += 1;
 		}else{
-			next[0] = head[0];
-			next[1] = head[1] + 1;
+			next[0] += 1;
 		}
 		if(next[0] < 0 || next[0] >= height || next[1] < 0 || next[1] >= width){
 			return -1;
 		}
-		int val = next[0] * width + next[1];
-		if(cur < food.length && next[0] == food[cur][0] && next[1] == food[cur][1]){
-			cur++;
+		int encode = next[0] * width + next[1];
+		if(index < food.length && next[0] == food[index][0] && next[1] == food[index][1]){
+			++index;
 		}else{
-			int[] tail = snake.peekFirst();
-			// needs to remove tail first then check body collision
+			int[] tail = snake.pollFirst();
 			body.remove(tail[0] * width + tail[1]);
-			snake.pollFirst();
-			if(body.contains(val)){
+			// detect body collision
+			if(body.contains(encode)){
 				return -1;
 			}
 		}
-		snake.offerLast(next);
-		body.add(val);
-		return cur;
+		snake.offerLast(new int[]{next[0], next[1]});
+		body.add(encode);
+		return index;
 	}
 }
 

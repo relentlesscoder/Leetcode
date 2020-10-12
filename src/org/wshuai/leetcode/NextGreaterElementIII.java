@@ -5,8 +5,9 @@ package org.wshuai.leetcode;
  * #0556 https://leetcode.com/problems/next-greater-element-iii/
  */
 public class NextGreaterElementIII {
+
 	// time O(d)
-	// same as next permutation #0031
+	// next permutation #0031
 	public int nextGreaterElement(int n) {
 		char[] nums = Integer.toString(n).toCharArray();
 		int len = nums.length, left = len - 2, right = len - 1;
@@ -28,7 +29,7 @@ public class NextGreaterElementIII {
 			nums[start++] = nums[end];
 			nums[end--] = temp;
 		}
-		long res = Long.parseLong(String.valueOf(nums));
-		return res > Integer.MAX_VALUE ? -1 : (int)res;
+		long next = Long.parseLong(String.valueOf(nums));
+		return next > Integer.MAX_VALUE ? -1 : (int)next;
 	}
 }

@@ -7,6 +7,8 @@ import java.util.*;
  * #0049 https://leetcode.com/problems/group-anagrams/
  */
 public class GroupAnagrams {
+
+	// time O(n*m), space O(n)
 	public List<List<String>> groupAnagrams(String[] strs) {
 		List<List<String>> res = new ArrayList<>();
 		Map<Integer, List<String>> map = new HashMap<>();

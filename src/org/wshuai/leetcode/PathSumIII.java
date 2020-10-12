@@ -8,6 +8,7 @@ import java.util.Map;
  * #0437 https://leetcode.com/problems/path-sum-iii/
  */
 public class PathSumIII {
+
 	// time O(n), space O(n)
 	public int pathSum(TreeNode root, int sum) {
 		Map<Integer, Integer> prefix = new HashMap<>();
@@ -35,13 +36,17 @@ public class PathSumIII {
 		if(root == null){
 			return 0;
 		}
-		return pathSumFrom(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+		return pathSumFrom(root, sum)
+			+ pathSumRecursive(root.left, sum)
+			+ pathSumRecursive(root.right, sum);
 	}
 
 	private int pathSumFrom(TreeNode root, int sum){
 		if(root == null){
 			return 0;
 		}
-		return (root.val == sum ? 1 : 0) + pathSumFrom(root.left, sum - root.val) + pathSumFrom(root.right, sum - root.val);
+		return (root.val == sum ? 1 : 0)
+			+ pathSumFrom(root.left, sum - root.val)
+			+ pathSumFrom(root.right, sum - root.val);
 	}
 }

@@ -1,35 +1,39 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by Wei on 9/12/2019.
- * #889 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
+ * Created by Wei on 09/12/2019.
+ * #0889 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
  */
 public class ConstructBinaryTreeFromPreorderAndPostorderTraversal {
+
+	// time O(n), space O(n)
 	public TreeNode constructFromPrePost(int[] pre, int[] post) {
-		int len = pre.length;
-		if (len == 0) {
+		Map<Integer, Integer> map = new HashMap<>();
+		int n = post.length;
+		for(int i = 0; i < n; i++){
+			map.put(post[i], i);
+		}
+		return dfs(pre, 0, n - 1, 0, n - 1, map);
+	}
+
+	private TreeNode dfs(int[] preorder, int i, int j, int m, int n, Map<Integer, Integer> map){
+		// i, j denotes range in pre order
+		// m, n denotes range in post order
+		if(i > j){
 			return null;
 		}
-		TreeNode root = new TreeNode(pre[0]);
-		if (len == 1) {
+		TreeNode root = new TreeNode(preorder[i]);
+		if(i == j){
 			return root;
 		}
-
-		int D = 0;
-		for (int i = 0; i < post.length; i++) {
-			if (post[i] == pre[1]) {
-				D = i + 1;
-			}
-		}
-		// based on the tree traversal property to write the recursive function
-		// pre-order is (root)+(left tree pre-order traversal)+(right tree pre-order traversal)
-		// post-order is (left tree post-order traversal)+(right tree post-order traversal)+(root)
-		root.left = constructFromPrePost(Arrays.copyOfRange(pre, 1, D + 1),
-				Arrays.copyOfRange(post, 0, D));
-		root.right = constructFromPrePost(Arrays.copyOfRange(pre, D + 1, len),
-				Arrays.copyOfRange(post, D, len - 1));
+		// use index in post order to calculate the number of nodes in left tree
+		int k = map.get(preorder[i + 1]) - m;
+		root.left = dfs(preorder, i + 1, i + k + 1, m, m + k, map);
+		root.right = dfs(preorder, i + k + 2, j, m + k + 1, n, map);
 		return root;
 	}
 }
