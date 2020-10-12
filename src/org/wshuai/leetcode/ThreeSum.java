@@ -17,28 +17,24 @@ public class ThreeSum {
 		Arrays.sort(nums);
 		int n = nums.length;
 		for(int i = 0; i < n - 2; i++){
+			// smallest number in the triplet cannot be positive
 			if(nums[i] > 0){
 				break;
 			}
-			// avoid duplicates
+			// remove duplicate
 			if(i > 0 && nums[i] == nums[i - 1]){
 				continue;
 			}
-			int target = -nums[i];
-			int left = i + 1;
-			int right = n - 1;
+			int target = -nums[i], left = i + 1, right = n - 1;
 			while(left < right){
-				int lval = nums[left];
-				int rval = nums[right];
-				int sum = lval + rval;
+				int leftVal = nums[left], rightVal = nums[right], sum = leftVal + rightVal;
 				if(sum == target){
 					res.add(Arrays.asList(nums[i], nums[left], nums[right]));
-					// avoid duplicates
-					while(left < right && nums[left] == lval){
+					// remove duplicate
+					while(left < right && nums[left] == leftVal){
 						left++;
 					}
-					// avoid duplicates
-					while(left < right && nums[right] == rval){
+					while(left < right && nums[right] == rightVal){
 						right--;
 					}
 				}else if(sum < target){

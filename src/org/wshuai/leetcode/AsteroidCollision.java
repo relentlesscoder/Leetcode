@@ -7,31 +7,38 @@ import java.util.Stack;
  * #0735 https://leetcode.com/problems/asteroid-collision/
  */
 public class AsteroidCollision {
+
 	// time O(n), space O(n)
 	public int[] asteroidCollision(int[] asteroids) {
 		if(asteroids == null || asteroids.length == 0){
 			return new int[0];
 		}
-		int n = asteroids.length;
 		Stack<Integer> stack = new Stack<>();
-		for(int i = 0; i < n; i++){
-			if(asteroids[i] < 0 && !stack.isEmpty() && stack.peek() > 0){
+		for(int i = 0; i < asteroids.length; i++){
+			if(asteroids[i] < 0){
+				// current asteroid moves to the left, it explodes all asteroids
+				// moving right that have smaller size
 				while(!stack.isEmpty() && stack.peek() > 0 && Math.abs(asteroids[i]) > stack.peek()){
 					stack.pop();
 				}
+				// if no asteroid left or all asteroids left moves to left, add
+				// current to the queue
 				if(stack.isEmpty() || stack.peek() < 0){
 					stack.push(asteroids[i]);
-				}else if(Math.abs(asteroids[i]) == stack.peek()){
+				// if there are asteroids moving to right left with same size,
+				// the collision will explode both
+				}else if(stack.peek() == Math.abs(asteroids[i])){
 					stack.pop();
 				}
+				// otherwise, the current will explode
 			}else{
 				stack.push(asteroids[i]);
 			}
 		}
-		int m = stack.size();
-		int[] res = new int[m];
-		for(int i = m - 1; i >= 0; i--){
-			res[i] = stack.pop();
+		int[] res = new int[stack.size()];
+		int k = 0;
+		for(int s : stack){
+			res[k++] = s;
 		}
 		return res;
 	}
