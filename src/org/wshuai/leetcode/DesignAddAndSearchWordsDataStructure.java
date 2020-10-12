@@ -35,14 +35,14 @@ public class DesignAddAndSearchWordsDataStructure {
 		if(i == word.length()){
 			return node != null && node.isEnd();
 		}
-		if(node == null){
-			return false;
-		}
 		char k = word.charAt(i);
 		if(k != '.'){
-			return dfs(node.get(k), word, i + 1);
+			return node.containsKey(k) ? dfs(node.get(k), word, i + 1) : false;
 		}else{
 			for(char c = 'a'; c <= 'z'; c++){
+				if(!node.containsKey(c)){
+					continue;
+				}
 				if(dfs(node.get(c), word, i + 1)){
 					return true;
 				}
