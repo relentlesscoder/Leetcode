@@ -6,29 +6,20 @@ package org.wshuai.leetcode;
  */
 public class SumRootToLeafNumbers {
 
-	private int sum;
-
 	// time O(n)
 	public int sumNumbers(TreeNode root) {
 		if(root == null){
 			return 0;
 		}
-		sum = 0;
-		dfs(root, 0);
-		return sum;
+		return dfs(root, 0);
 	}
 
-	private void dfs(TreeNode root, int cur){
+	private int dfs(TreeNode root, int cur){
 		cur = cur * 10 + root.val;
 		if(root.left == null && root.right == null){
-			sum += cur;
-			return;
+			return cur;
 		}
-		if(root.left != null){
-			dfs(root.left, cur);
-		}
-		if(root.right != null){
-			dfs(root.right, cur);
-		}
+		return (root.left == null ? 0 : dfs(root.left, cur))
+				+ (root.right == null ? 0 : dfs(root.right, cur));
 	}
 }

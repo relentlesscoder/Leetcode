@@ -2,9 +2,10 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 11/11/2019.
- * #858 https://leetcode.com/problems/mirror-reflection/
+ * #0858 https://leetcode.com/problems/mirror-reflection/
  */
 public class MirrorReflection {
+
 	// https://leetcode.com/problems/mirror-reflection/discuss/146336/Java-solution-with-an-easy-to-understand-explanation
 	public int mirrorReflection(int p, int q) {
 		int m = 1, n = 1;

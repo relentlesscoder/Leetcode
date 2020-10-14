@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/31/16.
- * #419 https://leetcode.com/problems/battleships-in-a-board/
+ * Created by Wei on 10/31/2016.
+ * #0419 https://leetcode.com/problems/battleships-in-a-board/
  */
 public class BattleshipsInABoard {
 
