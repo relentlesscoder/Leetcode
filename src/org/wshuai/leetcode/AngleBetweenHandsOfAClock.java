@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #1344 https://leetcode.com/problems/angle-between-hands-of-a-clock/
  */
 public class AngleBetweenHandsOfAClock {
+
 	// time O(1)
 	public double angleClock(int hour, int minutes) {
 		double h = minutes / 60.0 * 5.0 + (hour == 12 ? 0 : hour) * 5.0, m = (double)minutes;

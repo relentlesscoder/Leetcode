@@ -6,24 +6,25 @@ package org.wshuai.leetcode;
  */
 public class CustomSortString {
 
-	// time O(m+n)
+	// time O(m + n)
 	public String customSortString(String S, String T) {
-		StringBuilder res = new StringBuilder();
-		int[] count = new int[26];
+		int[] charCount = new int[26];
 		for(char c : T.toCharArray()){
-			count[c - 'a']++;
+			charCount[c - 'a']++;
 		}
-		for(char c : S.toCharArray()){
-			while(count[c - 'a']-- > 0){
-				res.append(c);
+		char[] res = new char[T.length()];
+		int j = 0;
+		for(int i = 0; i < S.length(); i++){
+			char c = S.charAt(i);
+			while(charCount[c - 'a']-- > 0){
+				res[j++] = c;
 			}
 		}
 		for(int i = 0; i < 26; i++){
-			char c = (char)(i + 'a');
-			while(count[i]-- > 0){
-				res.append(c);
+			while(charCount[i]-- > 0){
+				res[j++] = (char)(i + 'a');
 			}
 		}
-		return res.toString();
+		return String.valueOf(res);
 	}
 }

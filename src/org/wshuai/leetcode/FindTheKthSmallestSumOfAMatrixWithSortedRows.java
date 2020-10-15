@@ -16,16 +16,15 @@ public class FindTheKthSmallestSumOfAMatrixWithSortedRows {
     With the O(m) copies and hashing, the overall complexity is O(k m + k n m + k n log k + k n log n)).
     O(k n m) dominates in the worst case.*/
     public int kthSmallestBFS(int[][] mat, int k) {
-        int sum = 0, m = mat.length, n = mat[0].length;
-        Set<String> visited = new HashSet<>();
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        int m = mat.length, n = mat[0].length;
+        int[] sum = new int[m + 1];
         for(int i = 0; i < m; i++){
-            sum += mat[i][0];
+            sum[0] += mat[i][0];
         }
-        int[] data = new int[m + 1];
-        data[0] = sum;
-        pq.offer(data);
-        visited.add(Arrays.toString(data));
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        Set<String> visited = new HashSet<>();
+        pq.offer(sum);
+        visited.add(Arrays.toString(sum));
         while(!pq.isEmpty()){
             int[] cur = pq.poll();
             if(--k == 0){

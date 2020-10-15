@@ -8,29 +8,26 @@ import java.util.Map;
  * #0525 https://leetcode.com/problems/contiguous-array/
  */
 public class ContiguousArray {
+
 	// time O(n), space O(n)
 	public int findMaxLength(int[] nums) {
 		if(nums == null || nums.length == 0){
 			return 0;
 		}
-		int len = nums.length;
-		for(int i = 0; i < len; i++){
-			if(nums[i] == 0){
-				nums[i] = -1;
-			}
+		int res = 0, n = nums.length, sum = 0;
+		for(int i = 0; i < n; i++){
+			nums[i] = nums[i] == 0 ? -1 : 1;
 		}
-		Map<Integer, Integer> map = new HashMap<>();
-		map.put(0, -1);
-		int max = 0, sum = 0;
-		for(int i = 0; i < len; i++){
+		Map<Integer, Integer> prefix = new HashMap<>();
+		prefix.put(0, -1);
+		for(int i = 0; i < n; i++){
 			sum += nums[i];
-			if(map.containsKey(sum)){
-				int idx = map.get(sum);
-				max = Math.max(max, i - idx);
+			if(prefix.containsKey(sum)){
+				res = Math.max(res, i - prefix.get(sum));
 			}else{
-				map.put(sum, i);
+				prefix.put(sum, i);
 			}
 		}
-		return max;
+		return res;
 	}
 }

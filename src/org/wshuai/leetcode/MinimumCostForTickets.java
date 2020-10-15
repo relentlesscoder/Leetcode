@@ -4,10 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Wei on 9/19/19.
- * #983 https://leetcode.com/problems/minimum-cost-for-tickets/
+ * Created by Wei on 09/19/2019.
+ * #0983 https://leetcode.com/problems/minimum-cost-for-tickets/
  */
 public class MinimumCostForTickets {
+
+	// time O(n), space O(n)
 	public int mincostTickets(int[] days, int[] costs) {
 		Set<Integer> set = new HashSet<>();
 		for (int d : days) {
