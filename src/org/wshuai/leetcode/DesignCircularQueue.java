@@ -6,53 +6,60 @@ package org.wshuai.leetcode;
  */
 public class DesignCircularQueue {
 
-	private final int[] data;
-	private int front = 0, rear = -1, len = 0;
+	private int[] data;
+	private int head = 0, tail = -1, size = 0, k;
 
 	/** Initialize your data structure here. Set the size of the queue to be k. */
 	public DesignCircularQueue(int k) {
-		data = new int[k];
+		this.data = new int[k];
+		this.k = k;
 	}
 
 	/** Insert an element into the circular queue. Return true if the operation is successful. */
 	public boolean enQueue(int value) {
-		if(!isFull()){
-			rear = (rear + 1) % data.length;
-			data[rear] = value;
-			len++;
-			return true;
+		if(isFull()){
+			return false;
 		}
-		return false;
+		tail = (tail + 1) % k;
+		data[tail] = value;
+		size++;
+		return true;
 	}
 
 	/** Delete an element from the circular queue. Return true if the operation is successful. */
 	public boolean deQueue() {
-		if(!isEmpty()){
-			front = (front + 1) % data.length;
-			len--;
-			return true;
+		if(isEmpty()){
+			return false;
 		}
-		return false;
+		head = (head + 1) % k;
+		size--;
+		return true;
 	}
 
 	/** Get the front item from the queue. */
 	public int Front() {
-		return isEmpty() ? -1 : data[front];
+		if(isEmpty()){
+			return -1;
+		}
+		return data[head];
 	}
 
 	/** Get the last item from the queue. */
 	public int Rear() {
-		return isEmpty() ? -1 : data[rear];
+		if(isEmpty()){
+			return -1;
+		}
+		return data[tail];
 	}
 
 	/** Checks whether the circular queue is empty or not. */
 	public boolean isEmpty() {
-		return len == 0;
+		return size == 0;
 	}
 
 	/** Checks whether the circular queue is full or not. */
 	public boolean isFull() {
-		return len == data.length;
+		return size == k;
 	}
 }
 

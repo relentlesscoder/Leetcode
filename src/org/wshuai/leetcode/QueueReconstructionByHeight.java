@@ -9,7 +9,8 @@ import java.util.List;
  * #0406 https://leetcode.com/problems/queue-reconstruction-by-height/
  */
 public class QueueReconstructionByHeight {
-	// time O(n)
+
+	// time O(n^2), space O(n)
 	// https://leetcode.com/articles/queue-reconstruction-by-height/
 	public int[][] reconstructQueue(int[][] people) {
 		Arrays.sort(people, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);

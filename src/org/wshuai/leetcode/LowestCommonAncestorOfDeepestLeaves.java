@@ -1,30 +1,35 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-
 /**
- * Created by Wei on 9/4/19.
+ * Created by Wei on 09/04/2019.
  * #1123 https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/
  */
 public class LowestCommonAncestorOfDeepestLeaves {
-	HashMap<TreeNode, Integer> heights = new HashMap<TreeNode, Integer>();
 
-	// see solution at https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/discuss/334583/Java-O(n)-Short-and-Simple-Recursion
+	// time O(n)
 	public TreeNode lcaDeepestLeaves(TreeNode root) {
-		if (root == null || height(root.right) == height(root.left)) {
-			return root;
-		}
-		return lcaDeepestLeaves(height(root.left) > height(root.right) ? root.left : root.right);
+		return dfs(root).node;
 	}
 
-	public int height(TreeNode root) {
-		if (root == null) {
-			return 0;
+	private Pair dfs(TreeNode root){
+		if(root == null){
+			return new Pair(null, 0);
 		}
-		if (heights.containsKey(root)) {
-			return heights.get(root);
+		Pair left = dfs(root.left), right = dfs(root.right);
+		int leftDepth = left.depth, rightDepth = right.depth;
+		return new Pair(leftDepth == rightDepth ? root : leftDepth > rightDepth ? left.node : right.node,
+				1 + Math.max(leftDepth, rightDepth));
+	}
+
+	private class Pair{
+
+		private TreeNode node;
+
+		private int depth;
+
+		private Pair(TreeNode node, int depth){
+			this.node = node;
+			this.depth = depth;
 		}
-		heights.put(root, 1 + Math.max(height(root.left), height(root.right)));
-		return heights.get(root);
 	}
 }

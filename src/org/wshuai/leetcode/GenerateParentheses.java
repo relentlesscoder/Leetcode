@@ -8,22 +8,30 @@ import java.util.List;
  * #0022 https://leetcode.com/problems/generate-parentheses/
  */
 public class GenerateParentheses {
+
+	// time O(2^N), space O(N), N = 2*n
 	public List<String> generateParenthesis(int n) {
 		List<String> res = new ArrayList<>();
-		dfs(res, "", 0, 0, n);
+		dfs(0, 0, n, new StringBuilder(), res);
 		return res;
 	}
 
-	private void dfs(List<String> res, String cur, int open, int close, int n){
-		if(cur.length() == 2 * n){
-			res.add(cur);
+	private void dfs(int open, int close, int n, StringBuilder cur, List<String> res){
+		if(close == n){
+			if(open == close){
+				res.add(cur.toString());
+			}
 			return;
 		}
 		if(open < n){
-			dfs(res, cur + '(', open + 1, close, n);
+			cur.append('(');
+			dfs(open + 1, close, n, cur, res);
+			cur.deleteCharAt(cur.length() - 1);
 		}
 		if(close < open){
-			dfs(res, cur + ')', open, close + 1, n);
+			cur.append(')');
+			dfs(open, close + 1, n, cur, res);
+			cur.deleteCharAt(cur.length() - 1);
 		}
 	}
 }
