@@ -1,26 +1,24 @@
 package org.wshuai.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by Wei on 09/19/2016.
  * #0266 https://leetcode.com/problems/palindrome-permutation/
  */
 public class PalindromePermutation {
-	// time O(n)
+
+	// time O(n), space O(n)
 	public boolean canPermutePalindrome(String s) {
-		int[] count = new int[256];
-		int odd = 0;
+		Set<Character> set = new HashSet<>();
 		for(char c : s.toCharArray()){
-			count[c]++;
-		}
-		for(int c : count){
-			if(c % 2 == 0){
-				continue;
+			if(set.contains(c)){
+				set.remove(c);
+			}else{
+				set.add(c);
 			}
-			if(odd == 1){
-				return false;
-			}
-			odd++;
 		}
-		return true;
+		return set.isEmpty() || set.size() == 1;
 	}
 }

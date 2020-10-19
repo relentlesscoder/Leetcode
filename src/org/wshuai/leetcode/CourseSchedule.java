@@ -9,34 +9,34 @@ import java.util.List;
  * #0207 https://leetcode.com/problems/course-schedule/
  */
 public class CourseSchedule {
-	// time O(V + E)
+
+	// time O(V + E), space O(V + E)
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
-		List<Integer>[] adj = new ArrayList[numCourses];
-		int[] indegree = new int[numCourses];
-		int taken = 0;
+		int[] inDegree = new int[numCourses];
+		LinkedList<Integer> queue = new LinkedList<>();
+		ArrayList<Integer>[] adj = new ArrayList[numCourses];
 		for(int i = 0; i < numCourses; i++){
 			adj[i] = new ArrayList<>();
 		}
-		for(int[] edge : prerequisites){
-			adj[edge[1]].add(edge[0]);
-			indegree[edge[0]]++;
+		for(int[] p : prerequisites){
+			inDegree[p[0]]++;
+			adj[p[1]].add(p[0]);
 		}
-		LinkedList<Integer> queue = new LinkedList<>();
 		for(int i = 0; i < numCourses; i++){
-			if(indegree[i] == 0){
+			if(inDegree[i] == 0){
 				queue.offerLast(i);
 			}
 		}
 		while(!queue.isEmpty()){
 			int cur = queue.pollFirst();
-			taken++;
+			numCourses--;
 			for(int next : adj[cur]){
-				if(--indegree[next] == 0){
+				if(--inDegree[next] == 0){
 					queue.offerLast(next);
 				}
 			}
 		}
-		return taken == numCourses;
+		return numCourses == 0;
 	}
 
 	// time O(V + E)
@@ -50,7 +50,7 @@ public class CourseSchedule {
 		}
 		int[] visited = new int[numCourses];
 		for(int i = 0; i < numCourses; i++){
-			if(!dfs(i, adj, visited)){
+			if(visited[i] == 0 && !dfs(i, adj, visited)){
 				return false;
 			}
 		}
@@ -61,6 +61,8 @@ public class CourseSchedule {
 		visited[i] = 1;
 
 		for(int next : adj[i]){
+			// if node has been visited in the current dfs path before,
+			// cycle is detected
 			if(visited[next] == 1){
 				return false;
 			}
