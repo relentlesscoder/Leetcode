@@ -5,38 +5,30 @@ package org.wshuai.leetcode;
  * #0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
  */
 public class ReverseVowelsOfAString {
+
 	// time O(n)
 	public String reverseVowels(String s) {
-		if(s == null || s.isEmpty()){
-			return "";
+		if(s == null || s.length() == 0){
+			return s;
 		}
-		int i = 0, j = s.length() - 1;
+		int n = s.length(), left = 0, right = n - 1;
 		char[] arr = s.toCharArray();
-		while(i < j){
-			boolean b1 = isVowel(arr[i]), b2 = isVowel(arr[j]);
-			if(!b1){
-				i++;
-			}else if(!b2){
-				j--;
-			}else{
-				char temp = arr[i];
-				arr[i++] = arr[j];
-				arr[j--] = temp;
+		while(left < right){
+			while(left < right && !isVowel(arr[left])){
+				left++;
 			}
+			while(left < right && !isVowel(arr[right])){
+				right--;
+			}
+			char temp = arr[left];
+			arr[left++] = arr[right];
+			arr[right--] = temp;
 		}
-		return new String(arr);
+		return String.valueOf(arr);
 	}
 
 	private boolean isVowel(char c){
-		return c == 'a'
-				|| c == 'e'
-				|| c == 'i'
-				|| c == 'o'
-				|| c == 'u'
-				|| c == 'A'
-				|| c == 'E'
-				|| c == 'I'
-				|| c == 'O'
-				|| c == 'U';
+		return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+				|| c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
 	}
 }

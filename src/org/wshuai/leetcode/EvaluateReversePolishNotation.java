@@ -7,29 +7,29 @@ import java.util.Stack;
  * #0150 https://leetcode.com/problems/evaluate-reverse-polish-notation/
  */
 public class EvaluateReversePolishNotation {
+
 	// time O(n), space O(n)
 	public int evalRPN(String[] tokens) {
 		Stack<Integer> stack = new Stack<>();
 		for(String t : tokens){
-			if(t.equals("+") || t.equals("-") || t.equals("*") || t.equals("/")){
-				int right = stack.pop();
-				int left = stack.pop();
-				stack.push(calculate(left, right, t));
-			}else{
+			if(Character.isDigit(t.charAt(t.length() - 1))){
 				stack.push(Integer.parseInt(t));
+			}else{
+				int b = stack.pop(), a = stack.pop();
+				stack.push(eval(a, b, t.charAt(0)));
 			}
 		}
 		return stack.peek();
 	}
 
-	private int calculate(int left, int right, String oper){
-		if(oper.equals("-")){
-			return left - right;
-		}else if(oper.equals("*")){
-			return left * right;
-		}else if(oper.equals("/")){
-			return left / right;
+	private int eval(int a, int b, char op){
+		if(op == '-'){
+			return a - b;
+		}else if(op == '*'){
+			return a * b;
+		}else if(op == '/'){
+			return a / b;
 		}
-		return left + right;
+		return a + b;
 	}
 }

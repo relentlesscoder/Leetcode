@@ -5,28 +5,33 @@ package org.wshuai.leetcode;
  * #0019 https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  */
 public class RemoveNthNodeFromEndOfList {
-	public LinkedListNode removeNthFromEnd(LinkedListNode head, int n) {
-		int res = removeNode(head, n);
-		return res == n ? head.next : head;
-	}
 
-	private int removeNode(LinkedListNode cur, int n){
-		if(cur.next == null){
-			return 1;
-		}
-		int num = removeNode(cur.next, n);
-		if(num == n){
-			cur.next = cur.next.next;
-		}
-		return num + 1;
-	}
+	// time O(n)
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode root = new ListNode(0), fast = head, slow = head, prev = root;
+        root.next = head;
+        int i = 0;
+        while (i++ < n) {
+            fast = fast.next;
+        }
+        while (fast != null) {
+            fast = fast.next;
+            prev = slow;
+            slow = slow.next;
+        }
+        prev.next = slow.next;
+        return root.next;
+    }
+
+    // Definition for singly-linked list.
+    private class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
 }
 
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
+
