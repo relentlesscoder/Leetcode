@@ -11,27 +11,23 @@ public class EmployeeFreeTime {
 	// time O(n*log(n)), space O(n)
 	public List<Interval> employeeFreeTime(List<List<Interval>> schedule) {
 		List<Interval> res = new ArrayList<>();
-		PriorityQueue<Interval> pq = new PriorityQueue<>((a, b)
-			-> a.start == b.start ? a.end - b.end : a.start - b.start);
-		for(List<Interval> s : schedule){
-			for(Interval in : s){
+		PriorityQueue<Interval> pq = new PriorityQueue<>((a, b) -> a.start == b.start ?
+				a.end - b.end : a.start - b.start);
+		for(List<Interval> intervals : schedule){
+			for(Interval in : intervals){
 				pq.offer(in);
 			}
 		}
 		Interval prev = pq.poll();
-		if(prev == null){
-			return res;
-		}
 		while(!pq.isEmpty()){
 			Interval cur = pq.poll();
-			// skip duplicates
 			if(cur.start == prev.start && cur.end == prev.end){
 				continue;
 			}
-			if(cur.start > prev.end){ // the gap between is the common free time
+			if(cur.start > prev.end){
 				res.add(new Interval(prev.end, cur.start));
 				prev = cur;
-			}else{ // if no gap, merge the current
+			}else{
 				prev.end = Math.max(prev.end, cur.end);
 			}
 		}
@@ -46,9 +42,11 @@ public class EmployeeFreeTime {
 			for(Interval in : s){
 				int start = in.start, end = in.end;
 				Integer lower = map.lowerKey(start), ceil = map.floorKey(end);
-				if(lower != null && map.get(lower) >= start){
+				// the end of previous interval is greater or equal to current start
+				if(lower != null && map.get(lower) >= start) {
 					start = lower.intValue();
 				}
+				// the end of previous interval is greater than current end
 				if(ceil != null && map.get(ceil) > end){
 					end = map.get(ceil);
 				}

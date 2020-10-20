@@ -10,50 +10,47 @@ public class DecodeWaysII {
 
 	// time O(n), space O(n)
 	public int numDecodings(String s) {
+		if(s == null || s.length() == 0 || s.charAt(0) == '0'){
+			return 0;
+		}
 		int n = s.length();
 		long[] dp = new long[n + 1];
 		dp[0] = 1;
-		dp[1] = s.charAt(0) == '0' ? 0 : s.charAt(0) == '*' ? 9 : 1;
-		for (int i = 2; i <= n; i++) {
+		dp[1] = s.charAt(0) == '*' ? 9 : 1;
+		for(int i = 2; i <= n; i++){
 			char cur = s.charAt(i - 1), prev = s.charAt(i - 2);
-			if (cur == '0' && (prev != '1' && prev != '2' && prev != '*')) {
+			if(cur == '0' && (prev != '1' && prev != '2' && prev != '*')){
 				return 0;
 			}
-			// xxxxx6
-			if (cur >= '1' && cur <= '9') {
-				dp[i] += dp[i - 1];
+			if(cur >= '1' && cur <= '9'){
+				dp[i] = (dp[i] + dp[i - 1]) % MOD;
 			}
-			// xxxx22
-			if ((prev == '1' && cur >= '0' && cur <= '9')
-					|| (prev == '2' && cur >= '0' && cur <= '6')) {
-				dp[i] += dp[i - 2];
+			if((prev == '1' && cur >= '0' && cur <= '9')
+					|| (prev == '2' && cur >= '0' && cur <= '6')){
+				dp[i] = (dp[i] + dp[i - 2]) % MOD;
 			}
-			// xxxxx[1-9]
-			if (cur == '*') {
-				dp[i] += 9 * dp[i - 1];
+			// cur is '*'
+			if(cur == '*'){
+				dp[i] = (dp[i] + 9 * dp[i - 1] % MOD) % MOD;
 			}
-			// xxxx1[1-9]
-			if (cur == '*' && prev == '1') {
-				dp[i] += 9 * dp[i - 2];
+			if(cur == '*' && prev == '1'){
+				dp[i] = (dp[i] + 9 * dp[i - 2] % MOD) % MOD;
 			}
-			// xxxx2[1-6]
-			if (cur == '*' && prev == '2') {
-				dp[i] += 6 * dp[i - 2];
+			if(cur == '*' && prev == '2'){
+				dp[i] = (dp[i] + 6 * dp[i - 2] % MOD) % MOD;
 			}
-			// xxxx[1-2][1-9]
-			if (cur == '*' && prev == '*') {
-				dp[i] += 15 * dp[i - 2];
+			// prev is '*'
+			if(prev == '*' && cur >= '0' && cur <= '9'){
+				dp[i] = (dp[i] + dp[i - 2]) % MOD;
 			}
-			// xxxx19
-			if (prev == '*' && cur >= '0' && cur <= '9') {
-				dp[i] += dp[i - 2];
+			if(prev == '*' && cur >= '0' && cur <= '6'){
+				dp[i] = (dp[i] + dp[i - 2]) % MOD;
 			}
-			// xxxx25
-			if (prev == '*' && cur >= '0' && cur <= '6') {
-				dp[i] += dp[i - 2];
+			// both cur and prev are '*'
+			if(cur == '*' && prev == '*'){
+				dp[i] = (dp[i] + 15 * dp[i - 2] % MOD) % MOD;;
 			}
-			dp[i] %= MOD;
 		}
-		return (int) dp[n];
+		return (int)dp[n];
 	}
 }

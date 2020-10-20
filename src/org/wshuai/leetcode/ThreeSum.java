@@ -11,36 +11,33 @@ public class ThreeSum {
 	// time O(n^2)
 	public List<List<Integer>> threeSum(int[] nums) {
 		List<List<Integer>> res = new ArrayList<>();
-		if(nums == null || nums.length < 3){
-			return res;
-		}
-		Arrays.sort(nums);
 		int n = nums.length;
+		Arrays.sort(nums);
 		for(int i = 0; i < n - 2; i++){
-			// smallest number in the triplet cannot be positive
+			// deduplicate
+			if(i > 0 && nums[i - 1] == nums[i]){
+				continue;
+			}
+			// branch pruning
 			if(nums[i] > 0){
 				break;
 			}
-			// remove duplicate
-			if(i > 0 && nums[i] == nums[i - 1]){
-				continue;
-			}
-			int target = -nums[i], left = i + 1, right = n - 1;
-			while(left < right){
-				int leftVal = nums[left], rightVal = nums[right], sum = leftVal + rightVal;
+			int target = -nums[i], j = i + 1, k = n - 1;
+			while(j < k){
+				int left = nums[j], right = nums[k], sum = left + right;
 				if(sum == target){
-					res.add(Arrays.asList(nums[i], nums[left], nums[right]));
-					// remove duplicate
-					while(left < right && nums[left] == leftVal){
-						left++;
-					}
-					while(left < right && nums[right] == rightVal){
-						right--;
-					}
+					res.add(Arrays.asList(nums[i], nums[j++], nums[k--]));
 				}else if(sum < target){
-					left++;
+					j++;
 				}else{
-					right--;
+					k--;
+				}
+				// deduplicate
+				while(j < k && j > i + 1 && nums[j] == nums[j - 1]){
+					j++;
+				}
+				while(j < k && k < n - 1 && nums[k] == nums[k + 1]){
+					k--;
 				}
 			}
 		}

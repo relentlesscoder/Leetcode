@@ -5,28 +5,25 @@ package org.wshuai.leetcode;
  * #0059 https://leetcode.com/problems/spiral-matrix-ii/
  */
 public class SpiralMatrixII {
-	// O(n^2)
+
+	// time O(n^2)
 	public int[][] generateMatrix(int n) {
-		int[][] res = new int[n][n];
-		int cur = 1, up = 0, down = n - 1, left = 0, right = n - 1, max = n*n;
-		while(cur <= max){
-			for(int i = left; i <= right && cur <= max; i++){
-				res[up][i] = cur++;
+		int[][] matrix = new int[n][n];
+		int cur = 1, size = n*n;
+		for(int left = 0, right = n - 1, top = 0, bottom = n - 1; cur <= size; left++, right--, top++, bottom--){
+			for(int i = left; i <= right && cur <= size; i++){
+				matrix[top][i] = cur++;
 			}
-			for(int j = up + 1; j <= down - 1 && cur <= max; j++){
-				res[j][right] = cur++;
+			for(int i = top + 1; i <= bottom - 1 && cur <= size; i++){
+				matrix[i][right] = cur++;
 			}
-			for(int i = right; i >= left && cur <= max; i--){
-				res[down][i] = cur++;
+			for(int i = right; i >= left && cur <= size; i--){
+				matrix[bottom][i] = cur++;
 			}
-			for(int j = down - 1; j >= up + 1 && cur <= max; j--){
-				res[j][left] = cur++;
+			for(int i = bottom - 1; i >= top + 1 && cur <= size; i--){
+				matrix[i][left] = cur++;
 			}
-			up++;
-			down--;
-			left++;
-			right--;
 		}
-		return res;
+		return matrix;
 	}
 }
