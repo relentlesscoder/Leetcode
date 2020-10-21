@@ -7,20 +7,23 @@ import java.util.Stack;
  * #0020 https://leetcode.com/problems/valid-parentheses/
  */
 public class ValidParentheses {
+
 	// time O(n), space O(n)
 	public boolean isValid(String s) {
-		Stack<Character> openBrackets = new Stack<>();
-		for(int i = 0; i < s.length(); i++){
-			char c = s.charAt(i);
-			if(c == '}' || c == ']' || c == ')'){
-				if(openBrackets.isEmpty() || openBrackets.peek() != c){
-					return false;
-				}
-				openBrackets.pop();
+		Stack<Character> stack = new Stack<>();
+		for(char c : s.toCharArray()){
+			if(c == '(' || c == '{' || c == '['){
+				stack.push(c);
+			}else if(!stack.isEmpty() && isMatch(stack.peek(), c)){
+				stack.pop();
 			}else{
-				openBrackets.push(c == '{' ? '}' : (c == '(' ? ')' : ']'));
+				return false;
 			}
 		}
-		return openBrackets.isEmpty();
+		return stack.isEmpty();
+	}
+
+	private boolean isMatch(char a, char b){
+		return (a == '(' && b == ')') || (a == '{' && b == '}') || (a == '[' && b == ']');
 	}
 }

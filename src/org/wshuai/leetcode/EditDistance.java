@@ -7,11 +7,7 @@ package org.wshuai.leetcode;
 public class EditDistance {
 	// time O(m*n), space O(m*n) can be improve to O(m)
 	public int minDistance(String word1, String word2) {
-		int n = word1.length();
-		int m = word2.length();
-		if(m == 0 && n == 0){
-			return 0;
-		}
+		int n = word1.length(), m = word2.length();
 		if(m == 0 || n == 0){
 			return m == 0 ? n : m;
 		}
