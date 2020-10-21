@@ -8,25 +8,21 @@ import java.util.Map;
  * #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
  */
 public class MaximumSizeSubarraySumEqualsK {
-	//O(n) time, same idea as #303 https://leetcode.com/problems/range-sum-query-immutable/
-	//but use hashmap to improve the time
+
+	// time O(n), space O(n)
 	public int maxSubArrayLen(int[] nums, int k) {
 		if(nums == null || nums.length == 0){
 			return 0;
 		}
-		int n = nums.length, res = 0;
-		for(int i = 1; i < n; i++){
-			nums[i] += nums[i - 1];
-		}
-		Map<Integer, Integer> map = new HashMap<>();
-		map.put(0, -1);
-		for(int i = 0; i < n; i++){
-			if(map.containsKey(nums[i] - k)){
-				res = Math.max(res, i - map.get(nums[i] - k));
+		int res = 0, sum = 0;
+		Map<Integer, Integer> prefix = new HashMap<>();
+		prefix.put(0, -1);
+		for(int i = 0; i < nums.length; i++){
+			sum += nums[i];
+			if(prefix.containsKey(sum - k)){
+				res = Math.max(res, i - prefix.get(sum - k));
 			}
-			if(!map.containsKey(nums[i])){
-				map.put(nums[i], i);
-			}
+			prefix.putIfAbsent(sum, i);
 		}
 		return res;
 	}
