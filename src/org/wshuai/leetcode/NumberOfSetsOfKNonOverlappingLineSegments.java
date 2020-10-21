@@ -8,7 +8,7 @@ public class NumberOfSetsOfKNonOverlappingLineSegments {
 
 	private static final int MOD = 1_000_000_007;
 
-	// time O(4*n*k), space O(2*n*k)
+	// time O(2*n*k), space O(2*n*k)
 	public int numberOfSets(int n, int k) {
 		return dfs(0, k, 1, n, new Integer[n + 1][k + 1][2]);
 	}
