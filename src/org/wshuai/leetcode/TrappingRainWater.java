@@ -23,6 +23,29 @@ public class TrappingRainWater {
 		return res;
 	}
 
+	// time O(n), space O(n)
+	public int trapStack(int[] height) {
+		if(height == null || height.length == 0){
+			return 0;
+		}
+		int res = 0;
+		Stack<Integer> stack = new Stack<>();
+		for(int i = 0; i < height.length; ){
+			if(stack.isEmpty() || height[i] <= height[stack.peek()]){ // maintain decreasing monotonic queue
+				stack.push(i++);
+			}else{ // if the current height is larger than the stack top, we have a "U" shape that can trap some water
+				int low = stack.pop();
+				if(stack.isEmpty()){
+					continue;
+				}
+				// the amount of water trapped depends on the lower bar of the two side
+				res += (Math.min(height[i], height[stack.peek()]) - height[low])
+						* (i - stack.peek() - 1);
+			}
+		}
+		return res;
+	}
+
 	// time O(n), space O(n), save max from left and right
 	public int trapDP(int[] height) {
 		int res = 0, max = 0, n = height.length;
@@ -36,28 +59,6 @@ public class TrappingRainWater {
 			dp[i] = Math.min(dp[i], max);
 			max = Math.max(max, height[i]);
 			res += dp[i] > height[i] ? dp[i] - height[i] : 0;
-		}
-		return res;
-	}
-
-	// time O(n), space O(n)
-	public int trapStack(int[] height) {
-		if(height == null || height.length == 0){
-			return 0;
-		}
-		int res = 0;
-		Stack<Integer> stack = new Stack<>();
-		for(int i = 0; i < height.length; ){
-			if(stack.isEmpty() || height[i] <= height[stack.peek()]){
-				stack.push(i++);
-			}else{
-				int low = stack.pop();
-				if(stack.isEmpty()){
-					continue;
-				}
-				res += (Math.min(height[i], height[stack.peek()]) - height[low])
-					* (i - stack.peek() - 1);
-			}
 		}
 		return res;
 	}

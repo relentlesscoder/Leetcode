@@ -9,6 +9,7 @@ import java.util.List;
  * #0102 https://leetcode.com/problems/binary-tree-level-order-traversal/
  */
 public class BinaryTreeLevelOrderTraversal {
+
 	// time O(n), space O(n)
 	public List<List<Integer>> levelOrder(TreeNode root) {
 		List<List<Integer>> res = new ArrayList<>();

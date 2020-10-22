@@ -6,7 +6,9 @@ package org.wshuai.leetcode;
  */
 public class MaximumSubarray {
 
-	// time O(n), Kadane's algorithm
+	// time O(n)
+	// Kadane's algorithm
+	// https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
 	public int maxSubArray(int[] nums) {
 		int res = nums[0];
 		for(int i = 1; i < nums.length; i++){
@@ -16,6 +18,16 @@ public class MaximumSubarray {
 			res = Math.max(res, nums[i]);
 		}
 		return res;
+	}
+
+	// time O(n)
+	public int maxSubArrayShort(int[] nums) {
+		int max = Integer.MIN_VALUE, localMax = 0;
+		for(int i = 0; i < nums.length; i++){
+			localMax = Math.max(nums[i], localMax + nums[i]);
+			max = Math.max(max, localMax);
+		}
+		return max;
 	}
 
 	// time O(n*log(n)), divide and conquer
