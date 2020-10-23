@@ -9,9 +9,11 @@ import java.util.Stack;
  * #0341 https://leetcode.com/problems/flatten-nested-list-iterator/
  */
 public class FlattenNestedListIterator implements Iterator<Integer> {
-	private Stack<NestedInteger> stack = new Stack<>();
+
+	private Stack<NestedInteger> stack;
 
 	public FlattenNestedListIterator(List<NestedInteger> nestedList) {
+		stack = new Stack<>();
 		for(int i = nestedList.size() - 1; i >= 0; i--){
 			stack.push(nestedList.get(i));
 		}
@@ -25,14 +27,14 @@ public class FlattenNestedListIterator implements Iterator<Integer> {
 	@Override
 	public boolean hasNext() {
 		while(!stack.isEmpty()){
-			NestedInteger ni = stack.peek();
-			if(ni.isInteger()){
+			NestedInteger cur = stack.peek();
+			if(cur.isInteger()){
 				return true;
 			}
 			stack.pop();
-			List<NestedInteger> list = ni.getList();
-			for(int i = list.size() - 1; i >= 0; i--){
-				stack.push(list.get(i));
+			List<NestedInteger> nestedList = cur.getList();
+			for(int i = nestedList.size() - 1; i >= 0; i--){
+				stack.push(nestedList.get(i));
 			}
 		}
 		return false;

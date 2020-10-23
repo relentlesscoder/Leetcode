@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class StrobogrammaticNumberII {
 
-	private static final char[][] map = new char[][]{
+	private static final char[][] MAPPING = new char[][]{
 			{'0', '0'}, {'1', '1'}, {'6', '9'}, {'8', '8'}, {'9', '6'}
 	};
-	private static final char[] mid = new char[]{'0', '1', '8'};
+	private static final char[] MID = new char[]{'0', '1', '8'};
 
 	// time 5^(n/2)
 	public List<String> findStrobogrammatic(int n) {
@@ -25,7 +25,7 @@ public class StrobogrammaticNumberII {
 		}else{
 			for(int i = 0; i < 3; i++){
 				char[] arr = new char[n];
-				arr[n >> 1] = mid[i];
+				arr[n >> 1] = MID[i];
 				dfs(n - 1, 0, n - 1, res, arr);
 			}
 		}
@@ -41,8 +41,8 @@ public class StrobogrammaticNumberII {
 			return;
 		}
 		for(int k = 0; k < 5; k++){
-			arr[i] = map[k][0];
-			arr[j] = map[k][1];
+			arr[i] = MAPPING[k][0];
+			arr[j] = MAPPING[k][1];
 			dfs(n - 2, i + 1, j - 1, res, arr);
 		}
 	}

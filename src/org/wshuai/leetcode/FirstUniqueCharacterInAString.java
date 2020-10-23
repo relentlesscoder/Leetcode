@@ -5,15 +5,15 @@ package org.wshuai.leetcode;
  * #0387 https://leetcode.com/problems/first-unique-character-in-a-string/
  */
 public class FirstUniqueCharacterInAString {
+
 	// time O(n)
 	public int firstUniqChar(String s) {
-		int[] count = new int[26];
-		char[] chars = s.toCharArray();
-		for(char c : chars){
-			count[c - 'a']++;
+		int[] counter = new int[26];
+		for(char c : s.toCharArray()){
+			counter[c - 'a']++;
 		}
-		for(int i = 0; i < chars.length; i++){
-			if(count[chars[i] - 'a'] == 1){
+		for(int i = 0; i < s.length(); i++){
+			if(counter[s.charAt(i) - 'a'] == 1){
 				return i;
 			}
 		}
