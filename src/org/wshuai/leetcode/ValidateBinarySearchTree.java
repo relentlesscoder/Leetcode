@@ -5,22 +5,20 @@ package org.wshuai.leetcode;
  * #0098 https://leetcode.com/problems/validate-binary-search-tree/
  */
 public class ValidateBinarySearchTree {
+
 	// time O(n)
 	public boolean isValidBST(TreeNode root) {
-		long[] res = dfs(root);
-		return res[0] == 1L;
+		return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
 	}
 
-	private long[] dfs(TreeNode node){
-		if(node == null){
-			return new long[]{1L, Long.MIN_VALUE, Long.MAX_VALUE};
+	public boolean dfs(TreeNode root, long minVal, long maxVal) {
+		if (root == null){
+			return true;
 		}
-		if(node.left == null && node.right == null){
-			return new long[]{1L, node.val, node.val};
+		if (root.val >= maxVal || root.val <= minVal){
+			return false;
 		}
-		long[] left = dfs(node.left);
-		long[] right = dfs(node.right);
-		long valid = node.val > left[1] && node.val < right[2] && left[0] == 1L && right[0] == 1L ? 1L : 0L;
-		return new long[]{valid, Math.max(node.val, right[1]), Math.min(node.val, left[2])};
+		return dfs(root.left, minVal, root.val)
+				&& dfs(root.right, root.val, maxVal);
 	}
 }

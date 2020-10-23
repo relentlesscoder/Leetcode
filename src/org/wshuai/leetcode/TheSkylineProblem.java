@@ -7,7 +7,47 @@ import java.util.*;
  * #0218 https://leetcode.com/problems/the-skyline-problem/
  */
 public class TheSkylineProblem {
-	// time n*log(n)
+
+	// time O(n*log(n)), space O(n)
+	// https://briangordon.github.io/2014/08/the-skyline-problem.html
+	public List<List<Integer>> getSkyline(int[][] buildings) {
+		List<List<Integer>> res = new ArrayList<>();
+		if(buildings == null || buildings.length == 0){
+			return res;
+		}
+		int n = buildings.length*2, i = 0;
+		int[][] events = new int[n][2];
+		for(int[] b : buildings){
+			events[i++] = new int[]{b[0], -b[2]};
+			events[i++] = new int[]{b[1], b[2]};
+		}
+		// break tie logic to handle case like [1 3 5], [3 7 5] - 3 should not be a critical point
+		Arrays.sort(events, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+		TreeMap<Integer, Integer> heightMap = new TreeMap<>();
+		heightMap.put(0, 1);
+		int max = 0;
+		for(int[] e : events){
+			if(e[1] < 0){ // add building
+				heightMap.put(-e[1], heightMap.getOrDefault(-e[1], 0) + 1);
+			}else{ // remove building
+				int count = heightMap.get(e[1]);
+				if(--count > 0){
+					heightMap.put(e[1], count);
+				}else{
+					heightMap.remove(e[1]);
+				}
+			}
+			// critical points that change the current max forms the skyline
+			int cur = heightMap.lastKey();
+			if(cur != max){
+				res.add(Arrays.asList(e[0], cur));
+				max = cur;
+			}
+		}
+		return res;
+	}
+
+	// time O(n*log(n)), space O(n)
 	public List<List<Integer>> getSkylineMergeSort(int[][] buildings) {
 		return mergeSort(buildings, 0, buildings.length - 1);
 	}
@@ -51,8 +91,8 @@ public class TheSkylineProblem {
 		return res;
 	}
 
-	// time n*log(n)
-	public List<List<Integer>> getSkyline(int[][] buildings) {
+	/*
+	public List<List<Integer>> getSkylinePriorityQueue(int[][] buildings) {
 		List<List<Integer>> res = new ArrayList<>();
 		if(buildings == null || buildings.length == 0){
 			return res;
@@ -63,21 +103,22 @@ public class TheSkylineProblem {
 			events[i++] = new int[]{b[0], -b[2]};
 			events[i++] = new int[]{b[1], b[2]};
 		}
+		// break tie logic is important to handle case like [1 3 5], [3 7 5] - 3 should not be a critical point
 		Arrays.sort(events, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
 		PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
 		pq.offer(0);
 		for(int[] e : events){
 			int max = pq.peek();
-			if(e[1] < 0){
+			if(e[1] < 0){ // add building
 				pq.offer(-e[1]);
 			}else{
-				pq.remove(e[1]);
+				pq.remove(e[1]); // remove building, time O(n)
 			}
 
-			if(pq.peek() != max){
+			if(pq.peek() != max){ // critical points that change the current max forms the skyline
 				res.add(Arrays.asList(e[0], pq.peek()));
 			}
 		}
 		return res;
-	}
+	}*/
 }

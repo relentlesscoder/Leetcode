@@ -15,6 +15,7 @@ public class AllNodesDistanceKInBinaryTree {
     private Map<TreeNode, Integer> distance;
 
     // time O(n), space O(n)
+    // same as #0742
     public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
         res = new ArrayList<>();
         distance = new HashMap<>();

@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0002 https://leetcode.com/problems/add-two-numbers/
  */
 public class AddTwoNumbers {
+
 	// time O(m + n)
 	public LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
 		LinkedListNode root = new LinkedListNode(-1);

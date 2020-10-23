@@ -5,21 +5,18 @@ package org.wshuai.leetcode;
  * #0724 https://leetcode.com/problems/find-pivot-index/
  */
 public class FindPivotIndex {
+
 	// time O(n), space O(n)
 	public int pivotIndex(int[] nums) {
-		if(nums == null || nums.length == 0){
-			return -1;
-		}
-		int n = nums.length, sum = 0;
-		int[] left = new int[n];
-		for(int i = 0; i < n; i++){
-			left[i] += sum;
-			sum += nums[i];
+		int n = nums.length, sum = 0, left = 0;
+		for(int num : nums){
+			sum += num;
 		}
 		for(int i = 0; i < n; i++){
-			if(sum - nums[i] == (left[i] << 1)){
+			if(sum - nums[i] == left + left){
 				return i;
 			}
+			left += nums[i];
 		}
 		return -1;
 	}

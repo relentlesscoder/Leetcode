@@ -6,32 +6,14 @@ import java.util.PriorityQueue;
 
 /**
  * Created by Wei on 10/29/19.
- * #855 https://leetcode.com/problems/exam-room/
+ * #0855 https://leetcode.com/problems/exam-room/
  */
 public class ExamRoom {
-	// https://leetcode.com/problems/exam-room/discuss/148595/Java-PriorityQueue-with-customized-object.-seat%3A-O(logn)-leave-O(n)-with-explanation
-	class StudentInterval{
-
-		int x;
-		int y;
-		int dist;
-
-		public StudentInterval(int x, int y){
-			this.x = x;
-			this.y = y;
-			if(x == -1){
-				this.dist = y;
-			}else if(y == N){
-				this.dist = N - 1 - x;
-			}else{
-				this.dist = Math.abs(x - y) / 2;
-			}
-		}
-	}
 
 	private PriorityQueue<StudentInterval> queue;
 	private int N;
 
+	// https://leetcode.com/problems/exam-room/discuss/148595/Java-PriorityQueue-with-customized-object.-seat%3A-O(logn)-leave-O(n)-with-explanation
 	public ExamRoom(int N) {
 		this.queue = new PriorityQueue<>((a, b) -> a.dist != b.dist ? b.dist - a.dist : a.x - b.x);
 		this.N = N;
@@ -74,6 +56,25 @@ public class ExamRoom {
 		queue.remove(tail);
 
 		queue.offer(new StudentInterval(head.x, tail.y));
+	}
+
+	private class StudentInterval{
+
+		int x;
+		int y;
+		int dist;
+
+		public StudentInterval(int x, int y){
+			this.x = x;
+			this.y = y;
+			if(x == -1){
+				this.dist = y;
+			}else if(y == N){
+				this.dist = N - 1 - x;
+			}else{
+				this.dist = Math.abs(x - y) / 2;
+			}
+		}
 	}
 }
 

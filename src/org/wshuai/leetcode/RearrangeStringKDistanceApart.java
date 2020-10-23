@@ -7,6 +7,7 @@ import java.util.*;
  * #0358 https://leetcode.com/problems/rearrange-string-k-distance-apart/
  */
 public class RearrangeStringKDistanceApart {
+
 	// time O(n/k*log(d)), space O(d), d is count of unique characters in s
 	public String rearrangeString(String s, int k) {
 		if(s == null || s.length() == 0){
@@ -27,26 +28,19 @@ public class RearrangeStringKDistanceApart {
 			}
 			pq.offer(new int[]{i, count[i]});
 		}
-		while(pq.size() >= k){
-			List<int[]> next = new ArrayList<>();
-			for(int i = 0; i < k; i++){
-				next.add(pq.poll());
-			}
-			for(int[] cur : next){
-				sb.append((char)('a' + cur[0]));
-				cur[1]--;
-				if(cur[1] > 0){
-					pq.offer(cur);
+		LinkedList<int[]> queue = new LinkedList<>();
+		while(!pq.isEmpty()){
+			int[] cur = pq.poll();
+			sb.append((char)(cur[0] + 'a'));
+			cur[1]--;
+			queue.offerLast(cur);
+			if(queue.size() >= k){
+				int[] front = queue.pollFirst();
+				if(front[1] > 0){
+					pq.offer(front);
 				}
 			}
 		}
-		while(!pq.isEmpty()){
-			int[] cur = pq.poll();
-			if(cur[1] > 1){
-				return "";
-			}
-			sb.append((char)('a' + cur[0]));
-		}
-		return sb.toString();
+		return sb.length() == s.length() ? sb.toString() : "";
 	}
 }

@@ -5,19 +5,16 @@ package org.wshuai.leetcode;
  * #0283 https://leetcode.com/problems/move-zeroes/
  */
 public class MoveZeroes {
+
 	// time O(n)
 	public void moveZeroes(int[] nums) {
-		if(nums == null || nums.length == 0){
-			return;
-		}
-		int n = nums.length, j = 0;
-		for(int i = 0; i < n; i++){
-			if(nums[i] != 0){
-				nums[j++] = nums[i];
+		int n = nums.length;
+		for(int i = 0, j = 0; j < n; j++){
+			if(nums[j] != 0){
+				int temp = nums[i];
+				nums[i++] = nums[j];
+				nums[j] = temp;
 			}
-		}
-		for(int i = j; i < n; i++){
-			nums[i] = 0;
 		}
 	}
 }
