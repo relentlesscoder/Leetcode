@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
  * #0505 https://leetcode.com/problems/the-maze-ii/
  */
 public class TheMazeII {
+
 	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
 
 	// time O(m*n), space O(m*n)

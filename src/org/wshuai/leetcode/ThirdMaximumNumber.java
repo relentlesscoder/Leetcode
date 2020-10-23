@@ -5,10 +5,12 @@ package org.wshuai.leetcode;
  * #0414 https://leetcode.com/problems/third-maximum-number/
  */
 public class ThirdMaximumNumber {
+
 	// time O(n)
 	public int thirdMax(int[] nums) {
 		long[] res = new long[]{Long.MIN_VALUE, Long.MIN_VALUE, Long.MIN_VALUE};
 		for(int num : nums){
+			// deduplicate
 			if(num == res[0] || num == res[1] || num == res[2]){
 				continue;
 			}

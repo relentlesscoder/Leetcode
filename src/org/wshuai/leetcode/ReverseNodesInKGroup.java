@@ -5,41 +5,51 @@ package org.wshuai.leetcode;
  * #0025 https://leetcode.com/problems/reverse-nodes-in-k-group/
  */
 public class ReverseNodesInKGroup {
-	// time O(n)
-	public LinkedListNode reverseKGroup(LinkedListNode head, int k){
-		if (head == null || k <= 0){
-			return head;
-		}
-		LinkedListNode root = new LinkedListNode(-1);
+
+    // time O(n)
+	public ListNode reverseKGroup(ListNode head, int k) {
+		ListNode root = new ListNode(0), prev = root, tail = head;
 		root.next = head;
-
-		LinkedListNode prev = root;
-		LinkedListNode curr = head;
-		int cnt = 0;
-		while (curr != null){
-			cnt++;
-			if (cnt == k){
-				prev = reverseList(prev, curr);
-				curr = prev;
-				cnt = 0;
+		int i = 0;
+		while(tail != null){
+			if(++i == k){
+				prev = reverse(prev, tail);
+				tail = prev;
+				i = 0;
 			}
-			curr = curr.next;
+			tail = tail.next;
 		}
-
 		return root.next;
 	}
 
-	private LinkedListNode reverseList(LinkedListNode prev, LinkedListNode tail){
-		LinkedListNode head = prev.next;
-		LinkedListNode res = head;
-		prev.next = tail;
-		LinkedListNode next = tail.next;
-		while (next != tail){
-			LinkedListNode p = head.next;
-			head.next = next;
-			next = head;
-			head = p;
+	private ListNode reverse(ListNode prev, ListNode tail){
+		ListNode next = tail.next, cur = prev.next, res = cur;
+		while(next != tail){
+			ListNode temp = cur.next;
+			cur.next = next;
+			next = cur;
+			cur = temp;
 		}
+		prev.next = tail;
 		return res;
 	}
+
+    //Definition for singly-linked list.
+    private class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
 }
