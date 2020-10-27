@@ -16,7 +16,7 @@ public class ContinuousSubarraySum {
 		prefix.put(0, -1);
 		for(int i = 0; i < n; i++){
 			sum += nums[i];
-			if(k != 0){
+			if(k != 0){ // special case for 0 needs two equal sum
 				sum %= k;
 			}
 			if(prefix.containsKey(sum) && i - prefix.get(sum) > 1){

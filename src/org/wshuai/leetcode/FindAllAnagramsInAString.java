@@ -11,22 +11,20 @@ public class FindAllAnagramsInAString {
 	// time O(n)
 	public List<Integer> findAnagrams(String s, String p) {
 		List<Integer> res = new ArrayList<>();
-		if(s == null || s.isEmpty() || p == null || p.isEmpty()){
+		if(s.length() < p.length()){
 			return res;
 		}
-		int n = p.length();
 		int[] target = new int[26], cur = new int[26];
 		for(char c : p.toCharArray()){
 			target[c - 'a']++;
 		}
 		for(int i = 0, j = 0; j < s.length(); j++){
-			char c = s.charAt(j);
-			int index = c - 'a';
-			++cur[index];
+			int index = s.charAt(j) - 'a';
+			cur[index]++;
 			while(cur[index] > target[index]){
-				cur[s.charAt(i++) - 'a']--;
+				--cur[s.charAt(i++) - 'a'];
 			}
-			if(j - i + 1 == n){
+			if(j - i + 1 == p.length()){
 				res.add(i);
 			}
 		}

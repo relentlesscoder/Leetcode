@@ -8,6 +8,8 @@ import java.util.List;
  * #0282 https://leetcode.com/problems/expression-add-operators/
  */
 public class ExpressionAddOperators {
+
+	// time O(3^n)
 	// See https://discuss.leetcode.com/topic/24523/java-standard-backtrace-ac-solutoin-short-and-clear
 	public List<String> addOperators(String num, int target) {
 		List<String> res = new ArrayList<>();
@@ -25,17 +27,18 @@ public class ExpressionAddOperators {
 			}
 			return;
 		}
+		long val = 0L;
 		for(int i = start; i < num.length(); i++){
-			if(i != start && num.charAt(start) == '0'){
+			if(i != start && num.charAt(start) == '0'){ // leading 0 is invalid
 				break;
 			}
-			long val = Long.parseLong(num.substring(start, i + 1));
+			val = val * 10 + (num.charAt(i) - '0');
 			if(start == 0){
-				dfs(i + 1, val, val, expr + val, num, target, res);
+				dfs(i + 1, cur + val, val, expr + val, num, target, res);
 			}else{
 				dfs(i + 1, cur + val, val, expr + "+" + val, num, target, res);
 				dfs(i + 1, cur - val, -val, expr + "-" + val, num, target, res);
-				dfs(i + 1, cur - mult + mult*val, mult*val, expr + "*" + val, num, target, res);
+				dfs(i + 1, cur - mult + mult * val, mult * val, expr + "*" + val, num, target, res); // special case for multiply
 			}
 		}
 	}

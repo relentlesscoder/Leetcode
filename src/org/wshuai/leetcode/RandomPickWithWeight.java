@@ -1,13 +1,46 @@
 package org.wshuai.leetcode;
 
 import java.util.Random;
-import java.util.TreeMap;
 
 /**
  * Created by Wei on 09/18/2019.
  * #0528 https://leetcode.com/problems/random-pick-with-weight/
  */
 public class RandomPickWithWeight {
+
+	private int[] weight;
+	private Random random;
+	private int sum;
+
+	public RandomPickWithWeight(int[] w) {
+		random = new Random();
+		for(int i = 1; i < w.length; i++){
+			w[i] += w[i - 1];
+		}
+		sum = w[w.length - 1];
+		weight = w;
+	}
+
+	// time O(log(n))
+	public int pickIndex() {
+		int val = random.nextInt(sum) + 1;
+		return binarySearch(weight, val);
+	}
+
+	private int binarySearch(int[] weight, int target){
+		int low = 0, high = weight.length - 1;
+		while(low < high){
+			int mid = low + (high - low) / 2;
+			if(weight[mid] < target){
+				low = mid + 1;
+			}else{
+				high = mid;
+			}
+		}
+		return low;
+	}
+
+	/** using tree map
 	private int sum;
 	private TreeMap<Integer, Integer> treeMap;
 	private Random random;
@@ -30,5 +63,5 @@ public class RandomPickWithWeight {
 		int idx = random.nextInt(sum) + 1;
 		int key = treeMap.ceilingKey(idx);
 		return treeMap.get(key);
-	}
+	}**/
 }

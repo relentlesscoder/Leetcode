@@ -6,14 +6,17 @@ package org.wshuai.leetcode;
  */
 public class MergeSortedArray {
 
-	// O(m+n)
+	// O(m + n)
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
-		int i = m - 1, j = n - 1, k = m + n - 1;
-		for(; i >= 0 && j >= 0; ){
+		int j =  n - 1, k = m + n - 1;
+		for(int i = m - 1; i >= 0 && j >= 0; ){
 			nums1[k--] = nums1[i] > nums2[j] ? nums1[i--] : nums2[j--];
 		}
-		for(; j >= 0; j--, k--){
-			nums1[k] = nums2[j];
+		// j >= 0 means nums1 is done
+		for(; j >= 0; j--){
+			nums1[k--] = nums2[j];
 		}
+		// i >= 0 means nums2 is done, however we do not need to handle
+		// it since nums1 is already sorted
 	}
 }

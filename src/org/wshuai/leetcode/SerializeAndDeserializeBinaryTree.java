@@ -19,7 +19,7 @@ public class SerializeAndDeserializeBinaryTree {
 		while(!queue.isEmpty()){
 			TreeNode cur = queue.pollFirst();
 			if(cur != null){
-				res.append(Integer.toString(cur.val) + ",");
+				res.append(cur.val + ",");
 				queue.offerLast(cur.left);
 				queue.offerLast(cur.right);
 			}else{
@@ -31,7 +31,7 @@ public class SerializeAndDeserializeBinaryTree {
 
 	// Decodes your encoded data to tree.
 	public TreeNode deserialize(String data) {
-		if(data == null || data.isEmpty()){
+		if(data.length() == 0){
 			return null;
 		}
 		String[] vals = data.split(",");
@@ -40,16 +40,13 @@ public class SerializeAndDeserializeBinaryTree {
 		queue.offerLast(root);
 		for(int i = 1; i < vals.length; i += 2){
 			TreeNode parent = queue.pollFirst();
-			String left = vals[i], right = vals[i + 1];
-			if(!left.equals("n")){
-				TreeNode leftNode = new TreeNode(Integer.parseInt(left));
-				parent.left = leftNode;
-				queue.offerLast(leftNode);
+			if(!vals[i].equals("n")){
+				parent.left = new TreeNode(Integer.parseInt(vals[i]));
+				queue.offerLast(parent.left);
 			}
-			if(!right.equals("n")){
-				TreeNode rightNode = new TreeNode(Integer.parseInt(right));
-				parent.right = rightNode;
-				queue.offerLast(rightNode);
+			if(!vals[i + 1].equals("n")){
+				parent.right = new TreeNode(Integer.parseInt(vals[i + 1]));
+				queue.offerLast(parent.right);
 			}
 		}
 		return root;

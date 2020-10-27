@@ -7,6 +7,7 @@ import java.util.Random;
  * #0398 https://leetcode.com/problems/random-pick-index/
  */
 public class RandomPickIndex {
+
 	private int[] nums;
 	private Random rand;
 

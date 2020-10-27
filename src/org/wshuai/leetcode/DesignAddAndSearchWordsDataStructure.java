@@ -31,13 +31,14 @@ public class DesignAddAndSearchWordsDataStructure {
 		return dfs(root, word, 0);
 	}
 
+	// time O(26^n)
 	private boolean dfs(TrieNode node, String word, int i){
 		if(i == word.length()){
 			return node != null && node.isEnd();
 		}
 		char k = word.charAt(i);
 		if(k != '.'){
-			return node.containsKey(k) ? dfs(node.get(k), word, i + 1) : false;
+			return node.containsKey(k) && dfs(node.get(k), word, i + 1);
 		}else{
 			for(char c = 'a'; c <= 'z'; c++){
 				if(!node.containsKey(c)){
@@ -53,14 +54,14 @@ public class DesignAddAndSearchWordsDataStructure {
 
 	private class TrieNode{
 
-		private static final int R = 26;
+		private static final int SIZE = 26;
 
 		private TrieNode[] links;
 
 		private boolean isEnd;
 
 		private TrieNode(){
-			links = new TrieNode[R];
+			links = new TrieNode[SIZE];
 		}
 
 		private boolean containsKey(char key){

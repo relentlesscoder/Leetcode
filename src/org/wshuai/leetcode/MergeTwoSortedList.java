@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0021 https://leetcode.com/problems/merge-two-sorted-lists/
  */
 public class MergeTwoSortedList {
+
 	// time O(m + n)
 	public LinkedListNode mergeTwoLists(LinkedListNode l1, LinkedListNode l2) {
 		LinkedListNode root = new LinkedListNode(0);
