@@ -1,5 +1,7 @@
 package org.wshuai.leetcode;
 
+import java.util.Random;
+
 /**
  * Created by Wei on 10/22/2019.
  * #0215 https://leetcode.com/problems/kth-largest-element-in-an-array/
@@ -9,57 +11,43 @@ public class KthLargestElementInAnArray {
 	// time - average: O(n * log(n)) worst: O(n^2)
 	// after randomization, expected: O (n)
 	public int findKthLargest(int[] nums, int k) {
-		return getKthLargest(nums, 0, nums.length - 1, k);
+		return findKth(nums, 0, nums.length - 1, k);
 	}
 
-	private int getKthLargest(int[] nums, int left, int right, int k){
+	private int findKth(int[] nums, int left, int right, int k){
 		if(k > 0 && k <= right - left + 1){
-			int pivot = partition(nums, left, right);
-			int count = pivot - left + 1;
+			int pivot = partition(nums, left, right), count = pivot - left + 1;
 			if(count == k){
 				return nums[pivot];
-			}else if(count > k){
-				return getKthLargest(nums, left, pivot - 1, k);
+			}
+			if(count < k){
+				return findKth(nums, pivot + 1, right, k - count);
 			}else{
-				return getKthLargest(nums, pivot + 1, right, k - count);
+				return findKth(nums, left, pivot - 1, k);
 			}
 		}
 		return Integer.MAX_VALUE;
 	}
 
-	public int findKthLargestIterative(int[] nums, int k) {
-		int n = nums.length, left = 0, right = n - 1;
-		while(left <= right){
-			int mid = partition(nums, left, right);
-			if(mid == k - 1){
-				break;
-			}
-			if(mid < k - 1){
-				left = mid + 1;
-			}else{
-				right = mid - 1;
-			}
-		}
-		return nums[k - 1];
-	}
-
 	private int partition(int[] nums, int left, int right){
-		// randomization 33ms -> 3ms
-		int index = left + (int)(Math.random()*(right - left + 1));
-		int val = nums[index];
-		nums[index] = nums[right];
-		nums[right] = val;
-		int p = left;
+		int rand = left + new Random().nextInt(right - left + 1);
+		swap(nums, rand, right);
+		int pivot = left;
 		for(int i = left; i < right; i++){
-			if(nums[i] >= val){
-				int temp = nums[p];
-				nums[p++] = nums[i];
+			if(nums[i] >= nums[right]){
+				int temp = nums[pivot];
+				nums[pivot++] = nums[i];
 				nums[i] = temp;
 			}
 		}
-		nums[right] = nums[p];
-		nums[p] = val;
-		return p;
+		swap(nums, pivot, right);
+		return pivot;
+	}
+
+	private void swap(int[] nums, int left, int right){
+		int temp = nums[left];
+		nums[left] = nums[right];
+		nums[right] = temp;
 	}
 
 	/*

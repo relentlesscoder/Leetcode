@@ -16,9 +16,7 @@ public class SubarraySumEqualsK {
 		prefix.put(0, 1);
 		for(int i = 0; i < n; i++){
 			sum += nums[i];
-			if(prefix.containsKey(sum - k)){
-				res += prefix.get(sum - k);
-			}
+			res += prefix.getOrDefault(sum - k, 0);
 			prefix.put(sum, prefix.getOrDefault(sum, 0) + 1);
 		}
 		return res;

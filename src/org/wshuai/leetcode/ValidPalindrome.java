@@ -8,25 +8,24 @@ public class ValidPalindrome {
 
 	// time O(n)
 	public boolean isPalindrome(String s) {
-		if(s == null || s.isEmpty()){
+		if(s == null || s.length() == 0){
 			return true;
 		}
-		int n = s.length();
-		for(int left = 0, right = n - 1; left <= right; left++, right--){
-			while(left < n && getCharacter(s.charAt(left)) == '#'){
-				left++;
+		for(int i = 0, j = s.length() - 1; i <= j; i++, j--){
+			while(i < j && parseCharacter(s.charAt(i)) == '#'){
+				i++;
 			}
-			while(right >= 0 && getCharacter(s.charAt(right)) == '#'){
-				right--;
+			while(i < j && parseCharacter(s.charAt(j)) == '#'){
+				j--;
 			}
-			if(left <= right && getCharacter(s.charAt(left)) != getCharacter(s.charAt(right))){
+			if(i <= j && parseCharacter(s.charAt(i)) != parseCharacter(s.charAt(j))){
 				return false;
 			}
 		}
 		return true;
 	}
 
-	private char getCharacter(char c){
+	private char parseCharacter(char c){
 		if(c >= 'a' && c <= 'z'){
 			return c;
 		}
