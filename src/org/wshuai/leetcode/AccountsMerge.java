@@ -58,7 +58,6 @@ public class AccountsMerge {
 		Map<String, String> root = new HashMap<>();
 		Map<String, String> users = new HashMap<>();
 		Map<String, TreeSet<String>> union = new HashMap<>();
-		int n = accounts.size();
 		for(List<String> account : accounts){
 			String username = account.get(0);
 			for(int i = 1; i < account.size(); i++){

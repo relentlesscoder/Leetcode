@@ -16,6 +16,7 @@ public class RandomPickIndex {
 		rand = new Random();
 	}
 
+	// https://leetcode.com/problems/random-pick-index/discuss/88072/Simple-Reservoir-Sampling-solution
 	public int pick(int target) {
 		int res = -1, count = 0;
 		for (int i = 0; i < nums.length; i++) {

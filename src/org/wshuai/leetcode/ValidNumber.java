@@ -5,54 +5,35 @@ package org.wshuai.leetcode;
  * #0065 https://leetcode.com/problems/valid-number/
  */
 public class ValidNumber {
+
 	// time O(n)
+	// https://leetcode.com/problems/valid-number/discuss/23738/Clear-Java-solution-with-ifs
 	public boolean isNumber(String s) {
-		if (s == null || s.isEmpty()) {
-			return false;
-		}
-
-		int len = s.length();
-		int i = 0;
-
-		while (i < len && s.charAt(i) == ' ') {
-			i++;
-		}
-
-		if (i < len && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
-			i++;
-		}
-
-		boolean isNumber = false;
-
-		while (i < len && Character.isDigit(s.charAt(i))) {
-			isNumber = true;
-			i++;
-		}
-
-		if (i < len && s.charAt(i) == '.') {
-			i++;
-			while (i < len && Character.isDigit(s.charAt(i))) {
-				isNumber = true;
-				i++;
+		s = s.trim();
+		boolean numberSeen = false, eSeen = false, pointSeen = false;
+		for(int i = 0; i < s.length(); i++){
+			char c = s.charAt(i);
+			if(Character.isDigit(c)){
+				numberSeen = true;
+			}else if(c == '.'){
+				if(pointSeen || eSeen){
+					return false;
+				}
+				pointSeen = true;
+			}else if(c == 'e'){
+				if(eSeen || !numberSeen){
+					return false;
+				}
+				eSeen = true;
+				numberSeen = false; // check numbers after "e"
+			}else if(c == '+' || c == '-'){
+				if(i != 0 && s.charAt(i - 1) != 'e'){
+					return false;
+				}
+			}else{
+				return false;
 			}
 		}
-
-		if (isNumber && i < len && (s.charAt(i) == 'E' || s.charAt(i) == 'e')) {
-			i++;
-			isNumber = false;
-			if (i < len && (s.charAt(i) == '+' || s.charAt(i) == '-')) {
-				i++;
-			}
-			while (i < len && Character.isDigit(s.charAt(i))) {
-				isNumber = true;
-				i++;
-			}
-		}
-
-		while (i < len && s.charAt(i) == ' ') {
-			i++;
-		}
-
-		return i == len && isNumber;
+		return numberSeen;
 	}
 }

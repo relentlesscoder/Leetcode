@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0209 https://leetcode.com/problems/minimum-size-subarray-sum/
  */
 public class MinimumSizeSubarraySum {
+
 	// time O(n)
 	// same idea as https://leetcode.com/problems/minimum-window-substring/
 	public int minSubArrayLen(int s, int[] nums) {
