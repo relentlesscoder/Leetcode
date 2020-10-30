@@ -17,7 +17,7 @@ public class InsertIntoASortedCircularLinkedList {
 		while(cur.next != head && cur.val <= cur.next.val){
 			cur = cur.next;
 		}
-		// find the insertion point
+		// only if less than max value, loop again find the insertion point
 		if(insertVal < cur.val){
 			while(cur.next.val < insertVal){
 				cur = cur.next;

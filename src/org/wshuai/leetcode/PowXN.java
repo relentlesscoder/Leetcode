@@ -28,7 +28,7 @@ public class PowXN {
 		if(n == 0){
 			return 1;
 		}
-		double y = myPow(x, n/2);
+		double y = dfs(x, n/2);
 		double prod = y * y;
 		return n % 2 == 0 ? prod : prod * x;
 	}
