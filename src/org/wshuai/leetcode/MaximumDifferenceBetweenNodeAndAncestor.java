@@ -10,18 +10,20 @@ public class MaximumDifferenceBetweenNodeAndAncestor {
 
 	// time O(n)
 	public int maxAncestorDiff(TreeNode root) {
-		res = 0;
+		res = Integer.MIN_VALUE;
 		dfs(root.left, root.val, root.val);
 		dfs(root.right, root.val, root.val);
 		return res;
 	}
 
-	private void dfs(TreeNode cur, int min, int max){
-		if(cur == null){
+	private void dfs(TreeNode node, int max, int min){
+		if(node == null){
 			return;
 		}
-		res = Math.max(res, Math.max(Math.abs(cur.val - min), Math.abs(cur.val - max)));
-		dfs(cur.left, Math.min(min, cur.val), Math.max(max, cur.val));
-		dfs(cur.right, Math.min(min, cur.val), Math.max(max, cur.val));
+		max = Math.max(max, node.val);
+		min = Math.min(min, node.val);
+		res = Math.max(res, max - min);
+		dfs(node.left, max, min);
+		dfs(node.right, max, min);
 	}
 }
