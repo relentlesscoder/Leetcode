@@ -1,5 +1,6 @@
 package org.wshuai.leetcode;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
@@ -8,38 +9,37 @@ import java.util.PriorityQueue;
  */
 public class ReorganizeString {
 
-	// time O(n*log(26))
+	// time O(n*log(d)), space O(d), d <= 26 is count of unique characters in s
 	public String reorganizeString(String S) {
+		if(S == null || S.length() == 0){
+			return "";
+		}
+		StringBuilder sb = new StringBuilder();
 		int[] count = new int[26];
 		for(char c : S.toCharArray()){
 			count[c - 'a']++;
 		}
-		StringBuilder res = new StringBuilder();
-		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[0] - a[0]);
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] == b[1] ?
+				a[0] - b[0] : b[1] - a[1]);
 		for(int i = 0; i < 26; i++){
 			if(count[i] == 0){
 				continue;
 			}
-			pq.offer(new int[]{count[i], i});
+			pq.offer(new int[]{i, count[i]});
 		}
-		while(pq.size() >= 2){
-			int[] last = pq.poll(), prev = pq.poll();
-			res.append((char)(last[1] + 'a'));
-			res.append((char)(prev[1] + 'a'));
-			if(--last[0] > 0){
-				pq.offer(last);
-			}
-			if(--prev[0] > 0){
-				pq.offer(prev);
-			}
-		}
-		if(!pq.isEmpty()){
-			if(pq.peek()[0] > 1){
-				return "";
-			}else{
-				res.append((char)(pq.peek()[1] + 'a'));
+		LinkedList<int[]> queue = new LinkedList<>();
+		while(!pq.isEmpty()){
+			int[] cur = pq.poll();
+			sb.append((char)(cur[0] + 'a'));
+			cur[1]--;
+			queue.offerLast(cur);
+			if(queue.size() >= 2){
+				int[] front = queue.pollFirst();
+				if(front[1] > 0){
+					pq.offer(front);
+				}
 			}
 		}
-		return res.toString();
+		return sb.length() == S.length() ? sb.toString() : "";
 	}
 }

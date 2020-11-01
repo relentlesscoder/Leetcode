@@ -46,8 +46,7 @@ public class TaskScheduler {
 		while(count[25] > 0){
 			// one cpu cycle
 			for(int i = 0; i <= n; i++){
-				// end immediately when all tasks are done
-				if(count[25] == 0){
+				if(count[25] == 0){ // handle the last cycle
 					break;
 				}
 				// add any pending tasks

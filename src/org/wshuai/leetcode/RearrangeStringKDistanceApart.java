@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class RearrangeStringKDistanceApart {
 
-	// time O(n/k*log(d)), space O(d), d is count of unique characters in s
+	// time O(n*log(d)), space O(d), d <= 26 is count of unique characters in s
 	public String rearrangeString(String s, int k) {
 		if(s == null || s.length() == 0){
 			return "";
@@ -21,7 +21,8 @@ public class RearrangeStringKDistanceApart {
 		for(char c : s.toCharArray()){
 			count[c - 'a']++;
 		}
-		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] == b[1] ? a[0] - b[0] : b[1] - a[1]);
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] == b[1] ?
+				a[0] - b[0] : b[1] - a[1]);
 		for(int i = 0; i < 26; i++){
 			if(count[i] == 0){
 				continue;
