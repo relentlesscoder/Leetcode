@@ -33,7 +33,7 @@ public class ReorganizeString {
 			sb.append((char)(cur[0] + 'a'));
 			cur[1]--;
 			queue.offerLast(cur);
-			if(queue.size() >= 2){
+			if(queue.size() >= 2){ // the first character in queue can be reused
 				int[] front = queue.pollFirst();
 				if(front[1] > 0){
 					pq.offer(front);

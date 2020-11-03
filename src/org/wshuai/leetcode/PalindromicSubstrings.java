@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0647 https://leetcode.com/problems/palindromic-substrings/
  */
 public class PalindromicSubstrings {
+
 	private int count;
 
 	// time O(n^2)

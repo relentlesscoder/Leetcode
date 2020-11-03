@@ -15,7 +15,7 @@ public class LongestPalindromicSubsequence {
 		int[] dp = new int[n];
 		for(int i = n - 1; i >= 0; i--){
 			dp[i] = 1;
-			// stores value dp[i +1][j - 1]
+			// stores value dp[i + 1][j - 1]
 			int downLeft = 0;
 			for(int j = i + 1; j < n; j++){
 				int temp = dp[j];

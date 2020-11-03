@@ -7,14 +7,15 @@ import java.util.LinkedList;
  * #0317 https://leetcode.com/problems/shortest-distance-from-all-buildings/
  */
 public class ShortestDistanceFromAllBuildings {
-	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
 
-	// time O(m^2*n^2)
+	private static final int[] DIRS = new int[]{0, -1, 0, 1, 0};
+
+	// time O(m^2*n^2), space O(m*n)
 	public int shortestDistance(int[][] grid) {
 		if(grid == null || grid.length == 0 || grid[0].length == 0){
 			return -1;
 		}
-		int m = grid.length, n = grid[0].length, houseCount = 0, minDistance = Integer.MAX_VALUE;
+		int m = grid.length, n = grid[0].length, houseCount = 0, res = Integer.MAX_VALUE;
 		int[][] distance = new int[m][n], reachCount = new int[m][n];
 		for(int i = 0; i < m; i++){
 			for(int j = 0; j < n; j++){
@@ -26,7 +27,7 @@ public class ShortestDistanceFromAllBuildings {
 		for(int i = 0; i < m; i++){
 			for(int j = 0; j < n; j++){
 				if(grid[i][j] == 1){
-					if(!bfs(grid, distance, reachCount, houseCount, m, n, i, j)){
+					if(!bfs(i, j, houseCount, grid, distance, reachCount)){
 						return -1;
 					}
 				}
@@ -35,35 +36,35 @@ public class ShortestDistanceFromAllBuildings {
 		for(int i = 0; i < m; i++){
 			for(int j = 0; j < n; j++){
 				if(grid[i][j] == 0 && reachCount[i][j] == houseCount){
-					minDistance = Math.min(minDistance, distance[i][j]);
+					res = Math.min(res, distance[i][j]);
 				}
 			}
 		}
-		return minDistance == Integer.MAX_VALUE ? -1 : minDistance;
+		return res == Integer.MAX_VALUE ? -1 : res;
 	}
 
-	private boolean bfs(int[][] grid, int[][] distance, int[][] reachCount, int houseCount, int m, int n, int x, int y){
+	private boolean bfs(int i, int j, int houseCount, int[][] grid, int[][] distance, int[][] reachCount){
+		int count = 1, dist = 0, m = grid.length, n = grid[0].length;
 		boolean[][] visited = new boolean[m][n];
 		LinkedList<int[]> queue = new LinkedList<>();
-		queue.offerLast(new int[]{x, y});
-		int dist = 0, count = 0;
+		queue.offerLast(new int[]{i, j});
+		visited[i][j] = true;
 		while(!queue.isEmpty()){
 			int size = queue.size();
 			dist++;
 			while(size-- > 0){
-				int[] cur = queue.poll();
+				int[] cur = queue.pollFirst();
 				for(int k = 0; k < 4; k++){
-					int nx = cur[0] + dirs[k];
-					int ny = cur[1] + dirs[k + 1];
-					if(nx >= 0 && ny >= 0 && nx < m && ny < n && !visited[nx][ny]){
-						if(grid[nx][ny] == 0){
-							distance[nx][ny] += dist;
-							visited[nx][ny] = true;
-							reachCount[nx][ny]++;
-							queue.offer(new int[]{nx, ny});
-						}else if(grid[nx][ny] == 1){
+					int x = cur[0] + DIRS[k], y = cur[1] + DIRS[k + 1];
+					if(x >= 0 && x < m && y >= 0 && y < n && !visited[x][y]){
+						if(grid[x][y] == 0){
+							distance[x][y] += dist;
+							reachCount[x][y]++;
+							visited[x][y] = true;
+							queue.offerLast(new int[]{x, y});
+						}else if(grid[x][y] == 1){
 							count++;
-							visited[nx][ny] = true;
+							visited[x][y] = true;
 						}
 					}
 				}

@@ -10,9 +10,11 @@ import java.util.Set;
  */
 public class MakingALargeIsland {
 
-	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
+	private static final int VISITED = 5_000;
 
-	// time O(m*n)
+	private static final int[] DIRS = new int[]{0, 1, 0, -1, 0};
+
+	// time O(m*n), space O(m*n)
 	public int largestIsland(int[][] grid) {
 		int res = Integer.MIN_VALUE, m = grid.length, n = grid[0].length;
 		for(int i = 0; i < m; i++){
@@ -24,7 +26,7 @@ public class MakingALargeIsland {
 		}
 		for(int i = 0; i < m; i++){
 			for(int j = 0; j < n; j++){
-				if(grid[i][j] == 5_000){
+				if(grid[i][j] == VISITED){
 					continue;
 				}
 				res = Math.max(res, Math.abs(grid[i][j]));
@@ -35,7 +37,7 @@ public class MakingALargeIsland {
 
 	private void bfs(int i, int j, int m, int n, int[][] grid){
 		int count = 0;
-		Set<Integer> board = new HashSet<>();
+		Set<Integer> border = new HashSet<>();
 		LinkedList<int[]> queue = new LinkedList<>();
 		queue.offerLast(new int[]{i, j});
 		// 5_000 denotes visited cells
@@ -44,24 +46,24 @@ public class MakingALargeIsland {
 			int[] cur = queue.pollFirst();
 			count++;
 			for(int k = 0; k < 4; k++){
-				int x = cur[0] + dirs[k], y = cur[1] + dirs[k + 1];
-				if(x < 0 || x >= m || y < 0 || y >= n || grid[x][y] == 5_000){
+				int x = cur[0] + DIRS[k], y = cur[1] + DIRS[k + 1];
+				if(x < 0 || x >= m || y < 0 || y >= n || grid[x][y] == VISITED){
 					continue;
 				}
 				// board cell
 				if(grid[x][y] <= 0){
-					board.add(x * n + y);
+					border.add(x * n + y);
 				}
 				// unvisited cell
 				if(grid[x][y] == 1){
-					grid[x][y] = 5_000;
+					grid[x][y] = VISITED;
 					queue.offerLast(new int[]{x, y});
 				}
 			}
 		}
 		// assign the board the size (negative)
 		// of the current island for future merging.
-		for(int b : board){
+		for(int b : border){
 			grid[b / n][b % n] -= count;
 		}
 	}

@@ -6,32 +6,34 @@ package org.wshuai.leetcode;
  */
 public class LongestPalindromicSubstring {
 
-	// time O(n^2), space O(1), 6ms
+	private int longest, start, end;
+
+	// time O(n^2), space O(1)
 	public String longestPalindrome(String s) {
-		int[] max = new int[]{0, -1, -1};
-		char[] arr = s.toCharArray();
-		for(int i = 0; i < arr.length; i++){
-			expand(arr, i, i, max);
-			if(i > 0){
-				expand(arr, i - 1, i, max);
-			}
+		longest = 0;
+		start = end = -1;
+		for(int i = 0; i < s.length(); i++){
+			extend(s, i, i);
+			extend(s, i, i + 1);
 		}
-		return max[0] > 0 ? s.substring(max[1], max[2]) : "";
+		return s.substring(start, end + 1);
 	}
 
-	private void expand(char[] arr, int l, int r, int[] max){
-		int len = 0;
-		while(l >= 0 && r < arr.length && arr[l] == arr[r]){
-			len += l-- == r++ ? 1 : 2;
+	private void extend(String s, int l, int r){
+		while(l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+			l--;
+			r++;
 		}
-		if(len > max[0]){
-			max[0] = len;
-			max[1] = l + 1;
-			max[2] = r;
+		l++;
+		r--;
+		if(r - l + 1 > longest){
+			longest = r - l + 1;
+			start = l;
+			end = r;
 		}
 	}
 
-	// time O(n^2), space O(n^2), 80ms
+	// time O(n^2), space O(n^2)
 	// https://leetcode.com/articles/longest-palindromic-substring/
 	public String longestPalindromeDP(String s) {
 		int max = 0, n = s.length(), start = -1, end = -1;

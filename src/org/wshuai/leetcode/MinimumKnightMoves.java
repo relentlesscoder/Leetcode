@@ -53,8 +53,8 @@ public class MinimumKnightMoves {
 				if(cur[0] == x && cur[1] == y){
 					return steps;
 				}
-				for(int i = 0; i < 7; i++){
-					int x1 = cur[0] + DIRECTIONS[i][0], y1 = cur[1] + DIRECTIONS[i][1], key = x1 * 1_000 + y1;
+				for(int i = 0; i < 8; i++){
+					int x1 = cur[0] + DIRECTIONS[i][0], y1 = cur[1] + DIRECTIONS[i][1], key = x1 * 601 + y1;
 					// special case
 					// for example, to reach (1,1) from (0, 0), the best way is to get (2, -1) or (-1, 2) first,
 					// then (1,1) (two steps). If we eliminate all coordinates with negative numbers,
@@ -69,4 +69,34 @@ public class MinimumKnightMoves {
 		}
 		return -1;
 	}
+
+	/** Non-optimized
+	public int minKnightMoves(int x, int y) {
+		if(x == 0 && y == 0){
+			return 0;
+		}
+		int steps = 0;
+		Set<Integer> visited = new HashSet<>();
+		LinkedList<int[]> queue = new LinkedList<>();
+		queue.offerLast(new int[]{0, 0});
+		visited.add(0);
+		while(!queue.isEmpty()){
+			int size = queue.size();
+			while(size-- > 0){
+				int[] cur = queue.pollFirst();
+				if(cur[0] == x && cur[1] == y){
+					return steps;
+				}
+				for(int i = 0; i < 8; i++){
+					int x1 = cur[0] + DIRECTIONS[i][0], y1 = cur[1] + DIRECTIONS[i][1], key = x1 * 601 + y1;
+					if(!visited.contains(key)){
+						visited.add(key);
+						queue.offerLast(new int[]{x1, y1});
+					}
+				}
+			}
+			steps++;
+		}
+		return -1;
+	}**/
 }

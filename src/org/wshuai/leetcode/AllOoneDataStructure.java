@@ -6,10 +6,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by Wei on 1/1/2020.
- * #432 https://leetcode.com/problems/all-oone-data-structure/
+ * Created by Wei on 01/01/2020.
+ * #0432 https://leetcode.com/problems/all-oone-data-structure/
  */
 public class AllOoneDataStructure {
+
 	private Map<String, Integer> map;
 	private Map<Integer, Set<String>> vals;
 	String maxKey;
