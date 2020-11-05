@@ -10,7 +10,6 @@ public class TaskScheduler {
 
 	// time O(n)
 	public int leastInterval(char[] tasks, int n) {
-		int res = 0;
 		int[] count = new int[26];
 		for(char c : tasks){
 			count[c - 'A']++;

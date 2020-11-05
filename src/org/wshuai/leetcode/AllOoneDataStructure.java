@@ -11,122 +11,98 @@ import java.util.Set;
  */
 public class AllOoneDataStructure {
 
-	private Map<String, Integer> map;
-	private Map<Integer, Set<String>> vals;
-	String maxKey;
-	String minKey;
-	int max;
-	int min;
+	private ValueNode head, tail;
+	private Map<String, ValueNode> keys;
 
 	/** Initialize your data structure here. */
-	// https://leetcode.com/problems/all-oone-data-structure/discuss/91400/All-in-O(1)-with-detailed-explantation
 	public AllOoneDataStructure() {
-		map = new HashMap<>();
-		vals = new HashMap<>();
-		maxKey = "";
-		minKey = "";
-		max = 0;
-		min = 0;
+		head = new ValueNode(0);
+		tail = new ValueNode(0);
+		head.next = tail;
+		tail.prev = head;
+		keys = new HashMap<>();
 	}
 
 	/** Inserts a new key <Key> with value 1. Or increments an existing key by 1. */
 	public void inc(String key) {
-		int val = map.getOrDefault(key, 0) + 1;
-		map.put(key, val);
-		vals.putIfAbsent(val, new HashSet<>());
-		vals.get(val).add(key);
-		if(vals.containsKey(val - 1)){
-			vals.get(val - 1).remove(key);
-			if(vals.get(val - 1).size() == 0){
-				vals.remove(val - 1);
-			}
+		ValueNode node = keys.getOrDefault(key, head), next = node.next;
+		if(next.val != node.val + 1){
+			next = new ValueNode(node.val + 1);
+			insert(node.next, next);
 		}
-		if(val > max){
-			max = val;
-			maxKey = key;
-		}
-		if(val - 1 == min){
-			if(vals.get(min) == null || vals.get(min).size() == 0){
-				min++;
-				minKey = key;
-			}else{
-				minKey = vals.get(min).iterator().next();
-			}
-		}
-		if(val == 1){
-			min = 1;
-			minKey = key;
+		next.strs.add(key);
+		keys.put(key, next);
+		if(node != head){
+			remove(node, key);
 		}
 	}
 
 	/** Decrements an existing key by 1. If Key's value is 1, remove it from the data structure. */
 	public void dec(String key) {
-		if(map.containsKey(key)){
-			if(map.get(key) == 1){
-				map.remove(key);
-				vals.get(1).remove(key);
-				if(vals.get(1).size() > 0){
-					min = 1;
-					minKey = vals.get(1).iterator().next();
-					if(max == 1){
-						maxKey = minKey;
-					}
-				}else{
-					vals.remove(1);
-					if(map.size() > 0){
-						int tempMin = Integer.MAX_VALUE;
-						for(Map.Entry<Integer, Set<String>> entry : vals.entrySet()){
-							if(entry.getValue().size() > 0){
-								tempMin = Math.min(tempMin, entry.getKey());
-							}
-						}
-						min = tempMin;
-						minKey = vals.get(min).iterator().next();
-					}else{
-						min = 0;
-						max = 0;
-					}
-				}
-			}else{
-				map.put(key, map.get(key) - 1);
-				int val = map.get(key);
-				vals.get(val + 1).remove(key);
-				if(vals.get(val + 1).size() == 0){
-					vals.remove(val + 1);
-				}
-				if(vals.get(val) == null){
-					vals.put(val, new HashSet<>());
-				}
-				vals.get(val).add(key);
-				if(val + 1 == max){
-					if(vals.get(max) == null || vals.get(max).size() == 0){
-						max--;
-					}else{
-						maxKey = vals.get(max).iterator().next();
-					}
-				}
-				if(val + 1 == min){
-					min--;
-					minKey = key;
-				}
-			}
+		ValueNode node = keys.get(key);
+		if(node == null){
+			return;
 		}
+		if(node.val == 1){
+			keys.remove(key);
+			remove(node, key);
+			return;
+		}
+		ValueNode prev = node.prev;
+		if(prev.val != node.val - 1){
+			prev = new ValueNode(node.val - 1);
+			insert(node, prev);
+		}
+		prev.strs.add(key);
+		keys.put(key, prev);
+		remove(node, key);
 	}
 
 	/** Returns one of the keys with maximal value. */
 	public String getMaxKey() {
-		if(map.size() == 0){
+		if(tail.prev == head){
 			return "";
 		}
-		return maxKey;
+		return tail.prev.strs.iterator().next();
 	}
 
 	/** Returns one of the keys with Minimal value. */
 	public String getMinKey() {
-		if(map.size() == 0){
+		if(head.next == tail){
 			return "";
 		}
-		return minKey;
+		return head.next.strs.iterator().next();
+	}
+
+	private void remove(ValueNode node, String key){
+		ValueNode prev = node.prev, next = node.next;
+		node.strs.remove(key);
+		if(node.strs.isEmpty()){
+			prev.next = next;
+			next.prev = prev;
+		}
+	}
+
+	private void insert(ValueNode next, ValueNode node){
+		ValueNode prev = next.prev;
+		prev.next = node;
+		node.prev = prev;
+		next.prev = node;
+		node.next = next;
+	}
+
+	private class ValueNode{
+
+		private ValueNode prev, next;
+		private int val;
+		private Set<String> strs;
+
+		private ValueNode(int val){
+			this.val = val;
+			strs = new HashSet<>();
+			prev = null;
+			next = null;
+		}
 	}
 }
 

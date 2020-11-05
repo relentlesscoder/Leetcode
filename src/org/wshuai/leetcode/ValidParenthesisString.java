@@ -18,7 +18,7 @@ public class ValidParenthesisString {
 				low -= low > 0 ? 1 : 0;
 				if(high-- == 0){
 					return false;
-				};
+				}
 			}else{
 				low -= low > 0 ? 1 : 0;
 				high++;

@@ -10,18 +10,11 @@ public class MinimumAddToMakeParenthesesValid {
 
 	// time O(n), space O(n)
 	public int minAddToMakeValid(String S) {
-		int res = 0;
-		if (S.length() == 0) {
-			return res;
-		}
 		Stack<Character> stack = new Stack<>();
-		for (int i = 0; i < S.length(); i++) {
-			char c = S.charAt(i);
-			if (c == '(') {
-				stack.push(c);
-			} else if (!stack.isEmpty() && stack.peek() == '(') {
+		for(char c : S.toCharArray()){
+			if(c == ')' && !stack.isEmpty() && stack.peek() == '('){
 				stack.pop();
-			} else {
+			}else{
 				stack.push(c);
 			}
 		}

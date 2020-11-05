@@ -37,7 +37,7 @@ public class LongestPalindromicSubsequence {
 			return 0;
 		}
 		int n = s.length();
-		int[][] dp = new int[n][n];
+		int[][] dp = new int[n][n]; // dp[i][j] denotes length of palindrome subsequence s(i, j)
 		for(int i = n - 1; i >= 0; i--){
 			for(int j = i; j < n; j++){
 				if(i == j){
