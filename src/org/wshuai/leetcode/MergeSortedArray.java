@@ -6,7 +6,7 @@ package org.wshuai.leetcode;
  */
 public class MergeSortedArray {
 
-	// O(m + n)
+	// time O(m + n)
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
 		int j =  n - 1, k = m + n - 1;
 		for(int i = m - 1; i >= 0 && j >= 0; ){

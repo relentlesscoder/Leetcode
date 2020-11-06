@@ -15,15 +15,15 @@ public class KthLargestElementInAnArray {
 	}
 
 	private int findKth(int[] nums, int left, int right, int k){
-		if(k > 0 && k <= right - left + 1){
-			int pivot = partition(nums, left, right), count = pivot - left + 1;
-			if(count == k){
-				return nums[pivot];
+		while(left <= right){
+			int mid = partition(nums, left, right);
+			if(mid == k - 1){
+				return nums[mid];
 			}
-			if(count < k){
-				return findKth(nums, pivot + 1, right, k - count);
+			if(mid < k){
+				left = mid + 1;
 			}else{
-				return findKth(nums, left, pivot - 1, k);
+				right = mid - 1;
 			}
 		}
 		return Integer.MAX_VALUE;
