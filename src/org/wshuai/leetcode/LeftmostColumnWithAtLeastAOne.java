@@ -8,8 +8,22 @@ import java.util.List;
  */
 public class LeftmostColumnWithAtLeastAOne {
 
+	// time O(m + n)
+	public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
+		List<Integer> dims = binaryMatrix.dimensions();
+		int m = dims.get(0), n = dims.get(1), res = n, i = 0, j = n - 1;
+		while(i < m && j >= 0){
+			if(binaryMatrix.get(i, j) == 1){
+				res = Math.min(res, j--);
+			}else{
+				i++;
+			}
+		}
+		return res == n ? -1 : res;
+	}
+
     // time O(m*log(n))
-    public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
+    public int leftMostColumnWithOneBinarySearch(BinaryMatrix binaryMatrix) {
 	    List<Integer> dimension = binaryMatrix.dimensions();
 	    int m = dimension.get(0), n = dimension.get(1), res = n;
 	    for(int i = 0; i < m; i++){

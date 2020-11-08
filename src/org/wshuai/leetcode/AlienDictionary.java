@@ -9,7 +9,6 @@ import java.util.*;
 public class AlienDictionary {
 
 	// time O(V + E)
-	// graph topological sort
 	public String alienOrder(String[] words) {
 		if(words == null || words.length == 0){
 			return "";
@@ -41,6 +40,7 @@ public class AlienDictionary {
 				}
 			}
 		}
+		// graph topological sort
 		LinkedList<Character> queue = new LinkedList<>();
 		for(Map.Entry<Character, Integer> entry : degree.entrySet()){
 			if(entry.getValue() == 0){
