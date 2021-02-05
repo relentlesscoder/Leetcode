@@ -2,7 +2,6 @@ package org.wshuai.leetcode;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -13,35 +12,25 @@ public class ReorderLogFiles {
 
 	// time O(d*n*log(n)), space O(n)
 	public String[] reorderLogFiles(String[] logs) {
-		if(logs == null || logs.length == 0){
-			return new String[0];
-		}
 		int n = logs.length;
 		String[] res = new String[n];
-		List<String> letterLogs = new ArrayList<>(),
-			digitLogs = new ArrayList<>();
-		for(String log : logs){
-			if(Character.isDigit(log.charAt(log.length() - 1))){
-				digitLogs.add(log);
+		List<String> letters = new ArrayList<>();
+		for(int i = n - 1, j = n - 1; i >= 0; i--){
+			String cur = logs[i];
+			if(Character.isDigit(cur.charAt(cur.length() - 1))){
+				res[j--] = cur;
 			}else{
-				letterLogs.add(log);
+				letters.add(cur);
 			}
 		}
-		Collections.sort(letterLogs, (String a, String b) -> {
-			String[] arr1 = a.split(" ", 2),
-				arr2 = b.split(" ", 2);
-			if(arr1[1].equals(arr2[1])){
-				return arr1[0].compareTo(arr2[0]);
-			}else{
-				return arr1[1].compareTo(arr2[1]);
-			}
+		Collections.sort(letters, (String a, String b) -> {
+			String[] arr1 = a.split(" ", 2);
+			String[] arr2 = b.split(" ", 2);
+			return arr1[1].equals(arr2[1]) ?
+					arr1[0].compareTo(arr2[0]) : arr1[1].compareTo(arr2[1]);
 		});
-		for(int i = 0; i < n; i++){
-			if(i < letterLogs.size()){
-				res[i] = letterLogs.get(i);
-			}else{
-				res[i] = digitLogs.get(i - letterLogs.size());
-			}
+		for(int i = 0, j = 0; i < letters.size(); i++){
+			res[j++] = letters.get(i);
 		}
 		return res;
 	}

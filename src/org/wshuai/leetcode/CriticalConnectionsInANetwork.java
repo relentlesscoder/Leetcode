@@ -68,7 +68,7 @@ public class CriticalConnectionsInANetwork {
 			// Update low value of u for parent function calls.
 			// v != parent[u] to avoid infinite loop for a undirected graph
 			}else if(v != parent[u]){
-				minSubNodesDiscTime[u] = Math.min(minSubNodesDiscTime[u], discoveryTime[v]);
+				minSubNodesDiscTime[u] = Math.min(minSubNodesDiscTime[u], minSubNodesDiscTime[v]);
 			}
 		}
 	}
