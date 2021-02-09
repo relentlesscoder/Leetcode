@@ -23,7 +23,6 @@ public class LFUCache {
 		countMap = new HashMap<>();
 		// stores frequency -> keys by insert order
 		keyListMap = new HashMap<>();
-		keyListMap.put(1, new LinkedHashSet<>());
 	}
 
 	public int get(int key) {
@@ -61,6 +60,7 @@ public class LFUCache {
 		dataMap.put(key, value);
 		countMap.put(key, 1);
 		min = 1;
+		keyListMap.putIfAbsent(min, new LinkedHashSet<>());
 		keyListMap.get(min).add(key);
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
  * #0241 https://leetcode.com/problems/different-ways-to-add-parentheses/
  */
 public class DifferentWaysToAddParentheses {
+
 	//time O(n^2)
 	public List<Integer> diffWaysToCompute(String input) {
 		List<Integer> res = new ArrayList<>();
