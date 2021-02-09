@@ -5,13 +5,14 @@ package org.wshuai.leetcode;
  * #0572 https://leetcode.com/problems/subtree-of-another-tree/
  */
 public class SubtreeOfAnotherTree {
+
 	// time O(m*n)
 	public boolean isSubtree(TreeNode s, TreeNode t) {
-		if(s == null){
-			return false;
-		}
 		if(isSame(s, t)){
 			return true;
+		}
+		if(s == null){
+			return false;
 		}
 		return isSubtree(s.left, t) || isSubtree(s.right, t);
 	}
