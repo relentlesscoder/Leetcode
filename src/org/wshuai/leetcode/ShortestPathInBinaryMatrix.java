@@ -18,11 +18,10 @@ public class ShortestPathInBinaryMatrix {
 		if(grid[0][0] != 0){
 			return -1;
 		}
-		int n = grid.length;
+		int n = grid.length, steps = 0;
 		LinkedList<int[]> queue = new LinkedList<>();
 		queue.offerLast(new int[]{0, 0});
 		grid[0][0] = -1;
-		int steps = 0;
 		while(!queue.isEmpty()){
 			steps++;
 			int size = queue.size();
