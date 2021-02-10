@@ -30,9 +30,10 @@ public class AnalyzeUserWebsiteVisitPattern {
 						if(!seen.contains(key)){
 							count.put(key, count.getOrDefault(key, 0) + 1);
 							seen.add(key);
-						}
-						if(mostVisited.length() == 0 || count.get(key) > count.get(mostVisited) || (count.get(key) == count.get(mostVisited) && key.compareTo(mostVisited) < 0)){
-							mostVisited = key;
+							if(mostVisited.length() == 0 || count.get(key) > count.get(mostVisited)
+									|| (count.get(key) == count.get(mostVisited) && key.compareTo(mostVisited) < 0)){
+								mostVisited = key;
+							}
 						}
 					}
 				}

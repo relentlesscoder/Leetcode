@@ -14,7 +14,7 @@ public class SellDiminishingValuedColoredBalls {
 		for(int in : inventory){
 			right = Math.max(right, in);
 		}
-		while(left < right){
+		while(left < right){ // left is max value that creates orders less or equal to the orders
 			long mid = left + (right - left) / 2;
 			if(count(mid, inventory) <= orders){
 				right = mid;
