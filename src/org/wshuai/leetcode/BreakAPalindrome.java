@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #1328 https://leetcode.com/problems/break-a-palindrome/
  */
 public class BreakAPalindrome {
+
 	// time O(n)
 	public String breakPalindrome(String palindrome) {
 		if(palindrome.length() == 1){

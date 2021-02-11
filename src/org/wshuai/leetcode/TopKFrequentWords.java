@@ -9,6 +9,7 @@ import java.util.*;
 public class TopKFrequentWords {
 
 	// time O(n*log(k)), space O(n)
+	// https://leetcode.com/problems/top-k-frequent-words/discuss/431008/Summary-of-all-the-methods-you-can-imagine-of-this-problem
 	public List<String> topKFrequent(String[] words, int k) {
 		List<String> res = new ArrayList<>();
 		PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a, b) ->
