@@ -30,7 +30,7 @@ public class MergeKSortedLists {
 		return root.next;
 	}
 
-	// time O(n*log(k)), space O(1) 2ms
+	// time O(nk*log(k)), space O(1) 2ms
 	public LinkedListNode mergeKListsDivideAndConquer(LinkedListNode[] lists) {
 		if(lists == null || lists.length == 0){
 			return null;

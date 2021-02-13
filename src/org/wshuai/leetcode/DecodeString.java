@@ -16,7 +16,7 @@ public class DecodeString {
 		int n = s.length();
 		StringBuilder sb = new StringBuilder();
 		Stack<Integer> count = new Stack<>();
-		Stack<StringBuilder> stack = new Stack<>();
+		Stack<StringBuilder> strs = new Stack<>();
 		for(int i = 0; i < n; i++){
 			char c = s.charAt(i);
 			if(c == '['){
@@ -26,13 +26,13 @@ public class DecodeString {
 				String cur = sb.toString();
 				int repeat = count.pop();
 				while(repeat-- > 0){
-					stack.peek().append(cur);
+					strs.peek().append(cur);
 				}
-				sb = stack.pop();
+				sb = strs.pop();
 			}else{
 				if(Character.isDigit(c) &&
 					(i == 0 || !Character.isDigit(s.charAt(i - 1)))){
-					stack.push(sb);
+					strs.push(sb);
 					sb = new StringBuilder();
 				}
 				sb.append(c);

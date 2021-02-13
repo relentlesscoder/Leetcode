@@ -8,29 +8,27 @@ public class ReverseNodesInKGroup {
 
     // time O(n)
 	public ListNode reverseKGroup(ListNode head, int k) {
-		ListNode root = new ListNode(0), prev = root, tail = head;
+		ListNode root = new ListNode(0), cur = head, lastEnd = root;
 		root.next = head;
-		int i = 0;
-		while(tail != null){
+		for(int i = 0; cur != null; cur = cur.next){
 			if(++i == k){
-				prev = reverse(prev, tail);
-				tail = prev;
+				lastEnd = reverse(lastEnd, cur);
+				cur = lastEnd;
 				i = 0;
 			}
-			tail = tail.next;
 		}
 		return root.next;
 	}
 
-	private ListNode reverse(ListNode prev, ListNode tail){
-		ListNode next = tail.next, cur = prev.next, res = cur;
-		while(next != tail){
-			ListNode temp = cur.next;
-			cur.next = next;
-			next = cur;
-			cur = temp;
+	private ListNode reverse(ListNode lastEnd, ListNode curEnd){
+		ListNode cur = lastEnd.next, res = cur, prev = curEnd.next;
+		while(prev != curEnd){
+			ListNode next = cur.next; // record next node
+			cur.next = prev; // reverse
+			prev = cur;
+			cur = next;
 		}
-		prev.next = tail;
+		lastEnd.next = curEnd;
 		return res;
 	}
 
