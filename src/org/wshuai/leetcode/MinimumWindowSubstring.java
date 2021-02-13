@@ -13,18 +13,18 @@ public class MinimumWindowSubstring {
 		for(char c : t.toCharArray()){
 			target[c]++;
 		}
-		int count = t.length(), min = Integer.MAX_VALUE, start = -1;
+		int unmatched = t.length(), min = Integer.MAX_VALUE, start = -1;
 		for(int i = 0, j = 0; j < s.length(); j++){
 			if(target[s.charAt(j)]-- > 0){
-				count--;
+				unmatched--;
 			}
-			while(count == 0){
+			while(unmatched == 0){ // try shortening the sliding window from left
 				if(j - i + 1 < min){
 					min = j - i + 1;
 					start = i;
 				}
-				if(target[s.charAt(i++)]++ == 0){
-					count++;
+				if(target[s.charAt(i++)]++ == 0){ // find first character makes the current sliding window invalid
+					unmatched++;
 				}
 			}
 		}

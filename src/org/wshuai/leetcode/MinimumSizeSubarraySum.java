@@ -8,30 +8,30 @@ public class MinimumSizeSubarraySum {
 
 	// time O(n)
 	// same idea as https://leetcode.com/problems/minimum-window-substring/
-	public int minSubArrayLen(int s, int[] nums) {
-		int n = nums.length, res = Integer.MAX_VALUE, i = 0, j = 0, sum = 0;
-		while(i < n){
-			sum += nums[i++];
-			while(sum >= s){
-				res = Math.min(res, i - j);
-				sum -= nums[j++];
+	public int minSubArrayLen(int target, int[] nums) {
+		int res = Integer.MAX_VALUE, sum = 0;
+		for(int i = 0, j = 0; j < nums.length; j++){
+			sum += nums[j];
+			while(sum >= target){
+				res = Math.min(res, j - i + 1);
+				sum -= nums[i++];
 			}
 		}
 		return res == Integer.MAX_VALUE ? 0 : res;
 	}
 
 	// time O(n*log(n))
-	public int minSubArrayLenBinarySearch(int s, int[] nums) {
+	public int minSubArrayLenBinarySearch(int target, int[] nums) {
 		int left = 1, right = nums.length;
 		while(left < right){
 			int mid = left + (right - left) / 2;
-			if(!windowExist(nums, s, mid)){
+			if(!windowExist(nums, target, mid)){
 				left = mid + 1;
 			}else{
 				right = mid;
 			}
 		}
-		return windowExist(nums, s, left) ? left : 0;
+		return windowExist(nums, target, left) ? left : 0;
 	}
 
 	private boolean windowExist(int[] nums, int s, int size){

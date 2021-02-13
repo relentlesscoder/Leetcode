@@ -45,35 +45,27 @@ public class CourseSchedule {
 		for(int i = 0; i < numCourses; i++){
 			adj[i] = new ArrayList<>();
 		}
-		for(int[] edge : prerequisites){
-			adj[edge[1]].add(edge[0]);
+		for(int[] p : prerequisites){
+			adj[p[1]].add(p[0]);
 		}
 		int[] visited = new int[numCourses];
 		for(int i = 0; i < numCourses; i++){
-			if(visited[i] == 0 && !dfs(i, adj, visited)){
+			if(visited[i] == 0 && !dfs(i, visited, adj)){
 				return false;
 			}
 		}
 		return true;
 	}
 
-	private boolean dfs(int i, List<Integer>[] adj, int[] visited){
-		visited[i] = 1;
-
-		for(int next : adj[i]){
-			// if node has been visited in the current dfs path before,
-			// cycle is detected
-			if(visited[next] == 1){
+	private boolean dfs(int cur, int[] visited, List<Integer>[] adj){
+		visited[cur] = 1;
+		for(int next : adj[cur]){
+			if(visited[next] == 1
+					|| (visited[next] == 0 && !dfs(next, visited, adj))){
 				return false;
 			}
-			if(visited[next] == 0){
-				if(!dfs(next, adj, visited)){
-					return false;
-				}
-			}
 		}
-
-		visited[i] = 2;
+		visited[cur] = 2;
 		return true;
 	}
 }
