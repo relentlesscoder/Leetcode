@@ -1,57 +1,82 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Created by Wei on 11/25/19.
+ * Created by Wei on 11/25/2019.
  * #1268 https://leetcode.com/problems/search-suggestions-system/
  */
 public class SearchSuggestionsSystem {
-	// Trie solution - https://leetcode.com/problems/search-suggestions-system/discuss/436151/JavaPython-3-Simple-Trie-and-Binary-Search-codes-w-comment-and-brief-analysis.
+
+	// time O(n*wl), space O(n*wl)
 	public List<List<String>> suggestedProducts(String[] products, String searchWord) {
-		Map<String, List<String>> prefix = new HashMap<>();
-		for(String s : products){
-			int n = s.length();
-			for(int i = 1; i <= n; i++){
-				String p = s.substring(0, i);
-				prefix.putIfAbsent(p, new ArrayList<>());
-				addToQueue(prefix.get(p), s);
-			}
-		}
 		List<List<String>> res = new ArrayList<>();
-		int l = searchWord.length();
-		for(int i = 1; i <= l; i++){
-			String p = searchWord.substring(0, i);
-			List<String> lst = new ArrayList<>();
-			if(prefix.containsKey(p)){
-				lst.addAll(prefix.get(p));
-			}
-			res.add(lst);
+		TrieNode root = new TrieNode();
+		Arrays.sort(products);
+		for(String prod : products){
+			insert(prod, root);
+		}
+		searchPrefix(0, searchWord, root, res);
+		while(res.size() < searchWord.length()){
+			res.add(new ArrayList<>());
 		}
 		return res;
 	}
 
-	private void addToQueue(List<String> list, String s){
-		if(list.size() == 0){
-			list.add(s);
+	private void searchPrefix(int i, String word, TrieNode node, List<List<String>> res){
+		if(i == word.length() || !node.containsKey(word.charAt(i))){
 			return;
 		}
-		int i = 0;
-		for(; i < list.size(); i++){
-			if(s.compareTo(list.get(i)) <= 0){
-				break;
+		node = node.get(word.charAt(i));
+		res.add(node.getWords());
+		searchPrefix(i + 1, word, node, res);
+	}
+
+	private void insert(String word, TrieNode root){
+		TrieNode node = root;
+		for(char c : word.toCharArray()){
+			if(!node.containsKey(c)){
+				node.put(c, new TrieNode());
 			}
+			node = node.get(c);
+			node.addWord(word);
 		}
-		list.add(i, s);
-		if(list.size() <= 3){
-			return;
-		}else{
-			while(list.size() > 3){
-				list.remove(list.size() - 1);
+	}
+
+	private class TrieNode{
+
+		private static final int R = 26;
+
+		private TrieNode[] links;
+
+		private List<String> top;
+
+		private TrieNode(){
+			links = new TrieNode[R];
+			top = new ArrayList<>();
+		}
+
+		private TrieNode get(char key){
+			return links[key - 'a'];
+		}
+
+		private void put(char key, TrieNode node){
+			links[key - 'a'] = node;
+		}
+
+		private boolean containsKey(char key){
+			return links[key - 'a'] != null;
+		}
+
+		private void addWord(String word){
+			if(top.size() == 3){
+				return;
 			}
+			top.add(word);
+		}
+
+		private List<String> getWords(){
+			return top;
 		}
 	}
 }
