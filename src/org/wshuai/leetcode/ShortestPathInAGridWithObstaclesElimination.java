@@ -7,42 +7,39 @@ import java.util.LinkedList;
  * #1293 https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
  */
 public class ShortestPathInAGridWithObstaclesElimination {
+
+	private static final int[] DIRECTIONS = new int[]{ 0, -1, 0, 1, 0 };
+
+	// time O(m*n*k), space O(m*n*k)
 	public int shortestPath(int[][] grid, int k) {
-		int r = grid.length;
-		int c = grid[0].length;
-		boolean[][][] visited = new boolean[r][c][k + 1];
-		int[][] dirs = new int[][]{
-			{1, -1, 0, 0},
-			{0, 0, 1, -1}
-		};
+		int steps = 0, m = grid.length, n = grid[0].length;
+		boolean[][][] visited = new boolean[m][n][k + 1];
 		LinkedList<int[]> queue = new LinkedList<>();
-		visited[0][0][0] = true;
 		queue.offerLast(new int[]{0, 0, 0});
-		int step = 0;
+		visited[0][0][0] = true;
 		while(!queue.isEmpty()){
 			int size = queue.size();
 			while(size-- > 0){
 				int[] cur = queue.pollFirst();
-				if(cur[0] == r - 1 && cur[1] == c - 1){
-					return step;
+				if(cur[0] == m - 1 && cur[1] == n - 1){
+					return steps;
 				}
-				for(int i = 0; i < 4; i++){
-					int x = cur[0] + dirs[0][i];
-					int y = cur[1] + dirs[1][i];
-					// every obstacle "removed" at the same level count as 1
-					int count = cur[2];
-					if(x >= 0 && x < r && y >= 0 && y < c){
-						if(grid[x][y] == 1){
-							count++;
-						}
-						if(count <= k && !visited[x][y][count]){
-							visited[x][y][count] = true;
-							queue.offerLast(new int[]{x, y, count});
-						}
+				for(int d = 0; d < 4; d++){
+					int x = cur[0] + DIRECTIONS[d], y = cur[1] + DIRECTIONS[d + 1],
+						cnt = cur[2];
+					if(x < 0 || x >= m || y < 0 || y >= n){
+						continue;
+					}
+					if(grid[x][y] == 1){
+						cnt++;
+					}
+					if(cnt <= k && !visited[x][y][cnt]){
+						visited[x][y][cnt] = true;
+						queue.offerLast(new int[]{x, y, cnt});
 					}
 				}
 			}
-			step++;
+			steps++;
 		}
 		return -1;
 	}
