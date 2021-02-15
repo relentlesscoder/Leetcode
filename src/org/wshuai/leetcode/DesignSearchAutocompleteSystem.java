@@ -8,14 +8,16 @@ import java.util.*;
  */
 public class DesignSearchAutocompleteSystem {
 
+	private static final int LIMIT = 3;
+
 	private TrieNode root, cur;
 
 	private StringBuilder in;
 
 	public DesignSearchAutocompleteSystem(String[] sentences, int[] times) {
-		in = new StringBuilder();
-		root = new TrieNode();
-		cur = root;
+		this.root = new TrieNode();
+		this.cur = root;
+		this.in = new StringBuilder();
 		for(int i = 0; i < sentences.length; i++){
 			insert(sentences[i], times[i]);
 		}
@@ -24,87 +26,72 @@ public class DesignSearchAutocompleteSystem {
 	public List<String> input(char c) {
 		List<String> res = new ArrayList<>();
 
-		// hit the end of the input
-		if(c == '#'){
-			// add one hit to the trie
-			insert(in.toString(), 1);
-			// reset status
-			in = new StringBuilder();
-			cur = root;
+		if(c == '#'){ // current input is done
+			insert(in.toString(), 1); // increment the current word count by 1
+			cur = root; // reset current trie node
+			in = new StringBuilder(); // reset input
 			return res;
 		}
 
-		in.append(c);
-		// prefix not found in trie
-		if(cur == null || !cur.containsKey(c)){
-			cur = null;
+		in.append(c); // capture the input character
+		if(cur == null || !cur.containsKey(c)){ // no match is found
+			cur = null; // set to null to avoid potential bug
 			return res;
 		}
 		cur = cur.get(c);
-
-		PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a, b)
-			-> a.getValue().equals(b.getValue()) ?
-			a.getKey().compareTo(b.getKey()) : b.getValue() - a.getValue());
-		for(Map.Entry<String, Integer> entry : cur.getWordCounts()){
+		PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a, b) ->
+			a.getValue() == b.getValue() ? a.getKey().compareTo(b.getKey())
+				: b.getValue() - a.getValue());
+		for(Map.Entry<String, Integer> entry : cur.getWordCount()){
 			pq.offer(entry);
 		}
-		int count = 0;
-		while(count++ < 3 && !pq.isEmpty()){
+		for(int i = 0; i < LIMIT && !pq.isEmpty(); i++){
 			res.add(pq.poll().getKey());
 		}
 		return res;
 	}
 
-	private void insert(String sentence, int count){
+	private void insert(String word, int count){
 		TrieNode node = root;
-		for(int i = 0; i < sentence.length(); i++){
-			char c = sentence.charAt(i);
+		for(int i = 0; i < word.length(); i++){
+			char c = word.charAt(i);
 			if(!node.containsKey(c)){
 				node.put(c, new TrieNode());
 			}
 			node = node.get(c);
-			node.addWordCount(sentence, count);
+			node.addWordCount(word, count);
 		}
 	}
 
 	private class TrieNode{
 
-		private static final int R = 27;
+		private TrieNode[] nodes;
 
-		private TrieNode[] links;
-
-		private boolean isEnd;
-
-		private Map<String, Integer> map;
+		private Map<String, Integer> wordFreq;
 
 		private TrieNode(){
-			links = new TrieNode[R];
-			map = new HashMap<>();
-			isEnd = false;
-		}
-
-		private TrieNode get(char key){
-			return key == ' ' ? links[26] : links[key - 'a'];
-		}
-
-		private void put(char key, TrieNode node){
-			if(key == ' '){
-				links[26] = node;
-				return;
-			}
-			links[key - 'a'] = node;
+			this.nodes = new TrieNode[27];
+			this.wordFreq = new HashMap<>();
 		}
 
 		private boolean containsKey(char key){
-			return (key == ' ' ? links[26] : links[key - 'a']) != null;
+			return nodes[key == ' ' ? 26 : key - 'a'] != null;
+		}
+
+		private void put(char key, TrieNode node){
+			nodes[key == ' ' ? 26 : key - 'a'] = node;
+		}
+
+		private TrieNode get(char key){
+			return nodes[key == ' ' ? 26 : key - 'a'];
 		}
 
 		private void addWordCount(String word, int count){
-			map.put(word, map.getOrDefault(word, 0) + count);
+			wordFreq.put(word, wordFreq.getOrDefault(word, 0) + count);
 		}
 
-		private Set<Map.Entry<String, Integer>> getWordCounts(){
-			return map.entrySet();
+		private Set<Map.Entry<String, Integer>> getWordCount(){
+			return wordFreq.entrySet();
 		}
 	}
 }

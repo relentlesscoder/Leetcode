@@ -7,37 +7,39 @@ import java.util.*;
  * #0815 https://leetcode.com/problems/bus-routes/
  */
 public class BusRoutes {
-	// time O(m + +n), space O(m + n)
-	public int numBusesToDestination(int[][] routes, int S, int T) {
-		if(S == T){
+
+	// time O(m*n), space O(m*n)
+	public int numBusesToDestination(int[][] routes, int source, int target) {
+		if(source == target){
 			return 0;
 		}
-		Map<Integer, Set<Integer>> stops = new HashMap<>();
+		int buses = 0;
+		Map<Integer, Set<Integer>> stopToRoute = new HashMap<>();
 		for(int i = 0; i < routes.length; i++){
-			for(int s : routes[i]){
-				stops.putIfAbsent(s, new HashSet<>());
-				stops.get(s).add(i);
+			for(int stop : routes[i]){
+				stopToRoute.putIfAbsent(stop, new HashSet<>());
+				stopToRoute.get(stop).add(i);
 			}
 		}
-		int buses = 0;
 		Set<Integer> visitedRoute = new HashSet<>(), visitedStop = new HashSet<>();
 		LinkedList<Integer> queue = new LinkedList<>();
-		queue.offerLast(S);
+		queue.offerLast(source);
+		visitedStop.add(source);
 		while(!queue.isEmpty()){
 			int size = queue.size();
 			while(size-- > 0){
-				int cur = queue.pollFirst();
-				for(int route : stops.get(cur)){
-					if(visitedRoute.contains(route)){
+				int curStop = queue.pollFirst();
+				for(int nextRoute : stopToRoute.get(curStop)){
+					if(visitedRoute.contains(nextRoute)){
 						continue;
 					}
-					visitedRoute.add(route);
-					for(int next : routes[route]){
-						if(next == T){
+					visitedRoute.add(nextRoute);
+					for(int nextStop : routes[nextRoute]){
+						if(nextStop == target){
 							return buses + 1;
 						}
-						if(visitedStop.add(next)){
-							queue.offerLast(next);
+						if(visitedStop.add(nextStop)){
+							queue.offerLast(nextStop);
 						}
 					}
 				}

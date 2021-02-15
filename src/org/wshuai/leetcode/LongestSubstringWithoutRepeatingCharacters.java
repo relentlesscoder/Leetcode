@@ -10,21 +10,20 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
 	// time O(n)
 	public int lengthOfLongestSubstring(String s) {
-		int res = 0;
-		int[] index = new int[256];
-		Arrays.fill(index, -1);
-		for(int i = 0, j = 0; j < s.length(); j++){
-			if(index[s.charAt(j)] >= i){
-				i = ++index[s.charAt(j)];
-			}
-			res = Math.max(res, j - i + 1);
-			index[s.charAt(j)] = j;
+		int max = 0;
+		int[] lastIndex = new int[256];
+		Arrays.fill(lastIndex, -1);
+		for(int i = 0, j = -1; i < s.length(); i++){
+			char c = s.charAt(i);
+			j = Math.max(j, lastIndex[c]);
+			max = Math.max(max, i - j);
+			lastIndex[c] = i;
 		}
-		return res;
+		return max;
 	}
 
 	// time O(n)
-	public int lengthOfLongestSubstringCount(String s) {
+	public int lengthOfLongestSubstringSlidingWindow(String s) {
 		if(s == null || s.length() == 0){
 			return 0;
 		}
