@@ -7,8 +7,8 @@ import java.util.Arrays;
  * #0410 https://leetcode.com/problems/split-array-largest-sum/
  */
 public class SplitArrayLargestSum {
-	// time O(n*log(max - min)), space O(1)
-	// https://leetcode.com/problems/split-array-largest-sum/discuss/161143/Logical-Thinking-with-Code-Beats-99.89
+
+	// time O(n*log(sum))
 	public int splitArray(int[] nums, int m) {
 		int min = Integer.MIN_VALUE, max = 0;
 		for(int num : nums){
@@ -49,18 +49,17 @@ public class SplitArrayLargestSum {
 	// time O(n^2*m), space O(n*m)
 	public int splitArrayDP(int[] nums, int m) {
 		int n = nums.length;
-		int[] sum = new int[n + 1];
 		int[][] dp = new int[n + 1][m + 1];
-		Arrays.fill(dp[0], Integer.MAX_VALUE);
-		for(int i = 1; i <= n; i++){
+		for(int i = 0; i <= n; i++){
 			Arrays.fill(dp[i], Integer.MAX_VALUE);
-			sum[i] = sum[i - 1] + nums[i - 1];
 		}
 		dp[0][0] = 0;
 		for(int i = 1; i <= n; i++){
-			for(int k = 1; k <= m; k++){
-				for(int j = 0; j < i; j++){
-					dp[i][k] = Math.min(dp[i][k], Math.max(dp[j][k - 1], sum[i] - sum[j]));
+			int sum = 0;
+			for(int j = i; j > 0; j--){
+				sum += nums[j - 1];
+				for(int k = 1; k <= m; k++){
+					dp[i][k] = Math.min(dp[i][k], Math.max(sum, dp[j - 1][k - 1]));
 				}
 			}
 		}

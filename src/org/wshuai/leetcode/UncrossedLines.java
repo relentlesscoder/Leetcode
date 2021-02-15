@@ -1,12 +1,12 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/24/19.
+ * Created by Wei on 10/24/2019.
  * #1035 https://leetcode.com/problems/uncrossed-lines/
  */
 public class UncrossedLines {
 
-	// same as LCS
+	// time O(m*n), space O(m*n)
 	public int maxUncrossedLines(int[] A, int[] B) {
 		int m = A.length, n = B.length;
 		int[][] dp = new int[m + 1][n + 1];

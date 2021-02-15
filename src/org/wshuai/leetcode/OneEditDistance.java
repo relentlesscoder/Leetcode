@@ -6,21 +6,29 @@ package org.wshuai.leetcode;
  */
 public class OneEditDistance {
 
-	// time O(n), space O(n)
+	// time O(n)
 	public boolean isOneEditDistance(String s, String t) {
-		int m = s.length(), n = t.length();
+		int m = s.length(), n = t.length(), diff = Math.abs(m - n);
+		if(diff > 1){
+			return false;
+		}
 		for(int i = 0; i < Math.min(m, n); i++){
-			if(s.charAt(i) != t.charAt(i)){
-				if(m == n){ // replace one char
-					return s.substring(i + 1).equals(t.substring(i + 1));
-				}else if(m < n){ // delete from t
-					return s.substring(i).equals(t.substring(i + 1));
-				}else{ // delete from s
-					return s.substring(i + 1).equals(t.substring(i));
-				}
+			if(s.charAt(i) == t.charAt(i)){
+				continue;
+			}
+			if(m > n){
+				return equal(s, i + 1, t, i);
+			}else if(m < n){
+				return equal(s, i, t, i + 1);
+			}else{
+				return equal(s, i + 1, t, i + 1);
 			}
 		}
-		// delete the last char from the longer string
-		return Math.abs(m - n) == 1;
+		return diff == 1;
+	}
+
+	private boolean equal(String s, int i, String t, int j){
+		for( ; i < s.length() && s.charAt(i) == t.charAt(j); i++, j++);
+		return i == s.length();
 	}
 }
