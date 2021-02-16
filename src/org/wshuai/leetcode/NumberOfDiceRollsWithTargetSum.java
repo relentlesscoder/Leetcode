@@ -1,33 +1,47 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Wei on 10/16/2019.
  * #1155 https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/
  */
 public class NumberOfDiceRollsWithTargetSum {
-	private final int MOD = 1_000_000_007;
-	private Map<Integer, Integer> map;
 
+	private static final int MOD = 1_000_000_007;
+
+	// time O(f^d)
 	public int numRollsToTarget(int d, int f, int target) {
-		map = new HashMap<>();
-		return dfs(0, d, f, target);
+		Integer[][] dp = new Integer[d][target + 1];
+		return dfs(0, d, f, target, dp);
 	}
 
-	private int dfs(int i, int d, int f, int t){
-		int key = t * 1000 + i;
-		if(!map.containsKey(key)){
-			int res = 0;
-			if(i == d){
-				return t == 0 ? 1 : 0;
-			}
-			for(int x = 1; x <= f; x++){
-				res = (res + dfs(i + 1, d, f, t - x)) % MOD;
-			}
-			map.put(key, res);
+	private int dfs(int index, int d, int f, int cur, Integer[][] dp){
+		if(cur < 0){
+			return 0;
 		}
-		return map.get(key);
+		if(index == d){
+			return cur == 0 ? 1 : 0;
+		}
+		if(dp[index][cur] == null){
+			int res = 0;
+			for(int i = 1; i <= f; i++){
+				res = (res + dfs(index + 1, d, f, cur - i, dp)) % MOD;
+			}
+			dp[index][cur] = res;
+		}
+		return dp[index][cur];
+	}
+
+	// time O(d*f*target), space O(d*target)
+	public int numRollsToTargetDP(int d, int f, int target) {
+		int[][] dp = new int[d + 1][target + 1];
+		dp[0][0] = 1;
+		for(int i = 1; i <= d; i++){
+			for(int j = 1; j <= target; j++){
+				for(int k = 1; k <= f && k <= j; k++){
+					dp[i][j] = (dp[i][j] + dp[i - 1][j - k]) % MOD;
+				}
+			}
+		}
+		return dp[d][target];
 	}
 }

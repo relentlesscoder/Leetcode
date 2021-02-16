@@ -1,44 +1,41 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/1/2019.
+ * Created by Wei on 10/01/2019.
  * #1011 https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
  */
 public class CapacityToShipPackagesWithinDDays {
 
-	// see explanation at https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/discuss/256765/Python-Binary-search-with-detailed-explanation
+	// time O(log(sum - max))
 	public int shipWithinDays(int[] weights, int D) {
-		int left = 0, right = 0;
 		// lower bound is max of weights - ship needs to be
 		// able to ship all the packages
 		// upper bound is sum of weights -> ship all in 1 day
-		for(int w: weights){
-			left = Math.max(left, w);
-			right += w;
+		int low = 0, high = 0;
+		for(int w : weights){
+			low = Math.max(low, w);
+			high += w;
 		}
-		while(left < right){
-			int mid = (left + right) / 2;
-			if(countDays(weights, mid) > D){
-				left = mid + 1;
+		while(low < high){
+			int mid = low + (high - low) / 2;
+			if(canShip(mid, D, weights)){
+				high = mid;
 			}else{
-				right = mid;
+				low = mid + 1;
 			}
 		}
-		return left;
+		return low;
 	}
 
-	private int countDays(int[] weights, int capacity){
-		int days = 1, curr = 0;
-		for(int w: weights){
-			// the same ship can't load more at current day
-			if(curr + w > capacity){
-				// need one more days
-				days += 1;
-				// reset the current weight to 0
-				curr = 0;
+	private boolean canShip(int capacity, int D, int[] weights){
+		int days = 1, sum = 0;
+		for(int w : weights){
+			if(sum + w > capacity){
+				sum = 0;
+				days++;
 			}
-			curr += w;
+			sum += w;
 		}
-		return days;
+		return days <= D;
 	}
 }

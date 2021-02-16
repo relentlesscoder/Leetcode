@@ -49,7 +49,7 @@ public class PrisonCellsAfterNDays {
 		// see picture on https://leetcode.com/problems/prison-cells-after-n-days/solution/
 		stateBitmap = ~((stateBitmap << 1) ^ (stateBitmap >> 1));
 		// set the head and tail to zero
-		stateBitmap = stateBitmap & 0x7e; // 0x01111110
+		stateBitmap = stateBitmap & 0x7e; // 0b01111110
 		return stateBitmap;
 	}
 }
