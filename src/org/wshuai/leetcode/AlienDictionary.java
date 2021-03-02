@@ -10,41 +10,37 @@ public class AlienDictionary {
 
 	// time O(V + E)
 	public String alienOrder(String[] words) {
-		if(words == null || words.length == 0){
-			return "";
-		}
 		StringBuilder res = new StringBuilder();
-		Map<Character, Set<Character>> adj = new HashMap<>();
 		Map<Character, Integer> degree = new HashMap<>();
-		for(String s: words){
-			for(char c: s.toCharArray()){
-				degree.put(c,0);
+		Map<Character, Set<Character>> adj = new HashMap<>();
+		for(String str : words){
+			for(char c : str.toCharArray()){
+				degree.put(c, 0);
 			}
 		}
-		for(int i = 0; i < words.length - 1; i++){
-			String w1 = words[i], w2 = words[i + 1];
-			// prefix should go first
-			if(w1.length() > w2.length() && w1.startsWith(w2)){
-				return "";
-			}
-			for(int j = 0, k = 0; j < w1.length() && k < w2.length(); j++, k++){
-				char c1 = w1.charAt(j), c2 = w2.charAt(k);
+		for(int i = 1; i < words.length; i++){
+			String prev = words[i - 1], cur = words[i];
+			int j = 0;
+			for(; j < prev.length() && j < cur.length(); j++){
+				char c1 = prev.charAt(j), c2 = cur.charAt(j);
 				if(c1 != c2){
 					adj.putIfAbsent(c1, new HashSet<>());
-					// avoid double counting
-					if(!adj.get(c1).contains(c2)){
+					if(!adj.get(c1).contains(c2)){ // avoid double counting
 						adj.get(c1).add(c2);
-						degree.put(c2, degree.getOrDefault(c2, 0) + 1);
+						degree.put(c2, degree.get(c2) + 1);
 					}
 					break;
 				}
 			}
+			if(j < prev.length() && j == cur.length()){ // prefix should go first, [great, gre] is invalid
+				return "";
+			}
 		}
 		// graph topological sort
 		LinkedList<Character> queue = new LinkedList<>();
-		for(Map.Entry<Character, Integer> entry : degree.entrySet()){
-			if(entry.getValue() == 0){
-				queue.offerLast(entry.getKey());
+		for(char key : degree.keySet()){
+			if(degree.get(key) == 0){
+				queue.offerLast(key);
 			}
 		}
 		while(!queue.isEmpty()){
@@ -53,7 +49,7 @@ public class AlienDictionary {
 			if(!adj.containsKey(cur)){
 				continue;
 			}
-			for(Character next : adj.get(cur)){
+			for(char next : adj.get(cur)){
 				degree.put(next, degree.get(next) - 1);
 				if(degree.get(next) == 0){
 					queue.offerLast(next);
