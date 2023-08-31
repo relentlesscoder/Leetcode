@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 08/31/2023.
- * #1478 https://leetcode.com/problems/allocate-mailboxes/
+ * #1838 https://leetcode.com/problems/frequency-of-the-most-frequent-element/
  */
 public class FrequencyOfTheMostFrequentElement {
 
