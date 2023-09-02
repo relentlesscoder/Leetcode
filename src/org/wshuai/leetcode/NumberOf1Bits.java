@@ -6,6 +6,7 @@ package org.wshuai.leetcode;
  */
 public class NumberOf1Bits {
 
+	// time O(1), space O(1)
 	public int hammingWeight(int n) {
 		// mask 01010101010101010101010101010101
 		int mask1 = 0x55555555;
@@ -25,11 +26,22 @@ public class NumberOf1Bits {
 		return res;
 	}
 
-	public int hammingWeightShitBits(int n) {
+	// time O(1), space O(1)
+	public int hammingWeightShiftBits(int n) {
 		int res = 0;
 		for (int i = 0; i < 32; i++) {
 			res += (n & 1);
 			n = n >> 1;
+		}
+		return res;
+	}
+
+	// time O(1), space O(1)
+	public int hammingWeightBitManipulation(int n) {
+		int res = 0;
+		while (n != 0) {
+			n = (n & (n - 1));
+			res++;
 		}
 		return res;
 	}
