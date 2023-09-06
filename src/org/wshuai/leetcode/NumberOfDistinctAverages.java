@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * Created by Wei on 09/04/2023.
- * #2465 https://leetcode.com/problems/number-of-distinct-averages/description/
+ * #2465 https://leetcode.com/problems/number-of-distinct-averages/
  */
 public class NumberOfDistinctAverages {
 

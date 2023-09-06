@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Created by Wei on 09/04/2023.
- * #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/editorial/
+ * #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
  */
 public class FindIfPathExistsInGraph {
 

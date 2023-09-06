@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 09/04/2023.
- * #2769 https://leetcode.com/problems/find-the-maximum-achievable-number/description/
+ * #2769 https://leetcode.com/problems/find-the-maximum-achievable-number/
  */
 public class FindTheMaximumAchievableNumber {
 

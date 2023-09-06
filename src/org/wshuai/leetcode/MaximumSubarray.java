@@ -6,33 +6,20 @@ package org.wshuai.leetcode;
  */
 public class MaximumSubarray {
 
-	// time O(n)
-	// Kadane's algorithm
-	// https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
-	public int maxSubArray(int[] nums) {
-		int res = nums[0];
-		for(int i = 1; i < nums.length; i++){
-			if(nums[i - 1] > 0){
-				nums[i] += nums[i - 1];
-			}
-			res = Math.max(res, nums[i]);
+	// time O(n), space O(1)
+	public int maxSubArrayKadane(int[] nums) {
+		int currentSubarray = nums[0], maxSubarray = nums[0];
+		for (int i = 1; i < nums.length; i++) {
+			// discard the previous subarray if its sum is negative
+			currentSubarray = Math.max(currentSubarray + nums[i], nums[i]);
+			maxSubarray = Math.max(maxSubarray, currentSubarray);
 		}
-		return res;
+		return maxSubarray;
 	}
 
-	// time O(n)
-	public int maxSubArrayShort(int[] nums) {
-		int max = Integer.MIN_VALUE, localMax = 0;
-		for(int i = 0; i < nums.length; i++){
-			localMax = Math.max(nums[i], localMax + nums[i]);
-			max = Math.max(max, localMax);
-		}
-		return max;
-	}
-
-	// time O(n*log(n)), divide and conquer
-	// good picture at https://leetcode.com/problems/maximum-subarray/solution/
-	public int maxSubArrayDC(int[] nums) {
+	// time O(n*log(n)), space O(log(n))
+	public int maxSubArrayDivideAndConquer(int[] nums) {
+		// see good picture at https://leetcode.com/problems/maximum-subarray/solution/
 		return maxSubArrayUtil(nums, 0, nums.length - 1);
 	}
 

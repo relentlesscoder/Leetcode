@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by Wei on 09/04/2023.
- * #2578 https://leetcode.com/problems/split-with-minimum-sum/description/
+ * #2578 https://leetcode.com/problems/split-with-minimum-sum/
  */
 public class SplitWithMinimumSum {
 

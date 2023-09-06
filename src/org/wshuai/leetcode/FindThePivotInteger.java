@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 09/04/2023.
- * #2485 https://leetcode.com/problems/find-the-pivot-integer/description/
+ * #2485 https://leetcode.com/problems/find-the-pivot-integer/
  */
 public class FindThePivotInteger {
 
