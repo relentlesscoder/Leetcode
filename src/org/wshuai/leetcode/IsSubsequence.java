@@ -5,7 +5,8 @@ package org.wshuai.leetcode;
  * #0392 https://leetcode.com/problems/is-subsequence/
  */
 public class IsSubsequence {
-	// time O(n)
+
+	// time O(m + n), space O(1)
 	public boolean isSubsequence(String s, String t) {
 		int i = 0, j = 0, m = s.length(), n = t.length();
 		while(i < m && j < n){
