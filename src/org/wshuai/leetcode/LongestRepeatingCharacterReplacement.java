@@ -6,7 +6,7 @@ package org.wshuai.leetcode;
  */
 public class LongestRepeatingCharacterReplacement {
 
-	// time O(n)
+	// time O(n), space O(1)
 	// https://leetcode.com/problems/longest-repeating-character-replacement/discuss/91271/Java-12-lines-O(n)-sliding-window-solution-with-explanation
 	public int characterReplacement(String s, int k) {
 		int res = 0;

@@ -6,16 +6,16 @@ package org.wshuai.leetcode;
  */
 public class MaxConsecutiveOnesIII {
 
-	// time O(n)
-	public int longestOnes(int[] A, int K) {
-		if (A == null || A.length == 0) {
+	// time O(n), space O(1)
+	public int longestOnes(int[] nums, int k) {
+		if (nums == null || nums.length == 0) {
 			return 0;
 		}
-		int res = 0, n = A.length;
+		int res = 0, n = nums.length;
 		for(int i = 0, j = 0, zeros = 0; j < n; j++){
-			zeros += A[j] == 0 ? 1 : 0;
-			while(zeros > K){
-				zeros -= A[i++] == 0 ? 1 : 0;
+			zeros += nums[j] == 0 ? 1 : 0;
+			while(zeros > k){
+				zeros -= nums[i++] == 0 ? 1 : 0;
 			}
 			res = Math.max(res, j - i + 1);
 		}
