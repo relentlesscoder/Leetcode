@@ -10,26 +10,24 @@ import java.util.TreeMap;
  */
 public class MeetingRoomsII {
 
-	// time O(n*lg(n)), space O(n)
+	// time O(n * log(n)), space O(n)
 	public int minMeetingRooms(int[][] intervals) {
-		int res = 0;
-		if(intervals == null || intervals.length == 0){
-			return res;
-		}
-		Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-		PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
-		for(int[] itr : intervals){
+		Arrays.sort(intervals, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+		PriorityQueue<Integer> queue = new PriorityQueue<>();
+		int rooms = 0;
+		for (int[] interval : intervals) {
 			// if starting time of the current meeting is
 			// greater than the earliest ending time of all
 			// ongoing meetings, we can reuse its meeting
 			// room. Otherwise, we need one more room for
 			// the new meeting.
-			if(!pq.isEmpty() && itr[0] >= pq.peek()){
-				pq.poll();
+			if (!queue.isEmpty() && interval[0] >= queue.peek()) {
+				queue.poll();
 			}
-			pq.offer(itr[1]);
+			queue.offer(interval[1]);
+			rooms = Math.max(rooms, queue.size());
 		}
-		return pq.size();
+		return rooms;
 	}
 
 	// time O(n*log(n)), space O(n)
