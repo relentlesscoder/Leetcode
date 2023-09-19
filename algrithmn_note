@@ -1,0 +1,67 @@
+01. Sliding Window
+#0424 https://leetcode.com/problems/longest-repeating-character-replacement/
+#1004 https://leetcode.com/problems/max-consecutive-ones-iii/
+#1838 https://leetcode.com/problems/frequency-of-the-most-frequent-element/
+#2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
+#2090 https://leetcode.com/problems/k-radius-subarray-averages/
+#2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
+#2762 https://leetcode.com/problems/continuous-subarrays/
+
+02. Monotonic Stack
+#0496 https://leetcode.com/problems/next-greater-element-i/
+#0503 https://leetcode.com/problems/next-greater-element-ii/
+#1856 https://leetcode.com/problems/maximum-subarray-min-product/
+#2104 https://leetcode.com/problems/sum-of-subarray-ranges/
+#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
+#2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
+
+03. Prefix Sum
+#2055 https://leetcode.com/problems/plates-between-candles/
+#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
+
+04. Array Permutation
+#0556 https://leetcode.com/problems/next-greater-element-iii/
+
+05. Binary Search
+#1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#2055 https://leetcode.com/problems/plates-between-candles/
+#2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
+#2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
+
+06. Subsequence
+#0392 https://leetcode.com/problems/is-subsequence/
+#2825 https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/
+
+07. Graph
+#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+
+08. Backtracking
+#2305 https://leetcode.com/problems/fair-distribution-of-cookies/
+
+09. Dynamic Programming
+#1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#2305 https://leetcode.com/problems/fair-distribution-of-cookies/
+#2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
+#2707 https://leetcode.com/problems/extra-characters-in-a-string/
+
+10. Min/max queue
+#2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
+#2542 https://leetcode.com/problems/maximum-subsequence-score/
+
+11. Trie
+#2707 https://leetcode.com/problems/extra-characters-in-a-string/
+
+12. Line Sweep
+#0253 https://leetcode.com/problems/meeting-rooms-ii/
+#2021 https://leetcode.com/problems/brightest-position-on-street/
+
+13. Linked List
+#0206 https://leetcode.com/problems/reverse-linked-list/
+#2130 https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
+
+14. Tree
+#2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
+
+00. Review
+#1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
