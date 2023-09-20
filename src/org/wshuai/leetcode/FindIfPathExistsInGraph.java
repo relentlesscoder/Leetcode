@@ -98,8 +98,10 @@ public class FindIfPathExistsInGraph {
 }
 
 class UnionFind{
+
     private int[] root;
     private int[] rank;
+
     public UnionFind(int n) {
         root = new int[n];
         rank = new int[n];

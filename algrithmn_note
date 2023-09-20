@@ -33,6 +33,7 @@
 #2825 https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/
 
 07. Graph
+#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
 
@@ -67,5 +68,13 @@
 #0210 https://leetcode.com/problems/course-schedule-ii/
 #2115 https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/
 
+16. Union Find
+#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#2782 https://leetcode.com/problems/number-of-unique-categories/
+
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
+
+Note:
+1. Review time complexity of Topological Sort, Union Find
