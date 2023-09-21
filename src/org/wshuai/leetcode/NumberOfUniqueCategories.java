@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Wei on 09/04/2023.
+ * Created by Wei on 09/19/2023.
  * #2782 https://leetcode.com/problems/number-of-unique-categories/
  */
 public class NumberOfUniqueCategories {

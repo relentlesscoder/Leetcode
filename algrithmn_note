@@ -36,6 +36,7 @@
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+#2782 https://leetcode.com/problems/number-of-unique-categories/
 
 08. Backtracking
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
@@ -47,6 +48,7 @@
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 
 10. Min/max queue
+#1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 
@@ -73,8 +75,23 @@
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
+17. DFS/BFS
+#1905 https://leetcode.com/problems/count-sub-islands/
+
+18. Stack
+#2390 https://leetcode.com/problems/removing-stars-from-a-string/
+
+19. Parentheses
+#0020 https://leetcode.com/problems/valid-parentheses/
+#0678 https://leetcode.com/problems/valid-parenthesis-string/
+#0921 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+#1249 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+#1963 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
+#2116 https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
+
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
 
 Note:
 1. Review time complexity of Topological Sort, Union Find
+2. Think about using stack for parentheses problem

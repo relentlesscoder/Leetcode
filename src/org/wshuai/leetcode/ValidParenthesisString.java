@@ -6,7 +6,7 @@ package org.wshuai.leetcode;
  */
 public class ValidParenthesisString {
 
-	// time O(n)
+	// time O(n), space O(1)
 	// https://leetcode.com/problems/valid-parenthesis-string/discuss/107577/Short-Java-O(n)-time-O(1)-space-one-pass
 	public boolean checkValidString(String s) {
 		int low = 0, high = 0;
@@ -15,16 +15,45 @@ public class ValidParenthesisString {
 				low++;
 				high++;
 			}else if(c == ')'){
-				low -= low > 0 ? 1 : 0;
+				low--;
 				if(high-- == 0){
 					return false;
 				}
 			}else{
-				low -= low > 0 ? 1 : 0;
+				low--;
 				high++;
 			}
+			low = Math.max(low, 0);
 		}
 		return low == 0;
+	}
+
+	// time O(n), space O(1)
+	// #2116 https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
+	public boolean checkValidStringTwoPass(String s) {
+		int n = s.length(), balance = 0;
+		for (int i = 0; i < n; i++) {
+			if (s.charAt(i) == ')') {
+				balance--;
+			} else {
+				balance++;
+			}
+			if (balance < 0) {
+				return false;
+			}
+		}
+		balance = 0;
+		for (int i = n - 1; i >= 0; i--) {
+			if (s.charAt(i) == '(') {
+				balance--;
+			} else {
+				balance++;
+			}
+			if (balance < 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	// time O(n^2), space O(n^2)

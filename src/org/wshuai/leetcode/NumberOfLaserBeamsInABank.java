@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 09/04/2023.
+ * Created by Wei on 09/19/2023.
  * #2125 https://leetcode.com/problems/number-of-laser-beams-in-a-bank/
  */
 public class NumberOfLaserBeamsInABank {
