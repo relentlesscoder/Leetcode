@@ -7,10 +7,9 @@ package org.wshuai.leetcode;
 public class MaximumSubarray {
 
 	// time O(n), space O(1)
-	public int maxSubArrayKadane(int[] nums) {
-		int currentSubarray = nums[0], maxSubarray = nums[0];
-		for (int i = 1; i < nums.length; i++) {
-			// discard the previous subarray if its sum is negative
+	public int maxSubArray(int[] nums) {
+		int currentSubarray = 0, maxSubarray = Integer.MIN_VALUE;
+		for (int i = 0; i < nums.length; i++) {
 			currentSubarray = Math.max(currentSubarray + nums[i], nums[i]);
 			maxSubarray = Math.max(maxSubarray, currentSubarray);
 		}

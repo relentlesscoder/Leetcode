@@ -27,6 +27,7 @@
 05. Binary Search
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #2055 https://leetcode.com/problems/plates-between-candles/
+#2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
 
@@ -91,6 +92,10 @@
 #1249 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
 #1963 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
 #2116 https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
+
+20. Kadane's Algorithm
+#0053 https://leetcode.com/problems/maximum-subarray/
+#1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
