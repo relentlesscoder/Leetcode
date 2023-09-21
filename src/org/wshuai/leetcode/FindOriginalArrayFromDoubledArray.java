@@ -21,7 +21,7 @@ public class FindOriginalArrayFromDoubledArray {
 		Arrays.sort(changed);
 		Map<Integer, Integer> needed = new HashMap<>();
 		for (int i = 0; i < n; i++) {
-			if (needed.getOrDefault(changed[i], 0) > 0) {
+			if (needed.getOrDefault(changed[i], 0) > 0) { // use hash map to check if double for any previous seen element is seen
 				res[index++] = changed[i] >> 1;
 				needed.put(changed[i], Math.max(needed.getOrDefault(changed[i], 0) - 1, 0));
 			} else {
