@@ -81,6 +81,7 @@
 
 17. DFS/BFS
 #1905 https://leetcode.com/problems/count-sub-islands/
+#2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
 
 18. Stack
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
@@ -96,6 +97,16 @@
 20. Kadane's Algorithm
 #0053 https://leetcode.com/problems/maximum-subarray/
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
+
+21. Bit Manipulation
+#2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
+
+22. Two Scans  
+#2420 https://leetcode.com/problems/find-all-good-indices/
+
+23. Matrix Traverse
+#0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
+#2075 https://leetcode.com/problems/decode-the-slanted-ciphertext/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
