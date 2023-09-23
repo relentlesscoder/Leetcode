@@ -5,45 +5,30 @@ package org.wshuai.leetcode;
  * #1231 https://leetcode.com/problems/divide-chocolate/
  */
 public class DivideChocolate {
-	/*
-	There's another reason: in this question, we want to find
-	the maximum total sweetness. We have to find the rightmost
-	value, so we use int mid = (left + right + 1)/2 and
-	if(condition passed) left = mid;else hi = mid - 1. For question
-	like 1101, we want to find the leftmost value. So we have to use
-	something like int mid = (left + right) / 2 and if (condition
-	passed) right = mid; else left = mid + 1;
-	*/
-	public int maximizeSweetness(int[] sweetness, int K) {
-		int left = 100_000;
-		int right = 0;
-		for(int s : sweetness){
-			left = Math.min(left, s);
-			right += s;
-		}
-		right /= (K + 1);
-		while(left < right){
-			int mid = (right + left + 1) / 2;
-			// equals >= K + 1
-			if(countPartitions(sweetness, mid) > K){
-				left = mid;
-			}else{
-				right = mid - 1;
-			}
-		}
-		return left;
-	}
 
-	private int countPartitions(int[] S, int v){
-		int cnt = 0;
-		int cur = 0;
-		for(int s : S){
-			cur += s;
-			if(cur >= v){
-				cnt += 1;
-				cur = 0;
+	// time O(n * log(avg(total sweetness) - min(sweetness))), space O(1)
+	public int maximizeSweetness(int[] sweetness, int k) {
+		int n = k + 1, low = (int) 1e5, high = 0;
+		for (int sweet : sweetness) {
+			low = Math.min(low, sweet);
+			high += sweet;
+		}
+		high /= n;
+		while (low < high) {
+			int mid = low + (high - low + 1) / 2, sum = 0, assigned = 0; // mid = (left + right) / 2 to find first element valid, mid = (left + right + 1) / 2to find last element valid
+			for (int sweet : sweetness) {
+				sum += sweet;
+				if (sum >= mid) {
+					assigned++;
+					sum = 0;
+				}
+			}
+			if (assigned >= n) {
+				low = mid;
+			} else {
+				high = mid - 1;
 			}
 		}
-		return cnt;
+		return low;
 	}
 }

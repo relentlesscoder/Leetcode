@@ -1,36 +1,36 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 10/1/2019.
- * #875 https://leetcode.com/problems/koko-eating-bananas/
+ * Created by Wei on 10/01/2019.
+ * #0875 https://leetcode.com/problems/koko-eating-bananas/
  */
 public class KokoEatingBananas {
 
-	// same idea as #1011
-	public int minEatingSpeed(int[] piles, int H) {
-		int left = 1, right = 0;
-		for(int p: piles){
-			right = Math.max(p, right);
+	// time O(log(max)), space O(1)
+	public int minEatingSpeed(int[] piles, int h) {
+		int low = 1, high = 0;
+		for (int pile : piles) {
+			high = Math.max(high, pile);
 		}
-		while(left < right){
-			int mid = left + (right - left) / 2;
-			if(canEatAll(piles, mid) > H){
-				left = mid + 1;
-			}else{
-				right = mid;
+		while (low < high) {
+			int mid = (low + high) >> 1;
+			if (canEatAll(piles, h, mid)) {
+				high = mid;
+			} else {
+				low = mid + 1;
 			}
 		}
-		return left;
+		return low;
 	}
 
-	private int canEatAll(int[] piles, int K){
+	private boolean canEatAll(int[] piles, int h, int threshold) {
 		int hours = 0;
-		for(int p: piles){
-			hours += p / K;
-			if(p % K != 0){
-				hours++;
+		for (int pile : piles) {
+			hours += (pile + threshold - 1) / threshold;
+			if (hours > h) {
+				return false;
 			}
 		}
-		return hours;
+		return true;
 	}
 }

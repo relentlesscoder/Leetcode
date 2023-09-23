@@ -6,36 +6,35 @@ package org.wshuai.leetcode;
  */
 public class CapacityToShipPackagesWithinDDays {
 
-	// time O(log(sum - max))
-	public int shipWithinDays(int[] weights, int D) {
-		// lower bound is max of weights - ship needs to be
-		// able to ship all the packages
-		// upper bound is sum of weights -> ship all in 1 day
+	// time O(log(sum)), space O(1)
+	public int shipWithinDays(int[] weights, int days) {
 		int low = 0, high = 0;
-		for(int w : weights){
-			low = Math.max(low, w);
-			high += w;
+		for (int weight : weights) {
+			low = Math.max(low, weight); // lower bound is max of weights - ship needs to be able to ship any package
+			high += weight; // upper bound is sum of weights -> ship all in 1 day
 		}
-		while(low < high){
-			int mid = low + (high - low) / 2;
-			if(canShip(mid, D, weights)){
+		while (low < high) {
+			int mid = (low + high) >> 1;
+			if (canShip(weights, days, mid)) {
 				high = mid;
-			}else{
+			} else {
 				low = mid + 1;
 			}
 		}
 		return low;
 	}
 
-	private boolean canShip(int capacity, int D, int[] weights){
-		int days = 1, sum = 0;
-		for(int w : weights){
-			if(sum + w > capacity){
+	private boolean canShip(int[] weights, int days, int threshold) {
+		int daysNeeded = 0, sum = 0;
+		for (int weight : weights) {
+			if (sum + weight > threshold) {
 				sum = 0;
-				days++;
+				if (++daysNeeded >= days) {
+					return false;
+				}
 			}
-			sum += w;
+			sum += weight;
 		}
-		return days <= D;
+		return true;
 	}
 }

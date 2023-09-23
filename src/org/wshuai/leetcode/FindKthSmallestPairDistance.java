@@ -7,27 +7,25 @@ import java.util.Arrays;
  * #0719 https://leetcode.com/problems/find-k-th-smallest-pair-distance/
  */
 public class FindKthSmallestPairDistance {
-	// time O(n^2*log(n))
+
+	// time O(n * log(n) + n * log(max pair difference)), space O(1)
 	public int smallestDistancePair(int[] nums, int k) {
 		Arrays.sort(nums);
-		int n = nums.length, l = 0, r = nums[n - 1] - nums[0];
-		while(l < r){
-			int m = l + ((r - l) >> 1);
-			int pairs = 0;
-			// for each fixed i, count how many pairs that
-			// are less than nums[i] + m
-			for(int i = 0, j = 0; i < n; i++){
-				while(j < n && nums[j] - nums[i] <= m){
-					j++;
+		int n = nums.length, low = 0, high = nums[n - 1] - nums[0];
+		while (low < high) {
+			int mid = (low + high) >> 1, count = 0;
+			for (int i = 0, j = 0; j < nums.length; j++) {
+				while (nums[j] - nums[i] > mid) {
+					i++;
 				}
-				pairs += j - i - 1;
+				count += j - i;
 			}
-			if(pairs < k){
-				l = m + 1;
-			}else{
-				r = m;
+			if (count >= k) {
+				high = mid;
+			} else {
+				low = mid + 1;
 			}
 		}
-		return l;
+		return low;
 	}
 }

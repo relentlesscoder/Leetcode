@@ -25,10 +25,29 @@
 #0556 https://leetcode.com/problems/next-greater-element-iii/
 
 05. Binary Search
+#0035 https://leetcode.com/problems/search-insert-position/
+#0069 https://leetcode.com/problems/sqrtx/
+#0278 https://leetcode.com/problems/first-bad-version/
+#0410 https://leetcode.com/problems/split-array-largest-sum/
+#0668 https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
+#0719 https://leetcode.com/problems/find-k-th-smallest-pair-distance/
+#0774 https://leetcode.com/problems/minimize-max-distance-to-gas-station/ ***(double type boundary)
+#0875 https://leetcode.com/problems/koko-eating-bananas/
+#1011 https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
+#1201 https://leetcode.com/problems/ugly-number-iii/
+#1231 https://leetcode.com/problems/divide-chocolate/ ***(binary search for max)
+#1283 https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
+#1482 https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#1802 https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/ ***(binary search for max)
+#1898 https://leetcode.com/problems/maximum-number-of-removable-characters/ ***(binary search for max)
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
+#2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
+#2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
+#2517 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ ***(binary search for max)
+#2560 https://leetcode.com/problems/house-robber-iv/
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
 
 06. Subsequence
@@ -45,6 +64,7 @@
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 
 09. Dynamic Programming
+#0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
@@ -99,6 +119,7 @@
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
 
 21. Bit Manipulation
+#1915 https://leetcode.com/problems/number-of-wonderful-substrings/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
 
 22. Two Scans  
@@ -108,9 +129,13 @@
 #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
 #2075 https://leetcode.com/problems/decode-the-slanted-ciphertext/
 
+24. Permutation
+
+
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
 
 Note:
 1. Review time complexity of Topological Sort, Union Find
 2. Think about using stack for parentheses problem
+3. Binary search - https://leetcode.com/discuss/general-discussion/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems

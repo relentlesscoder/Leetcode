@@ -8,61 +8,55 @@ import java.util.Arrays;
  */
 public class SplitArrayLargestSum {
 
-	// time O(n*log(sum))
-	public int splitArray(int[] nums, int m) {
-		int min = Integer.MIN_VALUE, max = 0;
-		for(int num : nums){
-			min = Math.max(min, num);
-			max += num;
+	// time O(log(sum)), space O(1)
+	public int splitArray(int[] nums, int k) {
+		int low = 0, high = 0;
+		for (int num : nums) {
+			low = Math.max(low, num);
+			high += num;
 		}
-
-		while(min < max){
-			int mid = min + (max - min) / 2;
-			if(canSplit(mid, nums, m)){
-				max = mid;
-			}else{
-				min = mid + 1;
+		while (low < high) {
+			int mid = (low + high) >> 1;
+			if (canSplit(nums, k, mid)) {
+				high = mid;
+			} else {
+				low = mid + 1;
 			}
 		}
-
-		return min;
+		return low;
 	}
 
-	private boolean canSplit(int upperBoundSum, int[] nums, int m){
-		int curSum = 0, countSubArray = 1;
-		for(int num : nums){
-			curSum += num;
-			// if current sum is greater than the upper bound sum,
-			// start a new subarray
-			if(curSum > upperBoundSum){
-				countSubArray++;
-				curSum = num;
-				// if we can't split the array to
-				if(countSubArray > m){
+	private boolean canSplit(int[] nums, int k, int threshold) {
+		int count = 0, sum = 0;
+		for (int num : nums) {
+			if (sum + num > threshold) {
+				sum = 0;
+				if (++count >= k) {
 					return false;
 				}
 			}
+			sum += num;
 		}
 		return true;
 	}
 
-	// time O(n^2*m), space O(n*m)
-	public int splitArrayDP(int[] nums, int m) {
+	// time O(n^2 * k), space O(n * k)
+	public int splitArrayDP(int[] nums, int k) {
 		int n = nums.length;
-		int[][] dp = new int[n + 1][m + 1];
-		for(int i = 0; i <= n; i++){
+		int[][] dp = new int[n + 1][k + 1];
+		for (int i = 0; i <= n; i++) {
 			Arrays.fill(dp[i], Integer.MAX_VALUE);
 		}
 		dp[0][0] = 0;
-		for(int i = 1; i <= n; i++){
+		for (int i = 1; i <= n; i++) {
 			int sum = 0;
-			for(int j = i; j > 0; j--){
+			for (int j = i; j > 0; j--) {
 				sum += nums[j - 1];
-				for(int k = 1; k <= m; k++){
-					dp[i][k] = Math.min(dp[i][k], Math.max(sum, dp[j - 1][k - 1]));
+				for (int x = 1; x <= k; x++) {
+					dp[i][x] = Math.min(dp[i][x], Math.max(sum, dp[j - 1][x - 1]));
 				}
 			}
 		}
-		return dp[n][m];
+		return dp[n][k];
 	}
 }

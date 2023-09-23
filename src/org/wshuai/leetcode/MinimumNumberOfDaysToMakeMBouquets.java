@@ -9,6 +9,42 @@ import java.util.TreeMap;
  */
 public class MinimumNumberOfDaysToMakeMBouquets {
 
+	// time O(log(max)), space O(1)
+	public int minDays(int[] bloomDay, int m, int k) {
+		if (m * k > bloomDay.length) {
+			return -1;
+		}
+		int low = 1, high = 0;
+		for (int d : bloomDay) {
+			high = Math.max(high, d);
+		}
+		while (low < high) {
+			int mid = (low + high) >> 1;
+			if (canMake(bloomDay, m, k, mid)) {
+				high = mid;
+			} else {
+				low = mid + 1;
+			}
+		}
+		return canMake(bloomDay, m, k, low) ? low : -1; // need to validate since it is possible even the max value is still impossible to make m bouquets
+	}
+
+	private boolean canMake(int[] bloomDay, int m, int k, int mid) {
+		int bouquets = 0, count = 0;
+		for (int i = 0; i < bloomDay.length; i++) {
+			if (bloomDay[i] > mid) {
+				count = 0;
+			} else if (++count == k) {
+				count = 0;
+				if (++bouquets == m) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/*
 	// time O(n*log(n)), space O(n)
 	public int minDays(int[] bloomDay, int m, int k) {
 		TreeMap<Integer, Integer> treeMap = new TreeMap<>();
@@ -49,5 +85,5 @@ public class MinimumNumberOfDaysToMakeMBouquets {
 			}
 		}
 		return -1;
-	}
+	} */
 }
