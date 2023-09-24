@@ -14,7 +14,6 @@ public class MeetingRoomsII {
 	public int minMeetingRooms(int[][] intervals) {
 		Arrays.sort(intervals, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
 		PriorityQueue<Integer> queue = new PriorityQueue<>();
-		int rooms = 0;
 		for (int[] interval : intervals) {
 			// if starting time of the current meeting is
 			// greater than the earliest ending time of all
@@ -25,20 +24,19 @@ public class MeetingRoomsII {
 				queue.poll();
 			}
 			queue.offer(interval[1]);
-			rooms = Math.max(rooms, queue.size());
 		}
-		return rooms;
+		return queue.size();
 	}
 
 	// time O(n*log(n)), space O(n)
 	public int minMeetingRoomsRunningSum(int[][] intervals) {
 		TreeMap<Integer, Integer> map = new TreeMap<>();
-		for(int[] in : intervals){
+		for (int[] in : intervals) {
 			map.put(in[0], map.getOrDefault(in[0], 0) + 1);
 			map.put(in[1], map.getOrDefault(in[1], 0) - 1);
 		}
 		int res = 0, cur = 0;
-		for(int d : map.values()){
+		for (int d : map.values()) {
 			cur += d;
 			res = Math.max(res, cur);
 		}
