@@ -6,17 +6,17 @@ package org.wshuai.leetcode;
  */
 public class KthMissingPositiveNumber {
 
-	// time O(log(n))
+	// time O(log(n)), space O(1)
 	public int findKthPositive(int[] arr, int k) {
-		int left = 0, right = arr.length;
-		while(left < right){
-			int mid = left + (right - left) / 2;
-			if(arr[mid] - (mid + 1) >= k){ // numbers missing are more (than it should be)
-				right = mid;
-			}else{
-				left = mid + 1;
+		int low = 0, high = arr.length; // set high to length of the array to deal with the case that missing number is greater than the last value of array
+		while (low < high) {
+			int mid = (low + high) >> 1;
+			if (arr[mid] - (mid + 1) < k) { // missing numbers are less than k, then we need to discard left half and check right half
+				low = mid + 1;
+			} else {
+				high = mid;
 			}
 		}
-		return left + k;
+		return low + k;
 	}
 }
