@@ -17,6 +17,7 @@
 #2104 https://leetcode.com/problems/sum-of-subarray-ranges/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
+#2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 
 03. Prefix Sum
 #2055 https://leetcode.com/problems/plates-between-candles/
@@ -69,6 +70,7 @@
 09. Dynamic Programming
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#1824 https://leetcode.com/problems/minimum-sideway-jumps/
 #1871 https://leetcode.com/problems/jump-game-vii/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
@@ -83,6 +85,7 @@
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 
 11. Trie
+#2352 https://leetcode.com/problems/equal-row-and-column-pairs/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 
 12. Line Sweep
@@ -96,7 +99,9 @@
 14. Linked List
 #0206 https://leetcode.com/problems/reverse-linked-list/
 #2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
+#2095 https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
 #2130 https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
+#2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 
 15. Tree
 #2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
@@ -115,6 +120,7 @@
 #1905 https://leetcode.com/problems/count-sub-islands/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
+#2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 
 19. Stack
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
@@ -142,11 +148,12 @@
 #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #2075 https://leetcode.com/problems/decode-the-slanted-ciphertext/
+#2352 https://leetcode.com/problems/equal-row-and-column-pairs/
 
 25. Permutation
 
 26. Palindrome
-
+#2855 https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/
 
 
 00. Review
@@ -154,5 +161,7 @@
 
 Note:
 1. Review time complexity of Topological Sort, Union Find
-2. Think about using stack for parentheses problem
+2. Always consider using stack for parentheses problem
 3. Binary search - https://leetcode.com/discuss/general-discussion/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
+4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
+5. DFS & BFS template - #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
