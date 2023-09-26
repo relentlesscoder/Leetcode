@@ -3,6 +3,7 @@
 #1004 https://leetcode.com/problems/max-consecutive-ones-iii/
 #1151 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/
 #1838 https://leetcode.com/problems/frequency-of-the-most-frequent-element/
+#1871 https://leetcode.com/problems/jump-game-vii/
 #2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
 #2090 https://leetcode.com/problems/k-radius-subarray-averages/
 #2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
@@ -68,6 +69,7 @@
 09. Dynamic Programming
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#1871 https://leetcode.com/problems/jump-game-vii/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
