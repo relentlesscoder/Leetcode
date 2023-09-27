@@ -8,6 +8,7 @@
 #2090 https://leetcode.com/problems/k-radius-subarray-averages/
 #2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
 #2134 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/
+#2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
 #2762 https://leetcode.com/problems/continuous-subarrays/
 
 02. Monotonic Stack
@@ -20,6 +21,7 @@
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 
 03. Prefix Sum
+#0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 
@@ -73,6 +75,7 @@
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
 #1871 https://leetcode.com/problems/jump-game-vii/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
+#2140 https://leetcode.com/problems/solving-questions-with-brainpower/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
@@ -119,6 +122,7 @@
 18. DFS/BFS
 #1905 https://leetcode.com/problems/count-sub-islands/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
+#2059 https://leetcode.com/problems/minimum-operations-to-convert-number/
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
 #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 
@@ -155,6 +159,8 @@
 26. Palindrome
 #2855 https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/
 
+27. Subarray Sum
+#0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
