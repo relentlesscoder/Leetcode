@@ -8,30 +8,29 @@ import java.util.Random;
  */
 public class KthLargestElementInAnArray {
 
-	// time - average: O(n * log(n)) worst: O(n^2)
-	// after randomization, expected: O (n)
+	// time - average: O(n * log(n)) worst: O(n^2) after randomization, expected: O (n)
 	public int findKthLargest(int[] nums, int k) {
 		int left = 0, right = nums.length - 1;
-		while(left <= right){
+		while (left <= right) {
 			int mid = partition(nums, left, right);
-			if(mid == k - 1){
+			if (mid == k - 1) {
 				return nums[mid];
 			}
-			if(mid < k - 1){
+			if (mid < k - 1) {
 				left = mid + 1;
-			}else{
+			} else {
 				right = mid - 1;
 			}
 		}
 		return -1;
 	}
 
-	private int partition(int[] nums, int left, int right){
+	private int partition(int[] nums, int left, int right) {
 		int index = left + (new Random()).nextInt(right - left + 1);
 		swap(nums, index, right);
 		int pivot = left;
-		for(int i = left; i < right; i++){
-			if(nums[i] >= nums[right]){
+		for (int i = left; i < right; i++) {
+			if (nums[i] >= nums[right]) {
 				int temp = nums[i];
 				nums[i] = nums[pivot];
 				nums[pivot++] = temp;
@@ -41,7 +40,7 @@ public class KthLargestElementInAnArray {
 		return pivot;
 	}
 
-	private void swap(int[] nums, int i, int j){
+	private void swap(int[] nums, int i, int j) {
 		int temp = nums[i];
 		nums[i] = nums[j];
 		nums[j] = temp;
