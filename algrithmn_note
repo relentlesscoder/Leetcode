@@ -49,6 +49,7 @@
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #1760 https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/
 #1802 https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/ ***(binary search for max)
+#1891 https://leetcode.com/problems/cutting-ribbons/ ***(binary search for max)
 #1898 https://leetcode.com/problems/maximum-number-of-removable-characters/ ***(binary search for max)
 #1901 https://leetcode.com/problems/find-a-peak-element-ii/
 #1980 https://leetcode.com/problems/find-unique-binary-string/ ***(binary search for max)
