@@ -161,12 +161,19 @@
 
 25. Permutation
 #0031 https://leetcode.com/problems/next-permutation/
+#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/
 
 26. Palindrome
 #2855 https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/
 
 27. Subarray Sum
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
+
+28. Data Structure Design
+#2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
+
+29. Two Pointers
+#2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
