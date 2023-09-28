@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by Wei on 10/22/2019.
+ * Created by Wei on 09/28/2023.
  * #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
  */
 public class ProductOfTwoRunLengthEncodedArrays {
