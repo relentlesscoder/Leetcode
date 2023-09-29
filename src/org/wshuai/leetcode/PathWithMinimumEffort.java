@@ -15,23 +15,23 @@ public class PathWithMinimumEffort {
 	public int minimumEffortPath(int[][] heights) {
 		int m = heights.length, n = heights[0].length;
 		int[][] effort = new int[m][n];
-		for(int i = 0; i < m; i++){
+		for (int i = 0; i < m; i++) {
 			Arrays.fill(effort[i], Integer.MAX_VALUE);
 		}
 		effort[0][0] = 0;
 		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
 		pq.offer(new int[]{0, 0, 0});
-		while(!pq.isEmpty()){
+		while (!pq.isEmpty()) {
 			int[] cur = pq.poll();
-			if(cur[1] == m - 1 && cur[2] == n - 1){
+			if (cur[1] == m - 1 && cur[2] == n - 1) {
 				return cur[0];
 			}
-			for(int i = 0; i < 4; i++){
+			for (int i = 0; i < 4; i++) {
 				int x = cur[1] + dir[i], y = cur[2] + dir[i + 1];
-				if(x >= 0 && x < m && y >= 0 && y < n){
+				if (x >= 0 && x < m && y >= 0 && y < n) {
 					int next = Math.max(cur[0],
-						Math.abs(heights[x][y] - heights[cur[1]][cur[2]]));
-					if(next < effort[x][y]){
+							Math.abs(heights[x][y] - heights[cur[1]][cur[2]]));
+					if (next < effort[x][y]) {
 						effort[x][y] = next;
 						pq.offer(new int[]{next, x, y});
 					}

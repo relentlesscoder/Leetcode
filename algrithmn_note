@@ -126,6 +126,7 @@
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
 18. DFS/BFS
+#1631 https://leetcode.com/problems/path-with-minimum-effort/ ***(minimum cost in grid minimum cost with weighted cells)
 #1905 https://leetcode.com/problems/count-sub-islands/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #2059 https://leetcode.com/problems/minimum-operations-to-convert-number/
@@ -178,6 +179,9 @@
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
 30. Quick Select
+
+31. Math
+#1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
