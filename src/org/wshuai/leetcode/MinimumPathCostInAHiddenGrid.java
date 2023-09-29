@@ -54,7 +54,6 @@ public class MinimumPathCostInAHiddenGrid {
 		}
 		for (int i = 0; i < 4; i++) {
 			char mov = MOVS[i];
-			int[] dir = DIRS[i];
 			int x = r + DIRS[i][0], y = c + DIRS[i][1];
 			if (master.canMove(mov) && grid[x][y] == -1) {
 				int cost = master.move(mov);

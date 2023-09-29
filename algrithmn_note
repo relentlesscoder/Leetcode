@@ -126,7 +126,10 @@
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
 18. DFS/BFS
+#0200 https://leetcode.com/problems/number-of-islands/
 #1631 https://leetcode.com/problems/path-with-minimum-effort/ ***(minimum cost in grid minimum cost with weighted cells)
+#1778 https://leetcode.com/problems/shortest-path-in-a-hidden-grid/ ***(DFS + BFS)
+#1810 https://leetcode.com/problems/minimum-path-cost-in-a-hidden-grid/ ***(DFS + BFS)
 #1905 https://leetcode.com/problems/count-sub-islands/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #2059 https://leetcode.com/problems/minimum-operations-to-convert-number/
