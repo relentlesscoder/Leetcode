@@ -110,7 +110,7 @@ public class NumberOfIslands {
 			if (rootX == rootY) {
 				return;
 			}
-			if (rootX > rootY) {
+			if (rank[rootX] > rank[rootY]) {
 				rank[rootX] += rank[rootY];
 				root[rootY] = rootX;
 			} else {

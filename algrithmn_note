@@ -135,6 +135,8 @@
 #2059 https://leetcode.com/problems/minimum-operations-to-convert-number/
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
 #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ ***(Double BFS)
+#2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/
 
 19. Stack
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
