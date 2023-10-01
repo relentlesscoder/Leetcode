@@ -132,9 +132,12 @@
 #1810 https://leetcode.com/problems/minimum-path-cost-in-a-hidden-grid/ ***(DFS + BFS)
 #1905 https://leetcode.com/problems/count-sub-islands/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
+#1992 https://leetcode.com/problems/find-all-groups-of-farmland/
 #2059 https://leetcode.com/problems/minimum-operations-to-convert-number/
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
 #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
+#2258 https://leetcode.com/problems/escape-the-spreading-fire/
+#2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ ***(Double BFS)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/
 
