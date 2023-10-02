@@ -137,6 +137,9 @@
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
 #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 #2258 https://leetcode.com/problems/escape-the-spreading-fire/
+#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
+#2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ ***(Double BFS)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/
@@ -190,6 +193,11 @@
 
 31. Math
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
+
+32. Dijkstra
+#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
+#2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
