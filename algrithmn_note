@@ -94,6 +94,7 @@
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 
 11. Trie
+#2185 https://leetcode.com/problems/counting-words-with-a-given-prefix/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 
@@ -115,6 +116,7 @@
 15. Tree
 #2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
 #2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
+#2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
 
 16. Topological Sort
 #0210 https://leetcode.com/problems/course-schedule-ii/
@@ -161,9 +163,11 @@
 
 22. Bit Manipulation
 #1915 https://leetcode.com/problems/number-of-wonderful-substrings/
+#2103 https://leetcode.com/problems/rings-and-rods/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
 
 23. Two Scans  
+#2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
 #2420 https://leetcode.com/problems/find-all-good-indices/
 
 24. Matrix Traverse
