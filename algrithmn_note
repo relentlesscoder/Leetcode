@@ -28,6 +28,7 @@
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
+#2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 
 04. Array Permutation
@@ -56,11 +57,13 @@
 #1898 https://leetcode.com/problems/maximum-number-of-removable-characters/ ***(binary search for max)
 #1901 https://leetcode.com/problems/find-a-peak-element-ii/
 #1980 https://leetcode.com/problems/find-unique-binary-string/ ***(binary search for max)
+#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
 #2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
+#2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2517 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ ***(binary search for max)
 #2560 https://leetcode.com/problems/house-robber-iv/
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
@@ -127,6 +130,7 @@
 
 17. Union Find
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
