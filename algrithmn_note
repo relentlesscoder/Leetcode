@@ -84,9 +84,11 @@
 09. Dynamic Programming
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
 #1871 https://leetcode.com/problems/jump-game-vii/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
+#2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
 #2140 https://leetcode.com/problems/solving-questions-with-brainpower/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
