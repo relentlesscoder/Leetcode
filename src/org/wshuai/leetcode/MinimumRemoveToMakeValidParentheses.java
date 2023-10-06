@@ -9,6 +9,33 @@ import java.util.Stack;
 public class MinimumRemoveToMakeValidParentheses {
 
 	// time O(n), space O(n)
+	public String minRemoveToMakeValidStack(String s) {
+		int[] indexToRemove = new int[s.length()];
+		Stack<Integer> stack = new Stack();
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '(') {
+				stack.push(i);
+			} else if (s.charAt(i) == ')') {
+				if (stack.isEmpty()) {
+					indexToRemove[i] = 1; // record the index of unmatched ")"
+				} else {
+					stack.pop(); // match the ")" with "(" we've seen previously
+				}
+			}
+		}
+		while (!stack.isEmpty()) {
+			indexToRemove[stack.pop()] = 1; // record the index of unmatched "("
+		}
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < s.length(); i++) {
+			if (indexToRemove[i] == 0) {
+				sb.append(s.charAt(i));
+			}
+		}
+		return sb.toString();
+	}
+
+	// time O(n), space O(n)
 	public String minRemoveToMakeValid(String s) {
 		// first pass to remove invalid ")"
 		StringBuilder sb = new StringBuilder();
@@ -40,32 +67,5 @@ public class MinimumRemoveToMakeValidParentheses {
 			res.append(c);
 		}
 		return res.toString();
-	}
-
-	// time O(n), space O(n)
-	public String minRemoveToMakeValidStack(String s) {
-		int[] indexToRemove = new int[s.length()];
-		Stack<Integer> stack = new Stack();
-		for (int i = 0; i < s.length(); i++) {
-			if (s.charAt(i) == '(') {
-				stack.push(i);
-			} else if (s.charAt(i) == ')') {
-				if (stack.isEmpty()) {
-					indexToRemove[i] = 1; // record the index of unmatched ")"
-				} else {
-					stack.pop(); // match the ")" with "(" we've seen previously
-				}
-			}
-		}
-		while (!stack.isEmpty()) {
-			indexToRemove[stack.pop()] = 1; // record the index of unmatched "("
-		}
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < s.length(); i++) {
-			if (indexToRemove[i] == 0) {
-				sb.append(s.charAt(i));
-			}
-		}
-		return sb.toString();
 	}
 }

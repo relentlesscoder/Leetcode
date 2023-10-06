@@ -6,35 +6,21 @@ package org.wshuai.leetcode;
  */
 public class ValidPalindrome {
 
-	// time O(n)
+	// time O(n), space O(1)
 	public boolean isPalindrome(String s) {
-		if(s == null || s.length() == 0){
-			return true;
-		}
-		for(int i = 0, j = s.length() - 1; i <= j; i++, j--){
-			while(i < j && parseCharacter(s.charAt(i)) == '#'){
-				i++;
-			}
-			while(i < j && parseCharacter(s.charAt(j)) == '#'){
-				j--;
-			}
-			if(i <= j && parseCharacter(s.charAt(i)) != parseCharacter(s.charAt(j))){
+		int left = 0, right = s.length() - 1;
+		while (left <= right) {
+			if (!Character.isLetterOrDigit(s.charAt(left))) {
+				left++;
+			} else if (!Character.isLetterOrDigit(s.charAt(right))) {
+				right--;
+			} else if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
 				return false;
+			} else {
+				left++;
+				right--;
 			}
 		}
 		return true;
-	}
-
-	private char parseCharacter(char c){
-		if(c >= 'a' && c <= 'z'){
-			return c;
-		}
-		if(c >= 'A' && c <= 'Z'){
-			return (char)('a' + (c - 'A'));
-		}
-		if(c >= '0' && c <= '9'){
-			return c;
-		}
-		return '#';
 	}
 }

@@ -8,44 +8,37 @@ import java.util.*;
  */
 public class BinaryTreeVerticalOrderTraversal {
 
-	// time O(n)
+	// time O(n), space O(n)
 	public List<List<Integer>> verticalOrder(TreeNode root) {
 		List<List<Integer>> res = new ArrayList<>();
-		if(root == null){
+		if (root == null) {
 			return res;
 		}
-		int[] range = new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE};
-		columnRange(root, range, 0);
-		for(int i = range[0]; i <= range[1]; i++){
-			res.add(new ArrayList<>());
+		Map<Integer, ArrayList<Integer>> columnMap = new HashMap<>();
+		Deque<TreeNode> nodes = new ArrayDeque<>();
+		Deque<Integer> cols = new ArrayDeque<>();
+		int minCol = 0, maxCol = 0;
+		nodes.offer(root);
+		cols.offer(0);
+		while (!nodes.isEmpty()) {
+			TreeNode curr = nodes.poll();
+			int column = cols.poll();
+			columnMap.putIfAbsent(column, new ArrayList<>());
+			columnMap.get(column).add(curr.val);
+			if (curr.left != null) {
+				nodes.offer(curr.left);
+				cols.offer(column - 1);
+				minCol = Math.min(minCol, column - 1);
+			}
+			if (curr.right != null) {
+				nodes.offer(curr.right);
+				cols.offer(column + 1);
+				maxCol = Math.max(maxCol, column + 1);
+			}
 		}
-		LinkedList<TreeNode> nodes = new LinkedList<>();
-		LinkedList<Integer> columns = new LinkedList<>();
-		nodes.offerLast(root);
-		columns.offerLast(-range[0]);
-		while(!nodes.isEmpty()){
-			TreeNode node = nodes.pollFirst();
-			int col = columns.pollFirst();
-			res.get(col).add(node.val);
-			if(node.left != null){
-				nodes.offerLast(node.left);
-				columns.offerLast(col - 1);
-			}
-			if(node.right != null){
-				nodes.offerLast(node.right);
-				columns.offerLast(col + 1);
-			}
+		for (int i = minCol; i <= maxCol; i++) {
+			res.add(columnMap.get(i));
 		}
 		return res;
-	}
-
-	private void columnRange(TreeNode root, int[] range, int cur){
-		if(root == null){
-			return;
-		}
-		range[0] = Math.min(range[0], cur);
-		range[1] = Math.max(range[1], cur);
-		columnRange(root.left, range, cur - 1);
-		columnRange(root.right, range, cur + 1);
 	}
 }

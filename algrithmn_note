@@ -17,6 +17,7 @@
 02. Monotonic Stack
 #0496 https://leetcode.com/problems/next-greater-element-i/
 #0503 https://leetcode.com/problems/next-greater-element-ii/
+#1762 https://leetcode.com/problems/buildings-with-an-ocean-view/
 #1856 https://leetcode.com/problems/maximum-subarray-min-product/
 #2104 https://leetcode.com/problems/sum-of-subarray-ranges/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
@@ -82,7 +83,10 @@
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 
 09. Dynamic Programming
+#0072 https://leetcode.com/problems/edit-distance/
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
+#0516 https://leetcode.com/problems/longest-palindromic-subsequence/
+#1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
@@ -122,6 +126,8 @@
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 
 15. Tree
+#0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+#0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
 #2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
 #2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
 #2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
@@ -190,6 +196,10 @@
 #1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/
 
 26. Palindrome
+#0125 https://leetcode.com/problems/valid-palindrome/
+#0680 https://leetcode.com/problems/valid-palindrome-ii/
+#1216 https://leetcode.com/problems/valid-palindrome-iii/
+#2330 https://leetcode.com/problems/valid-palindrome-iv/
 #2855 https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/
 
 27. Subarray Sum
@@ -227,3 +237,4 @@ Note:
 3. Binary search - https://leetcode.com/discuss/general-discussion/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
 4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
 5. DFS & BFS template - #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
+6. https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-programming/
