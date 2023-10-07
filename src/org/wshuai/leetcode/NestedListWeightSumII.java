@@ -7,29 +7,30 @@ import java.util.*;
  * #0364 https://leetcode.com/problems/nested-list-weight-sum-ii/
  */
 public class NestedListWeightSumII {
+
 	// time O(n), space O(n)
 	public int depthSumInverse(List<NestedInteger> nestedList) {
-		if(nestedList == null){
-			return 0;
+		int res = 0, sum = 0;
+		Deque<NestedInteger> queue = new ArrayDeque<>();
+		for (NestedInteger ni : nestedList) {
+			queue.offer(ni);
 		}
-		int res = 0, prev = 0;
-		LinkedList<NestedInteger> queue = new LinkedList<>();
-		for(NestedInteger ni : nestedList){
-			queue.offerLast(ni);
-		}
-		while(!queue.isEmpty()){
+		while (!queue.isEmpty()) {
 			int size = queue.size(), levelSum = 0;
-			while(size-- > 0){
-				NestedInteger cur = queue.pollFirst();
-				if(cur.isInteger()){
-					levelSum += cur.getInteger();
-				}
-				for(NestedInteger ni : cur.getList()){
-					queue.offerLast(ni);
+			while (size-- > 0) {
+				NestedInteger curr = queue.poll();
+				if (curr.isInteger()) {
+					levelSum += curr.getInteger();
+				} else {
+					for (NestedInteger ni : curr.getList()) {
+
+						queue.offer(ni);
+					}
 				}
 			}
-			prev += levelSum;
-			res += prev;
+			// The weight is decreased by 1 for each level. For example, is the max depth is 3, the 3, 2, 1 will be the weights from top to bottom
+			sum += levelSum;
+			res += sum;
 		}
 		return res;
 	}

@@ -13,7 +13,7 @@ public class DotProductOfTwoSparseVectors {
 
 	DotProductOfTwoSparseVectors(int[] nums) {
 		map = new HashMap<>();
-		for(int i = 0; i < nums.length; i++){
+		for (int i = 0; i < nums.length; i++) {
 			map.put(i, nums[i]);
 		}
 	}
@@ -21,9 +21,9 @@ public class DotProductOfTwoSparseVectors {
 	// Return the dotProduct of two sparse vectors
 	public int dotProduct(DotProductOfTwoSparseVectors vec) {
 		int res = 0;
-		for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
 			int val = vec.get(entry.getKey());
-			if(val == 0){
+			if (val == 0) {
 				continue;
 			}
 			res += val * entry.getValue();
@@ -31,7 +31,7 @@ public class DotProductOfTwoSparseVectors {
 		return res;
 	}
 
-	public int get(int key){
+	public int get(int key) {
 		return map.getOrDefault(key, 0);
 	}
 }

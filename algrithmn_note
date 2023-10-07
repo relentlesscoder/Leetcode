@@ -127,6 +127,10 @@
 
 15. Tree
 #0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+#0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+#1644 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
+#1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
+#1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
 #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
 #2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
 #2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
@@ -144,6 +148,8 @@
 
 18. DFS/BFS
 #0200 https://leetcode.com/problems/number-of-islands/
+#0339 https://leetcode.com/problems/nested-list-weight-sum/
+#0364 https://leetcode.com/problems/nested-list-weight-sum-ii/
 #1631 https://leetcode.com/problems/path-with-minimum-effort/ ***(minimum cost in grid minimum cost with weighted cells)
 #1778 https://leetcode.com/problems/shortest-path-in-a-hidden-grid/ ***(DFS + BFS)
 #1810 https://leetcode.com/problems/minimum-path-cost-in-a-hidden-grid/ ***(DFS + BFS)
@@ -206,6 +212,7 @@
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 
 28. Data Structure Design
+#1570 https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
 
 29. Two Pointers
@@ -227,6 +234,9 @@
 
 34. Backtracking
 #1774 https://leetcode.com/problems/closest-dessert-cost/
+
+35. Divide & Conquer
+#1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/

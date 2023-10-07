@@ -1,5 +1,7 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -8,8 +10,30 @@ import java.util.List;
  */
 public class NestedListWeightSum {
 
-	// time O(n)
-	public int depthSum(List<NestedInteger> nestedList) {
+	// time O(n), space O(n)
+	public int depthSumBFS(List<NestedInteger> nestedList) {
+		int sum = 0, depth = 1;
+		Deque<List<NestedInteger>> queue = new ArrayDeque<>();
+		queue.offer(nestedList);
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			while (size-- > 0) {
+				List<NestedInteger> curr = queue.poll();
+				for (NestedInteger ni : curr) {
+					if (ni.isInteger()) {
+						sum += depth * ni.getInteger();
+					} else {
+						queue.offer(ni.getList());
+					}
+				}
+			}
+			depth++;
+		}
+		return sum;
+	}
+
+	// time O(n), space O(n)
+	public int depthSumDFS(List<NestedInteger> nestedList) {
 		return dfs(nestedList, 1);
 	}
 

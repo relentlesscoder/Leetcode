@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 01/23/2016.
- * #0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+ * #0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
  */
 public class LowestCommonAncestorOfABinaryTree {
 
