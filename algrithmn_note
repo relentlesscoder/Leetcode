@@ -93,6 +93,7 @@
 #1871 https://leetcode.com/problems/jump-game-vii/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
 #2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
+#2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
 #2140 https://leetcode.com/problems/solving-questions-with-brainpower/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
@@ -144,6 +145,7 @@
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#2076 https://leetcode.com/problems/process-restricted-friend-requests/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
 18. DFS/BFS
@@ -220,6 +222,7 @@
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
 30. Quick Select
+#0215 https://leetcode.com/problems/kth-largest-element-in-an-array/
 
 31. Math
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
@@ -237,6 +240,9 @@
 
 35. Divide & Conquer
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
+
+36. Probability
+#0528 https://leetcode.com/problems/random-pick-with-weight/ 
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/

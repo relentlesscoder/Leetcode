@@ -1,5 +1,6 @@
 package org.wshuai.leetcode;
 
+import java.util.PriorityQueue;
 import java.util.Random;
 
 /**
@@ -8,35 +9,47 @@ import java.util.Random;
  */
 public class KthLargestElementInAnArray {
 
-	// time - average: O(n * log(n)) worst: O(n^2) after randomization, expected: O (n)
-	public int findKthLargest(int[] nums, int k) {
-		int left = 0, right = nums.length - 1;
-		while (left <= right) {
-			int mid = partition(nums, left, right);
-			if (mid == k - 1) {
-				return nums[mid];
+	// time O(n * log(k)), space O(k)
+	public int findKthLargestMinQueue(int[] nums, int k) {
+		PriorityQueue<Integer> minQueue = new PriorityQueue<>();
+		for (int num : nums) {
+			minQueue.offer(num);
+			if (minQueue.size() > k) {
+				minQueue.poll();
 			}
-			if (mid < k - 1) {
-				left = mid + 1;
+		}
+		return minQueue.peek();
+	}
+
+	// time - average: O(n * log(n)); worst: O(n^2); expected: O (n) with randomization, space O(n)
+	public int findKthLargestQuickSelect(int[] nums, int k) {
+		int low = 0, high = nums.length - 1;
+		while (low <= high) {
+			int pivot = partition(nums, low, high);
+			if (pivot == k - 1) {
+				return nums[pivot];
+			}
+			if (pivot < k - 1) {
+				low = pivot + 1;
 			} else {
-				right = mid - 1;
+				high = pivot - 1;
 			}
 		}
 		return -1;
 	}
 
-	private int partition(int[] nums, int left, int right) {
-		int index = left + (new Random()).nextInt(right - left + 1);
-		swap(nums, index, right);
-		int pivot = left;
-		for (int i = left; i < right; i++) {
-			if (nums[i] >= nums[right]) {
-				int temp = nums[i];
-				nums[i] = nums[pivot];
+	private int partition(int[] nums, int low, int high) {
+		int pivot = low + (new Random()).nextInt(high - low + 1);
+		swap(nums, pivot, high);
+		pivot = low;
+		for (int curr = low; curr < high; curr++) {
+			if (nums[curr] >= nums[high]) {
+				int temp = nums[curr];
+				nums[curr] = nums[pivot];
 				nums[pivot++] = temp;
 			}
 		}
-		swap(nums, pivot, right);
+		swap(nums, pivot, high);
 		return pivot;
 	}
 

@@ -21,8 +21,11 @@ public class RandomPickWithWeight {
 		weight = w;
 	}
 
-	// time O(log(n))
+	// time O(log(n)), space O(1)
 	public int pickIndex() {
+		// In Java, random.nextInt(X) will return value from 0 to X-1
+		// As there is no 0 weight, we need to +1 to avoid getting 0 from the random function.
+		// +1 will make the range as 1 to X, which is exactly the real range we need.
 		int val = random.nextInt(sum) + 1;
 		return binarySearch(weight, val);
 	}
