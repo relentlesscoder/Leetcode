@@ -19,6 +19,7 @@
 #0503 https://leetcode.com/problems/next-greater-element-ii/
 #1762 https://leetcode.com/problems/buildings-with-an-ocean-view/
 #1856 https://leetcode.com/problems/maximum-subarray-min-product/
+#1944 https://leetcode.com/problems/number-of-visible-people-in-a-queue/
 #2104 https://leetcode.com/problems/sum-of-subarray-ranges/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
@@ -76,6 +77,7 @@
 07. Graph
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
@@ -91,7 +93,8 @@
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
 #1871 https://leetcode.com/problems/jump-game-vii/
-#1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/description/
+#1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/
+#1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
 #2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
 #2140 https://leetcode.com/problems/solving-questions-with-brainpower/
@@ -159,6 +162,7 @@
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #1992 https://leetcode.com/problems/find-all-groups-of-farmland/
 #2059 https://leetcode.com/problems/minimum-operations-to-convert-number/
+#2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
 #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 #2258 https://leetcode.com/problems/escape-the-spreading-fire/
@@ -186,6 +190,7 @@
 
 22. Bit Manipulation
 #1915 https://leetcode.com/problems/number-of-wonderful-substrings/
+#1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2103 https://leetcode.com/problems/rings-and-rods/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
 
