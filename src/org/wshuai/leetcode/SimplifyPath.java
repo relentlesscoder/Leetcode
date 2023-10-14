@@ -10,22 +10,21 @@ public class SimplifyPath {
 
 	// time O(n), space O(n)
 	public String simplifyPath(String path) {
-		String[] strs = path.split("/");
 		Stack<String> stack = new Stack<>();
-		for(String s : strs){
-			if(s.isEmpty() || s.equals(".")){
+		String[] dirs = path.split("/");
+		for (String dir : dirs) {
+			if (dir.isEmpty() || dir.equals(".")) {
 				continue;
-			}
-			if(s.equals("..")){
-				if(!stack.isEmpty()){
+			} else if (dir.equals("..")) {
+				if (!stack.isEmpty()) {
 					stack.pop();
 				}
-			}else{
-				stack.push(s);
+			} else {
+				stack.push(dir);
 			}
 		}
 		StringBuilder res = new StringBuilder();
-		for(String s : stack){
+		for (String s : stack) {
 			res.append("/" + s);
 		}
 		return res.length() == 0 ? "/" : res.toString();

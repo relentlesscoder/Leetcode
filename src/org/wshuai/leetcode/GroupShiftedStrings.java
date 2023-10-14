@@ -11,29 +11,24 @@ import java.util.Map;
  */
 public class GroupShiftedStrings {
 
-	// time O(n), space O(n)
+	// time O(n * l), space O(n * l)
 	public List<List<String>> groupStrings(String[] strings) {
-		Map<String, List<String>> map = new HashMap<>();
-		for(String s : strings){
-			String t = convert(s);
-			map.putIfAbsent(t, new ArrayList<>());
-			map.get(t).add(s);
-		}
 		List<List<String>> res = new ArrayList<>();
-		for(List<String> val : map.values()){
-			res.add(val);
+		Map<String, List<String>> map = new HashMap<>();
+		for (String s : strings) {
+			char[] arr = s.toCharArray();
+			int offset = arr[0] - 'a';
+			arr[0] = 'a';
+			for (int i = 1; i < arr.length; i++) {
+				arr[i] = (char)((arr[i] - offset + 26) % 26);
+			}
+			String key = String.valueOf(arr);
+			map.putIfAbsent(key, new ArrayList<>());
+			map.get(key).add(s);
+		}
+		for (List<String> list : map.values()) {
+			res.add(list);
 		}
 		return res;
-	}
-
-	private String convert(String s){
-		StringBuilder sb = new StringBuilder();
-		int diff = s.charAt(0) - 'a';
-		for(char c : s.toCharArray()){
-			char t = (char)(c - diff);
-			t = t < 'a' ? (char)(t + 26) : t;
-			sb.append(t);
-		}
-		return sb.toString();
 	}
 }

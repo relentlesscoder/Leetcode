@@ -88,6 +88,7 @@
 #0072 https://leetcode.com/problems/edit-distance/
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
+#0691 https://leetcode.com/problems/stickers-to-spell-word/
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
@@ -132,6 +133,7 @@
 15. Tree
 #0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 #0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+#0938 https://leetcode.com/problems/range-sum-of-bst/
 #1644 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
@@ -174,6 +176,7 @@
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/
 
 19. Stack
+#0071 https://leetcode.com/problems/simplify-path/
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
 
 20. Parentheses
