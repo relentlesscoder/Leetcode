@@ -6,20 +6,21 @@ package org.wshuai.leetcode;
  */
 public class MaximumSwap {
 
-	// time O(n)
+	// time O(n), space O(n)
 	public int maximumSwap(int num) {
-		int[] map = new int[10];
-		char[] arr = Integer.toString(num).toCharArray();
-		for(int i = 0; i < arr.length; i++){
-			map[arr[i] - '0'] = i;
+		int[] index = new int[10];
+		char[] digits = Integer.toString(num).toCharArray();
+		int n = digits.length;
+		for (int i = 0; i < n; i++) {
+			index[digits[i] - '0'] = i;
 		}
-		for(int i = 0; i < arr.length; i++){
-			int cur = arr[i] - '0';
-			for(int j = 9; j > cur; j--){
-				if(map[j] > i){
-					arr[map[j]] = arr[i];
-					arr[i] = (char)('0' + j);
-					return Integer.parseInt(String.valueOf(arr));
+		for (int i = 0; i < n; i++) {
+			int d = digits[i] - '0';
+			for (int j = 9; j > d; j--) {
+				if (index[j] > i) {
+					digits[index[j]] = digits[i];
+					digits[i] = (char) (j + '0');
+					return Integer.parseInt(String.valueOf(digits));
 				}
 			}
 		}

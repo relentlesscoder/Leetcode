@@ -10,56 +10,34 @@ import java.util.Map;
 public class CopyListWithRandomPointer {
 
 	// time O(n), space O(n)
-	public NodeWithRandomPointer copyRandomList(NodeWithRandomPointer head) {
-		Map<NodeWithRandomPointer, NodeWithRandomPointer> map = new HashMap<>();
+	public Node copyRandomList(Node head) {
+		Map<Node, Node> map = new HashMap<>();
 		return dfs(head, map);
 	}
 
-	private NodeWithRandomPointer dfs(NodeWithRandomPointer node,
-	                                  Map<NodeWithRandomPointer, NodeWithRandomPointer> map){
-		if(node == null){
-			return null;
+	private Node dfs(Node curr, Map<Node, Node> map) {
+		if (curr == null) {
+			return curr;
 		}
-		if(map.containsKey(node)){
-			return map.get(node);
+		if (map.containsKey(curr)) {
+			return map.get(curr);
 		}
-		NodeWithRandomPointer copy = new NodeWithRandomPointer(node.val);
-		map.put(node, copy);
-		copy.next = dfs(node.next, map);
-		copy.random = dfs(node.random, map);
+		Node copy = new Node(curr.val);
+		map.put(curr, copy);
+		copy.next = dfs(curr.next, map);
+		copy.random = dfs(curr.random, map);
 		return copy;
 	}
 
-	// time O(n), space O(n)
-	public NodeWithRandomPointer copyRandomListTwoPass(NodeWithRandomPointer head) {
-		if(head == null){
-			return null;
-		}
-		Map<NodeWithRandomPointer, NodeWithRandomPointer> map = new HashMap<>();
-		NodeWithRandomPointer cur = head;
-		while(cur != null){
-			map.put(cur, new NodeWithRandomPointer(cur.val));
-			cur = cur.next;
-		}
-		cur = head;
-		while(cur != null){
-			if(cur.next != null){
-				map.get(cur).next = map.get(cur.next);
-			}
-			if(cur.random != null){
-				map.get(cur).random = map.get(cur.random);
-			}
-			cur = cur.next;
-		}
-		return map.get(head);
-	}
-
-	private class NodeWithRandomPointer {
+	/**
+	 * Definition for a Node.
+	 */
+	private class Node {
 		int val;
-		NodeWithRandomPointer next;
-		NodeWithRandomPointer random;
+		Node next;
+		Node random;
 
-		public NodeWithRandomPointer(int val) {
+		public Node(int val) {
 			this.val = val;
 			this.next = null;
 			this.random = null;

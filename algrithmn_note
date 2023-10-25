@@ -107,6 +107,7 @@
 10. Min/max queue
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #1792 https://leetcode.com/problems/maximum-average-pass-ratio/
+#2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 
@@ -120,7 +121,9 @@
 #2021 https://leetcode.com/problems/brightest-position-on-street/
 
 13. Intervals
+#0056 https://leetcode.com/problems/merge-intervals/
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
+#2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
 
 14. Linked List
@@ -154,6 +157,7 @@
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
 18. DFS/BFS
+#0138 https://leetcode.com/problems/copy-list-with-random-pointer/
 #0200 https://leetcode.com/problems/number-of-islands/
 #0339 https://leetcode.com/problems/nested-list-weight-sum/
 #0364 https://leetcode.com/problems/nested-list-weight-sum-ii/
@@ -203,6 +207,7 @@
 
 24. Matrix Traverse
 #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
+#0766 https://leetcode.com/problems/toeplitz-matrix/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #2075 https://leetcode.com/problems/decode-the-slanted-ciphertext/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
@@ -231,6 +236,7 @@
 
 30. Quick Select
 #0215 https://leetcode.com/problems/kth-largest-element-in-an-array/
+#0973 https://leetcode.com/problems/k-closest-points-to-origin/
 
 31. Math
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/

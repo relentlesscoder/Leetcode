@@ -8,17 +8,17 @@ import java.util.*;
  */
 public class MergeIntervals {
 
-	// time O(n*log(n))
+	// time O(n * log(n)), space O(n)
 	public int[][] merge(int[][] intervals) {
+		Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
 		List<int[]> res = new ArrayList<>();
-		Arrays.sort(intervals, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
-		for(int[] in : intervals){
-			if(res.size() == 0 || res.get(res.size() - 1)[1] < in[0]){
-				res.add(in);
-			}else{
+		for (int[] in : intervals) {
+			if (res.size() > 0 && in[0] <= res.get(res.size() - 1)[1]) {
 				res.get(res.size() - 1)[1] = Math.max(res.get(res.size() - 1)[1], in[1]);
+			} else {
+				res.add(in);
 			}
 		}
-		return res.toArray(new int[res.size()][2]);
+		return res.toArray(new int[res.size()][]);
 	}
 }
