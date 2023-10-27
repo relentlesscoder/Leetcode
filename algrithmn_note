@@ -114,6 +114,7 @@
 11. Trie
 #2185 https://leetcode.com/problems/counting-words-with-a-given-prefix/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
+#2452 https://leetcode.com/problems/words-within-two-edits-of-dictionary/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 
 12. Line Sweep
@@ -211,6 +212,7 @@
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #2075 https://leetcode.com/problems/decode-the-slanted-ciphertext/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
+#2596 https://leetcode.com/problems/check-knight-tour-configuration/
 
 25. Permutation
 #0031 https://leetcode.com/problems/next-permutation/
@@ -257,7 +259,10 @@
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
 
 36. Probability
-#0528 https://leetcode.com/problems/random-pick-with-weight/ 
+#0528 https://leetcode.com/problems/random-pick-with-weight/
+
+37. Hashmap
+#2365 https://leetcode.com/problems/task-scheduler-ii/ 
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
