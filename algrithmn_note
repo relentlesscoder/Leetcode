@@ -245,6 +245,7 @@
 #2366 https://leetcode.com/problems/minimum-replacements-to-sort-the-array/
 
 32. Dijkstra
+#1976 https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
@@ -253,6 +254,7 @@
 #2013 https://leetcode.com/problems/detect-squares/
 
 34. Backtracking
+#1718 https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/
 #1774 https://leetcode.com/problems/closest-dessert-cost/
 
 35. Divide & Conquer
