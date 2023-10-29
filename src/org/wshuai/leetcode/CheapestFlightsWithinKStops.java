@@ -1,6 +1,5 @@
 package org.wshuai.leetcode;
 
-
 import java.util.*;
 
 /**
@@ -10,28 +9,31 @@ import java.util.*;
 public class CheapestFlightsWithinKStops {
 
 	// time O(n^k*log(n^k)), space O(n^k)
-	//https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/361711/Java-DFSBFSBellman-Ford-Dijkstra's
-	public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
-		Map<Integer, List<int[]>> adj = new HashMap<>();
-		for(int[] f : flights){
-			adj.putIfAbsent(f[0], new ArrayList<>());
-			adj.get(f[0]).add(new int[]{f[1], f[2]});
+	public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+		List<int[]>[] graph = new ArrayList[n];
+		for (int i = 0; i < n; i++) {
+			graph[i] = new ArrayList<>();
 		}
-		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-		pq.offer(new int[]{0, src, K + 1});
-		while(!pq.isEmpty()){
-			int[] cur = pq.poll();
-			int cost = cur[0], city = cur[1], stops = cur[2];
-			if(city == dst){
+		for (int[] f : flights) {
+			graph[f[0]].add(new int[]{f[1], f[2]});
+		}
+		int[] stops = new int[n];
+		Arrays.fill(stops, Integer.MAX_VALUE);
+		PriorityQueue<int[]> minQueue = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+		minQueue.offer(new int[]{src, 0, 0});
+		while (!minQueue.isEmpty()) {
+			int[] curr = minQueue.poll();
+			int u = curr[0], cost = curr[1], stop = curr[2];
+			if (stop > stops[u] || stop > k + 1){
+				continue;
+			}
+			if (u == dst) {
 				return cost;
 			}
-			if(stops > 0){
-				if(!adj.containsKey(city)){
-					continue;
-				}
-				for(int[] next : adj.get(city)){
-					pq.offer(new int[]{cost + next[1], next[0], stops - 1});
-				}
+			stops[u] = stop;
+			for (int[] next : graph[u]) {
+				int v = next[0], vc = next[1];
+				minQueue.offer(new int[]{v, cost + vc, stop + 1});
 			}
 		}
 		return -1;
@@ -42,12 +44,12 @@ public class CheapestFlightsWithinKStops {
 		int[] cost = new int[n];
 		Arrays.fill(cost, Integer.MAX_VALUE);
 		cost[src] = 0;
-		for(int i = 0; i <= K; i++){
+		for (int i = 0; i <= K; i++) {
 			// use new array to move one step each time
 			int[] temp = Arrays.copyOf(cost, n);
-			for(int[] f : flights){
+			for (int[] f : flights) {
 				int cur = f[0], next = f[1], price = f[2];
-				if(cost[cur] == Integer.MAX_VALUE){
+				if (cost[cur] == Integer.MAX_VALUE) {
 					continue;
 				}
 				temp[next] = Math.min(temp[next], cost[cur] + price);
