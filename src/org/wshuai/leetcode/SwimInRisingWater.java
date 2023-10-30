@@ -10,6 +10,7 @@ public class SwimInRisingWater {
 
 	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
 
+	// time O(n^2 * log(n)), space O(n^2)
 	public int swimInWater(int[][] grid) {
 		int time = 0, n = grid.length;
 		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]);
