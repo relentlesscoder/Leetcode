@@ -205,6 +205,7 @@
 23. Two Scans  
 #2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
 #2420 https://leetcode.com/problems/find-all-good-indices/
+#2670 https://leetcode.com/problems/find-the-distinct-difference-array/
 
 24. Matrix Traverse
 #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
@@ -272,6 +273,9 @@
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
 
+Good questions:
+#2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
+
 Note:
 1. Review time complexity of Topological Sort, Union Find
 2. Always consider using stack for parentheses problem
@@ -279,3 +283,4 @@ Note:
 4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
 5. DFS & BFS template - #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 6. https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-programming/
+
