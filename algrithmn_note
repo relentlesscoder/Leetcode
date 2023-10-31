@@ -249,6 +249,9 @@
 #0743 https://leetcode.com/problems/network-delay-time/
 #0778 https://leetcode.com/problems/swim-in-rising-water/
 #0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/
+#1334 https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
+#1514 https://leetcode.com/problems/path-with-maximum-probability/
+#1631 https://leetcode.com/problems/path-with-minimum-effort/
 #1928 https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
 #1976 https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
@@ -284,4 +287,5 @@ Note:
 4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
 5. DFS & BFS template - #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 6. https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-programming/
+7. Dijkstra - single source shortest distance
 
