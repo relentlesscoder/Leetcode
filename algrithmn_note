@@ -155,6 +155,7 @@
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2076 https://leetcode.com/problems/process-restricted-friend-requests/
+#2092 https://leetcode.com/problems/find-all-people-with-secret/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
 18. DFS/BFS
@@ -171,6 +172,7 @@
 #2059 https://leetcode.com/problems/minimum-operations-to-convert-number/
 #2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
+#2092 https://leetcode.com/problems/find-all-people-with-secret/
 #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 #2258 https://leetcode.com/problems/escape-the-spreading-fire/
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
@@ -282,7 +284,7 @@ Good questions:
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 
 Note:
-1. Review time complexity of Topological Sort, Union Find
+1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim)
 2. Always consider using stack for parentheses problem
 3. Binary search - https://leetcode.com/discuss/general-discussion/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
 4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
