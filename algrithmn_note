@@ -99,6 +99,7 @@
 #2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
 #2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
 #2140 https://leetcode.com/problems/solving-questions-with-brainpower/
+#2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
@@ -203,8 +204,10 @@
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2103 https://leetcode.com/problems/rings-and-rods/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
+#2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
 
-23. Two Scans  
+23. Two Scans
+#2025 https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/  
 #2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
 #2420 https://leetcode.com/problems/find-all-good-indices/
 #2670 https://leetcode.com/problems/find-the-distinct-difference-array/
