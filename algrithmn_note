@@ -26,8 +26,9 @@
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 
 03. Prefix Sum
-#1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
+#0303 https://leetcode.com/problems/range-sum-query-immutable/
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
+#1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
@@ -236,7 +237,9 @@
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 
 28. Data Structure Design
+#0146 https://leetcode.com/problems/lru-cache/
 #1570 https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
+#1756 https://leetcode.com/problems/design-most-recently-used-queue/
 #2034 https://leetcode.com/problems/stock-price-fluctuation/
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
 
@@ -273,6 +276,7 @@
 #1774 https://leetcode.com/problems/closest-dessert-cost/
 
 35. Divide & Conquer
+#0493 https://leetcode.com/problems/reverse-pairs/ (merge sort)
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
 
 36. Probability
@@ -286,6 +290,17 @@
 
 39. Greedy
 #2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
+
+40. Square Root (Sqrt) Decomposition
+#0307 https://leetcode.com/problems/range-sum-query-mutable/
+#1756 https://leetcode.com/problems/design-most-recently-used-queue/
+
+41. Segment Tree
+#0307 https://leetcode.com/problems/range-sum-query-mutable/
+
+42. Binary Index Tree
+#0307 https://leetcode.com/problems/range-sum-query-mutable/
+#0493 https://leetcode.com/problems/reverse-pairs/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
@@ -301,4 +316,10 @@ Note:
 5. DFS & BFS template - #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 6. https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-programming/
 7. Dijkstra - single source shortest distance
+8. Square Root (Sqrt) Decomposition - https://www.geeksforgeeks.org/square-root-sqrt-decomposition-algorithm/
+9. Java HashMap Internals - https://www.baeldung.com/java-hashmap-load-factor
+10. Binary Tree Nodes and Height - https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
+11. Segment Tree - https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
+12. Binary Indexed Tree - https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
 

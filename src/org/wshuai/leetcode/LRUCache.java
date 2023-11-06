@@ -9,85 +9,86 @@ import java.util.Map;
  */
 public class LRUCache {
 
-	private int capacity;
+	private class LRUCacheDoublyLinkedList {
 
-	private DoublyLinkedListNode head;
+		private int capacity;
+		private Map<Integer, DoublyLinkedListNode> map;
+		private DoublyLinkedListNode head, tail;
 
-	private DoublyLinkedListNode tail;
-
-	private Map<Integer, DoublyLinkedListNode> map;
-
-	public LRUCache(int capacity) {
-		this.capacity = capacity;
-		map = new HashMap<>();
-		head = new DoublyLinkedListNode(-1, -1);
-		tail = new DoublyLinkedListNode(-1, -1);
-		head.next = tail;
-		tail.prev = head;
-	}
-
-	// time O(1)
-	public int get(int key) {
-		int res = -1;
-		if(map.containsKey(key)){
-			DoublyLinkedListNode cur = map.get(key);
-			res = cur.val;
-			remove(cur);
-			insertToFront(cur);
+		public LRUCacheDoublyLinkedList(int capacity) {
+			this.capacity = capacity;
+			this.map = new HashMap<>();
+			this.head = new DoublyLinkedListNode(-1, -1);
+			this.tail = new DoublyLinkedListNode(-1, -1);
+			head.next = tail;
+			tail.prev = head;
 		}
-		return res;
-	}
 
-	// time O(1)
-	public void put(int key, int value) {
-		if(map.containsKey(key)){
-			DoublyLinkedListNode cur = map.get(key);
-			cur.val = value;
-			remove(cur);
-			insertToFront(cur);
-		}else{
-			DoublyLinkedListNode cur = new DoublyLinkedListNode(value, key);
-			map.put(key, cur);
-			insertToFront(cur);
-			// evict the least used entry
-			if(map.size() > capacity){
-				DoublyLinkedListNode last = tail.prev;
-				map.remove(last.key);
-				remove(last);
+		// time O(1), space O(n)
+		public int get(int key) {
+			if (!map.containsKey(key)) {
+				return -1;
+			}
+			DoublyLinkedListNode node = map.get(key);
+			remove(node);
+			insertToFront(node);
+			return node.value;
+		}
+
+		// time O(1), space O(n)
+		public void put(int key, int value) {
+			if (map.containsKey(key)) {
+				DoublyLinkedListNode node = map.get(key);
+				node.value = value;
+				remove(node);
+				insertToFront(node);
+			} else {
+				DoublyLinkedListNode node = new DoublyLinkedListNode(key, value);
+				map.put(key, node);
+				insertToFront(node);
+				if (map.size() > this.capacity) {
+					DoublyLinkedListNode leastUsedNode = this.tail.prev;
+					map.remove(leastUsedNode.key);
+					remove(leastUsedNode);
+				}
+			}
+		}
+
+		private void insertToFront(DoublyLinkedListNode node) {
+			DoublyLinkedListNode next = head.next;
+			head.next = node;
+			node.prev = head;
+			node.next = next;
+			next.prev = node;
+		}
+
+		private void remove(DoublyLinkedListNode node) {
+			node.prev.next = node.next;
+			node.next.prev = node.prev;
+			node.prev = null;
+			node.next = null;
+		}
+
+		private class DoublyLinkedListNode {
+
+			private int key;
+			private int value;
+			private DoublyLinkedListNode prev;
+			private DoublyLinkedListNode next;
+
+			public DoublyLinkedListNode(int key, int value) {
+				this.key = key;
+				this.value = value;
+				this.prev = null;
+				this.next = null;
 			}
 		}
 	}
-
-	private void insertToFront(DoublyLinkedListNode node){
-		DoublyLinkedListNode after = head.next;
-		node.prev = head;
-		head.next = node;
-		node.next = after;
-		after.prev = node;
-	}
-
-	private void remove(DoublyLinkedListNode node){
-		DoublyLinkedListNode prev = node.prev;
-		DoublyLinkedListNode next = node.next;
-		prev.next = next;
-		next.prev = prev;
-	}
-
-	private class DoublyLinkedListNode{
-
-		private int val;
-
-		private int key;
-
-		private DoublyLinkedListNode prev;
-
-		private DoublyLinkedListNode next;
-
-		private DoublyLinkedListNode(int val, int key){
-			this.val = val;
-			this.key = key;
-			prev = null;
-			next = null;
-		}
-	}
 }
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
