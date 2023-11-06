@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class ReversePairs {
 
-	// time O(n*log(n))
+	// time O(n * log(n)), space O(n * log(n))
 	public int reversePairsMergeSort(int[] nums) {
 		if (nums == null || nums.length == 0) {
 			return 0;
@@ -50,7 +50,7 @@ public class ReversePairs {
 		return res;
 	}
 
-	// time O(n*log(n)), space O(n)
+	// time O(n * log(n)), space O(n)
 	public int reversePairs(int[] nums) {
 		if (nums == null || nums.length == 0) {
 			return 0;
