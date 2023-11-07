@@ -146,6 +146,7 @@
 #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
 #2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
 #2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
+#2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
 #2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
 
 16. Topological Sort
@@ -176,6 +177,7 @@
 #2087 https://leetcode.com/problems/minimum-cost-homecoming-of-a-robot-in-a-grid/
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
 #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
+#2174 https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/
 #2258 https://leetcode.com/problems/escape-the-spreading-fire/
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
@@ -205,6 +207,7 @@
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2103 https://leetcode.com/problems/rings-and-rods/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
+#2174 https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
 #2275 https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
 
@@ -283,6 +286,7 @@
 #0528 https://leetcode.com/problems/random-pick-with-weight/
 
 37. Hashmap
+#2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 
 38. Sorted Set
