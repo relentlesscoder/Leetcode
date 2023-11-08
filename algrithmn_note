@@ -101,6 +101,7 @@
 #2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
 #2140 https://leetcode.com/problems/solving-questions-with-brainpower/
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
+#2304 https://leetcode.com/problems/minimum-path-cost-in-a-grid/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
@@ -114,6 +115,7 @@
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 
 11. Trie
+#1858 https://leetcode.com/problems/longest-word-with-all-prefixes/
 #2185 https://leetcode.com/problems/counting-words-with-a-given-prefix/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
 #2452 https://leetcode.com/problems/words-within-two-edits-of-dictionary/
@@ -212,6 +214,7 @@
 #2275 https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
 
 23. Two Scans
+#1966 https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/
 #2025 https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/  
 #2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
 #2420 https://leetcode.com/problems/find-all-good-indices/
