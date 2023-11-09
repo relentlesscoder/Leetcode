@@ -24,6 +24,7 @@
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
+#2863 https://leetcode.com/problems/maximum-length-of-semi-decreasing-subarrays/
 
 03. Prefix Sum
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
@@ -98,6 +99,7 @@
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
+#2050 https://leetcode.com/problems/parallel-courses-iii/
 #2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
 #2140 https://leetcode.com/problems/solving-questions-with-brainpower/
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
@@ -153,6 +155,7 @@
 
 16. Topological Sort
 #0210 https://leetcode.com/problems/course-schedule-ii/
+#2050 https://leetcode.com/problems/parallel-courses-iii/
 #2115 https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/
 
 17. Union Find
@@ -289,6 +292,7 @@
 #0528 https://leetcode.com/problems/random-pick-with-weight/
 
 37. Hashmap
+#1807 https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
 #2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 
