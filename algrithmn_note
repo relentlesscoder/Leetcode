@@ -30,6 +30,7 @@
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
+#1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
@@ -254,6 +255,7 @@
 #1570 https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
 #1756 https://leetcode.com/problems/design-most-recently-used-queue/
 #2034 https://leetcode.com/problems/stock-price-fluctuation/
+#2254 https://leetcode.com/problems/design-video-sharing-platform/
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
 
 29. Two Pointers
