@@ -70,6 +70,7 @@
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2517 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ ***(binary search for max)
+#2529 https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/
 #2560 https://leetcode.com/problems/house-robber-iv/
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
 
@@ -93,6 +94,7 @@
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
+#1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
@@ -114,6 +116,7 @@
 10. Min/max queue
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #1792 https://leetcode.com/problems/maximum-average-pass-ratio/
+#2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
@@ -197,6 +200,7 @@
 19. Stack
 #0071 https://leetcode.com/problems/simplify-path/
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
+#2696 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
 
 20. Parentheses
 #0020 https://leetcode.com/problems/valid-parentheses/
