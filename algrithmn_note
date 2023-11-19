@@ -99,6 +99,7 @@
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
 #1871 https://leetcode.com/problems/jump-game-vii/
+#1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
@@ -218,6 +219,7 @@
 
 22. Bit Manipulation
 #1915 https://leetcode.com/problems/number-of-wonderful-substrings/
+#1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2103 https://leetcode.com/problems/rings-and-rods/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
@@ -263,9 +265,11 @@
 #2034 https://leetcode.com/problems/stock-price-fluctuation/
 #2254 https://leetcode.com/problems/design-video-sharing-platform/
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
+#2424 https://leetcode.com/problems/longest-uploaded-prefix/
 
 29. Two Pointers
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
+#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
 30. Quick Select
@@ -324,6 +328,7 @@
 42. Binary Index Tree
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
 #0493 https://leetcode.com/problems/reverse-pairs/
+#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
