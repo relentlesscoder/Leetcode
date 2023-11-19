@@ -5,27 +5,27 @@ package org.wshuai.leetcode;
  * #0004 https://leetcode.com/problems/median-of-two-sorted-arrays/
  */
 public class MedianOfTwoSortedArrays {
+
 	// time O(log(min(n1, n2)))
 	// https://www.youtube.com/watch?v=LPFhl65R7ww
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-		int n1 = nums1.length;
-		int n2 = nums2.length;
+		int n1 = nums1.length, n2 = nums2.length;
 		if(n1 > n2){
 			return findMedianSortedArrays(nums2, nums1);
 		}
-		int low = 0;
-		int high = n1;
+		int low = 0, high = n1;
 		while(low <= high){
-			// partitionX is the number of elements in the left side of num1
+			// partitionX is the number of elements in the left partition of nums1
 			int partitionX = low + (high - low) / 2;
 			/*
-			0 1 2 3 4 5 6 7 8 9 10
-			0 1 2 3 4 5 6 7 8 9
+			1 2 3 4 5 6 7 8 9 10 11
+			1 2 3 4 5 6 7 8 9 10
 
 			(11 + 1) / 2 = 6
 			(10 + 1) / 2 = 5
 
-			(len + 1) / 2 is the left of two median numbers
+			(len + 1) / 2 is the median for odd length array and left of two median
+			numbers for even length array
 			*/
 			int partitionY = (n1 + n2 + 1) / 2 - partitionX;
 

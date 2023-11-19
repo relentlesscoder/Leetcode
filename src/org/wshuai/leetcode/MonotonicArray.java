@@ -1,24 +1,27 @@
 package org.wshuai.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
- * Created by Wei on 8/9/19.
- * #896 https://leetcode.com/problems/monotonic-array/
+ * Created by Wei on 08/09/2019.
+ * #0896 https://leetcode.com/problems/monotonic-array/
  */
 public class MonotonicArray {
+
+	// time O(n)
 	public boolean isMonotonic(int[] A) {
-		if (A.length <= 1) {
+		if(A.length < 3){
 			return true;
 		}
-		Set<Boolean> set = new HashSet<Boolean>();
-		for (int i = 1; i < A.length; i++) {
-			if (A[i] == A[i - 1]) {
+		int[] count = new int[2];
+		for(int i = 1; i < A.length; i++){
+			if(A[i] == A[i - 1]){
 				continue;
 			}
-			set.add(A[i] > A[i - 1]);
+			if(A[i] > A[i - 1]){
+				count[0]++;
+			}else{
+				count[1]++;
+			}
 		}
-		return set.size() < 2;
+		return count[0] == 0 || count[1] == 0;
 	}
 }

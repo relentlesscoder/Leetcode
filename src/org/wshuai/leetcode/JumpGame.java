@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0055 https://leetcode.com/problems/jump-game/
  */
 public class JumpGame {
+
 	// time O(n)
 	public boolean canJump(int[] nums) {
 		int n = nums.length;

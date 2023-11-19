@@ -7,32 +7,32 @@ import java.util.Stack;
  * #0224 https://leetcode.com/problems/basic-calculator/
  */
 public class BasicCalculator {
+
 	// time O(n), space O(n)
 	// the top comment at https://leetcode.com/problems/basic-calculator/discuss/62361/Iterative-Java-solution-with-stack
 	public int calculate(String s) {
-		if(s == null || s.isEmpty()){
-			return 0;
-		}
-		int res = 0, sign = 1, num = 0;
+		int res = 0, n = s.length(), sign = 1, val = 0;
 		Stack<Integer> stack = new Stack<>();
-		stack.push(sign);
-
-		for(int i = 0; i < s.length(); i++){
+		stack.push(1);
+		for(int i = 0; i < n; i++){
 			char c = s.charAt(i);
+			if(c == ' '){
+				continue;
+			}
 			if(c >= '0' && c <= '9'){
-				num = num * 10 + (c - '0');
+				val = val * 10 + (c - '0');
+				if(i == n - 1 || !Character.isDigit(s.charAt(i + 1))){
+					res += sign * val;
+					val = 0;
+				}
 			}else if(c == '+' || c == '-'){
-				res += sign * num;
-				sign = stack.peek() * (c == '+' ? 1 : -1);
-				num = 0;
+				sign = stack.peek() * (c == '+' ? 1 : -1); // calculate sign based on the sign of the current context
 			}else if(c == '('){
-				stack.push(sign);
-			}else if(c == ')'){
-				stack.pop();
+				stack.push(sign); // push current sign entering parentheses like "-("
+			}else{
+				stack.pop(); // pop current sign leaving parentheses like ")"
 			}
 		}
-
-		res += sign * num;
 		return res;
 	}
 }

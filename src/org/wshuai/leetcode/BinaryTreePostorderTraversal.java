@@ -9,6 +9,7 @@ import java.util.Stack;
  * #0145 https://leetcode.com/problems/binary-tree-postorder-traversal/
  */
 public class BinaryTreePostorderTraversal {
+
 	// time O(n), space O(n)
 	public List<Integer> postorderTraversal(TreeNode root) {
 		LinkedList<Integer> res = new LinkedList<>();

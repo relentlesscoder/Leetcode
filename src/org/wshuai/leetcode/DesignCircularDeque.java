@@ -7,13 +7,11 @@ package org.wshuai.leetcode;
 public class DesignCircularDeque {
 
 	private int[] data;
-	private int head, tail, k, len;
+	private int head = 0, tail = -1, size = 0, k;
 
 	/** Initialize your data structure here. Set the size of the deque to be k. */
 	public DesignCircularDeque(int k) {
-		data = new int[k];
-		head = 0;
-		tail = -1;
+		this.data = new int[k];
 		this.k = k;
 	}
 
@@ -24,8 +22,8 @@ public class DesignCircularDeque {
 		}
 		head = (head - 1 + k) % k;
 		data[head] = value;
-		len++;
-		if(len == 1){
+		// reset after first element is added
+		if(++size == 1){
 			tail = head;
 		}
 		return true;
@@ -38,7 +36,7 @@ public class DesignCircularDeque {
 		}
 		tail = (tail + 1) % k;
 		data[tail] = value;
-		len++;
+		size++;
 		return true;
 	}
 
@@ -48,7 +46,7 @@ public class DesignCircularDeque {
 			return false;
 		}
 		head = (head + 1) % k;
-		len--;
+		size--;
 		return true;
 	}
 
@@ -58,7 +56,7 @@ public class DesignCircularDeque {
 			return false;
 		}
 		tail = (tail - 1 + k) % k;
-		len--;
+		size--;
 		return true;
 	}
 
@@ -74,12 +72,12 @@ public class DesignCircularDeque {
 
 	/** Checks whether the circular deque is empty or not. */
 	public boolean isEmpty() {
-		return len == 0;
+		return size == 0;
 	}
 
 	/** Checks whether the circular deque is full or not. */
 	public boolean isFull() {
-		return len == k;
+		return size == k;
 	}
 }
 

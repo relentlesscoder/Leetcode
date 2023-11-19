@@ -1,40 +1,30 @@
 package org.wshuai.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
- * Created by Wei on 9/30/2019.
+ * Created by Wei on 09/30/2019.
  * #1055 https://leetcode.com/problems/shortest-way-to-form-string/
  */
 public class ShortestWayToFormString {
+
+	// time O(m + n)
 	public int shortestWay(String source, String target) {
-		int res = 0;
-		int i = 0;
-		int j = 0;
-		Set<Character> set = new HashSet<>();
-		char[] S = source.toCharArray();
-		char[] T = target.toCharArray();
-		for(char s: S){
-			set.add(s);
+		int res = 0, m = source.length(), n = target.length();
+		boolean[] map = new boolean[26];
+		for(char c : source.toCharArray()){
+			map[c - 'a'] = true;
 		}
-		for(char t: T){
-			if(!set.contains(t)){
-				return -1;
-			}
-		}
-		while(j < T.length){
-			if(i >= S.length){
-				i = 0;
+		for(int i = 0, j = 0; j < n; i++){
+			if(i % m == 0){
 				res++;
 			}
-			if(S[i] == T[j]){
-				i++;
+			char c1 = source.charAt(i % m), c2 = target.charAt(j);
+			if(!map[c2 - 'a']){
+				return -1;
+			}
+			if(c1 == c2){
 				j++;
-			}else{
-				i++;
 			}
 		}
-		return res + 1;
+		return res;
 	}
 }

@@ -8,33 +8,36 @@ import java.util.Map;
  * #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
  */
 public class CopyListWithRandomPointer {
+
 	// time O(n), space O(n)
-	public NodeWithRandomPointer copyRandomList(NodeWithRandomPointer head) {
-		if(head == null){
-			return null;
-		}
-		Map<NodeWithRandomPointer, NodeWithRandomPointer> mapping = new HashMap<>();
-		NodeWithRandomPointer cur = head;
-		while(cur != null){
-			mapping.put(cur, new NodeWithRandomPointer(cur.val));
-			cur = cur.next;
-		}
-		cur = head;
-		while(cur != null){
-			NodeWithRandomPointer copy = mapping.get(cur);
-			copy.next = cur.next == null ? null : mapping.get(cur.next);
-			copy.random = cur.random == null ? null : mapping.get(cur.random);
-			cur = cur.next;
-		}
-		return mapping.get(head);
+	public Node copyRandomList(Node head) {
+		Map<Node, Node> map = new HashMap<>();
+		return dfs(head, map);
 	}
 
-	private class NodeWithRandomPointer {
-		int val;
-		NodeWithRandomPointer next;
-		NodeWithRandomPointer random;
+	private Node dfs(Node curr, Map<Node, Node> map) {
+		if (curr == null) {
+			return curr;
+		}
+		if (map.containsKey(curr)) {
+			return map.get(curr);
+		}
+		Node copy = new Node(curr.val);
+		map.put(curr, copy);
+		copy.next = dfs(curr.next, map);
+		copy.random = dfs(curr.random, map);
+		return copy;
+	}
 
-		public NodeWithRandomPointer(int val) {
+	/**
+	 * Definition for a Node.
+	 */
+	private class Node {
+		int val;
+		Node next;
+		Node random;
+
+		public Node(int val) {
 			this.val = val;
 			this.next = null;
 			this.random = null;

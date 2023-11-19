@@ -3,26 +3,26 @@ package org.wshuai.leetcode;
 import java.util.Stack;
 
 /**
- * Created by Wei on 8/10/19.
+ * Created by Wei on 08/10/2019.
  * #1047 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
  */
 public class RemoveAllAdjacentDuplicatesInString {
+
+	// time O(n), space O(n)
 	public String removeDuplicates(String S) {
-		Stack<Character> stack = new Stack<Character>();
-		char[] arr = S.toCharArray();
-		for (int i = 0; i < arr.length; i++) {
-			if (stack.isEmpty() || stack.peek() != arr[i]) {
-				stack.push(arr[i]);
-			} else {
-				while (!stack.isEmpty() && stack.peek() == arr[i]) {
-					stack.pop();
-				}
+		Stack<Character> stack = new Stack<>();
+		for(int i = 0; i < S.length(); i++){
+			char c = S.charAt(i);
+			if(!stack.isEmpty() && stack.peek() == c){
+				stack.pop();
+			}else{
+				stack.push(c);
 			}
 		}
 		StringBuilder sb = new StringBuilder();
-		while (!stack.isEmpty()) {
-			sb.append("" + stack.pop());
+		for(char c : stack){
+			sb.append(c);
 		}
-		return sb.reverse().toString();
+		return sb.toString();
 	}
 }

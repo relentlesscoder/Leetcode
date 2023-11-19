@@ -8,31 +8,55 @@ import java.util.*;
  */
 public class TaskScheduler {
 
-	public int leastIntervalSorting(char[] tasks, int n) {
+	// time O(n)
+	public int leastInterval(char[] tasks, int n) {
 		int[] count = new int[26];
-		for (char c : tasks) {
+		for(char c : tasks){
 			count[c - 'A']++;
 		}
 		Arrays.sort(count);
-		int time = 0;
-		while (count[25] > 0) {
-			int i = 0;
-			while (i <= n) {
-				// tricky - if the max count of character is 1 then
-				// just write the character one by one, otherwise
-				// write n + 1 characters each time
-				if (count[25] == 0) {
+		int i = 25;
+		while(i >= 0 && count[i] == count[25]){
+			i--;
+		}
+		return Math.max(tasks.length, (count[25] - 1) * (n + 1) + 25 - i);
+	}
+
+	/*why "...when the first k - 1 chunks cannot hold all tasks, why the result will be tasks.length...":
+
+	before filling tasks in chunk_j where 0 <= j <= k-1, the # of tasks in chunks before chunk_j is exactly one more than
+	the # of tasks in chunk_j and all the chunks after chunk_j. This is guaranteed by "append ... sequentially and round
+	and round", so when one of the chunks burst / cannot hold more tasks with the initial n slots, all the chunks are full.
+	based on 1), when first k-1 chunks cannot hold all tasks, they are all of size (n+1), at this point, and the remaining
+	tasks are guaranteed to have frequency less than or equal to k-1, so as long as you keep on appending the task to these
+	k-1 chunks one at a time, there will be at most one task of the same type in any particular chunk, in other words, the
+	same type of tasks will be spaced out at least by n slots.
+	based on 2), after all k-1 chunks burst, no idle slots would be necessary for us to append rest of the tasks, hence the
+	result tasks.length*/
+
+	// time O(d*n), d = tasks.length
+	public int leastIntervalCounting(char[] tasks, int n) {
+		int res = 0;
+		int[] count = new int[26];
+		for(char c : tasks){
+			count[c - 'A']++;
+		}
+		Arrays.sort(count);
+		while(count[25] > 0){
+			// one cpu cycle
+			for(int i = 0; i <= n; i++){
+				if(count[25] == 0){ // handle the last cycle
 					break;
 				}
-				if (i < 26 && count[25 - i] > 0) {
+				// add any pending tasks
+				if(i < 26 && count[25 - i] > 0){
 					count[25 - i]--;
 				}
-				time++;
-				i++;
+				res++;
 			}
 			Arrays.sort(count);
 		}
-		return time;
+		return res;
 	}
 
 	public int leastIntervalPriorityQueue(char[] tasks, int n) {

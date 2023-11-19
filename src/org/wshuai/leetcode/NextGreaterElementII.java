@@ -1,5 +1,6 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -7,29 +8,22 @@ import java.util.Stack;
  * #0503 https://leetcode.com/problems/next-greater-element-ii/
  */
 public class NextGreaterElementII {
+
 	// time O(n), space O(n)
 	public int[] nextGreaterElements(int[] nums) {
-		int n = nums.length;
+		if(nums == null || nums.length == 0){
+			return new int[0];
+		}
+		int n = nums.length, len = n << 1;
 		int[] res = new int[n];
-		Stack<Integer> stack = new Stack<>();
-		// first pass: to find a greater number within 0 - len
-		for(int i = 0; i < n; i++){
-			while(!stack.isEmpty() && nums[stack.peek()] < nums[i]){
-				res[stack.pop()] = nums[i];
+		Arrays.fill(res, -1);
+		Stack<Integer> queue = new Stack<>();
+		for(int i = 0; i < len; i++){
+			int cur = nums[i % n];
+			while(!queue.isEmpty() && cur > nums[queue.peek()]){
+				res[queue.pop()] = cur;
 			}
-			stack.push(i);
-		}
-		// second pass: to find a greater number within len - 2*len
-		if(!stack.isEmpty()){
-			for(int i = 0; i < n; i++){
-				while(!stack.isEmpty() && nums[stack.peek()] < nums[i]){
-					res[stack.pop()] = nums[i];
-				}
-			}
-		}
-		// third pass: default to -1 if we still can't find a greater number
-		while(!stack.isEmpty()){
-			res[stack.pop()] = -1;
+			queue.push(i % n);
 		}
 		return res;
 	}

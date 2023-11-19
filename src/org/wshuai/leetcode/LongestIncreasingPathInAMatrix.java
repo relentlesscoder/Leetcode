@@ -5,41 +5,41 @@ package org.wshuai.leetcode;
  * #0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/
  */
 public class LongestIncreasingPathInAMatrix {
-	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
 
-	// time O(r*c), space O(r*c)
+	private static final int[] DIRECTIONS = new int[]{0, -1, 0, 1, 0};
+
+	// time O(m*n), space O(m*n)
 	public int longestIncreasingPath(int[][] matrix) {
 		if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
 			return 0;
 		}
-		int res = 1, r = matrix.length, c = matrix[0].length;
-		int[][] count = new int[r][c];
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
+		int res = 1, m = matrix.length, n = matrix[0].length;
+		int[][] count = new int[m][n];
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
 				if(count[i][j] == 0){
-					dfs(i, j, r, c, matrix, count);
+					dfs(i, j, matrix, count);
 				}
 			}
 		}
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
+		for(int i = 0; i < m; i++){
+			for(int j = 0; j < n; j++){
 				res = Math.max(res, count[i][j]);
 			}
 		}
 		return res;
 	}
 
-	private int dfs(int i, int j, int r, int c, int[][] matrix, int[][] count){
-		int next = 0, cur = 0;
+	private int dfs(int i, int j, int[][] matrix, int[][] count){
+		int longest = 0;
 		for(int k = 0; k < 4; k++){
-			int x = i + dirs[k], y = j + dirs[k + 1];
-			if(x < 0 || x >= r || y < 0 || y >= c || matrix[i][j] >= matrix[x][y]){
+			int x = i + DIRECTIONS[k], y = j + DIRECTIONS[k + 1];
+			if(x < 0 || x >= matrix.length || y < 0 || y >= matrix[0].length || matrix[i][j] >= matrix[x][y]){
 				continue;
 			}
-			cur = count[x][y] > 0 ? count[x][y] : dfs(x, y, r, c, matrix, count);
-			next = Math.max(cur, next);
+			longest = Math.max(longest, count[x][y] > 0 ? count[x][y] : dfs(x, y, matrix, count));
 		}
-		count[i][j] = next + 1;
-		return next + 1;
+		count[i][j] = longest + 1;
+		return count[i][j];
 	}
 }

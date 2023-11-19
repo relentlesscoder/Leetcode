@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 1/1/2020.
- * #479 https://leetcode.com/problems/largest-palindrome-product/
+ * Created by Wei on 01/01/2020.
+ * #0479 https://leetcode.com/problems/largest-palindrome-product/
  */
 public class LargestPalindromeProduct {
 	public int largestPalindrome(int n) {

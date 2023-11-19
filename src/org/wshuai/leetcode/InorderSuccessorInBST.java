@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0285 https://leetcode.com/problems/inorder-successor-in-bst/
  */
 public class InorderSuccessorInBST {
+
 	// time O(n)
 	// https://leetcode.com/problems/inorder-successor-in-bst/discuss/72653/Share-my-Java-recursive-solution
 	public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {

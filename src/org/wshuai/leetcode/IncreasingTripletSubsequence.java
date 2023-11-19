@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0334 https://leetcode.com/problems/increasing-triplet-subsequence/
  */
 public class IncreasingTripletSubsequence {
+
 	// time O(n)
 	public boolean increasingTriplet(int[] nums) {
 		if(nums == null || nums.length < 3){

@@ -8,6 +8,7 @@ import java.util.List;
  * #0257 https://leetcode.com/problems/binary-tree-paths/
  */
 public class BinaryTreePaths {
+
 	// time O(n)
 	public List<String> binaryTreePaths(TreeNode root) {
 		List<String> res = new ArrayList<>();
@@ -19,16 +20,17 @@ public class BinaryTreePaths {
 	}
 
 	private void dfs(TreeNode root, String cur, List<String> res){
+		cur += Integer.toString(root.val);
 		if(root.left == null && root.right == null){
-			res.add(cur + root.val);
+			res.add(cur);
 			return;
 		}
-		String next = cur + root.val + "->";
+		cur += "->";
 		if(root.left != null){
-			dfs(root.left, next, res);
+			dfs(root.left, cur, res);
 		}
 		if(root.right != null){
-			dfs(root.right, next,res);
+			dfs(root.right, cur, res);
 		}
 	}
 }

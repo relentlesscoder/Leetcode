@@ -7,38 +7,37 @@ import java.util.PriorityQueue;
  * #0295 https://leetcode.com/problems/find-median-from-data-stream/
  */
 public class FindMedianFromDataStream {
-	private PriorityQueue<Integer> minQueue;
-	private PriorityQueue<Integer> maxQueue;
+
+	private PriorityQueue<Integer> maxQueue, minQueue;
 
 	/** initialize your data structure here. */
 	public FindMedianFromDataStream() {
-		minQueue = new PriorityQueue<>();
 		maxQueue = new PriorityQueue<>((a, b) -> b - a);
+		minQueue = new PriorityQueue<>();
 	}
 
+	// time O(log(d)), space O(d)
 	public void addNum(int num) {
-		if(minQueue.size() == 0 || num >= minQueue.peek()){
-			minQueue.offer(num);
-		}else{
+		if(maxQueue.isEmpty() || maxQueue.peek() >= num){
 			maxQueue.offer(num);
+		}else{
+			minQueue.offer(num);
 		}
-		while(minQueue.size() > maxQueue.size() + 1){
-			maxQueue.offer(minQueue.poll());
-		}
-		while(minQueue.size() < maxQueue.size()){
+		while(maxQueue.size() > minQueue.size() + 1){
 			minQueue.offer(maxQueue.poll());
 		}
+		while(minQueue.size() > maxQueue.size()){
+			maxQueue.offer(minQueue.poll());
+		}
 	}
 
+	// time O(1)
 	public double findMedian() {
-		int n = minQueue.size() + maxQueue.size();
-		if(n == 0){
-			return -1;
+		if(maxQueue.size() == minQueue.size()){
+			return (maxQueue.peek() + minQueue.peek()) / 2.0;
+		}else{
+			return (double)maxQueue.peek();
 		}
-		if(n % 2 == 0){
-			return (minQueue.peek() + maxQueue.peek()) / 2.0;
-		}
-		return (double)minQueue.peek();
 	}
 }
 

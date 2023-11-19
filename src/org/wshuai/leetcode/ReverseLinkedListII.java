@@ -5,24 +5,24 @@ package org.wshuai.leetcode;
  * #0092 https://leetcode.com/problems/reverse-linked-list-ii/
  */
 public class ReverseLinkedListII {
+
 	// time O(n)
 	public LinkedListNode reverseBetween(LinkedListNode head, int m, int n) {
 		int i = 0;
-		LinkedListNode root = new LinkedListNode(0), cur = head, prev = root, start = null;
+		LinkedListNode root = new LinkedListNode(0), cur = head, front = root;
 		root.next = head;
 		while(cur != null && ++i < m){
-			prev = cur;
+			front = cur;
 			cur = cur.next;
 		}
-		start = cur;
-		LinkedListNode next = null;
+		LinkedListNode start = cur, prev = null;
 		while(cur != null && i++ <= n){
-			LinkedListNode temp = cur.next;
-			cur.next = next;
-			next = cur;
-			cur = temp;
+			LinkedListNode next = cur.next;
+			cur.next = prev;
+			prev = cur;
+			cur = next;
 		}
-		prev.next = next;
+		front.next = prev;
 		start.next = cur;
 		return root.next;
 	}

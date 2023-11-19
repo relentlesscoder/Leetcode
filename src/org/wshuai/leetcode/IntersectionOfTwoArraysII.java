@@ -10,27 +10,25 @@ import java.util.Map;
  * #0350 https://leetcode.com/problems/intersection-of-two-arrays-ii/
  */
 public class IntersectionOfTwoArraysII {
+
 	// time O(n), space O(n)
+	// follow up questions - https://leetcode.com/problems/intersection-of-two-arrays-ii/discuss/282372/Java-solution-with-all-3-follow-up-questions
 	public int[] intersect(int[] nums1, int[] nums2) {
 		Map<Integer, Integer> map = new HashMap<>();
-		List<Integer> list = new ArrayList<>();
-		for(int i : nums1){
-			map.put(i, map.getOrDefault(i, 0) + 1);
+		List<Integer> intersect = new ArrayList<>();
+		for(int num : nums1){
+			map.put(num, map.getOrDefault(num, 0) + 1);
 		}
-		for(int i : nums2){
-			if(map.containsKey(i)){
-				int d = map.get(i);
-				if(d > 1){
-					map.put(i, d - 1);
-				}else{
-					map.remove(i);
-				}
-				list.add(i);
+		for(int num : nums2){
+			if(map.containsKey(num) && map.get(num) > 0){
+				intersect.add(num);
+				map.put(num, map.get(num) - 1);
 			}
 		}
-		int[] res = new int[list.size()];
-		for(int i = 0; i < list.size(); i++){
-			res[i] = list.get(i);
+		int[] res = new int[intersect.size()];
+		int i = 0;
+		for(int num : intersect){
+			res[i++] = num;
 		}
 		return res;
 	}

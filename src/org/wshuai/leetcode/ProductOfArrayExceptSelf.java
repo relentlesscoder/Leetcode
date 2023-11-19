@@ -5,19 +5,18 @@ package org.wshuai.leetcode;
  * #0238 https://leetcode.com/problems/product-of-array-except-self/
  */
 public class ProductOfArrayExceptSelf {
+
 	// time O(n), space O(1)
 	public int[] productExceptSelf(int[] nums) {
 		int n = nums.length, right = 1;
 		int[] res = new int[n];
 		res[0] = 1;
-		// calculate product from left
 		for(int i = 1; i < n; i++){
 			res[i] = res[i - 1] * nums[i - 1];
 		}
-		// multiply product from right
-		for(int i = n - 2; i >= 0; i--){
-			right *= nums[i + 1];
+		for(int i = n - 1; i >= 0; i--){
 			res[i] *= right;
+			right *= nums[i];
 		}
 		return res;
 	}

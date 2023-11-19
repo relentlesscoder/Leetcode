@@ -7,6 +7,7 @@ import java.util.LinkedList;
  * #0239 https://leetcode.com/problems/sliding-window-maximum/
  */
 public class SlidingWindowMaximum {
+
 	// time O(n), space O(n)
 	public int[] maxSlidingWindow(int[] nums, int k) {
 		if(nums == null || nums.length == 0){

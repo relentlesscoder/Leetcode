@@ -3,24 +3,26 @@ package org.wshuai.leetcode;
 import java.util.PriorityQueue;
 
 /**
- * Created by Wei on 9/19/19.
+ * Created by Wei on 09/19/2019.
  * #1167 https://leetcode.com/problems/minimum-cost-to-connect-sticks/
  */
 public class MinimumCostToConnectSticks {
-	// be greedy to make sure each time every two sticks that cost minimum are connected
+
+	// time O(n*log(n)), space O(n)
 	public int connectSticks(int[] sticks) {
-		PriorityQueue<Integer> queue = new PriorityQueue<>();
-		for (int v : sticks) {
-			queue.offer(v);
+		int res = 0;
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		for(int s : sticks){
+			pq.offer(s);
 		}
-		int cost = 0;
-		while (queue.size() > 1) {
-			int x = queue.poll();
-			int y = queue.poll();
-			int c = x + y;
-			cost += c;
-			queue.offer(c);
+		// since early added sticks will count repeatedly
+		// in the following steps, we need to pick the
+		// shortest two sticks to connect each time
+		while(pq.size() > 1){
+			int cost = pq.poll() + pq.poll();
+			res += cost;
+			pq.offer(cost);
 		}
-		return cost;
+		return res;
 	}
 }

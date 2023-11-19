@@ -7,8 +7,35 @@ import java.util.LinkedList;
  * #0117 https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/
  */
 public class PopulatingNextRightPointersInEachNodeII {
-	// time O(n), space O(n)
+
+	// time O(n), space O(1)
 	public TreeLinkNode connect(TreeLinkNode root) {
+		if(root == null){
+			return null;
+		}
+		// dummy always pointing to the leftmost nodes of next level
+		TreeLinkNode dummy = new TreeLinkNode(0);
+		dummy.next = root;
+		while(dummy.next != null){
+			TreeLinkNode cur = dummy.next, prev = dummy;
+			dummy.next = null;
+			while(cur != null){
+				if(cur.left != null){
+					prev.next = cur.left;
+					prev = prev.next;
+				}
+				if(cur.right != null){
+					prev.next = cur.right;
+					prev = prev.next;
+				}
+				cur = cur.next;
+			}
+		}
+		return root;
+	}
+
+	// time O(n), space O(n)
+	public TreeLinkNode connectBFS(TreeLinkNode root) {
 		if(root == null){
 			return null;
 		}
@@ -32,5 +59,27 @@ public class PopulatingNextRightPointersInEachNodeII {
 			}
 		}
 		return root;
+	}
+
+	// Definition for a Node.
+	private class TreeLinkNode {
+
+		public int val;
+		public TreeLinkNode left;
+		public TreeLinkNode right;
+		public TreeLinkNode next;
+
+		public TreeLinkNode() {}
+
+		public TreeLinkNode(int _val) {
+			val = _val;
+		}
+
+		public TreeLinkNode(int _val, TreeLinkNode _left, TreeLinkNode _right, TreeLinkNode _next) {
+			val = _val;
+			left = _left;
+			right = _right;
+			next = _next;
+		}
 	}
 }

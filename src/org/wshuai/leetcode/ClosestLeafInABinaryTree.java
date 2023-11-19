@@ -8,46 +8,53 @@ import java.util.*;
  */
 public class ClosestLeafInABinaryTree {
 
+	private int min;
+	private TreeNode minNode;
+
 	// time O(n), space O(n)
+	// same as #0863
 	public int findClosestLeaf(TreeNode root, int k) {
+		min = Integer.MAX_VALUE;
+		minNode = null;
 		Map<TreeNode, Integer> map = new HashMap<>();
-		int[] min = new int[]{Integer.MAX_VALUE, 0};
-		// find the distance of nodes from node k (back to the current)
-		// along the path from root to node k
 		findNode(root, k, map);
-		// calculate distance and find closest leave node for all nodes
-		findLeaves(root, 0, map, min);
-		return min[1];
+		findClosest(root, 0, map);
+		return minNode.val;
 	}
 
-	private void findNode(TreeNode root, int k, Map<TreeNode, Integer> map){
+	private int findNode(TreeNode root, int k, Map<TreeNode, Integer> map){
 		if(root == null){
-			return;
+			return -1;
 		}
 		if(root.val == k){
 			map.put(root, 0);
-			return;
+			return 0;
 		}
-		findNode(root.left, k, map);
-		findNode(root.right, k, map);
-		if(map.containsKey(root.left)){
-			map.put(root, map.get(root.left) + 1);
-		}else if(map.containsKey(root.right)){
-			map.put(root, map.get(root.right) + 1);
+		int left = findNode(root.left, k, map);
+		if(left >= 0){
+			map.put(root, left + 1);
+			return left + 1;
 		}
+		int right = findNode(root.right, k, map);
+		if(right >= 0){
+			map.put(root, right + 1);
+			return right + 1;
+		}
+		return -1;
 	}
 
-	private void findLeaves(TreeNode root, int dist, Map<TreeNode, Integer> map, int[] min){
-		if(root == null){
-			return;
+	private void findClosest(TreeNode root, int dist, Map<TreeNode, Integer> map){
+		dist = map.getOrDefault(root, dist);
+		if(root.left == null && root.right == null && dist < min){
+			min = dist;
+			minNode = root;
 		}
-		int cur = map.containsKey(root) ? map.get(root) : dist + 1;
-		if(root.left == null && root.right == null && cur < min[0]){
-			min[0] = cur;
-			min[1] = root.val;
+		if(root.left != null){
+			findClosest(root.left, dist + 1, map);
 		}
-		findLeaves(root.left, cur, map, min);
-		findLeaves(root.right, cur, map, min);
+		if(root.right != null){
+			findClosest(root.right, dist + 1, map);
+		}
 	}
 
 	// time O(n), space O(n)

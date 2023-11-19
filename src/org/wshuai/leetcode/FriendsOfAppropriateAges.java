@@ -8,7 +8,8 @@ import java.util.Map;
  * #0825 https://leetcode.com/problems/friends-of-appropriate-ages/
  */
 public class FriendsOfAppropriateAges {
-	// time O(a^2), space O(n)
+
+	// time O(d^2), space O(n)
 	public int numFriendRequests(int[] ages) {
 		int res = 0;
 		Map<Integer, Integer> map = new HashMap<>();
@@ -18,7 +19,7 @@ public class FriendsOfAppropriateAges {
 		for(int a : map.keySet()){
 			for(int b : map.keySet()){
 				if(request(a, b)){
-					res += map.get(a) * (map.get(b) - (a == b ? 1 : 0));
+					res += map.get(a) * (map.get(b) - (a == b ?  1 : 0));
 				}
 			}
 		}
@@ -26,6 +27,6 @@ public class FriendsOfAppropriateAges {
 	}
 
 	private boolean request(int a, int b){
-		return !(b <= (a >> 1) + 7 || b > a || (b > 100 && a < 100));
+		return !(b <= (a >> 1) + 7 || b > a);
 	}
 }

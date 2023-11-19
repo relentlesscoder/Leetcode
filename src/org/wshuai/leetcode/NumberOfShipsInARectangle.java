@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 12/3/19.
+ * Created by Wei on 12/03/2019.
  * #1274 https://leetcode.com/problems/number-of-ships-in-a-rectangle/
  */
 public class NumberOfShipsInARectangle {
@@ -19,15 +19,17 @@ public class NumberOfShipsInARectangle {
 				countShips(sea, new int[]{midX, topRight[1]}, new int[]{bottomLeft[0], midY+1}) +
 				countShips(sea, new int[]{topRight[0], midY}, new int[]{midX+1, bottomLeft[1]});
 	}
+
+	/**
+	 * This is Sea's API interface.
+	 * You should not implement it, or speculate about its implementation
+	 */
+	private class Sea {
+		public boolean hasShips(int[] topRight, int[] bottomLeft){
+			return false;
+		}
+	}
 }
 
-/**
- * // This is Sea's API interface.
- * // You should not implement it, or speculate about its implementation
- */
- class Sea {
- 	public boolean hasShips(int[] topRight, int[] bottomLeft){
- 		return false;
-    }
- }
+
 

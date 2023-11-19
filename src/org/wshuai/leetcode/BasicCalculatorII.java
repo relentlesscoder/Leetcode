@@ -7,42 +7,37 @@ import java.util.Stack;
  * #0227 https://leetcode.com/problems/basic-calculator-ii/
  */
 public class BasicCalculatorII {
-	// time O(n)
+
+	// time O(n), space O(n)
 	public int calculate(String s) {
-		if(s == null || s.isEmpty()){
-			return 0;
-		}
+		int n = s.length(), res = 0, cur = 0;
+		char op = ' ';
 		Stack<Integer> stack = new Stack<>();
-		int res = 0, n = s.length(), val = 0;
-		char oper = ' ';
-		for(int i = 0; i < s.length(); i++){
+		for(int i = 0; i < n; i++){
 			char c = s.charAt(i);
 			if(c == ' '){
 				continue;
 			}
-			if(c == '+' || c == '-' || c == '*' || c == '/'){
-				oper = c;
+			if(!Character.isDigit(c)){
+				op = c;
 			}else{
-				val = val * 10 + (int)(c - '0');
+				cur = cur * 10 + (c - '0');
 				if(i == n - 1 || !Character.isDigit(s.charAt(i + 1))){
-					if(oper == ' ' || oper == '+'){
-						stack.push(val);
+					if(op == ' ' || op == '+'){
+						stack.push(cur);
+					}else if(op == '-'){
+						stack.push(-cur);
+					}else if(op == '*'){
+						stack.push(stack.pop() * cur);
+					}else{
+						stack.push(stack.pop() / cur);
 					}
-					if(oper == '-'){
-						stack.push(-val);
-					}
-					if(oper == '*'){
-						stack.push(stack.pop() * val);
-					}
-					if(oper == '/'){
-						stack.push(stack.pop() / val);
-					}
-					val = 0;
+					cur = 0;
 				}
 			}
 		}
-		for(int i : stack){
-			res += i;
+		while(!stack.isEmpty()){
+			res += stack.pop();
 		}
 		return res;
 	}

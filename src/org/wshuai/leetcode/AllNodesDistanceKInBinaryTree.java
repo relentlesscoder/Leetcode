@@ -6,53 +6,58 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Wei on 9/23/2019.
- * #863 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
+ * Created by Wei on 09/23/2019.
+ * #0863 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
  */
 public class AllNodesDistanceKInBinaryTree {
-  private Map<TreeNode, Integer> map;
-  private List<Integer> res;
 
-  public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
-    res = new ArrayList<>();
-    map = new HashMap<>();
-    find(root, target);
-    dfs(root, 0, K);
-    return res;
-  }
+    private List<Integer> res;
+    private Map<TreeNode, Integer> distance;
 
-  private int find(TreeNode node, TreeNode target){
-    if(node == null){
-      return -1;
+    // time O(n), space O(n)
+    // same as #0742
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
+        res = new ArrayList<>();
+        distance = new HashMap<>();
+        findTarget(root, target);
+        findNodes(root, 0, K);
+        return res;
     }
-    if(node == target){
-      map.put(node, 0);
-      return 0;
-    }
-    int left = find(node.left, target);
-    if(left >= 0){
-      map.put(node, left + 1);
-      return left + 1;
-    }
-    int right = find(node.right, target);
-    if(right >= 0){
-      map.put(node, right + 1);
-      return right + 1;
-    }
-    return -1;
-  }
 
-  private void dfs(TreeNode node, int len, int k){
-    if(node == null){
-      return;
+    // find the target node and record the distance from
+    // it back to the root
+    private int findTarget(TreeNode root, TreeNode target) {
+        if (root == null) {
+            return -1;
+        }
+        if (root == target) {
+            distance.put(root, 0);
+            return 0;
+        }
+        int left = findTarget(root.left, target);
+        if (left >= 0) {
+            distance.put(root, left + 1);
+            return left + 1;
+        }
+        int right = findTarget(root.right, target);
+        if (right >= 0) {
+            distance.put(root, right + 1);
+            return right + 1;
+        }
+        return -1;
     }
-    if(map.containsKey(node)){
-      len = map.get(node);
+
+    private void findNodes(TreeNode root, int dist, int k) {
+        if (root == null) {
+            return;
+        }
+        if (distance.containsKey(root)) {
+            dist = distance.get(root);
+        }
+        if (dist == k) {
+            res.add(root.val);
+        }
+        findNodes(root.left, dist + 1, k);
+        findNodes(root.right, dist + 1, k);
     }
-    if(len == k){
-      res.add(node.val);
-    }
-    dfs(node.left, len + 1, k);
-    dfs(node.right, len + 1, k);
-  }
 }

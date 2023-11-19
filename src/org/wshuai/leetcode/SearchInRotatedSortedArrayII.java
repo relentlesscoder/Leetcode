@@ -5,10 +5,10 @@ package org.wshuai.leetcode;
  * #0081 https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
  */
 public class SearchInRotatedSortedArrayII {
-	// time O(lg(n)), worst case O(n)
+
+	// time O(log(n)), worst case O(n)
 	public boolean search(int[] nums, int target) {
-		int left = 0;
-		int right = nums.length - 1;
+		int left = 0, right = nums.length - 1;
 		while(left <= right){
 			while (left < right && nums[left] == nums[left + 1]){
 				left++; // skip duplicates from the left

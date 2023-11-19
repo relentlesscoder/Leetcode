@@ -1,44 +1,62 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Created by Wei on 09/22/2019.
  * #0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/
  */
 public class CheapestFlightsWithinKStops {
-	public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
-		LinkedList<int[]>[] adj = new LinkedList[n];
-		for(int i = 0; i < n; i++){
-			adj[i] = new LinkedList<>();
+
+	// time O(n^k*log(n^k)), space O(n^k)
+	public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+		List<int[]>[] graph = new ArrayList[n];
+		for (int i = 0; i < n; i++) {
+			graph[i] = new ArrayList<>();
 		}
-		for(int i = 0; i < flights.length; i++){
-			adj[flights[i][0]].offerLast(new int[]{flights[i][1], flights[i][2]});
+		for (int[] f : flights) {
+			graph[f[0]].add(new int[]{f[1], f[2]});
 		}
-		PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-		Map<Integer, Integer> distance = new HashMap<>();
-		queue.offer(new int[]{0, 0, src});
-		while(!queue.isEmpty()){
-			int[] cur = queue.poll();
-			int cost = cur[0], stops = cur[1], city = cur[2];
-			if(stops > K + 1 || cost > distance.getOrDefault(stops * 1_000 + city, Integer.MAX_VALUE)){
+		int[] stops = new int[n];
+		Arrays.fill(stops, Integer.MAX_VALUE);
+		PriorityQueue<int[]> minQueue = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+		minQueue.offer(new int[]{src, 0, 0});
+		while (!minQueue.isEmpty()) {
+			int[] curr = minQueue.poll();
+			int u = curr[0], cost = curr[1], stop = curr[2];
+			if (stop > stops[u] || stop > k + 1){
 				continue;
 			}
-			if(city == dst){
+			if (u == dst) {
 				return cost;
 			}
-			for(int[] edge : adj[city]){
-				int newCost = cost + edge[1];
-				if(newCost < distance.getOrDefault((stops + 1) * 1_000 + edge[0], Integer.MAX_VALUE)){
-					queue.offer(new int[]{newCost, stops + 1, edge[0]});
-					distance.put((stops + 1) * 1_000 + edge[0], newCost);
-				}
+			stops[u] = stop;
+			for (int[] next : graph[u]) {
+				int v = next[0], vc = next[1];
+				minQueue.offer(new int[]{v, cost + vc, stop + 1});
 			}
 		}
 		return -1;
+	}
+
+	// time O(n*k), space O(n*k)
+	public int findCheapestPriceBellmanFord(int n, int[][] flights, int src, int dst, int K) {
+		int[] cost = new int[n];
+		Arrays.fill(cost, Integer.MAX_VALUE);
+		cost[src] = 0;
+		for (int i = 0; i <= K; i++) {
+			// use new array to move one step each time
+			int[] temp = Arrays.copyOf(cost, n);
+			for (int[] f : flights) {
+				int cur = f[0], next = f[1], price = f[2];
+				if (cost[cur] == Integer.MAX_VALUE) {
+					continue;
+				}
+				temp[next] = Math.min(temp[next], cost[cur] + price);
+			}
+			cost = temp;
+		}
+		return cost[dst] == Integer.MAX_VALUE ? -1 : cost[dst];
 	}
 }
 

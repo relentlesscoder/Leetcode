@@ -7,81 +7,79 @@ import java.util.*;
  * #0127 https://leetcode.com/problems/word-ladder/
  */
 public class WordLadder {
-	// time O(wl*n) bidirectional BFS
+
+	// time O(wl*n), space O(n) Bidirectional BFS
 	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 		Set<String> beginSet = new HashSet<>(), endSet = new HashSet<>(),
-				wordSet = new HashSet<>(wordList), visited = new HashSet<>();
-		if(!wordSet.contains(endWord)){
+			dict = new HashSet<>(wordList), visited = new HashSet<>();
+		if(!dict.contains(endWord)){
 			return 0;
 		}
-		int len = 1;
+		int steps = 0;
 		beginSet.add(beginWord);
 		endSet.add(endWord);
-		while(!beginSet.isEmpty() && !endSet.isEmpty()){
+		while(beginSet.size() > 0 && endSet.size() > 0){
 			if(beginSet.size() > endSet.size()){
-				Set<String> temp = beginSet;
+				Set<String> swap = beginSet;
 				beginSet = endSet;
-				endSet = temp;
+				endSet = swap;
 			}
-
-			Set<String> cur = new HashSet<String>();
-			for(String word : beginSet){
-				char[] arr = word.toCharArray();
+			Set<String> temp = new HashSet<>();
+			steps++;
+			for(String cur : beginSet){
+				char[] arr = cur.toCharArray();
 				for(int i = 0; i < arr.length; i++){
 					char old = arr[i];
 					for(char c = 'a'; c <= 'z'; c++){
-						if(c == old){
-							continue;
-						}
 						arr[i] = c;
-						String next = new String(arr);
+						String next = String.valueOf(arr);
 						if(endSet.contains(next)){
-							return len + 1;
+							return steps + 1;
 						}
-						if(!visited.contains(next) && wordSet.contains(next)){
-							cur.add(next);
+						if(dict.contains(next) && !visited.contains(next)){
 							visited.add(next);
+							temp.add(next);
 						}
 					}
 					arr[i] = old;
 				}
 			}
-			beginSet = cur;
-			len++;
+			beginSet = temp;
 		}
 		return 0;
 	}
 
-	// time O(wl*n)
+	// time O(wl*n), space O(n)
 	public int ladderLengthBFS(String beginWord, String endWord, List<String> wordList) {
+		Set<String> dict = new HashSet<>(wordList);
+		if(!dict.contains(endWord)){
+			return 0;
+		}
+		int steps = 0;
 		LinkedList<String> queue = new LinkedList<>();
-		Set<String> set = new HashSet<>(wordList);
-		int step = 0;
+		Set<String> visited = new HashSet<>();
+		visited.add(beginWord);
 		queue.offerLast(beginWord);
 		while(!queue.isEmpty()){
+			steps++;
 			int size = queue.size();
-			step++;
 			while(size-- > 0){
-				String str = queue.poll();
-				if(str.equals(endWord)){
-					return step;
-				}
-				char[] cur = str.toCharArray();
-				for(int i = 0; i < cur.length; i++){
-					char c = cur[i];
-					for(int j = 0; j < 26; j++){
-						if(j == c - 'a'){
-							continue;
+				String cur = queue.pollFirst();
+				char[] arr = cur.toCharArray();
+				for(int i = 0; i < arr.length; i++){
+					char old = arr[i];
+					for(char c = 'a'; c <= 'z'; c++){
+						arr[i] = c;
+						String next = String.valueOf(arr);
+						if(next.equals(endWord)){
+							return steps + 1;
 						}
-						cur[i] = (char)('a' + j);
-						String next = new String(cur);
-						if(!set.contains(next)){
-							continue;
+						if(dict.contains(next) && !visited.contains(next)){
+							visited.add(next);
+							queue.offerLast(next);
 						}
-						set.remove(next);
-						queue.offerLast(next);
 					}
-					cur[i] = c;
+					arr[i] = old;
 				}
 			}
 		}

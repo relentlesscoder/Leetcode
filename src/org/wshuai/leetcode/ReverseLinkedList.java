@@ -5,7 +5,8 @@ package org.wshuai.leetcode;
  * #0206 https://leetcode.com/problems/reverse-linked-list/
  */
 public class ReverseLinkedList {
-	// time O(n)
+
+	// time O(n), space O(1)
 	public LinkedListNode reverseList(LinkedListNode head) {
 		LinkedListNode prev = null, cur = head;
 		while(cur != null){

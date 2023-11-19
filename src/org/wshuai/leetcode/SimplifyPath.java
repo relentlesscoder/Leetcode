@@ -7,25 +7,26 @@ import java.util.Stack;
  * #0071 https://leetcode.com/problems/simplify-path/
  */
 public class SimplifyPath {
+
+	// time O(n), space O(n)
 	public String simplifyPath(String path) {
-		String[] strs = path.split("/");
 		Stack<String> stack = new Stack<>();
-		for(String v : strs){
-			if(v.length() == 0 || v.equals(".")){
+		String[] dirs = path.split("/");
+		for (String dir : dirs) {
+			if (dir.isEmpty() || dir.equals(".")) {
 				continue;
-			}
-			if(v.equals("..")){
-				if(!stack.isEmpty()){
+			} else if (dir.equals("..")) {
+				if (!stack.isEmpty()) {
 					stack.pop();
 				}
-			}else{
-				stack.push(v);
+			} else {
+				stack.push(dir);
 			}
 		}
-		StringBuilder sb = new StringBuilder();
-		for(String v : stack){
-			sb.append("/").append(v);
+		StringBuilder res = new StringBuilder();
+		for (String s : stack) {
+			res.append("/" + s);
 		}
-		return sb.length() == 0 ? "/" : sb.toString();
+		return res.length() == 0 ? "/" : res.toString();
 	}
 }

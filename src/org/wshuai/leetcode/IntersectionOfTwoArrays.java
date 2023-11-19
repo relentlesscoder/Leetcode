@@ -8,10 +8,10 @@ import java.util.Set;
  * #0349 https://leetcode.com/problems/intersection-of-two-arrays/
  */
 public class IntersectionOfTwoArrays {
+
 	// time O(n), space O(n)
 	public int[] intersection(int[] nums1, int[] nums2) {
-		Set<Integer> set1 = new HashSet<>();
-		Set<Integer> set2 = new HashSet<>();
+		Set<Integer> set1 = new HashSet<>(), set2 = new HashSet<>();
 		for(int i : nums1){
 			set1.add(i);
 		}

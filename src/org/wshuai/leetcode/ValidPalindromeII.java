@@ -5,23 +5,24 @@ package org.wshuai.leetcode;
  * #0680 https://leetcode.com/problems/valid-palindrome-ii/
  */
 public class ValidPalindromeII {
-	// time O(n)
+
+	// time O(n), space O(1)
 	public boolean validPalindrome(String s) {
-		return isValid(s.toCharArray(), 0, s.length() - 1, 1);
+		int n = s.length();
+		for (int i = 0, j = n - 1; i <= j; i++, j--) {
+			if (s.charAt(i) != s.charAt(j)) {
+				return isPalindrome(s, i, j - 1) || isPalindrome(s, i + 1, j);
+			}
+		}
+		return true;
 	}
 
-	private boolean isValid(char[] s, int i, int j, int k){
-		if(k < 0){
-			return false;
+	private boolean isPalindrome(String s, int i, int j) {
+		while (i < j) {
+			if (s.charAt(i++) != s.charAt(j--)) {
+				return false;
+			}
 		}
-		while(i < j && s[i] == s[j]){
-			i++;
-			j--;
-		}
-		if(i >= j){
-			return true;
-		}
-		return isValid(s, i + 1, j, k - 1)
-				|| isValid(s, i, j - 1, k - 1);
+		return true;
 	}
 }

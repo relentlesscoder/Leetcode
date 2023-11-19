@@ -8,6 +8,7 @@ public class NumberOfWaysToPaintNX3Grid {
 	private static final long MOD = 1_000_000_007;
 
 	// time O(n), space O(n)
+	// https://leetcode.com/problems/number-of-ways-to-paint-n-3-grid/discuss/575989/Java-clean-DP-O(n)
 	public int numOfWays(int n) {
 		if(n == 1){
 			return 12;
@@ -46,8 +47,8 @@ public class NumberOfWaysToPaintNX3Grid {
 		long[][] dp = new long[2][n];
 		dp[0][0] = dp[1][0] = 6;
 		for(int i = 1; i < n; i++){
-			dp[0][i] = (dp[0][i - 1] * 3 + dp[1][i - 1] * 2) % MOD;
-			dp[1][i] = (dp[0][i - 1] * 2 + dp[1][i - 1] * 2) % MOD;
+			dp[0][i] = (dp[0][i - 1] * 3 + dp[1][i - 1] * 2) % MOD; // denotes number of patterns with two colors
+			dp[1][i] = (dp[0][i - 1] * 2 + dp[1][i - 1] * 2) % MOD; // denotes number of patterns with three colors
 		}
 		return (int)((dp[0][n - 1] + dp[1][n - 1]) % MOD);
 	}

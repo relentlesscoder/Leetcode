@@ -3,46 +3,36 @@ package org.wshuai.leetcode;
 import java.util.*;
 
 /**
- * Created by Wei on 9/23/19.
- * #987 https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+ * Created by Wei on 09/23/2019.
+ * #0987 https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
  */
 public class VerticalOrderTraversalOfABinaryTree {
-	private TreeMap<Integer, PriorityQueue<TreeNodeInfo>> map;
 
+	// time O(n*log(n)), space O(n)
 	public List<List<Integer>> verticalTraversal(TreeNode root) {
+		TreeMap<Integer, PriorityQueue<int[]>> map = new TreeMap<>();
 		List<List<Integer>> res = new ArrayList<>();
-		map = new TreeMap<>();
-		dfs(root, 0, 0);
-		for(Map.Entry<Integer, PriorityQueue<TreeNodeInfo>> entry: map.entrySet()){
-			PriorityQueue<TreeNodeInfo> queue = entry.getValue();
-			List<Integer> lst = new ArrayList<>();
-			while(!queue.isEmpty()){
-				lst.add(queue.poll().val);
+		dfs(root, 0, 0, map);
+		for(Map.Entry<Integer, PriorityQueue<int[]>> entry : map.entrySet()){
+			PriorityQueue<int[]> pq = entry.getValue();
+			List<Integer> list = new ArrayList<>();
+			while(!pq.isEmpty()){
+				list.add(pq.poll()[1]);
 			}
-			res.add(lst);
+			res.add(list);
 		}
 		return res;
 	}
 
-	private void dfs(TreeNode node, int x, int y){
-		if(node == null){
+	private void dfs(TreeNode root, int x, int y, TreeMap<Integer, PriorityQueue<int[]>> map){
+		if(root == null){
 			return;
 		}
-		if(!map.containsKey(x)){
-			map.put(x, new PriorityQueue<TreeNodeInfo>((a, b) -> a.y == b.y ? a.val - b.val : a.y - b.y));
-		}
-		map.get(x).add(new TreeNodeInfo(node.val, y));
-		dfs(node.left, x-1, y+1);
-		dfs(node.right, x+1, y+1);
+		map.putIfAbsent(x, new PriorityQueue<int[]>((a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]));
+		map.get(x).offer(new int[]{y, root.val});
+		dfs(root.left, x - 1, y + 1, map);
+		dfs(root.right, x + 1, y + 1, map);
 	}
 }
 
-class TreeNodeInfo{
-	public int val;
-	public int y;
 
-	public TreeNodeInfo(int val, int y){
-		this.val = val;
-		this.y = y;
-	}
-}

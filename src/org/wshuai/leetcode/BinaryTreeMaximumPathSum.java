@@ -5,26 +5,25 @@ package org.wshuai.leetcode;
  * #0124 https://leetcode.com/problems/binary-tree-maximum-path-sum/
  */
 public class BinaryTreeMaximumPathSum {
-	private int res;
+
+	private int max;
 
 	// time O(n)
 	public int maxPathSum(TreeNode root) {
-		res = Integer.MIN_VALUE;
+		max = Integer.MIN_VALUE;
 		dfs(root);
-		return res;
+		return max;
 	}
 
 	private int dfs(TreeNode root){
 		if(root == null){
 			return 0;
 		}
-		int left = dfs(root.left);
-		int right = dfs(root.right);
-		left = left > 0 ? left : 0;
-		right = right > 0 ? right : 0;
-		// cross sum
-		int max = root.val + left + right;
-		res = Math.max(max, res);
-		return Math.max(left + root.val, right + root.val);
+		int left = Math.max(0, dfs(root.left));
+		int right = Math.max(0, dfs(root.right));
+		// max sum cross the current node
+		max = Math.max(max, root.val + left + right);
+		// return larger sum for parent to form a cross path sum
+		return Math.max(left, right) + root.val;
 	}
 }

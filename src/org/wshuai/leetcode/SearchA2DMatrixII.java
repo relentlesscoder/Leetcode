@@ -5,6 +5,7 @@ package org.wshuai.leetcode;
  * #0240 https://leetcode.com/problems/search-a-2d-matrix-ii/
  */
 public class SearchA2DMatrixII {
+
 	// time O(r + c)
 	public boolean searchMatrix(int[][] matrix, int target) {
 		if(matrix == null || matrix.length == 0 || matrix[0].length == 0){

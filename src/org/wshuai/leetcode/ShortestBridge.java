@@ -3,72 +3,67 @@ package org.wshuai.leetcode;
 import java.util.LinkedList;
 
 /**
- * Created by Wei on 10/26/19.
- * #934 https://leetcode.com/problems/shortest-bridge/
+ * Created by Wei on 10/26/2019.
+ * #0934 https://leetcode.com/problems/shortest-bridge/
  */
 public class ShortestBridge {
 
-	private int[][] dir;
+	private static final int[] DIRECTIONS = new int[]{0, -1, 0, 1, 0};
 
+	// time O(m*n), space O(m*n)
 	public int shortestBridge(int[][] A) {
 		LinkedList<int[]> queue = new LinkedList<>();
-		dir = new int[][]{
-			{1, -1, 0, 0}, {0, 0, 1, -1}
-		};
-		int r = A.length;
-		int c = A[0].length;
-		int x = -1, y = -1;
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
+		int m = A.length, n = A[0].length, a = -1, b = -1;
+		boolean stop = false;
+		for(int i = 0; i < m && !stop; i++){
+			for(int j = 0; j < n && !stop; j++){
 				if(A[i][j] == 1){
-					x = i;
-					y = j;
-					break;
+					a = i;
+					b = j;
+					stop = true;
 				}
 			}
 		}
 
-		dfs(x, y, A, queue);
+		// dfs find the surrounding water cells of the first island
+		dfs(a, b, A, m, n, queue);
 
-		int depth = 1;
+		// bfs to find the shortest path to the second island
+		int steps = 1;
 		while(!queue.isEmpty()){
 			int size = queue.size();
-			while(size > 0){
-				int[] p = queue.poll();
-				if(A[p[0]][p[1]] == -1){
-					size--;
-					continue;
-				}
-				A[p[0]][p[1]] = -1;
-				for(int i = 0; i < 4; i++){
-					int m = p[0] + dir[0][i];
-					int n = p[1] + dir[1][i];
-					if(m >= 0 && m < r && n >= 0 && n < c && A[m][n] != -1){
-						if(A[m][n] == 1){
-							return depth;
-						}else{
-							queue.offer(new int[]{m, n});
-						}
+			while(size-- > 0){
+				int[] cur = queue.pollFirst();
+				for(int k = 0; k < 4; k++){
+					int x = cur[0] + DIRECTIONS[k], y = cur[1] + DIRECTIONS[k + 1];
+					if(x < 0 || x >= m || y < 0 || y >= n || A[x][y] == -1){
+						continue;
+					}
+					if(A[x][y] == 1){
+						return steps;
+					}else{
+						A[x][y] = -1;
+						queue.offerLast(new int[]{x, y});
 					}
 				}
-				size--;
 			}
-			depth++;
+			steps++;
 		}
-		return depth;
+		return -1;
 	}
 
-	private void dfs(int x, int y, int[][] A, LinkedList<int[]> queue){
-		A[x][y] = -1;
-		for(int i = 0; i < 4; i++){
-			int m = x + dir[0][i];
-			int n = y + dir[1][i];
-			if(m >= 0 && m < A.length && n >= 0 && n < A[0].length && A[m][n] != -1){
-				if(A[m][n] == 0){
-					queue.offer(new int[]{m, n});
-				}else{
-					dfs(m, n, A, queue);
-				}
+	private void dfs(int i, int j, int[][] A, int m, int n, LinkedList<int[]> queue){
+		A[i][j] = -1;
+		for(int k = 0; k < 4; k++){
+			int x = i + DIRECTIONS[k], y = j + DIRECTIONS[k + 1];
+			if(x < 0 || x >= m || y < 0 || y >= n || A[x][y] == -1){
+				continue;
+			}
+			if(A[x][y] == 1){
+				dfs(x, y, A, m, n, queue);
+			}else{
+				A[x][y] = -1;
+				queue.offerLast(new int[]{x, y});
 			}
 		}
 	}

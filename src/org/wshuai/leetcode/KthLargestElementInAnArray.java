@@ -1,50 +1,62 @@
 package org.wshuai.leetcode;
 
+import java.util.PriorityQueue;
+import java.util.Random;
+
 /**
  * Created by Wei on 10/22/2019.
  * #0215 https://leetcode.com/problems/kth-largest-element-in-an-array/
  */
 public class KthLargestElementInAnArray {
-	// time - average: O(n * log(n)) worst: O(n^2)
-	// after randomization, expected: O (n)
-	public int findKthLargest(int[] nums, int k) {
-		return getKthLargest(nums, 0, nums.length - 1, k);
+
+	// time O(n * log(k)), space O(k)
+	public int findKthLargestMinQueue(int[] nums, int k) {
+		PriorityQueue<Integer> minQueue = new PriorityQueue<>();
+		for (int num : nums) {
+			minQueue.offer(num);
+			if (minQueue.size() > k) {
+				minQueue.poll();
+			}
+		}
+		return minQueue.peek();
 	}
 
-	private int getKthLargest(int[] nums, int left, int right, int k){
-		if(k > 0 && k <= right - left + 1){
-			int pivot = partition(nums, left, right);
-			int count = pivot - left + 1;
-			if(count == k){
+	// time - average: O(n * log(n)); worst: O(n^2); expected: O (n) with randomization, space O(n)
+	public int findKthLargestQuickSelect(int[] nums, int k) {
+		int low = 0, high = nums.length - 1;
+		while (low <= high) {
+			int pivot = partition(nums, low, high);
+			if (pivot == k - 1) {
 				return nums[pivot];
-			}else if(count > k){
-				return getKthLargest(nums, left, pivot - 1, k);
-			}else{
-				return getKthLargest(nums, pivot + 1, right, k - count);
+			}
+			if (pivot < k - 1) {
+				low = pivot + 1;
+			} else {
+				high = pivot - 1;
 			}
 		}
-		return Integer.MAX_VALUE;
+		return -1;
 	}
 
-	private int partition(int[] nums, int left, int right){
-		// randomization 33ms -> 3ms
-		int index = left + (int)(Math.random()*(right - left));
-		int temp = nums[index];
-		nums[index] = nums[right];
-		nums[right] = temp;
-
-		int pivot = nums[right];
-		int i = left, j = left;
-		for(; j < right; j++){
-			int val = nums[j];
-			if(val > pivot){
-				nums[j] = nums[i];
-				nums[i++] = val;
+	private int partition(int[] nums, int low, int high) {
+		int pivot = low + (new Random()).nextInt(high - low + 1);
+		swap(nums, pivot, high);
+		pivot = low;
+		for (int curr = low; curr < high; curr++) {
+			if (nums[curr] >= nums[high]) {
+				int temp = nums[curr];
+				nums[curr] = nums[pivot];
+				nums[pivot++] = temp;
 			}
 		}
-		nums[right] = nums[i];
-		nums[i] = pivot;
-		return i;
+		swap(nums, pivot, high);
+		return pivot;
+	}
+
+	private void swap(int[] nums, int i, int j) {
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
 	}
 
 	/*

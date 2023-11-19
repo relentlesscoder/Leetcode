@@ -7,6 +7,7 @@ import java.util.LinkedList;
  * #1306 https://leetcode.com/problems/jump-game-iii/
  */
 public class JumpGameIII {
+
 	// BFS, time O(n), space O(n)
 	public boolean canReach(int[] arr, int start) {
 		int n = arr.length;
@@ -43,6 +44,7 @@ public class JumpGameIII {
 			return false;
 		}
 		visited[i] = true;
-		return arr[i] == 0 || dfs(arr, i - arr[i], visited) || dfs(arr, i + arr[i], visited);
+		return arr[i] == 0 || dfs(arr, i - arr[i], visited)
+			|| dfs(arr, i + arr[i], visited);
 	}
 }

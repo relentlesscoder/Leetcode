@@ -8,44 +8,42 @@ import java.util.List;
  * #0247 https://leetcode.com/problems/strobogrammatic-number-ii/
  */
 public class StrobogrammaticNumberII {
-	// time O(5^(n/2))
+
+	private static final char[][] MAPPING = new char[][]{
+			{'0', '0'}, {'1', '1'}, {'6', '9'}, {'8', '8'}, {'9', '6'}
+	};
+	private static final char[] MID = new char[]{'0', '1', '8'};
+
+	// time 5^(n/2)
 	public List<String> findStrobogrammatic(int n) {
 		List<String> res = new ArrayList<>();
-		if(n <= 0){
+		if(n == 0){
 			return res;
 		}
-		char[][] map = new char[][]{
-				{'0','0'},{'1','1'},{'6','9'},{'8','8'},{'9','6'}
-		};
-		char[] mid = new char[]{'0','1','8'};
-		int m = (n - 1)/2;
-		if(n % 2 == 1){
-			for(char c : mid){
-				char[] arr = new char[n];
-				arr[m] = c;
-				dfs(n - 1, m - 1, m + 1, map, arr, res);
-			}
+		if(n % 2 == 0){
+			dfs(n, 0, n - 1, res, new char[n]);
 		}else{
-			dfs(n, m, m + 1, map, new char[n], res);
+			for(int i = 0; i < 3; i++){
+				char[] arr = new char[n];
+				arr[n >> 1] = MID[i];
+				dfs(n - 1, 0, n - 1, res, arr);
+			}
 		}
 		return res;
 	}
 
-	private void dfs(int n, int i, int j, char[][] map, char[] cur, List<String> res){
+	private void dfs(int n, int i, int j, List<String> res, char[] arr){
 		if(n == 0){
-			if(cur.length > 1 && cur[0] == '0'){
+			if(arr[0] == '0' && arr.length > 1){
 				return;
 			}
-			res.add(new String(cur));
+			res.add(new String(arr));
 			return;
 		}
 		for(int k = 0; k < 5; k++){
-			char c1 = cur[i], c2 = cur[j];
-			cur[i] = map[k][0];
-			cur[j] = map[k][1];
-			dfs(n - 2, i - 1, j + 1, map, cur, res);
-			cur[i] = c1;
-			cur[j] = c2;
+			arr[i] = MAPPING[k][0];
+			arr[j] = MAPPING[k][1];
+			dfs(n - 2, i + 1, j - 1, res, arr);
 		}
 	}
 }

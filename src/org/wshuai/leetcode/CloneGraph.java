@@ -7,45 +7,41 @@ import java.util.*;
  * #0133 https://leetcode.com/problems/clone-graph/
  */
 public class CloneGraph {
+
 	// time O(n)
-	public UndirectedGraphNode cloneGraphDFS(UndirectedGraphNode node) {
+	public Node cloneGraph(Node node) {
 		if(node == null){
 			return null;
 		}
-		Map<UndirectedGraphNode, UndirectedGraphNode> mapping = new HashMap<>();
-		mapping.put(node, new UndirectedGraphNode(node.val));
-		dfs(node, mapping);
-		return mapping.get(node);
+		Map<Node, Node> map = new HashMap<>();
+		dfs(node, map);
+		return map.get(node);
 	}
 
-	private void dfs(UndirectedGraphNode node, Map<UndirectedGraphNode, UndirectedGraphNode> mapping){
-		for(UndirectedGraphNode next : node.neighbors){
-			if(mapping.containsKey(next)){
-				mapping.get(node).neighbors.add(mapping.get(next));
-				continue;
-			}else{
-				UndirectedGraphNode copy = new UndirectedGraphNode(next.val);
-				mapping.put(next, copy);
-				mapping.get(node).neighbors.add(copy);
-				dfs(next, mapping);
+	private void dfs(Node node, Map<Node, Node> map){
+		map.put(node, new Node(node.val));
+		for(Node next : node.neighbors){
+			if(!map.containsKey(next)){ // next has not been visited
+				dfs(next, map);
 			}
+			map.get(node).neighbors.add(map.get(next));
 		}
 	}
 
 	// time O(n), space O(n)
-	public UndirectedGraphNode cloneGraphBFS(UndirectedGraphNode node) {
+	public Node cloneGraphBFS(Node node) {
 		if(node == null){
 			return null;
 		}
-		Map<UndirectedGraphNode, UndirectedGraphNode> mapping = new HashMap<>();
-		LinkedList<UndirectedGraphNode> queue = new LinkedList<>();
+		Map<Node, Node> mapping = new HashMap<>();
+		LinkedList<Node> queue = new LinkedList<>();
 		queue.offerLast(node);
-		mapping.put(node, new UndirectedGraphNode(node.val));
+		mapping.put(node, new Node(node.val));
 		while(!queue.isEmpty()){
-			UndirectedGraphNode cur = queue.pollFirst();
-			for(UndirectedGraphNode next : cur.neighbors){
+			Node cur = queue.pollFirst();
+			for(Node next : cur.neighbors){
 				if(!mapping.containsKey(next)){
-					UndirectedGraphNode copy = new UndirectedGraphNode(next.val);
+					Node copy = new Node(next.val);
 					mapping.put(next, copy);
 					mapping.get(cur).neighbors.add(copy);
 					queue.offerLast(next);
@@ -57,14 +53,14 @@ public class CloneGraph {
 		return mapping.get(node);
 	}
 
-	private class UndirectedGraphNode {
+	private class Node {
 		int val;
 
-		List<UndirectedGraphNode> neighbors;
+		List<Node> neighbors;
 
-		UndirectedGraphNode(int x) {
+		Node(int x) {
 			val = x;
-			neighbors = new ArrayList<UndirectedGraphNode>();
+			neighbors = new ArrayList<Node>();
 		}
 	}
 }

@@ -5,18 +5,18 @@ package org.wshuai.leetcode;
  * #0035 https://leetcode.com/problems/search-insert-position/
  */
 public class SearchInsertPosition {
-	// time O(log(n))
+
+	// time O(log(n)), space O(1)
 	public int searchInsert(int[] nums, int target) {
-		int left = 0;
-		int right = nums.length;
-		while(left < right){
-			int mid = left + (right - left) / 2;
-			if(nums[mid] < target){
-				left = mid + 1;
-			}else{
-				right = mid;
+		int low = 0, high = nums.length;
+		while (low < high) {
+			int mid = low + (high - low) / 2;
+			if (nums[mid] >= target) {
+				high = mid;
+			} else {
+				low = mid + 1;
 			}
 		}
-		return left;
+		return low;
 	}
 }

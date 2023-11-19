@@ -9,34 +9,34 @@ import java.util.List;
  * #0207 https://leetcode.com/problems/course-schedule/
  */
 public class CourseSchedule {
-	// time O(V + E)
+
+	// time O(V + E), space O(V + E)
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
-		List<Integer>[] adj = new ArrayList[numCourses];
-		int[] indegree = new int[numCourses];
-		int taken = 0;
+		int[] inDegree = new int[numCourses];
+		LinkedList<Integer> queue = new LinkedList<>();
+		ArrayList<Integer>[] adj = new ArrayList[numCourses];
 		for(int i = 0; i < numCourses; i++){
 			adj[i] = new ArrayList<>();
 		}
-		for(int[] edge : prerequisites){
-			adj[edge[1]].add(edge[0]);
-			indegree[edge[0]]++;
+		for(int[] p : prerequisites){
+			inDegree[p[0]]++;
+			adj[p[1]].add(p[0]);
 		}
-		LinkedList<Integer> queue = new LinkedList<>();
 		for(int i = 0; i < numCourses; i++){
-			if(indegree[i] == 0){
+			if(inDegree[i] == 0){
 				queue.offerLast(i);
 			}
 		}
 		while(!queue.isEmpty()){
 			int cur = queue.pollFirst();
-			taken++;
+			numCourses--;
 			for(int next : adj[cur]){
-				if(--indegree[next] == 0){
+				if(--inDegree[next] == 0){
 					queue.offerLast(next);
 				}
 			}
 		}
-		return taken == numCourses;
+		return numCourses == 0;
 	}
 
 	// time O(V + E)
@@ -45,33 +45,27 @@ public class CourseSchedule {
 		for(int i = 0; i < numCourses; i++){
 			adj[i] = new ArrayList<>();
 		}
-		for(int[] edge : prerequisites){
-			adj[edge[1]].add(edge[0]);
+		for(int[] p : prerequisites){
+			adj[p[1]].add(p[0]);
 		}
 		int[] visited = new int[numCourses];
 		for(int i = 0; i < numCourses; i++){
-			if(!dfs(i, adj, visited)){
+			if(visited[i] == 0 && !dfs(i, visited, adj)){
 				return false;
 			}
 		}
 		return true;
 	}
 
-	private boolean dfs(int i, List<Integer>[] adj, int[] visited){
-		visited[i] = 1;
-
-		for(int next : adj[i]){
-			if(visited[next] == 1){
+	private boolean dfs(int cur, int[] visited, List<Integer>[] adj){
+		visited[cur] = 1;
+		for(int next : adj[cur]){
+			if(visited[next] == 1
+					|| (visited[next] == 0 && !dfs(next, visited, adj))){
 				return false;
 			}
-			if(visited[next] == 0){
-				if(!dfs(next, adj, visited)){
-					return false;
-				}
-			}
 		}
-
-		visited[i] = 2;
+		visited[cur] = 2;
 		return true;
 	}
 }

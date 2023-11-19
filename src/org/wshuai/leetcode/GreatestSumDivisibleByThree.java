@@ -1,12 +1,14 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 11/25/19.
+ * Created by Wei on 11/25/2019.
  * #1262 https://leetcode.com/problems/greatest-sum-divisible-by-three/
  */
 public class GreatestSumDivisibleByThree {
+
+	// time O(n)
 	public int maxSumDivThree(int[] nums) {
-		int N = nums.length;
+		// dp[i] means the current maximum sum that sum % 3 = i
 		int[] dp = new int[]{0, Integer.MIN_VALUE, Integer.MIN_VALUE};
 		for(int n : nums){
 			int[] next = new int[3];

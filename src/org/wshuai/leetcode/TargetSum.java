@@ -7,7 +7,7 @@ package org.wshuai.leetcode;
  */
 public class TargetSum {
 
-	// time O(n*sum*2), space O(n*sum*2)
+	// time O(2*m*n), space O(2*m*n)
 	public int findTargetSumWaysDP(int[] nums, int S) {
 		int sum = 0, n = nums.length;
 		for(int num : nums){
@@ -32,25 +32,25 @@ public class TargetSum {
 		return dp[n][S + sum];
 	}
 
-	// time O(2^n)
-	public int findTargetSumWaysMemorization(int[] nums, int S) {
-		int sum = 0;
+	// time O(2*m*n), space O(2*m*n)
+	public int findTargetSumWays(int[] nums, int S) {
+		int n = nums.length, sum = 0;
 		for(int num : nums){
 			sum += num;
 		}
-		Integer[][] dp = new Integer[nums.length][2 * sum + 1];
-		return dfs(0, nums, sum, S + sum, dp);
+		int m = (sum << 1);
+		return dfs(0, nums, sum + S, sum, new Integer[n + 1][m + 1]);
 	}
 
-	private int dfs(int start, int[] nums, int cur, int target, Integer[][] dp){
+	private int dfs(int start, int[] nums, int target, int cur, Integer[][] dp){
 		if(start == nums.length){
-			return cur == target ? 1 : 0;
+			return target == cur ? 1 : 0;
 		}
 		if(dp[start][cur] != null){
 			return dp[start][cur];
 		}
-		dp[start][cur] = dfs(start + 1, nums, cur - nums[start], target, dp)
-			+ dfs(start + 1, nums, cur + nums[start], target, dp);
+		dp[start][cur] = dfs(start + 1, nums, target, cur + nums[start], dp)
+			+ dfs(start + 1, nums, target, cur - nums[start], dp);
 		return dp[start][cur];
 	}
 }

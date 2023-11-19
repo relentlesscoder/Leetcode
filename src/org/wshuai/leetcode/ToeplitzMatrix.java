@@ -6,7 +6,7 @@ package org.wshuai.leetcode;
  */
 public class ToeplitzMatrix {
 
-	// time O(m*n)
+	// time O(m * n), space O(1)
 	public boolean isToeplitzMatrix(int[][] matrix) {
 		int m = matrix.length, n = matrix[0].length;
 		for (int i = 0; i < m; i++) {
@@ -20,31 +20,25 @@ public class ToeplitzMatrix {
 		return true;
 	}
 
-	// time O(m*n)
+	// time O(m * n), space O(1)
 	public boolean isToeplitzMatrixDiagonalTraversal(int[][] matrix) {
 		int m = matrix.length, n = matrix[0].length;
-		//upper diagonal
-		for(int i = 0; i < m || i < n; i++){
-			for(int x = 0, y = i; x < m && y < n; x++, y++){
-				if(x > 0 && y > 0){
-					if(matrix[x][y] != matrix[x - 1][y - 1]){
-						return false;
-					}
+		for (int k = 0; k < n; k++) {
+			int val = matrix[0][k];
+			for (int i = 0, j = k; i < m && j < n; i++, j++) { // each loop starts from [0, 0] ... [0, 1] ... [0, 2]
+				if (matrix[i][j] != val) {
+					return false;
 				}
 			}
 		}
-		//lower diagonal
-		for(int i = 0; i < m || i < n; i++){
-			int count = 0;
-			for(int x = i, y = 0; x < m && y < n; x++, y++){
-				if(x > 0 && y > 0){
-					if(matrix[x][y] != matrix[x - 1][y - 1]){
-						return false;
-					}
+		for (int k = 0; k < m; k++) {
+			int val = matrix[k][0];
+			for (int i = k, j = 0; i < m && j < n; i++, j++) { // each loop starts from [0, 0] ... [1, 0] ... [2, 0]
+				if (matrix[i][j] != val) {
+					return false;
 				}
 			}
 		}
-
 		return true;
 	}
 }

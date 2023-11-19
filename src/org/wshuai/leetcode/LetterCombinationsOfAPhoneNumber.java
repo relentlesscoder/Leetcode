@@ -8,36 +8,36 @@ import java.util.List;
  * #0017 https://leetcode.com/problems/letter-combinations-of-a-phone-number/
  */
 public class LetterCombinationsOfAPhoneNumber {
-	private static final char[][] map = new char[][]{
-		{'a', 'b', 'c'},
-		{'d', 'e', 'f'},
-		{'g', 'h', 'i'},
-		{'j', 'k', 'l'},
-		{'m', 'n', 'o'},
-		{'p', 'q', 'r', 's'},
-		{'t', 'u', 'v'},
-		{'w', 'x', 'y', 'z'}
+
+	private static final char[][] MAPPING = new char[][]{
+			{'a', 'b', 'c'},
+			{'d', 'e', 'f'},
+			{'g', 'h', 'i'},
+			{'j', 'k', 'l'},
+			{'m', 'n', 'o'},
+			{'p', 'q', 'r', 's'},
+			{'t', 'u', 'v'},
+			{'w', 'x', 'y', 'z'}
 	};
-	private List<String> res;
 
 	// time O(4^n)
 	public List<String> letterCombinations(String digits) {
-		res = new ArrayList<>();
+		List<String> res = new ArrayList<>();
 		if(digits == null || digits.isEmpty()){
 			return res;
 		}
-		dfs(0, digits.toCharArray(), "");
+		dfs(0, digits.toCharArray(), new char[digits.length()], res);
 		return res;
 	}
 
-	private void dfs(int i, char[] chars, String cur){
+	private void dfs(int i, char[] chars, char[] cur, List<String> res){
 		if(i == chars.length){
-			res.add(cur);
+			res.add(String.valueOf(cur));
 			return;
 		}
-		int k = chars[i] - '2';
-		for(char c : map[k]){
-			dfs(i + 1, chars, cur + c);
+		for(char c : MAPPING[chars[i] - '2']){
+			cur[i] = c;
+			dfs(i + 1, chars, cur, res);
 		}
 	}
 }

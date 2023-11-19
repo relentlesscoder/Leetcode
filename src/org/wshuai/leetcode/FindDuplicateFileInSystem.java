@@ -10,27 +10,25 @@ import java.util.Map;
  * #0609 https://leetcode.com/problems/find-duplicate-file-in-system/
  */
 public class FindDuplicateFileInSystem {
-	// time O(n), space O(n)
+
+	// time O(n*d), space O(n*d)
+	// followup answers https://leetcode.com/problems/find-duplicate-file-in-system/discuss/104123/C%2B%2B-clean-solution-answers-to-follow-up
 	public List<List<String>> findDuplicate(String[] paths) {
 		List<List<String>> res = new ArrayList<>();
 		Map<String, List<String>> map = new HashMap<>();
-		for (String path : paths) {
-			String[] strs = path.split("\\s");
-			String directory = strs[0];
-			for (int i = 1; i < strs.length; i++) {
-				String file = strs[i];
-				int j = 0;
-				while (j < file.length() && file.charAt(j) != '(') {
-					j++;
-				}
-				String fileName = file.substring(0, j), content = file.substring(j + 1, file.length() - 1);
+		for(String p : paths){
+			String[] vals = p.split("\\s");
+			String path = vals[0];
+			for(int i = 1; i < vals.length; i++){
+				int index = vals[i].indexOf("(");
+				String cur = vals[i], filename = cur.substring(0, index),
+						content = cur.substring(index + 1, cur.length() - 1);
 				map.putIfAbsent(content, new ArrayList<>());
-				map.get(content).add(directory + "/" + fileName);
+				map.get(content).add(path + "/" + filename);
 			}
 		}
-		for (String key : map.keySet()) {
-			List<String> files = map.get(key);
-			if (files.size() > 1) {
+		for(List<String> files : map.values()){
+			if(files.size() > 1){
 				res.add(files);
 			}
 		}

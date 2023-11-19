@@ -5,7 +5,8 @@ package org.wshuai.leetcode;
  * #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
  */
 public class LongestLineOfConsecutiveOneInMatrix {
-	// time O(m*n)
+
+	// time O(m*n), space O(1)
 	public int longestLine(int[][] M) {
 		if(M == null || M.length == 0 || M[0].length == 0){
 			return 0;

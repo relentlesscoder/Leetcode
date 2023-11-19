@@ -1,30 +1,30 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 9/6/19.
+ * Created by Wei on 09/06/2019.
  * #1120 https://leetcode.com/problems/maximum-average-subtree/
  */
 public class MaximumAverageSubtree {
-	private double maxAvg;
 
+	private double max;
+
+	// time O(n), space O(n)
 	public double maximumAverageSubtree(TreeNode root) {
-		maxAvg = 1.0;
-		maximumAverageSubtreeUtil(root);
-		return maxAvg;
+		max = 0.0;
+		dfs(root);
+		return max;
 	}
 
-	private int[] maximumAverageSubtreeUtil(TreeNode node) {
-		int[] res = new int[2];
-		if (node == null) {
-			return res;
+	private int[] dfs(TreeNode root){
+		if(root == null){
+			return new int[]{0, 0};
 		}
-		int[] left = maximumAverageSubtreeUtil(node.left);
-		int[] right = maximumAverageSubtreeUtil(node.right);
-		int sum = left[0] + right[0] + node.val;
-		int count = left[1] + right[1] + 1;
-		res[0] = sum;
-		res[1] = count;
-		maxAvg = Math.max(maxAvg, sum * 1.0 / count);
+		int[] left = dfs(root.left);
+		int[] right = dfs(root.right);
+		int[] res = new int[]{left[0] + right[0] + root.val,
+			left[1] + right[1] + 1};
+		double avg = res[0] * 1.0 / res[1];
+		max = Math.max(max, avg);
 		return res;
 	}
 }

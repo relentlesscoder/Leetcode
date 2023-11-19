@@ -7,53 +7,47 @@ import java.util.LinkedList;
  * #0297 https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
  */
 public class SerializeAndDeserializeBinaryTree {
+
 	// Encodes a tree to a single string.
 	public String serialize(TreeNode root) {
-		if (root == null) {
-			return null;
+		if(root == null){
+			return "";
 		}
-		StringBuilder sb = new StringBuilder();
+		StringBuilder res = new StringBuilder();
 		LinkedList<TreeNode> queue = new LinkedList<>();
 		queue.offerLast(root);
-		while (!queue.isEmpty()) {
-			int size = queue.size();
-			TreeNode node = queue.pollFirst();
-			if (node != null) {
-				sb.append(Integer.toString(node.val) + ",");
-				queue.offer(node.left);
-				queue.offer(node.right);
-			} else {
-				sb.append("n,");
+		while(!queue.isEmpty()){
+			TreeNode cur = queue.pollFirst();
+			if(cur != null){
+				res.append(cur.val + ",");
+				queue.offerLast(cur.left);
+				queue.offerLast(cur.right);
+			}else{
+				res.append("n,");
 			}
 		}
-		return sb.substring(0, sb.length() - 1);
+		return res.substring(0, res.length() - 1);
 	}
 
 	// Decodes your encoded data to tree.
 	public TreeNode deserialize(String data) {
-		if (data == null || data.isEmpty()) {
+		if(data.length() == 0){
 			return null;
 		}
 		String[] vals = data.split(",");
-		int len = vals.length;
-		LinkedList<TreeNode> queue = new LinkedList<>();
 		TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
-		queue.offer(root);
-		int i = 1;
-		while (i < len && !queue.isEmpty()) {
-			TreeNode parent = queue.poll();
-			String left = vals[i], right = vals[i + 1];
-			if (!left.equals("n")) {
-				TreeNode LeftNode = new TreeNode(Integer.parseInt(left));
-				parent.left = LeftNode;
-				queue.offer(LeftNode);
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		queue.offerLast(root);
+		for(int i = 1; i < vals.length; i += 2){
+			TreeNode parent = queue.pollFirst();
+			if(!vals[i].equals("n")){
+				parent.left = new TreeNode(Integer.parseInt(vals[i]));
+				queue.offerLast(parent.left);
 			}
-			if (!right.equals("n")) {
-				TreeNode rightNode = new TreeNode(Integer.parseInt(right));
-				parent.right = rightNode;
-				queue.offer(rightNode);
+			if(!vals[i + 1].equals("n")){
+				parent.right = new TreeNode(Integer.parseInt(vals[i + 1]));
+				queue.offerLast(parent.right);
 			}
-			i += 2;
 		}
 		return root;
 	}

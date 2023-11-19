@@ -5,9 +5,29 @@ package org.wshuai.leetcode;
  * #0270 https://leetcode.com/problems/closest-binary-search-tree-value/
  */
 public class ClosestBinarySearchTreeValue {
+
+	// time O(log(n))
+	public int closestValue(TreeNode root, double target) {
+		int res = -1;
+		double min = Double.MAX_VALUE;
+		while(root != null){
+			double diff = Math.abs(target - root.val);
+			if(diff < min){
+				min = diff;
+				res = root.val;
+			}
+			if(target > root.val){
+				root = root.right;
+			}else{
+				root = root.left;
+			}
+		}
+		return res;
+	}
+
 	// time O(n), space O(1)
 	// Morris traversal
-	public int closestValue(TreeNode root, double target) {
+	public int closestValueMorris(TreeNode root, double target) {
 		TreeNode cur = root;
 		int res = 0;
 		double diff = Double.MAX_VALUE;

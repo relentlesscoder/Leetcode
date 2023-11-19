@@ -9,49 +9,32 @@ import java.util.Stack;
  * #1305 https://leetcode.com/problems/all-elements-in-two-binary-search-trees/
  */
 public class AllElementsInTwoBinarySearchTrees {
+
+	// time O(m+n), space O(m+n)
 	public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
-		List<Integer> list1 = inOrder(root1);
-		List<Integer> list2 = inOrder(root2);
-		return mergeSortedList(list1, list2);
-	}
-
-	private List<Integer> inOrder(TreeNode root){
 		List<Integer> res = new ArrayList<>();
-		Stack<TreeNode> stack = new Stack<>();
-		TreeNode cur = root;
-		while(!stack.isEmpty() || cur != null){
-			if(cur == null){
-				TreeNode prev = stack.pop();
-				res.add(prev.val);
-				cur = prev.right;
+		Stack<TreeNode> stack1 = new Stack<>(), stack2 = new Stack<>();
+		pushLeft(stack1, root1);
+		pushLeft(stack2, root2);
+		while(!stack1.isEmpty() || !stack2.isEmpty()){
+			Stack<TreeNode> cur;
+			if(stack1.isEmpty()){
+				cur = stack2;
+			}else if(stack2.isEmpty()){
+				cur = stack1;
 			}else{
-				stack.push(cur);
-				cur = cur.left;
+				cur = stack1.peek().val < stack2.peek().val ? stack1 : stack2;
 			}
+			res.add(cur.peek().val);
+			pushLeft(cur, cur.pop().right);
 		}
 		return res;
 	}
 
-	private List<Integer> mergeSortedList(List<Integer> list1, List<Integer> list2){
-		List<Integer> res = new ArrayList<>();
-		int i = 0, j = 0;
-		while(i < list1.size() || j < list2.size()){
-			if(i == list1.size()){
-				res.add(list2.get(j++));
-				continue;
-			}
-			if(j == list2.size()){
-				res.add(list1.get(i++));
-				continue;
-			}
-			int val1 = list1.get(i);
-			int val2 = list2.get(j);
-			if(val1 < val2){
-				res.add(list1.get(i++));
-			}else{
-				res.add(list2.get(j++));
-			}
+	private void pushLeft(Stack<TreeNode> stack, TreeNode node){
+		while(node != null){
+			stack.push(node);
+			node = node.left;
 		}
-		return res;
 	}
 }

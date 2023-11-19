@@ -5,25 +5,21 @@ package org.wshuai.leetcode;
  * #0129 https://leetcode.com/problems/sum-root-to-leaf-numbers/
  */
 public class SumRootToLeafNumbers {
-	private int sum;
 
 	// time O(n)
 	public int sumNumbers(TreeNode root) {
-		sum = 0;
-		dfs(root, 0);
-		return sum;
+		if(root == null){
+			return 0;
+		}
+		return dfs(root, 0);
 	}
 
-	private void dfs(TreeNode root, int cur){
-		if(root == null){
-			return;
-		}
+	private int dfs(TreeNode root, int cur){
 		cur = cur * 10 + root.val;
 		if(root.left == null && root.right == null){
-			sum += cur;
-			return;
+			return cur;
 		}
-		dfs(root.left, cur);
-		dfs(root.right, cur);
+		return (root.left == null ? 0 : dfs(root.left, cur))
+				+ (root.right == null ? 0 : dfs(root.right, cur));
 	}
 }

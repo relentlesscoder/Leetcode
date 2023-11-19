@@ -1,39 +1,37 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Wei on 08/09/2019.
  * #0819 https://leetcode.com/problems/most-common-word/
  */
 public class MostCommonWord {
+
 	// time O(n)
 	public String mostCommonWord(String paragraph, String[] banned) {
-		Set<String> ban = new HashSet<>();
-		Map<String, Integer> map = new HashMap<>();
-		for(String b : banned){
-			ban.add(b);
-		}
 		String res = "";
+		int max = 0;
 		paragraph += "#";
-		int n = paragraph.length(), max = 0;
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < n; i++){
+		Set<String> set = new HashSet<>(Arrays.asList(banned));
+		Map<String, Integer> map = new HashMap<>();
+		StringBuilder cur = new StringBuilder();
+		for(int i = 0; i < paragraph.length(); i++){
 			char c = paragraph.charAt(i);
 			if(Character.isAlphabetic(c)){
-				sb.append(Character.toLowerCase(c));
-			}else if(sb.length() > 0){
-				String cur = sb.toString();
-				int count = map.getOrDefault(cur, 0) + 1;
-				map.put(cur, count);
-				if(count > max && !ban.contains(cur)){
-					max = count;
-					res = cur;
+				cur.append(Character.toLowerCase(c));
+			}else if(cur.length() > 0){
+				String word = cur.toString();
+				cur = new StringBuilder();
+				if(set.contains(word)){
+					continue;
 				}
-				sb = new StringBuilder();
+				int count = map.getOrDefault(word, 0) + 1;
+				map.put(word, count);
+				if(count > max){
+					max = count;
+					res = word;
+				}
 			}
 		}
 		return res;

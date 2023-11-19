@@ -1,6 +1,5 @@
 package org.wshuai.leetcode;
 
-import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -8,35 +7,33 @@ import java.util.Stack;
  * #0155 https://leetcode.com/problems/min-stack/
  */
 public class MinStack {
-	// single stack solution -
-	// https://leetcode.com/problems/min-stack/discuss/49014/Java-accepted-solution-using-one-stack
-	private Stack<Integer> stack;
+
+	private Stack<Integer> data;
+
 	private Stack<Integer> mins;
 
 	/** initialize your data structure here. */
 	public MinStack() {
-		stack = new Stack<>();
+		data = new Stack<>();
 		mins = new Stack<>();
 	}
 
 	public void push(int x) {
-		stack.push(x);
-		mins.push(mins.isEmpty() ? x : Math.min(x, mins.peek()));
+		data.push(x);
+		mins.push(Math.min(mins.isEmpty() ?
+			Integer.MAX_VALUE : mins.peek(), x));
 	}
 
 	public void pop() {
-		if(stack.isEmpty()){
-			return;
-		}
-		stack.pop();
+		data.pop();
 		mins.pop();
 	}
 
-	public int top() throws EmptyStackException {
-		return stack.peek();
+	public int top() {
+		return data.peek();
 	}
 
-	public int getMin() throws EmptyStackException {
+	public int getMin() {
 		return mins.peek();
 	}
 }

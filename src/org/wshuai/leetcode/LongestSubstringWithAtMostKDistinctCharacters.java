@@ -5,20 +5,23 @@ package org.wshuai.leetcode;
  * #0340 https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
  */
 public class LongestSubstringWithAtMostKDistinctCharacters {
+
 	// time O(n)
 	public int lengthOfLongestSubstringKDistinct(String s, int k) {
-		int res = 0, i = 0, j = 0, nums = 0;
+		if(s == null || s.length() == 0){
+			return 0;
+		}
+		int res = 0, n = s.length();
 		int[] count = new int[256];
-		for(; i < s.length(); i++){
-			if(count[s.charAt(i)]++ == 0){
-				nums++;
+		for(int i = 0, j = 0, distinct = 0; j < n; j++){
+			if(count[s.charAt(j)]++ == 0){
+				distinct++;
 			}
-			if(nums > k){
-				while(--count[s.charAt(j++)] > 0){
-				}
-				nums--;
+			if(distinct > k){
+				while(--count[s.charAt(i++)] > 0);
+				distinct--;
 			}
-			res = Math.max(res, i - j + 1);
+			res = Math.max(res, j - i + 1);
 		}
 		return res;
 	}

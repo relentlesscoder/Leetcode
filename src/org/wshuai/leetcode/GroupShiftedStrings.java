@@ -10,28 +10,25 @@ import java.util.Map;
  * #0249 https://leetcode.com/problems/group-shifted-strings/
  */
 public class GroupShiftedStrings {
-	// time O(n), space O(n)
+
+	// time O(n * l), space O(n * l)
 	public List<List<String>> groupStrings(String[] strings) {
 		List<List<String>> res = new ArrayList<>();
 		Map<String, List<String>> map = new HashMap<>();
-		for(String s : strings){
-			String key = getKey(s.toCharArray());
+		for (String s : strings) {
+			char[] arr = s.toCharArray();
+			int offset = arr[0] - 'a';
+			arr[0] = 'a';
+			for (int i = 1; i < arr.length; i++) {
+				arr[i] = (char)((arr[i] - offset + 26) % 26);
+			}
+			String key = String.valueOf(arr);
 			map.putIfAbsent(key, new ArrayList<>());
 			map.get(key).add(s);
 		}
-		for(List<String> list : map.values()){
+		for (List<String> list : map.values()) {
 			res.add(list);
 		}
 		return res;
-	}
-
-	private String getKey(char[] arr){
-		int diff = arr[0] - 'a';
-		char[] res = new char[arr.length];
-		for(int i = 0; i < arr.length; i++){
-			int cur = (arr[i] - diff + 26) % 26;
-			res[i] = (char)('a' + cur);
-		}
-		return new String(res);
 	}
 }

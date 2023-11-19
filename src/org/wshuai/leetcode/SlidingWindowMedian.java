@@ -8,9 +8,11 @@ import java.util.TreeSet;
  * #0480 https://leetcode.com/problems/sliding-window-median/
  */
 public class SlidingWindowMedian {
+
 	// time O(n*log(k)), space O(k)
 	// run time : 26ms
 	public double[] medianSlidingWindow(int[] nums, int k) {
+
 		// need to save index to the queue to handle duplicates
 		TreeSet<Integer> minQueue = new TreeSet<>((a, b) -> nums[a] != nums[b] ?
 			Integer.compare(nums[a], nums[b]) : a - b);

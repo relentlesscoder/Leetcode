@@ -7,6 +7,7 @@ import java.util.*;
  * #0301 https://leetcode.com/problems/remove-invalid-parentheses/
  */
 public class RemoveInvalidParentheses {
+
 	// time O(2^(l+r)), space O((l+r)^2)
 	// https://www.youtube.com/watch?v=2k_rS_u6EBk
 	public List<String> removeInvalidParentheses(String s) {
@@ -15,56 +16,61 @@ public class RemoveInvalidParentheses {
 			res.add("");
 			return res;
 		}
-		int l = 0, r = 0;
-		for(char c : s.toCharArray()){
-			if(c != '(' && c != ')'){
-				continue;
-			}
-			l += (c == '(' ? 1 : 0);
-			if(l == 0){
-				r += (c == ')' ? 1 : 0);
-			}else{
-				l -= (c == ')' ? 1 : 0);
+		int n = s.length(), l = 0, r = 0;
+		// find number of '(' and ')' to be removed
+		for(int i = 0; i < n; i++){
+			char c = s.charAt(i);
+			if(c == '('){
+				l++;
+			}else if(c == ')'){
+				if(l == 0){
+					r++;
+				}else{
+					l--;
+				}
 			}
 		}
+		// use dfs to find all valid results after removals
 		dfs(s, 0, l, r, res);
 		return res;
 	}
 
 	private void dfs(String s, int start, int open, int close, List<String> res){
 		if(open == 0 && close == 0){
-			if(valid(s)){
+			if(isValid(s)){
 				res.add(s);
 			}
 			return;
 		}
 		for(int i = start; i < s.length(); i++){
-			char cur = s.charAt(i);
-			if(i != start && cur == s.charAt(i - 1)){
+			// remove duplicate branches "((())"
+			if(i != start && s.charAt(i) == s.charAt(i - 1)){
 				continue;
 			}
+			char cur = s.charAt(i);
 			if(cur == '(' || cur == ')'){
 				String t = s.substring(0, i) + s.substring(i + 1);
-				if(close > 0 && cur == ')'){
-					dfs(t, i, open, close - 1, res);
-				}else if(open > 0 && cur == '('){
+				if(cur == '(' && open > 0){
 					dfs(t, i, open - 1, close, res);
+				}else if(cur == ')' && close > 0){
+					dfs(t, i, open, close - 1, res);
 				}
 			}
 		}
 	}
 
-	private boolean valid(String s){
-		int count = 0;
-		for(char c : s.toCharArray()){
-			if(c != '(' && c != ')'){
-				continue;
-			}
-			count += c == '(' ? 1 : -1;
-			if(count < 0){
-				return false;
+	private boolean isValid(String s){
+		int v = 0;
+		for(int i = 0; i < s.length(); i++){
+			char c = s.charAt(i);
+			if(c == '('){
+				v++;
+			}else if(c == ')'){
+				if(--v < 0){
+					return false;
+				}
 			}
 		}
-		return count == 0;
+		return true;
 	}
 }

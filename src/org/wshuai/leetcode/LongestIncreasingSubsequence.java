@@ -6,26 +6,25 @@ package org.wshuai.leetcode;
  */
 public class LongestIncreasingSubsequence {
 
-	// time O(n*log(n))
-	// https://github.com/RodneyShag/LeetCode_solutions/blob/master/Solutions/Longest%20Increasing%20Subsequence.md
-	// https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
+	// time O(n*log(n)), space O(n)
+	// https://segmentfault.com/a/1190000003819886
 	public int lengthOfLIS(int[] nums) {
 		if(nums == null || nums.length == 0){
 			return 0;
 		}
 		int res = 0, n = nums.length;
-		int[] sorted = new int[n];
+		int[] tails = new int[n];
 		for(int num : nums){
 			int left = 0, right = res;
 			while(left < right){
 				int mid = left + (right - left) / 2;
-				if(sorted[mid] < num){
+				if(tails[mid] < num){
 					left = mid + 1;
 				}else{
 					right = mid;
 				}
 			}
-			sorted[left] = num;
+			tails[left] = num;
 			if(left == res){
 				res++;
 			}
@@ -33,7 +32,7 @@ public class LongestIncreasingSubsequence {
 		return res;
 	}
 
-    // time O(n^2)
+    // time O(n^2), space O(n)
 	public int lengthOfLISDP(int[] nums) {
 		if (nums == null || nums.length == 0) {
 			return 0;

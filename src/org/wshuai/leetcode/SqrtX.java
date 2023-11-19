@@ -5,20 +5,21 @@ package org.wshuai.leetcode;
  * #0069 https://leetcode.com/problems/sqrtx/
  */
 public class SqrtX {
-	// time log(n)
+
+	// time O(log(n)), space O(1)
 	public int mySqrt(int x) {
-		if(x == 0){
-			return 0;
+		if (x < 2) {
+			return x;
 		}
-		int left = 1, right = x;
-		while(left < right){
-			int mid = left + (right - left + 1) / 2;
-			if(mid > x / mid){
-				right = mid - 1;
-			}else{
-				left = mid;
+		int low = 0, high = x;
+		while (low < high) {
+			int mid = (low + high) >> 1;
+			if (mid > x / mid) { // avoid overflow
+				high = mid;
+			} else {
+				low = mid + 1;
 			}
 		}
-		return left;
+		return low - 1;
 	}
 }

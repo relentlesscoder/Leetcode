@@ -30,39 +30,36 @@ public class MergeKSortedLists {
 		return root.next;
 	}
 
-	// time O(n*log(k)), space O(1) 2ms
+	// time O(nk*log(k)), space O(1) 2ms
 	public LinkedListNode mergeKListsDivideAndConquer(LinkedListNode[] lists) {
-		if (lists == null || lists.length == 0) {
+		if(lists == null || lists.length == 0){
 			return null;
 		}
-
-		int len = lists.length;
-		return mergeKListsUtil(lists, 0, len - 1);
+		return mergeLists(lists, 0, lists.length - 1);
 	}
 
-	private LinkedListNode mergeKListsUtil(LinkedListNode[] lists, int p, int q) {
-		if (p == q) {
-			return lists[p];
-		} else {
-			int r = p + (q - p) / 2;
-			LinkedListNode left = mergeKListsUtil(lists, p, r);
-			LinkedListNode right = mergeKListsUtil(lists, r + 1, q);
-			return mergeTwoLists(left, right);
+	private LinkedListNode mergeLists(LinkedListNode[] lists, int i, int j){
+		if(i == j){
+			return lists[i];
+		}else{
+			int k = i + (j - i) / 2;
+			LinkedListNode a = mergeLists(lists, i, k);
+			LinkedListNode b = mergeLists(lists, k + 1, j);
+			return merge(a, b);
 		}
 	}
 
-	public LinkedListNode mergeTwoLists(LinkedListNode l1, LinkedListNode l2) {
-		LinkedListNode root = new LinkedListNode(0);
-		LinkedListNode cur = root;
-		while(l1 != null || l2 != null){
-			int v1 = l1 == null ? Integer.MAX_VALUE : l1.val;
-			int v2 = l2 == null ? Integer.MAX_VALUE : l2.val;
+	private LinkedListNode merge(LinkedListNode a, LinkedListNode b){
+		LinkedListNode root = new LinkedListNode(-1), cur = root;
+		while(a != null || b != null){
+			int v1 = a != null ? a.val : Integer.MAX_VALUE;
+			int v2 = b != null ? b.val : Integer.MAX_VALUE;
 			if(v1 <= v2){
-				cur.next = l1;
-				l1 = l1.next;
+				cur.next = a;
+				a = a.next;
 			}else{
-				cur.next = l2;
-				l2 = l2.next;
+				cur.next = b;
+				b = b.next;
 			}
 			cur = cur.next;
 		}

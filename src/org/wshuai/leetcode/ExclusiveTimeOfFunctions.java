@@ -8,22 +8,22 @@ import java.util.Stack;
  * #0636 https://leetcode.com/problems/exclusive-time-of-functions/
  */
 public class ExclusiveTimeOfFunctions {
+
 	// time O(n), space O(n)
 	public int[] exclusiveTime(int n, List<String> logs) {
 		int[] res = new int[n];
 		Stack<int[]> stack = new Stack<>();
-		for (String log : logs) {
-			String[] strs = log.split(":");
-			int id = Integer.parseInt(strs[0]), ts = Integer.parseInt(strs[2]);
-			if (strs[1].equals("start")) {
-				// [Id, timestamp, parentId]
-				stack.push(new int[]{id, ts, stack.isEmpty() ? -1 : stack.peek()[0]});
-			} else {
+		for(String s : logs){
+			String[] vals = s.split(":");
+			int id = Integer.parseInt(vals[0]), ts = Integer.parseInt(vals[2]);
+			if(vals[1].equals("start")){
+				stack.push(new int[]{id, ts});
+			}else{
 				int[] start = stack.pop();
-				int cur = ts - start[1] + 1;
-				res[start[0]] += cur;
-				if (start[2] != -1) {
-					res[start[2]] -= cur;
+				int timespan = ts - start[1] + 1;
+				res[id] += timespan;
+				if(!stack.isEmpty()){ // deduct the timespan from parent task
+					res[stack.peek()[0]] -= timespan;
 				}
 			}
 		}

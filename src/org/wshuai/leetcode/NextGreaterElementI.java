@@ -9,6 +9,7 @@ import java.util.Stack;
  * #0496 https://leetcode.com/problems/next-greater-element-i/
  */
 public class NextGreaterElementI {
+
 	// time O(m+n), space O(m)
 	public int[] nextGreaterElement(int[] nums1, int[] nums2) {
 		Map<Integer, Integer> map = new HashMap<>();

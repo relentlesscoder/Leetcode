@@ -5,30 +5,22 @@ package org.wshuai.leetcode;
  * #0125 https://leetcode.com/problems/valid-palindrome/
  */
 public class ValidPalindrome {
-	// time O(n)
+
+	// time O(n), space O(1)
 	public boolean isPalindrome(String s) {
-		int n = s.length(), i = 0, j = n - 1;
-		if(n == 0){
-			return true;
-		}
-		char[] arr = s.toLowerCase().toCharArray();
-		while(i < j){
-			char l = arr[i], r = arr[j];
-			if(!isAlphaNumeric(l)){
-				i++;
-			}else if(!isAlphaNumeric(r)){
-				j--;
-			}else if(l != r){
+		int left = 0, right = s.length() - 1;
+		while (left <= right) {
+			if (!Character.isLetterOrDigit(s.charAt(left))) {
+				left++;
+			} else if (!Character.isLetterOrDigit(s.charAt(right))) {
+				right--;
+			} else if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
 				return false;
-			}else{
-				i++;
-				j--;
+			} else {
+				left++;
+				right--;
 			}
 		}
 		return true;
-	}
-
-	private boolean isAlphaNumeric(char c){
-		return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'z');
 	}
 }

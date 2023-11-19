@@ -6,21 +6,19 @@ package org.wshuai.leetcode;
  */
 public class MaximumSubarray {
 
-	// time O(n), Kadane's algorithm
+	// time O(n), space O(1)
 	public int maxSubArray(int[] nums) {
-		int res = nums[0];
-		for(int i = 1; i < nums.length; i++){
-			if(nums[i - 1] > 0){
-				nums[i] += nums[i - 1];
-			}
-			res = Math.max(res, nums[i]);
+		int currentSubarray = 0, maxSubarray = Integer.MIN_VALUE;
+		for (int i = 0; i < nums.length; i++) {
+			currentSubarray = Math.max(currentSubarray + nums[i], nums[i]);
+			maxSubarray = Math.max(maxSubarray, currentSubarray);
 		}
-		return res;
+		return maxSubarray;
 	}
 
-	// time O(n*log(n)), divide and conquer
-	// good picture at https://leetcode.com/problems/maximum-subarray/solution/
-	public int maxSubArrayDC(int[] nums) {
+	// time O(n*log(n)), space O(log(n))
+	public int maxSubArrayDivideAndConquer(int[] nums) {
+		// see good picture at https://leetcode.com/problems/maximum-subarray/solution/
 		return maxSubArrayUtil(nums, 0, nums.length - 1);
 	}
 

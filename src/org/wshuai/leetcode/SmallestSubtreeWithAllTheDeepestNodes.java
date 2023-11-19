@@ -1,59 +1,35 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 /**
- * Created by Wei on 9/25/19.
- * #865 https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/
+ * Created by Wei on 09/25/2019.
+ * #0865 https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/
  */
 public class SmallestSubtreeWithAllTheDeepestNodes {
-	private TreeNode res;
-	private int maxDepth;
-	private Map<Integer, Set<TreeNode>> map;
 
+	// time O(n)
 	public TreeNode subtreeWithAllDeepest(TreeNode root) {
-		res = root;
-		maxDepth = 0;
-		map = new HashMap<>();
-		dfsDepth(root, 0);
-		if(map.get(maxDepth).size() == 1){
-			return map.get(maxDepth).iterator().next();
-		}
-		dfs(root);
-		return res;
+		return dfs(root).node;
 	}
 
-	private void dfsDepth(TreeNode node, int depth){
-		if(node == null){
-			return;
+	private Pair dfs(TreeNode root){
+		if(root == null){
+			return new Pair(null, 0);
 		}
-		if(!map.containsKey(depth)){
-			map.put(depth, new HashSet<TreeNode>());
-		}
-		map.get(depth).add(node);
-		maxDepth = Math.max(maxDepth, depth);
-		dfsDepth(node.left, depth + 1);
-		dfsDepth(node.right, depth + 1);
+		Pair left = dfs(root.left), right = dfs(root.right);
+		int leftDepth = left.depth, rightDepth = right.depth;
+		return new Pair(leftDepth == rightDepth ? root : leftDepth > rightDepth ? left.node : right.node,
+				1 + Math.max(leftDepth, rightDepth));
 	}
 
-	private int dfs(TreeNode node){
-		if(node == null){
-			return 0;
+	private class Pair{
+
+		private TreeNode node;
+
+		private int depth;
+
+		private Pair(TreeNode node, int depth){
+			this.node = node;
+			this.depth = depth;
 		}
-		if(map.get(maxDepth).contains(node)){
-			return 1;
-		}
-		int left = dfs(node.left);
-		int right = dfs(node.right);
-		if(left == 1 && right == 1){
-			res = node;
-			return 1;
-		}else if(left == 1 || right == 1){
-			return 1;
-		}
-		return 0;
 	}
 }

@@ -1,26 +1,29 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 12/9/2019.
+ * Created by Wei on 12/09/2019.
  * #1283 https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
  */
 public class FindTheSmallestDivisorGivenAThreshold {
+
+	// time O(n * log(max)), space O(1)
 	public int smallestDivisor(int[] nums, int threshold) {
-		int left = 1;
-		int right = 1_000_000;
-		while(left < right){
-			int mid = (left + right) / 2;
-			int sum = 0;
-			for(int n : nums){
-				// remember this integer division ceiling method
-				sum += (n + mid - 1) / mid;
+		int low = 1, high = 1;
+		for (int num : nums) {
+			high = Math.max(high, num);
+		}
+		while (low < high) {
+			int mid = low + (high - low) / 2, sum = 0;
+			for (int num : nums) {
+				sum += (num + mid - 1) / mid;
 			}
-			if(sum > threshold){
-				left = mid + 1;
-			}else{
-				right = mid;
+			if (sum <= threshold) {
+				high = mid;
+			} else {
+				low = mid + 1;
 			}
 		}
-		return left;
+		return low;
 	}
+
 }

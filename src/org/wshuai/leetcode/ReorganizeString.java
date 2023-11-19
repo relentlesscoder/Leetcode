@@ -1,5 +1,6 @@
 package org.wshuai.leetcode;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
@@ -7,36 +8,38 @@ import java.util.PriorityQueue;
  * #0767 https://leetcode.com/problems/reorganize-string/
  */
 public class ReorganizeString {
-	// time O(n*log(26))
+
+	// time O(n*log(d)), space O(d), d <= 26 is count of unique characters in s
 	public String reorganizeString(String S) {
-		StringBuilder res = new StringBuilder();
-		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[1] - a[1]);
+		if(S == null || S.length() == 0){
+			return "";
+		}
+		StringBuilder sb = new StringBuilder();
 		int[] count = new int[26];
 		for(char c : S.toCharArray()){
 			count[c - 'a']++;
 		}
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] == b[1] ?
+				a[0] - b[0] : b[1] - a[1]);
 		for(int i = 0; i < 26; i++){
-			if(count[i] > 0){
-				pq.offer(new int[]{i, count[i]});
+			if(count[i] == 0){
+				continue;
+			}
+			pq.offer(new int[]{i, count[i]});
+		}
+		LinkedList<int[]> queue = new LinkedList<>();
+		while(!pq.isEmpty()){
+			int[] cur = pq.poll();
+			sb.append((char)(cur[0] + 'a'));
+			cur[1]--;
+			queue.offerLast(cur);
+			if(queue.size() >= 2){ // the first character in queue can be reused
+				int[] front = queue.pollFirst();
+				if(front[1] > 0){
+					pq.offer(front);
+				}
 			}
 		}
-		while(pq.size() > 1){
-			int[] arr1 = pq.poll(), arr2 = pq.poll();
-			res.append((char)('a' + arr1[0]));
-			res.append((char)('a' + arr2[0]));
-			if(--arr1[1] > 0){
-				pq.offer(arr1);
-			}
-			if(--arr2[1] > 0){
-				pq.offer(arr2);
-			}
-		}
-		if(pq.size() > 0){
-			if(pq.peek()[1] > 1){
-				return "";
-			}
-			res.append((char)('a' + pq.peek()[0]));
-		}
-		return res.toString();
+		return sb.length() == S.length() ? sb.toString() : "";
 	}
 }

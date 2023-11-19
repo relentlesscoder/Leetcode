@@ -8,6 +8,13 @@ import java.util.List;
  * #0248 https://leetcode.com/problems/strobogrammatic-number-iii/
  */
 public class StrobogrammaticNumberIII {
+
+	private static final char[][] MAPPING = new char[][]{
+			{'0','0'},{'1','1'},{'6','9'},{'8','8'},{'9','6'}
+	};
+	private static final char[] MID = new char[]{'0','1','8'};
+
+	// time O(sum(5^(d/2))
 	public int strobogrammaticInRange(String low, String high) {
 		int res = 0;
 		List<String> list = new ArrayList<String>();
@@ -29,19 +36,15 @@ public class StrobogrammaticNumberIII {
 		if(n <= 0){
 			return res;
 		}
-		char[][] map = new char[][]{
-				{'0','0'},{'1','1'},{'6','9'},{'8','8'},{'9','6'}
-		};
-		char[] mid = new char[]{'0','1','8'};
 		int m = (n - 1)/2;
 		if(n % 2 == 1){
-			for(char c : mid){
+			for(char c : MID){
 				char[] arr = new char[n];
 				arr[m] = c;
-				dfs(n - 1, m - 1, m + 1, map, arr, res);
+				dfs(n - 1, m - 1, m + 1, MAPPING, arr, res);
 			}
 		}else{
-			dfs(n, m, m + 1, map, new char[n], res);
+			dfs(n, m, m + 1, MAPPING, new char[n], res);
 		}
 		return res;
 	}
@@ -59,8 +62,6 @@ public class StrobogrammaticNumberIII {
 			cur[i] = map[k][0];
 			cur[j] = map[k][1];
 			dfs(n - 2, i - 1, j + 1, map, cur, res);
-			cur[i] = c1;
-			cur[j] = c2;
 		}
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Map;
  * #0449 https://leetcode.com/problems/serialize-and-deserialize-bst/
  */
 public class SerializeAndDeserializeBST {
+
 	// Encodes a tree to a single string.
 	public String serialize(TreeNode root) {
 		if(root == null){

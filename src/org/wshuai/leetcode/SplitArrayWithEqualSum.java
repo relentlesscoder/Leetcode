@@ -8,6 +8,7 @@ import java.util.Set;
  * #0548 https://leetcode.com/problems/split-array-with-equal-sum/
  */
 public class SplitArrayWithEqualSum {
+
 	// time O(n^3), space O(n)
 	public boolean splitArray(int[] nums) {
 		int n = nums.length;

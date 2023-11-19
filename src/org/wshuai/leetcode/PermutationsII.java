@@ -7,28 +7,29 @@ import java.util.*;
  * #0047 https://leetcode.com/problems/permutations-ii/
  */
 public class PermutationsII {
+
 	// time O(n!)
 	public List<List<Integer>> permuteUnique(int[] nums) {
-		List<List<Integer>> res = new ArrayList<>();
 		Arrays.sort(nums);
-		dfs(nums, new ArrayList<>(), new boolean[nums.length], res);
+		List<List<Integer>> res = new ArrayList<>();
+		dfs(nums, new boolean[nums.length], new ArrayList<Integer>(), res);
 		return res;
 	}
 
-	private void dfs(int[] nums, List<Integer> cur, boolean[] used, List<List<Integer>> res){
+	private void dfs(int[] nums, boolean[] used, List<Integer> cur, List<List<Integer>> res){
 		if(cur.size() == nums.length){
-			res.add(new ArrayList<>(cur));
+			res.add(new ArrayList<Integer>(cur));
 			return;
 		}
 		for(int i = 0; i < nums.length; i++){
-			if(used[i] || (i > 0 && nums[i] == nums[i - 1] && used[i - 1])){
+			if(used[i] || (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])){
 				continue;
 			}
-			cur.add(nums[i]);
 			used[i] = true;
-			dfs(nums, cur, used, res);
-			used[i] = false;
+			cur.add(nums[i]);
+			dfs(nums, used, cur, res);
 			cur.remove(cur.size() - 1);
+			used[i] = false;
 		}
 	}
 }

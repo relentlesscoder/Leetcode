@@ -8,6 +8,7 @@ import java.util.Map;
  * #0105 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
  */
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
+
 	// time O(n), space O(n)
 	public TreeNode buildTree(int[] preorder, int[] inorder) {
 		Map<Integer, Integer> map = new HashMap<>();
@@ -18,6 +19,8 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
 	}
 
 	private TreeNode dfs(int[] preorder, int i, int j, int m, int n, Map<Integer, Integer> map){
+		// i, j denotes the range in preorder
+		// m, n denotes the range in inorder
 		if(i > j){
 			return null;
 		}
@@ -25,6 +28,7 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
 		if(i == j){
 			return root;
 		}
+		// use inorder index (from hash map) to calculate number of left subtree nodes
 		int k = map.get(preorder[i]) - m;
 		root.left = dfs(preorder, i + 1, i + k, m, m + k - 1, map);
 		root.right = dfs(preorder, i + k + 1, j, m + k + 1, n, map);

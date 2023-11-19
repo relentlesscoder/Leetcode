@@ -7,29 +7,32 @@ import java.util.Stack;
  * #0394 https://leetcode.com/problems/decode-string/
  */
 public class DecodeString {
-	// time O(n)
+
+	// time O(n), space O(n)
 	public String decodeString(String s) {
-		if (s == null || s.isEmpty()) {
+		if(s == null || s.isEmpty()){
 			return "";
 		}
+		int n = s.length();
 		StringBuilder sb = new StringBuilder();
 		Stack<Integer> count = new Stack<>();
-		Stack<StringBuilder> decode = new Stack<>();
-		for (int i = 0; i < s.length(); i++) {
+		Stack<StringBuilder> strs = new Stack<>();
+		for(int i = 0; i < n; i++){
 			char c = s.charAt(i);
-			if (c == '[') {
+			if(c == '['){
 				count.push(Integer.parseInt(sb.toString()));
 				sb = new StringBuilder();
-			} else if (c == ']') {
-				int repeat = count.pop();
+			}else if(c == ']'){
 				String cur = sb.toString();
-				while (repeat-- > 0) {
-					decode.peek().append(cur);
+				int repeat = count.pop();
+				while(repeat-- > 0){
+					strs.peek().append(cur);
 				}
-				sb = decode.pop();
-			} else {
-				if (Character.isDigit(c) && (i == 0 || !Character.isDigit(s.charAt(i - 1)))) {
-					decode.push(sb);
+				sb = strs.pop();
+			}else{
+				if(Character.isDigit(c) &&
+					(i == 0 || !Character.isDigit(s.charAt(i - 1)))){
+					strs.push(sb);
 					sb = new StringBuilder();
 				}
 				sb.append(c);

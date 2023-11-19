@@ -5,23 +5,24 @@ package org.wshuai.leetcode;
  * #0824 https://leetcode.com/problems/goat-latin/
  */
 public class GoatLatin {
+
 	// time O(n), space O(n)
 	public String toGoatLatin(String S) {
-		StringBuilder res = new StringBuilder();
-		String[] strs = S.split("\\s");
-		for(int i = 0; i < strs.length; i++){
-			char c = strs[i].charAt(0);
-			if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
-					|| c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U'){
-				res.append(strs[i]);
-			}else{
-				res.append(strs[i].substring(1) + c);
+		int n = S.length();
+		StringBuilder res = new StringBuilder(), postfix = new StringBuilder("a");
+		for(int i = 0, j = 0; i < n; i++){
+			StringBuilder word = new StringBuilder();
+			char cur = S.charAt(i);
+			boolean vowel = (cur == 'a' || cur == 'e' || cur == 'i' || cur == 'o'
+					|| cur == 'u' || cur == 'A' || cur == 'E' || cur == 'I' || cur == 'O' || cur == 'U');
+			j = vowel ? i : i + 1;
+			while(j < n && S.charAt(j) != ' '){
+				word.append(S.charAt(j++));
 			}
-			res.append("ma");
-			for(int j = 0; j <= i; j++){
-				res.append("a");
-			}
-			res.append(" ");
+			res.append(word.toString()).append(vowel ? "" : "" + cur)
+					.append("ma").append(postfix.toString()).append(" ");
+			postfix.append("a");
+			i = j;
 		}
 		return res.substring(0, res.length() - 1);
 	}

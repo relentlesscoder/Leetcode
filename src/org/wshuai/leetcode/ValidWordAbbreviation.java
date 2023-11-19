@@ -5,41 +5,27 @@ package org.wshuai.leetcode;
  * #0408 https://leetcode.com/problems/valid-word-abbreviation/
  */
 public class ValidWordAbbreviation {
-	// time O(n)
+
+	// time O(n), space O(1)
 	public boolean validWordAbbreviation(String word, String abbr) {
-		int i = 0, j = 0, m = word.length(), n = abbr.length();
-		StringBuilder sb = new StringBuilder();
-		while (j < n) {
+		int m = word.length(), n = abbr.length(), i = 0, j = 0, k = 0;
+		for (; i < m && j < n; i++, j++, k = j) {
 			char c = abbr.charAt(j);
-			if (c >= '0' && c <= '9') {
-				sb.append(c);
-				j++;
-			} else if (c >= 'a' && c <= 'z') {
-				if (sb.length() > 0) {
-					if (sb.charAt(0) == '0') {
-						return false;
-					}
-					int count = Integer.parseInt(sb.toString());
-					i += count;
-					sb = new StringBuilder();
-				}
-				if (i < m && word.charAt(i) == c) {
-					i++;
-					j++;
-				} else {
+			if (c == '0') {
+				return false;
+			}
+			if (c >= 'a' && c <= 'z') {
+				if (c != word.charAt(i)) {
 					return false;
 				}
 			} else {
-				return false;
+				while (j + 1 < n && Character.isDigit(abbr.charAt(j + 1))) {
+					j++;
+				}
+				int count = Integer.parseInt(abbr.substring(k, j + 1));
+				i += count - 1;
 			}
 		}
-		if (sb.length() > 0) {
-			if (sb.charAt(0) == '0') {
-				return false;
-			}
-			int count = Integer.parseInt(sb.toString());
-			i += count;
-		}
-		return i == m;
+		return i == m && j == n;
 	}
 }

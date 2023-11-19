@@ -7,6 +7,7 @@ import java.util.Arrays;
  * #0252 https://leetcode.com/problems/meeting-rooms/
  */
 public class MeetingRooms {
+
 	// time O(n*log(n))
 	public boolean canAttendMeetings(int[][] intervals) {
 		if(intervals == null || intervals.length <= 1){

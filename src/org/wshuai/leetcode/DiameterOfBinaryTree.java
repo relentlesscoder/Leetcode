@@ -5,26 +5,26 @@ package org.wshuai.leetcode;
  * #0543 https://leetcode.com/problems/diameter-of-binary-tree/
  */
 public class DiameterOfBinaryTree {
-	private int diameter;
+
+	private int res;
 
 	// time O(n)
 	public int diameterOfBinaryTree(TreeNode root) {
-		diameter = 0;
 		if(root == null){
 			return 0;
 		}
+		res = 0;
 		dfs(root);
-		return diameter;
+		return res;
 	}
 
 	private int dfs(TreeNode root){
 		if(root == null){
 			return 0;
 		}
-		int left = root.left == null ? 0 : 1 + dfs(root.left);
-		int right = root.right == null ? 0 : 1 + dfs(root.right);
-		int res = Math.max(left, right);
-		diameter = Math.max(left + right, diameter);
-		return res;
+		int left = dfs(root.left);
+		int right = dfs(root.right);
+		res = Math.max(res, left + right);
+		return 1 + Math.max(left, right);
 	}
 }

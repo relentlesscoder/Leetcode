@@ -8,6 +8,8 @@ import java.util.List;
  * #0078 https://leetcode.com/problems/subsets/
  */
 public class Subsets {
+
+	// time O(2^n)
 	public List<List<Integer>> subsets(int[] nums) {
 		List<List<Integer>> res = new ArrayList<>();
 		dfs(nums, 0, new ArrayList<Integer>(), res);

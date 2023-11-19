@@ -5,17 +5,19 @@ package org.wshuai.leetcode;
  * #0162 https://leetcode.com/problems/find-peak-element/
  */
 public class FindPeakElement {
-	// time O(log(n))
+
+	// time O(log(n)), space O(1)
 	public int findPeakElement(int[] nums) {
-		int left = 0, right = nums.length - 1;
-		while(left < right){
-			int mid = left + (right - left) / 2;
-			if(nums[mid] < nums[mid + 1]){
-				left = mid + 1;
-			}else{
-				right = mid;
+		// proof for the binary search - https://leetcode.com/problems/find-peak-element/editorial/
+		int n = nums.length, low = 0, high = n - 1; // set high to n - 1 to avoid index overflow
+		while (low < high) {
+			int mid = (low + high) >> 1;
+			if (nums[mid] <= nums[mid + 1]) {
+				low = mid + 1;
+			} else {
+				high = mid;
 			}
 		}
-		return left;
+		return low;
 	}
 }

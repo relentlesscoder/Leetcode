@@ -3,6 +3,7 @@ package org.wshuai.leetcode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Wei on 01/26/2016.
@@ -10,7 +11,33 @@ import java.util.List;
  */
 public class BinarySearchTreeIterator {
 
-	private List<Integer> list;
+	private Stack<TreeNode> stack;
+
+	public BinarySearchTreeIterator(TreeNode root) {
+		stack = new Stack<>();
+		pushLeft(root);
+	}
+
+	/** @return the next smallest number */
+	public int next() {
+		TreeNode cur = stack.pop();
+		pushLeft(cur.right);
+		return cur.val;
+	}
+
+	/** @return whether we have a next smallest number */
+	public boolean hasNext() {
+		return !stack.isEmpty();
+	}
+
+	private void pushLeft(TreeNode root){
+		while(root != null){
+			stack.push(root);
+			root = root.left;
+		}
+	}
+
+	/*private List<Integer> list;
 	private Iterator<Integer> itr;
 
 	public BinarySearchTreeIterator(TreeNode root) {
@@ -18,12 +45,12 @@ public class BinarySearchTreeIterator {
 		itr = list.iterator();
 	}
 
-	/** @return the next smallest number */
+	*//** @return the next smallest number *//*
 	public int next() {
 		return itr.next();
 	}
 
-	/** @return whether we have a next smallest number */
+	*//** @return whether we have a next smallest number *//*
 	public boolean hasNext() {
 		return itr.hasNext();
 	}
@@ -52,7 +79,7 @@ public class BinarySearchTreeIterator {
 				cur = cur.right;
 			}
 		}
-	}
+	}*/
 }
 
 /**

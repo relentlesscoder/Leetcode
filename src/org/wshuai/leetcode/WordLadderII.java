@@ -17,8 +17,7 @@ public class WordLadderII {
 			return res;
 		}
 		Map<String, Set<String>> children = new HashMap<>();
-		boolean found = false;
-		boolean reversed = false;
+		boolean found = false, reversed = false;
 		beginSet.add(beginWord);
 		endSet.add(endWord);
 		while(!beginSet.isEmpty() && !endSet.isEmpty() && !found){
@@ -66,7 +65,6 @@ public class WordLadderII {
 				}
 			}
 			beginSet = queue;
-			queue = new HashSet<>();
 		}
 		if(found){
 			List<String> cur = new ArrayList<>();

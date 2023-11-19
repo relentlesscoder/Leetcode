@@ -9,33 +9,34 @@ import java.util.List;
  * #0210 https://leetcode.com/problems/course-schedule-ii/
  */
 public class CourseScheduleII {
-	// time O(V + E)
+
+	// time O(V + E), space O(V + E)
 	public int[] findOrder(int numCourses, int[][] prerequisites) {
 		List<Integer>[] adj = new ArrayList[numCourses];
-		int[] res = new int[numCourses], indegree = new int[numCourses];
+		int[] degree = new int[numCourses], order = new int[numCourses];
+		LinkedList<Integer> queue = new LinkedList<>();
 		for(int i = 0; i < numCourses; i++){
 			adj[i] = new ArrayList<>();
 		}
-		for(int[] edge : prerequisites){
-			adj[edge[1]].add(edge[0]);
-			indegree[edge[0]]++;
+		for(int[] p : prerequisites){
+			degree[p[0]]++;
+			adj[p[1]].add(p[0]);
 		}
-		LinkedList<Integer> queue = new LinkedList<>();
 		for(int i = 0; i < numCourses; i++){
-			if(indegree[i] == 0){
+			if(degree[i] == 0){
 				queue.offerLast(i);
 			}
 		}
-		int k = 0;
+		int taken = 0;
 		while(!queue.isEmpty()){
 			int cur = queue.pollFirst();
-			res[k++] = cur;
+			order[taken++] = cur;
 			for(int next : adj[cur]){
-				if(--indegree[next] == 0){
+				if(--degree[next] == 0){
 					queue.offerLast(next);
 				}
 			}
 		}
-		return k == numCourses ? res : new int[0];
+		return taken == numCourses ? order : new int[0];
 	}
 }

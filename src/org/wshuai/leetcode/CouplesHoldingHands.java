@@ -27,7 +27,6 @@ public class CouplesHoldingHands {
 			rank[i] = 1;
 		}
 		// for each cyclic swap sets with k nodes, we need k - 1 swap
-		
 		// for instance [0, 2, 1, 4, 5, 3]
 		// we have cyclic swap set 0->1, 0->2, 1->2 and 2 swap needed
 		for(int[] e : edges){

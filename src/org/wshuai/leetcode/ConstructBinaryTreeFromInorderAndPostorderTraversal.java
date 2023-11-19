@@ -8,6 +8,7 @@ import java.util.Map;
  * #0106 https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
  */
 public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
+
 	// time O(n), space O(n)
 	public TreeNode buildTree(int[] inorder, int[] postorder) {
 		Map<Integer, Integer> map = new HashMap<>();
@@ -18,6 +19,8 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 	}
 
 	private TreeNode dfs(int[] postorder, int i, int j, int m, int n, Map<Integer, Integer> map){
+		// i, j denotes the range in postorder
+		// m, n denotes the range in inorder
 		if(i > j){
 			return null;
 		}
@@ -25,6 +28,7 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 		if(i == j){
 			return root;
 		}
+		// use inorder index (from hash map) to calculate number of left subtree nodes
 		int k = map.get(postorder[j]) - m;
 		root.left = dfs(postorder, i, i + k - 1, m, m + k - 1, map);
 		root.right = dfs(postorder, i + k, j - 1, m + k + 1, n, map);
