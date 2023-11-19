@@ -84,6 +84,7 @@
 #2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
+#2924 https://leetcode.com/problems/find-champion-ii/
 
 08. Backtracking
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
@@ -199,6 +200,7 @@
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ ***(Double BFS)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/
+#2924 https://leetcode.com/problems/find-champion-ii/
 
 19. Stack
 #0071 https://leetcode.com/problems/simplify-path/
@@ -263,6 +265,8 @@
 #1570 https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
 #1756 https://leetcode.com/problems/design-most-recently-used-queue/
 #2034 https://leetcode.com/problems/stock-price-fluctuation/
+#2043 https://leetcode.com/problems/simple-bank-system/
+#2241 https://leetcode.com/problems/design-an-atm-machine/
 #2254 https://leetcode.com/problems/design-video-sharing-platform/
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
 #2424 https://leetcode.com/problems/longest-uploaded-prefix/
@@ -310,6 +314,7 @@
 37. Hashmap
 #1807 https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
 #2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
+#2284 https://leetcode.com/problems/sender-with-largest-word-count/
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 
 38. Sorted Set
