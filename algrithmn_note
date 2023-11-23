@@ -135,6 +135,7 @@
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
 #2021 https://leetcode.com/problems/brightest-position-on-street/
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
+#2848 https://leetcode.com/problems/points-that-intersect-with-cars/
 
 13. Intervals
 #0056 https://leetcode.com/problems/merge-intervals/
@@ -225,12 +226,14 @@
 #1915 https://leetcode.com/problems/number-of-wonderful-substrings/
 #1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
+#2032 https://leetcode.com/problems/two-out-of-three/
 #2103 https://leetcode.com/problems/rings-and-rods/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
 #2174 https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
 #2275 https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
 #2433 https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
+#2917 https://leetcode.com/problems/find-the-k-or-of-an-array/
 
 23. Two Scans
 #1966 https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/
