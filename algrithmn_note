@@ -164,6 +164,7 @@
 #2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
 #2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
 #2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
+#2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/
 
 16. Topological Sort
 #0210 https://leetcode.com/problems/course-schedule-ii/
@@ -270,11 +271,13 @@
 #0146 https://leetcode.com/problems/lru-cache/
 #1570 https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
 #1756 https://leetcode.com/problems/design-most-recently-used-queue/
+#1797 https://leetcode.com/problems/design-authentication-manager/
 #2034 https://leetcode.com/problems/stock-price-fluctuation/
 #2043 https://leetcode.com/problems/simple-bank-system/
 #2241 https://leetcode.com/problems/design-an-atm-machine/
 #2254 https://leetcode.com/problems/design-video-sharing-platform/
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
+#2408 https://leetcode.com/problems/design-sql/
 #2424 https://leetcode.com/problems/longest-uploaded-prefix/
 
 29. Two Pointers
@@ -314,6 +317,7 @@
 #0493 https://leetcode.com/problems/reverse-pairs/ (merge sort)
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
 #2545 https://leetcode.com/problems/sort-the-students-by-their-kth-score/
+#2936 https://leetcode.com/problems/number-of-equal-numbers-blocks/
 
 36. Probability
 #0528 https://leetcode.com/problems/random-pick-with-weight/
