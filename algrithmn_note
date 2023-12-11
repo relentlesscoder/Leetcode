@@ -5,6 +5,7 @@
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1838 https://leetcode.com/problems/frequency-of-the-most-frequent-element/
 #1871 https://leetcode.com/problems/jump-game-vii/
+#2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/
 #2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
 #2062 https://leetcode.com/problems/count-vowel-substrings-of-a-string/
 #2090 https://leetcode.com/problems/k-radius-subarray-averages/
@@ -63,6 +64,7 @@
 #1901 https://leetcode.com/problems/find-a-peak-element-ii/
 #1980 https://leetcode.com/problems/find-unique-binary-string/ ***(binary search for max)
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
+#2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
 #2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
@@ -115,6 +117,7 @@
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
+#2742 https://leetcode.com/problems/painting-the-walls/
 
 10. Min/max queue
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
