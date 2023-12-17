@@ -1,4 +1,5 @@
 01. Sliding Window
+#0239 https://leetcode.com/problems/sliding-window-maximum/
 #0424 https://leetcode.com/problems/longest-repeating-character-replacement/
 #1004 https://leetcode.com/problems/max-consecutive-ones-iii/
 #1151 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/
@@ -11,11 +12,13 @@
 #2090 https://leetcode.com/problems/k-radius-subarray-averages/
 #2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
 #2134 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/
+#2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
 #2762 https://leetcode.com/problems/continuous-subarrays/
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
 
 02. Monotonic Stack
+#0239 https://leetcode.com/problems/sliding-window-maximum/
 #0496 https://leetcode.com/problems/next-greater-element-i/
 #0503 https://leetcode.com/problems/next-greater-element-ii/
 #1762 https://leetcode.com/problems/buildings-with-an-ocean-view/
@@ -24,6 +27,7 @@
 #2104 https://leetcode.com/problems/sum-of-subarray-ranges/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
+#2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 #2863 https://leetcode.com/problems/maximum-length-of-semi-decreasing-subarrays/
 
@@ -34,6 +38,7 @@
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
+#2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 
@@ -70,6 +75,7 @@
 #2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
+#2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/ ***(binary search for max)
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2517 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ ***(binary search for max)
 #2529 https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/
