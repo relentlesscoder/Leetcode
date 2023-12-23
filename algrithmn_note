@@ -128,6 +128,7 @@
 10. Min/max queue
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #1792 https://leetcode.com/problems/maximum-average-pass-ratio/
+#2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
@@ -283,6 +284,7 @@
 #1797 https://leetcode.com/problems/design-authentication-manager/
 #2034 https://leetcode.com/problems/stock-price-fluctuation/
 #2043 https://leetcode.com/problems/simple-bank-system/
+#2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 #2241 https://leetcode.com/problems/design-an-atm-machine/
 #2254 https://leetcode.com/problems/design-video-sharing-platform/
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
@@ -382,6 +384,7 @@ Note:
 11. Segment Tree - https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
 12. Binary Indexed Tree - https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
+14. Java Comparable - #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 
 
 
