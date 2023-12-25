@@ -75,6 +75,7 @@
 #2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
+#2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/ ***(binary search for max)
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2517 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ ***(binary search for max)
@@ -146,11 +147,13 @@
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
 #2021 https://leetcode.com/problems/brightest-position-on-street/
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
+#2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
 #2848 https://leetcode.com/problems/points-that-intersect-with-cars/
 
 13. Intervals
 #0056 https://leetcode.com/problems/merge-intervals/
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
+#2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
 
@@ -291,6 +294,7 @@
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/
 #2408 https://leetcode.com/problems/design-sql/
 #2424 https://leetcode.com/problems/longest-uploaded-prefix/
+#2590 https://leetcode.com/problems/design-a-todo-list/
 
 29. Two Pointers
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
