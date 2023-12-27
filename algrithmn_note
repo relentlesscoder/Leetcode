@@ -140,6 +140,7 @@
 #1858 https://leetcode.com/problems/longest-word-with-all-prefixes/
 #2185 https://leetcode.com/problems/counting-words-with-a-given-prefix/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
+#2416 https://leetcode.com/problems/sum-of-prefix-scores-of-strings/
 #2452 https://leetcode.com/problems/words-within-two-edits-of-dictionary/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 
@@ -287,6 +288,7 @@
 #1570 https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
 #1756 https://leetcode.com/problems/design-most-recently-used-queue/
 #1797 https://leetcode.com/problems/design-authentication-manager/
+#1825 https://leetcode.com/problems/finding-mk-average/
 #2034 https://leetcode.com/problems/stock-price-fluctuation/
 #2043 https://leetcode.com/problems/simple-bank-system/
 #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
