@@ -137,6 +137,7 @@
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 
 11. Trie
+#1804 https://leetcode.com/problems/implement-trie-ii-prefix-tree/
 #1858 https://leetcode.com/problems/longest-word-with-all-prefixes/
 #2185 https://leetcode.com/problems/counting-words-with-a-given-prefix/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
@@ -224,6 +225,7 @@
 
 19. Stack
 #0071 https://leetcode.com/problems/simplify-path/
+#1717 https://leetcode.com/problems/maximum-score-from-removing-substrings/
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
 #2696 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
 
@@ -376,6 +378,7 @@
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
 
 Good questions:
+#1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 
 Note:
