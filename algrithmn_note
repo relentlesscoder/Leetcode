@@ -6,6 +6,7 @@
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1838 https://leetcode.com/problems/frequency-of-the-most-frequent-element/
 #1871 https://leetcode.com/problems/jump-game-vii/
+#1918 https://leetcode.com/problems/kth-smallest-subarray-sum/
 #2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/
 #2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
 #2062 https://leetcode.com/problems/count-vowel-substrings-of-a-string/
@@ -68,6 +69,7 @@
 #1891 https://leetcode.com/problems/cutting-ribbons/ ***(binary search for max)
 #1898 https://leetcode.com/problems/maximum-number-of-removable-characters/ ***(binary search for max)
 #1901 https://leetcode.com/problems/find-a-peak-element-ii/
+#1918 https://leetcode.com/problems/kth-smallest-subarray-sum/
 #1980 https://leetcode.com/problems/find-unique-binary-string/ ***(binary search for max)
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/
@@ -131,7 +133,9 @@
 10. Min/max queue
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #1792 https://leetcode.com/problems/maximum-average-pass-ratio/
+#1921 https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
 #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
+#2126 https://leetcode.com/problems/destroying-asteroids/
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/

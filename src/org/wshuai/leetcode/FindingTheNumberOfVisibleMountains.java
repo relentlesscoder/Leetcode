@@ -18,11 +18,10 @@ public class FindingTheNumberOfVisibleMountains {
         }
         Arrays.sort(peaks, (a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]); // sorting the left side in ascending order and right side in descending order
         for (int i = 0; i < n; i++) {
-            int l = peaks[i][0], r = peaks[i][1];
-            if (r <= prev) { // if the right side of the current mountain is less than or equals to the previous right side then it is inside previous mountain
+            if (peaks[i][1] <= prev) { // if the right side of the current mountain is less than or equals to the previous right side then it is inside previous mountain
                 continue;
             }
-            prev = r;
+            prev = peaks[i][1];
             // special case, the same peaks are all inside each other, for example [1, 3], [1, 3] the visible mountains are 0.
             if (!(i < n - 1 && peaks[i][0] == peaks[i + 1][0] && peaks[i][1] == peaks[i + 1][1])) {
                 res++;
