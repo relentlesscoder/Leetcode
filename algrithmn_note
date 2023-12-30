@@ -94,6 +94,7 @@
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
+#2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2924 https://leetcode.com/problems/find-champion-ii/
@@ -196,6 +197,7 @@
 
 17. Union Find
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2076 https://leetcode.com/problems/process-restricted-friend-requests/
