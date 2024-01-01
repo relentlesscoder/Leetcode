@@ -31,6 +31,7 @@
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
+#2832 https://leetcode.com/problems/maximal-range-that-each-element-is-maximum-in-it/
 #2863 https://leetcode.com/problems/maximum-length-of-semi-decreasing-subarrays/
 
 03. Prefix Sum
@@ -178,6 +179,8 @@
 #0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 #0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 #0938 https://leetcode.com/problems/range-sum-of-bst/
+#0993 https://leetcode.com/problems/cousins-in-binary-tree/
+#1161 https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
 #1644 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
@@ -188,6 +191,7 @@
 #2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
 #2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/
 #2458 https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
+#2641 https://leetcode.com/problems/cousins-in-binary-tree-ii/
 
 16. Topological Sort
 #0210 https://leetcode.com/problems/course-schedule-ii/
@@ -259,6 +263,7 @@
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
 #2275 https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
 #2433 https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
+#2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2917 https://leetcode.com/problems/find-the-k-or-of-an-array/
 
 23. Two Scans
@@ -287,6 +292,7 @@
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1930 https://leetcode.com/problems/unique-length-3-palindromic-subsequences/
 #2330 https://leetcode.com/problems/valid-palindrome-iv/
+#2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
 #2855 https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/
 
 27. Subarray Sum
@@ -311,6 +317,7 @@
 29. Two Pointers
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
 30. Quick Select
@@ -355,6 +362,7 @@
 #2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
 #2284 https://leetcode.com/problems/sender-with-largest-word-count/
 #2365 https://leetcode.com/problems/task-scheduler-ii/
+#2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 
 38. Sorted Set
 #2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/
