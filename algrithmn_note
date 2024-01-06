@@ -39,6 +39,7 @@
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
+#1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
@@ -253,6 +254,8 @@
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
 
 22. Bit Manipulation
+#1720 https://leetcode.com/problems/decode-xored-array/
+#1734 https://leetcode.com/problems/decode-xored-permutation/
 #1915 https://leetcode.com/problems/number-of-wonderful-substrings/
 #1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
@@ -264,6 +267,7 @@
 #2275 https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
 #2433 https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
+#2527 https://leetcode.com/problems/find-xor-beauty-of-array/
 #2917 https://leetcode.com/problems/find-the-k-or-of-an-array/
 
 23. Two Scans
