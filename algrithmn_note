@@ -155,6 +155,7 @@
 
 12. Line Sweep
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
+#1893 https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
 #2021 https://leetcode.com/problems/brightest-position-on-street/
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
