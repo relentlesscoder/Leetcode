@@ -95,6 +95,7 @@
 
 07. Graph
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
 #2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
@@ -205,6 +206,7 @@
 
 17. Union Find
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
 #1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
@@ -280,6 +282,7 @@
 #2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
 #2420 https://leetcode.com/problems/find-all-good-indices/
 #2670 https://leetcode.com/problems/find-the-distinct-difference-array/
+#2908 https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/
 
 24. Matrix Traverse
 #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
@@ -335,6 +338,7 @@
 31. Math
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
 #2366 https://leetcode.com/problems/minimum-replacements-to-sort-the-array/
+#2614 https://leetcode.com/problems/prime-in-diagonal/ (check if a number is prime)
 
 32. Dijkstra
 #0743 https://leetcode.com/problems/network-delay-time/
