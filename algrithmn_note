@@ -88,6 +88,7 @@
 #2529 https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/
 #2560 https://leetcode.com/problems/house-robber-iv/
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
+#2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
 
 06. Subsequence
 #0392 https://leetcode.com/problems/is-subsequence/
@@ -132,6 +133,7 @@
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
+#2400 https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
 
@@ -337,8 +339,10 @@
 
 31. Math
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
+#1954 https://leetcode.com/problems/minimum-garden-perimeter-to-collect-enough-apples/
 #2366 https://leetcode.com/problems/minimum-replacements-to-sort-the-array/
 #2614 https://leetcode.com/problems/prime-in-diagonal/ (check if a number is prime)
+#2870 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
 
 32. Dijkstra
 #0743 https://leetcode.com/problems/network-delay-time/
