@@ -425,6 +425,7 @@
 Good questions:
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
+#2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
 
 Note:
 1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim)
