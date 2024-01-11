@@ -122,6 +122,7 @@
 #1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
+#1981 https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/
 #2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
 #2050 https://leetcode.com/problems/parallel-courses-iii/
 #2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
@@ -142,6 +143,7 @@
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #1792 https://leetcode.com/problems/maximum-average-pass-ratio/
 #1921 https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
+#1942 https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/
 #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 #2126 https://leetcode.com/problems/destroying-asteroids/
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
@@ -199,6 +201,7 @@
 #2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
 #2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/
 #2458 https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
+#2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/
 #2641 https://leetcode.com/problems/cousins-in-binary-tree-ii/
 
 16. Topological Sort
@@ -260,6 +263,7 @@
 21. Kadane's Algorithm
 #0053 https://leetcode.com/problems/maximum-subarray/
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/
+#2606 https://leetcode.com/problems/find-the-substring-with-maximum-cost/
 
 22. Bit Manipulation
 #1720 https://leetcode.com/problems/decode-xored-array/
@@ -379,6 +383,7 @@
 #1814 https://leetcode.com/problems/count-nice-pairs-in-an-array/
 #2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
 #2284 https://leetcode.com/problems/sender-with-largest-word-count/
+#2295 https://leetcode.com/problems/replace-elements-in-an-array/
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 
@@ -406,6 +411,9 @@
 44. Substring
 #0028 https://leetcode.com/problems/implement-strstr/
 #1967 https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/
+
+45. Sorting
+#2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/ (cycle sort)
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
