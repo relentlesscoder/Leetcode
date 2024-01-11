@@ -46,6 +46,7 @@
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
+#2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
 
 04. Array Permutation
 #0556 https://leetcode.com/problems/next-greater-element-iii/
@@ -299,6 +300,7 @@
 #2075 https://leetcode.com/problems/decode-the-slanted-ciphertext/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
 #2596 https://leetcode.com/problems/check-knight-tour-configuration/
+#2946 https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/
 
 25. Permutation
 #0031 https://leetcode.com/problems/next-permutation/
