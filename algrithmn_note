@@ -83,6 +83,7 @@
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
+#2383 https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/ ***(binary search for max)
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2517 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ ***(binary search for max)
@@ -386,6 +387,7 @@
 #2295 https://leetcode.com/problems/replace-elements-in-an-array/
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
+#2511 https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/
 
 38. Sorted Set
 #2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/
