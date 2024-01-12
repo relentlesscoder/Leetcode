@@ -286,6 +286,7 @@
 
 23. Two Scans
 #1966 https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/
+#2012 https://leetcode.com/problems/sum-of-beauty-in-the-array/
 #2025 https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/
 #2155 https://leetcode.com/problems/all-divisions-with-the-highest-score-of-a-binary-array/  
 #2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
@@ -421,6 +422,9 @@
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
+#2947 https://leetcode.com/problems/count-beautiful-substrings-i/
+#2949 https://leetcode.com/problems/count-beautiful-substrings-ii/
+#2979 https://leetcode.com/problems/most-expensive-item-that-can-not-be-bought/
 
 Good questions:
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
