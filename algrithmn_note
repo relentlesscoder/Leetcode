@@ -108,6 +108,7 @@
 #2924 https://leetcode.com/problems/find-champion-ii/
 
 08. Backtracking
+#1655 https://leetcode.com/problems/distribute-repeating-integers/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 
 09. Dynamic Programming
@@ -404,10 +405,12 @@
 
 41. Segment Tree
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
+#1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
 
 42. Binary Index Tree
-#0307 https://leetcode.com/problems/range-sum-query-mutable/
+#0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
 #0493 https://leetcode.com/problems/reverse-pairs/
+#1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 
 43. Queue
@@ -443,6 +446,7 @@ Note:
 9. Java HashMap Internals - https://www.baeldung.com/java-hashmap-load-factor
 10. Binary Tree Nodes and Height - https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
 11. Segment Tree - https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
+https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 12. Binary Indexed Tree - https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
 14. Java Comparable - #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
