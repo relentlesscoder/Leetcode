@@ -117,6 +117,7 @@
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
+#1012 https://leetcode.com/problems/numbers-with-repeated-digits/ (Digit DP)
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
@@ -139,6 +140,7 @@
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
+#2376 https://leetcode.com/problems/count-special-integers/ (Digit DP)
 #2400 https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
@@ -452,6 +454,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 12. Binary Indexed Tree - https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
 14. Java Comparable - #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
+15. Digit DP - https://www.geeksforgeeks.org/digit-dp-introduction/
 
 
 
