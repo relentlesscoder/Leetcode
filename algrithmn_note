@@ -246,6 +246,7 @@
 #2174 https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/
 #2258 https://leetcode.com/problems/escape-the-spreading-fire/
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+#2328 https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/
@@ -296,6 +297,7 @@
 #2155 https://leetcode.com/problems/all-divisions-with-the-highest-score-of-a-binary-array/  
 #2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/
 #2420 https://leetcode.com/problems/find-all-good-indices/
+#2519 https://leetcode.com/problems/count-the-number-of-k-big-indices/
 #2670 https://leetcode.com/problems/find-the-distinct-difference-array/
 #2908 https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/
 
