@@ -14,6 +14,7 @@
 #2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
 #2134 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/
 #2271 https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/
+#2302 https://leetcode.com/problems/count-subarrays-with-score-less-than-k/
 #2379 https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
@@ -82,6 +83,7 @@
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
 #2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
+#2141 https://leetcode.com/problems/maximum-running-time-of-n-computers/
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
@@ -342,6 +344,7 @@
 #2353 https://leetcode.com/problems/design-a-food-rating-system/
 #2408 https://leetcode.com/problems/design-sql/
 #2424 https://leetcode.com/problems/longest-uploaded-prefix/
+#2502 https://leetcode.com/problems/design-memory-allocator/
 #2590 https://leetcode.com/problems/design-a-todo-list/
 
 29. Two Pointers
