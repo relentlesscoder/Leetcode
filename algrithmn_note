@@ -232,6 +232,7 @@
 18. DFS/BFS
 #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
 #0200 https://leetcode.com/problems/number-of-islands/
+#0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
 #0339 https://leetcode.com/problems/nested-list-weight-sum/
 #0364 https://leetcode.com/problems/nested-list-weight-sum-ii/
 #1631 https://leetcode.com/problems/path-with-minimum-effort/ ***(minimum cost in grid minimum cost with weighted cells)

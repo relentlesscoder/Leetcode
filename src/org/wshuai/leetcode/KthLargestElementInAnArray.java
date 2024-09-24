@@ -9,55 +9,55 @@ import java.util.Random;
  */
 public class KthLargestElementInAnArray {
 
-	// time O(n * log(k)), space O(k)
-	public int findKthLargestMinQueue(int[] nums, int k) {
-		PriorityQueue<Integer> minQueue = new PriorityQueue<>();
-		for (int num : nums) {
-			minQueue.offer(num);
-			if (minQueue.size() > k) {
-				minQueue.poll();
-			}
-		}
-		return minQueue.peek();
-	}
+    // time O(n * log(k)), space O(k)
+    public int findKthLargestMinQueue(int[] nums, int k) {
+        PriorityQueue<Integer> minQueue = new PriorityQueue<>();
+        for (int num : nums) {
+            minQueue.offer(num);
+            if (minQueue.size() > k) {
+                minQueue.poll();
+            }
+        }
+        return minQueue.peek();
+    }
 
-	// time - average: O(n * log(n)); worst: O(n^2); expected: O (n) with randomization, space O(n)
-	public int findKthLargestQuickSelect(int[] nums, int k) {
-		int low = 0, high = nums.length - 1;
-		while (low <= high) {
-			int pivot = partition(nums, low, high);
-			if (pivot == k - 1) {
-				return nums[pivot];
-			}
-			if (pivot < k - 1) {
-				low = pivot + 1;
-			} else {
-				high = pivot - 1;
-			}
-		}
-		return -1;
-	}
+    // time - average: O(n * log(n)); worst: O(n^2); expected: O (n) with randomization, space O(n)
+    public int findKthLargestQuickSelect(int[] nums, int k) {
+        int low = 0, high = nums.length - 1;
+        while (low <= high) {
+            int pivot = partition(nums, low, high);
+            if (pivot == k - 1) {
+                break;
+            }
+            if (pivot < k - 1) {
+                low = pivot + 1;
+            } else {
+                high = pivot - 1;
+            }
+        }
+        return nums[k - 1];
+    }
 
-	private int partition(int[] nums, int low, int high) {
-		int pivot = low + (new Random()).nextInt(high - low + 1);
-		swap(nums, pivot, high);
-		pivot = low;
-		for (int curr = low; curr < high; curr++) {
-			if (nums[curr] >= nums[high]) {
-				int temp = nums[curr];
-				nums[curr] = nums[pivot];
-				nums[pivot++] = temp;
-			}
-		}
-		swap(nums, pivot, high);
-		return pivot;
-	}
+    private int partition(int[] nums, int low, int high) {
+        int pivot = low + (new Random()).nextInt(high - low + 1);
+        swap(nums, pivot, high);
+        pivot = low;
+        for (int i = low; i < high; i++) {
+            if (nums[i] >= nums[high]) {
+                int temp = nums[i];
+                nums[i] = nums[pivot];
+                nums[pivot++] = temp;
+            }
+        }
+        swap(nums, pivot, high);
+        return pivot;
+    }
 
-	private void swap(int[] nums, int i, int j) {
-		int temp = nums[i];
-		nums[i] = nums[j];
-		nums[j] = temp;
-	}
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
 
 	/*
 	 * deterministic quick selection
