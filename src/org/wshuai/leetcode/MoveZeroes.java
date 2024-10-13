@@ -6,14 +6,13 @@ package org.wshuai.leetcode;
  */
 public class MoveZeroes {
 
-	// time O(n)
+	// time O(n), space O(1)
 	public void moveZeroes(int[] nums) {
-		int n = nums.length;
-		for(int i = 0, j = 0; j < n; j++){
-			if(nums[j] != 0){
+		for (int i = 0, j = 0; i < nums.length; i++) {
+			if (nums[i] != 0) {
 				int temp = nums[i];
-				nums[i++] = nums[j];
-				nums[j] = temp;
+				nums[i] = nums[j];
+				nums[j++] = temp;
 			}
 		}
 	}

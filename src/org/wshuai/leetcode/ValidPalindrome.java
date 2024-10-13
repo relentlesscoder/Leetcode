@@ -8,17 +8,17 @@ public class ValidPalindrome {
 
 	// time O(n), space O(1)
 	public boolean isPalindrome(String s) {
-		int left = 0, right = s.length() - 1;
-		while (left <= right) {
-			if (!Character.isLetterOrDigit(s.charAt(left))) {
-				left++;
-			} else if (!Character.isLetterOrDigit(s.charAt(right))) {
-				right--;
-			} else if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+		for (int i = 0, j = s.length() - 1; i <= j; ) {
+			char left = s.charAt(i), right = s.charAt(j);
+			if (!Character.isLetterOrDigit(left)) {
+				i++;
+			} else if (!Character.isLetterOrDigit(right)) {
+				j--;
+			} else if (Character.toLowerCase(left) != Character.toLowerCase(right)) {
 				return false;
 			} else {
-				left++;
-				right--;
+				i++;
+				j--;
 			}
 		}
 		return true;

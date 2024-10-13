@@ -11,14 +11,14 @@ public class MergeIntervals {
 	// time O(n * log(n)), space O(n)
 	public int[][] merge(int[][] intervals) {
 		Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-		List<int[]> res = new ArrayList<>();
+		List<int[]> merged = new ArrayList<>();
 		for (int[] in : intervals) {
-			if (res.size() > 0 && in[0] <= res.get(res.size() - 1)[1]) {
-				res.get(res.size() - 1)[1] = Math.max(res.get(res.size() - 1)[1], in[1]);
+			if (!merged.isEmpty() && in[0] <= merged.get(merged.size() - 1)[1]) {
+				merged.get(merged.size() - 1)[1] = Math.max(in[1], merged.get(merged.size() - 1)[1]);
 			} else {
-				res.add(in);
+				merged.add(in);
 			}
 		}
-		return res.toArray(new int[res.size()][]);
+		return merged.toArray(new int[merged.size()][]);
 	}
 }
