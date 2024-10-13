@@ -59,6 +59,7 @@
 #0162 https://leetcode.com/problems/find-peak-element/
 #0278 https://leetcode.com/problems/first-bad-version/
 #0410 https://leetcode.com/problems/split-array-largest-sum/
+#0528 https://leetcode.com/problems/random-pick-with-weight/
 #0668 https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
 #0719 https://leetcode.com/problems/find-k-th-smallest-pair-distance/
 #0774 https://leetcode.com/problems/minimize-max-distance-to-gas-station/ ***(double type boundary)
@@ -260,6 +261,7 @@
 
 19. Stack
 #0071 https://leetcode.com/problems/simplify-path/
+#0227 https://leetcode.com/problems/basic-calculator-ii/
 #1717 https://leetcode.com/problems/maximum-score-from-removing-substrings/
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
 #2696 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
@@ -349,6 +351,9 @@
 #2590 https://leetcode.com/problems/design-a-todo-list/
 
 29. Two Pointers
+#0088 https://leetcode.com/problems/merge-sorted-array/
+#0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
+#1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
@@ -462,6 +467,13 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
 14. Java Comparable - #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 15. Digit DP - https://www.geeksforgeeks.org/digit-dp-introduction/
+16. ArrayDeque: 
+	a. Add element to end: add, addLast, offer, offerLast
+	b. Add element to front: addFrist, offerFirst, push
+	c. Remove element from end: pollLast, removeLast
+	d. Remove element from front: poll, pollFirst, pop, remove, removeFirst
+	e. Retrieve element from end: getLast, peekLast
+	f. Retrieve element from front: getFirst, peek, peekFirst
 
 
 
