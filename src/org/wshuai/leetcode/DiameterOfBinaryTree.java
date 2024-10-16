@@ -6,25 +6,20 @@ package org.wshuai.leetcode;
  */
 public class DiameterOfBinaryTree {
 
-	private int res;
+	private int diameter = 0;
 
-	// time O(n)
 	public int diameterOfBinaryTree(TreeNode root) {
-		if(root == null){
-			return 0;
-		}
-		res = 0;
 		dfs(root);
-		return res;
+		return diameter;
 	}
 
-	private int dfs(TreeNode root){
-		if(root == null){
+	private int dfs(TreeNode root) {
+		if (root == null) {
 			return 0;
 		}
 		int left = dfs(root.left);
 		int right = dfs(root.right);
-		res = Math.max(res, left + right);
-		return 1 + Math.max(left, right);
+		diameter = Math.max(diameter, left + right);
+		return Math.max(left, right) + 1;
 	}
 }

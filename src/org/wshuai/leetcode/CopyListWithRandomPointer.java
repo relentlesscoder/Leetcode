@@ -9,8 +9,61 @@ import java.util.Map;
  */
 public class CopyListWithRandomPointer {
 
-	// time O(n), space O(n)
+	// time O(n), space O(1)
+	// https://leetcode.com/problems/copy-list-with-random-pointer/editorial/
 	public Node copyRandomList(Node head) {
+		if (head == null) {
+			return null;
+		}
+		Node curr = head;
+		while (curr != null) {
+			Node copy = new Node(curr.val);
+			copy.next = curr.next;
+			curr.next = copy;
+			curr = curr.next.next;
+		}
+		curr = head;
+		while (curr != null) {
+			curr.next.random = curr.random == null ? null : curr.random.next;
+			curr = curr.next.next;
+		}
+		Node pointerOld = head, pointerNew = head.next, headerNew = head.next;
+		while (pointerOld != null) {
+			pointerOld.next = pointerOld.next.next;
+			pointerNew.next = pointerNew.next == null ? null : pointerNew.next.next;
+			pointerOld = pointerOld.next;
+			pointerNew = pointerNew.next;
+		}
+		return headerNew;
+	}
+
+	// time O(n), space O(n)
+	public Node copyRandomListIterative(Node head) {
+		if (head == null) {
+			return null;
+		}
+		Map<Node, Node> map = new HashMap<>();
+		Node copy = new Node(head.val), curr = head;
+		map.put(head, copy);
+		while (curr != null) {
+			copy.next = getClonedNode(curr.next, map);
+			copy.random = getClonedNode(curr.random, map);
+			curr = curr.next;
+			copy = copy.next;
+		}
+		return map.get(head);
+	}
+
+	private Node getClonedNode(Node node, Map<Node, Node> map) {
+		if (node == null) {
+			return null;
+		}
+		map.putIfAbsent(node, new Node(node.val));
+		return map.get(node);
+	}
+
+	// time O(n), space O(n)
+	public Node copyRandomListRecursive(Node head) {
 		Map<Node, Node> map = new HashMap<>();
 		return dfs(head, map);
 	}

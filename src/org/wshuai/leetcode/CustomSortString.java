@@ -8,21 +8,21 @@ public class CustomSortString {
 
 	// time O(m + n), space O(m + n)
 	public String customSortString(String order, String s) {
-		StringBuilder res = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		int[] count = new int[26];
 		for (char c : s.toCharArray()) {
 			count[c - 'a']++;
 		}
 		for (char c : order.toCharArray()) {
 			while (count[c - 'a']-- > 0) {
-				res.append(c);
+				sb.append(c);
 			}
 		}
 		for (int i = 0; i < 26; i++) {
 			while (count[i]-- > 0) {
-				res.append((char)(i + 'a'));
+				sb.append((char) ('a' + i));
 			}
 		}
-		return res.toString();
+		return sb.toString();
 	}
 }

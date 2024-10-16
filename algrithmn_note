@@ -149,6 +149,7 @@
 #2742 https://leetcode.com/problems/painting-the-walls/
 
 10. Min/max queue
+#0347 https://leetcode.com/problems/top-k-frequent-elements/
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #1792 https://leetcode.com/problems/maximum-average-pass-ratio/
 #1921 https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
@@ -187,6 +188,7 @@
 #2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
 
 14. Linked List
+#0138 https://leetcode.com/problems/copy-list-with-random-pointer/
 #0206 https://leetcode.com/problems/reverse-linked-list/
 #2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
 #2095 https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
@@ -198,6 +200,7 @@
 15. Tree
 #0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 #0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+#0543 https://leetcode.com/problems/diameter-of-binary-tree/
 #0938 https://leetcode.com/problems/range-sum-of-bst/
 #0993 https://leetcode.com/problems/cousins-in-binary-tree/
 #1161 https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
