@@ -8,61 +8,77 @@ import java.util.PriorityQueue;
  */
 public class MergeKSortedLists {
 
-	// time O(n*log(k)), space O(k), 5ms
-	public LinkedListNode mergeKLists(LinkedListNode[] lists) {
-		LinkedListNode root = new LinkedListNode(0);
-		LinkedListNode cur = root;
-		PriorityQueue<LinkedListNode> pq = new PriorityQueue<>((a, b) -> a.val - b.val);
-		for(LinkedListNode node : lists){
-			if(node == null){
-				continue;
-			}
-			pq.offer(node);
-		}
-		while(!pq.isEmpty()){
-			LinkedListNode node = pq.poll();
-			cur.next = node;
-			cur = cur.next;
-			if(node.next != null){
-				pq.offer(node.next);
-			}
-		}
-		return root.next;
-	}
-
-	// time O(nk*log(k)), space O(1) 2ms
-	public LinkedListNode mergeKListsDivideAndConquer(LinkedListNode[] lists) {
-		if(lists == null || lists.length == 0){
+	// time O(n*log(k)), space O(k)
+	public ListNode mergeKLists(ListNode[] lists) {
+		if (lists.length == 0) {
 			return null;
 		}
-		return mergeLists(lists, 0, lists.length - 1);
-	}
-
-	private LinkedListNode mergeLists(LinkedListNode[] lists, int i, int j){
-		if(i == j){
-			return lists[i];
-		}else{
-			int k = i + (j - i) / 2;
-			LinkedListNode a = mergeLists(lists, i, k);
-			LinkedListNode b = mergeLists(lists, k + 1, j);
-			return merge(a, b);
-		}
-	}
-
-	private LinkedListNode merge(LinkedListNode a, LinkedListNode b){
-		LinkedListNode root = new LinkedListNode(-1), cur = root;
-		while(a != null || b != null){
-			int v1 = a != null ? a.val : Integer.MAX_VALUE;
-			int v2 = b != null ? b.val : Integer.MAX_VALUE;
-			if(v1 <= v2){
-				cur.next = a;
-				a = a.next;
-			}else{
-				cur.next = b;
-				b = b.next;
+		PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> a.val - b.val);
+		ListNode root = new ListNode(), prev = root;
+		for (ListNode node : lists) {
+			if (node != null) {
+				queue.offer(node);
 			}
-			cur = cur.next;
+		}
+		while (!queue.isEmpty()) {
+			ListNode curr = queue.poll();
+			prev.next = curr;
+			prev = curr;
+			if (curr.next != null) {
+				queue.offer(curr.next);
+			}
 		}
 		return root.next;
+	}
+
+	// time O(nk*log(k)), space O(1)
+	public ListNode mergeKListsDivideAndConquer(ListNode[] lists) {
+		if (lists.length == 0) {
+			return null;
+		}
+		return merge(lists, 0, lists.length - 1);
+	}
+
+	private ListNode merge(ListNode[] lists, int i, int j) {
+		if (i == j) {
+			return lists[i];
+		}
+		int k = (i + j) / 2;
+		ListNode left = merge(lists, i, k), right = merge(lists, k + 1, j);
+		return mergeTwoList(left, right);
+	}
+
+	private ListNode mergeTwoList(ListNode node1, ListNode node2) {
+		ListNode root = new ListNode(), prev = root;
+		while (node1 != null || node2 != null) {
+			if (node1 == null || (node2 != null && node2.val < node1.val)) {
+				prev.next = node2;
+				prev = node2;
+				node2 = node2.next;
+			} else {
+				prev.next = node1;
+				prev = node1;
+				node1 = node1.next;
+			}
+		}
+		return root.next;
+	}
+
+	// Definition for singly-linked list.
+	private static class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode() {
+		}
+
+		ListNode(int val) {
+			this.val = val;
+		}
+
+		ListNode(int val, ListNode next) {
+			this.val = val;
+			this.next = next;
+		}
 	}
 }

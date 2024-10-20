@@ -6,22 +6,38 @@ package org.wshuai.leetcode;
  */
 public class MergeTwoSortedList {
 
-	// time O(m + n)
-	public LinkedListNode mergeTwoLists(LinkedListNode l1, LinkedListNode l2) {
-		LinkedListNode root = new LinkedListNode(0);
-		LinkedListNode cur = root;
-		while(l1 != null || l2 != null){
-			int v1 = l1 == null ? Integer.MAX_VALUE : l1.val;
-			int v2 = l2 == null ? Integer.MAX_VALUE : l2.val;
-			if(v1 <= v2){
-				cur.next = l1;
-				l1 = l1.next;
-			}else{
-				cur.next = l2;
-				l2 = l2.next;
+	// time O(m + n), space O(1)
+	public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+		ListNode root = new ListNode(), prev = root;
+		while (list1 != null || list2 != null) {
+			if (list1 == null || (list2 != null && list2.val < list1.val)) {
+				prev.next = list2;
+				prev = list2;
+				list2 = list2.next;
+			} else {
+				prev.next = list1;
+				prev = list1;
+				list1 = list1.next;
 			}
-			cur = cur.next;
 		}
 		return root.next;
+	}
+
+	// Definition for singly-linked list.
+	private static class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode() {
+		}
+
+		ListNode(int val) {
+			this.val = val;
+		}
+
+		ListNode(int val, ListNode next) {
+			this.val = val;
+			this.next = next;
+		}
 	}
 }

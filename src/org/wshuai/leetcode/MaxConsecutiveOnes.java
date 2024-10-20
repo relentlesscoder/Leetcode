@@ -6,16 +6,17 @@ package org.wshuai.leetcode;
  */
 public class MaxConsecutiveOnes {
 
-	// time O(n)
+	// time O(n), space O(1)
 	public int findMaxConsecutiveOnes(int[] nums) {
-		int res = 0, count = 0;
-		for(int num : nums){
-			if(num == 1){
-				res = Math.max(res, ++count);
-			}else{
-				count = 0;
+		int res = 0, ones = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] == 0) {
+				ones = 0;
+			} else {
+				res = Math.max(res, ++ones);
 			}
 		}
 		return res;
 	}
+
 }
