@@ -173,6 +173,7 @@
 #2452 https://leetcode.com/problems/words-within-two-edits-of-dictionary/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/
+#3043 https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/
 
 12. Line Sweep
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
@@ -289,6 +290,9 @@
 #2606 https://leetcode.com/problems/find-the-substring-with-maximum-cost/
 
 22. Bit Manipulation
+#0338 https://leetcode.com/problems/counting-bits/
+#0461 https://leetcode.com/problems/hamming-distance/
+#0762 https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
 #1720 https://leetcode.com/problems/decode-xored-array/
 #1734 https://leetcode.com/problems/decode-xored-permutation/
 #1915 https://leetcode.com/problems/number-of-wonderful-substrings/
@@ -304,6 +308,7 @@
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2527 https://leetcode.com/problems/find-xor-beauty-of-array/
 #2917 https://leetcode.com/problems/find-the-k-or-of-an-array/
+#3105 https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/
 
 23. Two Scans (from left and right side)
 #0487 https://leetcode.com/problems/max-consecutive-ones-ii/
@@ -377,6 +382,7 @@
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
 #1954 https://leetcode.com/problems/minimum-garden-perimeter-to-collect-enough-apples/
 #2366 https://leetcode.com/problems/minimum-replacements-to-sort-the-array/
+#2579 https://leetcode.com/problems/count-total-number-of-colored-cells/
 #2614 https://leetcode.com/problems/prime-in-diagonal/ (check if a number is prime)
 #2870 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
 
