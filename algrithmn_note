@@ -19,6 +19,7 @@
 #2379 https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
+#2537 https://leetcode.com/problems/count-the-number-of-good-subarrays/
 #2762 https://leetcode.com/problems/continuous-subarrays/
 #2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
@@ -201,6 +202,7 @@
 #2181 https://leetcode.com/problems/merge-nodes-in-between-zeros/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 #2807 https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/
+#3217 https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/
 
 15. Tree
 #0199 https://leetcode.com/problems/binary-tree-right-side-view/
@@ -308,6 +310,7 @@
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2527 https://leetcode.com/problems/find-xor-beauty-of-array/
 #2917 https://leetcode.com/problems/find-the-k-or-of-an-array/
+#2997 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/
 #3105 https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/
 
 23. Two Scans (from left and right side)
@@ -323,10 +326,12 @@
 #2908 https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/
 
 24. Matrix Traverse
+#0054 https://leetcode.com/problems/spiral-matrix/
 #0562 https://leetcode.com/problems/longest-line-of-consecutive-one-in-matrix/
 #0766 https://leetcode.com/problems/toeplitz-matrix/
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/
 #2075 https://leetcode.com/problems/decode-the-slanted-ciphertext/
+#2326 https://leetcode.com/problems/spiral-matrix-iv/
 #2352 https://leetcode.com/problems/equal-row-and-column-pairs/
 #2596 https://leetcode.com/problems/check-knight-tour-configuration/
 #2946 https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/
