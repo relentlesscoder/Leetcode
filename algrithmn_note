@@ -309,9 +309,12 @@
 #2433 https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2527 https://leetcode.com/problems/find-xor-beauty-of-array/
+#2683 https://leetcode.com/problems/neighboring-bitwise-xor/
 #2917 https://leetcode.com/problems/find-the-k-or-of-an-array/
 #2997 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/
+#3064 https://leetcode.com/problems/guess-the-number-using-bitwise-questions-i/
 #3105 https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/
+#3191 https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/
 
 23. Two Scans (from left and right side)
 #0487 https://leetcode.com/problems/max-consecutive-ones-ii/
@@ -323,6 +326,7 @@
 #2420 https://leetcode.com/problems/find-all-good-indices/
 #2519 https://leetcode.com/problems/count-the-number-of-k-big-indices/
 #2670 https://leetcode.com/problems/find-the-distinct-difference-array/
+#2873 https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i/
 #2908 https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/
 
 24. Matrix Traverse
