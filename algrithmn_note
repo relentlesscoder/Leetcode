@@ -388,6 +388,7 @@
 #0973 https://leetcode.com/problems/k-closest-points-to-origin/
 
 31. Math
+#1780 https://leetcode.com/problems/check-if-number-is-a-sum-of-powers-of-three/
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
 #1954 https://leetcode.com/problems/minimum-garden-perimeter-to-collect-enough-apples/
 #2366 https://leetcode.com/problems/minimum-replacements-to-sort-the-array/
@@ -434,6 +435,7 @@
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2511 https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/
+#3371 https://leetcode.com/problems/identify-the-largest-outlier-in-an-array/
 
 38. Sorted Set
 #2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/
