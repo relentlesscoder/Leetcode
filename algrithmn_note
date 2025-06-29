@@ -98,6 +98,7 @@
 #2560 https://leetcode.com/problems/house-robber-iv/
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
+#3356 https://leetcode.com/problems/zero-array-transformation-ii/
 
 06. Subsequence
 #0392 https://leetcode.com/problems/is-subsequence/
@@ -183,6 +184,8 @@
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
 #2848 https://leetcode.com/problems/points-that-intersect-with-cars/
+#3355 https://leetcode.com/problems/zero-array-transformation-i/
+#3356 https://leetcode.com/problems/zero-array-transformation-ii/
 
 13. Intervals
 #0056 https://leetcode.com/problems/merge-intervals/
