@@ -18,6 +18,7 @@
 #2302 https://leetcode.com/problems/count-subarrays-with-score-less-than-k/
 #2379 https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
+#2401 https://leetcode.com/problems/longest-nice-subarray/
 #2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
 #2537 https://leetcode.com/problems/count-the-number-of-good-subarrays/
 #2762 https://leetcode.com/problems/continuous-subarrays/
@@ -49,8 +50,10 @@
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
+#2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
+
 
 04. Array Permutation
 #0556 https://leetcode.com/problems/next-greater-element-iii/
@@ -309,6 +312,7 @@
 #2174 https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
 #2275 https://leetcode.com/problems/largest-combination-with-bitwise-and-greater-than-zero/
+#2401 https://leetcode.com/problems/longest-nice-subarray/
 #2433 https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2527 https://leetcode.com/problems/find-xor-beauty-of-array/
@@ -438,6 +442,7 @@
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2511 https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/
+#2964 https://leetcode.com/problems/number-of-divisible-triplet-sums/
 #3371 https://leetcode.com/problems/identify-the-largest-outlier-in-an-array/
 
 38. Sorted Set
@@ -475,6 +480,7 @@
 #0001 https://leetcode.com/problems/two-sum/
 #0015 https://leetcode.com/problems/3sum/
 #0167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+#2964 https://leetcode.com/problems/number-of-divisible-triplet-sums/
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
