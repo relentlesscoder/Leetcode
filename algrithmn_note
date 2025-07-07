@@ -205,6 +205,7 @@
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
 #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
 #0206 https://leetcode.com/problems/reverse-linked-list/
+#2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/
 #2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
 #2095 https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
 #2130 https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
@@ -276,6 +277,7 @@
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/
+#2698 https://leetcode.com/problems/find-the-punishment-number-of-an-integer/
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ ***(Double BFS)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/
 #2924 https://leetcode.com/problems/find-champion-ii/
@@ -451,6 +453,7 @@
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2511 https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/
+#2948 https://leetcode.com/problems/make-lexicographically-smallest-array-by-swapping-elements/
 #2964 https://leetcode.com/problems/number-of-divisible-triplet-sums/
 #3371 https://leetcode.com/problems/identify-the-largest-outlier-in-an-array/
 
