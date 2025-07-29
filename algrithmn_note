@@ -102,6 +102,7 @@
 #2529 https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/
 #2560 https://leetcode.com/problems/house-robber-iv/
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
+#2790 https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length/ (binary search for max)
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
 
