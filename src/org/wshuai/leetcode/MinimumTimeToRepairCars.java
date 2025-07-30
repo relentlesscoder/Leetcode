@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 /**
  * Created by Wei on 07/13/2025.
- * #2594 https://leetcode.com/problems/minimum-time-to-repair-cars
+ * #2594 https://leetcode.com/problems/minimum-time-to-repair-cars/
  */
 public class MinimumTimeToRepairCars {
 

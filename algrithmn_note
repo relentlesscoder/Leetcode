@@ -141,6 +141,7 @@
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #1981 https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/
 #2008 https://leetcode.com/problems/maximum-earnings-from-taxi/
+#2044 https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets
 #2050 https://leetcode.com/problems/parallel-courses-iii/
 #2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
 #2088 https://leetcode.com/problems/count-fertile-pyramids-in-a-land/
@@ -314,6 +315,7 @@
 #1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #2032 https://leetcode.com/problems/two-out-of-three/
+#2044 https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets
 #2103 https://leetcode.com/problems/rings-and-rods/
 #2135 https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/
 #2174 https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips-ii/
