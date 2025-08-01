@@ -95,6 +95,7 @@
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
+#2358 https://leetcode.com/problems/maximum-number-of-groups-entering-a-competition/ ***(binary search for max)
 #2383 https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/ ***(binary search for max)
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
@@ -167,6 +168,7 @@
 #1942 https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/
 #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 #2126 https://leetcode.com/problems/destroying-asteroids/
+#2182 https://leetcode.com/problems/construct-string-with-repeat-limit/
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
