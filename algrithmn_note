@@ -25,6 +25,7 @@
 #2762 https://leetcode.com/problems/continuous-subarrays/
 #2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
+#2962 https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/
 
 02. Monotonic Stack
 #0239 https://leetcode.com/problems/sliding-window-maximum/
