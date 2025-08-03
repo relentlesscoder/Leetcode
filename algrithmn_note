@@ -162,6 +162,7 @@
 #2466 https://leetcode.com/problems/count-ways-to-build-good-strings/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
+#3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 
 10. Min/max queue
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
@@ -408,6 +409,7 @@
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#2337 https://leetcode.com/problems/move-pieces-to-obtain-a-string/
 #2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
