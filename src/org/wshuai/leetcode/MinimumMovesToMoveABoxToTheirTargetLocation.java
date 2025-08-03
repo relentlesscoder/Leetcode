@@ -110,14 +110,14 @@ public class MinimumMovesToMoveABoxToTheirTargetLocation {
 		}
 		return false;
 	}
-}
 
-class GameStatus{
-	int px;
-	int py;
-	int bx;
-	int by;
-	int getStatus(){
-		return ((bx * 20 + by) << 16) | (px * 20 + py);
+	private class GameStatus{
+		int px;
+		int py;
+		int bx;
+		int by;
+		int getStatus(){
+			return ((bx * 20 + by) << 16) | (px * 20 + py);
+		}
 	}
 }

@@ -51,6 +51,7 @@
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
 #2017 https://leetcode.com/problems/grid-game/
 #2055 https://leetcode.com/problems/plates-between-candles/
+#2270 https://leetcode.com/problems/number-of-ways-to-split-array/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
@@ -158,6 +159,7 @@
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
 #2376 https://leetcode.com/problems/count-special-integers/ (Digit DP)
 #2400 https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/
+#2466 https://leetcode.com/problems/count-ways-to-build-good-strings/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
 

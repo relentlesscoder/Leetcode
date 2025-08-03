@@ -49,14 +49,14 @@ public class GetWatchedVideosByYourFriends {
 		}
 		return res;
 	}
-}
 
-class VideoFreq{
-	String id;
-	int freq;
+	private class VideoFreq{
+		String id;
+		int freq;
 
-	public VideoFreq(String id, int freq){
-		this.id = id;
-		this.freq = freq;
+		public VideoFreq(String id, int freq){
+			this.id = id;
+			this.freq = freq;
+		}
 	}
 }

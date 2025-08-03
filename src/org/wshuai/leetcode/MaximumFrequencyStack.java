@@ -36,23 +36,23 @@ public class MaximumFrequencyStack {
 		map.put(e.value, map.get(e.value) - 1);
 		return e.value;
 	}
-}
 
-class MaxFreqStackElement{
-	int value;
-	int count;
-	int index;
+	private class MaxFreqStackElement{
+		int value;
+		int count;
+		int index;
 
-	public MaxFreqStackElement(int v, int c, int i){
-		value = v;
-		count = c;
-		index = i;
+		public MaxFreqStackElement(int v, int c, int i){
+			value = v;
+			count = c;
+			index = i;
+		}
 	}
-}
 
-/**
- * Your FreqStack object will be instantiated and called as such:
- * FreqStack obj = new FreqStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- */
+	/**
+ 	* Your FreqStack object will be instantiated and called as such:
+ 	* FreqStack obj = new FreqStack();
+ 	* obj.push(x);
+ 	* int param_2 = obj.pop();
+ 	*/
+}

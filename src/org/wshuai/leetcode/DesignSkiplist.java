@@ -104,14 +104,14 @@ public class DesignSkiplist {
 	private boolean flipCoin() {
 		return rand.nextDouble() < DEFAULT_PROB;
 	}
-}
 
-class SkiplistNode{
-	int val;
-	SkiplistNode left, right, up, down;
+	private static class SkiplistNode{
+		int val;
+		SkiplistNode left, right, up, down;
 
-	public SkiplistNode(int val){
-		this.val = val;
+		public SkiplistNode(int val){
+			this.val = val;
+		}
 	}
 }
 

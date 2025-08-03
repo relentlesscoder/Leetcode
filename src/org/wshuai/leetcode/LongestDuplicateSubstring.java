@@ -96,19 +96,19 @@ public class LongestDuplicateSubstring {
 		}
 		return res;
 	}
-}
 
-class Suffix implements Comparable<Suffix>{
-	int index;
-	int[] rank;
+	private class Suffix implements Comparable<Suffix>{
+		int index;
+		int[] rank;
 
-	public Suffix(int i, int[] r){
-		index = i;
-		rank = r;
-	}
+		public Suffix(int i, int[] r){
+			index = i;
+			rank = r;
+		}
 
-	public int compareTo(Suffix s){
-		return rank[0] == s.rank[0] ?
-			rank[1] - s.rank[1] : rank[0] - s.rank[0];
+		public int compareTo(Suffix s){
+			return rank[0] == s.rank[0] ?
+					rank[1] - s.rank[1] : rank[0] - s.rank[0];
+		}
 	}
 }
