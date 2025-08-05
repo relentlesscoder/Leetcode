@@ -162,6 +162,7 @@
 #2466 https://leetcode.com/problems/count-ways-to-build-good-strings/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
+#2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 
 10. Min/max queue
@@ -199,6 +200,7 @@
 #2021 https://leetcode.com/problems/brightest-position-on-street/
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
+#2381 https://leetcode.com/problems/shifting-letters-ii/
 #2848 https://leetcode.com/problems/points-that-intersect-with-cars/
 #3355 https://leetcode.com/problems/zero-array-transformation-i/
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
