@@ -20,6 +20,7 @@
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2401 https://leetcode.com/problems/longest-nice-subarray/
 #2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
+#2516 https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/
 #2537 https://leetcode.com/problems/count-the-number-of-good-subarrays/
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
 #2743 https://leetcode.com/problems/count-substrings-without-repeating-character/
@@ -181,6 +182,7 @@
 #2512 https://leetcode.com/problems/reward-top-k-students/
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
+#3362 https://leetcode.com/problems/zero-array-transformation-iii/
 
 11. Trie
 #1804 https://leetcode.com/problems/implement-trie-ii-prefix-tree/
@@ -204,6 +206,7 @@
 #2848 https://leetcode.com/problems/points-that-intersect-with-cars/
 #3355 https://leetcode.com/problems/zero-array-transformation-i/
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
+#3362 https://leetcode.com/problems/zero-array-transformation-iii/
 
 13. Intervals
 #0056 https://leetcode.com/problems/merge-intervals/
@@ -477,6 +480,7 @@
 
 39. Greedy
 #2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
+#2611 https://leetcode.com/problems/mice-and-cheese/
 
 40. Square Root (Sqrt) Decomposition
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
@@ -516,9 +520,11 @@
 #2979 https://leetcode.com/problems/most-expensive-item-that-can-not-be-bought/
 
 Good questions:
+#1163 https://leetcode.com/problems/last-substring-in-lexicographical-order/ (lexicographically largest suffix)
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
+#3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 
 Note:
 1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim)
