@@ -9,8 +9,25 @@ import java.util.TreeMap;
  */
 public class CarPooling {
 
-	// time O(n*log(n)), space O(n)
-	public boolean carPoolingHashMap(int[][] trips, int capacity) {
+	// time O(n + m), space O(m)
+	public boolean carPooling(int[][] trips, int capacity) {
+		int[] locations = new int[1001];
+		for (int[] trip : trips) {
+			locations[trip[1]] += trip[0];
+			locations[trip[2]] -= trip[0];
+		}
+		int count = 0;
+		for (int i = 0; i <= 1000; i++) {
+			count += locations[i];
+			if (capacity < count) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// time O(n * log(n)), space O(n)
+	public boolean carPoolingHashMapTreeMap(int[][] trips, int capacity) {
 		Map<Integer, Integer> map = new TreeMap<>();
 		for (int[] t : trips) {
 			// record the delta of passengers at each time point

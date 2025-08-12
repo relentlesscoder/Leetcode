@@ -198,13 +198,17 @@
 #3042 https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
 #3043 https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/
 
-12. Line Sweep
+12. Difference Array
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
+#1094 https://leetcode.com/problems/car-pooling/
+#1109 https://leetcode.com/problems/corporate-flight-bookings/
 #1893 https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
 #2021 https://leetcode.com/problems/brightest-position-on-street/
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
 #2381 https://leetcode.com/problems/shifting-letters-ii/
+#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
+#2772 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/
 #2848 https://leetcode.com/problems/points-that-intersect-with-cars/
 #3355 https://leetcode.com/problems/zero-array-transformation-i/
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
@@ -531,7 +535,7 @@ Good questions:
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 
 Note:
-1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim)
+1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim), QuickSort
 2. Always consider using stack for parentheses problem
 3. Binary search - https://leetcode.com/discuss/general-discussion/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
 4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
@@ -559,7 +563,8 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	int denominator = 3;
 
 	// Integer arithmetic for ceiling division
-	int ceilValue = (numerator + denominator - 1) / denominator; 
+	int ceilValue = (numerator + denominator - 1) / denominator;
+18. Difference Array - https://leetcode.cn/discuss/post/3573741/suan-fa-xiao-ke-tang-chai-fen-shu-zu-pyt-fyl2/ 
 
 
 
