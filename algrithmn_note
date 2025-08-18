@@ -27,7 +27,9 @@
 #2762 https://leetcode.com/problems/continuous-subarrays/
 #2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
+#2958 https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/
 #2962 https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/
+#3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
 
 02. Monotonic Stack
 #0239 https://leetcode.com/problems/sliding-window-maximum/
@@ -61,7 +63,7 @@
 #2615 https://leetcode.com/problems/sum-of-distances/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
-
+#3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
 
 04. Array Permutation
 #0556 https://leetcode.com/problems/next-greater-element-iii/
@@ -317,6 +319,7 @@
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
 #2434 https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/
 #2696 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
+#3561 https://leetcode.com/problems/resulting-string-after-adjacent-removals/
 
 20. Parentheses
 #0020 https://leetcode.com/problems/valid-parentheses/
@@ -456,6 +459,8 @@
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
+#3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
+#3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
 
 33. Geometry
 #2013 https://leetcode.com/problems/detect-squares/
