@@ -29,6 +29,8 @@
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
 #2958 https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/
 #2962 https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/
+#3095 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/
+#3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/ (with bit manipulation)
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
 
 02. Monotonic Stack
@@ -172,6 +174,7 @@
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
 #2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
+#2901 https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 
@@ -360,6 +363,8 @@
 #2917 https://leetcode.com/problems/find-the-k-or-of-an-array/
 #2997 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/
 #3064 https://leetcode.com/problems/guess-the-number-using-bitwise-questions-i/
+#3095 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/
+#3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/
 #3105 https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/
 #3191 https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/
 
@@ -575,7 +580,10 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 
 	// Integer arithmetic for ceiling division
 	int ceilValue = (numerator + denominator - 1) / denominator;
-18. Difference Array - https://leetcode.cn/discuss/post/3573741/suan-fa-xiao-ke-tang-chai-fen-shu-zu-pyt-fyl2/ 
+18. Difference Array - https://leetcode.cn/discuss/post/3573741/suan-fa-xiao-ke-tang-chai-fen-shu-zu-pyt-fyl2/
+19. Circular array index calculation - https://leetcode.com/problems/transformed-array/
+	move right: (i + moves) % n
+	move left: ((i - moves) % n + n) % n 
 
 
 
