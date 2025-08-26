@@ -187,6 +187,7 @@
 #1942 https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/
 #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 #2126 https://leetcode.com/problems/destroying-asteroids/
+#2163 https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/
 #2182 https://leetcode.com/problems/construct-string-with-repeat-limit/
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
@@ -305,6 +306,7 @@
 #2246 https://leetcode.com/problems/longest-path-with-different-adjacent-characters/
 #2258 https://leetcode.com/problems/escape-the-spreading-fire/
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+#2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/
 #2328 https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
