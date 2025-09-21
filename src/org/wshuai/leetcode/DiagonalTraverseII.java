@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Created by Wei on 04/26/2020.
- * #1424 https://leetcode.com/problems/diagonal-traverse-ii/submissions/
+ * #1424 https://leetcode.com/problems/diagonal-traverse-ii/
  */
 public class DiagonalTraverseII {
 

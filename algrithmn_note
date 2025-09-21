@@ -395,6 +395,7 @@
 #2596 https://leetcode.com/problems/check-knight-tour-configuration/
 #2946 https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/
 #3071 https://leetcode.com/problems/minimum-operations-to-write-the-letter-y-on-a-grid/
+#3446 https://leetcode.com/problems/sort-matrix-by-diagonals/ (diagonal tranverse)
 
 25. Permutation
 #0031 https://leetcode.com/problems/next-permutation/
