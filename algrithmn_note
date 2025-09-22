@@ -34,10 +34,21 @@
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
 
 02. Monotonic Stack
+#0042
+#0084
 #0239 https://leetcode.com/problems/sliding-window-maximum/
 #0496 https://leetcode.com/problems/next-greater-element-i/
 #0503 https://leetcode.com/problems/next-greater-element-ii/
+#0856
+#0901
+#0907
+#1130
+#1425
+#1475
+#1671
+#1673
 #1762 https://leetcode.com/problems/buildings-with-an-ocean-view/
+#1776
 #1856 https://leetcode.com/problems/maximum-subarray-min-product/
 #1944 https://leetcode.com/problems/number-of-visible-people-in-a-queue/
 #2104 https://leetcode.com/problems/sum-of-subarray-ranges/
@@ -45,8 +56,13 @@
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
+#2454
+#2594
+#2735 
 #2832 https://leetcode.com/problems/maximal-range-that-each-element-is-maximum-in-it/
 #2863 https://leetcode.com/problems/maximum-length-of-semi-decreasing-subarrays/
+#2865 https://leetcode.com/problems/beautiful-towers-i/ (mountain array)
+#2866 https://leetcode.com/problems/beautiful-towers-ii/ (mountain array)
 
 03. Prefix Sum
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
@@ -64,7 +80,9 @@
 #2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/
 #2615 https://leetcode.com/problems/sum-of-distances/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
+#2845 https://leetcode.com/problems/count-of-interesting-subarrays/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
+#3152 https://leetcode.com/problems/special-array-ii/
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
 
 04. Array Permutation
@@ -117,6 +135,7 @@
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
 #2790 https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length/ (binary search for max)
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
+#3152 https://leetcode.com/problems/special-array-ii/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
 
 06. Subsequence
@@ -150,6 +169,7 @@
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
 #1871 https://leetcode.com/problems/jump-game-vii/
+#1911 https://leetcode.com/problems/maximum-alternating-subsequence-sum/
 #1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
@@ -368,6 +388,7 @@
 #3095 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/
 #3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/
 #3105 https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/
+#3133 https://leetcode.com/problems/minimum-array-end/
 #3191 https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/
 
 23. Two Scans (from left and right side)
@@ -552,6 +573,7 @@ Good questions:
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
+#3152 https://leetcode.com/problems/special-array-ii/
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 
 Note:
