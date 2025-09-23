@@ -461,6 +461,7 @@
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #2337 https://leetcode.com/problems/move-pieces-to-obtain-a-string/
 #2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
+#2444 https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
 #2563 https://leetcode.com/problems/count-the-number-of-fair-pairs/
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
@@ -574,6 +575,7 @@ Good questions:
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
+#3132 https://leetcode.com/problems/find-the-integer-added-to-array-ii/
 #3152 https://leetcode.com/problems/special-array-ii/
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 
