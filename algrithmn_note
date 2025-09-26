@@ -197,6 +197,7 @@
 #2901 https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
+#3335 https://leetcode.com/problems/total-characters-in-string-after-transformations-i/
 
 10. Min/max queue
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
@@ -390,7 +391,9 @@
 #3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/
 #3105 https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/
 #3133 https://leetcode.com/problems/minimum-array-end/
+#3158 https://leetcode.com/problems/find-the-xor-of-numbers-which-appear-twice/
 #3191 https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/
+#3688 https://leetcode.com/problems/bitwise-or-of-even-numbers-in-an-array/
 
 23. Two Scans (from left and right side)
 #0487 https://leetcode.com/problems/max-consecutive-ones-ii/
