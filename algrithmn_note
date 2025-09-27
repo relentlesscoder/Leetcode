@@ -198,6 +198,8 @@
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 #3335 https://leetcode.com/problems/total-characters-in-string-after-transformations-i/
+#3503 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/
+#3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 
 10. Min/max queue
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
@@ -216,6 +218,8 @@
 #2512 https://leetcode.com/problems/reward-top-k-students/
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
+#3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
+#3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
 
 11. Trie
@@ -580,6 +584,8 @@ Good questions:
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
 #3132 https://leetcode.com/problems/find-the-integer-added-to-array-ii/
 #3152 https://leetcode.com/problems/special-array-ii/
+#3265 https://leetcode.com/problems/count-almost-equal-pairs-i/
+#3267 https://leetcode.com/problems/count-almost-equal-pairs-ii/
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 
 Note:
