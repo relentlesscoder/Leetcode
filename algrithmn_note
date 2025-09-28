@@ -256,6 +256,7 @@
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
+#2655 https://leetcode.com/problems/find-maximal-uncovered-ranges/ (merge intervals)
 
 14. Linked List
 #0021 https://leetcode.com/problems/merge-two-sorted-lists/
@@ -483,10 +484,11 @@
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
 #1954 https://leetcode.com/problems/minimum-garden-perimeter-to-collect-enough-apples/
 #2366 https://leetcode.com/problems/minimum-replacements-to-sort-the-array/
-#2521 https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/ (prime factorization)
+#2521 https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/ (prime factorization) **
 #2579 https://leetcode.com/problems/count-total-number-of-colored-cells/
 #2614 https://leetcode.com/problems/prime-in-diagonal/ (check if a number is prime)
 #2870 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
+#3164 https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization) **
 
 32. Dijkstra
 #0743 https://leetcode.com/problems/network-delay-time/
@@ -627,6 +629,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	move right: (i + moves) % n
 	move left: ((i - moves) % n + n) % n 
 20. Prime factorization: https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/
+	Factorization: https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization)
 21. Palindrome extend from middle https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 	// gracefully handle both cases like aabaa or abba
 	for (int i = 0; i < 2 * n - 1; i++) {
