@@ -80,6 +80,7 @@
 #2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/
 #2615 https://leetcode.com/problems/sum-of-distances/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
+#2731 https://leetcode.com/problems/movement-of-robots/
 #2845 https://leetcode.com/problems/count-of-interesting-subarrays/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
 #3152 https://leetcode.com/problems/special-array-ii/
@@ -586,11 +587,14 @@ Good questions:
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
+#2731 https://leetcode.com/problems/movement-of-robots/
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
 #3132 https://leetcode.com/problems/find-the-integer-added-to-array-ii/
 #3152 https://leetcode.com/problems/special-array-ii/
 #3265 https://leetcode.com/problems/count-almost-equal-pairs-i/
 #3267 https://leetcode.com/problems/count-almost-equal-pairs-ii/
+#3239 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-i/
+#3240 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-ii/
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
 
