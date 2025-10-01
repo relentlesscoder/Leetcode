@@ -194,8 +194,10 @@
 #2501 https://leetcode.com/problems/longest-square-streak-in-an-array/
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
+#2787 https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/ (Knapsack)
 #2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
 #2901 https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii
+#3186 https://leetcode.com/problems/maximum-total-damage-with-spell-casting/
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 #3335 https://leetcode.com/problems/total-characters-in-string-after-transformations-i/
@@ -338,6 +340,7 @@
 #2328 https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
+#2597 https://leetcode.com/problems/the-number-of-beautiful-subsets/
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/
 #2698 https://leetcode.com/problems/find-the-punishment-number-of-an-integer/
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ ***(Double BFS)
@@ -491,6 +494,7 @@
 #2614 https://leetcode.com/problems/prime-in-diagonal/ (check if a number is prime)
 #2870 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
 #3164 https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization) **
+#3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 
 32. Dijkstra
 #0743 https://leetcode.com/problems/network-delay-time/
@@ -592,11 +596,13 @@ Good questions:
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
 #3132 https://leetcode.com/problems/find-the-integer-added-to-array-ii/
 #3152 https://leetcode.com/problems/special-array-ii/
-#3265 https://leetcode.com/problems/count-almost-equal-pairs-i/
-#3267 https://leetcode.com/problems/count-almost-equal-pairs-ii/
+#3234 https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/
 #3239 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-i/
 #3240 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-ii/
+#3265 https://leetcode.com/problems/count-almost-equal-pairs-i/
+#3267 https://leetcode.com/problems/count-almost-equal-pairs-ii/
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
+#3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
 
 Note:
@@ -640,6 +646,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	for (int i = 0; i < 2 * n - 1; i++) {
         int l = i / 2, r = (i + 1) / 2;
     }
+22. Permutation/Combination preprocessing - #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 
 
 
