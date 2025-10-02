@@ -32,9 +32,13 @@ public class MaximumAndMinimumSumsOfAtMostSizeKSubsequences {
         long res = 0;
         for (int i = 0; i < n; i++) {
             long sum = 0;
+            // for subsequence using nums[i] as maximum, we can select from 0 to Math.min(k - 1, i)
+            // numbers from [0, i - 1]
             for (int j = 0; j < Math.min(k, i + 1); j++) {
                 sum += combination(i, j);
             }
+            // select nums[i] as the maximum and select nums[n - 1 - i] as the minimum
+            // are symmetric
             res = (res + sum % MOD * (nums[i] + nums[n - 1 - i])) % MOD;
         }
         return (int) res;

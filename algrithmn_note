@@ -137,6 +137,7 @@
 #2790 https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length/ (binary search for max)
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
 #3152 https://leetcode.com/problems/special-array-ii/ ***(binary search for max)
+#3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
 
 06. Subsequence
@@ -601,6 +602,7 @@ Good questions:
 #3240 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-ii/
 #3265 https://leetcode.com/problems/count-almost-equal-pairs-i/
 #3267 https://leetcode.com/problems/count-almost-equal-pairs-ii/
+#3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
@@ -647,6 +649,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
         int l = i / 2, r = (i + 1) / 2;
     }
 22. Permutation/Combination preprocessing - #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
+	https://leetcode.cn/discuss/post/3584387/fen-xiang-gun-mo-yun-suan-de-shi-jie-dan-7xgu/
 
 
 
