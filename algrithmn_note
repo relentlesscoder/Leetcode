@@ -31,6 +31,7 @@
 #2962 https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/
 #3095 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/
 #3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/ (with bit manipulation)
+#3258 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
 
 02. Monotonic Stack
@@ -154,6 +155,7 @@
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2924 https://leetcode.com/problems/find-champion-ii/
+#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 08. Backtracking
 #1655 https://leetcode.com/problems/distribute-repeating-integers/
@@ -495,6 +497,7 @@
 #2614 https://leetcode.com/problems/prime-in-diagonal/ (check if a number is prime)
 #2870 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
 #3164 https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization) **
+#3266 https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-ii/
 #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 
 32. Dijkstra
@@ -511,6 +514,7 @@
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
 #3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
 #3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
+#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 33. Geometry
 #2013 https://leetcode.com/problems/detect-squares/
@@ -601,6 +605,7 @@ Good questions:
 #3239 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-i/
 #3240 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-ii/
 #3265 https://leetcode.com/problems/count-almost-equal-pairs-i/
+#3266 https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-ii/
 #3267 https://leetcode.com/problems/count-almost-equal-pairs-ii/
 #3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
@@ -614,7 +619,8 @@ Note:
 4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
 5. DFS & BFS template - #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
 6. https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-programming/
-7. Dijkstra - single source shortest distance
+7. Dijkstra - single source shortest distance template - #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
+	https://leetcode.cn/problems/minimum-cost-path-with-edge-reversals/solutions/3755140/dijkstra-mo-ban-ti-pythonjavacgo-by-endl-mziq/
 8. Square Root (Sqrt) Decomposition - https://www.geeksforgeeks.org/square-root-sqrt-decomposition-algorithm/
 9. Java HashMap Internals - https://www.baeldung.com/java-hashmap-load-factor
 10. Binary Tree Nodes and Height - https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
