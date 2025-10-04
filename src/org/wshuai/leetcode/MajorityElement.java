@@ -5,18 +5,18 @@ package org.wshuai.leetcode;
  * #0169 https://leetcode.com/problems/majority-element/
  */
 public class MajorityElement {
-	// time O(n)
-	// http://www.cs.utexas.edu/~moore/best-ideas/mjrty/
+
+	// time O(n), space O(1)
 	public int majorityElement(int[] nums) {
-		int cur = nums[0], count = 1, n = nums.length;
-		for(int i = 1; i < n; i++){
-			if(count == 0){
-				cur = nums[i];
-				count = 1;
-			}else{
-				count += nums[i] == cur ? 1 : -1;
+		int res = -1, votes = 0;
+		for (int num : nums) {
+			if (votes == 0) {
+				res = num;
+				votes = 1;
+			} else {
+				votes += num == res ? 1 : -1;
 			}
 		}
-		return cur;
+		return res;
 	}
 }

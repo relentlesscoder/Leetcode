@@ -407,6 +407,7 @@
 #3133 https://leetcode.com/problems/minimum-array-end/
 #3158 https://leetcode.com/problems/find-the-xor-of-numbers-which-appear-twice/
 #3191 https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/
+#3370 https://leetcode.com/problems/smallest-number-with-all-set-bits/
 #3566 https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/
 #3688 https://leetcode.com/problems/bitwise-or-of-even-numbers-in-an-array/
 
@@ -435,6 +436,7 @@
 #2596 https://leetcode.com/problems/check-knight-tour-configuration/
 #2946 https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/
 #3071 https://leetcode.com/problems/minimum-operations-to-write-the-letter-y-on-a-grid/
+#3195 https://leetcode.com/problems/find-the-minimum-area-to-cover-all-ones-i/
 #3446 https://leetcode.com/problems/sort-matrix-by-diagonals/ (diagonal tranverse)
 
 25. Permutation
@@ -546,6 +548,8 @@
 #2511 https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/
 #2948 https://leetcode.com/problems/make-lexicographically-smallest-array-by-swapping-elements/
 #2964 https://leetcode.com/problems/number-of-divisible-triplet-sums/
+#3184 https://leetcode.com/problems/count-pairs-that-form-a-complete-day-i/
+#3185 https://leetcode.com/problems/count-pairs-that-form-a-complete-day-ii/
 #3371 https://leetcode.com/problems/identify-the-largest-outlier-in-an-array/
 
 38. Sorted Set
@@ -585,6 +589,12 @@
 #0015 https://leetcode.com/problems/3sum/
 #0167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 #2964 https://leetcode.com/problems/number-of-divisible-triplet-sums/
+
+47. Majority
+#0169 https://leetcode.com/problems/majority-element/
+#0229 https://leetcode.com/problems/majority-element-ii/
+#2780 https://leetcode.com/problems/minimum-index-of-a-valid-split/
+
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
@@ -656,6 +666,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
     }
 22. Permutation/Combination preprocessing - #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 	https://leetcode.cn/discuss/post/3584387/fen-xiang-gun-mo-yun-suan-de-shi-jie-dan-7xgu/
+23. Boyer-Moore majority voting - https://www.geeksforgeeks.org/theory-of-computation/boyer-moore-majority-voting-algorithm/
 
 
 
