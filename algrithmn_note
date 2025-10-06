@@ -33,6 +33,7 @@
 #3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/ (with bit manipulation)
 #3258 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
+#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
 
 02. Monotonic Stack
 #0042
@@ -86,6 +87,7 @@
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
 #3152 https://leetcode.com/problems/special-array-ii/
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
+#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
 
 04. Array Permutation
 #0556 https://leetcode.com/problems/next-greater-element-iii/
@@ -153,6 +155,7 @@
 #2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
 #2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2924 https://leetcode.com/problems/find-champion-ii/
 #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
@@ -200,6 +203,7 @@
 #2787 https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/ (Knapsack)
 #2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
 #2901 https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii
+#3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
 #3186 https://leetcode.com/problems/maximum-total-damage-with-spell-casting/
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
@@ -315,6 +319,7 @@
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2076 https://leetcode.com/problems/process-restricted-friend-requests/
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
+#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 
 18. DFS/BFS
@@ -341,6 +346,7 @@
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
 #2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/
 #2328 https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/
+#2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
 #2597 https://leetcode.com/problems/the-number-of-beautiful-subsets/
@@ -492,6 +498,7 @@
 31. Math
 #1780 https://leetcode.com/problems/check-if-number-is-a-sum-of-powers-of-three/
 #1823 https://leetcode.com/problems/find-the-winner-of-the-circular-game/
+#1952 https://leetcode.com/problems/three-divisors/ (divisors)
 #1954 https://leetcode.com/problems/minimum-garden-perimeter-to-collect-enough-apples/
 #2366 https://leetcode.com/problems/minimum-replacements-to-sort-the-array/
 #2521 https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/ (prime factorization) **
@@ -520,6 +527,8 @@
 
 33. Geometry
 #2013 https://leetcode.com/problems/detect-squares/
+#3025 https://leetcode.com/problems/find-the-number-of-ways-to-place-people-i/
+#3027 https://leetcode.com/problems/find-the-number-of-ways-to-place-people-ii/
 
 34. Backtracking
 #1718 https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/
@@ -537,6 +546,7 @@
 #0528 https://leetcode.com/problems/random-pick-with-weight/
 
 37. Hashmap
+#0734 https://leetcode.com/problems/sentence-similarity/
 #1807 https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
 #1814 https://leetcode.com/problems/count-nice-pairs-in-an-array/
 #2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
@@ -575,6 +585,7 @@
 
 43. Queue
 #0346 https://leetcode.com/problems/moving-average-from-data-stream/
+#1813 https://leetcode.com/problems/sentence-similarity-iii/
 #2810 https://leetcode.com/problems/faulty-keyboard/
 
 44. Substring
@@ -607,6 +618,7 @@ Good questions:
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
+#2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
 #2731 https://leetcode.com/problems/movement-of-robots/
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
 #3132 https://leetcode.com/problems/find-the-integer-added-to-array-ii/
@@ -621,6 +633,7 @@ Good questions:
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
+#3483 https://leetcode.com/problems/unique-3-digit-even-numbers/
 
 Note:
 1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim), QuickSort

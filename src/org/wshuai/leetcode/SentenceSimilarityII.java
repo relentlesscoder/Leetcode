@@ -9,6 +9,7 @@ import java.util.Map;
  * #0737 https://leetcode.com/problems/sentence-similarity-ii/
  */
 public class SentenceSimilarityII {
+
 	public boolean areSentencesSimilarTwo(String[] words1, String[] words2, List<List<String>> pairs) {
 		if (words1.length != words2.length) {
 			return false;
