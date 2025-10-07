@@ -18,9 +18,13 @@ public class MaximumNumberOfOperationsWithTheSameScoreII {
     }
 
     private int findMaxOperations(int[] nums, int start, int end, int score) {
+        // https://leetcode.cn/problems/maximum-number-of-operations-with-the-same-score-ii/solutions/2643756/qu-jian-dp-de-tao-lu-pythonjavacgo-by-en-nynz/
         int n = nums.length;
+        // dp[i][j + 1] is the max operations in subarray [i, j]
+        // we use j + 1 simply to avoid -1 by j - 1
         int[][] dp = new int[n + 1][n + 1];
-        for (int i = end - 1; i >= start; i--) {
+        // i = end - 1 because i needs to left to j
+        for (int i = end; i >= start; i--) {
             for (int j = i + 1; j <= end; j++) {
                 if (nums[i] + nums[j] == score) {
                     dp[i][j + 1] = Math.max(dp[i][j + 1], dp[i + 1][j] + 1);

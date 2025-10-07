@@ -203,7 +203,8 @@
 #2787 https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/ (Knapsack)
 #2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
 #2901 https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii
-#3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
+#3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/ (avoid negative)
+#3068 https://leetcode.com/problems/find-the-maximum-sum-of-node-values/
 #3186 https://leetcode.com/problems/maximum-total-damage-with-spell-casting/
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
@@ -313,6 +314,7 @@
 
 17. Union Find
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#0737 https://leetcode.com/problems/sentence-similarity-ii/
 #1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
 #1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
@@ -321,6 +323,7 @@
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
+#3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 
 18. DFS/BFS
 #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
@@ -329,6 +332,7 @@
 #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
 #0339 https://leetcode.com/problems/nested-list-weight-sum/
 #0364 https://leetcode.com/problems/nested-list-weight-sum-ii/
+#0737 https://leetcode.com/problems/sentence-similarity-ii/
 #1631 https://leetcode.com/problems/path-with-minimum-effort/ ***(minimum cost in grid minimum cost with weighted cells)
 #1778 https://leetcode.com/problems/shortest-path-in-a-hidden-grid/ ***(DFS + BFS)
 #1810 https://leetcode.com/problems/minimum-path-cost-in-a-hidden-grid/ ***(DFS + BFS)
@@ -355,6 +359,7 @@
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ ***(Double BFS)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/
 #2924 https://leetcode.com/problems/find-champion-ii/
+#3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 #3211 https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/
 #3552 https://leetcode.com/problems/grid-teleportation-traversal/ ***(BFS)
 #3566 https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/
@@ -621,6 +626,8 @@ Good questions:
 #2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
 #2731 https://leetcode.com/problems/movement-of-robots/
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
+#3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
+#3068 https://leetcode.com/problems/find-the-maximum-sum-of-node-values/
 #3132 https://leetcode.com/problems/find-the-integer-added-to-array-ii/
 #3152 https://leetcode.com/problems/special-array-ii/
 #3234 https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/
@@ -680,6 +687,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 22. Permutation/Combination preprocessing - #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 	https://leetcode.cn/discuss/post/3584387/fen-xiang-gun-mo-yun-suan-de-shi-jie-dan-7xgu/
 23. Boyer-Moore majority voting - https://www.geeksforgeeks.org/theory-of-computation/boyer-moore-majority-voting-algorithm/
+24. Dynamic Programing - how to determine iteration direction and avoid negative index - #3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
 
 
 
