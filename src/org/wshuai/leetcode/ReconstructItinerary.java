@@ -8,30 +8,47 @@ import java.util.*;
  */
 public class ReconstructItinerary {
 
-	// time O(n*log(n)), space O(n)
-	public List<String> findItinerary(List<List<String>> tickets) {
-		LinkedList<String> res = new LinkedList<>();
-		if(tickets == null || tickets.size() == 0){
-			return res;
-		}
-		Map<String, PriorityQueue<String>> map = new HashMap<>();
-		for(List<String> t : tickets){
-			map.putIfAbsent(t.get(0), new PriorityQueue<>());
-			map.get(t.get(0)).offer(t.get(1));
-		}
-		dfs("JFK", map, res);
-		return res;
-	}
+    // time O(V + E * log(E)), space O(V + E)
+    public List<String> findItineraryHierholzer(List<List<String>> tickets) {
+        Map<String, PriorityQueue<String>> adj = new HashMap<>();
+        for (List<String> ticket : tickets) {
+            String start = ticket.get(0), end = ticket.get(1);
+            adj.computeIfAbsent(start, value -> new PriorityQueue<>()).offer(end);
+        }
+        List<String> path = new ArrayList<>();
+        Deque<String> stack = new ArrayDeque<>();
+        stack.push("JFK");
+        while (!stack.isEmpty()) {
+            String currNode = stack.peek();
+            if (adj.containsKey(currNode) && !adj.get(currNode).isEmpty()) {
+                stack.push(adj.get(currNode).poll());
+            } else {
+                path.add(stack.pop());
+            }
+        }
+        Collections.reverse(path);
+        return path;
+    }
 
-	private void dfs(String cur, Map<String, PriorityQueue<String>> map, LinkedList<String> res){
-		if(!map.containsKey(cur) || map.get(cur).size() == 0){
-			res.offerFirst(cur);
-			return;
-		}
-		PriorityQueue<String> pq = map.get(cur);
-		while(pq.size() > 0){
-			dfs(pq.poll(), map, res);
-		}
-		res.offerFirst(cur);
-	}
+    // time O(V + E * log(E)), space O(V + E)
+    public List<String> findItineraryDFS(List<List<String>> tickets) {
+        Map<String, PriorityQueue<String>> adj = new HashMap<>();
+        for (List<String> ticket : tickets) {
+            String start = ticket.get(0), end = ticket.get(1);
+            adj.computeIfAbsent(start, value -> new PriorityQueue<>()).offer(end);
+        }
+        List<String> path = new ArrayList<>();
+        dfs("JFK", adj, path);
+        Collections.reverse(path);
+        return path;
+    }
+
+    private void dfs(String node, Map<String, PriorityQueue<String>> adj, List<String> path) {
+        PriorityQueue<String> minQueue = adj.get(node);
+        while (minQueue != null && !minQueue.isEmpty()) {
+            String nextNode = minQueue.poll();
+            dfs(nextNode, adj, path);
+        }
+        path.add(node);
+    }
 }

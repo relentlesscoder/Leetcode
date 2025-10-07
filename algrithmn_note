@@ -149,9 +149,11 @@
 
 07. Graph
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#0332 https://leetcode.com/problems/reconstruct-itinerary/ (Eulerian Path)
 #1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
+#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/ (Eulerian Path)
 #2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
 #2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
@@ -512,7 +514,8 @@
 #2870 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
 #3164 https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization) **
 #3266 https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-ii/
-#3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
+#3405 https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/ (Combination)
+#3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/ (Combination)
 
 32. Dijkstra
 #0743 https://leetcode.com/problems/network-delay-time/
@@ -611,6 +614,9 @@
 #0229 https://leetcode.com/problems/majority-element-ii/
 #2780 https://leetcode.com/problems/minimum-index-of-a-valid-split/
 
+48. LIS
+#0300 https://leetcode.com/problems/longest-increasing-subsequence/ (n*log(n))
+#1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/ (n*log(n))
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
@@ -620,10 +626,12 @@
 
 Good questions:
 #1163 https://leetcode.com/problems/last-substring-in-lexicographical-order/ (lexicographically largest suffix)
+#1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
 #2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
+#2561 https://leetcode.com/problems/rearranging-fruits/
 #2731 https://leetcode.com/problems/movement-of-robots/
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
 #3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
@@ -684,10 +692,15 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	for (int i = 0; i < 2 * n - 1; i++) {
         int l = i / 2, r = (i + 1) / 2;
     }
-22. Permutation/Combination preprocessing - #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
+22. Permutation/Combination preprocessing - 
+	#3405 https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
+	#3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 	https://leetcode.cn/discuss/post/3584387/fen-xiang-gun-mo-yun-suan-de-shi-jie-dan-7xgu/
 23. Boyer-Moore majority voting - https://www.geeksforgeeks.org/theory-of-computation/boyer-moore-majority-voting-algorithm/
 24. Dynamic Programing - how to determine iteration direction and avoid negative index - #3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
+25. Eulerian Path
+	#0332 https://leetcode.com/problems/reconstruct-itinerary/
+	#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/
 
 
 
