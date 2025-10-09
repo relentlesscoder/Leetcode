@@ -61,10 +61,12 @@
 #2454
 #2594
 #2735 
+#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 #2832 https://leetcode.com/problems/maximal-range-that-each-element-is-maximum-in-it/
 #2863 https://leetcode.com/problems/maximum-length-of-semi-decreasing-subarrays/
 #2865 https://leetcode.com/problems/beautiful-towers-i/ (mountain array)
 #2866 https://leetcode.com/problems/beautiful-towers-ii/ (mountain array)
+#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 
 03. Prefix Sum
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
@@ -123,6 +125,7 @@
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
 #2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
+#2071 https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/ ***(binary search for max)
 #2141 https://leetcode.com/problems/maximum-running-time-of-n-computers/
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
@@ -139,6 +142,7 @@
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
 #2790 https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length/ (binary search for max)
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
+#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3152 https://leetcode.com/problems/special-array-ii/ ***(binary search for max)
 #3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
@@ -231,6 +235,7 @@
 #2512 https://leetcode.com/problems/reward-top-k-students/
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
+#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
 #3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
@@ -633,6 +638,8 @@ Good questions:
 #2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
 #2561 https://leetcode.com/problems/rearranging-fruits/
 #2731 https://leetcode.com/problems/movement-of-robots/
+#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
+#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #2982 https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-ii/
 #3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
 #3068 https://leetcode.com/problems/find-the-maximum-sum-of-node-values/
@@ -648,6 +655,7 @@ Good questions:
 #3403 https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/ lexicographically largest suffix
 #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
+#3445 https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-ii/
 #3483 https://leetcode.com/problems/unique-3-digit-even-numbers/
 
 Note:
@@ -701,6 +709,8 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 25. Eulerian Path
 	#0332 https://leetcode.com/problems/reconstruct-itinerary/
 	#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/
+26. Prime Factor preprocessing -
+	#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 
 
 
