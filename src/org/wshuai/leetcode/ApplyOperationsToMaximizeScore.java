@@ -83,7 +83,7 @@ public class ApplyOperationsToMaximizeScore {
             right[i] = queue.peek();
             queue.push(i);
         }
-        // Sort the indexes in descending order since we would like to process from largest number
+        // Sort the indexes in descending order since we would like to process from the largest number
         // to least to maximize the score
         Integer[] ids = new Integer[n];
         Arrays.setAll(ids, index -> index);
