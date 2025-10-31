@@ -129,6 +129,7 @@
 #2141 https://leetcode.com/problems/maximum-running-time-of-n-computers/
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
+#2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
 #2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (last index stops at n)
 #2358 https://leetcode.com/problems/maximum-number-of-groups-entering-a-competition/ ***(binary search for max)
@@ -268,6 +269,8 @@
 #3355 https://leetcode.com/problems/zero-array-transformation-i/
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
+#3346 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-i/
+#3347 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-ii/
 
 13. Intervals
 #0056 https://leetcode.com/problems/merge-intervals/
