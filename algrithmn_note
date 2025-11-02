@@ -156,6 +156,7 @@
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 #0332 https://leetcode.com/problems/reconstruct-itinerary/ (Eulerian Path)
 #1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
+#1857 https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
 #2097 https://leetcode.com/problems/valid-arrangement-of-pairs/ (Eulerian Path)
@@ -210,8 +211,9 @@
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
 #2787 https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/ (Knapsack)
-#2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
 #2901 https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii
+#2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
+#2999 https://leetcode.com/problems/count-the-number-of-powerful-integers/
 #3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/ (avoid negative)
 #3068 https://leetcode.com/problems/find-the-maximum-sum-of-node-values/
 #3186 https://leetcode.com/problems/maximum-total-damage-with-spell-casting/
@@ -576,6 +578,7 @@
 #2260 https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/
 #2284 https://leetcode.com/problems/sender-with-largest-word-count/
 #2295 https://leetcode.com/problems/replace-elements-in-an-array/
+#2364 https://leetcode.com/problems/count-number-of-bad-pairs/
 #2365 https://leetcode.com/problems/task-scheduler-ii/
 #2506 https://leetcode.com/problems/count-pairs-of-similar-strings/
 #2511 https://leetcode.com/problems/maximum-enemy-forts-that-can-be-captured/
@@ -603,9 +606,11 @@
 
 42. Binary Index Tree
 #0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
+#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 #0493 https://leetcode.com/problems/reverse-pairs/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 
 43. Permutation/Combination
 #3272 https://leetcode.com/problems/find-the-count-of-good-integers/
@@ -674,22 +679,42 @@ Good questions:
 
 Note:
 1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim), QuickSort
+
 2. Always consider using stack for parentheses problem
+
 3. Binary search - https://leetcode.com/discuss/general-discussion/786126/Python-Powerful-Ultimate-Binary-Search-Template.-Solved-many-problems
+
 4. Union find will not work for directed graph - https://leetcode.com/problems/detonate-the-maximum-bombs/solutions/2581558/why-is-this-wrong-python-union-find-solution-passes-111-160/
+
 5. DFS & BFS template - #2101 https://leetcode.com/problems/detonate-the-maximum-bombs/
+
 6. https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-programming/
+
 7. Dijkstra - single source shortest distance template - #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 	https://leetcode.cn/problems/minimum-cost-path-with-edge-reversals/solutions/3755140/dijkstra-mo-ban-ti-pythonjavacgo-by-endl-mziq/
+
 8. Square Root (Sqrt) Decomposition - https://www.geeksforgeeks.org/square-root-sqrt-decomposition-algorithm/
+
 9. Java HashMap Internals - https://www.baeldung.com/java-hashmap-load-factor
+
 10. Binary Tree Nodes and Height - https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
+
 11. Segment Tree - https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
 https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
+
 12. Binary Indexed Tree - https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+
+	Template for BIT + discretization:
+	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+	#0493 https://leetcode.com/problems/reverse-pairs/
+	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
+
 14. Java Comparable - #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
+
 15. Digit DP - https://www.geeksforgeeks.org/digit-dp-introduction/
+
 16. ArrayDeque: 
 	a. Add element to end: add, addLast, offer, offerLast
 	b. Add element to front: addFrist, offerFirst, push
@@ -697,32 +722,42 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	d. Remove element from front: poll, pollFirst, pop, remove, removeFirst
 	e. Retrieve element from end: getLast, peekLast
 	f. Retrieve element from front: getFirst, peek, peekFirst
+
 17. Ceiling of integer division:
 	int numerator = 7;
 	int denominator = 3;
 
 	// Integer arithmetic for ceiling division
 	int ceilValue = (numerator + denominator - 1) / denominator;
+
 18. Difference Array - https://leetcode.cn/discuss/post/3573741/suan-fa-xiao-ke-tang-chai-fen-shu-zu-pyt-fyl2/
+
 19. Circular array index calculation - https://leetcode.com/problems/transformed-array/
 	move right: (i + moves) % n
 	move left: ((i - moves) % n + n) % n 
+
 20. Prime factorization: https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/
 	Factorization: https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization)
+
 21. Palindrome extend from middle https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 	// gracefully handle both cases like aabaa or abba
 	for (int i = 0; i < 2 * n - 1; i++) {
         int l = i / 2, r = (i + 1) / 2;
     }
+
 22. Permutation/Combination preprocessing - 
 	#3405 https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
 	#3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
 	https://leetcode.cn/discuss/post/3584387/fen-xiang-gun-mo-yun-suan-de-shi-jie-dan-7xgu/
+
 23. Boyer-Moore majority voting - https://www.geeksforgeeks.org/theory-of-computation/boyer-moore-majority-voting-algorithm/
+
 24. Dynamic Programing - how to determine iteration direction and avoid negative index - #3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/
+
 25. Eulerian Path
 	#0332 https://leetcode.com/problems/reconstruct-itinerary/
 	#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/
+
 26. Prime Factor preprocessing -
 	#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 
