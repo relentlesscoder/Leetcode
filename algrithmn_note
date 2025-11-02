@@ -162,6 +162,7 @@
 #2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
 #2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+#2493 https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2924 https://leetcode.com/problems/find-champion-ii/
@@ -183,6 +184,7 @@
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/
 #1871 https://leetcode.com/problems/jump-game-vii/
+#1900 https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/
 #1911 https://leetcode.com/problems/maximum-alternating-subsequence-sum/
 #1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
 #1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/
@@ -607,8 +609,10 @@
 
 43. Permutation/Combination
 #3272 https://leetcode.com/problems/find-the-count-of-good-integers/
+#3343 https://leetcode.com/problems/count-number-of-balanced-permutations/
 #3405 https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
 #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/
+#3539 https://leetcode.com/problems/find-sum-of-array-product-of-magical-sequences/
 
 44. Substring
 #0028 https://leetcode.com/problems/implement-strstr/

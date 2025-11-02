@@ -22,7 +22,7 @@ public class CountTheNumberOfArraysWithKMatchingAdjacentElements {
         }
     }
 
-    private long combination(int n, int m) {
+    private static long combination(int n, int m) {
         return FACTORIAL[n] * INVERSE_FACTORIAL[m] % MOD * INVERSE_FACTORIAL[n - m] % MOD;
     }
 
