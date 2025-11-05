@@ -182,6 +182,7 @@
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
 #1012 https://leetcode.com/problems/numbers-with-repeated-digits/ (Digit DP)
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
+#1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
@@ -616,6 +617,8 @@
 #0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
 #0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 #0493 https://leetcode.com/problems/reverse-pairs/
+#1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/
+#1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #2179 https://leetcode.com/problems/count-good-triplets-in-an-array/
@@ -662,7 +665,10 @@
 
 Good questions:
 #1163 https://leetcode.com/problems/last-substring-in-lexicographical-order/ (lexicographically largest suffix)
+#1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/ (binary indexed tree)
+#1626 https://leetcode.com/problems/best-team-with-no-conflicts/ (dynamic programming + binary indexed tree)
 #1632 https://leetcode.com/problems/rank-transform-of-a-matrix/ (union find + topological sort)
+#1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (binary indexed tree)
 #1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
