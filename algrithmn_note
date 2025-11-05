@@ -608,6 +608,7 @@
 41. Segment Tree
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
+#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
 #3479 https://leetcode.com/problems/fruits-into-baskets-iii/
 
@@ -617,7 +618,11 @@
 #0493 https://leetcode.com/problems/reverse-pairs/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#2179 https://leetcode.com/problems/count-good-triplets-in-an-array/
 #2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+#3187 https://leetcode.com/problems/peaks-in-array/
+#3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
 
 43. Permutation/Combination
 #2954 https://leetcode.com/problems/count-the-number-of-infection-sequences/
@@ -711,12 +716,15 @@ Note:
 11. Segment Tree - https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
 https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 
-12. Binary Indexed Tree - https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+12. Binary Indexed Tree
+		https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+		https://leetcode.cn/problems/range-sum-query-mutable/solutions/2524481/dai-ni-fa-ming-shu-zhuang-shu-zu-fu-shu-lyfll/
 
 	Template for BIT + discretization:
 	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 	#0493 https://leetcode.com/problems/reverse-pairs/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+	#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
 
