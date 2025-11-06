@@ -72,8 +72,8 @@ public class CountNumberOfTeams {
     // time O(n^2), space O(n)
     public int numTeams(int[] rating) {
         int res = 0, n = rating.length;
-        // asc[i] denotes number of LIC ends with rating[i] exclusively
-        // desc[i] denotes number of LDC ends with rating[i] exclusively
+        // asc[i] denotes number of LIS ends with rating[i] exclusively
+        // desc[i] denotes number of LDS ends with rating[i] exclusively
         int[] asc = new int[n], desc = new int[n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < i; j++) {

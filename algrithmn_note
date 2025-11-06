@@ -611,17 +611,20 @@
 
 41. Segment Tree
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
+#1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
 #3479 https://leetcode.com/problems/fruits-into-baskets-iii/
 
 42. Binary Index Tree
+#0300 https://leetcode.com/problems/longest-increasing-subsequence/
 #0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
 #0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 #0493 https://leetcode.com/problems/reverse-pairs/
 #1395 https://leetcode.com/problems/count-number-of-teams/
 #1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/
+#1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
@@ -630,6 +633,8 @@
 #2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 #2653 https://leetcode.com/problems/sliding-subarray-beauty/
 #2659 https://leetcode.com/problems/make-array-empty/
+#2736 https://leetcode.com/problems/maximum-sum-queries/
+#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max)
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3187 https://leetcode.com/problems/peaks-in-array/
 #3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
@@ -673,6 +678,7 @@
 Good questions:
 #1163 https://leetcode.com/problems/last-substring-in-lexicographical-order/ (lexicographically largest suffix)
 #1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/ (binary indexed tree)
+#1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/ (BIT)
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/ (dynamic programming + binary indexed tree)
 #1632 https://leetcode.com/problems/rank-transform-of-a-matrix/ (union find + topological sort)
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (binary indexed tree)
@@ -737,10 +743,13 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 		https://leetcode.cn/problems/range-sum-query-mutable/solutions/2524481/dai-ni-fa-ming-shu-zhuang-shu-zu-fu-shu-lyfll/
 
 	Template for BIT + discretization:
+	#0300 https://leetcode.com/problems/longest-increasing-subsequence/
 	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 	#0493 https://leetcode.com/problems/reverse-pairs/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 	#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (use hash map for discretization)
+	#2736 https://leetcode.com/problems/maximum-sum-queries/
+	#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max, LIS)
 	#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
@@ -799,6 +808,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	#1814 https://leetcode.com/problems/count-nice-pairs-in-an-array/
 	#2364 https://leetcode.com/problems/count-number-of-bad-pairs/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+	#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/
 
 
 
