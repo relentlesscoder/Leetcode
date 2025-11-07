@@ -10,8 +10,10 @@ public class AlternatingGroupsI {
     public int numberOfAlternatingGroups(int[] colors) {
         int res = 0, n = colors.length;
         for (int i = 0; i < n; i++) {
-            int last = i == 0 ? n - 1 : i - 1, next = i == n - 1 ? 0 : i + 1;
-            res += colors[i] != colors[last] && colors[i] != colors[next] ? 1 : 0;
+            if (colors[i % n] == 1 - colors[(i + 1) % n]
+                    && colors[(i + 1) % n] == 1 - colors[(i + 2) % n]) {
+                res++;
+            }
         }
         return res;
     }

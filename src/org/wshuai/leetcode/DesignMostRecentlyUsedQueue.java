@@ -6,14 +6,86 @@ package org.wshuai.leetcode;
  */
 public class DesignMostRecentlyUsedQueue {
 
-	private class MRUQueue {
+	private class MRUQueueBinaryIndexedTree {
+
+		private BIT bit;
+		private int[] map;
+		private int index;
+
+		// time O(n), space O(n)
+		public MRUQueueBinaryIndexedTree(int n) {
+			map = new int[n + 2_001];
+			index = n + 1;
+			bit = new BIT(n + 2_000, n);
+			for (int i = 1; i <= n; i++) {
+				map[i] = i;
+			}
+		}
+
+		// time O(log(n) * log(n)), space O(1)
+		public int fetch(int k) {
+			int i = bit.search(k);
+			int res = map[i];
+			bit.update(i, -1);
+			bit.update(index, 1);
+			map[index++] = res;
+			return res;
+		}
+
+		private class BIT {
+
+			private int[] tree;
+
+			public BIT(int m, int n) {
+				tree = new int[m + 1];
+				for (int i = 1; i <= m; i++) {
+					tree[i] += i <= n ? 1 : 0;
+					int next = i + (i & -i);
+					if (next <= m) {
+						tree[next] += tree[i];
+					}
+				}
+			}
+
+			public void update(int index, int val) {
+				while (index < tree.length) {
+					tree[index] += val;
+					index += index & -index;
+				}
+			}
+
+			public int pre(int index) {
+				int res = 0;
+				while (index > 0) {
+					res += tree[index];
+					index -= index & -index;
+				}
+				return res;
+			}
+
+			public int search(int target) {
+				int low = 1, high = tree.length;
+				while (low < high) {
+					int mid = low + (high - low) / 2;
+					if (pre(mid) < target) {
+						low = mid + 1;
+					} else {
+						high = mid;
+					}
+				}
+				return low;
+			}
+		}
+	}
+
+	private class MRUQueueDoublyLinkedList {
 
 		private DoublyLinkedListNode[] nodes;
 
 		private int bucket;
 
 		// time O(n), space O(n)
-		public MRUQueue(int n) {
+		public MRUQueueDoublyLinkedList(int n) {
 			this.bucket = (int) Math.sqrt(n);
 			nodes = new DoublyLinkedListNode[(n + bucket - 1) / bucket]; // the number of buckets is ceiling of sqrt(n)
 			for (int i = 0; i < nodes.length; i++) {

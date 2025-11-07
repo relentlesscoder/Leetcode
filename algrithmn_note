@@ -147,6 +147,7 @@
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3152 https://leetcode.com/problems/special-array-ii/ ***(binary search for max)
+#3312 https://leetcode.com/problems/sorted-gcd-pair-queries/
 #3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
 
@@ -478,8 +479,10 @@
 #3446 https://leetcode.com/problems/sort-matrix-by-diagonals/ (diagonal tranverse)
 
 25. Permutation
-#0031 https://leetcode.com/problems/next-permutation/
+#0031 https://leetcode.com/problems/next-permutation/ 
+#0060 https://leetcode.com/problems/permutation-sequence/ (Cantor expansion)
 #1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/
+#3109 https://leetcode.com/problems/find-the-index-of-permutation/ (Cantor expansion)
 
 26. Palindrome
 #0125 https://leetcode.com/problems/valid-palindrome/
@@ -563,6 +566,8 @@
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #3025 https://leetcode.com/problems/find-the-number-of-ways-to-place-people-i/
 #3027 https://leetcode.com/problems/find-the-number-of-ways-to-place-people-ii/
+#3380 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-i/
+#3382 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
 
 34. Backtracking
 #1718 https://leetcode.com/problems/construct-the-lexicographically-largest-valid-sequence/
@@ -627,6 +632,7 @@
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
+#1756 https://leetcode.com/problems/design-most-recently-used-queue/ (BIT linear initialization)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #2179 https://leetcode.com/problems/count-good-triplets-in-an-array/
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
@@ -637,7 +643,10 @@
 #2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max)
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3187 https://leetcode.com/problems/peaks-in-array/
+#3380 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-i/
+#3382 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
 #3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
+#3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/
 
 43. Permutation/Combination
 #2954 https://leetcode.com/problems/count-the-number-of-infection-sequences/
@@ -669,6 +678,14 @@
 #0300 https://leetcode.com/problems/longest-increasing-subsequence/ (n*log(n))
 #1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/ (n*log(n))
 
+49. GCD
+#3312 https://leetcode.com/problems/sorted-gcd-pair-queries/ (GCD + binary search)
+#3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/ (GCD + BIT)
+
+50. Doubly Linked List
+#0146 https://leetcode.com/problems/lru-cache/
+#1756 https://leetcode.com/problems/design-most-recently-used-queue/
+
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
 #2947 https://leetcode.com/problems/count-beautiful-substrings-i/
@@ -676,6 +693,7 @@
 #2979 https://leetcode.com/problems/most-expensive-item-that-can-not-be-bought/
 
 Good questions:
+#0060 https://leetcode.com/problems/permutation-sequence/
 #1163 https://leetcode.com/problems/last-substring-in-lexicographical-order/ (lexicographically largest suffix)
 #1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/ (binary indexed tree)
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/ (BIT)
@@ -712,6 +730,7 @@ Good questions:
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
 #3445 https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-ii/
 #3483 https://leetcode.com/problems/unique-3-digit-even-numbers/
+#3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/ (GCD + BIT)
 
 Note:
 1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim), QuickSort
