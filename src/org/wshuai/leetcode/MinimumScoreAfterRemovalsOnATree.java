@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * Created by Wei on 08/24/2025.
@@ -11,96 +11,113 @@ public class MinimumScoreAfterRemovalsOnATree {
 
     // time O(n^2), space O(n)
     public int minimumScore(int[] nums, int[][] edges) {
-        int res = Integer.MAX_VALUE;
-        int n = nums.length;
-        List<Integer>[] adj = new ArrayList[n];
-        for (int i = 0; i < n; i++) {
-            adj[i] = new ArrayList<>();
-        }
+        int res = Integer.MAX_VALUE, n = nums.length;
+        ArrayList<Integer>[] adj = new ArrayList[n];
+        Arrays.setAll(adj, i -> new ArrayList<>());
         for (int[] edge : edges) {
-            adj[edge[0]].add(edge[1]);
-            adj[edge[1]].add(edge[0]);
+            int u = edge[0], v = edge[1];
+            adj[u].add(v);
+            adj[v].add(u);
         }
-        int[] sum = new int[n], in = new int[n], out = new int[n];
+        int[] sum = new int[n];
+        int[] in = new int[n];
+        int[] out = new int[n];
         int[] count = {0};
-        dfs(0, -1, nums, adj, sum, in, out, count);
+        dfs(0, -1, sum, in, out, count, nums, adj);
         for (int u = 1; u < n; u++) {
             for (int v = u + 1; v < n; v++) {
-                if (in[v] > in[u] && in[v] < out[u]) {
-                    res = Math.min(res, calc(sum[0]^sum[u], sum[u]^sum[v], sum[v]));
-                } else if (in[u] > in[v] && in[u] < out[v]) {
-                    res = Math.min(res, calc(sum[0]^sum[v], sum[u]^sum[v], sum[u]));
+                // if in[u] < in[v] < out[u] then u is an ancestor for v, so the tree can
+                // be divided to 3 subtrees subtree(v), subtree(u) - subtree(v), subtree(0)
+                // - subtree(u). Note that root 0 is special case and can't be used to get
+                // 3 subtrees since it does not have a parent.
+                if (in[u] < in[v] && out[u] > in[v]) {
+                    res = Math.min(res, calc(sum[0] ^ sum[u], sum[u] ^ sum[v], sum[v]));
+                } else if (in[v] < in[u] && out[v] > in[u]) {
+                    // if in[v] < in[u] < out[v] then v is an ancestor for u, so the tree can
+                    // be divided to 3 subtrees subtree(u), subtree(v) - subtree(u), subtree(0)
+                    // - subtree(v)
+                    res = Math.min(res, calc(sum[0] ^ sum[v], sum[v] ^ sum[u], sum[u]));
                 } else {
-                    res = Math.min(res, calc(sum[0]^sum[u]^sum[v], sum[u], sum[v]));
+                    // Otherwise, the tree can be divided to 3 subtrees subtree(u), subtree(v),
+                    // subtree(0) - subtree(u) - subtree(v)
+                    res = Math.min(res, calc(sum[0] ^ sum[u] ^ sum[v], sum[u], sum[v]));
                 }
             }
         }
         return res;
     }
 
-    private void dfs(int node, int parent, int[] nums, List<Integer>[] adj, int[] sum, int[] in, int[] out, int[] count) {
-        in[node] = count[0]++;
+    private void dfs(int node, int parent, int[] sum, int[] in, int[] out, int[] count, int[] nums, ArrayList<Integer>[] adj) {
         sum[node] = nums[node];
+        in[node] = count[0]++;
         for (int next : adj[node]) {
             if (next == parent) {
                 continue;
             }
-            dfs(next, node, nums, adj, sum, in, out, count);
+            dfs(next, node, sum, in, out, count, nums, adj);
             sum[node] ^= sum[next];
         }
         out[node] = count[0];
     }
 
-    private int RES = Integer.MAX_VALUE;
+    private int res = Integer.MAX_VALUE;
 
     // time O(n^2), space O(n)
     public int minimumScoreDoubleDFS(int[] nums, int[][] edges) {
         int n = nums.length;
-        List<Integer>[] adj = new ArrayList[n];
-        for (int i = 0; i < n; i++) {
-            adj[i] = new ArrayList<>();
-        }
+        ArrayList<Integer>[] adj = new ArrayList[n];
+        Arrays.setAll(adj, i -> new ArrayList<>());
         for (int[] edge : edges) {
-            adj[edge[0]].add(edge[1]);
-            adj[edge[1]].add(edge[0]);
+            int u = edge[0], v = edge[1];
+            adj[u].add(v);
+            adj[v].add(u);
         }
+        // For XOR, we have:
+        //   a^b = c
+        //   c^a = b
+        //   c^b = a
+        // Calculate the total XOR sum for all nodes
         int sum = 0;
         for (int num : nums) {
             sum ^= num;
         }
-        dfs(0, -1, nums, adj, sum);
-        return RES;
+        dfs(0, -1, sum, nums, adj);
+        return res;
     }
 
-    private int dfs(int node, int parent, int[] nums, List<Integer>[] adj, int sum) {
-        int val = nums[node];
+    private int dfs(int node, int parent, int sum, int[] nums, ArrayList<Integer>[] adj) {
+        // Calculate the XOR sum for the subtree starts with current node
+        int sum1 = nums[node];
         for (int next : adj[node]) {
             if (next == parent) {
                 continue;
             }
-            val ^= dfs(next, node, nums, adj, sum);
+            sum1 ^= dfs(next, node, sum, nums, adj);
         }
-        for (int next : adj[node]) {
-            if (next == parent) {
-                dfs2(next, node, val, node, nums, adj, sum);
-            }
+        // Remove the edge between node and it's parent, do DFS to traverse the subtree
+        // rooted at the parent
+        if (parent != -1) {
+            dfs2(parent, node, node, sum, sum1, nums, adj);
         }
-        return val;
+        return sum1;
     }
 
-    private int dfs2(int node, int parent, int other, int ancestor, int[] nums, List<Integer>[] adj, int sum) {
-        int val = nums[node];
+    private int dfs2(int node, int parent, int ancestor, int sum, int sum1, int[] nums, ArrayList<Integer>[] adj) {
+        // Calculate the XOR sum for the subtree starts with current node
+        int sum2 = nums[node];
         for (int next : adj[node]) {
             if (next == parent) {
                 continue;
             }
-            val ^= dfs2(next, node, other, ancestor, nums, adj, sum);
+            sum2 ^= dfs2(next, node, ancestor, sum, sum1, nums, adj);
         }
+        // Terminate if we hit back to the root of the subtree
         if (parent == ancestor) {
-            return val;
+            return sum2;
         }
-        RES = Math.min(RES, calc(other, val, sum ^ other ^ val));
-        return val;
+        // Calculate result with the XOR sum for the 3 subtree
+        res = Math.min(res, calc(sum1, sum2, sum ^ sum1 ^ sum2));
+        return sum2;
     }
 
     private int calc(int sum1, int sum2, int sum3) {

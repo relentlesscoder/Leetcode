@@ -165,12 +165,14 @@
 #2097 https://leetcode.com/problems/valid-arrangement-of-pairs/ (Eulerian Path)
 #2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
 #2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
+#2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/ (DFS timestamp)
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
 #2493 https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
 #2603 https://leetcode.com/problems/collect-coins-in-a-tree/
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2924 https://leetcode.com/problems/find-champion-ii/
+#3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
 #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 08. Backtracking
@@ -270,6 +272,7 @@
 #1109 https://leetcode.com/problems/corporate-flight-bookings/
 #1893 https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
 #2021 https://leetcode.com/problems/brightest-position-on-street/
+#2132 https://leetcode.com/problems/stamping-the-grid/
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
 #2381 https://leetcode.com/problems/shifting-letters-ii/
@@ -650,6 +653,7 @@
 #3187 https://leetcode.com/problems/peaks-in-array/
 #3380 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-i/
 #3382 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
+#3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
 #3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
 #3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/
 
@@ -737,6 +741,7 @@ Good questions:
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
 #3445 https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-ii/
 #3483 https://leetcode.com/problems/unique-3-digit-even-numbers/
+#3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
 #3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/ (GCD + BIT)
 
 Note:
@@ -801,7 +806,14 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	// Integer arithmetic for ceiling division
 	int ceilValue = (numerator + denominator - 1) / denominator;
 
-18. Difference Array - https://leetcode.cn/discuss/post/3573741/suan-fa-xiao-ke-tang-chai-fen-shu-zu-pyt-fyl2/
+18. Difference Array
+	https://leetcode.cn/discuss/post/3573741/suan-fa-xiao-ke-tang-chai-fen-shu-zu-pyt-fyl2/
+	https://leetcode.cn/problems/car-pooling/solutions/2550264/suan-fa-xiao-ke-tang-chai-fen-shu-zu-fu-9d4ra/
+	https://leetcode.cn/problems/stamping-the-grid/solutions/1199642/wu-nao-zuo-fa-er-wei-qian-zhui-he-er-wei-zwiu/
+	https://leetcode.cn/discuss/post/3573466/tu-jie-er-wei-qian-zhui-he-fu-mo-ban-dai-s2ag/
+
+	#1094 https://leetcode.com/problems/car-pooling/
+	#2132 https://leetcode.com/problems/stamping-the-grid/ (2D diff array)
 
 19. Circular array index calculation - https://leetcode.com/problems/transformed-array/
 	move right: (i + moves) % n
@@ -836,7 +848,13 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	#1814 https://leetcode.com/problems/count-nice-pairs-in-an-array/
 	#2364 https://leetcode.com/problems/count-number-of-bad-pairs/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+	#2613 https://leetcode.com/problems/beautiful-pairs/ (BIT reverse index mapping)
 	#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/
+
+28. DFS Timestamp
+	https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/solutions/1625899/dfs-shi-jian-chuo-chu-li-shu-shang-wen-t-x1kk/
+
+	#2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/
 
 
 
