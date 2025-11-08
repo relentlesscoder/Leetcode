@@ -625,6 +625,7 @@
 42. Binary Index Tree
 #0300 https://leetcode.com/problems/longest-increasing-subsequence/
 #0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
+#0308 https://leetcode.com/problems/range-sum-query-2d-mutable/ (two dimensional BIT)
 #0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 #0493 https://leetcode.com/problems/reverse-pairs/
 #1395 https://leetcode.com/problems/count-number-of-teams/
@@ -637,9 +638,13 @@
 #2179 https://leetcode.com/problems/count-good-triplets-in-an-array/
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+#2519 https://leetcode.com/problems/count-the-number-of-k-big-indices/
+#2613 https://leetcode.com/problems/beautiful-pairs/
 #2653 https://leetcode.com/problems/sliding-subarray-beauty/
 #2659 https://leetcode.com/problems/make-array-empty/
 #2736 https://leetcode.com/problems/maximum-sum-queries/
+#2907 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-i/ 
+#2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
 #2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max)
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3187 https://leetcode.com/problems/peaks-in-array/
@@ -691,6 +696,8 @@
 #2947 https://leetcode.com/problems/count-beautiful-substrings-i/
 #2949 https://leetcode.com/problems/count-beautiful-substrings-ii/
 #2979 https://leetcode.com/problems/most-expensive-item-that-can-not-be-bought/
+#####
+#3245 https://leetcode.com/problems/alternating-groups-iii/
 
 Good questions:
 #0060 https://leetcode.com/problems/permutation-sequence/
@@ -766,8 +773,10 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 	#0493 https://leetcode.com/problems/reverse-pairs/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+	#2613 https://leetcode.com/problems/beautiful-pairs/ (BIT reverse index mapping)
 	#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (use hash map for discretization)
 	#2736 https://leetcode.com/problems/maximum-sum-queries/
+	#2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
 	#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max, LIS)
 	#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 

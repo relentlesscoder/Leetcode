@@ -9,22 +9,27 @@ import java.util.List;
  */
 public class PermutationSequence {
 
+    private static final int MAX = 9;
+    private static final int[] FACTORIAL = new int[MAX];
+
+    static {
+        FACTORIAL[0] = 1;
+        for (int i = 1; i < MAX; i++) {
+            FACTORIAL[i] = FACTORIAL[i - 1] * i;
+        }
+    }
+
     // time O(n * log(n) * log(n)), space O(n)
     public String getPermutationBinaryIndexedTree(int n, int k) {
-        int[] factorial = new int[n + 1];
         StringBuilder sb = new StringBuilder();
-        factorial[0] = 1;
-        for(int i = 1; i <= n; i++){
-            factorial[i] = factorial[i - 1] * i;
-        }
         k--;
         BIT bit = new BIT(n);
         for(int i = 1; i <= n; i++){
-            int index = k / factorial[n - i];
+            int index = k / FACTORIAL[n - i];
             int j = bit.search(index + 1);
             sb.append(j);
             bit.update(j, -1);
-            k -= index * factorial[n - i];
+            k -= index * FACTORIAL[n - i];
         }
         return sb.toString();
     }
