@@ -73,6 +73,7 @@
 03. Prefix Sum
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
+#0327 https://leetcode.com/problems/count-of-range-sum/
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
@@ -583,10 +584,14 @@
 
 35. Divide & Conquer
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
+#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/ (merge sort)
+#0327 https://leetcode.com/problems/count-of-range-sum/ (merge sort + prefix sum)
 #0493 https://leetcode.com/problems/reverse-pairs/ (merge sort)
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
+#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 #2545 https://leetcode.com/problems/sort-the-students-by-their-kth-score/
 #2936 https://leetcode.com/problems/number-of-equal-numbers-blocks/
+#LCR170 https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
 
 36. Probability
 #0528 https://leetcode.com/problems/random-pick-with-weight/
@@ -634,6 +639,7 @@
 #0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
 #0308 https://leetcode.com/problems/range-sum-query-2d-mutable/ (two dimensional BIT)
 #0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+#0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
 #0493 https://leetcode.com/problems/reverse-pairs/
 #1395 https://leetcode.com/problems/count-number-of-teams/
 #1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/
@@ -713,6 +719,7 @@
 
 Good questions:
 #0060 https://leetcode.com/problems/permutation-sequence/
+#0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
 #1163 https://leetcode.com/problems/last-substring-in-lexicographical-order/ (lexicographically largest suffix)
 #1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/ (binary indexed tree)
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/ (BIT)
@@ -776,8 +783,10 @@ Note:
 
 10. Binary Tree Nodes and Height - https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
 
-11. Segment Tree - https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
-https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
+11. Segment Tree - 
+	https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
+	https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
+	https://leetcode.cn/problems/count-of-range-sum/solutions/1/by-ac_oier-b36o/
 
 12. Binary Indexed Tree
 		https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
@@ -786,6 +795,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	Template for BIT + discretization:
 	#0300 https://leetcode.com/problems/longest-increasing-subsequence/
 	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+	#0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
 	#0493 https://leetcode.com/problems/reverse-pairs/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 	#2613 https://leetcode.com/problems/beautiful-pairs/ (BIT reverse index mapping)
@@ -870,6 +880,14 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 29. DFS on tree
 	#3372 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-i/
 	#3373 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-ii/
+
+30. Merge Sort
+	Template
+	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+	#0327 https://leetcode.com/problems/count-of-range-sum/
+	#0493 https://leetcode.com/problems/reverse-pairs/
+	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+	#LCR170 https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
 
 
 

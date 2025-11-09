@@ -8,106 +8,160 @@ import java.util.Arrays;
  */
 public class CountOfRangeSum {
 
-	// time O(n*log(n))
-	// https://leetcode.com/problems/count-of-range-sum/discuss/78006/Summary-of-the-Divide-and-Conquer-based-and-Binary-Indexed-Tree-based-solutions
-	public int countRangeSum(int[] nums, int lower, int upper) {
-		if(nums == null || nums.length == 0 || lower > upper){
+    // time O(n * log(m)), space O(n + m)
+    public int countRangeSum(int[] nums, int lower, int upper) {
+        int res = 0, n = nums.length;
+        long[] prefix = new long[3 * n + 1];
+        long curr = 0;
+        for (int i = 0, j = 1; i < n; i++) {
+            curr += nums[i];
+            prefix[j++] = curr;
+            prefix[j++] = curr - lower;
+            prefix[j++] = curr - upper;
+        }
+        long[] sorted = Arrays.stream(prefix).distinct().sorted().toArray();
+        int m = sorted.length;
+        BIT bit = new BIT(m);
+        int index = binarySearch(sorted, 0) + 1;
+        bit.update(index, 1);
+        long sum = 0;
+        for (int num : nums) {
+            sum += num;
+            index = binarySearch(sorted, sum) + 1;
+            int left = binarySearch(sorted, sum - upper) + 1;
+            int right = binarySearch(sorted, sum - lower) + 1;
+            res += bit.query(left, right);
+            bit.update(index, 1);
+        }
+        return res;
+    }
+
+    private static class BIT {
+
+        private final int[] tree;
+
+        public BIT(int n) {
+            tree = new int[n + 1];
+        }
+
+        public void update(int index, int val) {
+            while (index < tree.length) {
+                tree[index] += val;
+                index += index & -index;
+            }
+        }
+
+        public int sum(int index) {
+            int res = 0;
+            while (index > 0) {
+                res += tree[index];
+                index -= index & -index;
+            }
+            return res;
+        }
+
+        public int query(int left, int right) {
+            return sum(right) - sum(left - 1);
+        }
+    }
+
+	// time O(n * log(n)), space O(n)
+	public int countRangeSumMergeSortPrefixSum(int[] nums, int lower, int upper) {
+		int n = nums.length;
+		long[] prefix = new long[n + 1];
+		for (int i = 1; i <= n; i++) {
+			prefix[i] = prefix[i - 1] + nums[i - 1];
+		}
+		return mergeSort(prefix, 0, n, lower, upper);
+	}
+
+	private int mergeSort(long[] nums, int left, int right, int lower, int upper) {
+		if (left >= right) {
 			return 0;
 		}
-		int index = 0, count = 0;
-		long[] sum = new long[nums.length + 1], cand = new long[3 * sum.length + 1];
-		cand[index++] = sum[0];
-		cand[index++] = lower + sum[0] - 1;
-		cand[index++] = upper + sum[0];
-
-		for(int i = 1; i < sum.length; i++){
-			sum[i] = sum[i - 1] + nums[i - 1];
-			cand[index++] = sum[i];
-			cand[index++] = lower + sum[i] - 1;
-			cand[index++] = upper + sum[i];
-		}
-
-		cand[index] = Long.MIN_VALUE;
-		Arrays.sort(cand);
-
-		// build up the binary indexed tree with only elements from the prefix array "sum"
-		int[] bit = new int[cand.length];
-		for(int i = 0; i < sum.length; i++){
-			add(bit, Arrays.binarySearch(cand, sum[i]), 1);
-		}
-		for(int i = 0; i < sum.length; i++){
-			// get rid of visited elements by adding -1 to the corresponding tree nodes
-			add(bit, Arrays.binarySearch(cand, sum[i]), -1);
-			// add the total number of valid elements with upper bound (upper + sum[i])
-			count += query(bit, Arrays.binarySearch(cand, upper + sum[i]));
-			// minus the total number of valid elements with lower bound (lower + sum[i] - 1)
-			count -= query(bit, Arrays.binarySearch(cand, lower + sum[i] - 1));
-		}
-
-		return count;
+		int mid = left + (right - left) / 2;
+		int leftCount = mergeSort(nums, left, mid, lower, upper);
+		int rightCount = mergeSort(nums, mid + 1, right, lower, upper);
+		int middleCount = merge(nums, left, right, lower, upper);
+		return leftCount + rightCount + middleCount;
 	}
 
-	private void add(int[] bit, int index, int value){
-		while(index < bit.length){
-			bit[index] += value;
-			index += (index & -index);
-		}
-	}
-
-	private int query(int[] bit, int index){
-		int sum = 0;
-		while(index > 0){
-			sum += bit[index];
-			index -= (index & -index);
-		}
-		return sum;
-	}
-
-	// time O(n*(log(n))^2)
-	public int countRangeSumMergeSort(int[] nums, int lower, int upper) {
-		if(nums == null || nums.length == 0 || lower > upper){
-			return 0;
-		}
-		return mergeSort(nums, 0, nums.length - 1, lower, upper);
-	}
-
-	private int mergeSort(int[] nums, int l, int r, int lower, int upper){
-		if(l == r){
-			return nums[l] >= lower && nums[r] <= upper ? 1 : 0;
-		}
-		int m = l + (r - l) / 2, count = 0;
-		long[] arr = new long[r - m];
-		long sum = 0;
-
-		// find the prefix sum of the right part
-		for(int i = m + 1; i <= r; i++){
-			sum += nums[i];
-			arr[i - (m + 1)] = sum;
-		}
-		// sort the prefix sum so that we can do binary search on it later
-		Arrays.sort(arr);
-		sum = 0;
-		// time O(n*log(n))
-		for(int i = m; i >= l; i--){
-			sum += nums[i];
-			// go from back to front on the left part
-			// find the insertion point for upper - (left) sum and lower - (left) sum
-			// the difference is the number of all right prefix sums that satisfy the criterion
-			count += findIndex(arr, upper - sum + 0.5) - findIndex(arr, lower - sum - 0.5);
-		}
-		return mergeSort(nums, l, m, lower, upper) + mergeSort(nums, m + 1, r, lower, upper) + count;
-	}
-
-	private int findIndex(long[] arr, double val){
-		int l = 0, r = arr.length, m = 0;
-		while(l < r){
-			m = l + (r - l) / 2;
-			if(arr[m] < val){
-				l = m + 1;
-			}else{
-				r = m;
+	private int merge(long[] nums, int left, int right, int lower, int upper) {
+		int res = 0;
+		int mid = left + (right - left) / 2;
+		int leftIndex = left;
+		int rightIndex = mid + 1;
+		int headIndex = mid + 1;
+		int tailIndex = mid + 1;
+		int index = 0;
+		long[] temp = new long[right - left + 1];
+		while (leftIndex <= mid) {
+			while (tailIndex <= right && nums[tailIndex] - nums[leftIndex] < lower) {
+				tailIndex++;
 			}
+			while (headIndex <= right && nums[headIndex] - nums[leftIndex] <= upper) {
+				headIndex++;
+			}
+			res += headIndex - tailIndex;
+			while (rightIndex <= right && nums[rightIndex] <= nums[leftIndex]) {
+				temp[index++] = nums[rightIndex++];
+			}
+			temp[index++] = nums[leftIndex++];
 		}
-		return l;
+		while (rightIndex <= right) {
+			temp[index++] = nums[rightIndex++];
+		}
+		for (int i = left; i <= right; i++) {
+			nums[i] = temp[i - left];
+		}
+		return res;
 	}
+
+    // time O(n * (log(n))^2), space O(n)
+    public int countRangeSumMergeSort(int[] nums, int lower, int upper) {
+        int n = nums.length;
+        return mergeSort(nums, 0, n - 1, lower, upper);
+    }
+
+    private int mergeSort(int[] nums, int left, int right, int lower, int upper) {
+        if (left == right) {
+            return nums[left] >= lower && nums[right] <= upper ? 1 : 0;
+        }
+        int mid = left + (right - left) / 2;
+        int leftCount = mergeSort(nums, left, mid, lower, upper);
+        int rightCount = mergeSort(nums, mid + 1, right, lower, upper);
+        int middleCount = merge(nums, left, right, lower, upper);
+        return leftCount + rightCount + middleCount;
+    }
+
+    private int merge(int[] nums, int left, int right, int lower, int upper) {
+        int res = 0, mid = left + (right - left) / 2;
+        long[] prefix = new long[right - mid];
+        prefix[0] = nums[mid + 1];
+        for (int i = 1, j = mid + 2; i < right - mid; i++, j++) { // O(n)
+            prefix[i] = prefix[i - 1] + nums[j];
+        }
+        Arrays.sort(prefix); // n * log(n)
+        long sum = 0;
+        for (int i = mid; i >= left; i--) { // n * log(n)
+            sum += nums[i];
+            // l + r >= lower r >= lower - l (minus < lower - l)
+            // l + r <= upper r <= upper - l (< upper - l + 1)
+            res += binarySearch(prefix, upper - sum + 1) - binarySearch(prefix, lower - sum);
+        }
+        return res;
+    }
+
+    private int binarySearch(long[] nums, long target) {
+        int low = 0, high = nums.length;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
 }

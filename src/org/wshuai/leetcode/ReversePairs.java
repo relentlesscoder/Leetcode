@@ -8,22 +8,31 @@ import java.util.Arrays;
  */
 public class ReversePairs {
 
-    // time O(n * log(n)), space O(n * log(n))
+    // time O(n * log(n)), space O(n)
     public int reversePairsMergeSort(int[] nums) {
-        return mergeSort(nums, 0, nums.length - 1);
+        int n = nums.length;
+        return mergeSort(nums, 0, n - 1);
     }
 
-    private int mergeSort(int[] nums, int l, int r) {
-        if (l >= r) {
+    private int mergeSort(int[] nums, int low, int high) {
+        if (low >= high) {
             return 0;
         }
-        int m = l + (r - l) / 2; // The middle index
-        int i = l; // Pointer for left subarray
-        int j = m + 1; // Pointer for right subarray
-        int k = 0; // Pointer for array merge
-        int p = m + 1; // Pointer to extend positions satisfying nums[i] > 2 * nums[p]
-        int[] merge = new int[r - l + 1];
-        int res = mergeSort(nums, l, m) + mergeSort(nums, m + 1, r);
+        int mid = low + (high - low) / 2;
+        int left = mergeSort(nums, low, mid);
+        int right = mergeSort(nums, mid + 1, high);
+        int middle = merge(nums, low, high);
+        return left + right + middle;
+    }
+
+    private int merge(int[] nums, int low, int high) {
+        int res = 0;
+        int mid = low + (high - low) / 2;
+        int leftIndex = low;
+        int rightIndex = mid + 1;
+        int nextIndex = mid + 1;
+        int idx = 0;
+        int[] temp = new int[high - low + 1];
         // Since both left and right part are sorted, the reverse pair
         // can be carried over when we iterate the left part.
         // For example, we have left: [10, 12, 15], right[3, 4, 5]
@@ -32,22 +41,24 @@ public class ReversePairs {
         // combine with 3 and 4 to form a reverse pair. and plus the 5
         // there will be total 3 reverse pairs. Then for the same reason,
         // 15 will also have 3 reverse pairs.
-        while (i <= m) {
-            while (p <= r && nums[i] > 2L * nums[p]) {
-                p++;
+        while (leftIndex <= mid) {
+            while (nextIndex <= high && nums[leftIndex] > 2L * nums[nextIndex]) {
+                nextIndex++;
             }
-            res += p - m - 1;
+            res += nextIndex - mid - 1;
             // sorting
-            while (j <= r && nums[j] < nums[i]) {
-                merge[k++] = nums[j++];
+            while (rightIndex <= high && nums[rightIndex] < nums[leftIndex]) {
+                temp[idx++] = nums[rightIndex++];
             }
-            merge[k++] = nums[i++];
+            temp[idx++] = nums[leftIndex++];
         }
-        while (j <= r) {
+        while (rightIndex <= high) {
             // if right part still has elements left
-            merge[k++] = nums[j++];
+            temp[idx++] = nums[rightIndex++];
         }
-        System.arraycopy(merge, 0, nums, l, r - l + 1);
+        for (int i = low; i <= high; i++) {
+            nums[i] = temp[i - low];
+        }
         return res;
     }
 
@@ -55,8 +66,8 @@ public class ReversePairs {
     public int reversePairs(int[] nums) {
         int res = 0, n = nums.length;
         int[] sorted = Arrays.stream(nums).distinct().sorted().toArray();
-        // +1 since binary index tree starts with index 1
-        BIT bit = new BIT(n + 1);
+        int m = sorted.length;
+        BIT bit = new BIT(m);
         for (int i = 0; i < n; i++) {
             // Search in BIT that has "rank" that <= 2L * nums[i]
             res += i - bit.query(binarySearch(sorted, 2L * nums[i] + 1));
@@ -84,7 +95,7 @@ public class ReversePairs {
         private int[] tree;
 
         public BIT(int n) {
-            tree = new int[n];
+            tree = new int[n + 1];
         }
 
         public void add(int index) {
