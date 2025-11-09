@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 01/08/2025.
+ * Created by Wei on 11/08/2025.
  * #2515 https://leetcode.com/problems/shortest-distance-to-target-string-in-a-circular-array/
  */
 public class ShortestDistanceToTargetStringInACircularArray {

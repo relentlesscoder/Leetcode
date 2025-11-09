@@ -3,7 +3,7 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 01/08/2025.
+ * Created by Wei on 11/08/2025.
  * #2613 https://leetcode.com/problems/beautiful-pairs/
  */
 public class BeautifulPairs {

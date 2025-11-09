@@ -9,35 +9,38 @@ import java.util.Set;
  * #0532 https://leetcode.com/problems/k-diff-pairs-in-an-array/
  */
 public class KDiffPairsInAnArray {
-	// time O(n*log(n))
+
+	// time O(n * log(n)), space O(1)
 	public int findPairs(int[] nums, int k) {
 		int res = 0, n = nums.length;
 		Arrays.sort(nums);
-		for(int i = 0, j = 0; i < n - 1; i++){
-			if(i > 0 && nums[i] == nums[i - 1]){
+		for (int i = 0; i < n; i++) {
+			// Note it's incorrect to check nums[i] == nums[i + 1] for case like
+			// nums: [1,1,2,3,4] k: 0
+			if (i > 0 && nums[i] == nums[i - 1]) {
 				continue;
 			}
-			j = binarySearch(nums, Math.max(i + 1, j), n - 1, nums[i] + k);
-			if(j != -1){
+			int index = binarySearch(nums, i + 1, n - 1, nums[i] + k);
+			if (index != -1) {
 				res++;
 			}
 		}
 		return res;
 	}
 
-	private int binarySearch(int[] nums, int low, int high, int target){
-		while(low < high){
+	private int binarySearch(int[] nums, int low, int high, int target) {
+		while (low < high) {
 			int mid = low + (high - low) / 2;
-			if(nums[mid] < target){
+			if (nums[mid] < target) {
 				low = mid + 1;
-			}else{
+			} else {
 				high = mid;
 			}
 		}
-		return nums[low] == target ? low : -1;
+		return low < nums.length && nums[low] == target ? low : -1;
 	}
 
-	// time O(n)
+	// time O(n), space O(n)
 	public int findPairsHashSet(int[] nums, int k) {
 		int res = 0;
 		Arrays.sort(nums);
