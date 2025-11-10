@@ -489,7 +489,7 @@
 25. Permutation
 #0031 https://leetcode.com/problems/next-permutation/ 
 #0060 https://leetcode.com/problems/permutation-sequence/ (Cantor expansion)
-#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/
+#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ (BIT + next permutation)
 #3109 https://leetcode.com/problems/find-the-index-of-permutation/ (Cantor expansion)
 
 26. Palindrome
@@ -497,6 +497,7 @@
 #0680 https://leetcode.com/problems/valid-palindrome-ii/
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1930 https://leetcode.com/problems/unique-length-3-palindromic-subsequences/
+#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/ (Palindrome + BIT / Merge sort)
 #2330 https://leetcode.com/problems/valid-palindrome-iv/
 #2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
 #2855 https://leetcode.com/problems/minimum-right-shifts-to-sort-the-array/
@@ -588,6 +589,9 @@
 #0327 https://leetcode.com/problems/count-of-range-sum/ (merge sort + prefix sum)
 #0493 https://leetcode.com/problems/reverse-pairs/ (merge sort)
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
+#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ (merge sort + next permutation)
+#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
 #2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 #2545 https://leetcode.com/problems/sort-the-students-by-their-kth-score/
 #2936 https://leetcode.com/problems/number-of-equal-numbers-blocks/
@@ -647,8 +651,10 @@
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
 #1756 https://leetcode.com/problems/design-most-recently-used-queue/ (BIT linear initialization)
+#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ (BIT + next permutation)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #2179 https://leetcode.com/problems/count-good-triplets-in-an-array/
+#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 #2519 https://leetcode.com/problems/count-the-number-of-k-big-indices/
@@ -668,7 +674,7 @@
 #3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
 #3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/
 
-43. Permutation/Combination
+43. Combinatorics
 #2954 https://leetcode.com/problems/count-the-number-of-infection-sequences/
 #3272 https://leetcode.com/problems/find-the-count-of-good-integers/
 #3343 https://leetcode.com/problems/count-number-of-balanced-permutations/
@@ -729,6 +735,7 @@ Good questions:
 #1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
+#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
 #2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
@@ -797,6 +804,8 @@ Note:
 	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 	#0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
 	#0493 https://leetcode.com/problems/reverse-pairs/
+	#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+	#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 	#2613 https://leetcode.com/problems/beautiful-pairs/ (BIT reverse index mapping)
 	#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (use hash map for discretization)
@@ -867,6 +876,7 @@ Note:
 27. Formula Transformation
 	#0532 https://leetcode.com/problems/k-diff-pairs-in-an-array/
 	#1814 https://leetcode.com/problems/count-nice-pairs-in-an-array/
+	#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 	#2364 https://leetcode.com/problems/count-number-of-bad-pairs/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 	#2613 https://leetcode.com/problems/beautiful-pairs/ (BIT reverse index mapping)
@@ -881,13 +891,22 @@ Note:
 	#3372 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-i/
 	#3373 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-ii/
 
-30. Merge Sort
-	Template
+30. Merge Sort Template
 	#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 	#0327 https://leetcode.com/problems/count-of-range-sum/
 	#0493 https://leetcode.com/problems/reverse-pairs/
+	#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ (merge sort + next permutation)
+	#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+	#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 	#LCR170 https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/
+
+24: List to int[]: 
+		int[] sorted = nums.stream().mapToInt(Integer::intValue).distinct().sorted().toArray();
+	int[] to int[]:
+		int[] sorted = Arrays.stream(nums1).distinct().sorted().toArray();
+	int[] to int[] with map:
+		int[] sorted = IntStream.range(0, n).map(i -> nums[i] - i).distinct().sorted().toArray();
 
 
 

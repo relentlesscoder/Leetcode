@@ -44,12 +44,12 @@ public class NumberOfPairsSatisfyingInequality {
         return low;
     }
 
-    private static class BIT {
+    private class BIT {
 
         private final int[] tree;
 
         public BIT(int n) {
-            tree = new int[n];
+            tree = new int[n + 1];
         }
 
         public void add(int index) {
