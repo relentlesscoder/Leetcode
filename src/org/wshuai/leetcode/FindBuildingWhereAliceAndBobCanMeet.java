@@ -11,8 +11,110 @@ import java.util.PriorityQueue;
  */
 public class FindBuildingWhereAliceAndBobCanMeet {
 
+    // time O(n + m * log(n)), space O(n + m)
+    public int[] leftmostBuildingQueriesSegmentTree(int[] heights, int[][] queries) {
+        int n = heights.length, m = queries.length;
+        int[] res = new int[m];
+        Arrays.fill(res, -1);
+        List<int[]>[] queryList = new ArrayList[n];
+        Arrays.setAll(queryList, index -> new ArrayList<>());
+
+        for (int i = 0; i < m; i++) { // O(m)
+            int a = queries[i][0], b = queries[i][1];
+            if (a > b) {
+                int temp = a;
+                a = b;
+                b = temp;
+            }
+            if (a == b || heights[a] < heights[b]) {
+                res[i] = b;
+            } else {
+                queryList[b].add(new int[]{heights[a], i});
+            }
+        }
+        SegmentTree st = new SegmentTree(n);
+        for (int i = n - 1; i >= 0; i--) { // O(n)
+            for (int[] q : queryList[i]) {
+                int h = q[0], idx = q[1];
+                res[idx] = st.findFirst(h); // O(log(n))
+            }
+            st.update(i, heights[i]); // O(log(n))
+        }
+        return res;
+    }
+
+    private static class SegmentTree {
+
+        private final int n;
+        private final int[] tree;
+
+        public SegmentTree(int[] nums) {
+            n = nums.length;
+            tree = new int[4 * n];
+            build(nums, 1, 0, n - 1);
+        }
+
+        public SegmentTree(int n) {
+            this.n = n;
+            tree = new int[4 * n];
+            Arrays.fill(tree, -1);
+        }
+
+        public int findFirst(int val) {
+            return findFirst(1, 0, n - 1, val);
+        }
+
+        private int findFirst(int node, int left, int right, int val) {
+            if (tree[node] <= val) {
+                return -1;
+            }
+            if (left == right) {
+                return left;
+            }
+            int mid = (left + right) / 2;
+            int res = findFirst(node * 2, left, mid, val);
+            if (res == -1) {
+                res = findFirst(node * 2 + 1, mid + 1, right, val);
+            }
+            return res;
+        }
+
+        public void update(int index, int val) {
+            update(1, 0, n - 1, index, val);
+        }
+
+        private void update(int node, int left, int right, int index, int val) {
+            if (left == right) {
+                tree[node] = val;
+                return;
+            }
+            int mid = (left + right) / 2;
+            if (index <= mid) {
+                update(node * 2, left, mid, index, val);
+            } else {
+                update(node * 2 + 1, mid + 1, right, index, val);
+            }
+            maintain(node);
+        }
+
+        private void build(int[] nums, int node, int left, int right) {
+            if (left == right) {
+                tree[node] = nums[left];
+                return;
+            }
+            int mid = (left + right) / 2;
+            build(nums, node * 2, left, mid);
+            build(nums, node * 2 + 1, mid + 1, right);
+            maintain(node);
+        }
+
+        private void maintain(int node) {
+            tree[node] = Math.max(tree[node * 2], tree[node * 2 + 1]);
+        }
+    }
+
     // time O(n + m * log(m)), O(n + m)
-    public int[] leftmostBuildingQueries(int[] heights, int[][] queries) {
+    public int[] leftmostBuildingQueriesPriorityQueue(int[] heights, int[][] queries) {
         int n = heights.length, m = queries.length;
         int[] res = new int[m];
         Arrays.fill(res, -1);
@@ -52,7 +154,7 @@ public class FindBuildingWhereAliceAndBobCanMeet {
         return res;
     }
 
-    // time O(n + q * log(n)), space O(n + m)
+    // time O(n + m * log(n)), space O(n + m)
     public int[] leftmostBuildingQueriesMonotonicQueueAndBinarySearch(int[] heights, int[][] queries) {
         int n = heights.length, m = queries.length;
         int[] res = new int[m];

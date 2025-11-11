@@ -12,6 +12,7 @@ public class MinimumNumberOfMovesToMakePalindrome {
 
     // time O(n * log(n)), space O(n)
     public int minMovesToMakePalindrome(String s) {
+        // https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/solutions/1313655/de-dao-hui-wen-chuan-de-zui-shao-cao-zuo-nnis/
         int res = 0, n = s.length();
         int[] freq = new int[26];
         char[] chars = s.toCharArray();

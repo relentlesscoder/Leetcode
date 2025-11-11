@@ -634,7 +634,11 @@
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
+#2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
+#2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
+#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+#3161 https://leetcode.com/problems/block-placement-queries/
 #3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
 #3479 https://leetcode.com/problems/fruits-into-baskets-iii/
 
@@ -666,6 +670,7 @@
 #2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
 #2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max)
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+#3161 https://leetcode.com/problems/block-placement-queries/ (pre-max BIT)
 #3187 https://leetcode.com/problems/peaks-in-array/
 #3380 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-i/
 #3382 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
@@ -736,7 +741,9 @@ Good questions:
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
+#2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
+#2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
 #2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
 #2561 https://leetcode.com/problems/rearranging-fruits/
@@ -750,6 +757,7 @@ Good questions:
 #3068 https://leetcode.com/problems/find-the-maximum-sum-of-node-values/
 #3132 https://leetcode.com/problems/find-the-integer-added-to-array-ii/
 #3152 https://leetcode.com/problems/special-array-ii/
+#3161 https://leetcode.com/problems/block-placement-queries/
 #3234 https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/
 #3239 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-i/
 #3240 https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindromic-ii/
@@ -795,9 +803,21 @@ Note:
 	https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	https://leetcode.cn/problems/count-of-range-sum/solutions/1/by-ac_oier-b36o/
 
+	Template:
+	#2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
+	#2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
+	#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+	#3479 https://leetcode.com/problems/fruits-into-baskets-iii/
+
 12. Binary Indexed Tree
-		https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
-		https://leetcode.cn/problems/range-sum-query-mutable/solutions/2524481/dai-ni-fa-ming-shu-zhuang-shu-zu-fu-shu-lyfll/
+
+	Links:
+		1. https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/
+		2. https://leetcode.cn/problems/range-sum-query-mutable/solutions/2524481/dai-ni-fa-ming-shu-zhuang-shu-zu-fu-shu-lyfll/
+		3. https://oi-wiki.org/ds/fenwick/
+
+	Notes: 
+		1. If use BIT to save max/min value, then only increase/descrese the values in BIT is supported
 
 	Template for BIT + discretization:
 	#0300 https://leetcode.com/problems/longest-increasing-subsequence/
@@ -813,6 +833,10 @@ Note:
 	#2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
 	#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max, LIS)
 	#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+
+	BIT + Difference Array
+	https://oi-wiki.org/ds/fenwick/#%E5%8C%BA%E9%97%B4%E5%8A%A0%E5%8C%BA%E9%97%B4%E5%92%8C
+	https://blog.csdn.net/m0_65435471/article/details/132339414
 
 13. Negative Binary - https://courses.cs.washington.edu/courses/cse390b/21sp/readings/negative_binary.html
 
