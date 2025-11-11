@@ -6,45 +6,52 @@ package org.wshuai.leetcode;
  */
 public class MaximumSubarray {
 
-	// time O(n), space O(1)
-	public int maxSubArray(int[] nums) {
-		int currentSubarray = 0, maxSubarray = Integer.MIN_VALUE;
-		for (int i = 0; i < nums.length; i++) {
-			currentSubarray = Math.max(currentSubarray + nums[i], nums[i]);
-			maxSubarray = Math.max(maxSubarray, currentSubarray);
-		}
-		return maxSubarray;
-	}
+    // time O(n), space O(1)
+    public int maxSubArrayDPSpaceOptimized(int[] nums) {
+        int res = Integer.MIN_VALUE, n = nums.length, pre = 0;
+        for (int i = 1; i <= n; i++) {
+            int current = Math.max(pre + nums[i - 1], nums[i - 1]);
+            res = Math.max(res, current);
+            pre = current;
+        }
+        return res;
+    }
 
-	// time O(n*log(n)), space O(log(n))
-	public int maxSubArrayDivideAndConquer(int[] nums) {
-		// see good picture at https://leetcode.com/problems/maximum-subarray/solution/
-		return maxSubArrayUtil(nums, 0, nums.length - 1);
-	}
+    // time O(n), space O(n)
+    public int maxSubArrayDP(int[] nums) {
+        int res = Integer.MIN_VALUE, n = nums.length;
+        int[] dp = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            dp[i] = Math.max(dp[i - 1] + nums[i - 1], nums[i - 1]);
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+    }
 
-	private int maxSubArrayUtil(int[] nums, int i, int j){
-		if(i == j){
-			return nums[i];
-		}else{
-			int mid = i + (j - i) / 2;
-			int left = maxSubArrayUtil(nums, i, mid);
-			int right = maxSubArrayUtil(nums, mid + 1, j);
-			int middle = findMiddleMaxSubarray(nums, mid, i, j);
-			return Math.max(left, Math.max(right, middle));
-		}
-	}
+    // time O(n), space O(log(n))
+    public int maxSubArrayDivideAndConquer(int[] nums) {
+        int n = nums.length;
+        return getMaxSubArray(nums, 0, n - 1).maxSum;
+    }
 
-	private int findMiddleMaxSubarray(int[] nums, int m, int i, int j){
-		int left = Integer.MIN_VALUE, right = Integer.MIN_VALUE, sum = 0;
-		for(int k = m; k >= i; k--){
-			sum += nums[k];
-			left = Math.max(left, sum);
-		}
-		sum = 0;
-		for(int k = m + 1; k <= j; k++){
-			sum += nums[k];
-			right = Math.max(right, sum);
-		}
-		return left + right;
-	}
+    private record State(int leftSum, int rightSum, int rangeSum, int maxSum) {
+    }
+
+    private State getMaxSubArray(int[] nums, int left, int right) {
+        if (left == right) {
+            return new State(nums[left], nums[left], nums[left], nums[left]);
+        }
+        int mid = (left + right) / 2;
+        State leftState = getMaxSubArray(nums, left, mid);
+        State rightState = getMaxSubArray(nums, mid + 1, right);
+        return mergeState(leftState, rightState);
+    }
+
+    private State mergeState(State leftState, State rightState) {
+        int rangeSum = leftState.rangeSum + rightState.rangeSum;
+        int leftSum = Math.max(leftState.leftSum, leftState.rangeSum + rightState.leftSum);
+        int rightSum = Math.max(rightState.rightSum, rightState.rangeSum + leftState.rightSum);
+        int maxSum = Math.max(leftState.maxSum, Math.max(rightState.maxSum, leftState.rightSum + rightState.leftSum));
+        return new State(leftSum, rightSum, rangeSum, maxSum);
+    }
 }

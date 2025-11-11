@@ -8,6 +8,7 @@ public class LongestSubstringOfOneRepeatingCharacter {
 
     // time O(k * log(n)), space O(n)
     public int[] longestRepeating(String s, String queryCharacters, int[] queryIndices) {
+        // https://leetcode.cn/problems/longest-substring-of-one-repeating-character/solutions/1411319/by-ac_oier-0lso/
         int n = s.length(), k = queryIndices.length;
         char[] chars = s.toCharArray();
         SegmentTree st = new SegmentTree(chars);
