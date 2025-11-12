@@ -11,8 +11,64 @@ import java.util.Map;
  */
 public class MaximizeSubarraySumAfterRemovingAllOccurrencesOfOneElement {
 
-    // time O(n * log(n)), space O(n)
+    private long maxSum = Long.MIN_VALUE / 2;
+    private long prefixSum = 0;
+    private final Map<Integer, Long> last = new HashMap<>();
+
+    // time O(n), space O(1)
     public long maxSubarraySum(int[] nums) {
+        // https://leetcode.cn/link/?target=https%3A%2F%2Fwww.bilibili.com%2Fvideo%2FBV1SzrAYMESJ%2F%3Ft%3D23m43s
+        // Max subarray sum with suffix end at index i - suffix[i], assume next
+        // index with value nums[i] is k:
+        //   1. f[i + 1, j], j > k - f is max subarray sum without
+        //      deleting numbers #0053
+        //   2. suffix[k] + sum(i + 1, k - 1) - converted to a sub problem
+        // Prefix calculation is the same.
+        int n = nums.length;
+        long[] pre = new long[n];
+        // Calculate max subarray sum with prefix end at i if we remove nums[i]
+        for (int i = 0; i < n; i++) {
+            pre[i] = update(nums[i]);
+        }
+        // Reset values
+        long res = Long.MIN_VALUE;
+        maxSum = Long.MIN_VALUE / 2;
+        prefixSum = 0;
+        last.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            // Calculate max subarray sum with suffix end at i if we remove nums[i]
+            long suf = update(nums[i]);
+            // maxSubarraySum_d (with deletion) = max(pre[i] + suf[i], pre[i], suf[i])
+            // maxSubarraySum (without deletion) = maxSum
+            // res = Math.max(maxSubarraySum_d, maxSubarraySum)
+            res = Math.max(res, Math.max(maxSum, Math.max(pre[i] + suf, Math.max(pre[i], suf))));
+        }
+        return res;
+    }
+
+    private long update(int num) {
+        // res is suffix[i]
+        long res = maxSum;
+        // Maintain max subarray sum f[i] = max(f[i-1], 0) + num
+        maxSum = Math.max(maxSum, 0) + num;
+        if (last.containsKey(num)) { // If nums[i] is seen
+            // Given suffix[i] = suffix[k] + sum(i + 1, k - 1), we have:
+            // res - prefixSum[k + 1] + prefixSum[i + 1] and res = suffix[k]
+            // so we can translate above to:
+            // suffix[k] + prefixSum[i + 1] - prefixSum[k + 1]
+            // = suffix[k] + sum(i + 1, k - 1) + nums[k] since k is deleted
+            // nums[k] = 0, the formula becomes:
+            // suffix[k] + sum(i + 1, k - 1)
+            res = Math.max(res, last.get(num) + prefixSum);
+        }
+        // Maintain prefix sum
+        prefixSum += num; // s[i+1] = s[i] + num
+        last.put(num, res - prefixSum);
+        return res;
+    }
+
+    // time O(n * log(n)), space O(n)
+    public long maxSubarraySumSegmentTree(int[] nums) {
         // Same idea as #0053
         int n = nums.length;
         Map<Integer, List<Integer>> map = new HashMap<>();
