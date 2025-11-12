@@ -106,13 +106,16 @@ public class HandlingSumQueriesAfterUpdate {
         }
 
         private void spread(int node, int left, int right) {
+            // Check if apply is needed
             boolean toFlip = flip[node];
             if (!toFlip) {
                 return;
             }
+            // Call apply on child nodes
             int mid = (left + right) / 2;
             apply(node * 2, left, mid);
             apply(node * 2 + 1, mid + 1, right);
+            // Reset apply flag
             flip[node] = false;
         }
 

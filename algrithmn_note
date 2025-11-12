@@ -152,6 +152,7 @@
 #3312 https://leetcode.com/problems/sorted-gcd-pair-queries/
 #3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
+#3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/ (binary search for min and max)
 
 06. Subsequence
 #0392 https://leetcode.com/problems/is-subsequence/
@@ -643,10 +644,12 @@
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
 #1157 https://leetcode.com/problems/online-majority-element-in-subarray/
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
+#1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
 #2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
 #2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
 #2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
+#2502 https://leetcode.com/problems/design-memory-allocator/ 
 #2569 https://leetcode.com/problems/handling-sum-queries-after-update/ (lazy segment tree)
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
@@ -654,6 +657,7 @@
 #3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
 #3410 https://leetcode.com/problems/maximize-subarray-sum-after-removing-all-occurrences-of-one-element/ (segment tree + max subarray sum)
 #3479 https://leetcode.com/problems/fruits-into-baskets-iii/
+#3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/
 #3525 https://leetcode.com/problems/find-x-value-of-array-ii/ (segment tree + mod)
 #LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
 
@@ -788,6 +792,7 @@ Good questions:
 #3443 https://leetcode.com/problems/maximum-manhattan-distance-after-k-changes/
 #3445 https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-ii/
 #3483 https://leetcode.com/problems/unique-3-digit-even-numbers/
+#3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/
 #3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
 #3525 https://leetcode.com/problems/find-x-value-of-array-ii/ (segment tree + mod)
 #3590 https://leetcode.com/problems/kth-smallest-path-xor-sum/ (BIT + DFS with timestamp + Mo's algorithmn)
@@ -830,7 +835,12 @@ Note:
 	#3479 https://leetcode.com/problems/fruits-into-baskets-iii/
 	#LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
 
+	Lazy Propagation
+	https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
+
 	Lazy Segment Tree Template
+	#1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
+	#2502 https://leetcode.com/problems/design-memory-allocator/
 	#2569 https://leetcode.com/problems/handling-sum-queries-after-update/
 
 12. Binary Indexed Tree
