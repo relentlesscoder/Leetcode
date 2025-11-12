@@ -646,6 +646,8 @@
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
 #2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
 #2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
+#2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
+#2569 https://leetcode.com/problems/handling-sum-queries-after-update/ (lazy segment tree)
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3161 https://leetcode.com/problems/block-placement-queries/
@@ -721,6 +723,7 @@
 48. LIS
 #0300 https://leetcode.com/problems/longest-increasing-subsequence/ (n*log(n))
 #1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/ (n*log(n))
+#2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
 
 49. GCD
 #3312 https://leetcode.com/problems/sorted-gcd-pair-queries/ (GCD + binary search)
@@ -813,10 +816,11 @@ Note:
 
 10. Binary Tree Nodes and Height - https://www.geeksforgeeks.org/relationship-number-nodes-height-binary-tree/
 
-11. Segment Tree - 
+11. Segment Tree
 	https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
 	https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 	https://leetcode.cn/problems/count-of-range-sum/solutions/1/by-ac_oier-b36o/
+	https://leetcode.cn/problems/longest-increasing-subsequence-ii/solutions/1816920/by-lfool-f6vs/
 
 	Template:
 	#1157 https://leetcode.com/problems/online-majority-element-in-subarray/
@@ -825,6 +829,9 @@ Note:
 	#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 	#3479 https://leetcode.com/problems/fruits-into-baskets-iii/
 	#LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
+
+	Lazy Segment Tree Template
+	#2569 https://leetcode.com/problems/handling-sum-queries-after-update/
 
 12. Binary Indexed Tree
 

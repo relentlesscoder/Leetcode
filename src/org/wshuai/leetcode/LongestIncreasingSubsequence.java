@@ -67,27 +67,23 @@ public class LongestIncreasingSubsequence {
 
     // time O(n * log(n)), space O(n)
     public int lengthOfLISGreedy(int[] nums) {
-        // https://www.bilibili.com/video/BV1ub411Q7sB/
-        int len = 0;
-        int[] tails = new int[nums.length];
+        int res = 0, n = nums.length, len = 0;
+        int[] arr = new int[n];
         for (int num : nums) {
-            // Find the first index i so that num <= tails[i]
-            int pos = bisect(num, tails, len);
-            // Try replacing existing element with smaller values to increase the
-            // chance for extending LIS
-            tails[pos] = num;
-            if (pos == len) { // Extend the LIS
-                len++;
+            int idx = binarySearch(arr, num, len);
+            arr[idx] = num;
+            if (idx == len) {
+                res = Math.max(res, ++len);
             }
         }
-        return len;
+        return res;
     }
 
-    private int bisect(int num, int[] tails, int high) {
+    private int binarySearch(int[] nums, int target, int high) {
         int low = 0;
         while (low < high) {
             int mid = low + (high - low) / 2;
-            if (tails[mid] < num) {
+            if (nums[mid] < target) {
                 low = mid + 1;
             } else {
                 high = mid;
