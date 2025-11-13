@@ -1,40 +1,40 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.Arrays;
 
 /**
- * Created by Wei on 12/15/2019.
- * #0850 https://leetcode.com/problems/rectangle-area-ii/
+ * Created by Wei on 11/13/2025.
+ * #3454 https://leetcode.com/problems/separate-squares-ii/
  */
-public class RectangleAreaII {
-
-    private static final int MOD = (int)1e9 + 7;
-
-    private record Event(int y, int lx, int rx, int delta) {
-    }
+public class SeparateSquaresII {
 
     // time O(n * log(n)), space O(n)
-    public int rectangleAreaSegmentTree(int[][] rectangles) {
-        long res = 0;
-        int n = rectangles.length * 2;
+    public double separateSquares(int[][] squares) {
+        // https://leetcode.cn/problems/separate-squares-ii/solutions/3078402/lazy-xian-duan-shu-sao-miao-xian-pythonj-eeqk/
+        int n = squares.length * 2;
         int[] xs = new int[n];
         Event[] events = new Event[n];
         int idx = 0;
-        for (int[] rect : rectangles) {
-            int lx = rect[0]; // Left x coordinate
-            int rx = rect[2]; // Right x coordinate
+        for (int[] sq : squares) {
+            int y = sq[1];
+            int l = sq[2];
+            int lx = sq[0]; // Left x coordinate
+            int rx = lx + l; // Right x coordinate
             xs[idx] = lx;
             xs[idx + 1] = rx;
             // Horizontal lines
-            events[idx++] = new Event(rect[1], lx, rx, 1);
-            events[idx++] = new Event(rect[3], lx, rx, -1);
+            events[idx++] = new Event(y, lx, rx, 1);
+            events[idx++] = new Event(y + l, lx, rx, -1);
         }
 
         // Sort for discretization
         Arrays.sort(xs);
         SegmentTree st = new SegmentTree(xs);
         // Sweep lines bottom up
-        Arrays.sort(events, (a, b) -> a.y - b.y);
+        Arrays.sort(events, (a, b) -> Double.compare(a.y, b.y));
+
+        Record[] records = new Record[n - 1];
+        long totalArea = 0;
         for (int i = 0; i < n - 1; i++) {
             Event e = events[i];
             int lidx = binarySearch(xs, e.lx);
@@ -43,10 +43,23 @@ public class RectangleAreaII {
             st.update(lidx, ridx, e.delta);
             // All covered length
             int sumLen = xs[n - 1] - xs[0] - st.getUncoveredLength();
+            records[i] = new Record(totalArea, sumLen);
             // Calculate the area
-            res += 1L * sumLen * (events[i + 1].y - e.y);
+            totalArea += 1L * sumLen * (events[i + 1].y - e.y);
         }
-        return (int) (res % MOD);
+
+        int i = 0;
+        while (i < n - 1 && records[i].area * 2 < totalArea) {
+            i++;
+        }
+        i--;
+        return events[i].y + (totalArea - records[i].area * 2) / (records[i].sumLen * 2.0);
+    }
+
+    private record Event(int y, int lx, int rx, int delta) {
+    }
+
+    private record Record(long area, int sumLen) {
     }
 
     private int binarySearch(int[] nums, int target) {
@@ -137,45 +150,5 @@ public class RectangleAreaII {
             minCover[node] += val;
             mark[node] += val;
         }
-    }
-
-    // time O(n^2 * log(n)), space O(n)
-    public int rectangleAreaLineSweep(int[][] rectangles) {
-        // https://leetcode.cn/problems/rectangle-area-ii/solutions/1826992/gong-shui-san-xie-by-ac_oier-9r36/
-        long res = 0;
-        List<Integer> vLines = new ArrayList<>();
-        for (int[] rec : rectangles) { // O(n)
-            vLines.add(rec[0]);
-            vLines.add(rec[2]);
-        }
-        Collections.sort(vLines); // O(n * log(n))
-        for (int i = 1; i < vLines.size(); i++) { // O(n)
-            int right = vLines.get(i), left = vLines.get(i - 1), length = right - left;
-            if (length == 0) {
-                continue;
-            }
-            List<int[]> hLines = new ArrayList<>();
-            for (int[] rec : rectangles) { // O(n)
-                if (rec[0] <= left && rec[2] >= right) {
-                    hLines.add(new int[] {rec[1], rec[3]});
-                }
-            }
-            Collections.sort(hLines, (a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]); // O(n * log(n))
-            long total = 0;
-            int low = -1, high = -1;
-            for (int[] curr : hLines) { // O(n)
-                if (curr[0] > high) {
-                    total += high - low;
-                    low = curr[0];
-                    high = curr[1];
-                } else if (curr[1] > high) {
-                    high = curr[1];
-                }
-            }
-            total += high - low;
-            res += total * length;
-            res %= MOD;
-        }
-        return (int) res;
     }
 }

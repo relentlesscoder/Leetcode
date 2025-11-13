@@ -152,6 +152,7 @@
 #3312 https://leetcode.com/problems/sorted-gcd-pair-queries/
 #3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
+#3453 https://leetcode.com/problems/separate-squares-i/ ***(double type boundary)
 #3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/ (binary search for min and max)
 
 06. Subsequence
@@ -579,6 +580,8 @@
 #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 33. Geometry
+#0223 https://leetcode.com/problems/rectangle-area/
+#0850 https://leetcode.com/problems/rectangle-area-ii/
 #2013 https://leetcode.com/problems/detect-squares/
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #3025 https://leetcode.com/problems/find-the-number-of-ways-to-place-people-i/
@@ -642,6 +645,7 @@
 
 41. Segment Tree
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
+#0850 https://leetcode.com/problems/rectangle-area-ii/ (segment tree + line sweep)
 #1157 https://leetcode.com/problems/online-majority-element-in-subarray/
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
 #1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
@@ -658,6 +662,7 @@
 #3161 https://leetcode.com/problems/block-placement-queries/
 #3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
 #3410 https://leetcode.com/problems/maximize-subarray-sum-after-removing-all-occurrences-of-one-element/ (segment tree + max subarray sum)
+#3454 https://leetcode.com/problems/separate-squares-ii/ (segment tree + line sweep)
 #3479 https://leetcode.com/problems/fruits-into-baskets-iii/
 #3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/
 #3525 https://leetcode.com/problems/find-x-value-of-array-ii/ (segment tree + mod)
@@ -741,6 +746,10 @@
 
 51. Mo's Algorithm
 #3636 https://leetcode.com/problems/threshold-majority-queries/ (rollback Mo's)
+
+52. Line Sweep
+#0850 https://leetcode.com/problems/rectangle-area-ii/
+#3454 https://leetcode.com/problems/separate-squares-ii/ (segment tree + line sweep)
 
 00. Review
 #1884 https://leetcode.com/problems/egg-drop-with-2-eggs-and-n-floors/
@@ -842,11 +851,13 @@ Note:
 	https://leetcode.com/articles/a-recursive-approach-to-segment-trees-range-sum-queries-lazy-propagation/
 
 	Lazy Segment Tree Template
+	#0850 https://leetcode.com/problems/rectangle-area-ii/ (segment tree + line sweep)
 	#1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
 	#2502 https://leetcode.com/problems/design-memory-allocator/
 	#2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
 	#2569 https://leetcode.com/problems/handling-sum-queries-after-update/
 	#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (search while updating)
+	#3454 https://leetcode.com/problems/separate-squares-ii/ (segment tree + line sweep)
 
 12. Binary Indexed Tree
 
@@ -975,6 +986,12 @@ Note:
 
 	NAND: 
 	#LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
+
+26 Line Sweep
+
+	https://leetcode.cn/problems/rectangle-area-ii/solutions/1826992/gong-shui-san-xie-by-ac_oier-9r36/
+
+	#0850 https://leetcode.com/problems/rectangle-area-ii/
 
 
 
