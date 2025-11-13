@@ -650,7 +650,9 @@
 #2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
 #2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
 #2502 https://leetcode.com/problems/design-memory-allocator/ 
+#2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
 #2569 https://leetcode.com/problems/handling-sum-queries-after-update/ (lazy segment tree)
+#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (search while updating)
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3161 https://leetcode.com/problems/block-placement-queries/
@@ -766,6 +768,7 @@ Good questions:
 #2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
 #2380 https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/
 #2467 https://leetcode.com/problems/most-profitable-path-in-a-tree/
+#2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
 #2561 https://leetcode.com/problems/rearranging-fruits/
 #2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + BIT)
 #2659 https://leetcode.com/problems/make-array-empty/ (BIT)
@@ -841,7 +844,9 @@ Note:
 	Lazy Segment Tree Template
 	#1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
 	#2502 https://leetcode.com/problems/design-memory-allocator/
+	#2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
 	#2569 https://leetcode.com/problems/handling-sum-queries-after-update/
+	#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (search while updating)
 
 12. Binary Indexed Tree
 
