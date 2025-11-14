@@ -649,12 +649,18 @@
 
 41. Segment Tree
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
+#0699 https://leetcode.com/problems/falling-squares/
+#0715 https://leetcode.com/problems/range-module/
+#0729 https://leetcode.com/problems/my-calendar-i/
+#0731 https://leetcode.com/problems/my-calendar-ii/
+#0732 https://leetcode.com/problems/my-calendar-iii/
 #0850 https://leetcode.com/problems/rectangle-area-ii/ (segment tree + line sweep)
 #1157 https://leetcode.com/problems/online-majority-element-in-subarray/
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
 #1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
 #2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
+#2276 https://leetcode.com/problems/count-integers-in-intervals/
 #2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
 #2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
 #2502 https://leetcode.com/problems/design-memory-allocator/ 
@@ -874,7 +880,12 @@ Note:
 	Dynamic Segment Tree
 
 	Template
+	#0699 https://leetcode.com/problems/falling-squares/
 	#0715 https://leetcode.com/problems/range-module/
+	#0729 https://leetcode.com/problems/my-calendar-i/
+	#0731 https://leetcode.com/problems/my-calendar-ii/
+	#0732 https://leetcode.com/problems/my-calendar-iii/
+	#2276 https://leetcode.com/problems/count-integers-in-intervals/
 
 12. Binary Indexed Tree
 
