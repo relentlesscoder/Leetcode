@@ -661,6 +661,7 @@
 #2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
 #2569 https://leetcode.com/problems/handling-sum-queries-after-update/ (lazy segment tree)
 #2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (search while updating)
+#2916 https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-ii/
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
 #3161 https://leetcode.com/problems/block-placement-queries/
@@ -864,10 +865,16 @@ Note:
 	#2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
 	#2569 https://leetcode.com/problems/handling-sum-queries-after-update/
 	#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (search while updating)
+	#2916 https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-ii/
 	#3454 https://leetcode.com/problems/separate-squares-ii/ (segment tree + line sweep)
 	#3569 https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/ (segment tree + prime factorization)
 	#3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
 	#3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
+
+	Dynamic Segment Tree
+
+	Template
+	#0715 https://leetcode.com/problems/range-module/
 
 12. Binary Indexed Tree
 
