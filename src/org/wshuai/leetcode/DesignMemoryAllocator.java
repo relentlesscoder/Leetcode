@@ -111,7 +111,7 @@ public class DesignMemoryAllocator {
                 int leftNode = node * 2;
                 int rightNode = node * 2 + 1;
                 // Since we need to find the leftmost empty blocks
-                // Find in right subtree first
+                // Find in left subtree first
                 int idx = findFirst(leftNode, left, mid, size);
                 if (idx < 0) {
                     // Check if blocks can be found in middle

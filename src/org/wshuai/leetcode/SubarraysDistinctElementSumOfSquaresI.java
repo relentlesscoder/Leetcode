@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class SubarraysDistinctElementSumOfSquaresI {
 
-    // time O(n^2), space O(1)
+    // time O(n^2), space O(MAX)
     public int sumCounts(List<Integer> nums) {
         int res = 0, n = nums.size();
         for (int i = 0; i < n; i++) {

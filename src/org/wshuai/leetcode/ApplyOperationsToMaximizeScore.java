@@ -14,6 +14,7 @@ public class ApplyOperationsToMaximizeScore {
 
     static {
         for (int i = 2; i < MAX; i++) {
+            // If PRIME_SCORE[i] already set then current i is not a prime number
             if (PRIME_SCORE[i] == 0) {
                 for (int j = i; j < MAX; j += i) {
                     PRIME_SCORE[j]++;
@@ -32,9 +33,15 @@ public class ApplyOperationsToMaximizeScore {
         Deque<Integer> queue = new ArrayDeque<>();
         queue.push(-1);
         for (int i = 0; i < n; i++) {
+            // right[i] is the first element on nums[i]'s right with score(nums[queue.peek()]) > score(nums[i])
+            // Note that the requirement is to find the smallest index when multiple numbers has the same score
+            // so subarrays containing elements in nums[i]'s right with same score is valid.
             while (queue.size() > 1 && PRIME_SCORE[nums.get(queue.peek())] < PRIME_SCORE[nums.get(i)]) {
                 right[queue.pop()] = i;
             }
+            // left[i] is the first element on nums[i]'s left with score(nums[queue.peek()]) >= score(nums[i])
+            // Note that the requirement is to find the smallest index when multiple numbers has the same score
+            // so valid subarrays can't include elements in nums[i]'s left with same score.
             left[i] = queue.peek();
             queue.push(i);
         }
@@ -58,7 +65,7 @@ public class ApplyOperationsToMaximizeScore {
     public int maximumScore(List<Integer> nums, int k) {
         long res = 1L;
         int n = nums.size();
-        int[] score = new int[n]; // score[i] stores prime store of nums[i]
+        int[] score = new int[n]; // score[i] stores prime score of nums[i]
         int[] left = new int[n]; // left[i] stores the index of last left number with score(nums[left[i]]) >= score(nums[i])
         int[] right = new int[n]; // right[i] stores the index of next right number with score(nums[right[i]]) > score(nums[i])
         for (int i = 0; i < n; i++) {
@@ -66,7 +73,7 @@ public class ApplyOperationsToMaximizeScore {
         }
         // Use monotonic queue to calculate left[i] and right[i] for each number
         Deque<Integer> queue = new ArrayDeque<>();
-        queue.push(-1);
+        queue.push(-1); // Left sentinel
         for (int i = 0; i < n; i++) {
             while (queue.size() > 1 && score[queue.peek()] < score[i]) {
                 queue.pop();
@@ -75,7 +82,7 @@ public class ApplyOperationsToMaximizeScore {
             queue.push(i);
         }
         queue.clear();
-        queue.push(n);
+        queue.push(n); // Right sentinel
         for (int i = n - 1; i >= 0; i--) {
             while (queue.size() > 1 && score[queue.peek()] <= score[i]) {
                 queue.pop();
