@@ -11,8 +11,11 @@ public class MaximumValueOfAnOrderedTripletI {
         int n = nums.length;
         long res = 0, leftMax = 0, maxDiff = 0;
         for (int i = 0; i < n; i++) {
+            // Maintain max value for (nums[i] - nums[j]) * nums[k]
             res = Math.max(res, maxDiff * nums[i]);
+            // Maintain max value for nums[i] - nums[j]
             maxDiff = Math.max(maxDiff, leftMax - nums[i]);
+            // Maintain max value for nums[i]
             leftMax = Math.max(leftMax, nums[i]);
         }
         return res;
@@ -28,7 +31,7 @@ public class MaximumValueOfAnOrderedTripletI {
         }
         long res = 0;
         for (int i = 1; i < n - 1; i++) {
-            res = Math.max(res, (long)(leftMax[i] - nums[i]) * rightMax[i]);
+            res = Math.max(res, (long) (leftMax[i] - nums[i]) * rightMax[i]);
         }
         return res;
     }

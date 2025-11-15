@@ -8,12 +8,11 @@ public class CountPairsThatFormACompleteDayI {
 
     // time O(n), space O(1)
     public int countCompleteDayPairs(int[] hours) {
-        int[] map = new int[24];
         int res = 0;
-        for (int hour : hours) {
-            int mod = hour % 24, key = (24 - mod) % 24;
-            res += map[key];
-            map[mod]++;
+        int[] count = new int[24];
+        for (int h : hours) {
+            res += count[(24 - h % 24) % 24];
+            count[h % 24]++;
         }
         return res;
     }
