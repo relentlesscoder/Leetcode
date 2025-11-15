@@ -1,7 +1,6 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 
 /**
  * Created by Wei on 12/26/2023.
@@ -9,30 +8,24 @@ import java.util.Map;
  */
 public class MaxPairSumInAnArray {
 
-    // time O(n * d), space O(d)
+    // time O(n * log(MAX)), space O(1)
     public int maxSum(int[] nums) {
-        int res = -1;
-        Map<Integer, int[]> map = new HashMap<>();
-        for (int num : nums) {
-            int maxDigit = -1, val = num;
+        int res = -1, n = nums.length;
+        int[] map = new int[10];
+        Arrays.fill(map, -1);
+        for (int i = 0; i < n; i++) {
+            int val = nums[i], digit = 0;
+            // Find the max digit for nums[i]
             while (val > 0) {
-                maxDigit = Math.max(maxDigit, val % 10);
+                digit = Math.max(digit, val % 10);
                 val /= 10;
             }
-            map.putIfAbsent(maxDigit, new int[]{-1, -1});
-            int[] top = map.get(maxDigit);
-            if (num > top[0]) {
-                top[1] = top[0];
-                top[0] = num;
-            } else if (num > top[1]) {
-                top[1] = num;
+            if (map[digit] != -1) {
+                res = Math.max(res, nums[i] + map[digit]);
             }
-        }
-        for (int k : map.keySet()) {
-            int[] top = map.get(k);
-            if (top[0] != -1 && top[1] != -1) {
-                res = Math.max(res, top[0] + top[1]);
-            }
+            // Update map[digit] to record the maximum number
+            // that has digit as its largest digit
+            map[digit] = Math.max(map[digit], nums[i]);
         }
         return res;
     }

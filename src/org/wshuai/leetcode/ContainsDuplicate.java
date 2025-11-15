@@ -8,14 +8,12 @@ import java.util.Set;
  * #0217 https://leetcode.com/problems/contains-duplicate/
  */
 public class ContainsDuplicate {
+
 	// time O(n), space O(n)
 	public boolean containsDuplicate(int[] nums) {
-		if(nums == null || nums.length < 2){
-			return false;
-		}
 		Set<Integer> set = new HashSet<>();
-		for(int i : nums){
-			if(!set.add(i)){
+		for (int num : nums) {
+			if (!set.add(num)) {
 				return true;
 			}
 		}

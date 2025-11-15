@@ -9,28 +9,27 @@ import java.util.Map;
  */
 public class CountNicePairsInAnArray {
 
+    private static final int MOD = (int) 1e9 + 7;
+
     // time O(n), space O(n)
     public int countNicePairs(int[] nums) {
-        long res = 0, mod = (int)1e9 + 7;
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] -= reverse(nums[i]);
-        }
+        int n = nums.length;
+        long res = 0;
         Map<Integer, Integer> map = new HashMap<>();
-        for (int num : nums) {
-            int count = map.getOrDefault(num, 0);
-            res += count;
-            map.put(num, count + 1);
+        for (int i = 0; i < n; i++) {
+            int num = nums[i], rev = 0;
+            while (num > 0) {
+                rev *= 10;
+                rev += (num % 10);
+                num /= 10;
+            }
+            int val = nums[i] - rev;
+            int count = map.getOrDefault(val, 0);
+            if (count > 0) {
+                res = (res + count) % MOD;
+            }
+            map.merge(val, 1, Integer::sum);
         }
-        return (int)(res % mod);
-    }
-
-    private int reverse(int num) {
-        int res = 0;
-        while (num > 0) {
-            res *= 10;
-            res += num % 10;
-            num /= 10;
-        }
-        return res;
+        return (int) res;
     }
 }

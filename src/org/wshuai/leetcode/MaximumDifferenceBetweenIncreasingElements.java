@@ -2,7 +2,7 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 09/04/2023.
- * #2016 https://leetcode.com/problems/maximum-difference-between-increasing-elements/description/
+ * #2016 https://leetcode.com/problems/maximum-difference-between-increasing-elements/
  */
 public class MaximumDifferenceBetweenIncreasingElements {
 
@@ -10,11 +10,8 @@ public class MaximumDifferenceBetweenIncreasingElements {
     public int maximumDifference(int[] nums) {
         int res = -1, min = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] > min) {
-                res = Math.max(res, nums[i] - min);
-            } else {
-                min = nums[i];
-            }
+            res = Math.max(res, nums[i] > min ? nums[i] - min : -1);
+            min = Math.min(min, nums[i]);
         }
         return res;
     }

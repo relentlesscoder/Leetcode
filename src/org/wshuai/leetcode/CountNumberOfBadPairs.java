@@ -25,23 +25,4 @@ public class CountNumberOfBadPairs {
         }
         return res;
     }
-
-    // time O(n), space O(n)
-    public long countBadPairsTwoPasses(int[] nums) {
-        long res = 0;
-        int n = nums.length;
-        Map<Integer, Integer> map = new HashMap<>();
-        // j - i != nums[j] - nums[i]
-        // nums[j] - j != nums[i] - i
-        // Convert original array to new array new_nums[i] = nums[i] - i
-        for (int i = 0; i < n; i++) {
-            nums[i] -= i;
-        }
-        for (int i = 0; i < n; i++) {
-            res += i; // Calculate total number of pairs
-            res -= map.getOrDefault(nums[i], 0); // Reduce good pairs
-            map.merge(nums[i], 1, Integer::sum);
-        }
-        return res;
-    }
 }
