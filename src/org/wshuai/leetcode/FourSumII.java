@@ -8,22 +8,21 @@ import java.util.Map;
  * #0454 https://leetcode.com/problems/4sum-ii/
  */
 public class FourSumII {
-	// time O(N^2), space O(N^2)
-	public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
-		int res = 0, n = A.length;
-		Map<Integer, Integer> map = new HashMap<>();
-		for(int i = 0; i < n; i++){
-			for(int j = 0; j < n; j++){
-				int sum = A[i] + B[j];
-				map.put(-sum, map.getOrDefault(-sum, 0) + 1);
-			}
-		}
-		for(int i = 0; i < n; i++){
-			for(int j = 0; j < n; j++){
-				int sum = C[i] + D[j];
-				res += map.getOrDefault(sum, 0);
-			}
-		}
-		return res;
-	}
+
+    // time O(N^2), space O(N^2)
+    public int fourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4) {
+        int res = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num1 : nums1) {
+            for (int num2 : nums2) {
+                map.merge(num1 + num2, 1, Integer::sum);
+            }
+        }
+        for (int num3 : nums3) {
+            for (int num4 : nums4) {
+                res += map.getOrDefault(-num3 - num4, 0);
+            }
+        }
+        return res;
+    }
 }

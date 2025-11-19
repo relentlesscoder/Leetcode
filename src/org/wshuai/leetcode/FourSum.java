@@ -9,54 +9,48 @@ import java.util.List;
  * #0018 https://leetcode.com/problems/4sum/
  */
 public class FourSum {
-	// time O(n^3)
-	// more reading https://leetcode.com/problems/4sum/discuss/8609/My-solution-generalized-for-kSums-in-JAVA
+
+	// time O(n^3), space O(1)
 	public List<List<Integer>> fourSum(int[] nums, int target) {
-		List<List<Integer>> res = new ArrayList<>();
-		if(nums == null || nums.length < 4){
-			return res;
-		}
 		Arrays.sort(nums);
+		List<List<Integer>> res = new ArrayList<>();
 		int n = nums.length;
-		for(int i = 0; i < n - 3; i++){
-			// pruning
-			if(nums[i] * 4 > target){
-				break;
-			}
-			// avoid duplicates
-			if(i > 0 && nums[i] == nums[i - 1]){
+		for (int a = 0; a < n - 3; a++) {
+			long va = nums[a];
+			if (a > 0 && va == nums[a - 1]) {
 				continue;
 			}
-			for(int j = i + 1; j < n - 2; j++){
-				// pruning
-				if(nums[j] * 3 > target - nums[i]){
-					break;
-				}
-				// avoid duplicates
-				if(j > i + 1 && nums[j] == nums[j - 1]){
+			if (va + nums[a + 1] + nums[a + 2] + nums[a + 3] > target) {
+				break;
+			}
+			if (va + nums[n - 3] + nums[n - 2] + nums[n - 1] < target) {
+				continue;
+			}
+			for (int b = a + 1; b < n - 2; b++) {
+				long vb = nums[b];
+				if (b > a + 1 && vb == nums[b - 1]) {
 					continue;
 				}
-				int sum = nums[i] + nums[j];
-				int left = j + 1;
-				int right = n - 1;
-				while(left < right){
-					int lval = nums[left];
-					int rval = nums[right];
-					int cur = sum + lval + rval;
-					if(cur == target){
-						res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
-						// avoid duplicates
-						while(left < right && nums[left] == lval){
-							left++;
+				if (va + vb + nums[b + 1] + nums[b + 2] > target) {
+					break;
+				}
+				if (va + vb + nums[n - 2] + nums[n - 1] < target) {
+					continue;
+				}
+				int c = b + 1;
+				int d = n - 1;
+				while (c < d) {
+					long sum = va + vb + nums[c] + nums[d];
+					if (sum > target) {
+						d--;
+					} else if (sum < target) {
+						c++;
+					} else {
+						res.add(List.of((int) va, (int) vb, nums[c], nums[d]));
+						for (c++; c < d && nums[c] == nums[c - 1]; c++) {
 						}
-						// avoid duplicates
-						while(left < right && nums[right] == rval){
-							right--;
+						for (d--; c < d && nums[d] == nums[d + 1]; d--) {
 						}
-					}else if(cur < target){
-						left++;
-					}else{
-						right--;
 					}
 				}
 			}

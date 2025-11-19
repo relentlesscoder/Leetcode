@@ -9,23 +9,23 @@ import java.util.Deque;
  */
 public class SimplifyPath {
 
-	// time O(n), space O(n)
-	public String simplifyPath(String path) {
-		Deque<String> queue = new ArrayDeque<>();
+    // time O(n), space O(n)
+    public String simplifyPath(String path) {
+		Deque<String> stack = new ArrayDeque<>();
 		String[] dirs = path.split("/");
 		for (String dir : dirs) {
 			if (dir.isEmpty() || dir.equals(".")) {
 				continue;
 			} else if (dir.equals("..")) {
-				queue.pollLast();
+				stack.pollLast(); // poll(), pollFirst(), pollLast() returns null if stack is empty
 			} else {
-				queue.offerLast(dir);
+				stack.offer(dir);
 			}
 		}
 		StringBuilder res = new StringBuilder();
-		while (!queue.isEmpty()) {
-			res.append("/").append(queue.pollFirst());
+		while (!stack.isEmpty()) {
+			res.append("/").append(stack.poll());
 		}
 		return res.isEmpty() ? "/" : res.toString();
-	}
+    }
 }

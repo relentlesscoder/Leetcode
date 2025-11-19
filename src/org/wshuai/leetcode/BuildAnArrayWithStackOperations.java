@@ -1,6 +1,6 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,17 +9,17 @@ import java.util.List;
  */
 public class BuildAnArrayWithStackOperations {
 
-	// time O(n)
+	// time O(min(n, m)), space O(1)
 	public List<String> buildArray(int[] target, int n) {
-		LinkedList<String> res = new LinkedList<>();
 		int m = target.length;
-		for(int i = target[m - 1], j = m - 1; i >= 1; i--){
-			if(j >= 0 && target[j] == i){
-				j--;
-			}else{
-				res.offerFirst("Pop");
+		List<String> res = new ArrayList<>();
+		for (int i = 1, j = 0; i <= n && j < m; i++) {
+			res.add("Push");
+			if (target[j] == i) {
+				j++;
+			} else {
+				res.add("Pop");
 			}
-			res.offerFirst("Push");
 		}
 		return res;
 	}
