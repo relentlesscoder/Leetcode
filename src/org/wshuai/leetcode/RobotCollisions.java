@@ -20,10 +20,10 @@ public class RobotCollisions {
             int index = indexes[i]; // Find the actual index in the input positions
             char dir = directions.charAt(index);
             int h1 = healths[index];
-            if (dir == 'L') { // Collision only happens for two robots move in `RL`
+            if (dir == 'L') {// Collision only happens for two robots move in `RL`
                 // Collision handling: find if there are any robots moving to right
                 // on top of the stack
-                while (!stack.isEmpty() && stack.peek()[1] == 1 && h1 > 0) {
+                while (!stack.isEmpty() && stack.peek()[1] == 'R' && h1 > 0) {
                     int h2 = stack.peek()[0];
                     if (h1 >= h2) { // Current robot (moving to left) has more or same health
                         h1 = h1 == h2 ? 0 : h1 - 1;
@@ -38,7 +38,7 @@ public class RobotCollisions {
             //   1. Robot moves to `L`, its health stays positive after all collisions (if any) happened
             //   2. Robot moves to `R`, always push it
             if (h1 > 0) {
-                stack.push(new int[] {h1, dir == 'L' ? -1 : 1, index});
+                stack.push(new int[]{h1, dir, index});
             }
         }
         Integer[] arr = new Integer[n];

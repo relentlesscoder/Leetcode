@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/17/2019.
@@ -8,38 +9,34 @@ import java.util.Stack;
  */
 public class AsteroidCollision {
 
-	// time O(n), space O(n)
-	public int[] asteroidCollision(int[] asteroids) {
-		if(asteroids == null || asteroids.length == 0){
-			return new int[0];
-		}
-		Stack<Integer> stack = new Stack<>();
-		for(int i = 0; i < asteroids.length; i++){
-			if(asteroids[i] < 0){
-				// current asteroid moves to the left, it explodes all asteroids
-				// moving right that have smaller size
-				while(!stack.isEmpty() && stack.peek() > 0 && Math.abs(asteroids[i]) > stack.peek()){
-					stack.pop();
-				}
-				// if no asteroid left or all asteroids left moves to left, add
-				// current to the queue
-				if(stack.isEmpty() || stack.peek() < 0){
-					stack.push(asteroids[i]);
-				// if there are asteroids moving to right left with same size,
-				// the collision will explode both
-				}else if(stack.peek() == Math.abs(asteroids[i])){
-					stack.pop();
-				}
-				// otherwise, the current will explode
-			}else{
-				stack.push(asteroids[i]);
-			}
-		}
-		int[] res = new int[stack.size()];
-		int k = 0;
-		for(int s : stack){
-			res[k++] = s;
-		}
-		return res;
-	}
+    // time O(n), space O(n)
+    public int[] asteroidCollision(int[] asteroids) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int ast : asteroids) {
+			// Keep colliding with the asteroids in the stack
+            while (ast < 0 && !stack.isEmpty() && stack.peek() > 0) {
+                int collision = ast + stack.peek();
+                if (collision == 0) { // Both asteroids are in same size
+                    ast = 0;
+                    stack.pop();
+                } else if (collision < 0) {
+					// Current asteroid is bigger, so it crashes the top one of the stack
+					// and keep moving to the left
+                    stack.pop();
+                } else {
+					// Current asteroid is smaller so it will explode
+                    ast = 0;
+                }
+            }
+            if (ast != 0) { // Push to stack if current asteroid did not explode
+                stack.push(ast);
+            }
+        }
+        int m = stack.size();
+        int[] res = new int[m];
+        for (int i = 0; i < m; i++) {
+            res[i] = stack.pollLast();
+        }
+        return res;
+    }
 }

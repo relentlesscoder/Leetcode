@@ -9,24 +9,23 @@ import java.util.Deque;
  */
 public class ResultingStringAfterAdjacentRemovals {
 
-    private static final char[] map = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-
     // time O(n), space O(n)
     public String resultingString(String s) {
-        Deque<Character> stack = new ArrayDeque<>();
-        for (int i = 0; i < s.length(); i++) {
+        int n = s.length();
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
-            int index = c - 'a';
-            if (!stack.isEmpty() && (stack.peek() == map[(index + 1) % 26]
-                    || stack.peek() == map[(index + 25) % 26])) { // (index - 1 + 26) % 26
+            if (!stack.isEmpty() &&
+                    (Math.abs(s.charAt(stack.peek()) - c) % 26 == 1
+                            || Math.abs(s.charAt(stack.peek()) - c) % 26 == 25)) {
                 stack.pop();
             } else {
-                stack.push(c);
+                stack.push(i);
             }
         }
         StringBuilder res = new StringBuilder();
         while (!stack.isEmpty()) {
-            res.append(stack.pollLast());
+            res.append(s.charAt(stack.pollLast()));
         }
         return res.toString();
     }

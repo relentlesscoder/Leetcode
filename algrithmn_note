@@ -22,6 +22,7 @@
 #2401 https://leetcode.com/problems/longest-nice-subarray/
 #2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
 #2516 https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/
+#2524 https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/ (sliding window + stack)
 #2537 https://leetcode.com/problems/count-the-number-of-good-subarrays/
 #2555 https://leetcode.com/problems/maximize-win-from-two-segments/
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
@@ -263,6 +264,7 @@
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+#3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
 #3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
 #3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
@@ -410,22 +412,38 @@
 
 19. Stack/Queue
 #0071 https://leetcode.com/problems/simplify-path/
+#0155 https://leetcode.com/problems/min-stack/
 #0227 https://leetcode.com/problems/basic-calculator-ii/
 #0346 https://leetcode.com/problems/moving-average-from-data-stream/
+#0636 https://leetcode.com/problems/exclusive-time-of-functions/
 #0682 https://leetcode.com/problems/baseball-game/
+#0716 https://leetcode.com/problems/max-stack/
+#0735 https://leetcode.com/problems/asteroid-collision/
 #0844 https://leetcode.com/problems/backspace-string-compare/
+#0895 https://leetcode.com/problems/maximum-frequency-stack/
 #0946 https://leetcode.com/problems/validate-stack-sequences/
+#1003 https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/
+#1047 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+#1172 https://leetcode.com/problems/dinner-plate-stacks/
+#1209 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
 #1472 https://leetcode.com/problems/design-browser-history/
+#1544 https://leetcode.com/problems/make-the-string-great/
 #1717 https://leetcode.com/problems/maximum-score-from-removing-substrings/
 #1813 https://leetcode.com/problems/sentence-similarity-iii/
+#2197 https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
+#2216 https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
 #2434 https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/
+#2524 https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/ (sliding window + stack)
+#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (R*****)
 #2696 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
 #2751 https://leetcode.com/problems/robot-collisions/
 #2810 https://leetcode.com/problems/faulty-keyboard/
+#3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
 #3412 https://leetcode.com/problems/find-mirror-score-of-a-string/
 #3561 https://leetcode.com/problems/resulting-string-after-adjacent-removals/
+#3703 https://leetcode.com/problems/remove-k-balanced-substrings/
 
 20. Parentheses
 #0020 https://leetcode.com/problems/valid-parentheses/
@@ -530,6 +548,11 @@
 
 28. Data Structure Design
 #0146 https://leetcode.com/problems/lru-cache/
+#0155 https://leetcode.com/problems/min-stack/
+#0716 https://leetcode.com/problems/max-stack/
+#0895 https://leetcode.com/problems/maximum-frequency-stack/
+#1172 https://leetcode.com/problems/dinner-plate-stacks/
+#1381 https://leetcode.com/problems/design-a-stack-with-increment-operation/
 #1472 https://leetcode.com/problems/design-browser-history/
 #1570 https://leetcode.com/problems/dot-product-of-two-sparse-vectors/
 #1756 https://leetcode.com/problems/design-most-recently-used-queue/
@@ -1073,7 +1096,8 @@ Note:
 	#0332 https://leetcode.com/problems/reconstruct-itinerary/
 	#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/
 
-26. 
+26. GCD & LCM
+	#2197 https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
 
 27. Formula Transformation
 	#0532 https://leetcode.com/problems/k-diff-pairs-in-an-array/
@@ -1134,6 +1158,20 @@ Note:
 	#0094 https://leetcode.com/problems/binary-tree-inorder-traversal/
 	#0144 https://leetcode.com/problems/binary-tree-preorder-traversal/
 	#0145 https://leetcode.com/problems/binary-tree-postorder-traversal/
+
+28 Segment tree size
+
+The expression 2 << (32 - Integer.numberOfLeadingZeros(n - 1)) calculates the smallest power of 2 that is greater than or equal to n. This is a common technique used in computer science for various purposes, such as determining the capacity for hash tables or memory allocation. 
+Here's a breakdown of how it works: 
+
+• n - 1: Subtracting 1 from n ensures that if n is already a power of 2, the result of Integer.numberOfLeadingZeros(n - 1) will correctly lead to n itself as the output. 
+• Integer.numberOfLeadingZeros(n - 1): This Java method returns the count of zero bits preceding the highest-order ("leftmost") one-bit in the two's complement binary representation of (n - 1). For example, if n - 1 is 7 (binary 0...0111), numberOfLeadingZeros would return 29 (assuming a 32-bit integer). [1]  
+• 32 - Integer.numberOfLeadingZeros(n - 1): This calculation determines the position of the most significant bit (MSB) of (n - 1). Specifically, it gives the number of bits required to represent (n - 1), effectively ceil(log2(n)). Using the previous example where n - 1 is 7, 32 - 29 = 3. 
+• 2 &lt;&lt; (result of step 3): This performs a left bit shift operation. It shifts the binary representation of 2 (which is 0...010) to the left by the number of positions calculated in the previous step. This effectively calculates 2 raised to the power of that number, resulting in the smallest power of 2 that is greater than or equal to n. For example, 2 &lt;&lt; 3 would be 16. 
+
+In essence, this expression efficiently finds the next power of two for a given integer n.
+
+
 
 
 

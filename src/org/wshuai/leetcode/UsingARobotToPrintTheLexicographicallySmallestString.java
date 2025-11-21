@@ -15,6 +15,28 @@ public class UsingARobotToPrintTheLexicographicallySmallestString {
         // "edbacedaczzcz" -> "aacczzdecbdez"
         // "edbacedacbcd" -> "aabccddecbde"
         StringBuilder res = new StringBuilder();
+        int n = s.length();
+        char[] sufMins = new char[n + 1];
+        sufMins[n] = Character.MAX_VALUE;
+        for (int i = n - 1; i >= 0; i--) {
+            sufMins[i] = (char) Math.min(sufMins[i + 1], s.charAt(i));
+        }
+        Deque<Character> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            stack.push(s.charAt(i));
+            while (!stack.isEmpty() && stack.peek() <= sufMins[i + 1]) {
+                res.append(stack.pop());
+            }
+        }
+        return res.toString();
+    }
+
+    // time O(n), space O(1)
+    public String robotWithStringFrequency(String s) {
+        // "edbaceda" -> "aadecbde"
+        // "edbacedaczzcz" -> "aacczzdecbdez"
+        // "edbacedacbcd" -> "aabccddecbde"
+        StringBuilder res = new StringBuilder();
         int[] freq = new int[26];
         for (char c : s.toCharArray()) {
             freq[c - 'a']++;

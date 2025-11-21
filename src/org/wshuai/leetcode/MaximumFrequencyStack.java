@@ -1,58 +1,54 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.PriorityQueue;
 
 /**
  * Created by Wei on 12/10/2019.
- * #895 https://leetcode.com/problems/maximum-frequency-stack/
+ * #0895 https://leetcode.com/problems/maximum-frequency-stack/
  */
 public class MaximumFrequencyStack {
-	PriorityQueue<MaxFreqStackElement> pq;
-	Map<Integer, Integer> map;
-	int index;
 
-	public MaximumFrequencyStack() {
-		index = 0;
-		pq = new PriorityQueue<>((a, b) -> a.count == b.count ?
-				b.index - a.index : b.count - a.count);
-		map = new HashMap<>();
-	}
+	// time O(n), space O(n)
+	private static class FreqStack {
 
-	public void push(int x) {
-		int curCount = map.getOrDefault(x, 0);
-		MaxFreqStackElement e = new MaxFreqStackElement(x, curCount + 1, index);
-		pq.offer(e);
-		map.put(x, curCount + 1);
-		index++;
-	}
+		private int maxFreq;
+		private Map<Integer, Integer> freq;
+		private Map<Integer, Deque<Integer>> stacks;
 
-	public int pop() {
-		if(pq.isEmpty()){
-			return -1;
+		public FreqStack() {
+			maxFreq = 0;
+			freq = new HashMap<>();
+			stacks = new HashMap<>();
 		}
-		MaxFreqStackElement e = pq.poll();
-		map.put(e.value, map.get(e.value) - 1);
-		return e.value;
-	}
 
-	private class MaxFreqStackElement{
-		int value;
-		int count;
-		int index;
+		// time O(1)
+		public void push(int val) {
+			int count = freq.getOrDefault(val, 0) + 1;
+			if (count > maxFreq) {
+				maxFreq = count;
+			}
+			freq.put(val, count);
+			stacks.computeIfAbsent(count, k -> new ArrayDeque<>()).push(val);
+		}
 
-		public MaxFreqStackElement(int v, int c, int i){
-			value = v;
-			count = c;
-			index = i;
+		// time O(1)
+		public int pop() {
+			int res = stacks.get(maxFreq).pop();
+			if (stacks.get(maxFreq).isEmpty()) {
+				maxFreq--;
+			}
+			freq.put(res, freq.get(res) - 1);
+			return res;
 		}
 	}
-
-	/**
- 	* Your FreqStack object will be instantiated and called as such:
- 	* FreqStack obj = new FreqStack();
- 	* obj.push(x);
- 	* int param_2 = obj.pop();
- 	*/
 }
+
+/**
+ * Your FreqStack object will be instantiated and called as such:
+ * FreqStack obj = new FreqStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ */

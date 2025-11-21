@@ -2,7 +2,6 @@ package org.wshuai.leetcode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 /**
  * Created by Wei on 12/28/2023.
@@ -10,39 +9,33 @@ import java.util.Stack;
  */
 public class MaximumScoreFromRemovingSubstrings {
 
+    private int total;
+
     // time O(n), space O(n)
     public int maximumGain(String s, int x, int y) {
-        int res = 0;
-        char a = 'a', b = 'b';
-        if (y > x) {
-            char temp = a;
-            a = b;
-            b = temp;
-        }
-        Deque<Integer> queue = new ArrayDeque<>();
-        for (int i = 0; i < s.length(); i++) {
+        total = 0;
+        String str = calc(s, Math.max(x, y), x > y ? "ab" : "ba");
+        calc(str, Math.min(x, y), x > y ? "ba" : "ab");
+        return total;
+    }
+
+    private String calc(String s, int score, String pattern) {
+        char[] p = pattern.toCharArray();
+        int n = s.length();
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
-            if (c == b && !queue.isEmpty() && s.charAt(queue.peekLast()) == a) {
-                res += Math.max(x, y);
-                queue.pollLast();
-            } else {
-                queue.offerLast(i);
-            }
-        }
-        char temp = a;
-        a = b;
-        b = temp;
-        Stack<Integer> stack = new Stack<>();
-        while (!queue.isEmpty()) {
-            int index = queue.pollFirst();
-            char c = s.charAt(index);
-            if (c == b && !stack.isEmpty() && s.charAt(stack.peek()) == a) {
-                res += Math.min(x, y);
+            if (c == p[1] && !stack.isEmpty() && s.charAt(stack.peek()) == p[0]) {
                 stack.pop();
+                total += score;
             } else {
-                stack.push(index);
+                stack.push(i);
             }
         }
-        return res;
+        StringBuilder res = new StringBuilder();
+        while (!stack.isEmpty()) {
+            res.append(s.charAt(stack.pollLast()));
+        }
+        return res.toString();
     }
 }
