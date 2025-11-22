@@ -411,26 +411,43 @@
 #3566 https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/
 
 19. Stack/Queue
+#0020 https://leetcode.com/problems/valid-parentheses/
+#0032 https://leetcode.com/problems/longest-valid-parentheses/
 #0071 https://leetcode.com/problems/simplify-path/
+#0150 https://leetcode.com/problems/evaluate-reverse-polish-notation/
 #0155 https://leetcode.com/problems/min-stack/
+#0224 https://leetcode.com/problems/basic-calculator/
 #0227 https://leetcode.com/problems/basic-calculator-ii/
 #0346 https://leetcode.com/problems/moving-average-from-data-stream/
+#0394 https://leetcode.com/problems/decode-string/
 #0636 https://leetcode.com/problems/exclusive-time-of-functions/
+#0678 https://leetcode.com/problems/valid-parenthesis-string/
 #0682 https://leetcode.com/problems/baseball-game/
 #0716 https://leetcode.com/problems/max-stack/
 #0735 https://leetcode.com/problems/asteroid-collision/
 #0844 https://leetcode.com/problems/backspace-string-compare/
+#0856 https://leetcode.com/problems/score-of-parentheses/
 #0895 https://leetcode.com/problems/maximum-frequency-stack/
+#0921 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
 #0946 https://leetcode.com/problems/validate-stack-sequences/
 #1003 https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/
+#1006 https://leetcode.com/problems/clumsy-factorial/
+#1021 https://leetcode.com/problems/remove-outermost-parentheses/
 #1047 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+#1111 https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/
 #1172 https://leetcode.com/problems/dinner-plate-stacks/
+#1190 https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/ (wormhole!!!)
 #1209 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/
+#1249 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
 #1472 https://leetcode.com/problems/design-browser-history/
+#1541 https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/
 #1544 https://leetcode.com/problems/make-the-string-great/
+#1614 https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
 #1717 https://leetcode.com/problems/maximum-score-from-removing-substrings/
 #1813 https://leetcode.com/problems/sentence-similarity-iii/
+#1963 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
+#2116 https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
 #2197 https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
 #2216 https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/
 #2390 https://leetcode.com/problems/removing-stars-from-a-string/
@@ -847,6 +864,7 @@
 #2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
 
 49. GCD
+#1979 https://leetcode.com/problems/find-greatest-common-divisor-of-array/
 #3312 https://leetcode.com/problems/sorted-gcd-pair-queries/ (GCD + binary search)
 #3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/ (GCD + BIT)
 
@@ -883,15 +901,21 @@ https://leetcode.com/problems/count-number-of-trapezoids-ii/
 Good questions:
 #0060 https://leetcode.com/problems/permutation-sequence/
 #0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
+#0394 https://leetcode.com/problems/decode-string/
+#0678 https://leetcode.com/problems/valid-parenthesis-string/
+#0856 https://leetcode.com/problems/score-of-parentheses/
 #1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/ (prefix sum)
 #1163 https://leetcode.com/problems/last-substring-in-lexicographical-order/ (lexicographically largest suffix)
+#1190 https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/ (wormhole!!!)
 #1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/ (binary indexed tree)
 #1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/ (BIT)
+#1541 https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/ (dynamic programming + binary indexed tree)
 #1632 https://leetcode.com/problems/rank-transform-of-a-matrix/ (union find + topological sort)
 #1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (binary indexed tree)
 #1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
+#1963 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
 #1995 https://leetcode.com/problems/count-special-quadruplets/
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
@@ -1097,6 +1121,7 @@ Note:
 	#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/
 
 26. GCD & LCM
+	#1979 https://leetcode.com/problems/find-greatest-common-divisor-of-array/
 	#2197 https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
 
 27. Formula Transformation

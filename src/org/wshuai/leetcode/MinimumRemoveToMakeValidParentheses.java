@@ -11,60 +11,54 @@ public class MinimumRemoveToMakeValidParentheses {
 
     // time O(n), space O(n)
     public String minRemoveToMakeValidStack(String s) {
-        boolean[] indexesToRemove = new boolean[s.length()];
+        int n = s.length();
+        char[] arr = s.toCharArray();
         Deque<Integer> stack = new ArrayDeque<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == ')' && !stack.isEmpty() && arr[stack.peek()] == '(') {
+                stack.pop();
+            } else if (arr[i] == '(' || arr[i] == ')') {
                 stack.push(i);
-            } else if (s.charAt(i) == ')') {
-                if (stack.isEmpty()) {
-                    indexesToRemove[i] = true;
-                } else {
-                    stack.pop();
-                }
             }
         }
         while (!stack.isEmpty()) {
-            indexesToRemove[stack.pop()] = true;
+            arr[stack.pop()] = '#';
         }
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            if (indexesToRemove[i]) {
-                continue;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != '#') {
+                res.append(arr[i]);
             }
-            res.append(s.charAt(i));
         }
         return res.toString();
     }
 
     // time O(n), space O(n)
     public String minRemoveToMakeValid(String s) {
-        int balance = 0, openCount = 0;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c == '(') {
-                balance++;
-                openCount++;
-            } else if (c == ')') {
-                if (balance == 0) {
-                    continue;
-                }
-                balance--;
+        int n = s.length(), open = 0, unclosed = 0;
+        char[] arr = s.toCharArray();
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == ')' && unclosed == 0) { // Skip ')' that we can't close
+                continue;
+            } else if (arr[i] == ')') { // Close ')' that we can
+                unclosed--;
+            } else if (arr[i] == '(') { // Count new open '('
+                open++;
+                unclosed++;
             }
-            sb.append(c);
+            stack.push(i);
         }
-        openCount -= balance;
+        open -= unclosed; // Calculate valid opens
         StringBuilder res = new StringBuilder();
-        for (int i = 0; i < sb.length(); i++) {
-            char c = sb.charAt(i);
-            if (c == '(') {
-                openCount--;
-                if (openCount < 0) {
-                    continue;
-                }
+        while (!stack.isEmpty()) {
+            int idx = stack.pollLast();
+            if (arr[idx] == '(' && open == 0) { // Remove the extra opens
+                continue;
+            } else if (arr[idx] == '(') { // Add valid opens greedily from left
+                open--;
             }
-            res.append(c);
+            res.append(arr[idx]);
         }
         return res.toString();
     }

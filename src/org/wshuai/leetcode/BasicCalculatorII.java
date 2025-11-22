@@ -11,54 +11,54 @@ public class BasicCalculatorII {
 
     // time O(n), space O(1)
     public int calculate(String s) {
-        int res = 0, currentNumber = 0, lastNumber = 0, n = s.length();
-        char operation = '+';
+        int res = 0, n = s.length(), curr = 0, prev = 0;
+        char opr = '+';
         for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c)) {
-                currentNumber = currentNumber * 10 + (c - '0');
+                curr = curr * 10 + (c - '0');
             }
             if (!Character.isDigit(c) && !Character.isWhitespace(c) || i == n - 1) {
-                if (operation == '+') {
-                    res += lastNumber;
-                    lastNumber = currentNumber;
-                } else if (operation == '-') {
-                    res += lastNumber;
-                    lastNumber = -currentNumber;
-                } else if (operation == '*') {
-                    lastNumber *= currentNumber;
-                } else {
-                    lastNumber /= currentNumber;
+                if (opr == '+') {
+                    res += prev;
+                    prev = curr;
+                } else if (opr == '-') {
+                    res += prev;
+                    prev = -curr;
+                } else if (opr == '*') {
+                    prev *= curr;
+                } else if (opr == '/') {
+                    prev /= curr;
                 }
-                operation = c;
-                currentNumber = 0;
+                opr = c;
+                curr = 0;
             }
         }
-        return res + lastNumber;
+        return res + prev;
     }
 
     // time O(n), space O(n)
     public int calculateStack(String s) {
-        int res = 0, currentNumber = 0, n = s.length();
-        char operation = '+';
+        int res = 0, n = s.length(), val = 0;
+        char opr = '+';
         Deque<Integer> stack = new ArrayDeque<>();
         for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
             if (Character.isDigit(c)) {
-                currentNumber = currentNumber * 10 + (c - '0');
+                val = val * 10 + (c - '0');
             }
             if (!Character.isDigit(c) && !Character.isWhitespace(c) || i == n - 1) {
-                if (operation == '+') {
-                    stack.push(currentNumber);
-                } else if (operation == '-') {
-                    stack.push(-currentNumber);
-                } else if (operation == '*') {
-                    stack.push(stack.pop() * currentNumber);
-                } else {
-                    stack.push(stack.pop() / currentNumber);
+                if (opr == '+') {
+                    stack.push(val);
+                } else if (opr == '-') {
+                    stack.push(-val);
+                } else if (opr == '*') {
+                    stack.push(stack.pop() * val);
+                } else if (opr == '/') {
+                    stack.push(stack.pop() / val);
                 }
-                operation = c;
-                currentNumber = 0;
+                opr = c;
+                val = 0;
             }
         }
         while (!stack.isEmpty()) {

@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 10/26/2016.
@@ -8,22 +9,26 @@ import java.util.Stack;
  */
 public class ValidParentheses {
 
-	// time O(n), space O(n)
-	public boolean isValid(String s) {
-		Stack<Character> stack = new Stack<>();
-		for (char c : s.toCharArray()) {
-			if (c == '(' || c == '{' || c == '[') {
-				stack.push(c);
-			} else if (!stack.isEmpty() && isMatch(stack.peek(), c)) {
-				stack.pop();
-			} else {
-				return false;
-			}
-		}
-		return stack.isEmpty();
-	}
+    // time O(n), space O(n)
+    public boolean isValid(String s) {
+        int n = s.length();
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            char b = s.charAt(i);
+            if (b == '(' || b == '{' || b == '[') {
+                stack.push(i);
+                continue;
+            }
+            if (!stack.isEmpty() && matching(s.charAt(stack.peek()), b)) {
+                stack.pop();
+            } else {
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
 
-	private boolean isMatch(char a, char b) {
-		return (a == '(' && b == ')') || (a == '{' && b == '}') || (a == '[' && b == ']');
-	}
+    private boolean matching(char a, char b) {
+        return (a == '(' && b == ')') || (a == '{' && b == '}') || (a == '[' && b == ']');
+    }
 }

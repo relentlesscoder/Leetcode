@@ -1,29 +1,47 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
- * Created by Wei on 9/19/19.
- * #856 https://leetcode.com/problems/score-of-parentheses/
+ * Created by Wei on 09/19/2019.
+ * #0856 https://leetcode.com/problems/score-of-parentheses/
  */
 public class ScoreOfParentheses {
-	public int scoreOfParentheses(String S) {
-		int res = 0;
-		int i = 0;
-		Stack<Integer> stack = new Stack<>();
-		while (i < S.length()) {
-			// find the next ) to construct a balanced parentheses
-			if (S.charAt(i) == '(') {
-				stack.push(i);
+
+	// time O(n), space O(1)
+	public int scoreOfParentheses(String s) {
+		int res = 0, balance = 0, n = s.length();
+		for (int i = 0; i < n; i++) {
+			// balance is count of parent contexts for the deepest ()
+			if (s.charAt(i) == '(') {
+				balance++;
 			} else {
-				int l = stack.pop();
-				if (stack.isEmpty()) {
-					// if the current contains child balanced parentheses, solve it recursively
-					res += i == l + 1 ? 1 : 2 * scoreOfParentheses(S.substring(l + 1, i));
+				balance--;
+				if (s.charAt(i - 1) == '(') {
+					res += (1 << balance);
 				}
 			}
-			i++;
 		}
 		return res;
 	}
+
+    // time O(n), space O(n)
+    public int scoreOfParenthesesStack(String s) {
+        int n = s.length();
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(0); // Push init value for current context
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == '(') {
+                stack.push(0); // Push init value for current context
+            } else {
+                int v = stack.pop();
+                int w = stack.pop();
+				// Calculate score for current context and add it to the
+				// parent context
+                stack.push(w + Math.max(2 * v, 1));
+            }
+        }
+        return stack.pop();
+    }
 }
