@@ -1,7 +1,9 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
@@ -11,8 +13,54 @@ import java.util.stream.IntStream;
  */
 public class MaximumSumQueries {
 
-    // time O((m + n) * log(m + n)), space O(m + n)
+    // time O(m * log(m) + n * log(n) + m * log(n)), space O(m + n)
     public int[] maximumSumQueries(int[] nums1, int[] nums2, int[][] queries) {
+        // https://leetcode.cn/problems/maximum-sum-queries/solutions/2305395/pai-xu-dan-diao-zhan-shang-er-fen-by-end-of9h/
+        int n = nums1.length, m = queries.length;
+        int[][] nums = new int[n][2];
+        Arrays.setAll(nums, i -> new int[]{nums1[i], nums2[i]}); // O(n)
+        int[][] nq = new int[m][3];
+        Arrays.setAll(nq, i -> new int[]{queries[i][0], queries[i][1], i}); // O(m)
+
+        // Sort nums and nq by nums[0] in DESC
+        Arrays.sort(nums, (a, b) -> b[0] - a[0]); // O(n * log(n))
+        Arrays.sort(nq, (a, b) -> b[0] - a[0]); // O(m * log(m))
+
+        int[] res = new int[m];
+        List<int[]> stack = new ArrayList<>();
+        int idx = 0;
+        for (int[] q : nq) { // O(m)
+            int x = q[0], y = q[1], i = q[2];
+            // The sorting above ensures all previous added nums[idx][0] >= current x
+            for (; idx < n && nums[idx][0] >= x; idx++) { // Total O(n)
+                while (!stack.isEmpty() && stack.get(stack.size() - 1)[1] <= nums[idx][0] + nums[idx][1]) {
+                    stack.remove(stack.size() - 1);
+                }
+                if (stack.isEmpty() || stack.get(stack.size() - 1)[0] < nums[idx][1]) {
+                    stack.add(new int[] {nums[idx][1], nums[idx][0] + nums[idx][1]});
+                }
+            }
+            int l = binarySearch(stack, y); // O(log(n))
+            res[i] = l < stack.size() ? stack.get(l)[1] : -1;
+        }
+        return res;
+    }
+
+    private int binarySearch(List<int[]> stack, int target) {
+        int left = 0, right = stack.size();
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (stack.get(mid)[0] < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+
+    // time O((m + n) * log(m + n)), space O(m + n)
+    public int[] maximumSumQueriesBinaryIndexedTree(int[] nums1, int[] nums2, int[][] queries) {
         // Same idea as #2250
         int n = nums1.length, m = queries.length;
         int[][] nums = new int[n][2];

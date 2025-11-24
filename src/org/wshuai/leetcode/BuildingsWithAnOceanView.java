@@ -1,6 +1,9 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 /**
  * Created by Wei on 02/25/2021.
@@ -10,33 +13,34 @@ public class BuildingsWithAnOceanView {
 
     // time O(n), space O(1)
     public int[] findBuildings(int[] heights) {
-        int n = heights.length, maxHeightFromRight = 0;
-        List<Integer> buildingsWithOceanView = new ArrayList<>();
+        int n = heights.length, maxHeights = 0;
+        List<Integer> buildings = new ArrayList<>();
         for (int i = n - 1; i >= 0; i--) {
-            if (maxHeightFromRight < heights[i]) {
-                buildingsWithOceanView.add(i);
-                maxHeightFromRight = heights[i];
+            if (heights[i] > maxHeights) {
+                buildings.add(i);
+                maxHeights = heights[i];
             }
         }
-        int[] res = new int[buildingsWithOceanView.size()];
-        for (int i = 0, j = res.length - 1; i < res.length; i++, j--) {
-            res[i] = buildingsWithOceanView.get(j);
+        int[] res = new int[buildings.size()];
+        for (int i = buildings.size() - 1, j = 0; i >= 0; i--, j++) {
+            res[j] = buildings.get(i);
         }
         return res;
     }
 
     // time O(n), space O(n)
     public int[] findBuildingsMonotonicStack(int[] heights) {
-        Deque<Integer> queue = new ArrayDeque<>();
-        for (int i = 0; i < heights.length; i++) {
-            while (!queue.isEmpty() && heights[queue.peekLast()] <= heights[i]) {
-                queue.pollLast();
+        int n = heights.length;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && heights[stack.peek()] <= heights[i]) {
+                stack.pop();
             }
-            queue.offerLast(i);
+            stack.push(i);
         }
-        int[] res = new int[queue.size()];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = queue.pollFirst();
+        int[] res = new int[stack.size()];
+        for (int i = stack.size() - 1; i >= 0; i--) {
+            res[i] = stack.pop();
         }
         return res;
     }
@@ -44,20 +48,20 @@ public class BuildingsWithAnOceanView {
     // time O(n), space O(n)
     public int[] findBuildingsMonotonicStackReverse(int[] heights) {
         int n = heights.length;
-        List<Integer> buildingsWithOceanViews = new ArrayList<>();
-        Deque<Integer> queue = new ArrayDeque<>();
+        List<Integer> buildings = new ArrayList<>();
+        Deque<Integer> stack = new ArrayDeque<>();
         for (int i = n - 1; i >= 0; i--) {
-            while (!queue.isEmpty() && heights[queue.peekLast()] < heights[i]) {
-                queue.pollLast();
+            while (!stack.isEmpty() && heights[stack.peek()] < heights[i]) {
+                stack.pop();
             }
-            if (queue.isEmpty()) {
-                buildingsWithOceanViews.add(i);
+            if (stack.isEmpty()) {
+                buildings.add(i);
             }
-            queue.offerLast(i);
+            stack.push(i);
         }
-        int[] res = new int[buildingsWithOceanViews.size()];
-        for (int i = 0, j = res.length - 1; i < res.length; i++, j--) {
-            res[i] = buildingsWithOceanViews.get(j);
+        int[] res = new int[buildings.size()];
+        for (int i = buildings.size() - 1, j = 0; i >= 0; i--, j++) {
+            res[j] = buildings.get(i);
         }
         return res;
     }

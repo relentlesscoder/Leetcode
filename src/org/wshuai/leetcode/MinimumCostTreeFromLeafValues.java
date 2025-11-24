@@ -6,7 +6,6 @@ package org.wshuai.leetcode;
  */
 public class MinimumCostTreeFromLeafValues {
 
-
     public int mctFromLeafValues(int[] arr) {
         int[][] dp = new int[arr.length][arr.length];
         int[][] max = new int[arr.length][arr.length];

@@ -14,7 +14,9 @@ public class MaximalRangeThatEachElementIsMaximumInIt {
         int n = nums.length;
         int[] res = new int[n], left = new int[n];
         Deque<Integer> stack = new ArrayDeque<>();
-        for (int i = 0; i < n; i++) { // use monotonic queue to find the first element on the left with value grater than the current
+        // Use monotonic queue to find the first element i on the left with value
+        // grater than the current
+        for (int i = 0; i < n; i++) {
             while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
                 stack.pop();
             }
@@ -22,11 +24,14 @@ public class MaximalRangeThatEachElementIsMaximumInIt {
             stack.push(i);
         }
         stack = new ArrayDeque<>();
-        for (int i = n - 1; i >= 0; i--) { // use monotonic queue to find the first element on the right with value grater than the current
+        // Use monotonic queue to find the first element j on the right with value
+        // grater than the current
+        for (int i = n - 1; i >= 0; i--) {
             while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
                 stack.pop();
             }
             int right = stack.isEmpty() ? n : stack.peek();
+            // The answer is j - i - 1
             res[i] = right - left[i] - 1;
             stack.push(i);
         }
