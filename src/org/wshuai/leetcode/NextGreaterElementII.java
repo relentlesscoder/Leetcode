@@ -1,7 +1,8 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Stack;
+import java.util.Deque;
 
 /**
  * Created by Wei on 02/26/2017.
@@ -9,22 +10,21 @@ import java.util.Stack;
  */
 public class NextGreaterElementII {
 
-	// time O(n), space O(n)
-	public int[] nextGreaterElements(int[] nums) {
-		if(nums == null || nums.length == 0){
-			return new int[0];
-		}
-		int n = nums.length, len = n << 1;
-		int[] res = new int[n];
-		Arrays.fill(res, -1);
-		Stack<Integer> queue = new Stack<>();
-		for(int i = 0; i < len; i++){
-			int cur = nums[i % n];
-			while(!queue.isEmpty() && cur > nums[queue.peek()]){
-				res[queue.pop()] = cur;
-			}
-			queue.push(i % n);
-		}
-		return res;
-	}
+    // time O(n), space O(n)
+    public int[] nextGreaterElements(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+        Arrays.fill(res, -1);
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(-1);
+        for (int i = 0; i < 2 * n; i++) {
+            while (stack.size() > 1 && nums[stack.peek()] < nums[i % n]) {
+                res[stack.pop()] = nums[i % n];
+            }
+            if (i < n) {
+                stack.push(i);
+            }
+        }
+        return res;
+    }
 }

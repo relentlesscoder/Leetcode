@@ -43,26 +43,33 @@
 #0042
 #0084
 #0239 https://leetcode.com/problems/sliding-window-maximum/
+#0456 https://leetcode.com/problems/132-pattern/ (monotonic stack + greedy)
 #0496 https://leetcode.com/problems/next-greater-element-i/
 #0503 https://leetcode.com/problems/next-greater-element-ii/
+#0654 https://leetcode.com/problems/maximum-binary-tree/ (monotonic stack + binary tree)
+#0739 https://leetcode.com/problems/daily-temperatures/
+#0768 https://leetcode.com/problems/max-chunks-to-make-sorted-ii/ (monotonic stack maintains current max)
+#0769 https://leetcode.com/problems/max-chunks-to-make-sorted/
+#0853 https://leetcode.com/problems/car-fleet/
 #0856
-#0901
+#0901 https://leetcode.com/problems/online-stock-span/
 #0907
+#1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
 #1130
 #1425
-#1475
+#1475 https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
 #1671
 #1673
 #1762 https://leetcode.com/problems/buildings-with-an-ocean-view/
-#1776
+#1776 https://leetcode.com/problems/car-fleet-ii/ (miao a ~~~)
 #1856 https://leetcode.com/problems/maximum-subarray-min-product/
 #1944 https://leetcode.com/problems/number-of-visible-people-in-a-queue/
 #2104 https://leetcode.com/problems/sum-of-subarray-ranges/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/
-#2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/
+#2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/ (***)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
-#2454
+#2454 https://leetcode.com/problems/next-greater-element-iv/ (double monotonic stacks)
 #2594
 #2735 
 #2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
@@ -71,6 +78,7 @@
 #2865 https://leetcode.com/problems/beautiful-towers-i/ (mountain array)
 #2866 https://leetcode.com/problems/beautiful-towers-ii/ (mountain array)
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+#3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/ (monotonic stack maintains count)
 
 03. Prefix Sum
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
@@ -313,6 +321,7 @@
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
 #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
 #0206 https://leetcode.com/problems/reverse-linked-list/
+#1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
 #2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/
 #2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
 #2074 https://leetcode.com/problems/reverse-nodes-in-even-length-groups/ (complex)
@@ -434,6 +443,7 @@
 #1006 https://leetcode.com/problems/clumsy-factorial/
 #1021 https://leetcode.com/problems/remove-outermost-parentheses/
 #1047 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+#1106 https://leetcode.com/problems/parsing-a-boolean-expression/
 #1111 https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/
 #1172 https://leetcode.com/problems/dinner-plate-stacks/
 #1190 https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/ (wormhole!!!)
@@ -514,6 +524,8 @@
 
 23. Prefix & Suffix
 #0487 https://leetcode.com/problems/max-consecutive-ones-ii/
+#0768 https://leetcode.com/problems/max-chunks-to-make-sorted-ii/
+#0769 https://leetcode.com/problems/max-chunks-to-make-sorted/
 #1966 https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/
 #2012 https://leetcode.com/problems/sum-of-beauty-in-the-array/
 #2025 https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/
@@ -659,6 +671,7 @@
 #0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/ (merge sort)
 #0327 https://leetcode.com/problems/count-of-range-sum/ (merge sort + prefix sum)
 #0493 https://leetcode.com/problems/reverse-pairs/ (merge sort)
+#0654 https://leetcode.com/problems/maximum-binary-tree/
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
 #1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ (merge sort + next permutation)
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
@@ -767,6 +780,7 @@
 42. Segment Tree
 #0220 https://leetcode.com/problems/contains-duplicate-iii/
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
+#0654 https://leetcode.com/problems/maximum-binary-tree/
 #0699 https://leetcode.com/problems/falling-squares/
 #0715 https://leetcode.com/problems/range-module/
 #0729 https://leetcode.com/problems/my-calendar-i/
@@ -789,6 +803,7 @@
 #2916 https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-ii/
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+#3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
 #3161 https://leetcode.com/problems/block-placement-queries/
 #3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
 #3410 https://leetcode.com/problems/maximize-subarray-sum-after-removing-all-occurrences-of-one-element/ (segment tree + max subarray sum)
@@ -829,6 +844,7 @@
 #2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
 #2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max)
 #3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+#3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
 #3161 https://leetcode.com/problems/block-placement-queries/ (pre-max BIT)
 #3187 https://leetcode.com/problems/peaks-in-array/
 #3380 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-i/

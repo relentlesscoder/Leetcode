@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 /**
  * Created by Wei on 12/17/2019.
- * #726 https://leetcode.com/problems/number-of-atoms/
+ * #0726 https://leetcode.com/problems/number-of-atoms/
  */
 public class NumberOfAtoms {
 	// same idea as #1096

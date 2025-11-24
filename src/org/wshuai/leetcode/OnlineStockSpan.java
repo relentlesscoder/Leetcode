@@ -1,26 +1,37 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 /**
  * Created by Wei on 10/30/2019.
  * #0901 https://leetcode.com/problems/online-stock-span/
  */
 public class OnlineStockSpan {
-	Stack<int[]> stack;
+    private static class StockSpanner {
 
-	public OnlineStockSpan() {
-		stack = new Stack<>();
-	}
+        private final List<Integer> prices;
+        private final Deque<Integer> stack;
 
-	public int next(int price) {
-		int lessOrEqual = 1;
-		while(!stack.isEmpty() && stack.peek()[0] <= price){
-			lessOrEqual += stack.pop()[1];
-		}
-		stack.push(new int[]{price, lessOrEqual});
-		return lessOrEqual;
-	}
+        public StockSpanner() {
+            prices = new ArrayList<>();
+            stack = new ArrayDeque<>();
+            stack.push(-1);
+        }
+
+        public int next(int price) {
+            prices.add(price);
+            int idx = prices.size() - 1;
+            while (stack.size() > 1 && prices.get(stack.peek()) <= price) {
+                stack.pop();
+            }
+            int top = stack.peek();
+            stack.push(idx);
+            return idx - top;
+        }
+    }
 }
 
 /**

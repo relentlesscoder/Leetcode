@@ -1,6 +1,9 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 /**
  * Created by Wei on 11/06/2025.
@@ -17,19 +20,20 @@ public class MaximumSumQueries {
         int[][] nq = new int[m][3];
         Arrays.setAll(nq, i -> new int[]{queries[i][0], queries[i][1], i}); // O(m)
 
-        Set<Integer> set = new HashSet<>();
-        for (int[] a : nums) {
-            set.add(a[1]);
-        }
-        for (int[] q : nq) {
-            set.add(q[1]);
-        }
-        List<Integer> list = new ArrayList<>(set);
-        Collections.sort(list); // O(k * log(k)), k <= m + n
-        int k = list.size();
+        // Do discretization on nums[1] and queries[1] values
+        int[] qy = IntStream
+                .range(0, m)
+                .map(i -> nq[i][1])
+                .toArray();
+        int[] sorted = IntStream
+                .concat(Arrays.stream(nums2), Arrays.stream(qy))
+                .distinct()
+                .sorted()
+                .toArray(); // k * log(k)
+        int k = sorted.length;
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < k; i++) {
-            map.put(list.get(i), i);
+            map.put(sorted[i], i);
         }
 
         // Sort nums and nq by nums[0] in DESC
@@ -48,6 +52,11 @@ public class MaximumSumQueries {
                 idx++;
             }
             // k - map.get(y) to map index greater than y to the left of BIT
+            // k - (k - 1) -> 1
+            // k - (k - 2) -> 2
+            //   ...
+            // k - (1) -> k - 1
+            // k - (0) -> k
             res[i] = bit.query(k - map.get(y)); // O(log(k))
         }
         return res;
