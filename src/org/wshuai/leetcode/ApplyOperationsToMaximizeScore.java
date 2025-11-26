@@ -1,6 +1,11 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Wei on 10/09/2025.
@@ -8,8 +13,8 @@ import java.util.*;
  */
 public class ApplyOperationsToMaximizeScore {
 
-    private static final int MOD = (int)1e9 + 7;
-    private static final int MAX = (int)1e5 + 1;
+    private static final int MOD = (int) 1e9 + 7;
+    private static final int MAX = (int) 1e5 + 1;
     private static final int[] PRIME_SCORE = new int[MAX];
 
     static {
@@ -25,38 +30,35 @@ public class ApplyOperationsToMaximizeScore {
 
     // time O(n * log(n)), space O(n)
     public int maximumScoreOptimizedWithPreprocessingPrimeFactor(List<Integer> nums, int k) {
-        long res = 1L;
+        // Same idea as #0907
+        long res = 1L, total = k;
         int n = nums.size();
-        int[] left = new int[n];
-        int[] right = new int[n];
-        Arrays.fill(right, n);
-        Deque<Integer> queue = new ArrayDeque<>();
-        queue.push(-1);
-        for (int i = 0; i < n; i++) {
-            // right[i] is the first element on nums[i]'s right with score(nums[queue.peek()]) > score(nums[i])
-            // Note that the requirement is to find the smallest index when multiple numbers has the same score
-            // so subarrays containing elements in nums[i]'s right with same score is valid.
-            while (queue.size() > 1 && PRIME_SCORE[nums.get(queue.peek())] < PRIME_SCORE[nums.get(i)]) {
-                right[queue.pop()] = i;
+        int[] left = new int[n], right = new int[n];
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(-1);
+        for (int r = 0; r <= n; r++) {
+            while (stack.size() > 1 && (r == n || PRIME_SCORE[nums.get(stack.peek())] < PRIME_SCORE[nums.get(r)])) {
+                int c = stack.pop();
+                // right[i] is the first element on nums[i]'s right with score(nums[queue.peek()]) > score(nums[i])
+                // Note that the requirement is to find the smallest index when multiple numbers has the same score
+                // so subarrays containing elements in nums[i]'s right with same score is valid.
+                right[c] = r;
+                // left[i] is the first element on nums[i]'s left with score(nums[queue.peek()]) >= score(nums[i])
+                // Note that the requirement is to find the smallest index when multiple numbers has the same score
+                // so valid subarrays can't include elements in nums[i]'s left with same score.
+                left[c] = stack.peek();
             }
-            // left[i] is the first element on nums[i]'s left with score(nums[queue.peek()]) >= score(nums[i])
-            // Note that the requirement is to find the smallest index when multiple numbers has the same score
-            // so valid subarrays can't include elements in nums[i]'s left with same score.
-            left[i] = queue.peek();
-            queue.push(i);
+            stack.push(r);
         }
-        Integer[] ids = new Integer[n];
-        Arrays.setAll(ids, index -> index);
-        Arrays.sort(ids, (i, j) -> nums.get(j) - nums.get(i));
-        for (int i = 0; i < n; i++) {
-            int l = ids[i] - left[ids[i]], r = right[ids[i]] - ids[i];
-            long count = 1L * l * r;
-            if (count >= k) {
-                res = res * pow(nums.get(ids[i]), k) % MOD;
-                break;
-            }
-            res = res * pow(nums.get(ids[i]), (int) count) % MOD;
-            k -= count;
+        Integer[] idx = new Integer[n];
+        Arrays.setAll(idx, i -> i);
+        Arrays.sort(idx, (a, b) -> nums.get(b) - nums.get(a));
+        for (int i = 0; i < n && total > 0; i++) {
+            int c = idx[i], l = left[c], r = right[c];
+            int num = nums.get(c);
+            long count = 1L * (c - l) * (r - c);
+            res = (res * pow(num, Math.min(count, total)) % MOD) % MOD;
+            total -= Math.min(count, total);
         }
         return (int) res;
     }
@@ -126,7 +128,7 @@ public class ApplyOperationsToMaximizeScore {
         return (int) res;
     }
 
-    private long pow(long num, int n) {
+    private long pow(long num, long n) {
         long res = 1L;
         while (n > 0) {
             if (n % 2 == 1) {
