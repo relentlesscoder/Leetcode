@@ -40,8 +40,10 @@
 #3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
 
 02. Monotonic Stack
-#0042
-#0084
+#0042 https://leetcode.com/problems/trapping-rain-water/
+#0084 https://leetcode.com/problems/largest-rectangle-in-histogram/ (miao a ~~~)
+#0085 https://leetcode.com/problems/maximal-rectangle/ (miao a ~~~)
+#0221 https://leetcode.com/problems/maximal-square/ (miao a ~~~)
 #0239 https://leetcode.com/problems/sliding-window-maximum/
 #0456 https://leetcode.com/problems/132-pattern/ (monotonic stack + greedy)
 #0496 https://leetcode.com/problems/next-greater-element-i/
@@ -49,20 +51,26 @@
 #0581 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/ (miao a ~~~)
 #0654 https://leetcode.com/problems/maximum-binary-tree/ (monotonic stack + binary tree)
 #0739 https://leetcode.com/problems/daily-temperatures/
+#0755 https://leetcode.com/problems/pour-water/ (***)
 #0768 https://leetcode.com/problems/max-chunks-to-make-sorted-ii/ (monotonic stack maintains current max)
 #0769 https://leetcode.com/problems/max-chunks-to-make-sorted/
 #0853 https://leetcode.com/problems/car-fleet/
 #0856
 #0901 https://leetcode.com/problems/online-stock-span/
 #0907
+#0962 https://leetcode.com/problems/maximum-width-ramp/ (miao a ~~~)
 #1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
-#1130
+#1124 https://leetcode.com/problems/longest-well-performing-interval/ (prefix sum + #0962)
+#1130 https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/ (***)
+#1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/ (miao a ~~~)
 #1425
 #1475 https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
+#1504 https://leetcode.com/problems/count-submatrices-with-all-ones/ (miao a ~~~)
 #1671
 #1673
 #1762 https://leetcode.com/problems/buildings-with-an-ocean-view/
 #1776 https://leetcode.com/problems/car-fleet-ii/ (miao a ~~~)
+#1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
 #1856 https://leetcode.com/problems/maximum-subarray-min-product/
 #1944 https://leetcode.com/problems/number-of-visible-people-in-a-queue/
 #1966 https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/
@@ -75,16 +83,18 @@
 #2454 https://leetcode.com/problems/next-greater-element-iv/ (double monotonic stacks)
 #2594
 #2735
-#2736 https://leetcode.com/problems/maximum-sum-queries/ (miao a ~~~)
+#2736 https://leetcode.com/problems/maximum-sum-queries/ (miao a ~~~) (***)
 #2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 #2832 https://leetcode.com/problems/maximal-range-that-each-element-is-maximum-in-it/
 #2863 https://leetcode.com/problems/maximum-length-of-semi-decreasing-subarrays/
-#2865 https://leetcode.com/problems/beautiful-towers-i/ (mountain array)
-#2866 https://leetcode.com/problems/beautiful-towers-ii/ (mountain array)
+#2865 https://leetcode.com/problems/beautiful-towers-i/ (mountain array) (***)
+#2866 https://leetcode.com/problems/beautiful-towers-ii/ (mountain array) (***)
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
 #3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/ (monotonic stack maintains count)
 #3205 https://leetcode.com/problems/maximum-array-hopping-score-i/
 #3221 https://leetcode.com/problems/maximum-array-hopping-score-ii/
+#3542 https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/ (miao a ~~~)
+#3555 https://leetcode.com/problems/smallest-subarray-to-sort-in-every-sliding-window/ (***)
 
 03. Prefix Sum
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
@@ -92,6 +102,7 @@
 #0327 https://leetcode.com/problems/count-of-range-sum/
 #0525 https://leetcode.com/problems/contiguous-array/
 #1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
+#1124 https://leetcode.com/problems/longest-well-performing-interval/
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
@@ -206,12 +217,15 @@
 09. Dynamic Programming
 #0053 https://leetcode.com/problems/maximum-subarray/
 #0072 https://leetcode.com/problems/edit-distance/
+#0085 https://leetcode.com/problems/maximal-rectangle/ (***)
+#0221 https://leetcode.com/problems/maximal-square/ (***)
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
 #1012 https://leetcode.com/problems/numbers-with-repeated-digits/ (Digit DP)
 #1186 https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/ (prefix + suffix sum)
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
+#1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
 #1395 https://leetcode.com/problems/count-number-of-teams/
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
@@ -607,6 +621,7 @@
 #2590 https://leetcode.com/problems/design-a-todo-list/
 
 29. Two Pointers
+#0042 https://leetcode.com/problems/trapping-rain-water/
 #0088 https://leetcode.com/problems/merge-sorted-array/
 #0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
 #0844 https://leetcode.com/problems/backspace-string-compare/
@@ -697,6 +712,7 @@
 #0217 https://leetcode.com/problems/contains-duplicate/
 #0219 https://leetcode.com/problems/contains-duplicate-ii/
 #0734 https://leetcode.com/problems/sentence-similarity/
+#1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a ~~~)
 #1128 https://leetcode.com/problems/number-of-equivalent-domino-pairs/
 #1512 https://leetcode.com/problems/number-of-good-pairs/
 #1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
@@ -776,6 +792,7 @@
 #2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/
 
 40. Greedy
+#1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
 #2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
 #2611 https://leetcode.com/problems/mice-and-cheese/
 #3397 https://leetcode.com/problems/maximum-number-of-distinct-elements-after-operations/

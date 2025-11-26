@@ -6,6 +6,7 @@ package org.wshuai.leetcode;
  */
 public class RangeModule {
 
+	// time O(n * log(n)), space O(n * log(n))
 	private class RangeModuleSegmentTree {
 
 		private static final int MAX_RANGE = (int)1e9 + 7;
@@ -15,17 +16,14 @@ public class RangeModule {
 			st = new SegmentTree(MAX_RANGE);
 		}
 
-		// time O(n * log(MAX)), space O(n * log(MAX))
 		public void addRange(int left, int right) {
 			st.update(left, right - 1, true);
 		}
 
-		// time O(n * log(MAX)), space O(n * log(MAX))
 		public boolean queryRange(int left, int right) {
 			return st.query(left, right - 1);
 		}
 
-		// time O(n * log(MAX)), space O(n * log(MAX))
 		public void removeRange(int left, int right) {
 			st.update(left, right - 1, false);
 		}

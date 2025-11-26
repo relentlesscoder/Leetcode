@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 07/22/2020.
@@ -9,68 +9,60 @@ import java.util.Stack;
  */
 public class CountSubmatricesWithAllOnes {
 
-    // time O(m*n), space O(m*n)
-    // https://leetcode.com/problems/count-submatrices-with-all-ones/discuss/720265/Java-Detailed-Explanation-From-O(MNM)-to-O(MN)-by-using-Stack
+    // time O(m * n), space O(n)
     public int numSubmatMonotonicStack(int[][] mat) {
+        // Use idea from #0084 to count rectangle with
+        // all ones for each row as the bottom
         int res = 0, m = mat.length, n = mat[0].length;
-        int[] h = new int[n];
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                h[j] = (mat[i][j] == 0 ? 0 : h[j] + 1);
+        int[] row = new int[n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                row[j] = mat[i][j] == 0 ? 0 : row[j] + 1;
             }
-            res += countSubmatStack(h);
+            res += countRectangles(row);
         }
         return res;
     }
 
-    private int countSubmatStack(int[] arr){
-        int res = 0, n = arr.length;
-        int[] sum = new int[n];
-        Stack<Integer> stack = new Stack<>();
-        for(int i = 0; i < n; i++){
-            while(!stack.isEmpty() && arr[stack.peek()] >= arr[i]){
+    private int countRectangles(int[] heights) {
+        // https://leetcode.cn/problems/count-submatrices-with-all-ones/solutions/3704971/omn-dan-diao-zhan-pythonjavacgo-by-endle-jf8l/
+        int res = 0, n = heights.length;
+        Deque<int[]> stack = new ArrayDeque<>();
+        stack.push(new int[]{-1, 0, -1});
+        for (int i = 0; i < n; i++) {
+            while (stack.peek()[2] >= heights[i]) {
                 stack.pop();
             }
-            if(stack.isEmpty()){
-                sum[i] = arr[i] * (i + 1);
-            }else{
-                sum[i] = sum[stack.peek()];
-                sum[i] += arr[i] * (i - stack.peek());
-            }
-            stack.push(i);
-        }
-        for(int s : sum){
-            res += s;
+            int count = stack.peek()[1] + (i - stack.peek()[0]) * heights[i];
+            stack.push(new int[]{i, count, heights[i]});
+            res += count;
         }
         return res;
     }
 
-    // time O(n*m^2), space O(m*n)
+    // time O(n * m^2), space O(m*n)
     public int numSubmat(int[][] mat) {
         int res = 0, m = mat.length, n = mat[0].length;
-
-        for(int i = 0; i < m; i++){
-            // h[k] = 1 means from row [i] to row[j],
-            // column[k] all equals to 1
-            int[] h = new int[n];
-            Arrays.fill(h, 1);
-            for(int j = i; j < m; j++){
-                for(int k = 0; k < n; k++){
-                    h[k] &= mat[j][k];
+        for (int i = 0; i < m; i++) { // Iterate top rows from 0 to m - 1
+            int[] nums = new int[n]; // Used to store height (consecutive 1s)
+            for (int j = i; j < m; j++) { // Iterate bottom rows from i to m - 1
+                int last = -1, h = j - i + 1;
+                for (int k = 0; k < n; k++) {
+                    nums[k] += mat[j][k];
+                    if (nums[k] != h) {
+                        last = k;
+                    }
+                    // For each index k with height h, we can have k - last all ones
+                    // rectangle ends at column k
+                    /**
+                     * 1 1 0 1 1
+                     * 1 1 0 1 1
+                     * 1 1 1 1 1
+                     * 1 1 1 1 1
+                     */
+                    res += k - last;
                 }
-                // converted to one dimension array
-                res += countSubmat(h);
             }
-        }
-
-        return res;
-    }
-
-    private int countSubmat(int[] arr){
-        int res = 0, cur = 0;
-        for(int i = 0; i < arr.length; i++){
-            cur = arr[i] == 0 ? 0 : cur + 1;
-            res += cur;
         }
         return res;
     }
