@@ -30,7 +30,7 @@ public class CountSubmatricesWithAllOnes {
         Deque<int[]> stack = new ArrayDeque<>();
         stack.push(new int[]{-1, 0, -1});
         for (int i = 0; i < n; i++) {
-            while (stack.peek()[2] >= heights[i]) {
+            while (stack.size() > 1 && stack.peek()[2] >= heights[i]) {
                 stack.pop();
             }
             int count = stack.peek()[1] + (i - stack.peek()[0]) * heights[i];

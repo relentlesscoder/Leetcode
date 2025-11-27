@@ -45,6 +45,7 @@
 #0085 https://leetcode.com/problems/maximal-rectangle/ (miao a ~~~)
 #0221 https://leetcode.com/problems/maximal-square/ (miao a ~~~)
 #0239 https://leetcode.com/problems/sliding-window-maximum/
+#0402 https://leetcode.com/problems/remove-k-digits/
 #0456 https://leetcode.com/problems/132-pattern/ (monotonic stack + greedy)
 #0496 https://leetcode.com/problems/next-greater-element-i/
 #0503 https://leetcode.com/problems/next-greater-element-ii/
@@ -67,7 +68,7 @@
 #1475 https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
 #1504 https://leetcode.com/problems/count-submatrices-with-all-ones/ (miao a ~~~)
 #1671
-#1673
+#1673 https://leetcode.com/problems/find-the-most-competitive-subsequence/
 #1762 https://leetcode.com/problems/buildings-with-an-ocean-view/
 #1776 https://leetcode.com/problems/car-fleet-ii/ (miao a ~~~)
 #1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
@@ -78,6 +79,7 @@
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (gong xian fa) (prefix sum of prefix sum)
 #2282 https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/ (***)
+#2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 #2454 https://leetcode.com/problems/next-greater-element-iv/ (double monotonic stacks)
@@ -93,6 +95,8 @@
 #3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/ (monotonic stack maintains count)
 #3205 https://leetcode.com/problems/maximum-array-hopping-score-i/
 #3221 https://leetcode.com/problems/maximum-array-hopping-score-ii/
+#3359 https://leetcode.com/problems/find-sorted-submatrices-with-maximum-element-at-most-k/ (miao a ~~~) (#1504)
+#3430 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subarrays/ (miao a ~~~) (gong xian fa)
 #3542 https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/ (miao a ~~~)
 #3555 https://leetcode.com/problems/smallest-subarray-to-sort-in-every-sliding-window/ (***)
 
@@ -1236,6 +1240,15 @@ Here's a breakdown of how it works:
 • 2 &lt;&lt; (result of step 3): This performs a left bit shift operation. It shifts the binary representation of 2 (which is 0...010) to the left by the number of positions calculated in the previous step. This effectively calculates 2 raised to the power of that number, resulting in the smallest power of 2 that is greater than or equal to n. For example, 2 &lt;&lt; 3 would be 16. 
 
 In essence, this expression efficiently finds the next power of two for a given integer n.
+
+29 单调栈 + 贡献法 - sum/product for all maximum/minimum in all subarrays
+
+	#0907 https://leetcode.com/problems/sum-of-subarray-minimums/ (miao a ~~~) (gong xian fa)
+	#1856 https://leetcode.com/problems/maximum-subarray-min-product/ (miao a ~~~) (gong xian fa)
+	#2104 https://leetcode.com/problems/sum-of-subarray-ranges/ (miao a ~~~) (gong xian fa)
+	#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (gong xian fa) (prefix sum of prefix sum)
+	#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/ (miao a ~~~) (gong xian fa) (prime pre-processing)
+	#3430 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subarrays/ (miao a ~~~) (gong xian fa)
 
 
 
