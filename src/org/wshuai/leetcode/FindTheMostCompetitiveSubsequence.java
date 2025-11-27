@@ -8,29 +8,23 @@ public class FindTheMostCompetitiveSubsequence {
 
     // time O(n), space O(k)
     public int[] mostCompetitive(int[] nums, int k) {
-        // Same idea as #0402
-        int n = nums.length, count = n - k;
-        int[] stack = new int[n]; // Use an array as stack
-        for (int i = 0, j = -1; i < n && count > 0; i++) {
-            while (count > 0 && j >= 0 && nums[stack[j]] > nums[i]) {
-                nums[stack[j--]] = -1;
-                count--;
-            }
-            stack[++j] = i;
-        }
-        // If count still > 0, remove rest digits from the end
-        for (int i = n - 1; i >= 0 && count > 0; i--) {
-            if (nums[i] != -1) {
-                nums[i] = -1;
-                count--;
-            }
-        }
-        int[] res = new int[k];
+        // https://leetcode.cn/problems/find-the-most-competitive-subsequence/solutions/2788312/gen-zhao-wo-guo-yi-bian-shi-li-2ni-jiu-m-36c4/
+        int n = nums.length;
+        // Use array as Monotonic stack
+        int[] stack = new int[k];
         for (int i = 0, j = 0; i < n; i++) {
-            if (nums[i] != -1) {
-                res[j++] = nums[i];
+            // n + j - i > k ensure there is still enough digits in [i, n - 1]
+            // to get a k-length string
+            //   n - i - 1 >= k - j
+            //   n - i + j - 1 >= k
+            //   n - i + j > k
+            while (j > 0 && stack[j - 1] > nums[i] && n + j - i > k) {
+                j--;
+            }
+            if (j < k) {
+                stack[j++] = nums[i];
             }
         }
-        return res;
+        return stack;
     }
 }
