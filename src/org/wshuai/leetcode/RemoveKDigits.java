@@ -15,10 +15,10 @@ public class RemoveKDigits {
 		char[] digits = num.toCharArray();
 		StringBuilder stack = new StringBuilder(); // Use StringBuilder as Monotonic stack
 		for (int i = 0; i < n; i++) {
-			// To ensure there are still enough digits left in [i, n - 1]
-			// n - k - SL <= n - i + 1, SL = stack.length()
-			// n - k - SL < n - i
-			// i < k + SL
+			// we can delete from the stack since we have enough characters
+			// in [i, n - 1] to refill
+			// n - i > k - SL
+			// n - i + SL > k
 			while (!stack.isEmpty() && stack.charAt(stack.length() - 1) > digits[i]
 					&& stack.length() + k > i) {
 				stack.deleteCharAt(stack.length() - 1);
