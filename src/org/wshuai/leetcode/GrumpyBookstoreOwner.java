@@ -5,24 +5,28 @@ package org.wshuai.leetcode;
  * #1052 https://leetcode.com/problems/grumpy-bookstore-owner/
  */
 public class GrumpyBookstoreOwner {
-	public int maxSatisfied(int[] customers, int[] grumpy, int X) {
-		int res = 0;
-		for(int i = 0; i < customers.length; i++){
-			res += grumpy[i] == 0 ? customers[i] : 0;
-		}
-		int max = 0;
-		int curr = 0;
-		int i = 0;
-		int j = 0;
-		while(j < customers.length && j - i + 1 <= X){
-			curr += grumpy[j] == 1 ? customers[j] : 0;
-			if(j - i + 1 == X){
-				max = Math.max(max, curr);
-				curr -= grumpy[i] == 1 ? customers[i] : 0;
-				i++;
-			}
-			j++;
-		}
-		return res + max;
-	}
+
+    // time O(n), space O(1)
+    public int maxSatisfiedSlidingWindow(int[] customers, int[] grumpy, int minutes) {
+        int res = 0, n = customers.length, max = 0, idx = -1, count = 0;
+        // Calculate the maximum gain (to keep customers satisfied on a grumpy minute)
+        // for a fixed sliding window of length minutes
+        for (int i = 0; i < n; i++) {
+            count += grumpy[i] == 0 ? 0 : customers[i]; // Can only gain if the minute is grumpy
+            if (i - minutes + 1 < 0) {
+                continue;
+            }
+            if (count > max) {
+                max = count;
+                idx = i;
+            }
+            count -= grumpy[i - minutes + 1] == 0 ? 0 : customers[i - minutes + 1];
+        }
+        for (int i = 0; i < n; i++) {
+            if (grumpy[i] == 0 || (i >= idx - minutes + 1 && i <= idx)) {
+                res += customers[i];
+            }
+        }
+        return res;
+    }
 }

@@ -7,19 +7,27 @@ package org.wshuai.leetcode;
 public class RescheduleMeetingsForMaximumFreeTimeI {
 
     // time O(n), space O(1)
-    public int maxFreeTime(int eventTime, int k, int[] startTime, int[] endTime) {
-        // try to merge each adjacent k events, the continuous period of free time for
-        // k events start at i - k + 1 and end at i is
-        // right - left - sum(endTime[e] - startTime[e])
-        int res = 0, n = startTime.length;
-        for (int i = 0, t = 0; i < n; i++) {
-            t += endTime[i] - startTime[i];
-            int left = i <= k - 1 ? 0 : endTime[i - k];
-            int right = i == n - 1 ? eventTime : startTime[i + 1];
-            res = Math.max(res, right - left - t);
-            if (i >= k - 1) {
-                t -= endTime[i - k + 1] - startTime[i - k + 1];
+    public int maxFreeTimeSlidingWindow(int eventTime, int k, int[] startTime, int[] endTime) {
+        int n = startTime.length, res = 0,
+                duration = 0, // Total duration of k consecutive meetings
+                free = 0, // Continuous free time at the end of current window
+                start = 0; // Start time of the current window
+        for (int i = 0; i < n; i++) {
+            duration += endTime[i] - startTime[i];
+            if (i - k + 1 < 0) {
+                continue;
             }
+            // Reschedule all consecutive k meetings to the end of the meeting before
+            // the current window (at endTime[i - k] or 0 if this is the first window).
+            // This will maximize the continuous free time between the end of current
+            // window and the start of next window (startTime[i + 1] or eventTime if
+            // this is the last window).
+            free = (i == n - 1 ? eventTime : startTime[i + 1]) - start - duration;
+            res = Math.max(res, free);
+            // Move the meeting out of the sliding window
+            duration -= endTime[i - k + 1] - startTime[i - k + 1];
+            // Maintain the start time
+            start = endTime[i - k + 1];
         }
         return res;
     }

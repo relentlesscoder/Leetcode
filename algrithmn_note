@@ -6,6 +6,7 @@
 #0645 https://leetcode.com/problems/maximum-average-subarray-i/
 #0904 https://leetcode.com/problems/fruit-into-baskets/
 #1004 https://leetcode.com/problems/max-consecutive-ones-iii/
+#1052 https://leetcode.com/problems/grumpy-bookstore-owner/ (miao a ~~~)
 #1100 https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/
 #1151 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/ (miao a ~~~)
 #1176 https://leetcode.com/problems/diet-plan-performance/
@@ -23,7 +24,7 @@
 #2090 https://leetcode.com/problems/k-radius-subarray-averages/
 #2107 https://leetcode.com/problems/number-of-unique-flavors-after-sharing-k-candies/ (miao a ~~~)
 #2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
-#2134 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/
+#2134 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/ (miao a ~~~) (sliding window + circular array)
 #2271 https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/
 #2302 https://leetcode.com/problems/count-subarrays-with-score-less-than-k/
 #2379 https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/ (miao a ~~~)
@@ -46,8 +47,10 @@
 #3095 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/
 #3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/ (with bit manipulation)
 #3258 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
-#3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
-#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
+#3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/ (miao a~~~) (todo: draw the pic)
+#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (binary sliding window)
+#3679 https://leetcode.com/problems/minimum-discards-to-balance-inventory/
+#3694 https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/ (miao a~~~)
 
 02. Monotonic Stack
 #0042 https://leetcode.com/problems/trapping-rain-water/
@@ -1282,6 +1285,12 @@ In essence, this expression efficiently finds the next power of two for a given 
 	#1456 https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
 
 32 https://stackoverflow.com/questions/3884793/why-is-double-min-value-in-not-negative
+
+33 xy坐标压缩	
+	#3694 https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/ (miao a~~~)
+
+34 自定义哈希
+	https://leetcode.cn/problems/implement-router/solutions/3641772/mo-ni-ha-xi-biao-dui-lie-er-fen-cha-zhao-y7l7/
 
 
 
