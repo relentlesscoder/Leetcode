@@ -1,33 +1,32 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
-
 /**
- * Created by Wei on 8/25/19.
+ * Created by Wei on 08/25/2019.
  * #1100 https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/
  */
 public class FindKLengthSubstringsWithNoRepeatedCharacters {
-	public int numKLenSubstrNoRepeats(String S, int K) {
-		int count = 0;
-		LinkedList<Character> linkedList = new LinkedList<>();
-		char[] arr = S.toCharArray();
-		int right = 0;
-		while (right < arr.length) {
-			if (!linkedList.contains(arr[right])) {
-				if (linkedList.size() == K) {
-					linkedList.pop();
-				}
-			} else {
-				while (linkedList.peek() != arr[right]) {
-					linkedList.pop();
-				}
-				linkedList.pop();
-			}
-			linkedList.offer(arr[right++]);
-			if (linkedList.size() == K) {
-				count++;
-			}
-		}
-		return count;
-	}
+
+    // time O(n), space O(1)
+    public int numKLenSubstrNoRepeats(String s, int k) {
+        int res = 0, n = s.length();
+        int[] freq = new int[26];
+        for (int i = 0; i < n; i++) {
+            freq[s.charAt(i) - 'a']++;
+            if (i - k + 1 < 0) {
+                continue;
+            }
+            boolean repeated = false;
+            for (int f : freq) {
+                if (f > 1) {
+                    repeated = true;
+                    break;
+                }
+            }
+            if (!repeated) {
+                res++;
+            }
+            freq[s.charAt(i - k + 1) - 'a']--;
+        }
+        return res;
+    }
 }

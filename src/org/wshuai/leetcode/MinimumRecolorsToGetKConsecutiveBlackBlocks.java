@@ -8,13 +8,14 @@ public class MinimumRecolorsToGetKConsecutiveBlackBlocks {
 
     // time O(n), space O(1)
     public int minimumRecolors(String blocks, int k) {
-        int res = blocks.length(), count = 0;
-        for (int i = 0, j = 0; i < blocks.length(); i++) {
+        int n = blocks.length(), res = n, count = 0;
+        for (int i = 0; i < n; i++) {
             count += blocks.charAt(i) == 'B' ? 1 : 0;
-            if (i - j + 1 == k) {
-                res = Math.min(res, k - count);
-                count -= blocks.charAt(j++) == 'B' ? 1 : 0;
+            if (i - k + 1 < 0) {
+                continue;
             }
+            res = Math.min(res, k - count);
+            count -= blocks.charAt(i - k + 1) == 'B' ? 1 : 0;
         }
         return res;
     }

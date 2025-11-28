@@ -31,6 +31,24 @@ public class TrappingRainWater {
     }
 
     // time O(n), space O(n)
+    public int trapMonotonicStackWithSentinel(int[] height) {
+        int res = 0, n = height.length;
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(-1); // Add left sentinel
+        for (int i = 0; i < n; i++) {
+            int h = height[i];
+            while (stack.size() > 1 && height[stack.peek()] <= h) {
+                int b = height[stack.pop()];
+                int l = stack.peek();
+                int hl = l == -1 ? 0 : height[l];
+                res += Math.max(0, (Math.min(hl, h) - b)) * (i - l - 1);
+            }
+            stack.push(i);
+        }
+        return res;
+    }
+
+    // time O(n), space O(n)
     public int trapMonotonicStack(int[] height) {
         int res = 0, n = height.length;
         Deque<Integer> stack = new ArrayDeque<>();

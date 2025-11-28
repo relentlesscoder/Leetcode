@@ -9,24 +9,23 @@ import java.util.Map;
  */
 public class DistinctNumbersInEachSubarray {
 
-    // time O(n), space O(k)
+    // time O(n), space O(n)
     public int[] distinctNumbers(int[] nums, int k) {
-        Map<Integer, Integer> valueCount = new HashMap<>();
         int n = nums.length;
         int[] res = new int[n - k + 1];
-        for(int i = 0; i < k; i++){
-            valueCount.put(nums[i], valueCount.getOrDefault(nums[i], 0) + 1);
-        }
-        res[0] = valueCount.size();
-        for(int i = k, j = 1; i < n; i++){
-            valueCount.put(nums[i], valueCount.getOrDefault(nums[i], 0) + 1);
-            int head = nums[i - k], count = valueCount.get(head) - 1;
-            if(count == 0){
-                valueCount.remove(head);
-            }else{
-                valueCount.put(head, count);
+        Map<Integer, Integer> freq = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            freq.merge(nums[i], 1, Integer::sum);
+            if (i - k + 1 < 0) {
+                continue;
             }
-            res[j++] = valueCount.size();
+            res[i - k + 1] = freq.size();
+            int count = freq.get(nums[i - k + 1]) - 1;
+            if (count == 0) {
+                freq.remove(nums[i - k + 1]);
+            } else {
+                freq.put(nums[i - k + 1], count);
+            }
         }
         return res;
     }
