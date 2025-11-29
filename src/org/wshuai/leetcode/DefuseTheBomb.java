@@ -6,35 +6,23 @@ package org.wshuai.leetcode;
  */
 public class DefuseTheBomb {
 
-    // time O(n)
+    // time O(n), space O(1)
     public int[] decrypt(int[] code, int k) {
-        int n = code.length, sum = 0, head, tail;
+        int n = code.length, sum = 0;
         int[] res = new int[n];
-        if(k == 0){
+        if (k == 0) {
             return res;
         }
-        if(k > 0){
-            head = 1 % n;
-            tail = 0;
-            for(int i = 0; i < k; i++){
-                tail = (tail + 1) % n;
-                sum += code[tail];
+        boolean flag = k < 0;
+        k = k < 0 ? -k : k;
+        for (int i = 0; i < n + k; i++) {
+            sum += code[i % n];
+            if (i - k + 1 < 0) {
+                continue;
             }
-        }else{
-            tail = n - 1;
-            head = 0;
-            for(int i = 0; i < -k; i++){
-                head = (n + head - 1) % n;
-                sum += code[head];
-            }
-        }
-        // sliding window
-        for(int i = 0; i < n; i++){
-            res[i] = sum;
-            sum -= code[head];
-            head = (head + 1) % n;
-            tail = (tail + 1) % n;
-            sum += code[tail];
+            int idx = flag ? (i + 1) % n : ((i - k) % n + n) % n;
+            res[idx] = sum;
+            sum -= code[(i - k + 1) % n];
         }
         return res;
     }

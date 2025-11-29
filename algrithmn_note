@@ -1,30 +1,39 @@
 01. Sliding Window
+#0030 https://leetcode.com/problems/substring-with-concatenation-of-all-words/
 #0239 https://leetcode.com/problems/sliding-window-maximum/
 #0424 https://leetcode.com/problems/longest-repeating-character-replacement/
+#0438 https://leetcode.com/problems/find-all-anagrams-in-a-string/ (sliding window + string matching)
 #0487 https://leetcode.com/problems/max-consecutive-ones-ii/
+#0567 https://leetcode.com/problems/permutation-in-string/ (sliding window + string matching)
 #0644 https://leetcode.com/problems/maximum-average-subarray-ii/ (binary search + sliding window) ***(double type boundary)
 #0645 https://leetcode.com/problems/maximum-average-subarray-i/
 #0904 https://leetcode.com/problems/fruit-into-baskets/
 #1004 https://leetcode.com/problems/max-consecutive-ones-iii/
+#1016 https://leetcode.com/problems/binary-string-with-substrings-representing-1-to-n/ (***)
 #1052 https://leetcode.com/problems/grumpy-bookstore-owner/ (miao a ~~~)
 #1100 https://leetcode.com/problems/find-k-length-substrings-with-no-repeated-characters/
 #1151 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/ (miao a ~~~)
 #1176 https://leetcode.com/problems/diet-plan-performance/
+#1297 https://leetcode.com/problems/maximum-number-of-occurrences-of-a-substring/
 #1343 https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/
 #1423 https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/ (miao a ~~~)
 #1456 https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
+#1652 https://leetcode.com/problems/defuse-the-bomb/
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1838 https://leetcode.com/problems/frequency-of-the-most-frequent-element/
 #1852 https://leetcode.com/problems/distinct-numbers-in-each-subarray/
 #1871 https://leetcode.com/problems/jump-game-vii/
+#1888 https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/ (miao a~~~)
 #1918 https://leetcode.com/problems/kth-smallest-subarray-sum/
 #2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/
 #2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
 #2062 https://leetcode.com/problems/count-vowel-substrings-of-a-string/
+#2067 https://leetcode.com/problems/number-of-equal-count-substrings/
 #2090 https://leetcode.com/problems/k-radius-subarray-averages/
 #2107 https://leetcode.com/problems/number-of-unique-flavors-after-sharing-k-candies/ (miao a ~~~)
 #2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
 #2134 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/ (miao a ~~~) (sliding window + circular array)
+#2156 https://leetcode.com/problems/find-substring-with-given-hash-value/
 #2271 https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/
 #2302 https://leetcode.com/problems/count-subarrays-with-score-less-than-k/
 #2379 https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/ (miao a ~~~)
@@ -36,12 +45,13 @@
 #2537 https://leetcode.com/problems/count-the-number-of-good-subarrays/
 #2555 https://leetcode.com/problems/maximize-win-from-two-segments/
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
-#2653 https://leetcode.com/problems/sliding-subarray-beauty/
+#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit)
 #2743 https://leetcode.com/problems/count-substrings-without-repeating-character/
 #2762 https://leetcode.com/problems/continuous-subarrays/
 #2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
 #2841 https://leetcode.com/problems/maximum-sum-of-almost-unique-subarray/
+#2953 https://leetcode.com/problems/count-complete-substrings/
 #2958 https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/
 #2962 https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/
 #3095 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/
@@ -49,6 +59,7 @@
 #3258 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/ (miao a~~~) (todo: draw the pic)
 #3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (binary sliding window)
+#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 #3679 https://leetcode.com/problems/minimum-discards-to-balance-inventory/
 #3694 https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/ (miao a~~~)
 
@@ -317,6 +328,7 @@
 #3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
 #3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
+#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 
 11. Trie
 #1804 https://leetcode.com/problems/implement-trie-ii-prefix-tree/
@@ -857,6 +869,7 @@
 #3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/
 #3525 https://leetcode.com/problems/find-x-value-of-array-ii/ (segment tree + mod)
 #3569 https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/ (segment tree + prime factorization)
+#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 #3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
 #3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
 #LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
@@ -882,7 +895,7 @@
 #2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 #2519 https://leetcode.com/problems/count-the-number-of-k-big-indices/
 #2613 https://leetcode.com/problems/beautiful-pairs/
-#2653 https://leetcode.com/problems/sliding-subarray-beauty/
+#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit)
 #2659 https://leetcode.com/problems/make-array-empty/
 #2736 https://leetcode.com/problems/maximum-sum-queries/
 #2907 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-i/ 
@@ -990,7 +1003,7 @@ Good questions:
 #2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
 #2555 https://leetcode.com/problems/maximize-win-from-two-segments/
 #2561 https://leetcode.com/problems/rearranging-fruits/
-#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + BIT)
+#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit)
 #2659 https://leetcode.com/problems/make-array-empty/ (BIT)
 #2731 https://leetcode.com/problems/movement-of-robots/
 #2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
@@ -1021,6 +1034,7 @@ Good questions:
 #3590 https://leetcode.com/problems/kth-smallest-path-xor-sum/ (BIT + DFS with timestamp + Mo's algorithmn)
 #3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
 #3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/ (GCD + BIT)
+#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 
 Note:
 1. Review time complexity of Topological Sort, Union Find (https://stackoverflow.com/questions/71453109/is-this-union-find-really-on-as-they-claim), QuickSort
@@ -1105,7 +1119,7 @@ Note:
 	#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
 	#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
 	#2613 https://leetcode.com/problems/beautiful-pairs/ (BIT reverse index mapping)
-	#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (use hash map for discretization)
+	#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit) (use hash map for discretization)
 	#2736 https://leetcode.com/problems/maximum-sum-queries/
 	#2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
 	#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max, LIS)
@@ -1291,6 +1305,13 @@ In essence, this expression efficiently finds the next power of two for a given 
 
 34 自定义哈希
 	https://leetcode.cn/problems/implement-router/solutions/3641772/mo-ni-ha-xi-biao-dui-lie-er-fen-cha-zhao-y7l7/
+
+35 String hashing time complexity
+	The time complexity of hashing a String in Java is generally O(n), where 'n' is the length of the string.
+
+	While the initial calculation of the hash code is O(n), Java's String class caches this value. Subsequent calls to hashCode() on the same String instance will return the cached value in O(1) time, as long as the string content has not changed.
+
+	Therefore, for the first time a string's hash code is computed, the complexity is O(n). For all subsequent computations of the same string's hash code, the complexity becomes O(1) due to caching.
 
 
 

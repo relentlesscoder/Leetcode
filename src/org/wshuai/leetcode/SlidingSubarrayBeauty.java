@@ -16,89 +16,108 @@ public class SlidingSubarrayBeauty {
         int[] res = new int[n - k + 1];
         int[] sorted = Arrays.stream(nums).distinct().sorted().toArray(); // O(m * log(m))
         int m = sorted.length;
-        Map<Integer, Integer> map = new HashMap<>(), reverseMap = new HashMap<>();
-        for (int i = 1; i <= m; i++) { // O(m)
-            map.put(sorted[i - 1], i);
-            reverseMap.put(i, sorted[i - 1]);
+        Map<Integer, Integer> idxMap = new HashMap<>(), valueMap = new HashMap<>();
+        for (int i = 0; i < m; i++) { // O(m) use 1 based index
+            idxMap.put(sorted[i], i + 1);
+            valueMap.put(i + 1, sorted[i]);
         }
         BIT bit = new BIT(m);
-        for (int i = 0; i < k - 1; i++) {
-            bit.update(map.get(nums[i]), 1); // O(log(m))
-        }
-        for (int i = k - 1, j = 0; i < n; i++) { // O(n)
-            bit.update(map.get(nums[i]), 1); // O(log(m))
-            int index = bit.search(x); // O(log(m) * log(m))
-            res[j++] = Math.min(0, reverseMap.get(index));
-            bit.update(map.get(nums[i + 1 - k]), -1); // O(log(m))
+        for (int i = 0; i < n; i++) { // O(n)
+            bit.update(idxMap.get(nums[i]), 1); // O(log(m))
+            if (i - k + 1 < 0) {
+                continue;
+            }
+            int ans = bit.search(x); // O(log(m) * log(m))
+            res[i - k + 1] = Math.min(0, valueMap.get(ans));
+            bit.update(idxMap.get(nums[i - k + 1]), -1); // O(log(m))
         }
         return res;
     }
 
-    private class BIT {
+    private static class BIT {
 
-        private int m;
         private int[] tree;
 
         public BIT(int n) {
-            m = n + 1;
-            tree = new int[m];
+            tree = new int[n + 1];
         }
 
         public void update(int index, int val) {
             while (index < tree.length) {
                 tree[index] += val;
-                index += index & -index;
+                index += (index & -index);
             }
-        }
-
-        public int query(int index) {
-            int res = 0;
-            while (index > 0) {
-                res += tree[index];
-                index -= index & -index;
-            }
-            return res;
         }
 
         public int search(int x) {
-            int low = 1, high = m - 1;
-            while (low < high) {
-                int mid = low + (high - low) / 2;
-                if (query(mid) < x) {
-                    low = mid + 1;
+            int left = 1, right = tree.length - 1;
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (pre(mid) < x) {
+                    left = mid + 1;
                 } else {
-                    high = mid;
+                    right = mid;
                 }
             }
-            return low;
+            return left;
+        }
+
+        private int pre(int index) {
+            int res = 0;
+            while (index > 0) {
+                res += tree[index];
+                index -= (index & -index);
+            }
+            return res;
         }
     }
 
     // time O(n * MAX), space O(MAX)
-    public int[] getSubarrayBeautyBrutalForce(int[] nums, int k, int x) {
-        int n = nums.length, max = -1;
+    public int[] getSubarrayBeautyBrutalForceOptimized(int[] nums, int k, int x) {
+        int n = nums.length;
         int[] res = new int[n - k + 1];
-        for (int i = 0; i < n; i++) { // O(n)
-            nums[i] += 50;
-            max = Math.max(max, nums[i]);
-        }
-        // This solution works due to small value space
-        int[] map = new int[max + 1];
-        for (int i = 0, j = 0, l = 0; i < n; i++) {
-            map[nums[i]]++;
-            if (i >= k) {
-                map[nums[j++]]--;
+        int[] freq = new int[101];
+        for (int i = 0; i < n; i++) {
+            freq[nums[i] + 50]++;
+            if (i - k + 1 < 0) {
+                continue;
             }
-            if (i >= k - 1) {
-                int val = -1, count = 0;
-                for (int v = 0; v <= max; v++) {
-                    count += map[v];
-                    if(count >= x) {
-                        val = v;
-                        break;
-                    }
+            int ans = 0, count = 0;
+            for (int v = -50; v < 0; v++) {
+                count += freq[v + 50];
+                if (count >= x) {
+                    ans = v;
+                    break;
                 }
-                res[l++] = Math.min(val - 50, 0);
+            }
+            res[i - k + 1] = ans;
+            freq[nums[i - k + 1] + 50]--;
+        }
+        return res;
+    }
+
+    // time O(n * MAX), space O(MAX)
+    public int[] getSubarrayBeautyBrutalForce(int[] nums, int k, int x) {
+        int n = nums.length;
+        int[] res = new int[n - k + 1];
+        Map<Integer, Integer> freq = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            freq.merge(nums[i], 1, Integer::sum);
+            if (i - k + 1 < 0) {
+                continue;
+            }
+            int ans = 0, count = 0;
+            for (int v = -50; v < 0; v++) {
+                count += freq.getOrDefault(v, 0);
+                if (count >= x) {
+                    ans = v;
+                    break;
+                }
+            }
+            res[i - k + 1] = ans;
+            int f = freq.merge(nums[i - k + 1], -1, Integer::sum);
+            if (f == 0) {
+                freq.remove(nums[i - k + 1]);
             }
         }
         return res;
