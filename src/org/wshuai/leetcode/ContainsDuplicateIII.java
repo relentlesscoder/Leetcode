@@ -1,7 +1,9 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 
 /**
@@ -9,6 +11,63 @@ import java.util.TreeSet;
  * #0220 https://leetcode.com/problems/contains-duplicate-iii/
  */
 public class ContainsDuplicateIII {
+
+    // time O(n), space O(MAX / VALUE_DIFF)
+    public boolean containsNearbyAlmostDuplicateBucketSorting(int[] nums, int indexDiff, int valueDiff) {
+        // https://leetcode.cn/problems/contains-duplicate-iii/solutions/727120/c-li-yong-tong-fen-zu-xiang-xi-jie-shi-b-ofj6/
+        int n = nums.length;
+        Map<Long, Long> buckets = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            long val = (long) nums[i];
+            long idx = getId(val, valueDiff);
+            // If there is already value in the current bucket return true directly,
+            // this will also ensure there is at most 1 element in one bucket
+            if (buckets.containsKey(idx)) {
+                return true;
+            }
+            long left = idx - 1, right = idx + 1;
+            // Check lower bucket
+            if (buckets.containsKey(left) && val - buckets.get(left) <= valueDiff) {
+                return true;
+            }
+            // Check higher bucket
+            if (buckets.containsKey(right) && buckets.get(right) - val <= valueDiff) {
+                return true;
+            }
+            buckets.put(idx, val);
+            // Remove value just "left" the current window
+            if (i >= indexDiff) {
+                buckets.remove(getId(nums[i - indexDiff], valueDiff));
+            }
+        }
+        return false;
+    }
+
+    private long getId(long val, long diff) {
+        return val >= 0 ? val / (diff + 1) : ((val + 1) / (diff + 1)) - 1;
+    }
+
+    // time O(n * log(n)), space O(n)
+    public boolean containsNearbyAlmostDuplicateTreeSet(int[] nums, int indexDiff, int valueDiff) {
+        int n = nums.length;
+        TreeSet<Long> set = new TreeSet<>();
+        for (int i = 0; i < n; i++) {
+            long val = (long) nums[i];
+            // Find the maximum value is less than or equal to val + val_diff,
+            // if the value exists and is greater than or equal to val - val_diff
+            // the return true
+            Long floor = set.floor(val + valueDiff);
+            if (floor != null && floor >= val - valueDiff) {
+                return true;
+            }
+            // Add the current value to the set
+            set.add(val);
+            if (i >= indexDiff) { // Move values out of index diff range
+                set.remove((long) nums[i - indexDiff]);
+            }
+        }
+        return false;
+    }
 
     // time O(n * log(n)), space O(n)
     public boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
@@ -208,22 +267,4 @@ public class ContainsDuplicateIII {
             }
         }
     }
-
-    // time O(n * log(n)), space O(n)
-	public boolean containsNearbyAlmostDuplicateTreeSet(int[] nums, int indexDiff, int valueDiff) {
-		int n = nums.length;
-		TreeSet<Long> set = new TreeSet<>();
-		for (int i = 0; i < n; i++) {
-			long val = (long) nums[i];
-			Long floor = set.floor(val + valueDiff);
-			if (floor != null && floor >= val - valueDiff) {
-				return true;
-			}
-			set.add(val);
-			if (set.size() > indexDiff) {
-				set.remove((long) nums[i - indexDiff]);
-			}
-		}
-		return false;
-	}
 }

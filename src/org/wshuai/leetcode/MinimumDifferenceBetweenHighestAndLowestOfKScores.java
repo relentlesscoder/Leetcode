@@ -10,12 +10,13 @@ public class MinimumDifferenceBetweenHighestAndLowestOfKScores {
 
     // time O(n * log(n)), space O(log(n))
     public int minimumDifference(int[] nums, int k) {
-        int min = Integer.MAX_VALUE;
+        int min = Integer.MAX_VALUE, n = nums.length;
         Arrays.sort(nums);
-        for (int i = 0, j = 0; i < nums.length; i++) {
-            if (i - j + 1 == k) {
-                min = Math.min(min, nums[i] - nums[j++]);
+        for (int i = 0; i < nums.length; i++) {
+            if (i - k + 1 < 0) {
+                continue;
             }
+            min = Math.min(min, nums[i] - nums[i - k + 1]);
         }
         return min;
     }

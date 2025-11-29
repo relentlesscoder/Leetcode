@@ -13,32 +13,31 @@ public class MaximumFrequencyScoreOfASubarray {
 
     private static final int MOD = (int) 1e9 + 7;
 
-    // time O(n), space O(n)
     public int maxFrequencyScore(int[] nums, int k) {
-        int res = 0, n = nums.length;
-        long score = 0;
+        int n = nums.length;
+        long res = 0, score = 0;
         Map<Integer, Deque<Integer>> stacks = new HashMap<>();
         for (int i = 0; i < n; i++) {
             if (stacks.containsKey(nums[i])) {
-                Deque<Integer> stack = stacks.get(nums[i]);
-                long last = stack.peek(), curr = last * nums[i] % MOD;
-                score += curr - last;
-                stack.push((int) curr);
+                Deque<Integer> st = stacks.get(nums[i]);
+                long prod = (long) st.peek() * nums[i] % MOD;
+                score = score + prod - st.peek();
+                st.push((int) prod);
             } else {
-                score += nums[i];
-                stacks.computeIfAbsent(nums[i], key -> new ArrayDeque<>()).push(nums[i]);
+                stacks.computeIfAbsent(nums[i], x -> new ArrayDeque<>()).push(nums[i]);
+                score = score + nums[i];
             }
-            if (i >= k - 1) {
-                res = Math.max(res, (int) ((score % MOD + MOD) % MOD));
-                Deque<Integer> stack = stacks.get(nums[i - k + 1]);
-                score -= stack.pop();
-                if (stack.isEmpty()) {
-                    stacks.remove(nums[i - k + 1]);
-                } else {
-                    score += stack.peek();
-                }
+            int left = i - k + 1;
+            if (left < 0) {
+                continue;
+            }
+            res = Math.max(res, (score % MOD + MOD) % MOD);
+            Deque<Integer> st = stacks.get(nums[left]);
+            score = score - st.pop() + (st.isEmpty() ? 0 : st.peek());
+            if (st.isEmpty()) {
+                stacks.remove(nums[left]);
             }
         }
-        return res;
+        return (int) res;
     }
 }
