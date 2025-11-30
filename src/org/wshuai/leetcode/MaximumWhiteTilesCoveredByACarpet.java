@@ -10,19 +10,21 @@ public class MaximumWhiteTilesCoveredByACarpet {
 
     // time O(n * log(n)), space O(1)
     public int maximumWhiteTiles(int[][] tiles, int carpetLen) {
+        int res = 0, n = tiles.length;
         Arrays.sort(tiles, (a, b) -> a[0] - b[0]);
-        int res = 0, cover = 0, n = tiles.length;
-        for (int i = 0, j = 0; res < carpetLen && i < tiles.length; ) {
-            if (tiles[j][0] + carpetLen > tiles[i][1]) { // current tiles is fully covered by the carpet
-                cover += tiles[i][1] - tiles[i][0] + 1;
-                res = Math.max(res, cover);
-                i++; // move the tail of the sliding window to process the next tiles
-            } else {
-                int partial = Math.max(0, tiles[j][0] + carpetLen - tiles[i][0]); // current tiles is partially (or not) covered by the carpet
-                res = Math.max(res, cover + partial);
-                cover -= (tiles[j][1] - tiles[j][0] + 1); // move the head to exclude the first tiles
-                j++;
+        for (int right = 0, left = 0, covered = 0; right < n; right++) {
+            int start = tiles[right][0], end = tiles[right][1];
+            covered += end - start + 1; // Add covered tiles
+
+            int carpetLeft = end - carpetLen + 1; // Calculate carpet left end
+            while (tiles[left][1] < carpetLeft) { // Slide out tiles that are fully uncovered
+                covered -= tiles[left][1] - tiles[left][0] + 1;
+                left++;
             }
+
+            // Calculate partially uncovered (could be fully uncovered) tile at window left end
+            int uncovered = Math.max(carpetLeft - tiles[left][0], 0);
+            res = Math.max(res, covered - uncovered);
         }
         return res;
     }

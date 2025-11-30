@@ -38,12 +38,13 @@
 #2062 https://leetcode.com/problems/count-vowel-substrings-of-a-string/
 #2067 https://leetcode.com/problems/number-of-equal-count-substrings/
 #2090 https://leetcode.com/problems/k-radius-subarray-averages/
+#2106 https://leetcode.com/problems/maximum-fruits-harvested-after-at-most-k-steps/ (*****)
 #2107 https://leetcode.com/problems/number-of-unique-flavors-after-sharing-k-candies/ (miao a ~~~)
 #2110 https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/
 #2134 https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/ (miao a ~~~) (sliding window + circular array)
 #2156 https://leetcode.com/problems/find-substring-with-given-hash-value/
 #2269 https://leetcode.com/problems/find-the-k-beauty-of-a-number/
-#2271 https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/
+#2271 https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/ (*****)
 #2302 https://leetcode.com/problems/count-subarrays-with-score-less-than-k/
 #2379 https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/ (miao a ~~~)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
