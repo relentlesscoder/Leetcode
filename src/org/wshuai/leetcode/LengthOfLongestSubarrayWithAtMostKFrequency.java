@@ -11,16 +11,15 @@ public class LengthOfLongestSubarrayWithAtMostKFrequency {
 
     // time O(n), space O(n)
     public int maxSubarrayLength(int[] nums, int k) {
+        int res = 0, n = nums.length;
         Map<Integer, Integer> freq = new HashMap<>();
-        int max = 0;
-        for (int i = 0, j = 0; j < nums.length; j++) {
-            freq.put(nums[j], freq.getOrDefault(nums[j], 0) + 1);
-            while (freq.get(nums[j]) > k) {
-                freq.put(nums[i], freq.get(nums[i]) - 1);
-                i++;
+        for (int i = 0, j = 0; i < n; i++) {
+            freq.merge(nums[i], 1, Integer::sum);
+            while (freq.get(nums[i]) > k) {
+                freq.merge(nums[j++], -1, Integer::sum);
             }
-            max = Math.max(max, j - i + 1);
+            res = Math.max(res, i - j + 1);
         }
-        return max;
+        return res;
     }
 }

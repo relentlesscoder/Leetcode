@@ -6,18 +6,31 @@ package org.wshuai.leetcode;
  */
 public class LongestSubarrayOfOnesAfterDeletingOneElement {
 
-	// time O(n)
-	public int longestSubarray(int[] nums) {
-		int res = 0, n = nums.length, left = 0, right = 0;
-		int[] fromLeft = new int[n];
-		for(int i = 0; i < n; i++){
-			fromLeft[i] = left;
-			left = nums[i] == 1 ? left + 1 : 0;
-		}
-		for(int i = n - 1; i >= 0; i--){
-			res = Math.max(res, right + fromLeft[i]);
-			right = nums[i] == 1 ? right + 1 : 0;
-		}
-		return res;
-	}
+    // time O(n), space O(1)
+    public int longestSubarraySlidingWindow(int[] nums) {
+        int res = 0, n = nums.length;
+        for (int i = 0, j = 0, count = 0; i < n; i++) {
+            count += 1 - nums[i];
+            while (count > 1) {
+                count -= 1 - nums[j++];
+            }
+            res = Math.max(res, i - j);
+        }
+        return res;
+    }
+
+    // time O(n), space O(n)
+    public int longestSubarrayPrefixSuffix(int[] nums) {
+        int res = 0, n = nums.length, left = 0, right = 0;
+        int[] fromLeft = new int[n];
+        for (int i = 0; i < n; i++) {
+            fromLeft[i] = left;
+            left = nums[i] == 1 ? left + 1 : 0;
+        }
+        for (int i = n - 1; i >= 0; i--) {
+            res = Math.max(res, right + fromLeft[i]);
+            right = nums[i] == 1 ? right + 1 : 0;
+        }
+        return res;
+    }
 }

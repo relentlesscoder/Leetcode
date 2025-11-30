@@ -8,24 +8,25 @@ public class TakeKOfEachCharacterFromLeftAndRight {
 
     // time O(n), space O(1)
     public int takeCharacters(String s, int k) {
-        int n = s.length(), maxWindowSize = 0;
-        int[] count = new int[3], window = new int[3];
+        // This problem can be converted to find the length ml of the
+        // longest subarray with count(a) <= total(a) - k,
+        // count(b) <= total(b) - k and count(c) <= total(c) - k, then
+        // the result is n - ml.
+        int longest = 0, n = s.length();
+        int[] freq = new int[]{-k, -k, -k};
         for (char c : s.toCharArray()) {
-            count[c - 'a']++;
+            freq[c - 'a']++;
         }
-        if (count[0] < k || count[1] < k || count[2] < k) {
+        if (freq[0] < 0 || freq[1] < 0 || freq[2] < 0) {
             return -1;
         }
-        for (int i = 0, j = 0; j < n; j++) {
-            window[s.charAt(j) - 'a']++;
-            while (i <= j &&
-                    (count[0] - window[0] < k
-                            || count[1] - window[1] < k
-                            || count[2] - window[2] < k)) {
-                window[s.charAt(i++) - 'a']--;
+        for (int i = 0, j = 0; i < n; i++) {
+            freq[s.charAt(i) - 'a']--;
+            while (freq[s.charAt(i) - 'a'] < 0) {
+                freq[s.charAt(j++) - 'a']++;
             }
-            maxWindowSize = Math.max(maxWindowSize, j - i + 1);
+            longest = Math.max(longest, i - j + 1);
         }
-        return n - maxWindowSize;
+        return n - longest;
     }
 }

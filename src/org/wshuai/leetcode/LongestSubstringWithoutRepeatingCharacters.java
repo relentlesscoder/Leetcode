@@ -8,34 +8,35 @@ import java.util.Arrays;
  */
 public class LongestSubstringWithoutRepeatingCharacters {
 
-	// time O(n)
-	public int lengthOfLongestSubstring(String s) {
-		int max = 0;
-		int[] lastIndex = new int[256];
-		Arrays.fill(lastIndex, -1);
-		for(int i = 0, j = -1; i < s.length(); i++){
-			char c = s.charAt(i);
-			j = Math.max(j, lastIndex[c]);
-			max = Math.max(max, i - j);
-			lastIndex[c] = i;
-		}
-		return max;
-	}
+    // time O(n), space O(1)
+    public int lengthOfLongestSubstring(String s) {
+        int res = 0, n = s.length();
+        int[] last = new int[128];
+        Arrays.fill(last, -1);
+        for (int i = 0, j = 0; i < n; i++) {
+            // j = max(j, last[c_i] + 1)
+            // e.g. abba
+            // For index 3, the left of the window should
+            // be at current index j 2 instead of index
+            // last['a'] + 1 = 1
+            j = Math.max(j, last[s.charAt(i)] + 1);
+            res = Math.max(res, i - j + 1);
+            last[s.charAt(i)] = i;
+        }
+        return res;
+    }
 
-	// time O(n)
-	public int lengthOfLongestSubstringSlidingWindow(String s) {
-		if(s == null || s.length() == 0){
-			return 0;
-		}
-		int res = 0, n = s.length();
-		int[] count = new int[256];
-		for(int i = 0, j = 0; i < n; i++){
-			count[s.charAt(i)]++;
-			while(count[s.charAt(i)] > 1){
-				count[s.charAt(j++)]--;
-			}
-			res = Math.max(res, i - j + 1);
-		}
-		return res;
-	}
+    // time O(n), space O(1)
+    public int lengthOfLongestSubstringSlidingWindow(String s) {
+        int res = 0, n = s.length();
+        int[] freq = new int[128];
+        for (int i = 0, j = 0; i < n; i++) {
+            freq[s.charAt(i)]++;
+            while (freq[s.charAt(i)] > 1) {
+                --freq[s.charAt(j++)];
+            }
+            res = Math.max(res, i - j + 1);
+        }
+        return res;
+    }
 }

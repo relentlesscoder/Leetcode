@@ -1,26 +1,23 @@
 package org.wshuai.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created by Wei on 01/16/2021.
  * #1695 https://leetcode.com/problems/maximum-erasure-value/
  */
 public class MaximumErasureValue {
 
-    // time O(n), space O(n)
+    // time O(n), space O(MAX)
     public int maximumUniqueSubarray(int[] nums) {
-        int res = 0, sum = 0;
-        Set<Integer> used = new HashSet<>();
-        for(int i = 0, j = 0; j < nums.length; j++){
-            while(used.contains(nums[j])){
-                used.remove(nums[i]);
-                sum -= nums[i++];
+        int res = 0, n = nums.length, score = 0;
+        int[] freq = new int[10_001];
+        for (int i = 0, j = 0; i < n; i++) {
+            freq[nums[i]]++;
+            score += nums[i];
+            while (freq[nums[i]] > 1) {
+                score -= nums[j];
+                --freq[nums[j++]];
             }
-            used.add(nums[j]);
-            sum += nums[j];
-            res = Math.max(res, sum);
+            res = Math.max(res, score);
         }
         return res;
     }
