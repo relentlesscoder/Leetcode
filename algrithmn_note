@@ -33,7 +33,7 @@
 #1888 https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/ (miao a~~~)
 #1918 https://leetcode.com/problems/kth-smallest-subarray-sum/
 #1984 https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
-#2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/
+#2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/ (miao a~~~)
 #2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/ (miao a~~~)
 #2062 https://leetcode.com/problems/count-vowel-substrings-of-a-string/
 #2067 https://leetcode.com/problems/number-of-equal-count-substrings/
@@ -1018,6 +1018,7 @@ Good questions:
 #1737 https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
 #1963 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
 #1995 https://leetcode.com/problems/count-special-quadruplets/
+#2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/ (miao a~~~)
 #2094 https://leetcode.com/problems/finding-3-digit-even-numbers/
 #2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
 #2200 https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/

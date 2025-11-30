@@ -1,8 +1,6 @@
 package org.wshuai.leetcode;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Wei on 12/11/2023.
@@ -12,40 +10,28 @@ public class MinimumNumberOfOperationsToMakeArrayContinuous {
 
     // time O(n * log(n)), space O(n)
     public int minOperations(int[] nums) {
-        int n = nums.length, res = n, index = 0;
-        // the target array is contiguous like [4, 5, 6, 7, 8]
-        Set<Integer> unique = new HashSet<>();
-        for (int num : nums) {
-            unique.add(num);
-        }
-        int[] arr = new int[unique.size()];
-        for (int num : unique) {
-            arr[index++] = num;
-        }
-        Arrays.sort(arr);
-        // we test each num as the left and check numbers of elements (count)
-        // are already in the array, then minimum operation to covert the
-        // array is n - count
-        for (int i = 0, j = 0; i < arr.length; i++) {
-            while (j < arr.length && arr[j] < arr[i] + n) {
-                j++;
-            }
-            // int right = arr[i] + n - 1, j = binarySearch(arr, right);
-            res = Math.min(res, n - (j - i));
-        }
-        return res;
-    }
-
-    private int binarySearch(int[] arr, int num) {
-        int left = 0, right = arr.length;
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (arr[mid] > num) {
-                right = mid;
-            } else {
-                left = mid + 1;
+        // We need to know the minimum numbers we need to replace to make
+        // the array continuous, we can count for each of the number nums[i],
+        // how many valid numbers we already have in range [nums[i], nums[i]
+        // + n - 1]. We can first sort the array and deduplicate it, for each
+        // of the numbers we can maintain a sliding window and keep extending
+        // the right end until the left end of the window is too small -
+        // nums[left] < nums[right] - n + 1. We can get the maximum count of
+        // existing numbers for all windows max(right - left + 1), the result
+        // is n - max(right - left + 1).
+        int n = nums.length, m = 1, res = 0;
+        Arrays.sort(nums);
+        for (int i = 1; i < n; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[m++] = nums[i]; // Deduplicate
             }
         }
-        return left;
+        for (int left = 0, right = 0; right < m; right++) {
+            while (nums[left] < nums[right] - n + 1) {
+                left++;
+            }
+            res = Math.max(res, right - left + 1);
+        }
+        return n - res;
     }
 }
