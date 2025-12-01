@@ -1,6 +1,8 @@
 package org.wshuai.leetcode;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Wei on 01/22/2024.
@@ -8,82 +10,96 @@ import java.util.List;
  */
 public class LengthOfTheLongestValidSubstring {
 
-    // time O(10 * n + 10 * m), space O(26^10)
-    public int longestValidSubstring(String word, List<String> forbidden) {
-        int res = 0;
+    // O((m + n) * l), space O(m * l)
+    public int longestValidSubstringSlidingWindowWithTrie(String word, List<String> forbidden) {
+        // 1. Max length of forbidden word is 10.
+        // 2. If a forbidden word is found at index l then the left end of
+        //    the substring can't go back before l anytime in future when we
+        //    extend the right end so sliding window can be used.
+        // 3. To find the longest valid substring, we can use a Trie to match
+        //    from right end of the window to left and break immediately once
+        //    we found a match (which is the shortest forbidden word).
         TrieNode root = new TrieNode();
-        for (String f : forbidden) {
-            insert(f, root);
+        for (String f : forbidden) { // O(m)
+            insert(f, root); // O(l)
         }
-        for (int i = 0, j = 0; i < word.length(); i++) {
-            int match = search(word, i, j, root); // Search in Trie to find the matching postfix
-            if (match != -1) { // Found matching postfix
-                j = i - match + 2; // Advance the start of the sliding window to point to the second character of the matching postfix to make the substring valid
+        int res = 0, n = word.length();
+        for (int right = 0, left = 0; right < n; right++) { // O(n)
+            TrieNode curr = root;
+            for (int i = right; i >= left && i > right - 10; i--) { // O(l)
+                char c = word.charAt(i);
+                if (!curr.containsKey(c)) {
+                    break;
+                }
+                curr = curr.get(c);
+                if (curr.isEnd()) {
+                    left = i + 1; // Advance the left end once we found a match
+                    break;
+                }
             }
-            res = Math.max(res, i - j + 1);
+            res = Math.max(res, right - left + 1);
         }
         return res;
     }
 
-    private void insert(String s, TrieNode root) {
-        TrieNode node = root;
-        for (int i = s.length() - 1; i >= 0; i--) {
-            char key = s.charAt(i);
-            if (!node.containsKey(key)) {
-                node.put(key, new TrieNode());
+    private void insert(String word, TrieNode root) {
+        TrieNode curr = root;
+        for (int i = word.length() - 1; i >= 0; i--) {
+            char c = word.charAt(i);
+            if (!curr.containsKey(c)) {
+                curr.put(c, new TrieNode());
             }
-            node = node.get(key);
+            curr = curr.get(c);
         }
-        node.setEnd();
+        curr.setEnd();
     }
 
-    private int search(String s, int start, int end, TrieNode root)
-    {
-        int res = 0;
-        TrieNode node = root;
-        for (int i = start; i >= end; i--) {
-            char key = s.charAt(i);
-            if (!node.containsKey(key)) {
-                return -1;
-            }
-            node = node.get(key);
-            res++;
-            if (node.isEnd()) {
-                return res;
-            }
+    private static class TrieNode {
+
+        private static final int SIZE = 26;
+        private boolean end;
+        private final TrieNode[] nodes;
+
+        public TrieNode() {
+            nodes = new TrieNode[SIZE];
+            end = false;
         }
-        return -1;
+
+        public boolean containsKey(char c) {
+            return nodes[c - 'a'] != null;
+        }
+
+        public void put(char c, TrieNode node) {
+            nodes[c - 'a'] = node;
+        }
+
+        public TrieNode get(char c) {
+            return nodes[c - 'a'];
+        }
+
+        public boolean isEnd() {
+            return this.end;
+        }
+
+        public void setEnd() {
+            this.end = true;
+        }
     }
 
-    private class TrieNode{
-
-        private TrieNode[] nodes;
-
-        private boolean isEnd;
-
-        private TrieNode() {
-            this.nodes = new TrieNode[26];
-            this.isEnd = false;
+    // time O(n * l^2 + m * l), space O(m)
+    public int longestValidSubstringSlidingWindowWithHashSet(String word, List<String> forbidden) {
+        // Initialize hashset for m strings with max length l takes O(m * l)
+        Set<String> set = new HashSet<>(forbidden); // O(m * l)
+        int res = 0, n = word.length();
+        for (int right = 0, left = 0; right < n; right++) { // O(n)
+            for (int i = right; i >= left && i > right - 10; i--) { // O(l)
+                if (set.contains(word.substring(i, right + 1))) { // O(l)
+                    left = i + 1;
+                    break;
+                }
+            }
+            res = Math.max(res, right - left + 1);
         }
-
-        private boolean containsKey(char key) {
-            return nodes[key - 'a'] != null;
-        }
-
-        private TrieNode get(char key) {
-            return nodes[key - 'a'];
-        }
-
-        private void put(char key, TrieNode node) {
-            nodes[key - 'a'] = node;
-        }
-
-        private boolean isEnd() {
-            return this.isEnd;
-        }
-
-        private void setEnd() {
-            this.isEnd = true;
-        }
+        return res;
     }
 }

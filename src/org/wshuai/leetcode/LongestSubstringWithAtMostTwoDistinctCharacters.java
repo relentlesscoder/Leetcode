@@ -6,23 +6,21 @@ package org.wshuai.leetcode;
  */
 public class LongestSubstringWithAtMostTwoDistinctCharacters {
 
-	// time O(n)
-	public int lengthOfLongestSubstringTwoDistinct(String s) {
-		if(s == null || s.length() == 0){
-			return 0;
-		}
-		int res = 0, n = s.length();
-		int[] count = new int[256];
-		for(int i = 0, j = 0, distinct = 0; j < n; j++){
-			if(count[s.charAt(j)]++ == 0){
-				distinct++;
-			}
-			if(distinct > 2){
-				while(--count[s.charAt(i++)] > 0);
-				distinct--;
-			}
-			res = Math.max(res, j - i + 1);
-		}
-		return res;
-	}
+    // time O(n), space O(1)
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        int res = 0, n = s.length();
+        int[] freq = new int[128]; // Use hash map if the upper bound is not provided
+        for (int i = 0, j = 0, distinct = 0; i < n; i++) {
+            if (freq[s.charAt(i)]++ == 0) {
+                distinct++;
+            }
+            while (distinct > 2) {
+                if (--freq[s.charAt(j++)] == 0) {
+                    distinct--;
+                }
+            }
+            res = Math.max(res, i - j + 1);
+        }
+        return res;
+    }
 }

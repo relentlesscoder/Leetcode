@@ -6,41 +6,42 @@ package org.wshuai.leetcode;
  */
 public class LongestSubstringWithAtLeastKRepeatingCharacters {
 
-	// time O(n)
-	public int longestSubstring(String s, int k) {
-		int d = 0;
-		for(int numUniqueTarget = 1; numUniqueTarget <= 26; numUniqueTarget++){
-			d = Math.max(d, longestSubstringWithNUniqueChars(s, k, numUniqueTarget));
-		}
-		return d;
-	}
+    // time O(26 * n), space O(1)
+    public int longestSubstring(String s, int k) {
+		// Covert the problem into finding the longest substring from:
+		// 1. The longest substring with number of N unique characters where
+		//    N in [1,26]
+		// 2. All characters in above substring repeats no less than k times
+        int res = 0;
+        for (int i = 1; i <= 26; i++) {
+            res = Math.max(res, longestSubstringWithUnique(s, k, i));
+        }
+        return res;
+    }
 
-	private int longestSubstringWithNUniqueChars(String s, int k, int numUniqueTarget){
-		int[] map = new int[26];
-		int numUnique = 0, numNoLessThanK = 0, start = 0, end = 0, d = 0;
-		while(end < s.length()){
-			if(map[s.charAt(end) - 'a']++ == 0){
-				numUnique++; // increment map[c] after this statement
-			}
-			if(map[s.charAt(end++) - 'a'] == k){
-				numNoLessThanK++; // inc end after this statement
-			}
-
-			while(numUnique > numUniqueTarget){
-				if(map[s.charAt(start) - 'a']-- == k){
-					numNoLessThanK--; // decrement map[c] after this statement
-				}
-				if(map[s.charAt(start++) - 'a'] == 0){
-					numUnique--; // inc start after this statement
-				}
-			}
-
-			// if we found a string where the number of unique chars equals our target
-			// and all those chars are repeated at least K times then update max
-			if(numUnique == numUniqueTarget && numUnique == numNoLessThanK){
-				d = Math.max(end - start, d);
-			}
-		}
-		return d;
-	}
+    private int longestSubstringWithUnique(String s, int k, int m) {
+        int res = 0, n = s.length();
+        int[] freq = new int[26];
+        for (int i = 0, j = 0, distinct = 0, valid = 0; i < n; i++) {
+            if (freq[s.charAt(i) - 'a'] == 0) {
+                distinct++;
+            }
+            if (++freq[s.charAt(i) - 'a'] == k) {
+                valid++;
+            }
+            while (distinct > m) {
+                if (freq[s.charAt(j) - 'a'] == 1) {
+                    distinct--;
+                }
+                if (freq[s.charAt(j) - 'a']-- == k) {
+                    valid--;
+                }
+                j++;
+            }
+            if (distinct == m && valid == distinct) {
+                res = Math.max(res, i - j + 1);
+            }
+        }
+        return res;
+    }
 }
