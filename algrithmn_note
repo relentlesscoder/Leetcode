@@ -6,6 +6,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 
 #0003 https://leetcode.com/problems/longest-substring-without-repeating-characters/
 #0030 https://leetcode.com/problems/substring-with-concatenation-of-all-words/
+#0076 https://leetcode.com/problems/minimum-window-substring/
 #0159 https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/
 #0209 https://leetcode.com/problems/minimum-size-subarray-sum/
 #0220 https://leetcode.com/problems/contains-duplicate-iii/
@@ -75,6 +76,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
 #2831 https://leetcode.com/problems/find-the-longest-equal-subarray/ (miao a~~~) (分组滑窗)
 #2841 https://leetcode.com/problems/maximum-sum-of-almost-unique-subarray/
+#2875 https://leetcode.com/problems/minimum-size-subarray-in-infinite-array/ (miao a~~~)
 #2904 https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/
 #2953 https://leetcode.com/problems/count-complete-substrings/
 #2958 https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/
