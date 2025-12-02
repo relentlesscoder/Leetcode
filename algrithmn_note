@@ -93,6 +93,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3258 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
 #3261 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-ii/ (miao a~~~) (*****) (sliding window + prefix sum + binary search)
 #3297 https://leetcode.com/problems/count-substrings-that-can-be-rearranged-to-contain-a-string-i/
+#3298 https://leetcode.com/problems/count-substrings-that-can-be-rearranged-to-contain-a-string-ii/
 #3325 https://leetcode.com/problems/count-substrings-with-k-frequency-characters-i/
 #3411 https://leetcode.com/problems/maximum-subarray-with-equal-products/ (sliding window + gcd/lcm)
 #3413 https://leetcode.com/problems/maximum-coins-from-k-consecutive-bags/ (miao a ~~~) (区间滑窗)（***)
