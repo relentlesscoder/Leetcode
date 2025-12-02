@@ -9,12 +9,17 @@ public class CountSubarraysWithScoreLessThanK {
     // time O(n), space O(1)
     public long countSubarrays(int[] nums, long k) {
         long res = 0, sum = 0;
-        for (int i = 0, j = 0; j < nums.length; j++) {
-            sum += nums[j];
-            while (sum * (j - i + 1) >= k) {
-                sum -= nums[i++];
+        int n = nums.length;
+        for (int i = 0, j = 0; i < n; i++) {
+            sum += nums[i];
+            // Both sum and size (i - j + 1) are decreased when we
+            // advance index j so this is monotonic - all index j'
+            // in [j,i] can form a valid subarray with i, so we can
+            // add i - j + 1 to the result.
+            while (sum * (i - j + 1) >= k) {
+                sum -= nums[j++];
             }
-            res += (j - i + 1); // if subarray [i, j] if valid, then all [k, j] is also valid where k >= i and k <= j
+            res += i - j + 1;
         }
         return res;
     }

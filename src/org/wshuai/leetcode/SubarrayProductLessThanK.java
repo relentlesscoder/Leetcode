@@ -6,19 +6,19 @@ package org.wshuai.leetcode;
  */
 public class SubarrayProductLessThanK {
 
-	// time O(n)
-	public int numSubarrayProductLessThanK(int[] nums, int k) {
-		int res = 0, n = nums.length, cur = 1;
-		for(int i = 0, j = 0; j < n; j++){
-			cur *= nums[j];
-			while(i <= j && cur >= k){
-				cur /= nums[i++];
+    // time O(n), space O(1)
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+		if (k <= 1) {
+			return 0;
+		}
+		int res = 0, n = nums.length;
+		for (int i = 0, j = 0, prod = 1; i < n; i++) {
+			prod *= nums[i];
+			while (prod >= k) {
+				prod /= nums[j++];
 			}
-			if(cur < k){
-				res += j - i + 1;
-			}
+			res += i - j + 1;
 		}
 		return res;
-	}
-
+    }
 }

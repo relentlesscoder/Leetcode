@@ -9,22 +9,20 @@ public class CountSubarraysWhereMaxElementAppearsAtLeastKTimes {
     // time O(n), space O(1)
     public long countSubarrays(int[] nums, int k) {
         long res = 0;
-        int max = -1, n = nums.length;
-        // Find the max
+        int n = nums.length, max = 0;
         for (int num : nums) {
             max = Math.max(max, num);
         }
-        // Use sliding window, we iterate the right side of the
-        // window j when the count of max == k we advance the
-        // left side of window i to make count < k. Now we know
-        // all index k in [0,i-1] can be used as the start with j
-        // as the end to form a valid subarray.
-        for (int i = 0, j = 0, count = 0; j < n; j++) {
-            count += nums[j] == max ? 1 : 0;
-            while (count == k) {
-                count += nums[i++] == max ? -1 : 0;
+        // Iterate the right end of the sliding window i when the
+        // count of max >= k we move the left side j until count < k.
+        // Now all index k in [0, j - 1] can form a valid substring
+        // with i as the right end, so we add j to the answer.
+        for (int i = 0, j = 0, count = 0; i < n; i++) {
+            count += nums[i] == max ? 1 : 0;
+            while (count >= k) {
+                count -= nums[j++] == max ? 1 : 0;
             }
-            res += i;
+            res += j;
         }
         return res;
     }

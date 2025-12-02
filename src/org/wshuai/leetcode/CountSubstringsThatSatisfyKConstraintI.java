@@ -8,16 +8,17 @@ public class CountSubstringsThatSatisfyKConstraintI {
 
     // time O(n), space O(1)
     public int countKConstraintSubstrings(String s, int k) {
-        int res = 0, oneCount = 0, zeroCount = 0;
-        for (int i = 0, j = 0; j < s.length(); j++) {
-            oneCount += s.charAt(j) == '1' ? 1 : 0;
-            zeroCount += s.charAt(j) == '0' ? 1 : 0;
-            while (oneCount > k && zeroCount > k) {
-                oneCount -= s.charAt(i) == '1' ? 1 : 0;
-                zeroCount -= s.charAt(i) == '0' ? 1 : 0;
-                i++;
+        int res = 0, n = s.length();
+        for (int i = 0, j = 0, zeros = 0, ones = 0; i < n; i++) {
+            int curr = s.charAt(i) - '0';
+            zeros += 1 - curr;
+            ones += curr;
+            while (zeros > k && ones > k) {
+                int head = s.charAt(j++) - '0';
+                zeros -= 1 - head;
+                ones -= head;
             }
-            res += j - i + 1;
+            res += i - j + 1;
         }
         return res;
     }

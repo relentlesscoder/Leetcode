@@ -16,8 +16,10 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0438 https://leetcode.com/problems/find-all-anagrams-in-a-string/ (sliding window + string matching)
 #0487 https://leetcode.com/problems/max-consecutive-ones-ii/
 #0567 https://leetcode.com/problems/permutation-in-string/ (sliding window + string matching)
+#0632 https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/
 #0644 https://leetcode.com/problems/maximum-average-subarray-ii/ (binary search + sliding window) ***(double type boundary)
 #0645 https://leetcode.com/problems/maximum-average-subarray-i/
+#0713 https://leetcode.com/problems/subarray-product-less-than-k/
 #0904 https://leetcode.com/problems/fruit-into-baskets/
 #1004 https://leetcode.com/problems/max-consecutive-ones-iii/
 #1016 https://leetcode.com/problems/binary-string-with-substrings-representing-1-to-n/ (***)
@@ -30,6 +32,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1234 https://leetcode.com/problems/replace-the-substring-for-balanced-string/ (miao a ~~~)
 #1297 https://leetcode.com/problems/maximum-number-of-occurrences-of-a-substring/
 #1343 https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/
+#1358 https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/
 #1423 https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/ (miao a ~~~)
 #1456 https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/
 #1461 https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/ (bit mask to exit)
@@ -62,6 +65,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2401 https://leetcode.com/problems/longest-nice-subarray/
 #2461 https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
+#2495 https://leetcode.com/problems/number-of-subarrays-having-even-product/
 #2516 https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/
 #2524 https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/ (sliding window + stack)
 #2537 https://leetcode.com/problems/count-the-number-of-good-subarrays/
@@ -69,8 +73,8 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
 #2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit)
 #2730 https://leetcode.com/problems/find-the-longest-semi-repetitive-substring/
-#2743 https://leetcode.com/problems/count-substrings-without-repeating-character/
-#2762 https://leetcode.com/problems/continuous-subarrays/
+#2743 https://leetcode.com/problems/count-substrings-without-repeating-character/ (sliding window + bit mask)
+#2762 https://leetcode.com/problems/continuous-subarrays/ (miao a~~~) (sliding window + monotonic stack)  (***)
 #2779 https://leetcode.com/problems/maximum-beauty-of-an-array-after-applying-operation/
 #2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/ (sliding window + trie)
 #2799 https://leetcode.com/problems/count-complete-subarrays-in-an-array/
@@ -85,7 +89,11 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3090 https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/
 #3095 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-i/
 #3097 https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/ (with bit manipulation)
+#3134 https://leetcode.com/problems/find-the-median-of-the-uniqueness-array/ (miao a~~~) (***) (sliding window + binary search)
 #3258 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-i/
+#3261 https://leetcode.com/problems/count-substrings-that-satisfy-k-constraint-ii/ (miao a~~~) (*****) (sliding window + prefix sum + binary search)
+#3297 https://leetcode.com/problems/count-substrings-that-can-be-rearranged-to-contain-a-string-i/
+#3325 https://leetcode.com/problems/count-substrings-with-k-frequency-characters-i/
 #3411 https://leetcode.com/problems/maximum-subarray-with-equal-products/ (sliding window + gcd/lcm)
 #3413 https://leetcode.com/problems/maximum-coins-from-k-consecutive-bags/ (miao a ~~~) (区间滑窗)（***)
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/ (miao a~~~) (todo: draw the pic)
@@ -95,6 +103,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 #3679 https://leetcode.com/problems/minimum-discards-to-balance-inventory/
 #3694 https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/ (miao a~~~)
+#LCP68 https://leetcode.cn/problems/1GxJYY/
 
 02. Monotonic Stack
 
@@ -248,6 +257,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2790 https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length/ (binary search for max)
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+#3134 https://leetcode.com/problems/find-the-median-of-the-uniqueness-array/ (miao a~~~) (***) (sliding window + binary search)
 #3152 https://leetcode.com/problems/special-array-ii/ ***(binary search for max)
 #3312 https://leetcode.com/problems/sorted-gcd-pair-queries/
 #3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/ ***(binary search for max)
@@ -1052,6 +1062,7 @@ Good questions:
 #2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit)
 #2659 https://leetcode.com/problems/make-array-empty/ (BIT)
 #2731 https://leetcode.com/problems/movement-of-robots/
+#2762 https://leetcode.com/problems/continuous-subarrays/ (miao a~~~) (sliding window + monotonic stack)  (***)
 #2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/ (sliding window + trie)
 #2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 #2831 https://leetcode.com/problems/find-the-longest-equal-subarray/ (miao a~~~) (分组滑窗)
@@ -1366,6 +1377,7 @@ In essence, this expression efficiently finds the next power of two for a given 
 	#0220 https://leetcode.com/problems/contains-duplicate-iii/
 
 37 Sliding Window
+	https://leetcode.cn/discuss/post/3578981/ti-dan-hua-dong-chuang-kou-ding-chang-bu-rzz7/
 
 	定长滑动窗口
 	https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/solutions/2809359/tao-lu-jiao-ni-jie-jue-ding-chang-hua-ch-fzfo/
@@ -1374,6 +1386,10 @@ In essence, this expression efficiently finds the next power of two for a given 
 	越短越合法/求最长/最大: https://leetcode.cn/problems/longest-substring-without-repeating-characters/solutions/1959540/xia-biao-zong-suan-cuo-qing-kan-zhe-by-e-iaks/
 	越长越合法/求最短/最小:	https://leetcode.cn/problems/minimum-size-subarray-sum/solutions/1959532/biao-ti-xia-biao-zong-suan-cuo-qing-kan-k81nh/
 	
+	求子数组个数 
+	越短越合法: https://leetcode.cn/problems/subarray-product-less-than-k/solutions/1959538/xia-biao-zong-suan-cuo-qing-kan-zhe-by-e-jebq/
+	越长越合法: https://leetcode.cn/problems/number-of-substrings-containing-all-three-characters/solutions/2990226/mo-ban-yue-chang-yue-he-fa-xing-hua-dong-2g7a/
+
 
 	分组滑窗
 	#2831 https://leetcode.com/problems/find-the-longest-equal-subarray/ (miao a~~~) (分组滑窗)
