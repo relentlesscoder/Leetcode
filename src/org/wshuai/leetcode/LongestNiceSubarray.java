@@ -8,12 +8,17 @@ public class LongestNiceSubarray {
 
     // time O(n), space O(1)
     public int longestNiceSubarray(int[] nums) {
-        int res = 0, bitMask = 0; // bitMask denotes the set bits for current sliding window
-        for (int i = 0, j = 0; i < nums.length; i++) {
-            while (j < i && (bitMask & nums[i]) > 0) { // bitmask shares common set bits with nums[i]
-                bitMask -= nums[j++]; // keep removing set bits of nums[j] from the current sliding window
+        int res = 0, n = nums.length;
+        // Bitmask denotes the set bits for current sliding window
+        for (int i = 0, j = 0, mask = 0; i < n; i++) {
+            // Bitmask shares common set bits with nums[i]
+            while ((mask & nums[i]) > 0) {
+                // Keep removing set bits of nums[j] from the current sliding
+                // window until there is no common set bits
+                mask ^= nums[j++];
             }
-            bitMask |= nums[i]; // add set bits of nums[i] to the sliding window
+            // Add set bits of nums[i] to the sliding window
+            mask |= nums[i];
             res = Math.max(res, i - j + 1);
         }
         return res;
