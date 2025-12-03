@@ -1,6 +1,8 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Wei on 08/14/2016.
@@ -13,17 +15,17 @@ public class ThreeSum {
         List<List<Integer>> res = new ArrayList<>();
         int n = nums.length;
         Arrays.sort(nums);
-        for (int i = 0; i < n - 2 && nums[i] <= 0; i++) { // early termination when nums[i] > 0
-            // deduplicate
+        for (int i = 0; i < n - 2 && nums[i] <= 0; i++) {
+            // Deduplicate
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            int target = -nums[i], j = i + 1, k = n - 1;
-            while (j < k) {
+            int target = -nums[i];
+            for (int j = i + 1, k = n - 1; j < k; ) {
                 int sum = nums[j] + nums[k];
                 if (sum == target) {
                     res.add(Arrays.asList(nums[i], nums[j++], nums[k--]));
-                    // deduplicate
+                    // Deduplicate
                     while (j < k && nums[j] == nums[j - 1]) {
                         j++;
                     }
