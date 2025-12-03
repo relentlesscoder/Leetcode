@@ -6,29 +6,31 @@ package org.wshuai.leetcode;
  */
 public class ReverseVowelsOfAString {
 
-	// time O(n)
-	public String reverseVowels(String s) {
-		if(s == null || s.length() == 0){
-			return s;
-		}
-		int n = s.length(), left = 0, right = n - 1;
-		char[] arr = s.toCharArray();
-		while(left < right){
-			while(left < right && !isVowel(arr[left])){
-				left++;
-			}
-			while(left < right && !isVowel(arr[right])){
-				right--;
-			}
-			char temp = arr[left];
-			arr[left++] = arr[right];
-			arr[right--] = temp;
-		}
-		return String.valueOf(arr);
-	}
+    // time O(n), space O(1)
+    public String reverseVowels(String s) {
+        int n = s.length();
+        char[] arr = s.toCharArray();
+        for (int i = 0, j = n - 1; i < j; ) {
+            boolean left = isVowel(arr[i]);
+            boolean right = isVowel(arr[j]);
+            if (left && right) {
+                char temp = arr[i];
+                arr[i++] = arr[j];
+                arr[j--] = temp;
+            } else if (left == right) {
+                i++;
+                j--;
+            } else if (left) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+        return new String(arr);
+    }
 
-	private boolean isVowel(char c){
-		return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
-				|| c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
-	}
+    private boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+                || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
+    }
 }

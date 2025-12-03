@@ -8,14 +8,14 @@ public class KthSmallestSubarraySum {
 
     // time O(n * log(n)), space O(1)
     public int kthSmallestSubarraySum(int[] nums, int k) {
-        int low = nums[0], high = 0;
+        int low = (int) 1e6, high = 0;
         for (int num : nums) {
             low = Math.min(low, num);
             high += num;
         }
         while (low < high) {
             int mid = low + (high - low) / 2;
-            if (numberOfSubarraysSumLessThan(mid, nums) < k) {
+            if (countSubarrays(nums, mid) < k) {
                 low = mid + 1;
             } else {
                 high = mid;
@@ -24,9 +24,9 @@ public class KthSmallestSubarraySum {
         return low;
     }
 
-    private int numberOfSubarraysSumLessThan(int threshold, int[] nums) {
-        int res = 0, sum = 0;
-        for (int i = 0, j = 0; i < nums.length; i++) {
+    private int countSubarrays(int[] nums, int threshold) {
+        int res = 0, n = nums.length;
+        for (int i = 0, j = 0, sum = 0; i < n; i++) {
             sum += nums[i];
             while (sum > threshold) {
                 sum -= nums[j++];

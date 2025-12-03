@@ -8,15 +8,15 @@ public class TwoSumIIInputArrayIsSorted {
 
     // time O(n), space O(1)
     public int[] twoSum(int[] numbers, int target) {
-        int n = numbers.length, left = 0, right = n - 1;
-        while (left < right) {
-            int sum = numbers[left] + numbers[right];
+        int n = numbers.length;
+        for (int i = 0, j = n - 1, sum = 0; i < j; ) {
+            sum = numbers[i] + numbers[j];
             if (sum == target) {
-                return new int[]{left + 1, right + 1};
+                return new int[]{i + 1, j + 1};
             } else if (sum < target) {
-                left++;
+                i++;
             } else {
-                right--;
+                j--;
             }
         }
         return new int[0];

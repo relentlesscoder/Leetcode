@@ -20,6 +20,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0644 https://leetcode.com/problems/maximum-average-subarray-ii/ (binary search + sliding window) ***(double type boundary)
 #0645 https://leetcode.com/problems/maximum-average-subarray-i/
 #0713 https://leetcode.com/problems/subarray-product-less-than-k/
+#0825 https://leetcode.com/problems/friends-of-appropriate-ages/ (***)
 #0904 https://leetcode.com/problems/fruit-into-baskets/
 #0930 https://leetcode.com/problems/binary-subarrays-with-sum/
 #0992 https://leetcode.com/problems/subarrays-with-k-different-integers/
@@ -44,12 +45,13 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1652 https://leetcode.com/problems/defuse-the-bomb/
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1695 https://leetcode.com/problems/maximum-erasure-value/
+#1712 https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/ (miao a~~~) (***)
 #1763 https://leetcode.com/problems/longest-nice-substring/ (miao a~~~) (种类滑窗) (***)
 #1838 https://leetcode.com/problems/frequency-of-the-most-frequent-element/ (miao a~~~)
 #1852 https://leetcode.com/problems/distinct-numbers-in-each-subarray/
 #1871 https://leetcode.com/problems/jump-game-vii/
 #1888 https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/ (miao a~~~)
-#1918 https://leetcode.com/problems/kth-smallest-subarray-sum/
+#1918 https://leetcode.com/problems/kth-smallest-subarray-sum/ (sliding window + binary search)
 #1984 https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/
 #2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/ (miao a~~~)
 #2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/ (miao a~~~)
@@ -110,8 +112,39 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3679 https://leetcode.com/problems/minimum-discards-to-balance-inventory/
 #3694 https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/ (miao a~~~)
 #LCP68 https://leetcode.cn/problems/1GxJYY/
+#LCR180 https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/
 
-02. Monotonic Stack
+02. Two Pointers
+#0042 https://leetcode.com/problems/trapping-rain-water/
+#0088 https://leetcode.com/problems/merge-sorted-array/
+#0125 https://leetcode.com/problems/valid-palindrome/
+#0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
+#0167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+#0344 https://leetcode.com/problems/reverse-string/
+#0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
+#0541 https://leetcode.com/problems/reverse-string-ii/
+#0557 https://leetcode.com/problems/reverse-words-in-a-string-iii/
+#0633 https://leetcode.com/problems/sum-of-square-numbers/
+#0658 https://leetcode.com/problems/find-k-closest-elements/
+#0844 https://leetcode.com/problems/backspace-string-compare/
+#0917 https://leetcode.com/problems/reverse-only-letters/
+#0977 https://leetcode.com/problems/squares-of-a-sorted-array/
+#1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
+#1471 https://leetcode.com/problems/the-k-strongest-values-in-an-array/
+#1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
+#1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
+#1750 https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/
+#1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
+#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#2105 https://leetcode.com/problems/watering-plants-ii/
+#2337 https://leetcode.com/problems/move-pieces-to-obtain-a-string/
+#2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
+#2444 https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
+#2563 https://leetcode.com/problems/count-the-number-of-fair-pairs/
+#2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
+#3643 https://leetcode.com/problems/flip-square-submatrix-vertically/
+
+03. Monotonic Stack
 
 #0042 https://leetcode.com/problems/trapping-rain-water/
 #0084 https://leetcode.com/problems/largest-rectangle-in-histogram/ (miao a ~~~)
@@ -220,6 +253,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0528 https://leetcode.com/problems/random-pick-with-weight/
 #0532 https://leetcode.com/problems/k-diff-pairs-in-an-array/
 #0644 https://leetcode.com/problems/maximum-average-subarray-ii/ (binary search + sliding window) ***(double type boundary)
+#0658 https://leetcode.com/problems/find-k-closest-elements/ (search for range) (*****) 需要理解为甚是k+1长度的区间
 #0668 https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
 #0719 https://leetcode.com/problems/find-k-th-smallest-pair-distance/
 #0774 https://leetcode.com/problems/minimize-max-distance-to-gas-station/ ***(double type boundary)
@@ -237,7 +271,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1891 https://leetcode.com/problems/cutting-ribbons/ ***(binary search for max)
 #1898 https://leetcode.com/problems/maximum-number-of-removable-characters/ ***(binary search for max)
 #1901 https://leetcode.com/problems/find-a-peak-element-ii/
-#1918 https://leetcode.com/problems/kth-smallest-subarray-sum/
+#1918 https://leetcode.com/problems/kth-smallest-subarray-sum/ (sliding window + binary search)
 #1980 https://leetcode.com/problems/find-unique-binary-string/ ***(binary search for max)
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #2009 https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/
@@ -705,22 +739,6 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2424 https://leetcode.com/problems/longest-uploaded-prefix/
 #2502 https://leetcode.com/problems/design-memory-allocator/
 #2590 https://leetcode.com/problems/design-a-todo-list/
-
-29. Two Pointers
-#0042 https://leetcode.com/problems/trapping-rain-water/
-#0088 https://leetcode.com/problems/merge-sorted-array/
-#0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
-#0844 https://leetcode.com/problems/backspace-string-compare/
-#1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
-#1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
-#1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
-#1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
-#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
-#2337 https://leetcode.com/problems/move-pieces-to-obtain-a-string/
-#2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
-#2444 https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
-#2563 https://leetcode.com/problems/count-the-number-of-fair-pairs/
-#2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
 30. Quick Select
 #0215 https://leetcode.com/problems/kth-largest-element-in-an-array/
@@ -1395,11 +1413,18 @@ In essence, this expression efficiently finds the next power of two for a given 
 	求子数组个数 
 	越短越合法: https://leetcode.cn/problems/subarray-product-less-than-k/solutions/1959538/xia-biao-zong-suan-cuo-qing-kan-zhe-by-e-jebq/
 	越长越合法: https://leetcode.cn/problems/number-of-substrings-containing-all-three-characters/solutions/2990226/mo-ban-yue-chang-yue-he-fa-xing-hua-dong-2g7a/
-	恰好型滑动窗口: 
+	恰好型滑动窗口:
 
+
+	特殊体型:
 
 	分组滑窗
 	#2831 https://leetcode.com/problems/find-the-longest-equal-subarray/ (miao a~~~) (分组滑窗)
+
+	字符替换 (0424 通用模版 维护历史最大值)
+	#0424 https://leetcode.com/problems/longest-repeating-character-replacement/
+	#1156 https://leetcode.com/problems/swap-for-longest-repeated-character-substring/
+	#2024 https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
 
 38 Trie template
 	

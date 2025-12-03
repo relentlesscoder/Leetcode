@@ -6,25 +6,24 @@ package org.wshuai.leetcode;
  */
 public class ReverseWordsInAStringIII {
 
-	// time O(n)
-	public String reverseWords(String s) {
-		char[] arr = s.toCharArray();
-		int i = 0, j = 0;
-		for (; j < arr.length; j++) {
-			if (arr[j] == ' ') {
-				reverse(arr, i, j - 1);
-				i = j + 1;
-			}
-		}
-		reverse(arr, i, j - 1);
-		return new String(arr);
-	}
+    // time O(n), space O(n)
+    public String reverseWords(String s) {
+        int n = s.length();
+        char[] arr = s.toCharArray();
+        for (int i = 0, j = 0; i <= n; i++) {
+            if (i == n || s.charAt(i) == ' ') {
+                reverse(arr, j, i - 1);
+                j = i + 1;
+            }
+        }
+        return new String(arr);
+    }
 
-	private void reverse(char[] arr, int left, int right) {
-		while (left < right) {
-			char temp = arr[left];
-			arr[left++] = arr[right];
-			arr[right--] = temp;
-		}
-	}
+    private void reverse(char[] arr, int s, int e) {
+        for (int i = s, j = e; i < j; i++, j--) {
+            char temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
 }

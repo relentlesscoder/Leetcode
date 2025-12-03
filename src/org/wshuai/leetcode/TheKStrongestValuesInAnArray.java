@@ -8,19 +8,20 @@ import java.util.Arrays;
  */
 public class TheKStrongestValuesInAnArray {
 
-	// time O(n*log(n))
-	public int[] getStrongest(int[] arr, int k) {
-		int[] res = new int[k];
-		Arrays.sort(arr);
-		int n = arr.length, left = 0, right = n - 1, median = arr[(n - 1) >> 1];
-		while(k-- > 0){
-			int diffLeft = median - arr[left], diffRight = arr[right] - median;
-			if(diffLeft > diffRight){
-				res[k] = arr[left++];
-			}else{
-				res[k] = arr[right--];
-			}
-		}
-		return res;
-	}
+    // time O(n * log(n)), space O(k)
+    public int[] getStrongest(int[] arr, int k) {
+        int n = arr.length;
+        int[] res = new int[k];
+        Arrays.sort(arr);
+        int centre = arr[(n - 1) / 2];
+        for (int i = 0, j = n - 1; i <= j && k > 0; k--) {
+            int s1 = centre - arr[i], s2 = arr[j] - centre;
+            if (s2 >= s1) {
+                res[k - 1] = arr[j--];
+            } else {
+                res[k - 1] = arr[i++];
+            }
+        }
+        return res;
+    }
 }

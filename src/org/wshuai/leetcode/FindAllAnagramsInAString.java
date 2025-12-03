@@ -10,54 +10,55 @@ import java.util.List;
 public class FindAllAnagramsInAString {
 
     // time O(n), space O(1)
-    public List<Integer> findAnagramsFixedLengthSlidingWindow(String s, String p) {
+    public List<Integer> findAnagramsTrackMismatches(String s, String p) {
         List<Integer> res = new ArrayList<>();
-        int m = p.length(), n = s.length();
+        int n = s.length(), m = 0;
         int[] freq = new int[26];
         for (char c : p.toCharArray()) {
             freq[c - 'a']++;
+            m++;
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = 0, j = 0; i < n; i++) {
             freq[s.charAt(i) - 'a']--;
-            if (i - m + 1 < 0) {
-                continue;
+            // If there is any mismatch in current sliding window,
+            // advances j to invalidate the current window.
+            while (freq[s.charAt(i) - 'a'] < 0) {
+                freq[s.charAt(j++) - 'a']++;
             }
-            boolean match = true;
-            for (int f : freq) {
-                if (f != 0) {
-                    match = false;
-                    break;
-                }
+            // No mismatch found for current sliding window and the
+            // window length is m meaning a full match is found
+            if (i - j + 1 == m) {
+                res.add(j);
             }
-            if (match) {
-                res.add(i - m + 1);
-            }
-            freq[s.charAt(i - m + 1) - 'a']++;
         }
         return res;
     }
 
     // time O(n), space O(1)
-    public List<Integer> findAnagramsSlidingWindow(String s, String p) {
+    public List<Integer> findAnagramsTrackMatches(String s, String p) {
         List<Integer> res = new ArrayList<>();
-        int m = p.length(), n = s.length();
+        int n = s.length(), types = 0;
         int[] freq = new int[26];
         for (char c : p.toCharArray()) {
-            freq[c - 'a']++;
-        }
-        for (int i = 0, j = 0; j < n; j++) {
-            int index = s.charAt(j) - 'a';
-            freq[index]--;
-            // If there is any character mismatch in current sliding
-            // window, this loop advances i to j to invalidate the
-            // current window.
-            while (freq[index] < 0) {
-                ++freq[s.charAt(i++) - 'a'];
+            if (freq[c - 'a']++ == 0) {
+                types++;
             }
-            // There is no mismatch for current sliding window and
-            // the length is m, meaning a full match is found
-            if (j - i + 1 == m) {
-                res.add(i);
+        }
+        int[] counter = new int[26];
+        for (int i = 0, j = 0, matches = 0; i < n; i++) {
+            int idx1 = s.charAt(i) - 'a';
+            if (++counter[idx1] == freq[idx1]) {
+                matches++;
+            }
+            while (counter[idx1] > freq[idx1]) {
+                int idx2 = s.charAt(j) - 'a';
+                if (counter[idx2]-- == freq[idx2]) {
+                    matches--;
+                }
+                j++;
+            }
+            if (matches == types) {
+                res.add(j);
             }
         }
         return res;

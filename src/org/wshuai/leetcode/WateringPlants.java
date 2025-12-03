@@ -6,21 +6,23 @@ package org.wshuai.leetcode;
  */
 public class WateringPlants {
 
-	// time O(n), space O(1)
-	public int wateringPlants(int[] plants, int capacity) {
-		int res = 0, n = plants.length, curr = capacity;
-		for (int i = 0; i < n; i++) {
-			// if not enough capacity, we have to return to the river and come back
-			// note that:
-			//     1. here we only count the extra cost for the round trip
-			//     2. the position we return back from is i - 1 not i so extra steps it takes is 2 * i
-			if (curr < plants[i]) {
-				res += (i << 1);
-				curr = capacity;
-			}
-			curr -= plants[i];
-			res++; // add regular step to the next plant
-		}
-		return res;
-	}
+    // time O(n), space O(1)
+    public int wateringPlants(int[] plants, int capacity) {
+        int res = 0, n = plants.length, water = capacity;
+        for (int i = 0; i < n; i++) {
+            // If not enough capacity, we have to return to the river and
+            // come back.
+            // Note that:
+            //     1. We only count the extra cost for the round trip
+            //     2. The position we return back from is i - 1 not i
+            //        so extra steps it takes is 2 * i
+            if (water < plants[i]) {
+                res += (i << 1);
+                water = capacity;
+            }
+            res++; // Step to the next plant
+            water -= plants[i];
+        }
+        return res;
+    }
 }
