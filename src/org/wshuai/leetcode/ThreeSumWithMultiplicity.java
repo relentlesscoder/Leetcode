@@ -3,48 +3,49 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 11/6/2019.
- * #923 https://leetcode.com/problems/3sum-with-multiplicity/
+ * Created by Wei on 11/06/2019.
+ * #0923 https://leetcode.com/problems/3sum-with-multiplicity/
  */
 public class ThreeSumWithMultiplicity {
-	public int threeSumMulti(int[] A, int target) {
-		int MOD = 1_000_000_007;
-		Arrays.sort(A);
-		long res = 0;
-		for(int i = 0; i < A.length - 2; i++){
-			int diff = target - A[i];
-			int j = i + 1;
-			int k = A.length - 1;
-			while(j < k){
-				int sum = A[j] + A[k];
-				if(sum == diff){
-					if(A[j] != A[k]){
-						int left = 1;
-						while(j + 1 < k && A[j + 1] == A[j]){
-							left++;
-							j++;
-						}
-						int right = 1;
-						while(k - 1 > j && A[k - 1] == A[k]){
-							right++;
-							k--;
-						}
-						res += left * right;
-						res %= MOD;
-						j++;
-						k--;
-					}else{
-						res += (k - j + 1) * (k - j) / 2;
-						res %= MOD;
-						break;
-					}
-				}else if(sum < diff){
-					j++;
-				}else{
-					k--;
-				}
-			}
-		}
-		return (int)res;
-	}
+    private static final int MOD = (int) 1e9 + 7;
+
+    // time O(n^2), space O(log(n))
+    public int threeSumMulti(int[] arr, int target) {
+        long res = 0;
+        Arrays.sort(arr);
+        int n = arr.length;
+        for (int k = 0; k < n - 2; k++) {
+            if (arr[k] + arr[k + 1] + arr[k + 2] > target) {
+                break;
+            }
+            if (arr[k] + arr[n - 2] + arr[n - 1] < target) {
+                continue;
+            }
+            for (int i = k + 1, j = n - 1; i < j; ) {
+                int sum = arr[i] + arr[j] + arr[k];
+                if (sum == target) {
+                    if (arr[i] == arr[j]) {
+                        res += (long) (j - i) * (j - i + 1) / 2;
+                        break;
+                    } else {
+                        int c1 = 0, c2 = 0, v1 = arr[i], v2 = arr[j];
+                        while (arr[i] == v1) {
+                            i++;
+                            c1++;
+                        }
+                        while (arr[j] == v2) {
+                            j--;
+                            c2++;
+                        }
+                        res += (long) c1 * c2;
+                    }
+                } else if (sum < target) {
+                    i++;
+                } else {
+                    j--;
+                }
+            }
+        }
+        return (int) (res % MOD);
+    }
 }

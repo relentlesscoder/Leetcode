@@ -10,51 +10,62 @@ import java.util.List;
  */
 public class FourSum {
 
-	// time O(n^3), space O(1)
-	public List<List<Integer>> fourSum(int[] nums, int target) {
-		Arrays.sort(nums);
-		List<List<Integer>> res = new ArrayList<>();
-		int n = nums.length;
-		for (int a = 0; a < n - 3; a++) {
-			long va = nums[a];
-			if (a > 0 && va == nums[a - 1]) {
-				continue;
-			}
-			if (va + nums[a + 1] + nums[a + 2] + nums[a + 3] > target) {
-				break;
-			}
-			if (va + nums[n - 3] + nums[n - 2] + nums[n - 1] < target) {
-				continue;
-			}
-			for (int b = a + 1; b < n - 2; b++) {
-				long vb = nums[b];
-				if (b > a + 1 && vb == nums[b - 1]) {
-					continue;
-				}
-				if (va + vb + nums[b + 1] + nums[b + 2] > target) {
-					break;
-				}
-				if (va + vb + nums[n - 2] + nums[n - 1] < target) {
-					continue;
-				}
-				int c = b + 1;
-				int d = n - 1;
-				while (c < d) {
-					long sum = va + vb + nums[c] + nums[d];
-					if (sum > target) {
-						d--;
-					} else if (sum < target) {
-						c++;
-					} else {
-						res.add(List.of((int) va, (int) vb, nums[c], nums[d]));
-						for (c++; c < d && nums[c] == nums[c - 1]; c++) {
-						}
-						for (d--; c < d && nums[d] == nums[d + 1]; d--) {
-						}
-					}
-				}
-			}
-		}
-		return res;
-	}
+    // time O(n^3), space O(log(n))
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        int n = nums.length;
+        Arrays.sort(nums);
+        for (int i = 0; i < n - 3; i++) {
+            // Optimization 1: deduplicate
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            long a = (long) nums[i];
+            // Optimization 2: Since array is sorted, if the sum of 4 least
+            // numbers is larger than 0 then it's impossible to find a smaller
+            // sum, so we can break early here.
+            if (a + nums[i + 1] + nums[i + 2] + nums[i + 3] > target) {
+                break;
+            }
+            // Optimization 3: Since array is sorted, if the sum of nums[i] and
+            // last three numbers (largest three numbers in array) is smaller than 0
+            // then it's impossible to find a greater sum for current nums[i]. But
+            // it's still possible to find greater sum using a larger nums[i] so
+            // we continue.
+            if (a + nums[n - 3] + nums[n - 2] + nums[n - 1] < target) {
+                continue;
+            }
+            for (int j = i + 1; j < n - 2; j++) {
+                // Deduplicate
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                long b = (long) nums[j];
+                if (a + b + nums[j + 1] + nums[j + 2] > target) {
+                    break;
+                }
+                if (a + b + nums[n - 2] + nums[n - 1] < target) {
+                    continue;
+                }
+                for (int k = j + 1, l = n - 1; k < l; ) {
+                    long sum = a + b + nums[k] + nums[l];
+                    if (sum == target) {
+                        res.add(Arrays.asList(nums[i], nums[j], nums[k++], nums[l--]));
+                        // Optimization 4: deduplicate
+                        while (k < l && nums[k] == nums[k - 1]) {
+                            k++;
+                        }
+                        while (k < l && nums[l] == nums[l + 1]) {
+                            l--;
+                        }
+                    } else if (sum < target) {
+                        k++;
+                    } else {
+                        l--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
 }

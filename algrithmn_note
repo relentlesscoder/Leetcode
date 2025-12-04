@@ -115,7 +115,10 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #LCR180 https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/
 
 02. Two Pointers
+#0011 https://leetcode.com/problems/container-with-most-water/
 #0015 https://leetcode.com/problems/3sum/
+#0016 https://leetcode.com/problems/3sum-closest/
+#0018 https://leetcode.com/problems/4sum/
 #0042 https://leetcode.com/problems/trapping-rain-water/
 #0088 https://leetcode.com/problems/merge-sorted-array/
 #0125 https://leetcode.com/problems/valid-palindrome/
@@ -125,13 +128,17 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
 #0541 https://leetcode.com/problems/reverse-string-ii/
 #0557 https://leetcode.com/problems/reverse-words-in-a-string-iii/
+#0611 https://leetcode.com/problems/valid-triangle-number/
 #0633 https://leetcode.com/problems/sum-of-square-numbers/
 #0658 https://leetcode.com/problems/find-k-closest-elements/
 #0844 https://leetcode.com/problems/backspace-string-compare/
 #0917 https://leetcode.com/problems/reverse-only-letters/
+#0923 https://leetcode.com/problems/3sum-with-multiplicity/
+#0948 https://leetcode.com/problems/bag-of-tokens/
 #0977 https://leetcode.com/problems/squares-of-a-sorted-array/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
 #1471 https://leetcode.com/problems/the-k-strongest-values-in-an-array/
+#1577 https://leetcode.com/problems/number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
 #1750 https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/
@@ -664,6 +671,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
 
 23. Prefix & Suffix
+#0042 https://leetcode.com/problems/trapping-rain-water/
 #0487 https://leetcode.com/problems/max-consecutive-ones-ii/
 #0581 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
 #0768 https://leetcode.com/problems/max-chunks-to-make-sorted-ii/
@@ -820,6 +828,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a ~~~)
 #1128 https://leetcode.com/problems/number-of-equivalent-domino-pairs/
 #1512 https://leetcode.com/problems/number-of-good-pairs/
+#1577 https://leetcode.com/problems/number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers/
 #1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
 #1682 https://leetcode.com/problems/longest-palindromic-subsequence-ii/
 #1807 https://leetcode.com/problems/evaluate-the-bracket-pairs-of-a-string/
