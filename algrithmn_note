@@ -124,6 +124,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0125 https://leetcode.com/problems/valid-palindrome/
 #0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
 #0167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+#0259 https://leetcode.com/problems/3sum-smaller/
 #0344 https://leetcode.com/problems/reverse-string/
 #0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
 #0541 https://leetcode.com/problems/reverse-string-ii/
@@ -138,9 +139,12 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0977 https://leetcode.com/problems/squares-of-a-sorted-array/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
 #1471 https://leetcode.com/problems/the-k-strongest-values-in-an-array/
+#1498 https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/
 #1577 https://leetcode.com/problems/number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers/
+#1616 https://leetcode.com/problems/split-two-strings-to-make-palindrome/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
+#1782
 #1750 https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/

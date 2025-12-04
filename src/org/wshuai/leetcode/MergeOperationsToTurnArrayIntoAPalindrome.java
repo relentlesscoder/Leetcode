@@ -8,16 +8,17 @@ public class MergeOperationsToTurnArrayIntoAPalindrome {
 
     // time O(n), space O(1)
     public int minimumOperations(int[] nums) {
-        int res = 0, n = nums.length, i = 0, j = n - 1, left = nums[0], right = nums[n - 1];
-        while (i < j) {
-            if (left == right) {
-                left = nums[++i];
-                right = nums[--j];
-            } else if (left < right) {
-                left += nums[++i];
+        int res = 0, n = nums.length;
+        long leftSum = nums[0], rightSum = nums[n - 1];
+        for (int i = 0, j = n - 1; i < j; ) {
+            if (leftSum == rightSum) {
+                leftSum = nums[++i];
+                rightSum = nums[--j];
+            } else if (leftSum > rightSum) {
+                rightSum += nums[--j];
                 res++;
             } else {
-                right += nums[--j];
+                leftSum += nums[++i];
                 res++;
             }
         }
