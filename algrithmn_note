@@ -115,6 +115,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #LCR180 https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/
 
 02. Two Pointers
+
 #0011 https://leetcode.com/problems/container-with-most-water/
 #0015 https://leetcode.com/problems/3sum/
 #0016 https://leetcode.com/problems/3sum-closest/
@@ -232,6 +233,12 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3542 https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/ (miao a ~~~)
 #3555 https://leetcode.com/problems/smallest-subarray-to-sort-in-every-sliding-window/ (***)
 
+04 Grid
+
+#0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
+#0695 https://leetcode.com/problems/max-area-of-island/ (DFS, BFS)
+#1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
+
 03. Prefix Sum
 
 #0303 https://leetcode.com/problems/range-sum-query-immutable/
@@ -261,10 +268,6 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
 #3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
 #3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
-
-04. Array Permutation
-
-#0556 https://leetcode.com/problems/next-greater-element-iii/
 
 05. Binary Search
 
@@ -331,8 +334,13 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/ (binary search for min and max)
 
 06. Subsequence
+
 #0392 https://leetcode.com/problems/is-subsequence/
 #2825 https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/
+
+04. Array Permutation
+
+#0556 https://leetcode.com/problems/next-greater-element-iii/
 
 07. Graph
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/

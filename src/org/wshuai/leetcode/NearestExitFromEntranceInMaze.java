@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/25/2023.
@@ -8,31 +9,33 @@ import java.util.LinkedList;
  */
 public class NearestExitFromEntranceInMaze {
 
-	// time O(m * n), space O(m * n)
-	public int nearestExit(char[][] maze, int[] entrance) {
-		int[] dirs = new int[] {0, -1, 0, 1, 0};
-		int steps = 0, m = maze.length, n = maze[0].length;
-		LinkedList<int[]> queue = new LinkedList<>();
-		queue.offer(entrance);
-		maze[entrance[0]][entrance[1]] = '-'; // '-' means visited
-		while (!queue.isEmpty()) {
-			int count = queue.size();
-			while (count-- > 0) {
-				int[] curr = queue.poll();
-				int r = curr[0], c = curr[1];
-				if ((r == 0 || r == m - 1 || c == 0 || c == n - 1) && (r != entrance[0] || c != entrance[1])) { // need to filter out the special case that entrance is on the border
-					return steps;
-				}
-				for (int i = 0; i < 4; i++) {
-					int x = r + dirs[i], y = c + dirs[i + 1];
-					if (x >= 0 && x < m && y >= 0 && y < n && maze[x][y] == '.') {
-						maze[x][y] = '-';
-						queue.offer(new int[] {x, y});
-					}
-				}
-			}
-			steps++;
-		}
-		return -1;
-	}
+    private static final int[] DIRS = new int[]{0, -1, 0, 1, 0};
+
+    // time O(m * n), space O(min(m, n))
+    public int nearestExit(char[][] maze, int[] entrance) {
+        int m = maze.length, n = maze[0].length;
+        int sx = entrance[0], sy = entrance[1];
+        boolean[][] visited = new boolean[m][n];
+        Deque<int[]> queue = new ArrayDeque<>();
+        visited[sx][sy] = true;
+        queue.offer(new int[]{sx, sy, 0});
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size-- > 0) {
+                int[] curr = queue.poll();
+                int step = curr[2];
+                for (int i = 0; i < 4; i++) {
+                    int x = curr[0] + DIRS[i], y = curr[1] + DIRS[i + 1];
+                    if (x >= 0 && x < m && y >= 0 && y < n && maze[x][y] == '.' && !visited[x][y]) {
+                        if (x == 0 || x == m - 1 || y == 0 || y == n - 1) {
+                            return step + 1;
+                        }
+                        visited[x][y] = true;
+                        queue.offer(new int[]{x, y, step + 1});
+                    }
+                }
+            }
+        }
+        return -1;
+    }
 }
