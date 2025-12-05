@@ -130,6 +130,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0360 https://leetcode.com/problems/sort-transformed-array/
 #0541 https://leetcode.com/problems/reverse-string-ii/
 #0557 https://leetcode.com/problems/reverse-words-in-a-string-iii/
+#0581 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
 #0611 https://leetcode.com/problems/valid-triangle-number/
 #0633 https://leetcode.com/problems/sum-of-square-numbers/
 #0658 https://leetcode.com/problems/find-k-closest-elements/
@@ -207,7 +208,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1966 https://leetcode.com/problems/binary-searchable-numbers-in-an-unsorted-array/
 #2030 https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/
 #2104 https://leetcode.com/problems/sum-of-subarray-ranges/ (miao a ~~~) (gong xian fa)
-#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (gong xian fa) (prefix sum of prefix sum)
+#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (*****) (gong xian fa) (prefix sum of prefix sum)
 #2282 https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/ (***)
 #2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/

@@ -13,6 +13,7 @@ public class SmallestSubarrayToSortInEverySlidingWindow {
     public int[] minSubarraySort(int[] nums, int k) {
         int n = nums.length;
         int[] res = new int[n - k + 1];
+        // 对每个滑动窗口复用#0581代码找到最短的无序子数组
         for (int i = k - 1; i < n; i++) {
             res[i - k + 1] = findUnsortedSubarray(nums, i - k + 1, i);
             //res[i - k + 1] = findUnsortedSubarrayMonotonicStack(nums, i - k + 1, i);
