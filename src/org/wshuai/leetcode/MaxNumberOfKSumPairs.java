@@ -6,24 +6,28 @@ import java.util.Map;
 
 /**
  * Created by Wei on 12/24/2020.
- * #1682 https://leetcode.com/problems/longest-palindromic-subsequence-ii/
+ * #1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
  */
 public class MaxNumberOfKSumPairs {
 
-    // time O(n*log(n))
+    // time O(n * log(n)), space O(1)
     public int maxOperations(int[] nums, int k) {
+        int res = 0, n = nums.length;
         Arrays.sort(nums);
-        int res = 0, i = 0, j = nums.length - 1;
-        while(i < j){
-            int sum = nums[i] + nums[j];
-            if(sum == k){
+        for (int i = 0, j = n - 1; i < j; ) {
+            int left = nums[i], right = nums[j], sum = nums[i] + nums[j];
+            if (sum == k) {
                 res++;
                 i++;
                 j--;
-            }else if(sum > k){
-                j--;
-            }else{
-                i++;
+            } else if (sum > k) {
+                while (j > i && nums[j] == right) {
+                    j--;
+                }
+            } else {
+                while (j > i && nums[i] == left) {
+                    i++;
+                }
             }
         }
         return res;
@@ -31,14 +35,14 @@ public class MaxNumberOfKSumPairs {
 
     // time O(n), space O(n)
     public int maxOperationsHashMap(int[] nums, int k) {
-        int res = 0;
+        int res = 0, n = nums.length;
         Map<Integer, Integer> map = new HashMap<>();
-        for(int i = 0; i < nums.length; i++){
-            int diff = k - nums[i], count = map.getOrDefault(diff, 0);
-            if(count > 0){
+        for (int i = 0; i < n; i++) {
+            int count = map.getOrDefault(k - nums[i], 0);
+            if (count > 0) {
+                map.put(k - nums[i], --count);
                 res++;
-                map.put(diff, --count);
-            }else{
+            } else {
                 map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
             }
         }

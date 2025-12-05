@@ -6,18 +6,17 @@ package org.wshuai.leetcode;
  */
 public class RangeSumOfBST {
 
-	// time O(n), space O(n)
-	public int rangeSumBST(TreeNode root, int L, int R) {
+	// time O(n), space O(h)
+	public int rangeSumBST(TreeNode root, int low, int high) {
 		if (root == null) {
 			return 0;
 		}
-		if (root.val >= L && root.val <= R) {
-			return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
-		}
-		if (root.val < L) {
-			return rangeSumBST(root.right, L, R);
+		if (root.val >= low && root.val <= high) {
+			return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high);
+		} else if (root.val < low) {
+			return rangeSumBST(root.right, low, high);
 		} else {
-			return rangeSumBST(root.left, L, R);
+			return rangeSumBST(root.left, low, high);
 		}
 	}
 }

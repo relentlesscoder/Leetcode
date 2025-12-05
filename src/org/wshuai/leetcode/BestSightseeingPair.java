@@ -5,12 +5,13 @@ package org.wshuai.leetcode;
  * #1014 https://leetcode.com/problems/best-sightseeing-pair/
  */
 public class BestSightseeingPair {
-	public int maxScoreSightseeingPair(int[] A) {
-		int res = 0;
-		int curr = 0;
-		for(int a: A){
-			res = Math.max(res, curr + a);
-			curr = Math.max(curr, a) - 1;
+
+	// time O(n), space O(1)
+	public int maxScoreSightseeingPair(int[] values) {
+		int res = Integer.MIN_VALUE, n = values.length, max = values[0];
+		for (int i = 1; i < n; i++) {
+			res = Math.max(res, values[i] - i + max);
+			max = Math.max(max, values[i] + i);
 		}
 		return res;
 	}

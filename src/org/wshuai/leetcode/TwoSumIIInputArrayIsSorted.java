@@ -5,20 +5,20 @@ package org.wshuai.leetcode;
  * #0167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
  */
 public class TwoSumIIInputArrayIsSorted {
-	// time O(n)
-	public int[] twoSum(int[] numbers, int target) {
-		int left = 0, right = numbers.length - 1;
-		while(left < right){
-			int sum = numbers[left] + numbers[right];
-			if(sum == target){
-				return new int[]{left + 1, right + 1};
-			}
-			if(sum < target){
-				left++;
-			}else{
-				right--;
-			}
-		}
-		return new int[0];
-	}
+
+    // time O(n), space O(1)
+    public int[] twoSum(int[] numbers, int target) {
+        int n = numbers.length;
+        for (int i = 0, j = n - 1, sum = 0; i < j; ) {
+            sum = numbers[i] + numbers[j];
+            if (sum == target) {
+                return new int[]{i + 1, j + 1};
+            } else if (sum < target) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+        return new int[0];
+    }
 }

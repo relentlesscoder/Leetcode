@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/06/2023.
@@ -9,47 +9,45 @@ import java.util.Stack;
  */
 public class SumOfTotalStrengthOfWizards {
 
-    private static final int MOD = 1_000_000_007;
+    private static final int MOD = (int)1e9 + 7;
 
     // time O(n), space O(n)
     public int totalStrength(int[] strength) {
+        // Same idea as #0907
         long res = 0;
         int n = strength.length;
-        int[] rightIndex = new int[n], leftIndex = new int[n];
-        Stack<Integer> stack = new Stack<>();
-        // use monotonic stack to define the left and right boundary for all sub-arrays
-        // that has minimum strength
-        Arrays.fill(rightIndex, n);
-        for (int i = 0; i < n; i++) {
-            while (!stack.isEmpty() && strength[stack.peek()] >= strength[i]) {
-                rightIndex[stack.pop()] = i;
+        // For each index i, find left and right boundary for subarrays
+        // that can have strength[i] as the minimum
+        int[] right = new int[n], left = new int[n];
+        Deque<Integer> stack = new ArrayDeque<>();
+        stack.push(-1);
+        for (int r = 0; r <= n; r++) {
+            int val = r == n ? 0 : strength[r];
+            while (stack.size() > 1 && strength[stack.peek()] >= val) {
+                int c = stack.pop();
+                int l = stack.peek();
+                right[c] = r;
+                left[c] = l;
             }
-            stack.add(i);
+            stack.push(r);
         }
-        stack.clear();
-        Arrays.fill(leftIndex, -1);
-        for (int i = n - 1; i >= 0; i--) {
-            while (!stack.isEmpty() && strength[stack.peek()] > strength[i]) {
-                leftIndex[stack.pop()] = i;
-            }
-            stack.add(i);
-        }
-        // record the prefix sum of the prefix sum of the input array
-        long[] prefixSum = new long[n + 2];
-        for (int i = 0; i < n; i++) {
-            prefixSum[i + 2] = (prefixSum[i + 1] + strength[i]) % MOD;
-        }
+        // Calculate the prefix sum of prefix sum
+        long sum = 0; // Prefix sum
+        int[] prefixSum = new int[n + 2]; // Prefix sum of prefix sum
         for (int i = 1; i <= n; i++) {
-            prefixSum[i + 1] = (prefixSum[i + 1] + prefixSum[i]) % MOD;
+            sum += strength[i - 1];
+            prefixSum[i + 1] = (int) ((prefixSum[i] + sum) % MOD);
         }
         for (int i = 0; i < n; i++) {
-            // https://leetcode.com/problems/sum-of-total-strength-of-wizards/editorial/
-            int leftBound = leftIndex[i], rightBound = rightIndex[i];
-            int leftCount = i - leftBound, rightCount = rightBound - i;
-            long negativeSum = (prefixSum[i + 1] - prefixSum[i - leftCount + 1]) % MOD,
-                    positiveSum = (prefixSum[i + rightCount + 1] - prefixSum[i + 1]) % MOD;
-            res = (res + (positiveSum * leftCount - negativeSum * rightCount) % MOD * strength[i] % MOD) % MOD;
+            // Now valid subarrays in inclusive range [l, r]
+            // and must contain index i
+            int l = left[i] + 1;
+            int r = right[i] - 1;
+            // https://leetcode.cn/problems/sum-of-total-strength-of-wizards/solutions/1510399/dan-diao-zhan-qian-zhui-he-de-qian-zhui-d9nki/
+            long tot = ((long) (i - l + 1) * (prefixSum[r + 2] - prefixSum[i + 1])
+                    - (long) (r - i + 1) * (prefixSum[i + 1] - prefixSum[l])) % MOD;
+            res = (res + strength[i] * tot % MOD) % MOD;
         }
-        return (int)(res + MOD) % MOD;
+        return (int) ((res + MOD) % MOD); // res could be negative
     }
 }

@@ -6,12 +6,11 @@ package org.wshuai.leetcode;
  */
 public class ValidPalindromeII {
 
-	// time O(n), space O(1)
+    // time O(n), space O(1)
 	public boolean validPalindrome(String s) {
-		int n = s.length();
-		for (int i = 0, j = n - 1; i <= j; i++, j--) {
+		for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
 			if (s.charAt(i) != s.charAt(j)) {
-				return isPalindrome(s, i, j - 1) || isPalindrome(s, i + 1, j);
+				return isPalindrome(s, i + 1, j) || isPalindrome(s, i, j - 1);
 			}
 		}
 		return true;

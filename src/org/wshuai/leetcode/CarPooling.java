@@ -9,24 +9,37 @@ import java.util.TreeMap;
  */
 public class CarPooling {
 
-	// time O(n*log(n)), space O(n)
-	public boolean carPoolingHashMap(int[][] trips, int capacity) {
-		Map<Integer, Integer> map = new TreeMap<>();
-		for (int[] t : trips) {
-			// record the delta of passengers at each time point
-			map.put(t[1], map.getOrDefault(t[1], 0) + t[0]);
-			map.put(t[2], map.getOrDefault(t[2], 0) - t[0]);
-		}
-		int cur = 0;
-		for(int key : map.keySet()){
-			// from the perspective of capacity,
-			// picking up passengers decreases capacity
-			// dropping passengers increases capacity
-			cur += map.get(key);
-			if(capacity < cur){
-				return false;
-			}
-		}
-		return true;
-	}
+    // time O(n + MAX), space O(MAX)
+    public boolean carPooling(int[][] trips, int capacity) {
+        int[] counts = new int[1_001];
+        for (int[] t : trips) {
+            counts[t[1]] += t[0];
+            counts[t[2]] -= t[0];
+        }
+        int current = 0;
+        for (int i = 0; i < counts.length; i++) {
+            current += counts[i];
+            if (current > capacity) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // time O(n * log(n)), space O(n)
+    public boolean carPoolingTreeMap(int[][] trips, int capacity) {
+        Map<Integer, Integer> counts = new TreeMap<>();
+        for (int[] t : trips) {
+            counts.merge(t[1], t[0], Integer::sum);
+            counts.merge(t[2], -t[0], Integer::sum);
+        }
+        int current = 0;
+        for (int key : counts.keySet()) {
+            current += counts.get(key);
+            if (current > capacity) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

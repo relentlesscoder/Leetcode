@@ -9,36 +9,22 @@ import java.util.Map;
  */
 public class MaxSumOfAPairWithEqualSumOfDigits {
 
-	// time O(n + d), space O(d)
+	// time O(n * log(MAX)), space O(n)
 	public int maximumSum(int[] nums) {
-		int res = -1;
-		Map<Integer, int[]> map = new HashMap<>();
-		for (int num : nums) {
-			int digitSum = getDigitSum(num);
-			map.computeIfAbsent(digitSum, v -> new int[]{-1, -1});
-			int[] vals = map.get(digitSum);
-			if (num > vals[0]) {
-				vals[1] = vals[0];
-				vals[0] = num;
-			} else if (num > vals[1]) {
-				vals[1] = num;
+		int res = -1, n = nums.length;
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < n; i++) {
+			// Calculate the digit sum for nums[i]
+			int val = nums[i], sum = 0;
+			while (val > 0) {
+				sum += val % 10;
+				val /= 10;
 			}
-		}
-		for (int key : map.keySet()) {
-			int[] vals = map.get(key);
-			if (vals[0] == -1 || vals[1] == -1) {
-				continue;
+			if (map.containsKey(sum)) {
+				res = Math.max(res, nums[i] + map.get(sum));
 			}
-			res = Math.max(res, vals[0] + vals[1]);
-		}
-		return res;
-	}
-
-	private int getDigitSum(int num) {
-		int res = 0;
-		while (num > 0) {
-			res += num % 10;
-			num /= 10;
+			// Update map[sum] to record the maximum value with digit sum = sum
+			map.put(sum, Math.max(map.getOrDefault(sum, -1), nums[i]));
 		}
 		return res;
 	}

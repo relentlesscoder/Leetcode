@@ -11,15 +11,14 @@ public class SubarraySumEqualsK {
 
 	// time O(n), space O(n)
 	public int subarraySum(int[] nums, int k) {
-		int res = 0, n = nums.length, sum = 0;
-		Map<Integer, Integer> prefix = new HashMap<>();
-		prefix.put(0, 1);
-		for(int i = 0; i < n; i++){
+		int res = 0, sum = 0;
+		Map<Integer, Integer> prefixSum = new HashMap<>();
+		prefixSum.put(0, 1);
+		for (int i = 0; i < nums.length; i++) {
 			sum += nums[i];
-			res += prefix.getOrDefault(sum - k, 0);
-			prefix.put(sum, prefix.getOrDefault(sum, 0) + 1);
+			res += prefixSum.getOrDefault(sum - k, 0);
+			prefixSum.put(sum, prefixSum.getOrDefault(sum, 0) + 1);
 		}
 		return res;
 	}
-
 }

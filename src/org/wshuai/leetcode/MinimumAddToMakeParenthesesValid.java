@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/11/2019.
@@ -8,33 +9,36 @@ import java.util.Stack;
  */
 public class MinimumAddToMakeParenthesesValid {
 
-	// time O(n), space O(1)
-	public int minAddToMakeValid(String s) {
-		int left = 0, right = 0; // left and right to denote opening "(" and ")"
-		for (int i = 0; i < s.length(); i++) {
-			if (s.charAt(i) == ')') {
-				if (left == 0) {
-					right++; // can't close current ")"
-				} else {
-					left--; // we have an opening "(" to close current ")"
-				}
-			} else {
-				left++; // opening "(" seen
-			}
-		}
-		return left + right; // add "(" and ")" that are still opening
-	}
+    // time O(n), space O(1)
+    public int minAddToMakeValid(String s) {
+        int n = s.length(), open = 0, close = 0;
+        for (int i = 0; i < n; i++) {
+            char b = s.charAt(i);
+            if (b == ')') {
+                if (open > 0) {
+                    open--; // Use an opening '(' to close current ')'
+                } else {
+                    close++; // Can't close current ')'
+                }
+            } else {
+                open++; // Opening '(' is seen
+            }
+        }
+        return open + close; // add "(" and ")" that are still opening
+    }
 
-	// time O(n), space O(n)
-	public int minAddToMakeValidStack(String S) {
-		Stack<Character> stack = new Stack<>();
-		for(char c : S.toCharArray()){
-			if(c == ')' && !stack.isEmpty() && stack.peek() == '('){
-				stack.pop();
-			}else{
-				stack.push(c);
-			}
-		}
-		return stack.size();
-	}
+    // time O(n), space O(n)
+    public int minAddToMakeValidStack(String s) {
+        int n = s.length();
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            char b = s.charAt(i);
+            if (b == ')' && !stack.isEmpty() && s.charAt(stack.peek()) == '(') {
+                stack.pop();
+            } else {
+                stack.push(i);
+            }
+        }
+        return stack.size();
+    }
 }

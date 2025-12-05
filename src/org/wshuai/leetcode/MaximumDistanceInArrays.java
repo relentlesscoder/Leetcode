@@ -7,15 +7,18 @@ import java.util.List;
  * #0624 https://leetcode.com/problems/maximum-distance-in-arrays/
  */
 public class MaximumDistanceInArrays {
-	// time O(n)
+
+	// time O(n), space O(1)
 	public int maxDistance(List<List<Integer>> arrays) {
-		List<Integer> cur = arrays.get(0);
-		int res = Integer.MIN_VALUE, max = cur.get(cur.size() - 1), min = cur.get(0);
-		for(int i = 1; i < arrays.size(); i++){
-			cur = arrays.get(i);
-			int curMax = cur.get(cur.size() - 1), curMin = cur.get(0);
-			res = Math.max(res, Math.abs(curMin - max));
-			res = Math.max(res, Math.abs(curMax - min));
+		int res = Integer.MIN_VALUE;
+		int max = arrays.get(0).get(arrays.get(0).size() - 1);
+		int min = arrays.get(0).get(0);
+		for (int i = 1; i < arrays.size(); i++) {
+			List<Integer> nums = arrays.get(i);
+			int curMin = nums.get(0);
+			int curMax = nums.get(nums.size() - 1);
+			res = Math.max(res, max - curMin);
+			res = Math.max(res, curMax - min);
 			max = Math.max(max, curMax);
 			min = Math.min(min, curMin);
 		}

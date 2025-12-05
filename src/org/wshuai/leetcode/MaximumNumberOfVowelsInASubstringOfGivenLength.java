@@ -6,24 +6,28 @@ package org.wshuai.leetcode;
  */
 public class MaximumNumberOfVowelsInASubstringOfGivenLength {
 
-	// time O(n)
-	public int maxVowels(String s, int k) {
-		int max = 0, cur = 0;
-		for(int i = 0, j = 0; j < s.length(); j++){
-			while(j - i + 1 > k){
-				if(isVowel(s.charAt(i++))){
-					cur--;
-				}
-			}
-			cur += isVowel(s.charAt(j)) ? 1 : 0;
-			if(j - i + 1 == k){
-				max = Math.max(max, cur);
-			}
-		}
-		return max;
-	}
+    // time O(n), space O(1)
+    public int maxVowels(String s, int k) {
+        int res = 0, n = s.length(), count = 0;
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                count++;
+            }
 
-	private boolean isVowel(char c){
-		return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
-	}
+            if (i - k + 1 < 0) {
+                continue;
+            }
+            res = Math.max(res, count);
+            if (res == k) {
+                break;
+            }
+
+            c = s.charAt(i - k + 1);
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                count--;
+            }
+        }
+        return res;
+    }
 }

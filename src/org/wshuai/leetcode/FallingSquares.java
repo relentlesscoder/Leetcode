@@ -7,71 +7,100 @@ import java.util.*;
  * #0699 https://leetcode.com/problems/falling-squares/
  */
 public class FallingSquares {
-	private int[] tree;
-	private int n;
 
-	// time O(n*log(n)), space O(n)
-	public List<Integer> fallingSquares(int[][] positions) {
-		Integer[] res = new Integer[positions.length];
-		TreeSet<Integer> set = new TreeSet<>();
-		for(int[] pos : positions){
-			set.add(pos[0]);
-			// -1 for the right side
-			set.add(pos[0] + pos[1] - 1);
-		}
-		Map<Integer, Integer> map = new HashMap<>();
-		int j = 0;
-		for(int s : set){
-			map.put(s, j++);
-		}
-		n = map.size();
-		int x = (int)Math.ceil(Math.log(n)/Math.log(2));
-		int size = 2 * (int)Math.pow(2, x) - 1;
-		tree = new int[size];
+    // time O(n * log(MAX)), space O(n * log(MAX))
+    public List<Integer> fallingSquares(int[][] positions) {
+        List<Integer> res = new ArrayList<>();
+        SegmentTree st = new SegmentTree();
+        for (int[] p : positions) {
+            int height = st.query(p[0], p[0] + p[1] - 1);
+            st.update(p[0], p[0] + p[1] - 1, height + p[1]);
+            res.add(st.getMax());
+        }
+        return res;
+    }
 
-		int i = 0;
-		int curMax = 0;
-		for(int[] pos : positions){
-			int left = map.get(pos[0]);
-			int right = map.get(pos[0] + pos[1] - 1);
-			int maxHeight = query(left, right) + pos[1];
-			update(left, right, maxHeight);
-			curMax = Math.max(curMax, maxHeight);
-			res[i++] = curMax;
-		}
-		return Arrays.asList(res);
-	}
+    private class SegmentTree {
 
-	private int query(int left, int right){
-		return queryUtil(0, n - 1, left, right, 0);
-	}
+        private static final int MAX = (int) 1e8 + 1;
+        private final Node root;
 
-	private int queryUtil(int start, int end, int left, int right, int index){
-		if(left > end || right < start){
-			return 0;
-		}
-		if(start >= left && end <= right){
-			return tree[index];
-		}
-		int mid = start + (end - start) / 2;
-		int leftMax = queryUtil(start, mid, left, right, 2 * index + 1);
-		int rightMax = queryUtil(mid + 1, end, left, right, 2 * index + 2);
-		return Math.max(leftMax, rightMax);
-	}
+        public SegmentTree() {
+            root = new Node();
+        }
 
-	private void update(int left, int right, int val){
-		updateUtil(0, n - 1, left, right, 0, val);
-	}
+        public int getMax() {
+            return root.val;
+        }
 
-	private void updateUtil(int start, int end, int left, int right, int index, int val){
-		if(start > end || start > right || end < left){
-			return;
-		}
-		tree[index] = Math.max(tree[index], val);
-		if(start != end){
-			int mid = start + (end - start) / 2;
-			updateUtil(start, mid, left, right, 2 * index + 1, val);
-			updateUtil(mid + 1, end, left, right, 2 * index + 2, val);
-		}
-	}
+        public int query(int start, int end) {
+            return query(root, 1, MAX, start, end);
+        }
+
+        public void update(int start, int end, int val) {
+            update(root, 1, MAX, start, end, val);
+        }
+
+        private int query(Node node, int left, int right, int start, int end) {
+            if (left >= start && right <= end) {
+                return node.val;
+            }
+            spread(node);
+            int mid = left + (right - left) / 2;
+            if (end <= mid) {
+                return query(node.left, left, mid, start, end);
+            }
+            if (start > mid) {
+                return query(node.right, mid + 1, right, start, end);
+            }
+            int lr = query(node.left, left, mid, start, end);
+            int rr = query(node.right, mid + 1, right, start, end);
+            return Math.max(lr, rr);
+        }
+
+        private void update(Node node, int left, int right, int start, int end, int val) {
+            if (left >= start && right <= end) {
+                node.val = val;
+                node.mark = val;
+                return;
+            }
+            spread(node);
+            int mid = left + (right - left) / 2;
+            if (start <= mid) {
+                update(node.left, left, mid, start, end, val);
+            }
+            if (end > mid) {
+                update(node.right, mid + 1, right, start, end, val);
+            }
+            maintain(node);
+        }
+
+        private void spread(Node node) {
+            if (node.left == null) {
+                node.left = new Node();
+            }
+            if (node.right == null) {
+                node.right = new Node();
+            }
+            if (node.mark == 0) {
+                return;
+            }
+            node.left.val = node.val;
+            node.right.val = node.val;
+            node.left.mark = node.mark;
+            node.right.mark = node.mark;
+            node.mark = 0;
+        }
+
+        private void maintain(Node node) {
+            node.val = Math.max(node.left.val, node.right.val);
+        }
+
+        private class Node {
+            Node left;
+            Node right;
+            int val;
+            int mark;
+        }
+    }
 }

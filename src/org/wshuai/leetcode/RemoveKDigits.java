@@ -1,48 +1,37 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
-
 /**
  * Created by Wei on 09/13/2019.
  * #0402 https://leetcode.com/problems/remove-k-digits/
  */
 public class RemoveKDigits {
-	// time O(n)
-	// https://leetcode.com/problems/remove-k-digits/discuss/88708/Straightforward-Java-Solution-Using-Stack
+
+    // time O(n), space O(n)
 	public String removeKdigits(String num, int k) {
-		int len = num.length();
-		// corner case
-		if (k == len)
+		if (k >= num.length()) {
 			return "0";
-
-		Stack<Character> stack = new Stack<>();
-		int i = 0;
-		while (i < num.length()) {
-			// whenever meet a digit which is less than the previous digit, discard the previous one
-			while (k > 0 && !stack.isEmpty() && stack.peek() > num.charAt(i)) {
-				stack.pop();
-				k--;
+		}
+		int n = num.length();
+		char[] digits = num.toCharArray();
+		StringBuilder stack = new StringBuilder(); // Use StringBuilder as Monotonic stack
+		for (int i = 0; i < n; i++) {
+			// we can delete from the stack since we have enough characters
+			// in [i, n - 1] to refill
+			// n - i > k - SL
+			// n - i + SL > k
+			while (!stack.isEmpty() && stack.charAt(stack.length() - 1) > digits[i]
+					&& stack.length() + k > i) {
+				stack.deleteCharAt(stack.length() - 1);
 			}
-			stack.push(num.charAt(i));
-			i++;
+			// If we have enough digits already, skip the rest
+			// e.g. num [1,1,2], k = 1
+			if (stack.length() + k < n) {
+				stack.append(digits[i]);
+			}
 		}
-
-		// corner case like "1111"
-		while (k-- > 0) {
-			stack.pop();
-		}
-
-		// construct the number from the stack
-		StringBuilder sb = new StringBuilder();
-		while (!stack.isEmpty()) {
-			sb.append(stack.pop());
-		}
-		sb.reverse();
-
-		//remove all the 0 at the head
-		while (sb.length() > 1 && sb.charAt(0) == '0'){
-			sb.deleteCharAt(0);
-		}
-		return sb.toString();
+		// Remove all leading 0s
+		int j = 0;
+		for (; j < stack.length() - 1 && stack.charAt(j) == '0'; j++) {}
+		return stack.substring(j);
 	}
 }

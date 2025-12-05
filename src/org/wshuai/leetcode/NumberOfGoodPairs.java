@@ -6,16 +6,13 @@ package org.wshuai.leetcode;
  */
 public class NumberOfGoodPairs {
 
+	// time O(n), space O(MAX)
 	public int numIdenticalPairs(int[] nums) {
 		int res = 0;
 		int[] count = new int[101];
 		for(int num : nums){
+			res += count[num];
 			count[num]++;
-		}
-		for(int c : count){
-			while(--c > 0){
-				res += c;
-			}
 		}
 		return res;
 	}

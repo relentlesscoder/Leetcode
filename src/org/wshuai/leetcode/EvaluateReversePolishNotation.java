@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 08/26/2016.
@@ -10,26 +11,22 @@ public class EvaluateReversePolishNotation {
 
 	// time O(n), space O(n)
 	public int evalRPN(String[] tokens) {
-		Stack<Integer> stack = new Stack<>();
-		for(String t : tokens){
-			if(Character.isDigit(t.charAt(t.length() - 1))){
-				stack.push(Integer.parseInt(t));
-			}else{
-				int b = stack.pop(), a = stack.pop();
-				stack.push(eval(a, b, t.charAt(0)));
+		Deque<Integer> stack = new ArrayDeque<>();
+		for (String token : tokens) {
+			if (token.equals("+")) {
+				stack.push(stack.pop() + stack.pop());
+			} else if (token.equals("-")) {
+				int val = stack.pop();
+				stack.push(stack.pop() - val);
+			} else if (token.equals("*")) {
+				stack.push(stack.pop() * stack.pop());
+			} else if (token.equals("/")) {
+				int val = stack.pop();
+				stack.push(stack.pop() / val);
+			} else {
+				stack.push(Integer.parseInt(token));
 			}
 		}
-		return stack.peek();
-	}
-
-	private int eval(int a, int b, char op){
-		if(op == '-'){
-			return a - b;
-		}else if(op == '*'){
-			return a * b;
-		}else if(op == '/'){
-			return a / b;
-		}
-		return a + b;
+		return stack.pop();
 	}
 }

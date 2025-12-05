@@ -1,48 +1,73 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * Created by Wei on 09/04/2019.
  * #0716 https://leetcode.com/problems/max-stack/
  */
 public class MaxStack {
-	private Stack<Integer> nums, maxs;
 
-	/** initialize your data structure here. */
-	public MaxStack() {
-		nums = new Stack<>();
-		maxs = new Stack<>();
-	}
+	// time O(n * log(n)), space O(n)
+    private static class MaxStackImpl {
 
-	public void push(int x) {
-		nums.push(x);
-		maxs.push(maxs.isEmpty() ? x : Math.max(maxs.peek(), x));
-	}
+        private Deque<int[]> stack;
+        private PriorityQueue<int[]> queue;
+        private Set<Integer> removed;
+        private int id;
 
-	public int pop() {
-		maxs.pop();
-		return nums.pop();
-	}
+        public MaxStackImpl() {
+            id = 0;
+            stack = new ArrayDeque<>();
+            queue = new PriorityQueue<>((a, b) -> a[0] == b[0] ? b[1] - a[1] : b[0] - a[0]);
+            removed = new HashSet<>();
+        }
 
-	public int top() {
-		return nums.peek();
-	}
+		// O(log(n))
+        public void push(int x) {
+            stack.push(new int[]{x, id});
+            queue.offer(new int[]{x, id});
+            id++;
+        }
 
-	public int peekMax() {
-		return maxs.peek();
-	}
+		// O(1)
+        public int pop() {
+            while (removed.contains(stack.peek()[1])) { // Lazy propagation
+                stack.pop();
+            }
+            int[] top = stack.pop();
+            removed.add(top[1]);
+            return top[0];
+        }
 
-	public int popMax() {
-		Stack<Integer> temp = new Stack<>();
-		int max = maxs.peek();
-		while(top() != max){
-			temp.push(pop());
-		}
-		pop();
-		while(!temp.isEmpty()){
-			push(temp.pop());
-		}
-		return max;
-	}
+		// O(1)
+        public int top() {
+            while (removed.contains(stack.peek()[1])) { // Lazy propagation
+                stack.pop();
+            }
+            return stack.peek()[0];
+        }
+
+		// O(log(n))
+        public int peekMax() {
+            while (removed.contains(queue.peek()[1])) { // Lazy propagation
+                queue.poll();
+            }
+            return queue.peek()[0];
+        }
+
+		// O(log(n))
+        public int popMax() {
+            while (removed.contains(queue.peek()[1])) { // Lazy propagation
+                queue.poll();
+            }
+            int[] top = queue.poll();
+            removed.add(top[1]);
+            return top[0];
+        }
+    }
 }

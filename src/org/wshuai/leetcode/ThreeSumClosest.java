@@ -7,33 +7,58 @@ import java.util.Arrays;
  * #0016 https://leetcode.com/problems/3sum-closest/
  */
 public class ThreeSumClosest {
-	// time O(n^2)
-	public int threeSumClosest(int[] nums, int target) {
-		if(nums == null || nums.length < 3){
-			return -1;
-		}
-		Arrays.sort(nums);
-		int n = nums.length, res = 0, diff = Integer.MAX_VALUE;
-		for(int i = 0; i < n - 2; i++){
-			int j = i + 1, k = n - 1;
-			while(j < k){
-				int sum = nums[i] + nums[j] + nums[k];
-				if(sum == target){
-					return target;
-				}else{
-					int cur = Math.abs(sum - target);
-					if(cur < diff){
-						diff = cur;
-						res = sum;
-					}
-					if(sum > target){
-						k--;
-					}else{
-						j++;
-					}
-				}
-			}
-		}
-		return res;
-	}
+
+    // time O(n^2), space O(log(n))
+    public int threeSumClosest(int[] nums, int target) {
+        int res = 0, n = nums.length, diff = (int) 1e6;
+        Arrays.sort(nums);
+        for (int k = 0; k < n - 2; k++) {
+            // Optimization 1: deduplicate
+            if (k > 0 && nums[k] == nums[k - 1]) {
+                continue;
+            }
+            // Optimization 2: since array is sorted, if the sum of 3 least
+            // numbers is larger than 0 then it's impossible to find a smaller
+            // sum, so we can break early here.
+            int s = nums[k] + nums[k + 1] + nums[k + 2];
+            if (s > target) {
+                if (s - target < diff) {
+                    res = s;
+                }
+                break;
+            }
+            // Optimization 3: since array is sorted, if the sum of nums[i] and
+            // last two numbers (largest two numbers in array) is smaller than 0
+            // then it's impossible to find a greater sum for current nums[i]. But
+            // it's still possible to find greater sum using a larger nums[i] so
+            // we continue.
+            s = nums[k] + nums[n - 2] + nums[n - 1];
+            if (s < target) {
+                if (target - s < diff) {
+                    diff = target - s;
+                    res = s;
+                }
+                continue;
+            }
+            for (int i = k + 1, j = n - 1; i < j; ) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == target) {
+                    return sum;
+                }
+                int d = 0;
+                if (sum > target) {
+                    d = sum - target;
+                    j--;
+                } else if (sum < target) {
+                    d = target - sum;
+                    i++;
+                }
+                if (d < diff) {
+                    diff = d;
+                    res = sum;
+                }
+            }
+        }
+        return res;
+    }
 }

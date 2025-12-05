@@ -9,18 +9,18 @@ import java.util.List;
  */
 public class CountPairsWhoseSumIsLessThanTarget {
 
-	// time O(n), space O(1)
-	public int countPairs(List<Integer> nums, int target) {
-		Collections.sort(nums);
-		int res = 0, left = 0, right = nums.size() - 1;
-		while (left < right) {
-			if (nums.get(left) + nums.get(right) < target) {
-				res += (right - left);
-				left++;
-			} else {
-				right--;
-			}
-		}
-		return res;
-	}
+    // time O(n * log(n)), space O(1)
+    public int countPairs(List<Integer> nums, int target) {
+        int res = 0, n = nums.size();
+        Collections.sort(nums);
+        for (int i = 0, j = n - 1; i < j; ) {
+            if (nums.get(i) + nums.get(j) < target) {
+                res += j - i;
+                i++;
+            } else {
+                j--;
+            }
+        }
+        return res;
+    }
 }

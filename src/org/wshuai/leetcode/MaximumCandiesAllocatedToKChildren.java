@@ -13,7 +13,7 @@ public class MaximumCandiesAllocatedToKChildren {
 			high = Math.max(high, candy);
 		}
 		while (low < high) {
-			int mid = (low + high + 1) >> 1; // mid = (left + right) / 2 to find first element valid, mid = (left + right + 1) / 2to find last element valid
+			int mid = (low + high + 1) >> 1; // mid = (left + right) / 2 to find first element valid, mid = (left + right + 1) / 2 to find last element valid
 			if (canDistribute(candies, k, mid)) {
 				low = mid;
 			} else {

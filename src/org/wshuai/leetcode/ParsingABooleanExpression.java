@@ -1,48 +1,48 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 12/10/2019.
  * #1106 https://leetcode.com/problems/parsing-a-boolean-expression/
  */
 public class ParsingABooleanExpression {
-	public boolean parseBoolExpr(String expression) {
-		Stack<Character> stack = new Stack<>();
-		char[] arr = expression.toCharArray();
-		for(int i = 0; i < arr.length; i++){
-			char cur = arr[i];
-			if(isOperator(cur) || cur == 't' || cur == 'f'){
-				stack.push(cur);
-			}else if(cur == ')'){
-				int[] vals = new int[2];
-				while(!isOperator(stack.peek())){
-					char v = stack.pop();
-					if(v == 't'){
-						vals[0]++;
-					}else{
-						vals[1]++;
-					}
-				}
-				char opr = stack.pop();
-				char res = evaluateExp(opr, vals);
-				stack.push(res);
-			}
-		}
-		return stack.peek() == 't' ? true : false;
-	}
 
-	private char evaluateExp(char opr, int[] vals){
-		if(opr == '|'){
-			return vals[0] > 0 ? 't' : 'f';
-		}
-		if(opr == '!'){
-			return vals[1] > 0 ? 't' : 'f';
-		}
-		return vals[1] > 0 ? 'f' : 't';
-	}
+    // time O(n), space O(n)
+    public boolean parseBoolExpr(String expression) {
+        Deque<Character> stack = new ArrayDeque<>();
+        char[] expr = expression.toCharArray();
+        for (char c : expr) {
+            if (isOperator(c) || c == 't' || c == 'f') {
+                stack.push(c);
+            } else if (c == ')') {
+                int[] bools = new int[2];
+                while (!stack.isEmpty() && !isOperator(stack.peek())) {
+                    if (stack.pop() == 't') {
+                        bools[0]++;
+                    } else {
+                        bools[1]++;
+                    }
+                }
+                char opr = stack.pop();
+                char res = evaluate(opr, bools);
+                stack.push(res);
+            }
+        }
+        return stack.peek() == 't';
+    }
 
-	private boolean isOperator(char cur){
-		return cur == '!' || cur == '&' || cur == '|';
-	}
+    private char evaluate(char opr, int[] bools) {
+        if (opr == '!') {
+            return bools[0] > 0 ? 'f' : 't';
+        } else if (opr == '&') {
+            return bools[1] > 0 ? 'f' : 't';
+        }
+        return bools[0] > 0 ? 't' : 'f';
+    }
+
+    private boolean isOperator(char c) {
+        return c == '&' || c == '|' || c == '!';
+    }
 }

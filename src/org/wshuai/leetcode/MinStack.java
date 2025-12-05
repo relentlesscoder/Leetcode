@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 10/26/2016.
@@ -8,34 +9,35 @@ import java.util.Stack;
  */
 public class MinStack {
 
-	private Stack<Integer> data;
+    // time O(n), space O(n)
+    private static class MinStackImpl {
 
-	private Stack<Integer> mins;
+        private Deque<int[]> stack;
 
-	/** initialize your data structure here. */
-	public MinStack() {
-		data = new Stack<>();
-		mins = new Stack<>();
-	}
+        public MinStackImpl() {
+            stack = new ArrayDeque<>();
+        }
 
-	public void push(int x) {
-		data.push(x);
-		mins.push(Math.min(mins.isEmpty() ?
-			Integer.MAX_VALUE : mins.peek(), x));
-	}
+        public void push(int val) {
+            if (stack.isEmpty()) {
+                stack.push(new int[]{val, val});
+            } else {
+                stack.push(new int[]{val, Math.min(stack.peek()[1], val)});
+            }
+        }
 
-	public void pop() {
-		data.pop();
-		mins.pop();
-	}
+        public void pop() {
+            stack.pop();
+        }
 
-	public int top() {
-		return data.peek();
-	}
+        public int top() {
+            return stack.peek()[0];
+        }
 
-	public int getMin() {
-		return mins.peek();
-	}
+        public int getMin() {
+            return stack.peek()[1];
+        }
+    }
 }
 
 /**

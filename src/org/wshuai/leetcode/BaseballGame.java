@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 08/22/2019.
@@ -8,26 +9,29 @@ import java.util.Stack;
  */
 public class BaseballGame {
 
-	// time O(n), space O(n)
-	public int calPoints(String[] ops) {
-		int res = 0;
-		Stack<Integer> stack = new Stack<>();
-		for(String op : ops){
-			if(op.equals("+")){
-				int last = stack.pop(), cur = last + stack.peek();
-				stack.push(last);
-				stack.push(cur);
-			}else if(op.equals("D")){
-				stack.push(2 * stack.peek());
-			}else if(op.equals("C")){
-				stack.pop();
-			}else{
-				stack.push(Integer.parseInt(op));
-			}
-		}
-		for(int score : stack){
-			res += score;
-		}
-		return res;
-	}
+    // time O(n), space O(n)
+    public int calPoints(String[] operations) {
+        int sum = 0, val = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (String op : operations) {
+            if (op.equals("+")) {
+                int top = stack.pop();
+                val = top + stack.peek();
+                stack.push(top);
+                stack.push(val);
+                sum += val;
+            } else if (op.equals("D")) {
+                val = stack.peek() * 2;
+                stack.push(val);
+                sum += val;
+            } else if (op.equals("C")) {
+                sum -= stack.pop();
+            } else {
+                val = Integer.parseInt(op);
+                stack.push(val);
+                sum += val;
+            }
+        }
+        return sum;
+    }
 }

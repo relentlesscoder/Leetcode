@@ -9,17 +9,37 @@ import java.util.Set;
  */
 public class CheckIfAStringContainsAllBinaryCodesOfSizeK {
 
-	// time O(n)
-	public boolean hasAllCodes(String s, int k) {
-		int n = s.length(), v = 0, m = (1 << k) - 1;
-		Set<Integer> set = new HashSet<>();
-		for(int i = 0; i < n; i++){
-			v = (v << 1) + (s.charAt(i) - '0');
-			v &= m;
-			if(i >= k - 1){
-				set.add(v);
-			}
-		}
-		return set.size() == (1 << k);
-	}
+    // time O(n), space O(2^k)
+    public boolean hasAllCodesOptimized(String s, int k) {
+        int n = s.length(), upper = (1 << k), val = 0, mask = upper - 1, count = upper;
+        int[] map = new int[upper];
+        for (int i = 0; i < n; i++) {
+            val = (mask & (val << 1)) + s.charAt(i) - '0';
+            if (i - k + 1 < 0) {
+                continue;
+            }
+            if (val >= 0 && val <= upper) {
+                if (map[val]++ == 0) {
+                    count--;
+                }
+            }
+        }
+        return count == 0;
+    }
+
+    // time O(n), space O(2^k)
+    public boolean hasAllCodesHashSet(String s, int k) {
+        int n = s.length(), upper = (1 << k), val = 0, mask = upper - 1;
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            val = (mask & (val << 1)) + s.charAt(i) - '0';
+            if (i - k + 1 < 0) {
+                continue;
+            }
+            if (val >= 0 && val <= upper) {
+                set.add(val);
+            }
+        }
+        return set.size() == upper;
+    }
 }

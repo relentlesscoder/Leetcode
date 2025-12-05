@@ -5,37 +5,38 @@ package org.wshuai.leetcode;
  * #0644 https://leetcode.com/problems/maximum-average-subarray-ii/
  */
 public class MaximumAverageSubarrayII {
-	// time O(n*log(n))
-	// https://leetcode.com/problems/maximum-average-subarray-ii/discuss/105477/C%2B%2B-Clean-binary-search-solution-with-explanation
+
+    // time O(n * log(n)), space O(1)
 	public double findMaxAverage(int[] nums, int k) {
-		double max = -Double.MAX_VALUE, min = Double.MAX_VALUE, mid;
-		for(int num : nums){
+		double max = -Double.MAX_VALUE, min = Double.MAX_VALUE, mid = 0;
+		for (int num : nums) {
 			max = Math.max(max, num);
 			min = Math.min(min, num);
 		}
-		while(max - min > 1e-5){
+		while (max - min > 1e-5) {
 			mid = (max + min) / 2;
-			if(isTooBig(nums, k, mid)){
+			if (isTooBig(nums, k, mid)) {
 				max = mid;
-			}else{
+			} else {
 				min = mid;
 			}
 		}
 		return min;
 	}
 
-	// use prefix sum to find sum (with length k or larger) greater than 0
-	private boolean isTooBig(int[] nums, int k, double mid){
+	private boolean isTooBig(int[] nums, int k, double mid) {
+		// sum: the sum from nums[0] to nums[i];
+		// prefixSum: the sum from nums[0] to nums[i - k];
+		// minPrefixSum: the minimal sum from nums[0] to nums[j] (0 <= j <= i-k)
 		double sum = 0, prefixSum = 0, minPrefixSum = 0;
-		for(int i = 0; i < nums.length; i++){
+		for (int i = 0; i < nums.length; i++) {
 			sum += nums[i] - mid;
-			if(i >= k){
+			if (i >= k) {
 				prefixSum += nums[i - k] - mid;
-				// find the smallest prefix sum
 				minPrefixSum = Math.min(prefixSum, minPrefixSum);
 			}
-			// if there exists some subarray that have larger average value, return false
-			if(i >= k - 1 && sum > minPrefixSum){
+			// Return false if there exists some subarray that have larger average value
+			if (i >= k - 1 && sum > minPrefixSum) {
 				return false;
 			}
 		}

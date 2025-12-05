@@ -7,25 +7,27 @@ import java.util.*;
  * #0734 https://leetcode.com/problems/sentence-similarity/
  */
 public class SentenceSimilarity {
+
 	// time O(n), space O(n)
-	public boolean areSentencesSimilar(String[] words1, String[] words2, List<List<String>> pairs) {
-		if (words1.length != words2.length) {
+	public boolean areSentencesSimilar(String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {
+		int m = sentence1.length, n = sentence2.length;
+		if (m != n) {
 			return false;
 		}
 		Map<String, Set<String>> map = new HashMap<>();
-		for (List<String> p : pairs) {
-			map.putIfAbsent(p.get(0), new HashSet<>());
-			map.putIfAbsent(p.get(1), new HashSet<>());
-			map.get(p.get(0)).add(p.get(1));
-			map.get(p.get(1)).add(p.get(0));
+		for (List<String> pair : similarPairs) {
+			map.computeIfAbsent(pair.get(0), value -> new HashSet<>()).add(pair.get(1));
+			map.computeIfAbsent(pair.get(1), value -> new HashSet<>()).add(pair.get(0));
 		}
-		for (int i = 0; i < words1.length; i++) {
-			if (words1[i].equals(words2[i])) {
+		for (int i = 0; i < n; i++) {
+			if (sentence1[i].equals(sentence2[i])) {
 				continue;
 			}
-			if (!map.containsKey(words1[i]) || !map.get(words1[i]).contains(words2[i])) {
-				return false;
+			if (map.containsKey(sentence1[i])
+					&& map.get(sentence1[i]).contains(sentence2[i])) {
+				continue;
 			}
+			return false;
 		}
 		return true;
 	}

@@ -8,18 +8,21 @@ import java.util.Arrays;
  */
 public class FrequencyOfTheMostFrequentElement {
 
-    // time O(n*log(n)), space O(1)
+    // time O(n * log(n)), space O(1)
     public int maxFrequency(int[] nums, int k) {
-        int res = 0, i = 0;
+        // Sort the array and then for each of the numbers nums[i]
+        // find the longest window that we can use k to convert
+        // all numbers to nums[i], the maximum length of all the
+        // windows is the answer.
+        int res = 0, n = nums.length;
         long sum = 0;
         Arrays.sort(nums);
-        for (int j = 0; j < nums.length; j++) {
-            sum += nums[j];
-            while (sum + k < (long)nums[j] * (j - i + 1)) {
-                sum -= nums[i];
-                i++;
+        for (int i = 0, j = 0; i < n; i++) {
+            sum += nums[i];
+            while (sum + k < (long) nums[i] * (i - j + 1)) {
+                sum -= nums[j++];
             }
-            res = Math.max(res, j - i + 1);
+            res = Math.max(res, i - j + 1);
         }
         return res;
     }

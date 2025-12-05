@@ -11,21 +11,15 @@ public class ContiguousArray {
 
 	// time O(n), space O(n)
 	public int findMaxLength(int[] nums) {
-		if(nums == null || nums.length == 0){
-			return 0;
-		}
-		int res = 0, n = nums.length, sum = 0;
-		for(int i = 0; i < n; i++){
-			nums[i] = nums[i] == 0 ? -1 : 1;
-		}
-		Map<Integer, Integer> prefix = new HashMap<>();
-		prefix.put(0, -1);
-		for(int i = 0; i < n; i++){
-			sum += nums[i];
-			if(prefix.containsKey(sum)){
-				res = Math.max(res, i - prefix.get(sum));
-			}else{
-				prefix.put(sum, i);
+		int res = 0, sum = 0, n = nums.length;
+		Map<Integer, Integer> map = new HashMap<>();
+		map.put(0, -1);
+		for (int i = 0; i < n; i++) {
+			sum += nums[i] == 1 ? 1 : -1;
+			if (map.containsKey(sum)) {
+				res = Math.max(res, i - map.get(sum));
+			} else {
+				map.put(sum, i);
 			}
 		}
 		return res;

@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 10/25/2016.
@@ -8,25 +9,23 @@ import java.util.Stack;
  */
 public class SimplifyPath {
 
-	// time O(n), space O(n)
-	public String simplifyPath(String path) {
-		Stack<String> stack = new Stack<>();
+    // time O(n), space O(n)
+    public String simplifyPath(String path) {
+		Deque<String> stack = new ArrayDeque<>();
 		String[] dirs = path.split("/");
 		for (String dir : dirs) {
 			if (dir.isEmpty() || dir.equals(".")) {
 				continue;
 			} else if (dir.equals("..")) {
-				if (!stack.isEmpty()) {
-					stack.pop();
-				}
+				stack.pollLast(); // poll(), pollFirst(), pollLast() returns null if stack is empty
 			} else {
-				stack.push(dir);
+				stack.offer(dir);
 			}
 		}
 		StringBuilder res = new StringBuilder();
-		for (String s : stack) {
-			res.append("/" + s);
+		while (!stack.isEmpty()) {
+			res.append("/").append(stack.poll());
 		}
-		return res.length() == 0 ? "/" : res.toString();
-	}
+		return res.isEmpty() ? "/" : res.toString();
+    }
 }

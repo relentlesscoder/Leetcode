@@ -19,12 +19,12 @@ public class FindIfPathExistsInGraph {
         visited[source] = true;
         Queue<Integer> queue = new LinkedList<>();
         queue.offer(source);
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int curr = queue.poll();
             if (curr == destination) {
                 return true;
             }
-            for(int next : graph.get(curr)) {
+            for (int next : graph.get(curr)) {
                 if (visited[next]) {
                     continue;
                 }
@@ -95,40 +95,40 @@ public class FindIfPathExistsInGraph {
         }
         return unionFind.find(source) == unionFind.find(destination);
     }
-}
 
-class UnionFind{
+    private class UnionFind {
 
-    private int[] root;
-    private int[] rank;
+        private int[] root;
+        private int[] rank;
 
-    public UnionFind(int n) {
-        root = new int[n];
-        rank = new int[n];
-        for (int i = 0; i < n; i++) {
-            root[i] = i;
-            rank[i] = 1;
-        }
-    }
-
-    public int find(int x) {
-        if (root[x] != x) {
-            root[x] = find(root[x]);
-        }
-        return root[x];
-    }
-
-    public void union(int x, int y) {
-        int rootX = find(x);
-        int rootY = find(y);
-        if (rootX != rootY) {
-            if (rank[rootX] > rank[rootY]) {
-                int temp = rootX;
-                rootX = rootY;
-                rootY = temp;
+        public UnionFind(int n) {
+            root = new int[n];
+            rank = new int[n];
+            for (int i = 0; i < n; i++) {
+                root[i] = i;
+                rank[i] = 1;
             }
-            root[rootX] = rootY;
-            rank[rootY] += rank[rootX];
+        }
+
+        public int find(int x) {
+            if (root[x] != x) {
+                root[x] = find(root[x]);
+            }
+            return root[x];
+        }
+
+        public void union(int x, int y) {
+            int rootX = find(x);
+            int rootY = find(y);
+            if (rootX != rootY) {
+                if (rank[rootX] > rank[rootY]) {
+                    int temp = rootX;
+                    rootX = rootY;
+                    rootY = temp;
+                }
+                root[rootX] = rootY;
+                rank[rootY] += rank[rootX];
+            }
         }
     }
 }

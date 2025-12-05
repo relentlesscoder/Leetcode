@@ -8,63 +8,37 @@ import java.util.Random;
  */
 public class RandomPickWithWeight {
 
-	private int[] weight;
-	private Random random;
-	private int sum;
+    private int sum;
+    private int[] prefixSum;
+    private Random random;
 
-	public RandomPickWithWeight(int[] w) {
-		random = new Random();
-		for (int i = 1; i < w.length; i++) {
-			w[i] += w[i - 1];
-		}
-		sum = w[w.length - 1];
-		weight = w;
-	}
+    public RandomPickWithWeight(int[] w) {
+        sum = 0;
+        prefixSum = new int[w.length];
+        random = new Random();
+        for (int i = 0; i < w.length; i++) {
+            sum += w[i];
+            prefixSum[i] = sum;
+        }
+    }
 
-	// time O(log(n)), space O(1)
-	public int pickIndex() {
-		// In Java, random.nextInt(X) will return value from 0 to X-1
-		// As there is no 0 weight, we need to +1 to avoid getting 0 from the random function.
-		// +1 will make the range as 1 to X, which is exactly the real range we need.
-		int val = random.nextInt(sum) + 1;
-		return binarySearch(weight, val);
-	}
+    public int pickIndex() {
+        int pick = random.nextInt(sum) + 1;
+        return binarySearch(prefixSum, pick);
+    }
 
-	private int binarySearch(int[] weight, int target) {
-		int low = 0, high = weight.length - 1;
-		while (low < high) {
-			int mid = low + (high - low) / 2;
-			if (weight[mid] < target) {
-				low = mid + 1;
-			} else {
-				high = mid;
-			}
-		}
-		return low;
-	}
+    // time O(log(n)), space O(n)
+    private int binarySearch(int[] nums, int val) {
+        int low = 0, high = nums.length - 1;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] >= val) {
+                high = mid;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
 
-	/** using tree map
-	 private int sum;
-	 private TreeMap<Integer, Integer> treeMap;
-	 private Random random;
-
-	 // time O(n*log(n))
-	 public RandomPickWithWeight(int[] w) {
-	 random = new Random();
-	 treeMap = new TreeMap<>();
-	 sum = 0;
-	 for(int i = 0; i < w.length; i++){
-	 sum += w[i];
-	 treeMap.put(sum, i);
-	 }
-	 }
-
-	 // time O(log(n))
-	 public int pickIndex() {
-	 // for [5, 2, 3, 1, 4], the map is
-	 // 1 -> 5, 6 -> 7, 8 -> 8, 9 -> 11, 12 -> 15
-	 int idx = random.nextInt(sum) + 1;
-	 int key = treeMap.ceilingKey(idx);
-	 return treeMap.get(key);
-	 }**/
 }

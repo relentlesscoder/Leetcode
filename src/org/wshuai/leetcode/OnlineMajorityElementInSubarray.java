@@ -7,129 +7,151 @@ import java.util.*;
  * #1157 https://leetcode.com/problems/online-majority-element-in-subarray/
  */
 public class OnlineMajorityElementInSubarray {
-	private int[] arr;
-	private int n;
-	private int[][] segmentTree;
-	private Map<Integer, List<Integer>> map;
 
-	public OnlineMajorityElementInSubarray(int[] arr) {
-		n = arr.length;
-		if(n > 0){
-			this.arr = arr;
-			int x = (int)Math.ceil(Math.log(n)/Math.log(2));
-			int size = 2 * (int)Math.pow(2, x) - 1;
-			segmentTree = new int[size][2];
-			build(0, n - 1, 0);
-			map = new HashMap<>();
-			for(int i = 0; i < arr.length; i++){
-				map.putIfAbsent(arr[i], new ArrayList<>());
-				map.get(arr[i]).add(i);
-			}
-		}
-	}
+    private class MajorityCheckerSegmentTree {
 
-	public int query(int left, int right, int threshold) {
-		int[] cand = queryUtil(0, n - 1, left, right, 0);
-		if(cand[1] == 0){
-			return -1;
-		}
-		List<Integer> list = map.get(cand[0]);
-		int l = BinarySearchUtil.searchLeft(list, left);
-		int r = BinarySearchUtil.searchRight(list, right);
-		return r - l + 1 >= threshold ? cand[0] : -1;
-	}
+        private final SegmentTree st;
+        private final Map<Integer, List<Integer>> indexMap;
 
-	private void build(int start, int end, int index){
-		if(start == end){
-			segmentTree[index] = new int[]{arr[start], 1};
-			return;
-		}
-		int mid = start + (end - start) / 2;
-		build(start, mid, 2 * index + 1);
-		build(mid + 1, end, 2 * index + 2);
-		segmentTree[index] = merge(segmentTree[2 * index + 1], segmentTree[2 * index + 2]);
-	}
+        // time O(n), space O(n)
+        public MajorityCheckerSegmentTree(int[] arr) {
+            st = new SegmentTree(arr);
+            indexMap = new HashMap<>();
+            for (int i = 0; i < arr.length; i++) {
+                indexMap.computeIfAbsent(arr[i], k -> new ArrayList<>()).add(i);
+            }
+        }
 
-	private int[] merge(int[] a, int[] b){
-		if(a[0] == b[0]){
-			return new int[]{a[0], a[1] + b[1]};
-		}
-		if(a[1] > b[1]){
-			return new int[]{a[0], a[1] - b[1]};
-		}
-		return new int[]{b[0], b[1] - a[1]};
-	}
+        // time O(log(n)), space O(1)
+        public int query(int left, int right, int threshold) {
+            int[] ans = st.query(left, right); // log(n)
+            if (ans[1] <= 0) {
+                return -1;
+            }
+            List<Integer> pos = indexMap.get(ans[0]);
+            int cnt = binarySearch(pos, right + 1) - binarySearch(pos, left); // O(log(n))
+            if (cnt >= threshold) {
+                return ans[0];
+            }
+            return -1;
+        }
 
-	private int[] queryUtil(int start, int end, int left, int right, int index){
-		if(left > end || right < start){
-			return new int[]{0, 0};
-		}
-		if(left <= start && right >= end){
-			return segmentTree[index];
-		}
-		int mid = start + (end - start) / 2;
-		int[] a = queryUtil(start, mid, left, right, 2 * index + 1);
-		int[] b = queryUtil(mid + 1, end, left, right, 2 * index + 2);
-		return merge(a, b);
-	}
-}
+        private int binarySearch(List<Integer> list, int target) {
+            int low = 0, high = list.size();
+            while (low < high) {
+                int mid = low + (high - low) / 2;
+                if (list.get(mid) < target) {
+                    low = mid + 1;
+                } else {
+                    high = mid;
+                }
+            }
+            return low;
+        }
 
-class OnlineMajorityElementInSubarrayRandomPick {
-	private int[] arr;
-	private int n;
-	private Map<Integer, List<Integer>> map;
+        private static class SegmentTree {
 
-	public OnlineMajorityElementInSubarrayRandomPick(int[] arr) {
-		map = new HashMap<>();
-		this.arr = arr;
-		n = arr.length;
-		for(int i = 0; i < arr.length; i++){
-			map.putIfAbsent(arr[i], new ArrayList<>());
-			map.get(arr[i]).add(i);
-		}
-	}
+            private final int n;
+            private final int[][] tree;
 
-	public int query(int left, int right, int threshold) {
-		for(int i = 0; i < 10; i++){
-			int rand = left + (new Random().nextInt(right - left + 1));
-			int a = arr[rand];
-			List<Integer> lst = map.get(a);
-			int l = BinarySearchUtil.searchLeft(lst, left);
-			int r = BinarySearchUtil.searchRight(lst, right);
-			if(r - l + 1 >= threshold){
-				return a;
-			}
-		}
-		return -1;
-	}
-}
+            public SegmentTree(int[] nums) {
+                this.n = nums.length;
+                tree = new int[2 << (32 - Integer.numberOfLeadingZeros(n))][2];
+                build(1, 0, n - 1, nums);
+            }
 
-class BinarySearchUtil{
-	public static int searchLeft(List<Integer> lst, int t){
-		int l = 0;
-		int r = lst.size() - 1;
-		while(l < r){
-			int mid = l + (r - l) / 2;
-			if(lst.get(mid) < t){
-				l = mid + 1;
-			}else{
-				r = mid;
-			}
-		}
-		return l;
-	}
+            public int[] query(int start, int end) {
+                return query(1, 0, n - 1, start, end);
+            }
 
-	public static int searchRight(List<Integer> lst, int t){
-		int l = 0;
-		int r = lst.size() - 1;
-		while(l < r){
-			int mid = l + (r - l + 1) / 2;
-			if(lst.get(mid) > t){
-				r = mid - 1;
-			}else{
-				l = mid;
-			}
-		}
-		return l;
-	}
+            private int[] query(int node, int left, int right, int start, int end) {
+                if (left >= start && right <= end) {
+                    return tree[node];
+                }
+                int mid = (left + right) / 2;
+                if (end <= mid) {
+                    return query(node * 2, left, mid, start, end);
+                }
+                if (start > mid) {
+                    return query(node * 2 + 1, mid + 1, right, start, end);
+                }
+                int[] leftRes = query(node * 2, left, mid, start, end);
+                int[] rightRes = query(node * 2 + 1, mid + 1, right, start, end);
+                return merge(leftRes, rightRes);
+            }
+
+            private void build(int node, int left, int right, int[] nums) {
+                if (left == right) {
+                    tree[node] = new int[]{nums[left], 1};
+                    return;
+                }
+                int mid = (left + right) / 2;
+                build(node * 2, left, mid, nums);
+                build(node * 2 + 1, mid + 1, right, nums);
+                maintain(node);
+            }
+
+            private void maintain(int node) {
+                tree[node] = merge(tree[node * 2], tree[node * 2 + 1]);
+            }
+
+            private int[] merge(int[] l, int[] r) {
+                int[] arr = new int[2];
+                if (l[0] == r[0]) {
+                    arr[0] = l[0];
+                    arr[1] = l[1] + r[1];
+                } else if (l[1] > r[1]) {
+                    arr[0] = l[0];
+                    arr[1] = l[1] - r[1];
+                } else {
+                    arr[0] = r[0];
+                    arr[1] = r[1] - l[1];
+                }
+                return arr;
+            }
+        }
+    }
+
+    private class MajorityCheckerRandomPicker {
+
+        private final int[] arr;
+        private final Map<Integer, List<Integer>> idxs;
+
+		// time O(n), space O(n)
+        public MajorityCheckerRandomPicker(int[] arr) {
+            this.arr = arr;
+            idxs = new HashMap<>();
+            for (int i = 0; i < arr.length; i++) {
+                idxs.computeIfAbsent(arr[i], k -> new ArrayList<>()).add(i);
+            }
+        }
+
+		// time O(log(n)), space O(1)
+        public int query(int left, int right, int threshold) {
+			// https://leetcode.com/problems/online-majority-element-in-subarray/solutions/355848/python-binary-search-find-the-majority-e-ib7i/
+            for (int i = 0; i < 20; i++) {
+                int rand = left + (new Random().nextInt(right - left + 1)); // [0, right - left + 1)
+                int num = arr[rand];
+                List<Integer> pos = idxs.get(num);
+                int cnt = binarySearch(pos, right + 1) - binarySearch(pos, left);
+                if (cnt >= threshold) {
+                    return num;
+                }
+            }
+            return -1;
+        }
+
+        private int binarySearch(List<Integer> list, int target) {
+            int low = 0, high = list.size();
+            while (low < high) {
+                int mid = low + (high - low) / 2;
+                if (list.get(mid) < target) {
+                    low = mid + 1;
+                } else {
+                    high = mid;
+                }
+            }
+            return low;
+        }
+    }
 }

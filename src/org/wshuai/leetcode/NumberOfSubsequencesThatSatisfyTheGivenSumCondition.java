@@ -8,27 +8,36 @@ import java.util.Arrays;
  */
 public class NumberOfSubsequencesThatSatisfyTheGivenSumCondition {
 
-	private static final int MOD = 1_000_000_007;
+    private static final int MOD = (int) 1e9 + 7;
+    private static final int MAX = (int) 1e5;
+    private static final int[] POW = new int[MAX];
 
-	// time O(n), space O(n)
-	public int numSubseq(int[] nums, int target) {
-		int res = 0, n = nums.length, left = 0, right = n - 1;
-		Arrays.sort(nums);
-		int[] pow = new int[n];
-		pow[0] = 1;
-		for(int i = 1; i < n; i++){
-			pow[i] = (pow[i - 1] << 1) % MOD;
-		}
-		while(left <= right){
-			if(nums[left] + nums[right] > target){
-				right--;
-			}else{
-				// fix the min element, the other elements have 2^(r-l)
-				// possible combinations
-				res = (res + pow[right - left]) % MOD;
-				left++;
-			}
-		}
-		return res;
-	}
+    static {
+        POW[0] = 1;
+        for (int i = 1; i < MAX; i++) {
+            POW[i] = POW[i - 1] * 2 % MOD;
+        }
+    }
+
+	// time O(n * log(n)), space O(log(n))
+    public int numSubseq(int[] nums, int target) {
+        long res = 0;
+        int n = nums.length;
+        Arrays.sort(nums);
+        for (int i = 0, j = n - 1; i <= j; ) {
+            if (nums[i] > target) {
+                break;
+            }
+            // If nums[i] + nums[j] <= target, then all subsequences
+            // in [i, j] with nums[i] as the min are valid, the number
+            // of these subsequences is 2^(j - i)
+            if (nums[i] + nums[j] <= target) {
+                res = res + POW[j - i];
+                i++;
+            } else {
+                j--;
+            }
+        }
+        return (int) (res % MOD);
+    }
 }

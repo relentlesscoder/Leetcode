@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/20/2023.
@@ -8,20 +9,34 @@ import java.util.LinkedList;
  */
 public class RemovingStarsFromAString {
 
-	// time O(n), space O(n)
+	// time O(n), space O(1)
 	public String removeStars(String s) {
-		LinkedList<Character> stack = new LinkedList();
-		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
-			if (c == '*') {
-				stack.pollLast();
+		int n = s.length(), count = 0;
+		StringBuilder res = new StringBuilder();
+		for (int i = n - 1; i >= 0; i--) {
+			char cur = s.charAt(i);
+			if (cur == '*' || count > 0) {
+				count += cur == '*' ? 1 : -1;
 			} else {
-				stack.offerLast(c);
+				res.append(cur);
 			}
 		}
+		return res.reverse().toString();
+	}
+
+	// time O(n), space O(n)
+	public String removeStarsStack(String s) {
 		StringBuilder res = new StringBuilder();
+		Deque<Character> stack = new ArrayDeque<>();
+		for (char c : s.toCharArray()) {
+			if (c == '*') {
+				stack.pop();
+			} else {
+				stack.push(c);
+			}
+		}
 		while (!stack.isEmpty()) {
-			res.append(stack.pollFirst());
+			res.append(stack.pollLast());
 		}
 		return res.toString();
 	}
