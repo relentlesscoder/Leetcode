@@ -127,6 +127,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0259 https://leetcode.com/problems/3sum-smaller/
 #0344 https://leetcode.com/problems/reverse-string/
 #0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
+#0360 https://leetcode.com/problems/sort-transformed-array/
 #0541 https://leetcode.com/problems/reverse-string-ii/
 #0557 https://leetcode.com/problems/reverse-words-in-a-string-iii/
 #0611 https://leetcode.com/problems/valid-triangle-number/
@@ -137,9 +138,11 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0923 https://leetcode.com/problems/3sum-with-multiplicity/
 #0948 https://leetcode.com/problems/bag-of-tokens/
 #0977 https://leetcode.com/problems/squares-of-a-sorted-array/
+#1099 https://leetcode.com/problems/two-sum-less-than-k/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
 #1471 https://leetcode.com/problems/the-k-strongest-values-in-an-array/
 #1498 https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/
+#1574 https://leetcode.com/problems/shortest-subarray-to-be-removed-to-make-array-sorted/
 #1577 https://leetcode.com/problems/number-of-ways-where-square-of-number-is-equal-to-product-of-two-numbers/
 #1616 https://leetcode.com/problems/split-two-strings-to-make-palindrome/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
@@ -148,13 +151,20 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1750 https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
 #2105 https://leetcode.com/problems/watering-plants-ii/
+#2122 https://leetcode.com/problems/recover-the-original-array/
+#2234
 #2337 https://leetcode.com/problems/move-pieces-to-obtain-a-string/
 #2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
 #2444 https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
 #2563 https://leetcode.com/problems/count-the-number-of-fair-pairs/
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 #3643 https://leetcode.com/problems/flip-square-submatrix-vertically/
+#2649
+#2970 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
+#2972 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-ii/
+#3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
 
 03. Monotonic Stack
 
@@ -294,6 +304,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2141 https://leetcode.com/problems/maximum-running-time-of-n-computers/
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
+#2234 https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/ ***(binary search for max)
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
 #2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (last index stops at n)
@@ -312,6 +323,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3134 https://leetcode.com/problems/find-the-median-of-the-uniqueness-array/ (miao a~~~) (***) (sliding window + binary search)
 #3152 https://leetcode.com/problems/special-array-ii/ ***(binary search for max)
 #3312 https://leetcode.com/problems/sorted-gcd-pair-queries/
+#3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
 #3350 https://leetcode.com/problems/adjacent-increasing-subarrays-detection-ii/ ***(binary search for max)
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
 #3453 https://leetcode.com/problems/separate-squares-i/ ***(double type boundary)
@@ -467,6 +479,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
 #2655 https://leetcode.com/problems/find-maximal-uncovered-ranges/ (merge intervals)
+#3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
 
 14. Linked List
 #0021 https://leetcode.com/problems/merge-two-sorted-lists/
@@ -911,6 +924,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 
 40. Greedy
 #1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
+#1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
 #2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
 #2611 https://leetcode.com/problems/mice-and-cheese/
 #3397 https://leetcode.com/problems/maximum-number-of-distinct-elements-after-operations/

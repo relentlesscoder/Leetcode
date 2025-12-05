@@ -5,37 +5,36 @@ package org.wshuai.leetcode;
  * #0360 https://leetcode.com/problems/sort-transformed-array/
  */
 public class SortTransformedArray {
-	// time O(n)
-	// use the curve to sort, https://en.wikipedia.org/wiki/Quadratic_function
-	public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
-		if(nums == null || nums.length == 0){
-			return new int[0];
-		}
-		int n = nums.length, left = 0, right = n - 1, index = a >= 0 ? right : left;
-		int[] res = new int[n];
-		while(left <= right){
-			int leftVal = calculate(nums[left], a, b, c);
-			int rightVal = calculate(nums[right], a, b, c);
-			if(a >= 0){
-				res[index--] = Math.max(leftVal, rightVal);
-				if(leftVal >= rightVal){
-					left++;
-				}else{
-					right--;
-				}
-			}else{
-				res[index++] = Math.min(leftVal, rightVal);
-				if(leftVal < rightVal){
-					left++;
-				}else{
-					right--;
-				}
-			}
-		}
-		return res;
-	}
 
-	private int calculate(int val, int a, int b, int c){
-		return val*val*a + val*b + c;
-	}
+    // time O(n), space O(1)
+    public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
+        // Use the curve to sort, https://en.wikipedia.org/wiki/Quadratic_function
+        int n = nums.length;
+        int[] res = new int[n];
+        int k = a >= 0 ? n - 1 : 0;
+        for (int i = 0, j = n - 1; i <= j; ) {
+            int left = calc(nums[i], a, b, c);
+            int right = calc(nums[j], a, b, c);
+            if (a >= 0) {
+                res[k--] = Math.max(left, right);
+                if (left >= right) { // Fill the larger value first
+                    i++;
+                } else {
+                    j--;
+                }
+            } else {
+                res[k++] = Math.min(left, right);
+                if (left < right) { // Fill the smaller value first
+                    i++;
+                } else {
+                    j--;
+                }
+            }
+        }
+        return res;
+    }
+
+    private int calc(int x, int a, int b, int c) {
+        return a * x * x + b * x + c;
+    }
 }
