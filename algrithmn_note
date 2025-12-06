@@ -243,6 +243,8 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1020 https://leetcode.com/problems/number-of-enclaves/ (DFS, BFS)
 #1034 https://leetcode.com/problems/coloring-a-border/ (miao a~~~) (DFS)
 #1254 https://leetcode.com/problems/number-of-closed-islands/ (DFS, BFS)
+#1391 https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/ (miao a~~~) (DFS, BFS)
+#1905 https://leetcode.com/problems/count-sub-islands/ (DFS, BFS)
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/ (DFS, BFS)
 #2684 https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/ (DFS, BFS)
