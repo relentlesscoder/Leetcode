@@ -235,9 +235,20 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 
 04 Grid
 
+#0130 https://leetcode.com/problems/surrounded-regions/ (DFS, BFS)
 #0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
+#0463 https://leetcode.com/problems/island-perimeter/ (直接枚举)
 #0695 https://leetcode.com/problems/max-area-of-island/ (DFS, BFS)
+#0733 https://leetcode.com/problems/flood-fill/ (DFS)
+#1020 https://leetcode.com/problems/number-of-enclaves/ (DFS, BFS)
+#1034 https://leetcode.com/problems/coloring-a-border/ (miao a~~~) (DFS)
+#1254 https://leetcode.com/problems/number-of-closed-islands/ (DFS, BFS)
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
+#2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/ (DFS, BFS)
+#2684 https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/ (DFS, BFS)
+#3619 https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/ (DFS, BFS)
+#LCS03 https://leetcode.cn/problems/YesdPw/ (BFS + DFS)
+#LCCI-16.19 https://leetcode.cn/problems/pond-sizes-lcci/ (DFS, BFS) (上下左右+对角线 模版)
 
 03. Prefix Sum
 

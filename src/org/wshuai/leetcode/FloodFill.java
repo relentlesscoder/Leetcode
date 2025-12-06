@@ -6,24 +6,23 @@ package org.wshuai.leetcode;
  */
 public class FloodFill {
 
-	private static int[] DIRECTIONS = new int[]{0, 1, 0, -1, 0};
+    private static final int[] DIRS = new int[]{0, -1, 0, 1, 0};
 
-	// time O(m*n)
-	public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
-		if(image[sr][sc] == newColor){
-			return image;
-		}
-		dfs(sr, sc, image.length, image[0].length, image[sr][sc], newColor, image);
-		return image;
-	}
+	// time O(m * n), space O(m * n)
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        dfs(image, sr, sc, image[sr][sc], color);
+        return image;
+    }
 
-	private void dfs(int i, int j, int r, int c, int from, int to, int[][] image){
-		image[i][j] = to;
-		for(int k = 0; k < 4; k++){
-			int x = i + DIRECTIONS[k], y = j + DIRECTIONS[k + 1];
-			if(x >= 0 && x < r && y >= 0 && y < c && image[x][y] == from){
-				dfs(x, y, r, c, from, to, image);
-			}
-		}
-	}
+    private void dfs(int[][] image, int r, int c, int pre, int color) {
+        if (r < 0 || r >= image.length || c < 0 || c >= image[0].length
+                || image[r][c] != pre || image[r][c] == color) {
+            return;
+        }
+        image[r][c] = color;
+        for (int d = 0; d < 4; d++) {
+            int x = r + DIRS[d], y = c + DIRS[d + 1];
+            dfs(image, x, y, pre, color);
+        }
+    }
 }

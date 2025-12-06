@@ -1,51 +1,75 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
- * Created by Wei on 10/1/19.
+ * Created by Wei on 10/01/2019.
  * #1020 https://leetcode.com/problems/number-of-enclaves/
  */
 public class NumberOfEnclaves {
-  private int[][] move;
+    private static final int[] DIRS = new int[]{0, -1, 0, 1, 0};
 
-  // BFS to find all the lands that are connected to bound
-  public int numEnclaves(int[][] A) {
-    move = new int[2][4];
-    move[0] = new int[]{1, -1, 0, 0};
-    move[1] = new int[]{0, 0, 1, -1};
-    int r = A.length;
-    int c = A[0].length;
-    LinkedList<int[]> queue = new LinkedList<>();
-
-    int res = 0;
-    for(int i = 0; i < r; i++){
-      for(int j = 0; j < c; j++){
-        if(A[i][j] == 0){
-          continue;
+    // time O(m * n), space O(m * n)
+    public int numEnclavesDFS(int[][] grid) {
+        int res = 0, m = grid.length, n = grid[0].length;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if ((i == 0 || i == m - 1 || j == 0 || j == n - 1) && grid[i][j] == 1) {
+                    dfs(grid, i, j);
+                }
+            }
         }
-        res++;
-        if(i * j == 0 || (i == r - 1 || j == c - 1)){
-          queue.offerLast(new int[]{i, j});
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    res++;
+                }
+            }
         }
-      }
+        return res;
     }
 
-    while(!queue.isEmpty()){
-      int[] curr = queue.pollLast();
-      if(A[curr[0]][curr[1]] == 0){
-        continue;
-      }
-      A[curr[0]][curr[1]] = 0;
-      res--;
-      for(int k = 0; k < 4; k++){
-        int x = curr[0] + move[0][k];
-        int y = curr[1] + move[1][k];
-        if(x >= 0 && y >= 0 && x < r && y < c && A[x][y] == 1){
-          queue.offerLast(new int[]{x, y});
+    private void dfs(int[][] grid, int r, int c) {
+        if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length || grid[r][c] != 1) {
+            return;
         }
-      }
+        grid[r][c] = 0;
+        for (int d = 0; d < 4; d++) {
+            int x = r + DIRS[d], y = c + DIRS[d + 1];
+            dfs(grid, x, y);
+        }
     }
-    return res;
-  }
+
+    // time O(m * n), space O(min(m, n))
+    public int numEnclavesBFS(int[][] grid) {
+        int res = 0, m = grid.length, n = grid[0].length;
+        Deque<int[]> queue = new ArrayDeque<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if ((i == 0 || i == m - 1 || j == 0 || j == n - 1) && grid[i][j] == 1) {
+                    queue.offer(new int[]{i, j});
+                    grid[i][j] = 0;
+                    while (!queue.isEmpty()) {
+                        int[] curr = queue.poll();
+                        for (int d = 0; d < 4; d++) {
+                            int x = curr[0] + DIRS[d], y = curr[1] + DIRS[d + 1];
+                            if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1) {
+                                queue.offer(new int[]{x, y});
+                                grid[x][y] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
 }

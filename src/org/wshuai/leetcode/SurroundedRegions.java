@@ -5,52 +5,52 @@ package org.wshuai.leetcode;
  * #0130 https://leetcode.com/problems/surrounded-regions/
  */
 public class SurroundedRegions {
-	private static int[][] dirs = new int[][]{
-			{1, -1, 0, 0}, {0, 0, 1, -1}
-	};
+    private static final int[] DIRS = new int[]{0, -1, 0, 1, 0};
 
-	// time O(r*c), space O(1)
-	public void solve(char[][] board) {
-		if(board == null || board.length == 0 || board[0].length == 0){
-			return;
-		}
-		int r = board.length, c = board[0].length;
-		for(int i = 0; i < c; i++){
-			if(board[0][i] == 'O'){
-				dfs(0, i, board, r, c);
-			}
-			if(board[r - 1][i] == 'O'){
-				dfs(r - 1, i, board, r, c);
-			}
-		}
-		for(int i = 1; i < r - 1; i++){
-			if(board[i][0] == 'O'){
-				dfs(i, 0, board, r, c);
-			}
-			if(board[i][c - 1] == 'O'){
-				dfs(i, c - 1, board, r, c);
-			}
-		}
-		for(int i = 0; i < r; i++){
-			for(int j = 0; j < c; j++){
-				if(board[i][j] == 'X'){
-					continue;
-				}
-				board[i][j] = (board[i][j] == 'O' ? 'X' : 'O');
-			}
-		}
-		return;
-	}
+	// time O(m * n), space O(m * n)
+    public void solve(char[][] board) {
+        int m = board.length, n = board[0].length;
+        // 遍历所有在网格外围上的值为O的格子，使用DFS来标记所有与这些格子连通的
+		// 值为O的格子-这些共同组成所有无法被捕获的连通区域。把这些格子内容修改
+		// 为A。
+        int[] cols = new int[]{0, n - 1};
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < m; j++) {
+                if (board[j][cols[i]] == 'O') {
+                    dfs(board, j, cols[i], 'A');
+                }
+            }
+        }
+        int[] rows = new int[]{0, m - 1};
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[rows[i]][j] == 'O') {
+                    dfs(board, rows[i], j, 'A');
+                }
+            }
+        }
+        // 再次遍历网格上余下的值为O的格子，这些格子组成所有的可以背捕获的连通区域。
+		// 复用DFS代码将这些格子修改为X。对之前修改为A值的格子，恢复到之前的状态O
+		// 因为这些连通区域无法被捕获。
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == 'O') {
+                    dfs(board, i, j, 'X');
+                } else if (board[i][j] == 'A') {
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
 
-	private void dfs(int i, int j, char[][] board, int r, int c){
-		if(i < 0 || j < 0 || i >= r || j >= c || board[i][j] != 'O'){
-			return;
-		}
-		board[i][j] = 'V';
-		for(int k = 0; k < 4; k++){
-			int x = i + dirs[0][k];
-			int y = j + dirs[1][k];
-			dfs(x, y, board, r, c);
-		}
-	}
+    private void dfs(char[][] board, int r, int c, char v) {
+        if (r < 0 || r >= board.length || c < 0 || c >= board[0].length || board[r][c] != 'O') {
+            return;
+        }
+        board[r][c] = v;
+        for (int d = 0; d < 4; d++) {
+            int x = r + DIRS[d], y = c + DIRS[d + 1];
+            dfs(board, x, y, v);
+        }
+    }
 }
