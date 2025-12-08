@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/27/2019.
@@ -8,37 +9,34 @@ import java.util.LinkedList;
  */
 public class ShortestPathInBinaryMatrix {
 
-	private static final int[][] DIRECTIONS = new int[][]{
-		{1, -1, 0, 0, 1, 1, -1, -1},
-		{0, 0, 1, -1, 1, -1, 1, -1}
-	};
+    private static final int[] DIRS = new int[]{1, -1, 0, -1, -1, 1, 1, 0, 1};
 
-	// time O(n^2), space O(1)
-	public int shortestPathBinaryMatrix(int[][] grid) {
-		if(grid[0][0] != 0){
-			return -1;
-		}
-		int n = grid.length, steps = 0;
-		LinkedList<int[]> queue = new LinkedList<>();
-		queue.offerLast(new int[]{0, 0});
-		grid[0][0] = -1;
-		while(!queue.isEmpty()){
-			steps++;
-			int size = queue.size();
-			while(size-- > 0){
-				int[] cur = queue.pollFirst();
-				if(cur[0] == n - 1 && cur[1] == n - 1){
-					return steps;
-				}
-				for(int k = 0; k < 8; k++){
-					int x = cur[0] + DIRECTIONS[0][k], y = cur[1] + DIRECTIONS[1][k];
-					if(x >= 0 && x < n && y >= 0 && y < n && grid[x][y] == 0){
-						grid[x][y] = -1;
-						queue.offerLast(new int[]{x, y});
-					}
-				}
-			}
-		}
-		return -1;
-	}
+	// time O(m * n), space O(min(m, n))
+    public int shortestPathBinaryMatrix(int[][] grid) {
+        if (grid[0][0] != 0) {
+            return -1;
+        }
+        int shortest = 1, n = grid.length;
+        Deque<int[]> queue = new ArrayDeque<>();
+        queue.offer(new int[]{0, 0});
+        grid[0][0] = -1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size-- > 0) {
+                int[] curr = queue.poll();
+                if (curr[0] == n - 1 && curr[1] == n - 1) {
+                    return shortest;
+                }
+                for (int i = 0; i < 8; i++) {
+                    int x = curr[0] + DIRS[i], y = curr[1] + DIRS[i + 1];
+                    if (x >= 0 && x < n && y >= 0 && y < n && grid[x][y] == 0) {
+                        grid[x][y] = -1;
+                        queue.offer(new int[]{x, y});
+                    }
+                }
+            }
+            shortest++;
+        }
+        return -1;
+    }
 }
