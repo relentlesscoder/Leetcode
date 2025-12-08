@@ -233,24 +233,53 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3542 https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/ (miao a ~~~)
 #3555 https://leetcode.com/problems/smallest-subarray-to-sort-in-every-sliding-window/ (***)
 
-04 Grid
+04. Grid
 
 #0130 https://leetcode.com/problems/surrounded-regions/ (DFS, BFS)
 #0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
+#0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
+#0417 https://leetcode.com/problems/pacific-atlantic-water-flow/ (miao a~~~) (DFS, BFS) (在dfs之前判断是否符合条件)
 #0463 https://leetcode.com/problems/island-perimeter/ (直接枚举)
+#0489 https://leetcode.com/problems/robot-room-cleaner/ (miao a~~~) (DFS + 改变方向）(***)
+#0529 https://leetcode.com/problems/minesweeper/ (DFS, BFS)
 #0695 https://leetcode.com/problems/max-area-of-island/ (DFS, BFS)
 #0733 https://leetcode.com/problems/flood-fill/ (DFS)
+#0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
 #1020 https://leetcode.com/problems/number-of-enclaves/ (DFS, BFS)
 #1034 https://leetcode.com/problems/coloring-a-border/ (miao a~~~) (DFS)
 #1254 https://leetcode.com/problems/number-of-closed-islands/ (DFS, BFS)
 #1391 https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/ (miao a~~~) (DFS, BFS)
+#1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/ (miao a~~~) (DFS, union find)
 #1905 https://leetcode.com/problems/count-sub-islands/ (DFS, BFS)
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
+#2061 https://leetcode.com/problems/number-of-spaces-cleaning-robot-cleaned/ (miao a~~~) (DFS + 改变方向 + 状态压缩)
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/ (DFS, BFS)
 #2684 https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/ (DFS, BFS)
+#2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
 #3619 https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/ (DFS, BFS)
+#LCP63 https://leetcode.cn/problems/EXvqDp/ (miao a~~~) (DFS + 改变方向)
 #LCS03 https://leetcode.cn/problems/YesdPw/ (BFS + DFS)
 #LCCI-16.19 https://leetcode.cn/problems/pond-sizes-lcci/ (DFS, BFS) (上下左右+对角线 模版)
+
+05. Union Find
+#0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
+#0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
+#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#0737 https://leetcode.com/problems/sentence-similarity-ii/
+#0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
+#1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/
+#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
+#1632 https://leetcode.com/problems/rank-transform-of-a-matrix/
+#1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
+#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#2076 https://leetcode.com/problems/process-restricted-friend-requests/
+#2092 https://leetcode.com/problems/find-all-people-with-secret/
+#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
+#2782 https://leetcode.com/problems/number-of-unique-categories/
+#2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
+#3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
+#3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
 
 03. Prefix Sum
 
@@ -549,21 +578,6 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
 #2392 https://leetcode.com/problems/build-a-matrix-with-conditions/
 #2603 https://leetcode.com/problems/collect-coins-in-a-tree/
-
-17. Union Find
-#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
-#0737 https://leetcode.com/problems/sentence-similarity-ii/
-#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
-#1632 https://leetcode.com/problems/rank-transform-of-a-matrix/
-#1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
-#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
-#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
-#2076 https://leetcode.com/problems/process-restricted-friend-requests/
-#2092 https://leetcode.com/problems/find-all-people-with-secret/
-#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
-#2782 https://leetcode.com/problems/number-of-unique-categories/
-#3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
-#3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
 
 18. DFS/BFS
 #0138 https://leetcode.com/problems/copy-list-with-random-pointer/

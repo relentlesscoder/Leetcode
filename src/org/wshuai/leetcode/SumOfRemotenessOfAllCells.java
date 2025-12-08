@@ -1,8 +1,8 @@
 package org.wshuai.leetcode;
 
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Wei on 09/30/2023.
@@ -10,119 +10,116 @@ import java.util.List;
  */
 public class SumOfRemotenessOfAllCells {
 
-	private int[] dirs = new int[] {0, -1, 0, 1, 0};
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-	// time O(n^2), space O(n)
-	public long sumRemoteness(int[][] grid) {
-		long sumRemoteness = 0L, totalUnblockingCells = 0;
-		int n = grid.length;
-		List<long[]> islandSumList = new ArrayList<>();
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (grid[i][j] > 0) {
-					long[] sum = dfs(grid, i, j, n);
-					totalUnblockingCells += sum[1];
-					islandSumList.add(sum);
-				}
-			}
-		}
-		for (long[] currentSum : islandSumList) {
-			sumRemoteness += currentSum[0] * (totalUnblockingCells - currentSum[1]);
-		}
-		return sumRemoteness;
-	}
+    // time O(n^2), space O(n)
+    public long sumRemotenessDFS(int[][] grid) {
+        long res = 0, total = 0;
+        int m = grid.length, n = grid[0].length, id = -1;
+        Map<Integer, Long> map = new HashMap<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] > 0) {
+                    id--;
+                    long sum = dfs(grid, i, j, id);
+                    map.put(id, sum);
+                    total += sum;
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                res += grid[i][j] == -1 ? 0 :
+                        total - map.getOrDefault(grid[i][j], 0L);
+            }
+        }
+        return res;
+    }
 
-	// time O(n^2), space O(n^2)
-	public long sumRemotenessUnionFind(int[][] grid) {
-		long res = 0;
-		int n = grid.length;
-		UnionFind uf = new UnionFind(grid);
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (grid[i][j] != -1) {
-					grid[i][j] = -1;
-					for (int k = 0; k < 4; k++) {
-						int x = i + dirs[k], y = j + dirs[k + 1];
-						if (x < 0 || x >= n || y < 0 || y >= n || grid[x][y] == -1) {
-							continue;
-						}
-						uf.union(i * n + j, x * n + y);
-					}
-				}
-			}
-		}
-		return uf.findTotalRemoteness();
-	}
+    private long dfs(int[][] grid, int i, int j, int id) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] < 0) {
+            return 0;
+        }
+        long res = grid[i][j];
+        grid[i][j] = id;
+        for (int d = 0; d < 4; d++) {
+            res += dfs(grid, i + DIRS[d], j + DIRS[d + 1], id);
+        }
+        return res;
+    }
 
-	private long[] dfs(int[][] grid, int i, int j, int n) {
-		long sum = grid[i][j], count = 1;
-		grid[i][j] = -1;
-		for (int k = 0; k < 4; k++) {
-			int r = i + dirs[k], c = j + dirs[k + 1];
-			if (Math.min(r, c) >= 0 && Math.max(r, c) < n && grid[r][c] != -1) {
-				long[] res = dfs(grid, r, c, n);
-				sum += res[0];
-				count += res[1];
-			}
-		}
-		return new long[] {sum, count};
-	}
+    // time O(n^2 * α(n^2)), space O(n^2)
+    public long sumRemotenessUnionFind(int[][] grid) {
+        long res = 0, total = 0;
+        int m = grid.length, n = grid[0].length;
+        UnionFind uf = new UnionFind(grid);
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] > 0) {
+                    total += grid[i][j];
+                    int idx = i * n + j;
+                    if (j + 1 < n && grid[i][j + 1] > 0) {
+                        uf.union(idx, i * n + j + 1);
+                    }
+                    if (i + 1 < m && grid[i + 1][j] > 0) {
+                        uf.union(idx, (i + 1) * n + j);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                res += grid[i][j] == -1 ? 0 : total - uf.getScore(i * n + j);
+            }
+        }
+        return res;
+    }
 
-	private class UnionFind {
-		private int n, total;
-		private int[] root, size;
-		private long[] sum;
+    private static class UnionFind {
 
-		public UnionFind(int[][] grid) {
-			n = grid.length;
-			total = 0;
-			root = new int[n * n];
-			size = new int[n * n];
-			sum = new long[n * n];
-			for (int i = 0; i < n; i++) {
-				for (int j = 0; j < n; j++) {
-					if (grid[i][j] != -1) {
-						int index = i * n + j;
-						total++;
-						root[index] = index;
-						size[index] = 1;
-						sum[index] = grid[i][j];
-					}
-				}
-			}
-		}
+        private final int[] roots;
+        private final int[] ranks;
+        private final long[] sum;
 
-		public int find(int x) {
-			if (x != root[x]) {
-				root[x] = find(root[x]);
-			}
-			return root[x];
-		}
+        public UnionFind(int[][] grid) {
+            int m = grid.length, n = grid[0].length, size = m * n;
+            roots = new int[size];
+            ranks = new int[size];
+            sum = new long[size];
+            Arrays.setAll(roots, i -> i);
+            Arrays.setAll(ranks, i -> 1);
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    sum[i * n + j] = grid[i][j];
+                }
+            }
+        }
 
-		public void union(int x, int y) {
-			int rootX = find(x), rootY = find(y);
-			if (rootX == rootY) {
-				return;
-			}
-			if (size[rootX] > size[rootY]) {
-				size[rootX] += size[rootY];
-				sum[rootX] += sum[rootY];
-				root[rootY] = rootX;
-			} else {
-				size[rootY] += size[rootX];
-				sum[rootY] += sum[rootX];
-				root[rootX] = rootY;
-			}
-		}
+        public void union(int a, int b) {
+            int ra = find(a), rb = find(b);
+            if (ra == rb) {
+                return;
+            }
+            if (ranks[ra] > ranks[rb]) {
+                ranks[ra] += ranks[rb];
+                sum[ra] += sum[rb];
+                roots[rb] = ra;
+            } else {
+                ranks[rb] += ranks[ra];
+                sum[rb] += sum[ra];
+                roots[ra] = rb;
+            }
+        }
 
-		public long findTotalRemoteness() {
-			long res = 0;
-			for (int i = 0; i < root.length; i++) {
-				if (find(i) == i) {
-					res += sum[i] * (total - size[i]);
-				}
-			}
-			return res;
-		}
-	}
+        public long getScore(int a) {
+            return sum[find(a)];
+        }
+
+        private int find(int a) {
+            if (roots[a] != a) {
+                roots[a] = find(roots[a]);
+            }
+            return roots[a];
+        }
+    }
 }
