@@ -1,6 +1,9 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Wei on 12/18/2019.
@@ -8,39 +11,47 @@ import java.util.LinkedList;
  */
 public class ShortestPathInAGridWithObstaclesElimination {
 
-	private static final int[] DIRECTIONS = new int[]{ 0, -1, 0, 1, 0 };
+	private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-	// time O(m*n*k), space O(m*n*k)
+	// time O(m * n), space O(min(m, n) * k)
 	public int shortestPath(int[][] grid, int k) {
-		int steps = 0, m = grid.length, n = grid[0].length;
-		boolean[][][] visited = new boolean[m][n][k + 1];
-		LinkedList<int[]> queue = new LinkedList<>();
-		queue.offerLast(new int[]{0, 0, 0});
-		visited[0][0][0] = true;
-		while(!queue.isEmpty()){
+		int m = grid.length, n = grid[0].length, shortest = 0;
+		Deque<int[]> queue = new ArrayDeque<>();
+		queue.offer(new int[] {0, 0, k});
+		Set<Integer> visited = new HashSet<>();
+		visited.add(encode(0, 0, k));
+		while (!queue.isEmpty()) {
 			int size = queue.size();
-			while(size-- > 0){
-				int[] cur = queue.pollFirst();
-				if(cur[0] == m - 1 && cur[1] == n - 1){
-					return steps;
+			while (size-- > 0) {
+				int[] curr = queue.poll();
+				if (curr[0] == m - 1 && curr[1] == n - 1) {
+					return shortest;
 				}
-				for(int d = 0; d < 4; d++){
-					int x = cur[0] + DIRECTIONS[d], y = cur[1] + DIRECTIONS[d + 1],
-						cnt = cur[2];
-					if(x < 0 || x >= m || y < 0 || y >= n){
-						continue;
-					}
-					if(grid[x][y] == 1){
-						cnt++;
-					}
-					if(cnt <= k && !visited[x][y][cnt]){
-						visited[x][y][cnt] = true;
-						queue.offerLast(new int[]{x, y, cnt});
+				int r = curr[0], c = curr[1];
+				for (int i = 0; i < 4; i++) {
+					int x = r + DIRS[i], y = c + DIRS[i + 1];
+					if (x >= 0 && x < m && y >= 0 && y < n) {
+						int cnt = curr[2];
+						if (grid[x][y] == 1) {
+							cnt--;
+						}
+						int state = encode(x, y, cnt);
+						if (cnt >= 0 && !visited.contains(state)) {
+							queue.offer(new int[]{x, y, cnt});
+							visited.add(encode(x, y, cnt));
+						}
 					}
 				}
 			}
-			steps++;
+			shortest++;
 		}
 		return -1;
+	}
+
+	private int encode(int x, int y, int cnt) {
+		//状态压缩
+		int res = (cnt << 8) + x;
+		res = (res << 8) + y;
+		return res;
 	}
 }

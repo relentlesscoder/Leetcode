@@ -243,25 +243,32 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0489 https://leetcode.com/problems/robot-room-cleaner/ (miao a~~~) (DFS + 改变方向）(***)
 #0529 https://leetcode.com/problems/minesweeper/ (DFS, BFS)
 #0542 https://leetcode.com/problems/01-matrix/ (BFS) (multi source)
+#0675 https://leetcode.com/problems/cut-off-trees-for-golf-event/ (multi BFS)
 #0695 https://leetcode.com/problems/max-area-of-island/ (DFS, BFS)
 #0733 https://leetcode.com/problems/flood-fill/ (DFS)
 #0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
+#0909 https://leetcode.com/problems/snakes-and-ladders/ (BFS)
 #0934 https://leetcode.com/problems/shortest-bridge/ (miao a~~~) (BFS + DFS)
 #0994 https://leetcode.com/problems/rotting-oranges/
 #1020 https://leetcode.com/problems/number-of-enclaves/ (DFS, BFS)
 #1034 https://leetcode.com/problems/coloring-a-border/ (miao a~~~) (DFS)
 #1091 https://leetcode.com/problems/shortest-path-in-binary-matrix/ (BFS) (上下左右+对角线 模版)
 #1162 https://leetcode.com/problems/as-far-from-land-as-possible/ (BFS) (multi source)
+#1210 https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/ (miao a~~~) (BFS + 状态压缩)
 #1254 https://leetcode.com/problems/number-of-closed-islands/ (DFS, BFS)
+#1293 https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/ (miao a~~~) (BFS + 状态压缩)
 #1391 https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/ (miao a~~~) (DFS, BFS)
 #1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/ (miao a~~~) (DFS, union find)
 #1765 https://leetcode.com/problems/map-of-highest-peak/ (BFS) (multi source)
 #1905 https://leetcode.com/problems/count-sub-islands/ (DFS, BFS)
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
 #2061 https://leetcode.com/problems/number-of-spaces-cleaning-robot-cleaned/ (miao a~~~) (DFS + 改变方向 + 状态压缩)
+#2146 https://leetcode.com/problems/k-highest-ranked-items-within-a-price-range/ (BFS + priority queue) (毫无技术含量)
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/ (DFS, BFS)
 #2684 https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/ (DFS, BFS)
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS + Dijkstra / Union Find)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
+#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS + Dijkstra)
 #3619 https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/ (DFS, BFS)
 #LCP63 https://leetcode.cn/problems/EXvqDp/ (miao a~~~) (DFS + 改变方向)
 #LCS03 https://leetcode.cn/problems/YesdPw/ (BFS + DFS)
@@ -283,9 +290,29 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS + Dijkstra / Union Find)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
 #3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 #3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
+
+32. Dijkstra
+
+#0743 https://leetcode.com/problems/network-delay-time/
+#0778 https://leetcode.com/problems/swim-in-rising-water/
+#0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/
+#1334 https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
+#1514 https://leetcode.com/problems/path-with-maximum-probability/
+#1631 https://leetcode.com/problems/path-with-minimum-effort/
+#1928 https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
+#1976 https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
+#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
+#2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS + Dijkstra / Union Find)
+#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS + Dijkstra)
+#3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
+#3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
+#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 03. Prefix Sum
 
@@ -827,22 +854,6 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3266 https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-ii/
 #3405 https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/ (Combination)
 #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/ (Combination)
-
-32. Dijkstra
-#0743 https://leetcode.com/problems/network-delay-time/
-#0778 https://leetcode.com/problems/swim-in-rising-water/
-#0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/
-#1334 https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
-#1514 https://leetcode.com/problems/path-with-maximum-probability/
-#1631 https://leetcode.com/problems/path-with-minimum-effort/
-#1928 https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
-#1976 https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
-#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
-#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
-#2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
-#3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
-#3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
-#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 33. Geometry
 #0223 https://leetcode.com/problems/rectangle-area/
