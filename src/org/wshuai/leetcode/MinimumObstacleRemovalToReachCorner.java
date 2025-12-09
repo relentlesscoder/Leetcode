@@ -1,7 +1,6 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.PriorityQueue;
 
@@ -11,59 +10,67 @@ import java.util.PriorityQueue;
  */
 public class MinimumObstacleRemovalToReachCorner {
 
-	private int[] dirs = new int[]{0, -1, 0, 1, 0};
-
-	// time O(m * n * log(m * n)), space O(m * n)
-	public int minimumObstacles(int[][] grid) {
-		int m = grid.length, n = grid[0].length;
-		PriorityQueue<int[]> minQueue = new PriorityQueue<>((a, b) -> a[2] - b[2]);
-		int[][] costs = new int[m][n];
-		for (int i = 0; i < m; i++) {
-			Arrays.fill(costs[i], Integer.MAX_VALUE);
-		}
-		costs[0][0] = grid[0][0];
-		minQueue.offer(new int[]{0, 0, grid[0][0]});
-		while (!minQueue.isEmpty()) {
-			int[] curr = minQueue.poll();
-			if (curr[0] == m - 1 && curr[1] == n - 1) {
-				return curr[2];
-			}
-			for (int i = 0; i < 4; i++) {
-				int x = curr[0] + dirs[i], y = curr[1] + dirs[i + 1];
-				if (x >= 0 && x < m && y >= 0 && y < n && costs[x][y] > curr[2] + grid[x][y]) {
-					costs[x][y] = curr[2] + grid[x][y];
-					minQueue.offer(new int[]{x, y, costs[x][y]});
-				}
-			}
-		}
-		return costs[m - 1][n - 1];
-	}
+	private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
 	// time O(m * n), space O(m * n)
-	public int minimumObstaclesBFS(int[][] grid) {
+	public int minimumObstacles(int[][] grid) {
 		int m = grid.length, n = grid[0].length;
-		Deque<int[]> queue = new ArrayDeque<>();
-		int[][] costs = new int[m][n];
+		int[][] dis = new int[m][n];
 		for (int i = 0; i < m; i++) {
-			Arrays.fill(costs[i], Integer.MAX_VALUE);
+			for (int j = 0; j < n; j++) {
+				dis[i][j] = Integer.MAX_VALUE;
+			}
 		}
-		costs[0][0] = grid[0][0];
-		queue.offer(new int[] {0, 0, grid[0][0]});
+		dis[0][0] = 0;
+		Deque<int[]> queue = new ArrayDeque<>();
+		queue.offerFirst(new int[]{0, 0});
 		while (!queue.isEmpty()) {
-			int[] curr = queue.poll();
+			int[] curr = queue.pollFirst();
+			int r = curr[0], c = curr[1];
 			for (int i = 0; i < 4; i++) {
-				int x = curr[0] + dirs[i], y = curr[1] + dirs[i + 1];
-				if (x >= 0 && x < m && y >= 0 && y < n && costs[x][y] == Integer.MAX_VALUE) {
-					if (grid[x][y] == 1) { // if grid[x][y] is an obstacle, add it to the end of the queue
-						costs[x][y] = curr[2] + 1;
-						queue.offer(new int[]{x, y, costs[x][y]});
-					} else { // if grid[x][y] is an obstacle, add it to the front of the queue since the cost is not increased
-						costs[x][y] = curr[2];
-						queue.offerFirst(new int[]{x, y, costs[x][y]});
+				int x = r + DIRS[i], y = c + DIRS[i + 1];
+				if (x >= 0 && x < m && y >= 0 && y < n) {
+					int cost = grid[x][y];
+					if (dis[x][y] > dis[r][c] + cost) {
+						dis[x][y] = dis[r][c] + cost;
+						if (grid[x][y] == 1) {
+							queue.offerLast(new int[]{x, y});
+						} else {
+							queue.offerFirst(new int[]{x, y});
+						}
 					}
 				}
 			}
 		}
-		return costs[m - 1][n - 1];
+		return dis[m - 1][n - 1];
+	}
+
+	// time O(m * n * log(m * n)), space O(m * n)
+	public int minimumObstaclesDijkstra(int[][] grid) {
+		int m = grid.length, n = grid[0].length;
+		int[][] dis = new int[m][n];
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				dis[i][j] = Integer.MAX_VALUE;
+			}
+		}
+		dis[0][0] = 0;
+		PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+		queue.offer(new int[]{0, 0, 0});
+		while (!queue.isEmpty()) {
+			int[] curr = queue.poll();
+			int r = curr[0], c = curr[1];
+			for (int i = 0; i < 4; i++) {
+				int x = r + DIRS[i], y = c + DIRS[i + 1];
+				if (x >= 0 && x < m && y >= 0 && y < n) {
+					int cost = grid[x][y];
+					if (dis[x][y] > dis[r][c] + cost) {
+						dis[x][y] = dis[r][c] + cost;
+						queue.offer(new int[]{x, y, dis[x][y]});
+					}
+				}
+			}
+		}
+		return dis[m - 1][n - 1];
 	}
 }

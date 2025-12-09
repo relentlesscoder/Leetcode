@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.PriorityQueue;
 
 /**
@@ -9,39 +10,71 @@ import java.util.PriorityQueue;
  */
 public class MinimumCostToMakeAtLeastOneValidPathInAGrid {
 
-	// time O(m*n*log(m*n)), space O(m*n)
-	// Dijkstra's algorithm
-	private static final int[][] dirs = new int[][]{
-			{0, 0, 1, -1},
-			{1, -1, 0, 0}
-	};
+    private static final int[][] DIRS = new int[][]{
+            {0, 1}, {0, -1}, {1, 0}, {-1, 0}
+    };
 
-	public int minCost(int[][] grid) {
-		int m = grid.length, n = grid[0].length;
-		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-		pq.offer(new int[]{0, 0, 0});
-		int[][] cost = new int[m][n];
-		for (int i = 0; i < m; i++) {
-			Arrays.fill(cost[i], Integer.MAX_VALUE);
-		}
-		cost[0][0] = 0;
-		while (!pq.isEmpty()) {
-			int[] cur = pq.poll();
-			int costToCur = cur[0], i = cur[1], j = cur[2];
-			for (int k = 0; k < 4; k++) {
-				int x = i + dirs[0][k], y = j + dirs[1][k];
-				if (x >= 0 && x < m && y >= 0 && y < n) {
-					int costToMove = costToCur;
-					if (k + 1 != grid[i][j]) {
-						costToMove++;
-					}
-					if (cost[x][y] > costToMove) {
-						cost[x][y] = costToMove;
-						pq.offer(new int[]{costToMove, x, y});
-					}
-				}
-			}
-		}
-		return cost[m - 1][n - 1];
-	}
+    // time O(m * n), space O(m * n)
+    public int minCost(int[][] grid) {
+        // #2290的变形题
+        int m = grid.length, n = grid[0].length;
+        int[][] dis = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dis[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        dis[0][0] = 0;
+        Deque<int[]> queue = new ArrayDeque<>();
+        queue.offerFirst(new int[]{0, 0});
+        while (!queue.isEmpty()) {
+            int[] curr = queue.pollFirst();
+            int r = curr[0], c = curr[1];
+            for (int i = 0; i < 4; i++) {
+                int x = r + DIRS[i][0], y = c + DIRS[i][1];
+                if (x >= 0 && x < m && y >= 0 && y < n) {
+                    // 仅当当前数字与行进方向一致时，不用付出额外代价来修改方向
+                    int cost = grid[r][c] == i + 1 ? 0 : 1;
+                    if (dis[x][y] > dis[r][c] + cost) {
+                        dis[x][y] = dis[r][c] + cost;
+                        if (cost == 1) {
+                            queue.offerLast(new int[]{x, y});
+                        } else {
+                            queue.offerFirst(new int[]{x, y});
+                        }
+                    }
+                }
+            }
+        }
+        return dis[m - 1][n - 1];
+    }
+
+    // time O(m * n * log(m * n)), space O(m * n)
+    public int minCostDijkstra(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int[][] dis = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                dis[i][j] = Integer.MAX_VALUE;
+            }
+        }
+        dis[0][0] = 0;
+        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+        queue.offer(new int[]{0, 0, 0});
+        while (!queue.isEmpty()) {
+            int[] curr = queue.poll();
+            int r = curr[0], c = curr[1];
+            for (int i = 0; i < 4; i++) {
+                int x = r + DIRS[i][0], y = c + DIRS[i][1];
+                if (x >= 0 && x < m && y >= 0 && y < n) {
+                    int cost = grid[r][c] == i + 1 ? 0 : 1;
+                    if (dis[x][y] > dis[r][c] + cost) {
+                        dis[x][y] = dis[r][c] + cost;
+                        queue.offer(new int[]{x, y, dis[x][y]});
+                    }
+                }
+            }
+        }
+        return dis[m - 1][n - 1];
+    }
 }

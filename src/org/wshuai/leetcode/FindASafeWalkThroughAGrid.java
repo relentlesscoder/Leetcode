@@ -15,6 +15,7 @@ public class FindASafeWalkThroughAGrid {
 
     // time O(m * n), space O(m * n)
     public boolean findSafeWalk(List<List<Integer>> grid, int health) {
+        // 同#2290
         int m = grid.size(), n = grid.get(0).size();
         int[][] mat = new int[m][n], dis = new int[m][n];
         for (int i = 0; i < m; i++) {
