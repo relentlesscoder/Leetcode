@@ -2,7 +2,6 @@ package org.wshuai.leetcode;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.PriorityQueue;
 
 /**
  * Created by Wei on 10/01/2023.
@@ -45,7 +44,7 @@ public class MinimumObstacleRemovalToReachCorner {
 		return dis[m - 1][n - 1];
 	}
 
-	// time O(m * n * log(m * n)), space O(m * n)
+	// time O(m * n), space O(m * n)
 	public int minimumObstaclesDijkstra(int[][] grid) {
 		int m = grid.length, n = grid[0].length;
 		int[][] dis = new int[m][n];
@@ -55,7 +54,7 @@ public class MinimumObstacleRemovalToReachCorner {
 			}
 		}
 		dis[0][0] = 0;
-		PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+		Deque<int[]> queue = new ArrayDeque<>();
 		queue.offer(new int[]{0, 0, 0});
 		while (!queue.isEmpty()) {
 			int[] curr = queue.poll();

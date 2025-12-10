@@ -3,7 +3,6 @@ package org.wshuai.leetcode;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
-import java.util.PriorityQueue;
 
 /**
  * Created by Wei on 12/09/2025.
@@ -48,7 +47,7 @@ public class FindASafeWalkThroughAGrid {
         return dis[m - 1][n - 1] < health;
     }
 
-    // time O(m * n * log(m * n)), space O(m * n)
+    // time O(m * n), space O(m * n)
     public boolean findSafeWalkDijkstra(List<List<Integer>> grid, int health) {
         int m = grid.size(), n = grid.get(0).size();
         int[][] mat = new int[m][n], dis = new int[m][n];
@@ -59,7 +58,7 @@ public class FindASafeWalkThroughAGrid {
             }
         }
         dis[0][0] = mat[0][0];
-        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+        Deque<int[]> queue = new ArrayDeque<>();
         queue.offer(new int[]{0, 0, mat[0][0]});
         while (!queue.isEmpty()) {
             int[] curr = queue.poll();

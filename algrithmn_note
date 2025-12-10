@@ -120,12 +120,16 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0015 https://leetcode.com/problems/3sum/
 #0016 https://leetcode.com/problems/3sum-closest/
 #0018 https://leetcode.com/problems/4sum/
+#0026 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+#0027 https://leetcode.com/problems/remove-element/
 #0042 https://leetcode.com/problems/trapping-rain-water/
+#0080 https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/ (miao a~~~) (***)
 #0088 https://leetcode.com/problems/merge-sorted-array/
 #0125 https://leetcode.com/problems/valid-palindrome/
 #0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
 #0167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 #0259 https://leetcode.com/problems/3sum-smaller/
+#0283 https://leetcode.com/problems/move-zeroes/
 #0344 https://leetcode.com/problems/reverse-string/
 #0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
 #0360 https://leetcode.com/problems/sort-transformed-array/
@@ -139,6 +143,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0917 https://leetcode.com/problems/reverse-only-letters/
 #0923 https://leetcode.com/problems/3sum-with-multiplicity/
 #0948 https://leetcode.com/problems/bag-of-tokens/
+#0976 https://leetcode.com/problems/largest-perimeter-triangle/
 #0977 https://leetcode.com/problems/squares-of-a-sorted-array/
 #1099 https://leetcode.com/problems/two-sum-less-than-k/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
@@ -149,8 +154,8 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1616 https://leetcode.com/problems/split-two-strings-to-make-palindrome/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
-#1782
 #1750 https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/
+#1782
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
@@ -167,6 +172,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2970 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
 #2972 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-ii/
 #3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
+#3684 https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/
 
 03. Monotonic Stack
 
@@ -229,6 +235,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3205 https://leetcode.com/problems/maximum-array-hopping-score-i/
 #3221 https://leetcode.com/problems/maximum-array-hopping-score-ii/
 #3359 https://leetcode.com/problems/find-sorted-submatrices-with-maximum-element-at-most-k/ (miao a ~~~) (#1504)
+#3420
 #3430 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subarrays/ (miao a ~~~) (gong xian fa)
 #3542 https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/ (miao a ~~~)
 #3555 https://leetcode.com/problems/smallest-subarray-to-sort-in-every-sliding-window/ (***)
@@ -237,10 +244,14 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 
 #0130 https://leetcode.com/problems/surrounded-regions/ (DFS, BFS)
 #0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
+#0286 https://leetcode.com/problems/walls-and-gates/ (多源BFS)
 #0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
 #0417 https://leetcode.com/problems/pacific-atlantic-water-flow/ (miao a~~~) (DFS, BFS) (在dfs之前判断是否符合条件)
 #0463 https://leetcode.com/problems/island-perimeter/ (直接枚举)
 #0489 https://leetcode.com/problems/robot-room-cleaner/ (miao a~~~) (DFS + 改变方向）(***)
+#0490 https://leetcode.com/problems/the-maze/ (miao a~~~) (DFS, BFS)
+#0499 https://leetcode.com/problems/the-maze-iii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径) (DFS两种遍历信息更新的区别)
+#0505 https://leetcode.com/problems/the-maze-ii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径)
 #0529 https://leetcode.com/problems/minesweeper/ (DFS, BFS)
 #0542 https://leetcode.com/problems/01-matrix/ (BFS) (multi source)
 #0675 https://leetcode.com/problems/cut-off-trees-for-golf-event/ (multi BFS)
@@ -260,6 +271,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1368 https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/（miao a~~~）(BFS + Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #1391 https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/ (miao a~~~) (DFS, BFS)
 #1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/ (miao a~~~) (DFS, union find)
+#1730 https://leetcode.com/problems/shortest-path-to-get-food/ (BFS)
 #1765 https://leetcode.com/problems/map-of-highest-peak/ (BFS) (multi source)
 #1905 https://leetcode.com/problems/count-sub-islands/ (DFS, BFS)
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
@@ -299,6 +311,8 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 
 06. Dijkstra
 
+#0499 https://leetcode.com/problems/the-maze-iii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径) (DFS两种遍历信息更新的区别)
+#0505 https://leetcode.com/problems/the-maze-ii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径)
 #0743 https://leetcode.com/problems/network-delay-time/
 #0778 https://leetcode.com/problems/swim-in-rising-water/
 #0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/

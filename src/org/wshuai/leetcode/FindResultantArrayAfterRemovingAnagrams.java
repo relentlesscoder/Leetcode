@@ -11,29 +11,29 @@ public class FindResultantArrayAfterRemovingAnagrams {
 
     // time O(n), space O(n)
     public List<String> removeAnagrams(String[] words) {
+        int n = words.length;
         List<String> res = new ArrayList<>();
-        for (int i = 0, j; i < words.length; ) {
-            res.add(words[i]);
-            j = i + 1;
-            while (j < words.length && isAnagrams(words[i], words[j])) {
-                j++;
+        res.add(words[0]);
+        for (int i = 1; i < n; i++) {
+            if (!isAnagram(res.get(res.size() - 1), words[i])) {
+                res.add(words[i]);
             }
-            i = j;
         }
         return res;
     }
 
-    private boolean isAnagrams(String w1, String w2) {
-        if (w1.length() != w2.length()) {
+    private boolean isAnagram(String w1, String w2) {
+        int m = w1.length(), n = w2.length();
+        if (m != n) {
             return false;
         }
-        int[] count = new int[26];
-        for (int i = 0; i < w1.length(); i++) {
-            count[w1.charAt(i) - 'a']++;
-            count[w2.charAt(i) - 'a']--;
+        int[] freq = new int[26];
+        for (int i = 0; i < m; i++) {
+            freq[w1.charAt(i) - 'a']++;
+            freq[w2.charAt(i) - 'a']--;
         }
         for (int i = 0; i < 26; i++) {
-            if (count[i] != 0) {
+            if (freq[i] != 0) {
                 return false;
             }
         }
