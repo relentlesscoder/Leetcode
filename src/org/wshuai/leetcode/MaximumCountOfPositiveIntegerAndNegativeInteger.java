@@ -8,20 +8,21 @@ public class MaximumCountOfPositiveIntegerAndNegativeInteger {
 
     // time O(log(n)), space O(1)
     public int maximumCount(int[] nums) {
-        int low = 0, high = nums.length;
+        int positive = nums.length - binarySearch(nums, 1);
+        int negative = binarySearch(nums, 0);
+        return Math.max(positive, negative);
+    }
+
+    private int binarySearch(int[] nums, int target) {
+        int n = nums.length, low = 0, high = n;
         while (low < high) {
-            int mid = (low + high) >> 1;
-            if (nums[mid] < 0) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] < target) {
                 low = mid + 1;
             } else {
                 high = mid;
             }
         }
-        int neg = low, pos = 0;
-        while (low < nums.length && nums[low] == 0) {
-            low++;
-        }
-        pos = nums.length - low;
-        return Math.max(neg, pos);
+        return low;
     }
 }

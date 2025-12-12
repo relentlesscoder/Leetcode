@@ -140,11 +140,14 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0633 https://leetcode.com/problems/sum-of-square-numbers/
 #0658 https://leetcode.com/problems/find-k-closest-elements/
 #0844 https://leetcode.com/problems/backspace-string-compare/
+#0905 https://leetcode.com/problems/sort-array-by-parity/
 #0917 https://leetcode.com/problems/reverse-only-letters/
+#0922 https://leetcode.com/problems/sort-array-by-parity-ii/
 #0923 https://leetcode.com/problems/3sum-with-multiplicity/
 #0948 https://leetcode.com/problems/bag-of-tokens/
 #0976 https://leetcode.com/problems/largest-perimeter-triangle/
 #0977 https://leetcode.com/problems/squares-of-a-sorted-array/
+#1089 https://leetcode.com/problems/duplicate-zeros/
 #1099 https://leetcode.com/problems/two-sum-less-than-k/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
 #1471 https://leetcode.com/problems/the-k-strongest-values-in-an-array/
@@ -165,6 +168,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2337 https://leetcode.com/problems/move-pieces-to-obtain-a-string/
 #2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
 #2444 https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
+#2460 https://leetcode.com/problems/apply-operations-to-an-array/
 #2563 https://leetcode.com/problems/count-the-number-of-fair-pairs/
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 #3643 https://leetcode.com/problems/flip-square-submatrix-vertically/
@@ -172,6 +176,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2970 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
 #2972 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-ii/
 #3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
+#3467 https://leetcode.com/problems/transform-array-by-parity/
 #3684 https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/
 
 03. Monotonic Stack
@@ -246,6 +251,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
 #0286 https://leetcode.com/problems/walls-and-gates/ (多源BFS)
 #0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
+#0317 https://leetcode.com/problems/shortest-distance-from-all-buildings/ (多源BFS, 状态压缩)
 #0417 https://leetcode.com/problems/pacific-atlantic-water-flow/ (miao a~~~) (DFS, BFS) (在dfs之前判断是否符合条件)
 #0463 https://leetcode.com/problems/island-perimeter/ (直接枚举)
 #0489 https://leetcode.com/problems/robot-room-cleaner/ (miao a~~~) (DFS + 改变方向）(***)
@@ -268,22 +274,26 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1210 https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/ (miao a~~~) (BFS + 状态压缩)
 #1254 https://leetcode.com/problems/number-of-closed-islands/ (DFS, BFS)
 #1293 https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/ (miao a~~~) (BFS + 状态压缩)
-#1368 https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/（miao a~~~）(BFS + Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#1368 https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #1391 https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/ (miao a~~~) (DFS, BFS)
 #1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/ (miao a~~~) (DFS, union find)
+#1631 https://leetcode.com/problems/path-with-minimum-effort/ (边权网格题) （BFS, Dijkstra)
 #1730 https://leetcode.com/problems/shortest-path-to-get-food/ (BFS)
 #1765 https://leetcode.com/problems/map-of-highest-peak/ (BFS) (multi source)
+#1824 https://leetcode.com/problems/minimum-sideway-jumps/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #1905 https://leetcode.com/problems/count-sub-islands/ (DFS, BFS)
 #1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
 #2061 https://leetcode.com/problems/number-of-spaces-cleaning-robot-cleaned/ (miao a~~~) (DFS + 改变方向 + 状态压缩)
 #2146 https://leetcode.com/problems/k-highest-ranked-items-within-a-price-range/ (BFS + priority queue) (毫无技术含量)
-#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/ miao a~~~）(BFS + Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/ (DFS, BFS)
 #2684 https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/ (DFS, BFS)
-#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS + Dijkstra / Union Find)
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS, Dijkstra, Union Find)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
-#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS + Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#3552 https://leetcode.com/problems/grid-teleportation-traversal/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #3619 https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/ (DFS, BFS)
+#LCP56 https://leetcode.cn/problems/6UEx57/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #LCP63 https://leetcode.cn/problems/EXvqDp/ (miao a~~~) (DFS + 改变方向)
 #LCS03 https://leetcode.cn/problems/YesdPw/ (BFS + DFS)
 #LCCI-16.19 https://leetcode.cn/problems/pond-sizes-lcci/ (DFS, BFS) (上下左右+对角线 模版)
@@ -318,16 +328,18 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/
 #1334 https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
 #1514 https://leetcode.com/problems/path-with-maximum-probability/
-#1631 https://leetcode.com/problems/path-with-minimum-effort/
+#1631 https://leetcode.com/problems/path-with-minimum-effort/ (边权网格题) （BFS, Dijkstra)
+#1824 https://leetcode.com/problems/minimum-sideway-jumps/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #1928 https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
 #1976 https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
 #2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
 #2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
-#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS + Dijkstra / Union Find)
-#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS + Dijkstra)
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS, Dijkstra / Union Find)
+#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS, Dijkstra)
 #3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
 #3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
+#3552 https://leetcode.com/problems/grid-teleportation-traversal/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 07. Binary Search
@@ -345,13 +357,16 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0644 https://leetcode.com/problems/maximum-average-subarray-ii/ (binary search + sliding window) ***(double type boundary)
 #0658 https://leetcode.com/problems/find-k-closest-elements/ (search for range) (*****) 需要理解为甚是k+1长度的区间
 #0668 https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
+#0704 https://leetcode.com/problems/binary-search/ (二分模版题)
 #0719 https://leetcode.com/problems/find-k-th-smallest-pair-distance/
+#0744 https://leetcode.com/problems/find-smallest-letter-greater-than-target/
 #0774 https://leetcode.com/problems/minimize-max-distance-to-gas-station/ ***(double type boundary)
 #0875 https://leetcode.com/problems/koko-eating-bananas/
 #1011 https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
 #1201 https://leetcode.com/problems/ugly-number-iii/
 #1231 https://leetcode.com/problems/divide-chocolate/ ***(binary search for max)
 #1283 https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
+#1385 https://leetcode.com/problems/find-the-distance-value-between-two-arrays/ (miao a~~~) (二分判断是否有元素存在在区间内)
 #1482 https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
 #1539 https://leetcode.com/problems/kth-missing-positive-number/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
@@ -375,7 +390,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2234 https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/ ***(binary search for max)
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
-#2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (last index stops at n)
+#2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (二分，前缀和)
 #2358 https://leetcode.com/problems/maximum-number-of-groups-entering-a-competition/ ***(binary search for max)
 #2383 https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/ ***(binary search for max)
@@ -413,6 +428,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2121 https://leetcode.com/problems/intervals-between-identical-elements/
 #2270 https://leetcode.com/problems/number-of-ways-to-split-array/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (gong xian fa) (prefix sum of prefix sum)
+#2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (二分，前缀和)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/
@@ -477,7 +493,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
-#1824 https://leetcode.com/problems/minimum-sideway-jumps/
+#1824 https://leetcode.com/problems/minimum-sideway-jumps/ (miao a~~~）(BFS + Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #1871 https://leetcode.com/problems/jump-game-vii/
 #1900 https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/
 #1911 https://leetcode.com/problems/maximum-alternating-subsequence-sum/

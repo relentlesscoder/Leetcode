@@ -1,6 +1,10 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.List;
 
 /**
  * Created by Wei on 09/30/2025.
@@ -8,98 +12,52 @@ import java.util.*;
  */
 public class GridTeleportationTraversal {
 
-    private static final int[] DIRS = new int[] {-1, 0, 1, 0, -1};
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-    // time O(m * n), space O(m * n)
+    // time O(m * n), space O(min(m, n))
     public int minMoves(String[] matrix) {
         int m = matrix.length, n = matrix[0].length();
-        char[][] grid = new char[m][n];
-        boolean[][] visited = new boolean[m][n];
-        boolean[] used = new boolean[26];
         List<int[]>[] adj = new ArrayList[26];
-        for (int i = 0; i < 26; i++) {
-            adj[i] = new ArrayList<>();
-        }
+        Arrays.setAll(adj, i -> new ArrayList<>());
+        boolean[] visited = new boolean[26];
+        int[][] dist = new int[m][n];
         for (int i = 0; i < m; i++) {
+            Arrays.fill(dist[i], Integer.MAX_VALUE);
             for (int j = 0; j < n; j++) {
                 char c = matrix[i].charAt(j);
-                grid[i][j] = c;
-                if (c == '.' || c == '#') {
-                    continue;
+                if (c >= 'A' && c <= 'Z') {
+                    adj[c - 'A'].add(new int[] {i, j});
                 }
-                adj[c - 'A'].add(new int[]{i, j});
             }
         }
         Deque<int[]> queue = new ArrayDeque<>();
-        queue.offer(new int[]{grid[0][0] == '.' ? 100 : grid[0][0] - 'A', 0, 0, 0});
+        queue.offerFirst(new int[] {0, 0});
+        dist[0][0] = 0;
         while (!queue.isEmpty()) {
             int[] curr = queue.pollFirst();
-            int val = curr[0], steps = curr[1], row = curr[2], col = curr[3];
-            if (row == m - 1 && col == n - 1) {
-                return steps;
+            int i = curr[0], j = curr[1];
+            if (i == m - 1 && j == n - 1) {
+                return dist[i][j];
             }
-            if (val != 100 && !used[val]) {
-                used[val] = true;
-                for (int j = 0; j < adj[val].size(); j++) {
-                    int a = adj[val].get(j)[0], b = adj[val].get(j)[1];
-                    visited[a][b] = true;
-                    queue.offerFirst(new int[]{grid[a][b] == '.' ? 100 : grid[a][b] - 'A', steps, a, b});
+            // 如果格子里是字符，因为不费步数传送到任何有相同字符的格所以把这些格子的距离都设为当前值并且加入
+            // 队列前面。这些格子会在接下来的遍历里马上处理，等同于对所有相同字符的格子做一个多源BFS。
+            char c = matrix[i].charAt(j);
+            if (c >= 'A' && c <= 'Z' && !visited[c - 'A']) {
+                // 如果同种字符的格子已经被处理过，那所有相同字符的格子不应该再被处理
+                visited[c - 'A'] = true;
+                for (int[] next : adj[c - 'A']) {
+                    dist[next[0]][next[1]] = dist[i][j];
+                    queue.offerFirst(new int[] {next[0], next[1]});
                 }
             }
-            for (int i = 0; i < 4; i++) {
-                int x = row + DIRS[i], y = col + DIRS[i + 1];
-                if (x < 0 || x >= m || y < 0 || y >= n || grid[x][y] == '#' || visited[x][y]) {
-                    continue;
-                }
-                visited[x][y] = true;
-                queue.offerLast(new int[]{grid[x][y] == '.' ? 100 : grid[x][y] - 'A', steps + 1, x, y});
-            }
-        }
-        return -1;
-    }
-
-    // time O(m * n * log(m * n)), space O(m * n)
-    public int minMovesMinQueue(String[] matrix) {
-        int m = matrix.length, n = matrix[0].length();
-        char[][] grid = new char[m][n];
-        boolean[][] visited = new boolean[m][n];
-        boolean[] used = new boolean[26];
-        List<int[]>[] adj = new ArrayList[26];
-        for (int i = 0; i < 26; i++) {
-            adj[i] = new ArrayList<>();
-        }
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                char c = matrix[i].charAt(j);
-                grid[i][j] = c;
-                if (c == '.' || c == '#') {
-                    continue;
-                }
-                adj[c - 'A'].add(new int[]{i, j});
-            }
-        }
-        PriorityQueue<int[]> minQueue = new PriorityQueue<>((a, b) -> a[1] - b[1]);
-        minQueue.offer(new int[]{grid[0][0] == '.' ? 100 : grid[0][0] - 'A', 0, 0, 0});
-        while (!minQueue.isEmpty()) {
-            int[] curr = minQueue.poll();
-            int val = curr[0], steps = curr[1], row = curr[2], col = curr[3];
-            if (row == m - 1 && col == n - 1) {
-                return steps;
-            }
-            for (int i = 0; i < 4; i++) {
-                int x = row + DIRS[i], y = col + DIRS[i + 1];
-                if (x < 0 || x >= m || y < 0 || y >= n || grid[x][y] == '#' || visited[x][y]) {
-                    continue;
-                }
-                visited[x][y] = true;
-                minQueue.offer(new int[]{grid[x][y] == '.' ? 100 : grid[x][y] - 'A', steps + 1, x, y});
-            }
-            if (val != 100 && !used[val]) {
-                used[val] = true;
-                for (int j = 0; j < adj[val].size(); j++) {
-                    int a = adj[val].get(j)[0], b = adj[val].get(j)[1];
-                    visited[a][b] = true;
-                    minQueue.offer(new int[]{grid[a][b] == '.' ? 100 : grid[a][b] - 'A', steps, a, b});
+            // 遍历四周的格子，到他们需要的步数为当前步数加1并加到队列后面.
+            for (int d = 0; d < 4; d++) {
+                int x = i + DIRS[d], y = j + DIRS[d + 1];
+                if (x >= 0 && x < m && y >= 0 && y < n && matrix[x].charAt(y) != '#') {
+                    if (dist[x][y] > dist[i][j] + 1) {
+                        dist[x][y] = dist[i][j] + 1;
+                        queue.offerLast(new int[] {x, y});
+                    }
                 }
             }
         }
