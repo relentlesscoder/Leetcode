@@ -8,48 +8,33 @@ import java.util.Arrays;
  */
 public class LongestSubsequenceWithLimitedSum {
 
-    // time O(n * log(n) + m * log(n)), space O(1)
+    // time O((n + m) * log(n)), space O(log(n))
     public int[] answerQueries(int[] nums, int[] queries) {
+        // 为了使子序列更长，元素越小越好。对数组排序然后计算前缀和，然后使用
+        // 二分搜索找到大于等于queries[i] + 1的索引。这个索引左边就是符合要
+        // 求的最长子序列。
         int n = nums.length, m = queries.length;
+        int[] res = new int[m];
         Arrays.sort(nums);
         for (int i = 1; i < n; i++) {
             nums[i] += nums[i - 1];
         }
         for (int i = 0; i < m; i++) {
-            queries[i] = binarySearch(nums, queries[i]);
+            res[i] = binarySearch(nums, queries[i] + 1);
         }
-        return queries;
+        return res;
     }
 
     private int binarySearch(int[] nums, int target) {
-        int low = 0, high = nums.length - 1;
+        int low = 0, high = nums.length;
         while (low < high) {
-            int mid = low + (high - low + 1) / 2;
-            if (nums[mid] > target) {
-                high = mid - 1;
+            int mid = low + (high - low) / 2;
+            if (nums[mid] < target) {
+                low = mid + 1;
             } else {
-                low = mid;
+                high = mid;
             }
         }
-        return nums[0] > target ? 0 : low + 1;
-    }
-
-    // time O(n * log(n) + m * log(m)), space O(m)
-    public int[] answerQueriesSorting(int[] nums, int[] queries) {
-        int n = nums.length, m = queries.length, sum = 0;
-        Arrays.sort(nums);
-        int[][] sorted = new int[m][2];
-        for (int i = 0; i < m; i++) {
-            sorted[i] = new int[]{queries[i], i};
-        }
-        Arrays.sort(sorted, (a, b) -> a[0] - b[0]);
-        int[] res = new int[m];
-        for (int i = 0, j = 0; j < m; j++) {
-            while (i < n && sum + nums[i] <= sorted[j][0]) {
-                sum += nums[i++];
-            }
-            res[sorted[j][1]] = i;
-        }
-        return res;
+        return low;
     }
 }

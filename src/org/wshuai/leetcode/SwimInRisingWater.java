@@ -1,5 +1,6 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
@@ -7,79 +8,114 @@ import java.util.PriorityQueue;
  * #0778 https://leetcode.com/problems/swim-in-rising-water/
  */
 public class SwimInRisingWater {
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
+    // time O(n^2 * log(MAX)), space O(n^2 * log(MAX))
+    public int swimInWater(int[][] grid) {
+        int n = grid.length, low = 0, high = n * n - 1;
+        if (n == 1) {
+            return grid[0][0];
+        }
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (!dfs(grid, 0, 0, mid, new boolean[n][n])) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
 
-	// time O(n^2 * log(n)), space O(n^2)
-	public int swimInWater(int[][] grid) {
-		int time = 0, n = grid.length;
-		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]);
-		pq.offer(new int[]{0, 0, grid[0][0]});
-		while (!pq.isEmpty() && grid[n - 1][n - 1] >= 0) {
-			// poll the next unexplored cell with the smallest time
-			int[] cur = pq.poll();
-			time = cur[2];
-			// dfs to search the reachable cells (grid[x][y] <= time) and add
-			// their unreachable neighbors to the priority queue
-			dfs(cur[0], cur[1], n, time, grid, pq);
-		}
-		return time;
-	}
+    private boolean dfs(int[][] grid, int i, int j, int threshold, boolean[][] visited) {
+        int n = grid.length;
+        if (i < 0 || i >= n || j < 0 || j >= n || visited[i][j] || grid[i][j] > threshold) {
+            return false;
+        }
+        if (i == n - 1 && j == n - 1) {
+            return true;
+        }
+        visited[i][j] = true;
+        for (int d = 0; d < 4; d++) {
+            int x = i + DIRS[d], y = j + DIRS[d + 1];
+            if (dfs(grid, x, y, threshold, visited)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	private void dfs(int i, int j, int n, int time, int[][] grid, PriorityQueue<int[]> pq) {
-		// set -1 to mark visited cells
-		grid[i][j] = -1;
-		for (int k = 0; k < 4; k++) {
-			int x = i + dirs[k], y = j + dirs[k + 1];
-			if (x < 0 || x >= n || y < 0 || y >= n || grid[x][y] == -1) {
-				continue;
-			}
-			if (grid[x][y] > time) {
-				pq.offer(new int[]{x, y, grid[x][y]});
-			} else {
-				dfs(x, y, n, time, grid, pq);
-			}
-		}
-	}
+    // time O(n^2 * log(n) * α(n)), space O(n^2)
+    public int swimInWaterUnionFind(int[][] grid) {
+        int n = grid.length, target = n * n - 1;
+        if (n == 1) {
+            return grid[0][0];
+        }
+        UnionFind uf = new UnionFind(n * n);
+        PriorityQueue<int[]> minQueue = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                minQueue.offer(new int[]{i, j, grid[i][j]});
+            }
+        }
+        while (!minQueue.isEmpty()) {
+            int[] curr = minQueue.poll();
+            int i = curr[0], j = curr[1], v = curr[2], id1 = i * n + j;
+            uf.add(id1);
+            for (int d = 0; d < 4; d++) {
+                int x = i + DIRS[d], y = j + DIRS[d + 1];
+                if (x >= 0 && x < n && y >= 0 && y < n && v > grid[x][y]) {
+                    int id2 = x * n + y;
+                    if (uf.exists(id2)) {
+                        uf.union(id1, id2);
+                        if (uf.exists(0) && uf.exists(target) && uf.find(0) == uf.find(target)) {
+                            return v;
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
 
-	public int swimInWaterUnionFind(int[][] grid) {
-		int n = grid.length, len = n * n;
-		int[] root = new int[len];
-		for (int i = 0; i < len; i++) {
-			root[i] = i;
-		}
-		int[][] map = new int[len][3];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				map[grid[i][j]] = new int[]{i, j, i * n + j};
-			}
-		}
-		for (int time = 0; time < len; time++) {
-			int[] cur = map[time];
-			for (int k = 0; k < 4; k++) {
-				int x = cur[0] + dirs[k], y = cur[1] + dirs[k + 1];
-				if (x < 0 || x >= n || y < 0 || y >= n || grid[x][y] > time) {
-					continue;
-				}
-				int[] next = map[grid[x][y]];
-				int rootNext = findRoot(next[2], root), rootCur = findRoot(cur[2], root);
-				if ((rootCur == 0 && rootNext == len - 1) || (rootCur == len - 1 && rootNext == 0)) {
-					return time;
-				}
-				if (rootCur == 0 || rootCur == len - 1) {
-					root[rootNext] = rootCur;
-				} else {
-					root[rootCur] = rootNext;
-				}
-			}
-		}
-		return -1;
-	}
+    private class UnionFind {
 
-	private int findRoot(int r, int[] root) {
-		if (r != root[r]) {
-			root[r] = findRoot(root[r], root);
-		}
-		return root[r];
-	}
+        private int[] root, rank;
+
+        public UnionFind(int n) {
+            root = new int[n];
+            rank = new int[n];
+            Arrays.fill(rank, 1);
+            Arrays.fill(root, -1);
+        }
+
+        public boolean exists(int x) {
+            return root[x] != -1;
+        }
+
+        public void add(int x) {
+            root[x] = x;
+        }
+
+        public int find(int x) {
+            if (x != root[x]) {
+                root[x] = find(root[x]);
+            }
+            return root[x];
+        }
+
+        public void union(int x, int y) {
+            int rootX = find(x), rootY = find(y);
+            if (rootX == rootY) {
+                return;
+            }
+            if (rank[rootX] > rank[rootY]) {
+                rank[rootX] += rank[rootY];
+                root[rootY] = rootX;
+            } else {
+                rank[rootY] += rank[rootX];
+                root[rootX] = rootY;
+            }
+        }
+    }
 }

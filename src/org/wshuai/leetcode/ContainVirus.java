@@ -1,111 +1,90 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by Wei on 12/24/2019.
  * #0749 https://leetcode.com/problems/contain-virus/
  */
 public class ContainVirus {
 
-	private static final int[] dirs = new int[]{0, 1, 0, -1, 0};
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
+    private record Group(int walls, Set<Integer> next, List<int[]> viruses) { }
 
-	public int containVirus(int[][] grid) {
-		int res = 0, m = grid.length, n = grid[0].length;
-		while(true){
-			int walls = buildWalls(grid, m, n);
-			res += walls;
-			if(walls == 0){
-				break;
+	// time O(g * m * n), space O(m * n)
+	public int containVirus(int[][] isInfected) {
+		int walls = 0, m = isInfected.length, n = isInfected[0].length;
+		List<Group> groups = buildGroups(isInfected);
+		while (!groups.isEmpty()) {
+			walls += groups.get(0).walls;
+			// 对第一个病毒组(待感染的格子最多)加装防火墙
+			for (int[] v : groups.get(0).viruses) {
+				isInfected[v[0]][v[1]] = -1;
 			}
-		}
-		return res;
-	}
-
-	private int buildWalls(int[][] grid, int m, int n){
-		int[][] visited = new int[m][n];
-		int res = 0, maxArea = 0, color = -1, row = -1, col = -1;
-		for(int i = 0; i < m; i++){
-			for(int j = 0; j < n; j++){
-				if(grid[i][j] == 1 && visited[i][j] == 0){
-					int[] walls = new int[]{0};
-					int area = detectInfectedArea(i, j, m, n, color, grid, visited, walls);
-					if(area > maxArea){
-						maxArea = area;
-						res = walls[0];
-						row = i;
-						col = j;
+			// 剩下的病毒组扩张一步
+			for (int i = 1; i < groups.size(); i++) {
+				for (int[] v : groups.get(i).viruses) {
+					int r = v[0], c = v[1];
+					for (int d = 0; d < 4; d++) {
+						int x = r + DIRS[d], y = c + DIRS[d + 1];
+						if (x >= 0 && x < m && y >= 0 && y < n && isInfected[x][y] == 0) {
+							isInfected[x][y] = 1;
+						}
 					}
-					color--;
 				}
 			}
+			groups = buildGroups(isInfected);
 		}
-		markInfectedArea(row, col, m, n, grid);
-		visited = new int[m][n];
-		for(int i = 0; i < m; i++){
-			for(int j = 0; j < n; j++){
-				if(grid[i][j] == 1 && visited[i][j] != 1){
-					spread(i, j, grid, visited, m, n);
-				}
-			}
-		}
-		return res;
+		return walls;
 	}
 
-	private void spread(int i, int j, int[][] grid, int[][] visited, int m, int n){
-		if(i < 0 || i >= m || j < 0 || j >= n || visited[i][j] == 1){
-			return;
-		}
-		// important, already contained cell should not be visited again
-		if(grid[i][j] == -1){
-			return;
-		}
-		visited[i][j] = 1;
-		if(grid[i][j] == 0){
-			grid[i][j] = 1;
-			return;
-		}
-		for(int k = 0; k < 4; k++){
-			int x = i + dirs[k], y = j + dirs[k + 1];
-			spread(x, y, grid, visited, m, n);
-		}
-	}
+    private int dfs(int i, int j, int[][] isInfected, List<int[]> cells,
+                    Set<Integer> next, boolean[][] visited) {
+        int res = 0;
+        visited[i][j] = true;
+        cells.add(new int[]{i, j});
+        int count = 0;
+        for (int d = 0; d < 4; d++) {
+            int x = i + DIRS[d], y = j + DIRS[d + 1];
+            if (x >= 0 && x < isInfected.length && y >= 0 && y < isInfected[0].length) {
+                if (isInfected[x][y] == 1 && !visited[x][y]) {
+                    res += dfs(x, y, isInfected, cells, next, visited);
+                } else if (isInfected[x][y] == 0) {
+                    next.add(x * isInfected[0].length + y);
+                    count++;
+                }
+            }
+        }
+        return res + count;
+    }
 
-	private int detectInfectedArea(int i, int j, int m, int n, int color, int[][] grid, int[][] visited, int[] walls){
-		if(i < 0 || i >= m || j < 0 || j >= n){
-			return 0;
-		}
-		if(grid[i][j] == 0){
-			// each time we meet 0 (from up, down left or right),
-			// we need add 1 more wall
-			walls[0]++;
-			// use color to mark the current infected area so that
-			// the cell will not be double counted
-			if(visited[i][j] == color){
-				return 0;
-			}
-			visited[i][j] = color;
-			return 1;
-		}
-		if(grid[i][j] != 1 || visited[i][j] == 1){
-			return 0;
-		}
-		visited[i][j] = 1;
-		int res = 0;
-		for(int k = 0; k < 4; k++){
-			int x = i + dirs[k], y = j + dirs[k + 1];
-			res += detectInfectedArea(x, y, m, n, color, grid, visited, walls);
-		}
-		return res;
-	}
-
-	private void markInfectedArea(int i, int j, int m, int n, int[][] grid){
-		if(i < 0 || i >= m || j < 0 || j >= n || grid[i][j] != 1){
-			return;
-		}
-		// mark the cell as contained
-		grid[i][j] = -1;
-		for(int k = 0; k < 4; k++){
-			int x = i + dirs[k], y = j + dirs[k + 1];
-			markInfectedArea(x, y, m, n, grid);
-		}
-	}
+    private List<Group> buildGroups(int[][] isInfected) {
+        int m = isInfected.length, n = isInfected[0].length, max = 0, idx = -1;
+        List<Group> groups = new ArrayList<>();
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) { // O(m * n)
+            for (int j = 0; j < n; j++) {
+                if (isInfected[i][j] == 1 && !visited[i][j]) {
+                    int walls = 0;
+                    List<int[]> cells = new ArrayList<>();
+                    Set<Integer> next = new HashSet<>();
+                    walls = dfs(i, j, isInfected, cells, next, visited);
+                    groups.add(new Group(walls, next, cells));
+                    if (next.size() > max) {
+                        max = next.size();
+                        idx = groups.size() - 1;
+                    }
+                }
+            }
+        }
+        if (!groups.isEmpty() && idx != -1) {
+            Group temp = groups.get(0);
+            groups.set(0, groups.get(idx));
+            groups.set(idx, temp);
+        }
+        return groups;
+    }
 }

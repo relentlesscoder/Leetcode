@@ -10,59 +10,68 @@ import java.util.List;
  */
 public class MinimumTimeTakesToReachDestinationWithoutDrowning {
 
-	private int[] dirs = new int[]{0, -1, 0, 1, 0};
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-	// time O(n * m), space O(n * m)
-	public int minimumSeconds(List<List<String>> land) {
-		int n = land.size(), m = land.get(0).size();
-		int[] target = new int[] {-1, -1};
-		Deque<int[]> floodQueue = new ArrayDeque<>(), pathQueue = new ArrayDeque<>();
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				String val = land.get(i).get(j);
-				if (val.equals("*")) {
-					floodQueue.offer(new int[]{i, j});
-				} else if (val.equals("S")) {
-					pathQueue.offer(new int[]{i, j, 0});
-				} else if (val.equals("D")) {
-					target[0] = i;
-					target[1] = j;
-				}
-			}
-		}
-		boolean[][] visited = new boolean[n][m];
-		while (!pathQueue.isEmpty()) {
-			int floodSize = floodQueue.size();
-			while (floodSize-- > 0) {
-				int[] curr = floodQueue.poll();
-				for (int k = 0; k < 4; k++) {
-					int x = curr[0] + dirs[k], y = curr[1] + dirs[k + 1];
-					if (x < 0 || x >= n || y < 0 || y >= m || land.get(x).get(y).equals("X") || land.get(x).get(y).equals("D") || land.get(x).get(y).equals("*")) {
-						continue;
-					}
-					land.get(x).set(y, "*");
-					floodQueue.offer(new int[] {x, y});
-				}
-			}
-			int pathSize = pathQueue.size();
-			while (pathSize-- > 0) {
-				int[] curr = pathQueue.poll();
-				if (curr[0] == target[0] && curr[1] == target[1]) {
-					return curr[2];
-				}
-				if (visited[curr[0]][curr[1]]) {
-					continue;
-				}
-				visited[curr[0]][curr[1]] = true;
-				for (int k = 0; k < 4; k++) {
-					int x = curr[0] + dirs[k], y = curr[1] + dirs[k + 1];
-					if (x < 0 || x >= n || y < 0 || y >= m || land.get(x).get(y).equals("X") || land.get(x).get(y).equals("*") || visited[x][y]) {
-						continue;
-					}
-					pathQueue.offer(new int[] {x, y, curr[2] + 1});
-				}
-			}
-		}
-		return -1;
-	}
+    // time O(m * n), space O(m * n)
+    public int minimumSeconds(List<List<String>> land) {
+		// 模拟题：在每次人移动前，洪水会先扩张一步。
+        int dist = 0, m = land.size(), n = land.get(0).size(), dx = 0, dy = 0;
+        Deque<int[]> water = new ArrayDeque<>(), person = new ArrayDeque<>();
+        char[][] grid = new char[m][n];
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                char c = land.get(i).get(j).charAt(0);
+                grid[i][j] = c;
+                if (c == 'D') {
+                    dx = i;
+                    dy = j;
+                } else if (c == 'S') {
+					// 注意：需要把出发点设成空地因为它也是可以被水淹没的
+                    grid[i][j] = '.';
+                    person.offer(new int[]{i, j});
+                    visited[i][j] = true;
+                } else if (c == '*') {
+                    water.offer(new int[]{i, j});
+                }
+            }
+        }
+        while (!person.isEmpty()) {
+            int size = person.size();
+			// 洪水先扩张
+            flood(grid, water);
+            while (size-- > 0) {
+                int[] curr = person.poll();
+                int i = curr[0], j = curr[1];
+                if (i == dx && j == dy) {
+                    return dist;
+                }
+                for (int d = 0; d < 4; d++) {
+                    int x = i + DIRS[d], y = j + DIRS[d + 1];
+					// 人只可以走空地格子或者目的地格子
+                    if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length
+							&& (grid[x][y] == '.' || grid[x][y] == 'D') && !visited[x][y]) {
+                        visited[x][y] = true;
+                        person.offer(new int[]{x, y});
+                    }
+                }
+            }
+            dist++;
+        }
+        return -1;
+    }
+
+    private void flood(char[][] grid, Deque<int[]> water) {
+        int size = water.size();
+        while (size-- > 0) {
+            int[] curr = water.poll();
+            for (int d = 0; d < 4; d++) {
+                int x = curr[0] + DIRS[d], y = curr[1] + DIRS[d + 1];
+                if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == '.') {
+                    grid[x][y] = '*';
+                    water.offer(new int[]{x, y});
+                }
+            }
+        }
+    }
 }
