@@ -252,6 +252,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0286 https://leetcode.com/problems/walls-and-gates/ (多源BFS)
 #0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
 #0317 https://leetcode.com/problems/shortest-distance-from-all-buildings/ (多源BFS, 状态压缩)
+#0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (DFS)
 #0417 https://leetcode.com/problems/pacific-atlantic-water-flow/ (miao a~~~) (DFS, BFS) (在dfs之前判断是否符合条件)
 #0463 https://leetcode.com/problems/island-perimeter/ (直接枚举)
 #0489 https://leetcode.com/problems/robot-room-cleaner/ (miao a~~~) (DFS + 改变方向）(***)
@@ -305,23 +306,39 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
 #0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
-#0737 https://leetcode.com/problems/sentence-similarity-ii/
+#0684 https://leetcode.com/problems/redundant-connection/ (DFS, union find)
+#0721 https://leetcode.com/problems/accounts-merge/ (String based union find)
+#0737 https://leetcode.com/problems/sentence-similarity-ii/ (String based union find)
+#0765 https://leetcode.com/problems/couples-holding-hands/ (同#3551) (置换 + 连通集, 循环排序)
 #0778 https://leetcode.com/problems/swim-in-rising-water/ (miao a~~~) (二分 + DFS，union find)
 #0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
+#0990 https://leetcode.com/problems/satisfiability-of-equality-equations/ (模版题)
+#1061 https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
+#1101 https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/ (模版题)
+#1202 https://leetcode.com/problems/smallest-string-with-swaps/
+#1258 https://leetcode.com/problems/synonymous-sentences/ (String based union find)
 #1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/
 #1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
 #1632 https://leetcode.com/problems/rank-transform-of-a-matrix/
 #1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+#1722 https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2076 https://leetcode.com/problems/process-restricted-friend-requests/
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
+#2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/ (同#3551) (置换 + 连通集, 循环排序)
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS + Dijkstra / Union Find)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
 #3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
+#3493 https://leetcode.com/problems/properties-graph/ (模版题)
+#3532 https://leetcode.com/problems/path-existence-queries-in-a-graph-i/ (miao a~~~)
+#3551 https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/ (miao a~~~) (置换 + 连通集, 循环排序)
 #3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
+#3608 https://leetcode.com/problems/minimum-time-for-k-connected-components/
+#3613 https://leetcode.com/problems/minimize-maximum-component-cost/
+#3695 https://leetcode.com/problems/maximize-alternating-sum-using-swaps/
 
 06. Dijkstra
 
@@ -344,6 +361,27 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
 #3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
 #3552 https://leetcode.com/problems/grid-teleportation-traversal/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
+
+07. Graph
+#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#0332 https://leetcode.com/problems/reconstruct-itinerary/ (Eulerian Path)
+#0684 https://leetcode.com/problems/redundant-connection/ (DFS, union find)
+#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
+#1857 https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
+#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
+#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/ (Eulerian Path)
+#2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
+#2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
+#2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/ (DFS timestamp)
+#2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+#2493 https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
+#2603 https://leetcode.com/problems/collect-coins-in-a-tree/
+#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
+#2782 https://leetcode.com/problems/number-of-unique-categories/
+#2924 https://leetcode.com/problems/find-champion-ii/
+#3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
 #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 07. Binary Search
@@ -457,26 +495,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 04. Array Permutation
 
 #0556 https://leetcode.com/problems/next-greater-element-iii/
-
-07. Graph
-#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
-#0332 https://leetcode.com/problems/reconstruct-itinerary/ (Eulerian Path)
-#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
-#1857 https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
-#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
-#2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
-#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/ (Eulerian Path)
-#2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
-#2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
-#2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/ (DFS timestamp)
-#2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
-#2493 https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
-#2603 https://leetcode.com/problems/collect-coins-in-a-tree/
-#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
-#2782 https://leetcode.com/problems/number-of-unique-categories/
-#2924 https://leetcode.com/problems/find-champion-ii/
-#3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
-#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
 08. Backtracking
 #1655 https://leetcode.com/problems/distribute-repeating-integers/

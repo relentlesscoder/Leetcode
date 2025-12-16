@@ -1,26 +1,39 @@
 package org.wshuai.leetcode;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
- * Created by Wei on 09/29/2019.
- * #1101 https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/
+ * Created by Wei on 12/14/2025.
+ * #3493 https://leetcode.com/problems/properties-graph/
  */
-public class TheEarliestMomentWhenEveryoneBecomeFriends {
+public class PropertiesGraph {
 
-    // time O(n * α(n)), space O(n)
-    public int earliestAcq(int[][] logs, int n) {
-        // 对数组按时间戳从小到大排序，遍历数组连通每个日志的两个人。最早使得
-        // 连通集数量变为1的那个日志的时间戳即为所求。
-        Arrays.sort(logs, (a, b) -> a[0] - b[0]);
+    // time O(n^2 * m), space O(n^2)
+    public int numberOfComponents(int[][] properties, int k) {
+        int n = properties.length;
         UnionFind uf = new UnionFind(n);
-        for (int[] log : logs) {
-            uf.union(log[1], log[2]);
-            if (uf.count() == 1) {
-                return log[0];
+        HashSet<Integer>[] sets = new HashSet[n];
+        Arrays.setAll(sets, i -> new HashSet<>());
+        for (int i = 0; i < n; i++) {
+            for (int num : properties[i]) {
+                sets[i].add(num);
             }
         }
-        return -1;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int count = 0;
+                for (int num : sets[i]) {
+                    if (sets[j].contains(num)) {
+                        count++;
+                    }
+                }
+                if (count >= k) {
+                    uf.union(i, j);
+                }
+            }
+        }
+        return uf.countComponents();
     }
 
     private static class UnionFind {
@@ -59,10 +72,8 @@ public class TheEarliestMomentWhenEveryoneBecomeFriends {
             this.count--;
         }
 
-        public int count() {
+        public int countComponents() {
             return this.count;
         }
     }
 }
-
-

@@ -1,6 +1,10 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Wei on 08/30/2019.
@@ -8,27 +12,28 @@ import java.util.*;
  */
 public class SentenceSimilarity {
 
-	// time O(n), space O(n)
-	public boolean areSentencesSimilar(String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {
-		int m = sentence1.length, n = sentence2.length;
-		if (m != n) {
-			return false;
-		}
-		Map<String, Set<String>> map = new HashMap<>();
-		for (List<String> pair : similarPairs) {
-			map.computeIfAbsent(pair.get(0), value -> new HashSet<>()).add(pair.get(1));
-			map.computeIfAbsent(pair.get(1), value -> new HashSet<>()).add(pair.get(0));
-		}
-		for (int i = 0; i < n; i++) {
-			if (sentence1[i].equals(sentence2[i])) {
-				continue;
-			}
-			if (map.containsKey(sentence1[i])
-					&& map.get(sentence1[i]).contains(sentence2[i])) {
-				continue;
-			}
-			return false;
-		}
-		return true;
-	}
+    // time O(n + m * L), space O(m)
+    public boolean areSentencesSimilar(String[] sentence1, String[] sentence2,
+                                       List<List<String>> similarPairs) {
+        int n1 = sentence1.length, n2 = sentence2.length;
+        if (n1 != n2) {
+            return false;
+        }
+        Map<String, Set<String>> dict = new HashMap<>();
+        for (List<String> pair : similarPairs) { // O(m)
+            dict.computeIfAbsent(pair.get(0), key -> new HashSet<>()).add(pair.get(1)); // O(L)
+            dict.computeIfAbsent(pair.get(1), key -> new HashSet<>()).add(pair.get(0));
+        }
+        for (int i = 0; i < n1; i++) { // O(n)
+            if (sentence1[i].equals(sentence2[i])) {
+                continue;
+            }
+            if (!dict.containsKey(sentence1[i])
+                    || !dict.containsKey(sentence2[i])
+                    || !dict.get(sentence1[i]).contains(sentence2[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -3,24 +3,30 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 09/29/2019.
- * #1101 https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/
+ * Created by Wei on 12/16/2025.
+ * #3608 https://leetcode.com/problems/minimum-time-for-k-connected-components/
  */
-public class TheEarliestMomentWhenEveryoneBecomeFriends {
+public class MinimumTimeForKConnectedComponents {
 
-    // time O(n * α(n)), space O(n)
-    public int earliestAcq(int[][] logs, int n) {
-        // 对数组按时间戳从小到大排序，遍历数组连通每个日志的两个人。最早使得
-        // 连通集数量变为1的那个日志的时间戳即为所求。
-        Arrays.sort(logs, (a, b) -> a[0] - b[0]);
+    // time O(n * log(n)), space O(n)
+    public int minTime(int n, int[][] edges, int k) {
+        int res = 0;
+        Arrays.sort(edges, (a, b) -> b[2] - a[2]);
         UnionFind uf = new UnionFind(n);
-        for (int[] log : logs) {
-            uf.union(log[1], log[2]);
-            if (uf.count() == 1) {
-                return log[0];
+        // 正难则反：按照时间点逆序遍历边集依次连通每条边，
+        // 找到最后一条边使得连通分量的个数大于等于k，这个
+        // 时间即为答案。
+        for (int[] e : edges) {
+            if (uf.countComponents() >= k) {
+                res = e[2];
+            } else {
+                break;
             }
+            uf.union(e[0], e[1]);
         }
-        return -1;
+        // Corner case：如果连通所有的边之后连通分量的个数
+        // 依然大于等于k，那最小时间就是0。
+        return uf.countComponents() >= k ? 0 : res;
     }
 
     private static class UnionFind {
@@ -37,14 +43,14 @@ public class TheEarliestMomentWhenEveryoneBecomeFriends {
             Arrays.setAll(root, i -> i);
         }
 
-        public int find(int x) {
+        private int find(int x) {
             if (x != root[x]) {
                 root[x] = find(root[x]);
             }
             return root[x];
         }
 
-        public void union(int x, int y) {
+        private void union(int x, int y) {
             int rootX = find(x), rootY = find(y);
             if (rootX == rootY) {
                 return;
@@ -59,10 +65,8 @@ public class TheEarliestMomentWhenEveryoneBecomeFriends {
             this.count--;
         }
 
-        public int count() {
+        private int countComponents() {
             return this.count;
         }
     }
 }
-
-
