@@ -310,31 +310,34 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
 #0684 https://leetcode.com/problems/redundant-connection/ (DFS, union find)
+#0685
 #0721 https://leetcode.com/problems/accounts-merge/ (String based union find)
 #0737 https://leetcode.com/problems/sentence-similarity-ii/ (String based union find)
 #0765 https://leetcode.com/problems/couples-holding-hands/ (同#3551) (置换 + 连通集, 循环排序)
-#0778 https://leetcode.com/problems/swim-in-rising-water/ (miao a~~~) (二分 + DFS，union find)
+#0778 https://leetcode.com/problems/swim-in-rising-water/ (miao a~~~) (二分 + DFS，union find) (淹水问题)
 #0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
 #0839 https://leetcode.com/problems/similar-string-groups/
 #0947 https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/ (miao a~~~)
+#0959 https://leetcode.com/problems/regions-cut-by-slashes/ (miao a~~~) (画图题)
 #0990 https://leetcode.com/problems/satisfiability-of-equality-equations/ (模版题)
 #1061 https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
 #1101 https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/ (模版题)
 #1202 https://leetcode.com/problems/smallest-string-with-swaps/
 #1258 https://leetcode.com/problems/synonymous-sentences/ (String based union find)
+#1579
 #1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/
 #1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
 #1632 https://leetcode.com/problems/rank-transform-of-a-matrix/
 #1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
 #1722 https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/
-#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
+#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/ (连通集，二分 + DFS/BFS) (淹水问题)
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
-#2076 https://leetcode.com/problems/process-restricted-friend-requests/
+#2076 https://leetcode.com/problems/process-restricted-friend-requests/ (连通集)
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
 #2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/ (同#3551) (置换 + 连通集, 循环排序)
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
-#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS + Dijkstra / Union Find)
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ (miao a~~~) (多源BFS + Dijkstra, Union Find, 二分 + BFS) (淹水问题)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
 #3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 #3493 https://leetcode.com/problems/properties-graph/ (模版题)
