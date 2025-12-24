@@ -337,7 +337,9 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #2076 https://leetcode.com/problems/process-restricted-friend-requests/ (连通集)
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
+#2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/ (same as #1632)
 #2421
+#2459 https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/ (miao a~~~) (#3551相似题) (置换 + 连通集)
 #2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/ (同#3551) (置换 + 连通集, 循环排序)
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/ (变形BFS，连通集)
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
