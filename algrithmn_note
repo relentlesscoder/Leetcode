@@ -321,6 +321,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
 #0839 https://leetcode.com/problems/similar-string-groups/
 #0947 https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/ (miao a~~~)
+#0952 https://leetcode.com/problems/largest-component-size-by-common-factor/ (miao a~~~) (#2709) (连通集 + 质因数)
 #0959 https://leetcode.com/problems/regions-cut-by-slashes/ (miao a~~~) (画图题)
 #0990 https://leetcode.com/problems/satisfiability-of-equality-equations/ (模版题)
 #1061 https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
@@ -329,12 +330,13 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1258 https://leetcode.com/problems/synonymous-sentences/ (String based union find)
 #1579
 #1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/
-#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
+#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/ (连通集 + 因数分解)
 #1632 https://leetcode.com/problems/rank-transform-of-a-matrix/ (miao a~~~) (连通集 + 拓扑排序)
 #1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
 #1722 https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/ (连通集，二分 + DFS/BFS) (淹水问题)
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#1998 https://leetcode.com/problems/gcd-sort-of-an-array/ (miao a~~~) (连通集 + 质因数)
 #2076 https://leetcode.com/problems/process-restricted-friend-requests/ (连通集)
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/ (same as #1632)
@@ -343,11 +345,13 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/ (同#3551) (置换 + 连通集, 循环排序)
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/ (变形BFS，连通集)
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
+#2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/ (miao a~~~) (连通集 + 质因数)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ (miao a~~~) (多源BFS + Dijkstra, Union Find, 二分 + BFS) (淹水问题)
 #2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
 #2867
 #3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
+#3235
 #3493 https://leetcode.com/problems/properties-graph/ (模版题)
 #3532 https://leetcode.com/problems/path-existence-queries-in-a-graph-i/ (miao a~~~)
 #3551 https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/ (miao a~~~) (置换 + 连通集, 循环排序)
@@ -356,6 +360,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3608 https://leetcode.com/problems/minimum-time-for-k-connected-components/
 #3613 https://leetcode.com/problems/minimize-maximum-component-cost/
 #3695 https://leetcode.com/problems/maximize-alternating-sum-using-swaps/
+#LCP71
 
 06. Dijkstra
 
@@ -1404,7 +1409,10 @@ Note:
 	move left: ((i - moves) % n + n) % n 
 
 20. Prime factorization:
+		#0952 https://leetcode.com/problems/largest-component-size-by-common-factor/
+		#1998 https://leetcode.com/problems/gcd-sort-of-an-array/ (miao a~~~) (连通集 + 质因数)
     	#2521 https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/
+    	#2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/
 
     Prime Factor preprocessing
     	https://www.geeksforgeeks.org/dsa/sieve-of-eratosthenes/
@@ -1412,10 +1420,12 @@ Note:
     	https://www.youtube.com/watch?v=Kwo2jkHOyPY
 
     	#0204 https://leetcode.com/problems/count-primes/ (prime factorization)
+    	#2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/
 		#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 		#3569 https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/ (segment tree + prime factorization)
 
 	Factorization: 
+		#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/ (连通集 + 因数分解)
 		#3164 https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization)
 
 21. Palindrome extend from middle https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
