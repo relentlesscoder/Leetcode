@@ -6,14 +6,27 @@ package org.wshuai.leetcode;
  */
 public class MaximumAbsoluteSumOfAnySubarray {
 
-	// time O(n), space O(1)
-	public int maxAbsoluteSum(int[] nums) {
-		int currentSubarrayMax = 0, currentSubarrayMin = 0, maxSubarraySum = 0;
-		for (int i = 0; i < nums.length; i++) {
-			currentSubarrayMax = Math.max(currentSubarrayMax + nums[i], nums[i]);
-			currentSubarrayMin = Math.min(currentSubarrayMin + nums[i], nums[i]);
-			maxSubarraySum = Math.max(maxSubarraySum, Math.max(currentSubarrayMax, -currentSubarrayMin));
-		}
-		return maxSubarraySum;
-	}
+    // time O(n), space O(1)
+    public int maxAbsoluteSum(int[] nums) {
+        int res = 0, max = 0, min = 0;
+        for (int num : nums) {
+            // 最大子数组要么延续前面的数组，要么从当前元素开始
+            max = Math.max(max + num, num);
+            min = Math.min(min + num, num);
+            // 因为是求最大绝对值所以取max和-min的最大值
+            res = Math.max(res, Math.max(max, -min));
+        }
+        return res;
+    }
+
+    // time O(n), space O(1)
+    public int maxAbsoluteSumPrefixSum(int[] nums) {
+        int sum = 0, max = 0, min = 0;
+        for (int num : nums) {
+            sum += num;
+            max = Math.max(max, sum);
+            min = Math.min(min, sum);
+        }
+        return max - min;
+    }
 }

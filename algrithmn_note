@@ -495,30 +495,33 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 
 03. Prefix Sum
 
-#0303 https://leetcode.com/problems/range-sum-query-immutable/
+#0303 https://leetcode.com/problems/range-sum-query-immutable/ (前缀和 基础)
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #0327 https://leetcode.com/problems/count-of-range-sum/
 #0525 https://leetcode.com/problems/contiguous-array/
 #1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
 #1124 https://leetcode.com/problems/longest-well-performing-interval/
+#1310 https://leetcode.com/problems/xor-queries-of-a-subarray/ (异或前缀和)
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
+#1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (前缀和绝对值, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
 #2017 https://leetcode.com/problems/grid-game/
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2121 https://leetcode.com/problems/intervals-between-identical-elements/
 #2270 https://leetcode.com/problems/number-of-ways-to-split-array/
-#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (gong xian fa) (prefix sum of prefix sum)
+#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a~~~) (gong xian fa) (prefix sum of prefix sum)
 #2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (二分，前缀和)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
-#2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/
+#2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/ (前缀和 基础)
 #2615 https://leetcode.com/problems/sum-of-distances/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 #2731 https://leetcode.com/problems/movement-of-robots/
 #2845 https://leetcode.com/problems/count-of-interesting-subarrays/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
-#3152 https://leetcode.com/problems/special-array-ii/
+#3152 https://leetcode.com/problems/special-array-ii/ (miao a~~~) (奇偶性前缀和)
+#3427 https://leetcode.com/problems/sum-of-variable-length-subarrays/ (前缀和 基础)
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
 #3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
 #3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
