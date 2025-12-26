@@ -223,7 +223,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (*****) (gong xian fa) (prefix sum of prefix sum)
 #2282 https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/ (***)
-#2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/
+#2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/ (miao a~~~) (单调栈 - 找左右边界) (并查集在数组上的应用)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 #2454 https://leetcode.com/problems/next-greater-element-iv/ (double monotonic stacks)
@@ -308,6 +308,9 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #LCCI-16.19 https://leetcode.cn/problems/pond-sizes-lcci/ (DFS, BFS) (上下左右+对角线 模版)
 
 05. Union Find
+
+时间复杂度: https://leetcode.cn/problems/number-of-provinces/solutions/550060/jie-zhe-ge-wen-ti-ke-pu-yi-xia-bing-cha-0unne/
+
 #0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
 #0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
 #0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
@@ -328,22 +331,30 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1101 https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/ (模版题)
 #1202 https://leetcode.com/problems/smallest-string-with-swaps/
 #1258 https://leetcode.com/problems/synonymous-sentences/ (String based union find)
+#1353 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/ (miao a~~~) (并查集在数组上的应用)
+#1488 https://leetcode.com/problems/avoid-flood-in-the-city/ (miao a~~~) (并查集在数组上的应用)
+#1562 https://leetcode.com/problems/find-latest-group-of-size-m/ (miao a~~~) (连通集 + 连通分量大小)
 #1579
 #1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/
 #1627 https://leetcode.com/problems/graph-connectivity-with-threshold/ (连通集 + 因数分解)
 #1632 https://leetcode.com/problems/rank-transform-of-a-matrix/ (miao a~~~) (连通集 + 拓扑排序)
 #1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
 #1722 https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/
+#1851 https://leetcode.com/problems/minimum-interval-to-include-each-query/ (miao a~~~) (并查集在数组上的应用)
 #1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/ (连通集，二分 + DFS/BFS) (淹水问题)
 #1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
 #1998 https://leetcode.com/problems/gcd-sort-of-an-array/ (miao a~~~) (连通集 + 质因数)
 #2076 https://leetcode.com/problems/process-restricted-friend-requests/ (连通集)
 #2092 https://leetcode.com/problems/find-all-people-with-secret/
+#2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/ (miao a~~~) (并查集在数组上的应用)
+#2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/ (miao a~~~) (单调栈 - 找左右边界) (并查集在数组上的应用)
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/ (same as #1632)
+#2382 https://leetcode.com/problems/maximum-segment-sum-after-removals/ (并查集 维护连通分量的和)
 #2421
 #2459 https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/ (miao a~~~) (#3551相似题) (置换 + 连通集)
 #2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/ (同#3551) (置换 + 连通集, 循环排序)
 #2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/ (变形BFS，连通集)
+#2612
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/ (miao a~~~) (连通集 + 质因数)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
@@ -352,6 +363,8 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2867
 #3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 #3235
+#3244 https://leetcode.com/problems/shortest-distance-after-road-addition-queries-ii/ (miao a~~~) (连通集 跳跃)
+#3378
 #3493 https://leetcode.com/problems/properties-graph/ (模版题)
 #3532 https://leetcode.com/problems/path-existence-queries-in-a-graph-i/ (miao a~~~)
 #3551 https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/ (miao a~~~) (置换 + 连通集, 循环排序)
@@ -359,7 +372,9 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
 #3608 https://leetcode.com/problems/minimum-time-for-k-connected-components/
 #3613 https://leetcode.com/problems/minimize-maximum-component-cost/
+#3666
 #3695 https://leetcode.com/problems/maximize-alternating-sum-using-swaps/
+#LCP52
 #LCP71
 
 06. Dijkstra
@@ -729,6 +744,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2924 https://leetcode.com/problems/find-champion-ii/
 #3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 #3211 https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/
+#3243 https://leetcode.com/problems/shortest-distance-after-road-addition-queries-i/
 #3372 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-i/
 #3373 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-ii/
 #3552 https://leetcode.com/problems/grid-teleportation-traversal/ ***(BFS)
@@ -1057,6 +1073,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/
 
 40. Greedy
+#1353 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/ (并查集)
 #1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
 #1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
 #2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
