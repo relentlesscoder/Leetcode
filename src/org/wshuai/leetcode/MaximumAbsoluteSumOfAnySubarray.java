@@ -7,7 +7,7 @@ package org.wshuai.leetcode;
 public class MaximumAbsoluteSumOfAnySubarray {
 
     // time O(n), space O(1)
-    public int maxAbsoluteSum(int[] nums) {
+    public int maxAbsoluteSumDP(int[] nums) {
         int res = 0, max = 0, min = 0;
         for (int num : nums) {
             // 最大子数组要么延续前面的数组，要么从当前元素开始
@@ -27,6 +27,10 @@ public class MaximumAbsoluteSumOfAnySubarray {
             max = Math.max(max, sum);
             min = Math.min(min, sum);
         }
+		// 最大值是最大前缀和减最小前缀和或者最小前缀和减最大前缀和
+		// 的绝对值。
+		// 如果最大前缀和在最小前缀和的后面，则答案为max - min，
+		// 反之则答案为-(min - max) = max - min。
         return max - min;
     }
 }

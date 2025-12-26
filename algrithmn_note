@@ -107,7 +107,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/ (miao a~~~) (todo: draw the pic)
 #3634 https://leetcode.com/problems/minimum-removals-to-balance-array/
 #3641 https://leetcode.com/problems/longest-semi-repeating-subarray/
-#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (binary sliding window)
+#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (前缀和，滑动窗口)
 #3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 #3679 https://leetcode.com/problems/minimum-discards-to-balance-inventory/
 #3694 https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/ (miao a~~~)
@@ -421,7 +421,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
 #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
-07. Binary Search
+08. Binary Search
 
 https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/solutions/1980196/er-fen-cha-zhao-zong-shi-xie-bu-dui-yi-g-t9l9/
 
@@ -493,8 +493,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3453 https://leetcode.com/problems/separate-squares-i/ ***(double type boundary)
 #3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/ (binary search for min and max)
 
-03. Prefix Sum
+09. Prefix Sum
 
+#0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
 #0303 https://leetcode.com/problems/range-sum-query-immutable/ (前缀和 基础)
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #0327 https://leetcode.com/problems/count-of-range-sum/
@@ -503,7 +504,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1124 https://leetcode.com/problems/longest-well-performing-interval/
 #1310 https://leetcode.com/problems/xor-queries-of-a-subarray/ (异或前缀和)
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
-#1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (前缀和绝对值, DP)
+#1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
 #2017 https://leetcode.com/problems/grid-game/
@@ -521,27 +522,17 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2845 https://leetcode.com/problems/count-of-interesting-subarrays/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
 #3152 https://leetcode.com/problems/special-array-ii/ (miao a~~~) (奇偶性前缀和)
+#3361 https://leetcode.com/problems/shift-distance-between-two-strings/ (miao a~~~) (前缀和应用)
 #3427 https://leetcode.com/problems/sum-of-variable-length-subarrays/ (前缀和 基础)
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
-#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
+#3511 https://leetcode.com/problems/make-a-positive-array/ (miao a~~~) (前缀和应用)
+#3540 https://leetcode.com/problems/minimum-time-to-visit-all-houses/ (miao a~~~) (前缀和应用, 同#3361)
+#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (前缀和，滑动窗口)
 #3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
 #3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
 
-06. Subsequence
-
-#0392 https://leetcode.com/problems/is-subsequence/
-#2825 https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/
-
-04. Array Permutation
-
-#0556 https://leetcode.com/problems/next-greater-element-iii/
-
-08. Backtracking
-#1655 https://leetcode.com/problems/distribute-repeating-integers/
-#2305 https://leetcode.com/problems/fair-distribution-of-cookies/
-
-09. Dynamic Programming
-#0053 https://leetcode.com/problems/maximum-subarray/
+10. Dynamic Programming
+#0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
 #0072 https://leetcode.com/problems/edit-distance/
 #0085 https://leetcode.com/problems/maximal-rectangle/ (***)
 #0221 https://leetcode.com/problems/maximal-square/ (***)
@@ -556,6 +547,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
 #1824 https://leetcode.com/problems/minimum-sideway-jumps/ (miao a~~~）(BFS + Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #1871 https://leetcode.com/problems/jump-game-vii/
@@ -599,6 +591,19 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3503 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 #3524 https://leetcode.com/problems/find-x-value-of-array-i/
+
+06. Subsequence
+
+#0392 https://leetcode.com/problems/is-subsequence/
+#2825 https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/
+
+04. Array Permutation
+
+#0556 https://leetcode.com/problems/next-greater-element-iii/
+
+08. Backtracking
+#1655 https://leetcode.com/problems/distribute-repeating-integers/
+#2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 
 10. Min/max queue
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
