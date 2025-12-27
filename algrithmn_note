@@ -499,10 +499,15 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0303 https://leetcode.com/problems/range-sum-query-immutable/ (前缀和 基础)
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #0327 https://leetcode.com/problems/count-of-range-sum/
+#0523 https://leetcode.com/problems/continuous-subarray-sum/ (前缀和 + 模运算)
 #0525 https://leetcode.com/problems/contiguous-array/
+#0560 https://leetcode.com/problems/subarray-sum-equals-k/ (前缀和 + 哈希表)
+#0930 https://leetcode.com/problems/binary-subarrays-with-sum/ (前缀和 + 哈希表)
+#0974 https://leetcode.com/problems/subarray-sums-divisible-by-k/ (前缀和 + 模运算)
 #1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
 #1124 https://leetcode.com/problems/longest-well-performing-interval/
 #1310 https://leetcode.com/problems/xor-queries-of-a-subarray/ (异或前缀和)
+#1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
@@ -516,6 +521,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/ (前缀和 基础)
+#2588 https://leetcode.com/problems/count-the-number-of-beautiful-subarrays/ (miao a~~~) (前缀异或和)
 #2615 https://leetcode.com/problems/sum-of-distances/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 #2731 https://leetcode.com/problems/movement-of-robots/
@@ -544,6 +550,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
 #1395 https://leetcode.com/problems/count-number-of-teams/
+#1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
@@ -1626,6 +1633,10 @@ In essence, this expression efficiently finds the next power of two for a given 
 
 	https://leetcode.cn/discuss/post/3571304/cong-ji-he-lun-dao-wei-yun-suan-chang-ji-enve/
 
+40 负数的模运算
+
+	-5 % 3 = -2 -> (-2 + 3) % 3 = 1
+	8 % 3 = 2
 
 
 

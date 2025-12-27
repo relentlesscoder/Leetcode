@@ -9,16 +9,16 @@ import java.util.Map;
  */
 public class SubarraySumEqualsK {
 
-	// time O(n), space O(n)
-	public int subarraySum(int[] nums, int k) {
-		int res = 0, sum = 0;
-		Map<Integer, Integer> prefixSum = new HashMap<>();
-		prefixSum.put(0, 1);
-		for (int i = 0; i < nums.length; i++) {
-			sum += nums[i];
-			res += prefixSum.getOrDefault(sum - k, 0);
-			prefixSum.put(sum, prefixSum.getOrDefault(sum, 0) + 1);
-		}
-		return res;
-	}
+    // time O(n), space O(n)
+    public int subarraySum(int[] nums, int k) {
+        int res = 0, n = nums.length;
+        Map<Integer, Integer> prefix = new HashMap<>(); // 哈希表存前缀和的出现的次数
+        prefix.put(0, 1); // 预先加入前缀和0 (前缀子数组为空)
+        for (int i = 0, sum = 0; i < n; i++) {
+            sum += nums[i];
+            res += prefix.getOrDefault(sum - k, 0);
+            prefix.merge(sum, 1, Integer::sum);
+        }
+        return res;
+    }
 }
