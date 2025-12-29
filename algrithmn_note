@@ -107,7 +107,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/ (miao a~~~) (todo: draw the pic)
 #3634 https://leetcode.com/problems/minimum-removals-to-balance-array/
 #3641 https://leetcode.com/problems/longest-semi-repeating-subarray/
-#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (binary sliding window)
+#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (前缀和，滑动窗口)
 #3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 #3679 https://leetcode.com/problems/minimum-discards-to-balance-inventory/
 #3694 https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/ (miao a~~~)
@@ -120,12 +120,16 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0015 https://leetcode.com/problems/3sum/
 #0016 https://leetcode.com/problems/3sum-closest/
 #0018 https://leetcode.com/problems/4sum/
+#0026 https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+#0027 https://leetcode.com/problems/remove-element/
 #0042 https://leetcode.com/problems/trapping-rain-water/
+#0080 https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/ (miao a~~~) (***)
 #0088 https://leetcode.com/problems/merge-sorted-array/
 #0125 https://leetcode.com/problems/valid-palindrome/
 #0160 https://leetcode.com/problems/intersection-of-two-linked-lists/
 #0167 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 #0259 https://leetcode.com/problems/3sum-smaller/
+#0283 https://leetcode.com/problems/move-zeroes/
 #0344 https://leetcode.com/problems/reverse-string/
 #0345 https://leetcode.com/problems/reverse-vowels-of-a-string/
 #0360 https://leetcode.com/problems/sort-transformed-array/
@@ -136,10 +140,14 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0633 https://leetcode.com/problems/sum-of-square-numbers/
 #0658 https://leetcode.com/problems/find-k-closest-elements/
 #0844 https://leetcode.com/problems/backspace-string-compare/
+#0905 https://leetcode.com/problems/sort-array-by-parity/
 #0917 https://leetcode.com/problems/reverse-only-letters/
+#0922 https://leetcode.com/problems/sort-array-by-parity-ii/
 #0923 https://leetcode.com/problems/3sum-with-multiplicity/
 #0948 https://leetcode.com/problems/bag-of-tokens/
+#0976 https://leetcode.com/problems/largest-perimeter-triangle/
 #0977 https://leetcode.com/problems/squares-of-a-sorted-array/
+#1089 https://leetcode.com/problems/duplicate-zeros/
 #1099 https://leetcode.com/problems/two-sum-less-than-k/
 #1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
 #1471 https://leetcode.com/problems/the-k-strongest-values-in-an-array/
@@ -149,8 +157,8 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1616 https://leetcode.com/problems/split-two-strings-to-make-palindrome/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
 #1679 https://leetcode.com/problems/max-number-of-k-sum-pairs/
-#1782
 #1750 https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/
+#1782
 #1868 https://leetcode.com/problems/product-of-two-run-length-encoded-arrays/
 #1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
 #1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
@@ -160,6 +168,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2337 https://leetcode.com/problems/move-pieces-to-obtain-a-string/
 #2422 https://leetcode.com/problems/merge-operations-to-turn-array-into-a-palindrome/
 #2444 https://leetcode.com/problems/count-subarrays-with-fixed-bounds/
+#2460 https://leetcode.com/problems/apply-operations-to-an-array/
 #2563 https://leetcode.com/problems/count-the-number-of-fair-pairs/
 #2824 https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 #3643 https://leetcode.com/problems/flip-square-submatrix-vertically/
@@ -167,6 +176,8 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2970 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-i/
 #2972 https://leetcode.com/problems/count-the-number-of-incremovable-subarrays-ii/
 #3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
+#3467 https://leetcode.com/problems/transform-array-by-parity/
+#3684 https://leetcode.com/problems/maximize-sum-of-at-most-k-distinct-elements/
 
 03. Monotonic Stack
 
@@ -190,10 +201,10 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0853 https://leetcode.com/problems/car-fleet/
 #0901 https://leetcode.com/problems/online-stock-span/
 #0907 https://leetcode.com/problems/sum-of-subarray-minimums/ (miao a ~~~) (gong xian fa)
-#0962 https://leetcode.com/problems/maximum-width-ramp/ (miao a ~~~)
+#0962 https://leetcode.com/problems/maximum-width-ramp/ (miao a ~~~) (单调栈最长子数组)
 #1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
 #1081 https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
-#1124 https://leetcode.com/problems/longest-well-performing-interval/ (prefix sum + #0962)
+#1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a ~~~) (前缀和 + 单调栈最长子数组) (前缀和)
 #1130 https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/ (***)
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/ (miao a ~~~)
 #1425
@@ -212,7 +223,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (*****) (gong xian fa) (prefix sum of prefix sum)
 #2282 https://leetcode.com/problems/number-of-people-that-can-be-seen-in-a-grid/
 #2289 https://leetcode.com/problems/steps-to-make-array-non-decreasing/ (***)
-#2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/
+#2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/ (miao a~~~) (单调栈 - 找左右边界) (并查集在数组上的应用)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 #2454 https://leetcode.com/problems/next-greater-element-iv/ (double monotonic stacks)
@@ -229,48 +240,192 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3205 https://leetcode.com/problems/maximum-array-hopping-score-i/
 #3221 https://leetcode.com/problems/maximum-array-hopping-score-ii/
 #3359 https://leetcode.com/problems/find-sorted-submatrices-with-maximum-element-at-most-k/ (miao a ~~~) (#1504)
+#3420
 #3430 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subarrays/ (miao a ~~~) (gong xian fa)
 #3542 https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/ (miao a ~~~)
 #3555 https://leetcode.com/problems/smallest-subarray-to-sort-in-every-sliding-window/ (***)
 
-04 Grid
+04. Grid
+
+#0130 https://leetcode.com/problems/surrounded-regions/ (DFS, BFS)
+#0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
+#0286 https://leetcode.com/problems/walls-and-gates/ (多源BFS)
+#0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
+#0317 https://leetcode.com/problems/shortest-distance-from-all-buildings/ (多源BFS, 状态压缩)
+#0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (DFS)
+#0417 https://leetcode.com/problems/pacific-atlantic-water-flow/ (miao a~~~) (DFS, BFS) (在dfs之前判断是否符合条件)
+#0463 https://leetcode.com/problems/island-perimeter/ (直接枚举)
+#0489 https://leetcode.com/problems/robot-room-cleaner/ (miao a~~~) (DFS + 改变方向）(***)
+#0490 https://leetcode.com/problems/the-maze/ (miao a~~~) (DFS, BFS)
+#0499 https://leetcode.com/problems/the-maze-iii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径) (DFS两种遍历信息更新的区别)
+#0505 https://leetcode.com/problems/the-maze-ii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径)
+#0529 https://leetcode.com/problems/minesweeper/ (DFS, BFS)
+#0542 https://leetcode.com/problems/01-matrix/ (BFS) (multi source)
+#0675 https://leetcode.com/problems/cut-off-trees-for-golf-event/ (multi BFS)
+#0695 https://leetcode.com/problems/max-area-of-island/ (DFS, BFS)
+#0733 https://leetcode.com/problems/flood-fill/ (DFS)
+#0749 https://leetcode.com/problems/contain-virus/ (DFS + BFS)
+#0778 https://leetcode.com/problems/swim-in-rising-water/ (miao a~~~) (二分 + DFS，union find)
+#0803 https://leetcode.com/problems/bricks-falling-when-hit/ (miao a~~~) (DFS, union find)
+#0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
+#0864 https://leetcode.com/problems/shortest-path-to-get-all-keys/  (miao a~~~) (多状态BFS + bitmask)
+#0909 https://leetcode.com/problems/snakes-and-ladders/ (BFS)
+#0934 https://leetcode.com/problems/shortest-bridge/ (miao a~~~) (BFS + DFS)
+#0994 https://leetcode.com/problems/rotting-oranges/
+#1020 https://leetcode.com/problems/number-of-enclaves/ (DFS, BFS)
+#1034 https://leetcode.com/problems/coloring-a-border/ (miao a~~~) (DFS)
+#1036 https://leetcode.com/problems/escape-a-large-maze/ (miao a~~~) (Limited BFS, 离散化BFS)
+#1091 https://leetcode.com/problems/shortest-path-in-binary-matrix/ (BFS) (上下左右+对角线 模版)
+#1162 https://leetcode.com/problems/as-far-from-land-as-possible/ (BFS) (multi source)
+#1210 https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/ (miao a~~~) (BFS + 状态压缩)
+#1254 https://leetcode.com/problems/number-of-closed-islands/ (DFS, BFS)
+#1293 https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/ (miao a~~~) (BFS + 状态压缩)
+#1368 https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#1391 https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/ (miao a~~~) (DFS, BFS)
+#1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/ (miao a~~~) (DFS, union find)
+#1631 https://leetcode.com/problems/path-with-minimum-effort/ (边权网格题) （BFS, Dijkstra)
+#1730 https://leetcode.com/problems/shortest-path-to-get-food/ (BFS)
+#1765 https://leetcode.com/problems/map-of-highest-peak/ (BFS) (multi source)
+#1824 https://leetcode.com/problems/minimum-sideway-jumps/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#1905 https://leetcode.com/problems/count-sub-islands/ (DFS, BFS)
+#1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
+#2061 https://leetcode.com/problems/number-of-spaces-cleaning-robot-cleaned/ (miao a~~~) (DFS + 改变方向 + 状态压缩)
+#2146 https://leetcode.com/problems/k-highest-ranked-items-within-a-price-range/ (BFS + priority queue) (毫无技术含量)
+#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/ (变形BFS，连通集)
+#2658 https://leetcode.com/problems/maximum-number-of-fish-in-a-grid/ (DFS, BFS)
+#2684 https://leetcode.com/problems/maximum-number-of-moves-in-a-grid/ (DFS, BFS)
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS, Dijkstra, Union Find)
+#2814 https://leetcode.com/problems/minimum-time-takes-to-reach-destination-without-drowning/ (多源BFS)
+#2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
+#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#3552 https://leetcode.com/problems/grid-teleportation-traversal/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#3568 https://leetcode.com/problems/minimum-moves-to-clean-the-classroom/ (miao a~~~) (多状态BFS + bitmask)
+#3619 https://leetcode.com/problems/count-islands-with-total-value-divisible-by-k/ (DFS, BFS)
+#LCP56 https://leetcode.cn/problems/6UEx57/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#LCP63 https://leetcode.cn/problems/EXvqDp/ (miao a~~~) (DFS + 改变方向)
+#LCS03 https://leetcode.cn/problems/YesdPw/ (BFS + DFS)
+#LCCI-16.19 https://leetcode.cn/problems/pond-sizes-lcci/ (DFS, BFS) (上下左右+对角线 模版)
+
+05. Union Find
+
+时间复杂度: https://leetcode.cn/problems/number-of-provinces/solutions/550060/jie-zhe-ge-wen-ti-ke-pu-yi-xia-bing-cha-0unne/
 
 #0200 https://leetcode.com/problems/number-of-islands/ (DFS, BFS, union find)
-#0695 https://leetcode.com/problems/max-area-of-island/ (DFS, BFS)
-#1926 https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/ (BFS)
+#0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
+#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#0684 https://leetcode.com/problems/redundant-connection/ (DFS, union find)
+#0685
+#0721 https://leetcode.com/problems/accounts-merge/ (String based union find)
+#0737 https://leetcode.com/problems/sentence-similarity-ii/ (String based union find)
+#0765 https://leetcode.com/problems/couples-holding-hands/ (同#3551) (置换 + 连通集, 循环排序)
+#0778 https://leetcode.com/problems/swim-in-rising-water/ (miao a~~~) (二分 + DFS，union find) (淹水问题)
+#0803 https://leetcode.com/problems/bricks-falling-when-hit/ (miao a~~~) (DFS, union find)
+#0827 https://leetcode.com/problems/making-a-large-island/ (miao a~~~) (DFS, union find)
+#0839 https://leetcode.com/problems/similar-string-groups/
+#0947 https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/ (miao a~~~)
+#0952 https://leetcode.com/problems/largest-component-size-by-common-factor/ (miao a~~~) (#2709) (连通集 + 质因数)
+#0959 https://leetcode.com/problems/regions-cut-by-slashes/ (miao a~~~) (画图题)
+#0990 https://leetcode.com/problems/satisfiability-of-equality-equations/ (模版题)
+#1061 https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
+#1101 https://leetcode.com/problems/the-earliest-moment-when-everyone-become-friends/ (模版题)
+#1202 https://leetcode.com/problems/smallest-string-with-swaps/
+#1258 https://leetcode.com/problems/synonymous-sentences/ (String based union find)
+#1353 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/ (miao a~~~) (并查集在数组上的应用)
+#1488 https://leetcode.com/problems/avoid-flood-in-the-city/ (miao a~~~) (并查集在数组上的应用)
+#1562 https://leetcode.com/problems/find-latest-group-of-size-m/ (miao a~~~) (连通集 + 连通分量大小)
+#1579
+#1559 https://leetcode.com/problems/detect-cycles-in-2d-grid/
+#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/ (连通集 + 因数分解)
+#1632 https://leetcode.com/problems/rank-transform-of-a-matrix/ (miao a~~~) (连通集 + 拓扑排序)
+#1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
+#1722 https://leetcode.com/problems/minimize-hamming-distance-after-swap-operations/
+#1851 https://leetcode.com/problems/minimum-interval-to-include-each-query/ (miao a~~~) (并查集在数组上的应用)
+#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/ (连通集，二分 + DFS/BFS) (淹水问题)
+#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#1998 https://leetcode.com/problems/gcd-sort-of-an-array/ (miao a~~~) (连通集 + 质因数)
+#2076 https://leetcode.com/problems/process-restricted-friend-requests/ (连通集)
+#2092 https://leetcode.com/problems/find-all-people-with-secret/
+#2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/ (miao a~~~) (并查集在数组上的应用)
+#2334 https://leetcode.com/problems/subarray-with-elements-greater-than-varying-threshold/ (miao a~~~) (单调栈 - 找左右边界) (并查集在数组上的应用)
+#2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/ (same as #1632)
+#2382 https://leetcode.com/problems/maximum-segment-sum-after-removals/ (并查集 维护连通分量的和)
+#2421
+#2459 https://leetcode.com/problems/sort-array-by-moving-items-to-empty-space/ (miao a~~~) (#3551相似题) (置换 + 连通集)
+#2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/ (同#3551) (置换 + 连通集, 循环排序)
+#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/ (变形BFS，连通集)
+#2612
+#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
+#2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/ (miao a~~~) (连通集 + 质因数)
+#2782 https://leetcode.com/problems/number-of-unique-categories/
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ (miao a~~~) (多源BFS + Dijkstra, Union Find, 二分 + BFS) (淹水问题)
+#2852 https://leetcode.com/problems/sum-of-remoteness-of-all-cells/ (DFS, union find)
+#2867
+#3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
+#3235
+#3244 https://leetcode.com/problems/shortest-distance-after-road-addition-queries-ii/ (miao a~~~) (连通集 跳跃)
+#3378
+#3493 https://leetcode.com/problems/properties-graph/ (模版题)
+#3532 https://leetcode.com/problems/path-existence-queries-in-a-graph-i/ (miao a~~~)
+#3551 https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/ (miao a~~~) (置换 + 连通集, 循环排序)
+#3600
+#3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
+#3608 https://leetcode.com/problems/minimum-time-for-k-connected-components/
+#3613 https://leetcode.com/problems/minimize-maximum-component-cost/
+#3666
+#3695 https://leetcode.com/problems/maximize-alternating-sum-using-swaps/
+#LCP52
+#LCP71
 
-03. Prefix Sum
+06. Dijkstra
 
-#0303 https://leetcode.com/problems/range-sum-query-immutable/
-#0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
-#0327 https://leetcode.com/problems/count-of-range-sum/
-#0525 https://leetcode.com/problems/contiguous-array/
-#1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
-#1124 https://leetcode.com/problems/longest-well-performing-interval/
-#1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
-#1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
-#1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
-#2017 https://leetcode.com/problems/grid-game/
-#2055 https://leetcode.com/problems/plates-between-candles/
-#2121 https://leetcode.com/problems/intervals-between-identical-elements/
-#2270 https://leetcode.com/problems/number-of-ways-to-split-array/
-#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a ~~~) (gong xian fa) (prefix sum of prefix sum)
-#2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
-#2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
-#2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/
-#2615 https://leetcode.com/problems/sum-of-distances/
-#2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
-#2731 https://leetcode.com/problems/movement-of-robots/
-#2845 https://leetcode.com/problems/count-of-interesting-subarrays/
-#2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
-#3152 https://leetcode.com/problems/special-array-ii/
-#3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
-#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/
-#3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
-#3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
+#0499 https://leetcode.com/problems/the-maze-iii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径) (DFS两种遍历信息更新的区别)
+#0505 https://leetcode.com/problems/the-maze-ii/ (miao a~~~) (BFS, Dijkstra) (带权最短路径)
+#0743 https://leetcode.com/problems/network-delay-time/
+#0778 https://leetcode.com/problems/swim-in-rising-water/
+#0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/
+#1334 https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
+#1514 https://leetcode.com/problems/path-with-maximum-probability/
+#1631 https://leetcode.com/problems/path-with-minimum-effort/ (边权网格题) （BFS, Dijkstra)
+#1824 https://leetcode.com/problems/minimum-sideway-jumps/ (miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#1928 https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
+#1976 https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
+#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
+#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
+#2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
+#2812 https://leetcode.com/problems/find-the-safest-path-in-a-grid/ （miao a~~~）(多源BFS, Dijkstra / Union Find)
+#3286 https://leetcode.com/problems/find-a-safe-walk-through-a-grid/（miao a~~~）(BFS, Dijkstra)
+#3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
+#3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
+#3552 https://leetcode.com/problems/grid-teleportation-traversal/（miao a~~~）(BFS, Dijkstra) (带权最短路径 - 0/1 BFS 优化)
+#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
-05. Binary Search
+07. Graph
+#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
+#0332 https://leetcode.com/problems/reconstruct-itinerary/ (Eulerian Path)
+#0684 https://leetcode.com/problems/redundant-connection/ (DFS, union find)
+#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
+#1857 https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
+#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
+#2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
+#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/ (Eulerian Path)
+#2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
+#2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
+#2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/ (DFS timestamp)
+#2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
+#2493 https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
+#2603 https://leetcode.com/problems/collect-coins-in-a-tree/
+#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
+#2782 https://leetcode.com/problems/number-of-unique-categories/
+#2924 https://leetcode.com/problems/find-champion-ii/
+#3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
+#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
 
+08. Binary Search
+
+https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/solutions/1980196/er-fen-cha-zhao-zong-shi-xie-bu-dui-yi-g-t9l9/
+
+#0034 https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/ (模版)
 #0035 https://leetcode.com/problems/search-insert-position/
 #0069 https://leetcode.com/problems/sqrtx/
 #0162 https://leetcode.com/problems/find-peak-element/
@@ -281,13 +436,17 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0644 https://leetcode.com/problems/maximum-average-subarray-ii/ (binary search + sliding window) ***(double type boundary)
 #0658 https://leetcode.com/problems/find-k-closest-elements/ (search for range) (*****) 需要理解为甚是k+1长度的区间
 #0668 https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/
+#0704 https://leetcode.com/problems/binary-search/ (二分模版题)
 #0719 https://leetcode.com/problems/find-k-th-smallest-pair-distance/
+#0744 https://leetcode.com/problems/find-smallest-letter-greater-than-target/
 #0774 https://leetcode.com/problems/minimize-max-distance-to-gas-station/ ***(double type boundary)
+#0778 https://leetcode.com/problems/swim-in-rising-water/ (miao a~~~) (二分 + DFS，union find)
 #0875 https://leetcode.com/problems/koko-eating-bananas/
 #1011 https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
 #1201 https://leetcode.com/problems/ugly-number-iii/
 #1231 https://leetcode.com/problems/divide-chocolate/ ***(binary search for max)
 #1283 https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
+#1385 https://leetcode.com/problems/find-the-distance-value-between-two-arrays/ (miao a~~~) (二分判断是否有元素存在在区间内)
 #1482 https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/
 #1539 https://leetcode.com/problems/kth-missing-positive-number/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
@@ -311,9 +470,10 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2234 https://leetcode.com/problems/maximum-total-beauty-of-the-gardens/ ***(binary search for max)
 #2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ ***(binary search for max)
-#2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (last index stops at n)
+#2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (二分，前缀和)
 #2358 https://leetcode.com/problems/maximum-number-of-groups-entering-a-competition/ ***(binary search for max)
 #2383 https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/
+#2389 https://leetcode.com/problems/longest-subsequence-with-limited-sum/ (二分 + 贪心)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/ ***(binary search for max)
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2517 https://leetcode.com/problems/maximum-tastiness-of-candy-basket/ ***(binary search for max)
@@ -333,41 +493,155 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3453 https://leetcode.com/problems/separate-squares-i/ ***(double type boundary)
 #3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/ (binary search for min and max)
 
-06. Subsequence
+09. Prefix Sum
 
-#0392 https://leetcode.com/problems/is-subsequence/
-#2825 https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/
+#0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
+#0303 https://leetcode.com/problems/range-sum-query-immutable/ (前缀和 基础)
+#0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
+#0327 https://leetcode.com/problems/count-of-range-sum/
+#0523 https://leetcode.com/problems/continuous-subarray-sum/ (前缀和 + 模运算)
+#0525 https://leetcode.com/problems/contiguous-array/ (miao a~~~) (前缀和 + 01值)
+#0560 https://leetcode.com/problems/subarray-sum-equals-k/ (前缀和 + 哈希表)
+#0930 https://leetcode.com/problems/binary-subarrays-with-sum/ (前缀和 + 哈希表)
+#0974 https://leetcode.com/problems/subarray-sums-divisible-by-k/ (前缀和 + 模运算)
+#1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
+#1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a ~~~) (前缀和 + 单调栈最长子数组) (前缀和)
+#1310 https://leetcode.com/problems/xor-queries-of-a-subarray/ (异或前缀和)
+#1477 https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/ (miao a~~~) (前缀和 + DP)
+#1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
+#1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
+#1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
+#1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
+#1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
+#1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
+#2017 https://leetcode.com/problems/grid-game/
+#2055 https://leetcode.com/problems/plates-between-candles/
+#2121 https://leetcode.com/problems/intervals-between-identical-elements/
+#2270 https://leetcode.com/problems/number-of-ways-to-split-array/
+#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a~~~) (贡献法) (前缀和数组的前缀和)
+#2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (二分，前缀和)
+#2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
+#2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
+#2488 https://leetcode.com/problems/count-subarrays-with-median-k/ (miao a~~~) (前缀 + 后缀 + 01值)
+#2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/ (前缀和 基础)
+#2588 https://leetcode.com/problems/count-the-number-of-beautiful-subarrays/ (miao a~~~) (前缀异或和)
+#2615 https://leetcode.com/problems/sum-of-distances/
+#2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
+#2731 https://leetcode.com/problems/movement-of-robots/
+#2845 https://leetcode.com/problems/count-of-interesting-subarrays/
+#2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
+#3026 https://leetcode.com/problems/maximum-good-subarray-sum/ (哈希表 存最小前缀和)
+#3152 https://leetcode.com/problems/special-array-ii/ (miao a~~~) (奇偶性前缀和)
+#3361 https://leetcode.com/problems/shift-distance-between-two-strings/ (miao a~~~) (前缀和应用)
+#3427 https://leetcode.com/problems/sum-of-variable-length-subarrays/ (前缀和 基础)
+#3439 https://leetcode.com/problems/reschedule-meetings-for-maximum-free-time-i/
+#3511 https://leetcode.com/problems/make-a-positive-array/ (miao a~~~) (前缀和应用)
+#3540 https://leetcode.com/problems/minimum-time-to-visit-all-houses/ (miao a~~~) (前缀和应用, 同#3361)
+#3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (前缀和，滑动窗口)
+#3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
+#3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
+#3728 https://leetcode.com/problems/stable-subarrays-with-equal-boundary-and-interior-sum/ (miao a~~~) (前缀和，索引处理技巧)
+#3755 https://leetcode.cn/problems/find-maximum-balanced-xor-subarray-length/ (miao a~~~) (异或前缀和 + 01值) (#0525 + #2588) (状态压缩)
+#LCCI-17.05 https://leetcode.cn/problems/find-longest-subarray-lcci/ (miao a~~~) (前缀和 + 01值) (#0525)
 
-04. Array Permutation
+10. Segment Tree
+#0220 https://leetcode.com/problems/contains-duplicate-iii/
+#0307 https://leetcode.com/problems/range-sum-query-mutable/
+#0654 https://leetcode.com/problems/maximum-binary-tree/
+#0683 https://leetcode.com/problems/k-empty-slots/
+#0699 https://leetcode.com/problems/falling-squares/
+#0715 https://leetcode.com/problems/range-module/
+#0729 https://leetcode.com/problems/my-calendar-i/
+#0731 https://leetcode.com/problems/my-calendar-ii/
+#0732 https://leetcode.com/problems/my-calendar-iii/
+#0850 https://leetcode.com/problems/rectangle-area-ii/ (segment tree + line sweep)
+#1157 https://leetcode.com/problems/online-majority-element-in-subarray/
+#1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
+#1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
+#1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
+#2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
+#2276 https://leetcode.com/problems/count-integers-in-intervals/
+#2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
+#2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
+#2502 https://leetcode.com/problems/design-memory-allocator/ 
+#2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
+#2569 https://leetcode.com/problems/handling-sum-queries-after-update/ (lazy segment tree)
+#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (search while updating)
+#2770 https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/ (dynamic segment tree / segment tree + discretization)
+#2916 https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-ii/
+#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+#3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
+#3161 https://leetcode.com/problems/block-placement-queries/
+#3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
+#3410 https://leetcode.com/problems/maximize-subarray-sum-after-removing-all-occurrences-of-one-element/ (segment tree + max subarray sum)
+#3454 https://leetcode.com/problems/separate-squares-ii/ (segment tree + line sweep)
+#3479 https://leetcode.com/problems/fruits-into-baskets-iii/
+#3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/
+#3525 https://leetcode.com/problems/find-x-value-of-array-ii/ (segment tree + mod)
+#3569 https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/ (segment tree + prime factorization)
+#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
+#3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
+#3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
+#LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
 
-#0556 https://leetcode.com/problems/next-greater-element-iii/
-
-07. Graph
-#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
-#0332 https://leetcode.com/problems/reconstruct-itinerary/ (Eulerian Path)
-#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
-#1857 https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
-#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
-#2065 https://leetcode.com/problems/maximum-path-quality-of-a-graph/
-#2097 https://leetcode.com/problems/valid-arrangement-of-pairs/ (Eulerian Path)
-#2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
-#2277 https://leetcode.com/problems/closest-node-to-path-in-tree/
-#2322 https://leetcode.com/problems/minimum-score-after-removals-on-a-tree/ (DFS timestamp)
-#2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/
-#2493 https://leetcode.com/problems/divide-nodes-into-the-maximum-number-of-groups/
-#2603 https://leetcode.com/problems/collect-coins-in-a-tree/
-#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
-#2782 https://leetcode.com/problems/number-of-unique-categories/
-#2924 https://leetcode.com/problems/find-champion-ii/
+11. Binary Indexed Tree
+#0300 https://leetcode.com/problems/longest-increasing-subsequence/
+#0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
+#0308 https://leetcode.com/problems/range-sum-query-2d-mutable/ (two dimensional BIT)
+#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
+#0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
+#0493 https://leetcode.com/problems/reverse-pairs/
+#0683 https://leetcode.com/problems/k-empty-slots/
+#1395 https://leetcode.com/problems/count-number-of-teams/
+#1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/
+#1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
+#1626 https://leetcode.com/problems/best-team-with-no-conflicts/
+#1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
+#1756 https://leetcode.com/problems/design-most-recently-used-queue/ (BIT linear initialization)
+#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ (BIT + next permutation)
+#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
+#2179 https://leetcode.com/problems/count-good-triplets-in-an-array/
+#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
+#2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
+#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
+#2519 https://leetcode.com/problems/count-the-number-of-k-big-indices/
+#2613 https://leetcode.com/problems/beautiful-pairs/
+#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit)
+#2659 https://leetcode.com/problems/make-array-empty/
+#2736 https://leetcode.com/problems/maximum-sum-queries/
+#2907 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-i/ 
+#2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
+#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max)
+#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
+#3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
+#3161 https://leetcode.com/problems/block-placement-queries/ (pre-max BIT)
+#3187 https://leetcode.com/problems/peaks-in-array/
+#3380 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-i/
+#3382 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
 #3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
-#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
+#3590 https://leetcode.com/problems/kth-smallest-path-xor-sum/ (BIT + DFS with timestamp + Mo's algorithmn)
+#3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
+#3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/
 
-08. Backtracking
-#1655 https://leetcode.com/problems/distribute-repeating-integers/
-#2305 https://leetcode.com/problems/fair-distribution-of-cookies/
+12. Trie
+#0208 https://leetcode.com/problems/implement-trie-prefix-tree/ (字典树 基础)
+#0648 https://leetcode.com/problems/replace-words/ (字典树 基础)
+#0720 https://leetcode.com/problems/longest-word-in-dictionary/ (字典树 应用)
+#1804 https://leetcode.com/problems/implement-trie-ii-prefix-tree/ (字典树 基础)
+#1858 https://leetcode.com/problems/longest-word-with-all-prefixes/
+#2185 https://leetcode.com/problems/counting-words-with-a-given-prefix/
+#2352 https://leetcode.com/problems/equal-row-and-column-pairs/
+#2416 https://leetcode.com/problems/sum-of-prefix-scores-of-strings/
+#2452 https://leetcode.com/problems/words-within-two-edits-of-dictionary/
+#2707 https://leetcode.com/problems/extra-characters-in-a-string/
+#2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/ (sliding window + trie)
+#3042 https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
+#3043 https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/
+#3597 https://leetcode.com/problems/partition-string/ (字典树 应用)
 
-09. Dynamic Programming
-#0053 https://leetcode.com/problems/maximum-subarray/
+10. Dynamic Programming
+#0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
 #0072 https://leetcode.com/problems/edit-distance/
 #0085 https://leetcode.com/problems/maximal-rectangle/ (***)
 #0221 https://leetcode.com/problems/maximal-square/ (***)
@@ -379,11 +653,14 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
 #1395 https://leetcode.com/problems/count-number-of-teams/
+#1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
+#1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
+#1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
-#1824 https://leetcode.com/problems/minimum-sideway-jumps/
+#1824 https://leetcode.com/problems/minimum-sideway-jumps/ (miao a~~~）(BFS + Dijkstra) (带权最短路径 - 0/1 BFS 优化)
 #1871 https://leetcode.com/problems/jump-game-vii/
 #1900 https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/
 #1911 https://leetcode.com/problems/maximum-alternating-subsequence-sum/
@@ -426,6 +703,19 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 #3524 https://leetcode.com/problems/find-x-value-of-array-i/
 
+06. Subsequence
+
+#0392 https://leetcode.com/problems/is-subsequence/
+#2825 https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/
+
+04. Array Permutation
+
+#0556 https://leetcode.com/problems/next-greater-element-iii/
+
+08. Backtracking
+#1655 https://leetcode.com/problems/distribute-repeating-integers/
+#2305 https://leetcode.com/problems/fair-distribution-of-cookies/
+
 10. Min/max queue
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
 #0347 https://leetcode.com/problems/top-k-frequent-elements/
@@ -449,18 +739,6 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
 #3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
-
-11. Trie
-#1804 https://leetcode.com/problems/implement-trie-ii-prefix-tree/
-#1858 https://leetcode.com/problems/longest-word-with-all-prefixes/
-#2185 https://leetcode.com/problems/counting-words-with-a-given-prefix/
-#2352 https://leetcode.com/problems/equal-row-and-column-pairs/
-#2416 https://leetcode.com/problems/sum-of-prefix-scores-of-strings/
-#2452 https://leetcode.com/problems/words-within-two-edits-of-dictionary/
-#2707 https://leetcode.com/problems/extra-characters-in-a-string/
-#2781 https://leetcode.com/problems/length-of-the-longest-valid-substring/ (sliding window + trie)
-#3042 https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
-#3043 https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/
 
 12. Difference Array
 #0253 https://leetcode.com/problems/meeting-rooms-ii/
@@ -530,27 +808,12 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 
 16. Topological Sort
 #0210 https://leetcode.com/problems/course-schedule-ii/
-#1632 https://leetcode.com/problems/rank-transform-of-a-matrix/
+#1632 https://leetcode.com/problems/rank-transform-of-a-matrix/ (miao a~~~) (连通集 + 拓扑排序)
 #2050 https://leetcode.com/problems/parallel-courses-iii/
 #2115 https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/
 #2192 https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
 #2392 https://leetcode.com/problems/build-a-matrix-with-conditions/
 #2603 https://leetcode.com/problems/collect-coins-in-a-tree/
-
-17. Union Find
-#0323 https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/
-#0737 https://leetcode.com/problems/sentence-similarity-ii/
-#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
-#1632 https://leetcode.com/problems/rank-transform-of-a-matrix/
-#1697 https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/
-#1970 https://leetcode.com/problems/last-day-where-you-can-still-cross/
-#1971 https://leetcode.com/problems/find-if-path-exists-in-graph/
-#2076 https://leetcode.com/problems/process-restricted-friend-requests/
-#2092 https://leetcode.com/problems/find-all-people-with-secret/
-#2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
-#2782 https://leetcode.com/problems/number-of-unique-categories/
-#3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
-#3607 https://leetcode.com/problems/power-grid-maintenance/ (union find + offline query processing)
 
 18. DFS/BFS
 #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
@@ -588,6 +851,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2924 https://leetcode.com/problems/find-champion-ii/
 #3108 https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 #3211 https://leetcode.com/problems/generate-binary-strings-without-adjacent-zeros/
+#3243 https://leetcode.com/problems/shortest-distance-after-road-addition-queries-i/
 #3372 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-i/
 #3373 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-ii/
 #3552 https://leetcode.com/problems/grid-teleportation-traversal/ ***(BFS)
@@ -795,22 +1059,6 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #3405 https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/ (Combination)
 #3428 https://leetcode.com/problems/maximum-and-minimum-sums-of-at-most-size-k-subsequences/ (Combination)
 
-32. Dijkstra
-#0743 https://leetcode.com/problems/network-delay-time/
-#0778 https://leetcode.com/problems/swim-in-rising-water/
-#0787 https://leetcode.com/problems/cheapest-flights-within-k-stops/
-#1334 https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
-#1514 https://leetcode.com/problems/path-with-maximum-probability/
-#1631 https://leetcode.com/problems/path-with-minimum-effort/
-#1928 https://leetcode.com/problems/minimum-cost-to-reach-destination-in-time/
-#1976 https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
-#2290 https://leetcode.com/problems/minimum-obstacle-removal-to-reach-corner/
-#2503 https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/
-#2577 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/
-#3341 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i/
-#3342 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii/
-#3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
-
 33. Geometry
 #0223 https://leetcode.com/problems/rectangle-area/
 #0850 https://leetcode.com/problems/rectangle-area-ii/
@@ -932,6 +1180,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/
 
 40. Greedy
+#1353 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/ (并查集)
 #1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
 #1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
 #2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
@@ -941,86 +1190,6 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 41. Square Root (Sqrt) Decomposition
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
 #1756 https://leetcode.com/problems/design-most-recently-used-queue/
-
-42. Segment Tree
-#0220 https://leetcode.com/problems/contains-duplicate-iii/
-#0307 https://leetcode.com/problems/range-sum-query-mutable/
-#0654 https://leetcode.com/problems/maximum-binary-tree/
-#0683 https://leetcode.com/problems/k-empty-slots/
-#0699 https://leetcode.com/problems/falling-squares/
-#0715 https://leetcode.com/problems/range-module/
-#0729 https://leetcode.com/problems/my-calendar-i/
-#0731 https://leetcode.com/problems/my-calendar-ii/
-#0732 https://leetcode.com/problems/my-calendar-iii/
-#0850 https://leetcode.com/problems/rectangle-area-ii/ (segment tree + line sweep)
-#1157 https://leetcode.com/problems/online-majority-element-in-subarray/
-#1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
-#1622 https://leetcode.com/problems/fancy-sequence/ (range add, multiply)
-#1649 https://leetcode.com/problems/create-sorted-array-through-instructions/
-#2213 https://leetcode.com/problems/longest-substring-of-one-repeating-character/
-#2276 https://leetcode.com/problems/count-integers-in-intervals/
-#2286 https://leetcode.com/problems/booking-concert-tickets-in-groups/ (min + sum)
-#2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (LIS + segment tree - use value as index)
-#2502 https://leetcode.com/problems/design-memory-allocator/ 
-#2547 https://leetcode.com/problems/minimum-cost-to-split-an-array/ (dp + segment tree)
-#2569 https://leetcode.com/problems/handling-sum-queries-after-update/ (lazy segment tree)
-#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (search while updating)
-#2770 https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/ (dynamic segment tree / segment tree + discretization)
-#2916 https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-ii/
-#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
-#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
-#3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
-#3161 https://leetcode.com/problems/block-placement-queries/
-#3165 https://leetcode.com/problems/maximum-sum-of-subsequence-with-non-adjacent-elements/
-#3410 https://leetcode.com/problems/maximize-subarray-sum-after-removing-all-occurrences-of-one-element/ (segment tree + max subarray sum)
-#3454 https://leetcode.com/problems/separate-squares-ii/ (segment tree + line sweep)
-#3479 https://leetcode.com/problems/fruits-into-baskets-iii/
-#3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/
-#3525 https://leetcode.com/problems/find-x-value-of-array-ii/ (segment tree + mod)
-#3569 https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/ (segment tree + prime factorization)
-#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
-#3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
-#3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
-#LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
-
-43. Binary Indexed Tree
-#0300 https://leetcode.com/problems/longest-increasing-subsequence/
-#0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
-#0308 https://leetcode.com/problems/range-sum-query-2d-mutable/ (two dimensional BIT)
-#0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
-#0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
-#0493 https://leetcode.com/problems/reverse-pairs/
-#0683 https://leetcode.com/problems/k-empty-slots/
-#1395 https://leetcode.com/problems/count-number-of-teams/
-#1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/
-#1505 https://leetcode.com/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/
-#1626 https://leetcode.com/problems/best-team-with-no-conflicts/
-#1649 https://leetcode.com/problems/create-sorted-array-through-instructions/ (frequency)
-#1756 https://leetcode.com/problems/design-most-recently-used-queue/ (BIT linear initialization)
-#1850 https://leetcode.com/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/ (BIT + next permutation)
-#1885 https://leetcode.com/problems/count-pairs-in-two-arrays/
-#2179 https://leetcode.com/problems/count-good-triplets-in-an-array/
-#2193 https://leetcode.com/problems/minimum-number-of-moves-to-make-palindrome/
-#2250 https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/
-#2426 https://leetcode.com/problems/number-of-pairs-satisfying-inequality/
-#2519 https://leetcode.com/problems/count-the-number-of-k-big-indices/
-#2613 https://leetcode.com/problems/beautiful-pairs/
-#2653 https://leetcode.com/problems/sliding-subarray-beauty/ (sliding window + binary search in bit)
-#2659 https://leetcode.com/problems/make-array-empty/
-#2736 https://leetcode.com/problems/maximum-sum-queries/
-#2907 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-i/ 
-#2921 https://leetcode.com/problems/maximum-profitable-triplets-with-increasing-prices-ii/ (BIT reverse index mapping)
-#2926 https://leetcode.com/problems/maximum-balanced-subsequence-sum/ (BIT stores max)
-#3072 https://leetcode.com/problems/distribute-elements-into-two-arrays-ii/
-#3113 https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
-#3161 https://leetcode.com/problems/block-placement-queries/ (pre-max BIT)
-#3187 https://leetcode.com/problems/peaks-in-array/
-#3380 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-i/
-#3382 https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
-#3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
-#3590 https://leetcode.com/problems/kth-smallest-path-xor-sum/ (BIT + DFS with timestamp + Mo's algorithmn)
-#3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
-#3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/
 
 44. Combinatorics
 #2954 https://leetcode.com/problems/count-the-number-of-infection-sequences/
@@ -1284,7 +1453,10 @@ Note:
 	move left: ((i - moves) % n + n) % n 
 
 20. Prime factorization:
+		#0952 https://leetcode.com/problems/largest-component-size-by-common-factor/
+		#1998 https://leetcode.com/problems/gcd-sort-of-an-array/ (miao a~~~) (连通集 + 质因数)
     	#2521 https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/
+    	#2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/
 
     Prime Factor preprocessing
     	https://www.geeksforgeeks.org/dsa/sieve-of-eratosthenes/
@@ -1292,10 +1464,12 @@ Note:
     	https://www.youtube.com/watch?v=Kwo2jkHOyPY
 
     	#0204 https://leetcode.com/problems/count-primes/ (prime factorization)
+    	#2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/
 		#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 		#3569 https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/ (segment tree + prime factorization)
 
 	Factorization: 
+		#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/ (连通集 + 因数分解)
 		#3164 https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization)
 
 21. Palindrome extend from middle https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
@@ -1471,6 +1645,10 @@ In essence, this expression efficiently finds the next power of two for a given 
 
 	https://leetcode.cn/discuss/post/3571304/cong-ji-he-lun-dao-wei-yun-suan-chang-ji-enve/
 
+40 负数的模运算
+
+	-5 % 3 = -2 -> (-2 + 3) % 3 = 1
+	8 % 3 = 2
 
 
 

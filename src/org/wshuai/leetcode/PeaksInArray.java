@@ -9,93 +9,45 @@ import java.util.List;
  */
 public class PeaksInArray {
 
-    // time O(n * log(n) + m * log(n)), space O(n)
-    public List<Integer> countOfPeaksConcise(int[] nums, int[][] queries) {
-        List<Integer> res = new ArrayList<>();
-        int n = nums.length;
-        BIT bit = new BIT(n);
-        for (int i = 1; i <= n - 2; i++) {
-            checkAndUpdate(bit, nums, i, 1);
-        }
-        for (int[] query : queries) {
-            if (query[0] == 1) {
-                int left = query[1] + 1, right = query[2] - 1;
-                res.add(left > right ? 0 : bit.query(right + 1) - bit.query(left));
-                continue;
-            }
-            int index = query[1], val = query[2];
-            for (int i = Math.max(1, index - 1); i <= Math.min(n - 2, index + 1); i++) {
-                checkAndUpdate(bit, nums, i, -1);
-            }
-            nums[index] = val;
-            for (int i = Math.max(1, index - 1); i <= Math.min(n - 2, index + 1); i++) {
-                checkAndUpdate(bit, nums, i, 1);
-            }
-        }
-        return res;
-    }
-
-    private void checkAndUpdate(BIT bit, int[] nums, int index, int val) {
-        if (nums[index] > nums[index - 1] && nums[index] > nums[index + 1]) {
-            bit.update(index + 1, val);
-        }
-    }
-
-    // time O(n + m * log(n)), space O(n)
+    // time O((m + n) * log(n)), space O(n)
     public List<Integer> countOfPeaks(int[] nums, int[][] queries) {
         List<Integer> res = new ArrayList<>();
         int n = nums.length;
-        int[] arr = new int[n];
-        for (int i = 1; i < n - 1; i++) { // O(n)
+        // 统计所有的峰值元素
+        int[] peaks = new int[n];
+        for (int i = 1; i <= n - 2; i++) { // O(n)
             if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {
-                arr[i] = 1;
+                peaks[i] = 1;
             }
         }
-        BIT bit = new BIT(arr); // O(n)
-        for (int[] query : queries) { // O(m)
-            if (query[0] == 1) {
-                int left = query[1] + 1, right = query[2] - 1; // Exclude the boundary elements
-                if (left > right) {
-                    res.add(0);
-                } else {
-                    res.add(bit.query(right + 1) - bit.query(left)); // O(log(n))
-                }
+        BIT bit = new BIT(peaks); // O(n)
+        for (int[] q : queries) { // O(m)
+            if (q[0] == 1) { // 查询在范围中的峰值
+                int left = q[1] + 1, right = q[2] - 1;
+                res.add(Math.max(0, bit.query(left + 1, right + 1))); // O(log(n))
             } else {
-                int index = query[1], val = query[2];
-                // Check peak state change and update (if needed) for nums[index]
-                checkAndUpdate(index, val, nums, arr, bit); // O(log(n))
-                // Check peak state change and update (if needed) for nums[index + 1]
-                if (index + 1 < n) {
-                    checkAndUpdate(index + 1, nums[index + 1], nums, arr, bit); // O(log(n))
+                int idx = q[1], val = q[2];
+                // 先去掉idx - 1，idx和idx + 1在线段树中的峰值数量
+                for (int i = Math.max(1, idx - 1); i <= Math.min(n - 2, idx + 1); i++) { // O(log(n))
+                    if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {
+                        bit.update(i + 1, -1);
+                    }
                 }
-                // Check peak state change and update (if needed) for nums[index - 1]
-                if (index - 1 >= 0) {
-                    checkAndUpdate(index - 1, nums[index - 1], nums, arr, bit); // O(log(n))
+                nums[idx] = val;
+                // 再根据新的值，更新idx - 1，idx和idx + 1在线段树中的峰值数量
+                for (int i = Math.max(1, idx - 1); i <= Math.min(n - 2, idx + 1); i++) { // O(log(n))
+                    if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {
+                        bit.update(i + 1, 1);
+                    }
                 }
             }
         }
         return res;
-    }
-
-    private void checkAndUpdate(int index, int val, int[] nums, int[] arr, BIT bit) {
-        if (nums[index] != val) {
-            nums[index] = val;
-        }
-        if (index == 0 || index == nums.length - 1) {
-            return;
-        }
-        if (nums[index] > nums[index - 1] && nums[index] > nums[index + 1] && arr[index] == 0) {
-            arr[index] = 1;
-            bit.update(index + 1, 1);
-        } else if ((nums[index] <= nums[index - 1] || nums[index] <= nums[index + 1]) && arr[index] == 1) {
-            arr[index] = 0;
-            bit.update(index + 1, -1);
-        }
     }
 
     private static class BIT {
 
-        private int[] tree;
+        private final int[] tree;
 
         public BIT(int n) {
             tree = new int[n + 1];
@@ -104,11 +56,11 @@ public class PeaksInArray {
         public BIT(int[] nums) {
             int n = nums.length;
             tree = new int[n + 1];
-            for (int i = 1; i <= n; i++) { // Linear initialization
+            for (int i = 1; i <= n; i++) { // 线性时间复杂度初始化
                 tree[i] += nums[i - 1];
-                int index = i + (i & -i);
-                if (index <= n) {
-                    tree[index] += tree[i];
+                int idx = i + (i & -i);
+                if (idx <= n) {
+                    tree[idx] += tree[i];
                 }
             }
         }
@@ -116,17 +68,21 @@ public class PeaksInArray {
         public void update(int index, int val) {
             while (index < tree.length) {
                 tree[index] += val;
-                index += index & -index;
+                index += (index & -index);
             }
         }
 
-        public int query(int index) {
+        private int pre(int index) {
             int res = 0;
             while (index > 0) {
                 res += tree[index];
-                index -= index & -index;
+                index -= (index & -index);
             }
             return res;
+        }
+
+        public int query(int left, int right) {
+            return pre(right) - pre(left - 1);
         }
     }
 }

@@ -1,7 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/21/2019.
@@ -9,36 +9,43 @@ import java.util.LinkedList;
  */
 public class SnakesAndLadders {
 
-	// time O(n*n), space O(n*n)
-	public int snakesAndLadders(int[][] board) {
-		int n = board.length, target = n * n;
-		int[] dist = new int[target + 1]; // record min distance to cell
-		Arrays.fill(dist, -1);
-		LinkedList<Integer> queue = new LinkedList<>();
-		queue.offerLast(1);
-		dist[1] = 0;
-		while(!queue.isEmpty()){
-			int cur = queue.pollFirst();
-			if(cur == target){
-				return dist[cur];
-			}
-			for(int next = cur + 1; next <= Math.min(cur + 6, target); next++){
-				int[] cell = getIndex(next, n);
-				int nextIndex = board[cell[0]][cell[1]] != -1 ?
-					board[cell[0]][cell[1]] : next;
-				if(dist[nextIndex] == -1){
-					dist[nextIndex] = dist[cur] + 1;
-					queue.offerLast(nextIndex);
-				}
-			}
-		}
-		return -1;
-	}
+    // time O(n * n), space O(n * n)
+    public int snakesAndLadders(int[][] board) {
+        int times = 0, n = board.length, sq = n * n;
+        boolean[] visited = new boolean[sq + 1];
+        Deque<int[]> queue = new ArrayDeque<>();
+        int[] start = getPos(1, n);
+        queue.offer(start);
+        visited[1] = true;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size-- > 0) {
+                int[] curr = queue.poll();
+                int v = curr[2];
+                for (int i = v + 1; i <= Math.min(sq, v + 6); i++) {
+                    int[] next = getPos(i, n);
+                    if (board[next[0]][next[1]] != -1) {
+                        next = getPos(board[next[0]][next[1]], n);
+                    }
+                    if (next[2] == sq) {
+                        return times + 1;
+                    }
+                    if (!visited[next[2]]) {
+                        queue.offer(next);
+                        visited[next[2]] = true;
+                    }
+                }
+            }
+            times++;
+        }
+        return -1;
+    }
 
-	private int[] getIndex(int index, int n){
-		int row = n - 1 - ((index - 1) / n);
-		int col = (index - 1) % n;
-		col = (row % 2 == n % 2) ? n - 1 - col : col;
-		return new int[]{ row, col };
-	}
+    private int[] getPos(int x, int n) {
+        int d = (x - 1) / n;
+        int m = (x - 1) % n;
+        int r = n - 1 - d;
+        int c = d % 2 == 1 ? n - 1 - m : m;
+        return new int[]{r, c, x};
+    }
 }

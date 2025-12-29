@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 10/26/2019.
@@ -8,63 +9,54 @@ import java.util.LinkedList;
  */
 public class ShortestBridge {
 
-	private static final int[] DIRECTIONS = new int[]{0, -1, 0, 1, 0};
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-	// time O(m*n), space O(m*n)
-	public int shortestBridge(int[][] A) {
-		LinkedList<int[]> queue = new LinkedList<>();
-		int m = A.length, n = A[0].length, a = -1, b = -1;
-		boolean stop = false;
-		for(int i = 0; i < m && !stop; i++){
-			for(int j = 0; j < n && !stop; j++){
-				if(A[i][j] == 1){
-					a = i;
-					b = j;
-					stop = true;
-				}
-			}
-		}
+	// time O(m * n), space O(m * n)
+    public int shortestBridge(int[][] grid) {
+        int m = grid.length, n = grid[0].length, shortest = 0;
+        boolean terminate = false;
+        Deque<int[]> queue = new ArrayDeque<>();
+		// DFS找到第一个岛，将岛中所有的格子加入队列
+        for (int i = 0; i < m && !terminate; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    dfs(grid, i, j, queue);
+                    terminate = true;
+                    break;
+                }
+            }
+        }
+		// BFS找到第一个岛以第二个岛的最短距离，即为需要翻转的0的数量
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            while (size-- > 0) {
+                int[] curr = queue.poll();
+                for (int i = 0; i < 4; i++) {
+                    int x = curr[0] + DIRS[i], y = curr[1] + DIRS[i + 1];
+                    if (x >= 0 && x < m && y >= 0 && y < n) {
+						// 找到第二个岛如果发现相邻的格子为1
+                        if (grid[x][y] == 1) {
+                            return shortest;
+                        } else if (grid[x][y] == 0) {
+                            queue.offer(new int[]{x, y});
+                            grid[x][y] = -1;
+                        }
+                    }
+                }
+            }
+            shortest++;
+        }
+        return -1;
+    }
 
-		// dfs find the surrounding water cells of the first island
-		dfs(a, b, A, m, n, queue);
-
-		// bfs to find the shortest path to the second island
-		int steps = 1;
-		while(!queue.isEmpty()){
-			int size = queue.size();
-			while(size-- > 0){
-				int[] cur = queue.pollFirst();
-				for(int k = 0; k < 4; k++){
-					int x = cur[0] + DIRECTIONS[k], y = cur[1] + DIRECTIONS[k + 1];
-					if(x < 0 || x >= m || y < 0 || y >= n || A[x][y] == -1){
-						continue;
-					}
-					if(A[x][y] == 1){
-						return steps;
-					}else{
-						A[x][y] = -1;
-						queue.offerLast(new int[]{x, y});
-					}
-				}
-			}
-			steps++;
-		}
-		return -1;
-	}
-
-	private void dfs(int i, int j, int[][] A, int m, int n, LinkedList<int[]> queue){
-		A[i][j] = -1;
-		for(int k = 0; k < 4; k++){
-			int x = i + DIRECTIONS[k], y = j + DIRECTIONS[k + 1];
-			if(x < 0 || x >= m || y < 0 || y >= n || A[x][y] == -1){
-				continue;
-			}
-			if(A[x][y] == 1){
-				dfs(x, y, A, m, n, queue);
-			}else{
-				A[x][y] = -1;
-				queue.offerLast(new int[]{x, y});
-			}
-		}
-	}
+    private void dfs(int[][] grid, int i, int j, Deque<int[]> queue) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] != 1) {
+            return;
+        }
+        queue.offer(new int[]{i, j});
+        grid[i][j] = -1;
+        for (int d = 0; d < 4; d++) {
+            dfs(grid, i + DIRS[d], j + DIRS[d + 1], queue);
+        }
+    }
 }

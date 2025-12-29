@@ -8,20 +8,14 @@ public class TransformArrayByParity {
 
     // time O(n), space O(1)
     public int[] transformArray(int[] nums) {
-        int odd = 0, even = 0, index = 0;
-        for (int num : nums) {
-            if (num % 2 == 0) {
-                even++;
-            } else {
-                odd++;
+        int n = nums.length, j = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] % 2 == 0) {
+                nums[j++] = 0;
             }
         }
-        for (; index < even; index++) {
-            nums[index] = 0;
-        }
-        odd += index;
-        for (; index < odd; index++) {
-            nums[index] = 1;
+        for (; j < n; j++) {
+            nums[j] = 1;
         }
         return nums;
     }

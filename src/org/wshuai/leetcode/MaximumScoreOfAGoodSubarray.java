@@ -11,9 +11,7 @@ public class MaximumScoreOfAGoodSubarray {
 
 	// time O(n), space O(n)
 	public int maximumScoreMonotonicStack(int[] nums, int k) {
-		// Same as #0084 with only difference that the valid rectangles
-		// formed by indexes in [i,j] need to satisfy the constraint
-		// that: i <= k and j >= k
+		// #0084的变形题，唯一的区别是最大矩形必须包含索引k。
 		int res = 0, n = nums.length;
 		Deque<Integer> stack = new ArrayDeque<>();
 		stack.push(-1); // Left sentinel -1
@@ -22,6 +20,7 @@ public class MaximumScoreOfAGoodSubarray {
 			while (stack.size() > 1 && nums[stack.peek()] >= h) {
 				int c = stack.pop();
 				int l = stack.peek();
+				// 只更新矩形最大值如果当前矩形包含索引k
 				if (l < k && r > k) {
 					res = Math.max(res, nums[c] * (r - l - 1));
 				}
@@ -33,18 +32,16 @@ public class MaximumScoreOfAGoodSubarray {
 
     // time O(n), space O(1)
 	public int maximumScoreGreedy(int[] nums, int k) {
-		// We start at index k and try to extend the subarray from either
-		// left index i or right index j. Each time we pick the greater number
-		// between i and j since picking the greater number is always better than
-		// the smaller since we have higher chance to get a better score.
+		// 从索引k开始，向左右两边扩张子数组。每次我们都找到两边数字的较大值来扩张，这样
+		// 才有可能通过增加宽度将当前矩形的面积扩大。
 		int res = nums[k], n = nums.length, left = k, right = k, min = nums[k];
 		while (left > 0 || right < n - 1) {
 			if (left == 0) {
-				right++; // If we used up numbers from left we extend the right
+				right++; // 左边的数字已用完
 			} else if (right == n - 1) {
-				left--; // If we used up numbers from right we extend the left
+				left--; // 右边的数字已用完
 			} else if (nums[left - 1] > nums[right + 1]) {
-				left--; // Pick the greater
+				left--; // 选较大值
 			} else {
 				right++;
 			}

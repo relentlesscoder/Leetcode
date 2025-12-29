@@ -3,17 +3,21 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 8/19/19.
- * #976 https://leetcode.com/problems/largest-perimeter-triangle/
+ * Created by Wei on 08/19/2019.
+ * #0976 https://leetcode.com/problems/largest-perimeter-triangle/
  */
 public class LargestPerimeterTriangle {
-	public int largestPerimeter(int[] A) {
-		Arrays.sort(A);
-		for (int i = A.length - 3; i >= 0; i--) {
-			if (A[i] + A[i + 1] > A[i + 2]) {
-				return A[i] + A[i + 1] + A[i + 2];
-			}
-		}
-		return 0;
-	}
+
+    // time O(n), space O(1)
+    public int largestPerimeter(int[] nums) {
+        int res = 0, n = nums.length;
+        Arrays.sort(nums);
+        for (int c = n - 1; c >= 2; c--) {
+            if (nums[c - 1] + nums[c - 2] > nums[c]) {
+                res = Math.max(res, nums[c - 1] + nums[c - 2] + nums[c]);
+                break;
+            }
+        }
+        return res;
+    }
 }

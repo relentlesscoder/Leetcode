@@ -18,10 +18,8 @@ public class LargestRectangleInHistogram {
         stack.push(-1); // Left sentinel -1
         for (int right = 0; right <= n; right++) {
             int h = right < n ? heights[right] : -1; // Right sentinel n
-            // Now we calculate the rectangle for each index i when it popped
-            // out from the stack. We know right[i] is h from below one pass
-            // solution. Since stack is monotonic increasing, the current stack
-            // top after i is popped out is the left.
+            // 从下面第二种解法我们可以得到栈顶元素的右边第一个较小的值的索引，而因为单调栈
+            // 是单调递减的，在当前栈顶出栈后，新得栈顶就是左边第一个较小的值的索引.
             while (stack.size() > 1 && heights[stack.peek()] >= h) {
                 int curr = stack.pop();
                 int left = stack.peek();
@@ -40,12 +38,13 @@ public class LargestRectangleInHistogram {
         Deque<Integer> stack = new ArrayDeque<>();
         stack.push(-1); // Left sentinel -1
         for (int i = 0; i < n; i++) {
-            // Now we find right boundary by heights[stack.peek()] >= heights[i]
+            // 在从左往右遍历中，利用heights[stack.peek()] >= heights[i]可以直接找到当前
+            // 栈顶位置的右边第一个比他小的位置。但是这样找到的并非一定是准确的，这个值也可能与
+            // 栈顶相等。
             //   e.g. [1,3,4,3,2]
-            // For index 1 (3), right[1] = 3 which is wrong since right[1] should
-            // be 4 but this will not impact the final result since for index 3 (3)
-            // right[3] = 4, the correct rectangle will still be formed by indexes
-            // [1,3] when we process index 3.
+            // 比如上面例子中对索引1（值为3）这样计算会得到所以3（值为3）这个是不对的，正确的索
+            // 引应该是4（值为2）。但这并不会影响最终结果，当我们在处理索引3时依然会得到正确的结
+            // 果。
             while (stack.size() > 1 && heights[stack.peek()] >= heights[i]) {
                 right[stack.pop()] = i;
             }
@@ -60,15 +59,12 @@ public class LargestRectangleInHistogram {
 
     // time O(n), space O(n)
     public int largestRectangleAreaMonotonicStackTwoPass(int[] heights) {
-        // For each bar heights[i], we need to find the left and right boundary
-        // bars (indexes l and r) that can form a rectangle with area:
+        // 对数组中的每个高度heights[i]来说，想以之为高度组成矩形的所有高度都不能比他更小。
+        // 所以需要分别找到左右两边第一个比他小的高度，假设他们的位置分别为l和r。那么这个矩
+        // 形的面积就是：
         //   heights[i] x (r - l + 1)
-        // Since only bars with height >= heights[i] on i's both sides can be used
-        // to form such a rectangle, we can use monotonic stack to find the first
-        // bar at index j on i's left that has heights[j] < heights[i] then l = j + 1.
-        // By the same way, we can find the first bar at index k on i's right that
-        // has heights[k] < heights[i] then r = k - 1. So now the formula is:
-        //   heights[i] x (k - j - 1)
+        // 从左到右遍历数组中的每个高度，维护一个单调栈来找到在当前位置之前一个比他小的位置l。
+        // 用同样的方法找到r。代入上面的公式计算每个矩形的面积，答案即为所有面积的最大值。
         int res = 0, n = heights.length;
         int[] left = new int[n], right = new int[n];
         Deque<Integer> stack = new ArrayDeque<>();

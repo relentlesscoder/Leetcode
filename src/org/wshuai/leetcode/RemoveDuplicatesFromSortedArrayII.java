@@ -5,19 +5,14 @@ package org.wshuai.leetcode;
  * #0080 https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
  */
 public class RemoveDuplicatesFromSortedArrayII {
+
+	// time O(n), space O(1)
 	public int removeDuplicates(int[] nums) {
-		int n = nums.length;
-		if(n <= 2){
-			return n;
-		}
-		int j = 2, cur = nums[1];
+		int n = nums.length, j = 2;
 		for(int i = 2; i < n; i++){
-			// append condition is:
-			// 1. current value is greater than the current max
-			// 2. current value is equal to the current max but
-			//     we only have one same value in the new array
-			if(nums[i] > cur || nums[j - 1] != nums[j - 2]){
-				nums[j++] = cur = nums[i];
+			// 当前数字不等与前一个数字或者当前数字已经重复出现2次
+			if(nums[i] != nums[i - 1] || nums[j - 1] != nums[j - 2]){
+				nums[j++] = nums[i];
 			}
 		}
 		return j;

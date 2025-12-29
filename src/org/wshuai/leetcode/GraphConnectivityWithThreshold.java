@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,39 +10,57 @@ import java.util.List;
  */
 public class GraphConnectivityWithThreshold {
 
-	// time O(n*log(n)), space O(n)
-	public List<Boolean> areConnected(int n, int threshold, int[][] queries) {
-		int[] root = new int[n + 1], rank = new int[n + 1];
-		for(int i = 1; i <= n; i++){
-			root[i] = i;
-			rank[i] = 1;
-		}
-		for(int i = threshold + 1; i <= n; i++){
-			for(int j = i * 2; j <= n; j += i){
-				int r1 = find(i, root), r2 = find(j, root);
-				if(r1 == r2){
-					continue;
-				}
-				if(rank[r1] > rank[r2]){
-					rank[r1] += rank[r2];
-					root[r2] = r1;
-				}else{
-					rank[r2] += rank[r1];
-					root[r1] = r2;
-				}
-			}
-		}
-		List<Boolean> res = new ArrayList<>();
-		for(int[] q : queries){
-			res.add(find(q[0], root) == find(q[1], root));
-		}
-		return res;
-	}
+    // time O(n * log(n)), space O(n)
+    public List<Boolean> areConnected(int n, int threshold, int[][] queries) {
+        if (threshold == 0) {
+            Boolean[] arr = new Boolean[queries.length];
+            Arrays.fill(arr, true);
+            return Arrays.asList(arr);
+        }
+        UnionFind uf = new UnionFind(n + 1);
+        for (int i = threshold + 1; i <= n; i++) {
+            for (int j = 2 * i; j <= n; j += i) {
+                uf.union(i, j);
+            }
+        }
+        List<Boolean> res = new ArrayList<>();
+        for (int[] q : queries) {
+            res.add(uf.find(q[0]) == uf.find(q[1]));
+        }
+        return res;
+    }
 
-	private int find(int r, int[] root){
-		if(r != root[r]){
-			root[r] = find(root[r], root);
-		}
-		return root[r];
-	}
+    private class UnionFind {
+
+        private int[] root;
+        private int[] rank;
+
+        public UnionFind(int n) {
+            root = new int[n];
+            rank = new int[n];
+            Arrays.fill(rank, 1);
+            Arrays.setAll(root, i -> i);
+        }
+
+        public int find(int x) {
+            if (x != root[x]) {
+                root[x] = find(root[x]);
+            }
+            return root[x];
+        }
+
+        public void union(int x, int y) {
+            int rootX = find(x), rootY = find(y);
+            if (rootX == rootY) {
+                return;
+            }
+            if (rank[rootX] > rank[rootY]) {
+                rank[rootX] += rank[rootY];
+                root[rootY] = rootX;
+            } else {
+                rank[rootY] += rank[rootX];
+                root[rootX] = rootY;
+            }
+        }
+    }
 }

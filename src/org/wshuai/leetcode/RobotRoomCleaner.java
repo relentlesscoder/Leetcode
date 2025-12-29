@@ -1,8 +1,6 @@
 package org.wshuai.leetcode;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,55 +8,52 @@ import java.util.Set;
  * #0489 https://leetcode.com/problems/robot-room-cleaner/
  */
 public class RobotRoomCleaner {
-	private int[] dirs;
-	private Set<List<Integer>> visited;
-	private Robot robot;
 
-	public void cleanRoom(Robot robot) {
-		this.robot = robot;
-		dirs = new int[]{-1, 0, 1, 0, -1};
-		visited = new HashSet<>();
-		dfs(0, 0, 0);
-	}
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-	private void dfs(int r, int c, int d) {
-		robot.clean();
-		List<Integer> cur = Arrays.asList(r, c);
-		visited.add(cur);
-		for (int i = 0; i < 4; i++) {
-			int z = (d + i) % 4, x = r + dirs[z], y = c + dirs[z + 1];
-			List<Integer> next = Arrays.asList(x, y);
-			if (!visited.contains(next) && robot.move()) {
-				dfs(x, y, z);
-				reset();
-			}
-			robot.turnRight();
-		}
-	}
+    public void cleanRoom(Robot robot) {
+        // 图解 https://leetcode.cn/problems/robot-room-cleaner/solutions/42959/sao-di-ji-qi-ren-by-leetcode/
+        Set<Integer> visited = new HashSet<>();
+        dfs(0, 0, 0, robot, visited);
+    }
 
-	public void reset() {
-		robot.turnRight();
-		robot.turnRight();
-		robot.move();
-		robot.turnRight();
-		robot.turnRight();
-	}
+    private void dfs(int x, int y, int d, Robot robot, Set<Integer> visited) {
+        // 打扫当前位置
+        robot.clean();
+        // 标记当前位置为已打扫，这里用一个32位整型来压缩机器人的位置
+        visited.add((x << 10) + y);
+        for (int i = 0; i < 4; i++) {
+            // 计算下一步的位置和方向
+            int k = (d + i) % 4, r = x + DIRS[k], c = y + DIRS[k + 1];
+            // 如果下一步可行，继续深度搜索下一个位置
+            if (!visited.contains((r << 10) + c) && robot.move()) {
+                dfs(r, c, k, robot, visited);
+                robot.turnRight();
+                robot.turnRight();
+                robot.move();
+                robot.turnRight();
+                robot.turnRight();
+            }
+            // 机器人每次右转正好对应方向数组DIRS里面的下一个方向
+            robot.turnRight();
+        }
+    }
 }
 
 
 // This is the robot's control interface.
 // You should not implement it, or speculate about its implementation
 interface Robot {
-	// Returns true if the cell in front is open and robot moves into the cell.
-	// Returns false if the cell in front is blocked and robot stays in the current cell.
-	public boolean move();
+    // Returns true if the cell in front is open and robot moves into the cell.
+    // Returns false if the cell in front is blocked and robot stays in the current cell.
+    public boolean move();
 
-	// Robot will stay in the same cell after calling turnLeft/turnRight.
-	// Each turn will be 90 degrees.
-	public void turnLeft();
+    // Robot will stay in the same cell after calling turnLeft/turnRight.
+    // Each turn will be 90 degrees.
+    public void turnLeft();
 
-	public void turnRight();
+    public void turnRight();
 
-	// Clean the current cell.
-	public void clean();
+    // Clean the current cell.
+    public void clean();
 }

@@ -1,5 +1,6 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,29 +10,32 @@ import java.util.Map;
  */
 public class FindTwoNonOverlappingSubArraysEachWithTargetSum {
 
-	// time O(n), space O(n)
-	public int minSumOfLengths(int[] arr, int target) {
-		int res = Integer.MAX_VALUE, sum = 0, n = arr.length;
-		// save the prefix sum ending at i
-		Map<Integer, Integer> map = new HashMap<>();
-		// records the min length of subarray that has sum of target
-		int[] dp = new int[n];
-		map.put(0, -1);
-		for(int i = 0; i < n; i++){
-			sum += arr[i];
-			dp[i] = i > 0 ? dp[i - 1] : Integer.MAX_VALUE;
-			// find a prefix sum equals to (sum - target), meaning
-			// subarray [j ... i] has sum target
-			if(map.containsKey(sum - target)){
-				int prevEnd = map.get(sum - target), len = i - prevEnd;
-				// update min length found so far
-				dp[i] = Math.min(dp[i], len);
-				if(prevEnd != -1 && dp[prevEnd] != Integer.MAX_VALUE){
-					res = Math.min(res, len + dp[prevEnd]);
-				}
-			}
-			map.put(sum, i);
-		}
-		return res == Integer.MAX_VALUE ? -1 : res;
-	}
+    // time O(n), space O(n)
+    public int minSumOfLengths(int[] arr, int target) {
+        int res = Integer.MAX_VALUE, n = arr.length;
+        // 哈希表以前缀和为键，前缀数组的结束索引为值。
+        Map<Integer, Integer> prefix = new HashMap<>();
+        prefix.put(0, -1);
+        // 数组dp[i + 1]代表结束索引在i + 1之前子数组和为target的最小长度
+        int[] dp = new int[n + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        for (int i = 0, sum = 0; i < n; i++) {
+            sum += arr[i];
+            dp[i + 1] = dp[i]; // 预设为前一个索引的子数组长度最小值
+            if (prefix.containsKey(sum - target)) {
+                int end = prefix.get(sum - target);
+                int l = i - end;
+                // 当前缀和索引不为-1并且前缀和为target的子数组最小长度合法 -
+                // 和等于target的子数组确定存在
+                if (end != -1 && dp[end + 1] != Integer.MAX_VALUE) {
+                    // 当前子数组长度 + 当前子数组开始索引之前的最小子数组长度
+                    res = Math.min(res, l + dp[end + 1]);
+                }
+                // 更新当前索引的子数组长度最小值
+                dp[i + 1] = Math.min(dp[i + 1], l);
+            }
+            prefix.put(sum, i);
+        }
+        return res == Integer.MAX_VALUE ? -1 : res;
+    }
 }

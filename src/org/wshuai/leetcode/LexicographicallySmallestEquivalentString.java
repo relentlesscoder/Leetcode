@@ -1,38 +1,75 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
+
 /**
- * Created by Wei on 9/29/19.
+ * Created by Wei on 09/29/2019.
  * #1061 https://leetcode.com/problems/lexicographically-smallest-equivalent-string/
  */
 public class LexicographicallySmallestEquivalentString {
 
-	// union find, similar as #1101
-	public String smallestEquivalentString(String A, String B, String S) {
-		char[] map = new char[26];
-		for(int i = 0; i < 26; i++){
-			map[i] = (char)(i + 'a');
-		}
-		for(int i = 0; i < A.length(); i++){
-			char a = A.charAt(i);
-			char b = B.charAt(i);
-			char ra = findRoot(a, map);
-			char rb = findRoot(b, map);
-			char min = ra <= rb ? ra : rb;
-			map[ra - 'a'] = min;
-			map[rb - 'a'] = min;
-		}
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < S.length(); i++){
-			char s = S.charAt(i);
-			sb.append("" + findRoot(s, map));
-		}
-		return sb.toString();
-	}
+    // time O(n), space O(1)
+    public String smallestEquivalentString(String s1, String s2, String baseStr) {
+        UnionFind uf = new UnionFind(s1, s2);
+        int n = baseStr.length();
+        char[] arr = new char[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = uf.get(baseStr.charAt(i) - 'a');
+        }
+        return String.valueOf(arr);
+    }
 
-	private char findRoot(char c, char[] map){
-		while(c != map[c - 'a']){
-			c = map[c - 'a'];
-		}
-		return c;
-	}
+    private static class UnionFind {
+
+        private int[] root;
+        private int[] rank;
+        private char[] vals;
+
+        public UnionFind(String s1, String s2) {
+            int n = s1.length();
+            root = new int[26]; // O(n)
+            rank = new int[26];
+            vals = new char[26];
+            Arrays.fill(rank, 1);
+            Arrays.setAll(root, i -> i);
+            for (char x = 'a'; x <= 'z'; x++) {
+                vals[x - 'a'] = x;
+            }
+            for (int i = 0; i < n; i++) { // O(m)
+                union(s1.charAt(i) - 'a', s2.charAt(i) - 'a');
+            }
+            for (int i = 0; i < 26; i++) {
+                int r = find(i);
+                char c = (char) (i + 'a');
+                if (c < vals[r]) {
+                    vals[r] = c;
+                }
+            }
+        }
+
+        public char get(int x) {
+            return vals[find(x)];
+        }
+
+        private int find(int x) {
+            if (x != root[x]) {
+                root[x] = find(root[x]);
+            }
+            return root[x];
+        }
+
+        private void union(int x, int y) {
+            int rootX = find(x), rootY = find(y);
+            if (rootX == rootY) {
+                return;
+            }
+            if (rank[rootX] > rank[rootY]) {
+                rank[rootX] += rank[rootY];
+                root[rootY] = rootX;
+            } else {
+                rank[rootY] += rank[rootX];
+                root[rootX] = rootY;
+            }
+        }
+    }
 }

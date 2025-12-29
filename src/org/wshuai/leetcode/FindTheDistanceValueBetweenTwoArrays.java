@@ -7,38 +7,39 @@ import java.util.Arrays;
  * #1385 https://leetcode.com/problems/find-the-distance-value-between-two-arrays/
  */
 public class FindTheDistanceValueBetweenTwoArrays {
-	// time O(n*log(m))
-	public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
-		int res = 0, n = arr2.length;
-		Arrays.sort(arr2);
-		for(int num : arr1){
-			if(num <= arr2[0] && arr2[0] - num > d){
-				res++;
-			}else if(num >= arr2[n - 1] && num - arr2[n - 1] > d){
-				res++;
-			}else{
-				res += binarySearch(arr2, num, d) ? 1 : 0;
-			}
-		}
-		return res;
-	}
 
-	private boolean binarySearch(int[] arr, int num, int d){
-		int l = 0, r = arr.length - 1;
-		while(l < r){
-			int m = l + (r - l) / 2;
-			if(arr[m] < num){
-				l = m + 1;
-			}else{
-				r = m;
-			}
-		}
-		if(l < arr.length && arr[l] - num <= d){
-			return false;
-		}
-		if(l > 0 && num - arr[l - 1] <= d){
-			return false;
-		}
-		return true;
-	}
+    // time O((n + m) * log(m)), space O(log(m))
+    public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+		// 根据公式 |arr1[i]-arr2[j]| <= d 得出两种情况
+		//   1. arr1[i] >= arr2[j]: |arr1[i] - arr2[j]| <= d -> arr1[i] - arr2[j] <= d
+		//   		-> arr2[j] >= arr1[i] - d
+		//   2. arr1[i] < arr2[j]: |arr1[i] - arr2[j]| <= d -> arr2[j] - arr1[i] <= d
+		//   		-> arr2[j] <= arr1[i] + d
+		// 所以题目是要对于每一个arr1[i]，判断arr2是否不含有任何在闭区间[arr1[i] - d, arr1[i] + d]
+		// 内的元素。对于每一个arr1[i]，可以使用二分搜索来判断在arr2中大于等于arr1[i] - d的数的数量是
+		// 否和大于等于arr1[i] + d + 1
+		// 的数的数量相同。
+        int res = 0;
+        Arrays.sort(arr2); // O(m * log(m))
+        for (int num : arr1) { // O(n)
+            if (binarySearch(arr2, num - d)
+                    == binarySearch(arr2, num + d + 1)) { // O(log(m))
+                res++;
+            }
+        }
+        return res;
+    }
+
+    private int binarySearch(int[] nums, int target) {
+        int low = 0, high = nums.length;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
 }

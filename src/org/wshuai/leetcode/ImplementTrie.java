@@ -5,74 +5,87 @@ package org.wshuai.leetcode;
  * #0208 https://leetcode.com/problems/implement-trie-prefix-tree/
  */
 public class ImplementTrie {
-	private TrieNode root;
 
-	public ImplementTrie() {
-		root = new TrieNode();
-	}
+    private static class Trie {
 
-	// Inserts a word into the trie.
-	public void insert(String word) {
-		TrieNode node = root;
-		for (int i = 0; i < word.length(); i++) {
-			char currentKey = word.charAt(i);
-			if (!node.containsKey(currentKey)) {
-				node.put(currentKey, new TrieNode());
-			}
-			node = node.get(currentKey);
-		}
-		node.setEnd();
-	}
+        private final TrieNode root;
 
-	// Returns if the word is in the trie.
-	public boolean search(String word) {
-		TrieNode node = searchPrefix(word);
-		return node != null && node.isEnd();
-	}
+        public Trie() {
+            this.root = new TrieNode();
+        }
 
-	// Returns if there is any word in the trie
-	// that starts with the given prefix.
-	public boolean startsWith(String prefix) {
-		TrieNode node = searchPrefix(prefix);
-		return node != null;
-	}
+        // time O(n), space O(n)
+        public void insert(String word) {
+            TrieNode curr = root;
+            for (char c : word.toCharArray()) {
+                if (!curr.containsKey(c)) {
+                    curr.put(c, new TrieNode());
+                }
+                curr = curr.get(c);
+            }
+            curr.setEnd();
+        }
 
-	// search a prefix or whole key in trie and
-	// returns the node where search ends
-	public TrieNode searchPrefix(String word) {
-		TrieNode node = root;
-		for (int i = 0; i < word.length(); i++) {
-			char currentLetter = word.charAt(i);
-			if (node.containsKey(currentLetter)) {
-				node = node.get(currentLetter);
-			} else {
-				return null;
-			}
-		}
-		return node;
-	}
+        // time O(n), space O(1)
+        public boolean search(String word) {
+            TrieNode curr = root;
+            for (char c : word.toCharArray()) {
+                if (!curr.containsKey(c)) {
+                    return false;
+                }
+                curr = curr.get(c);
+            }
+            return curr.isEnd();
+        }
 
-	// search for the shortest prefix - #648
-	public String searchRoot(String successor) {
-		TrieNode node = root;
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < successor.length(); i++) {
-			char key = successor.charAt(i);
-			if (node.containsKey(key)) {
-				sb.append("" + key);
-				node = node.get(key);
-			} else {
-				return successor;
-			}
-			if (node.isEnd()) {
-				break;
-			}
-		}
-		return sb.toString();
-	}
+        // time O(n), space O(1)
+        public boolean startsWith(String prefix) {
+            TrieNode curr = root;
+            for (char c : prefix.toCharArray()) {
+                if (!curr.containsKey(c)) {
+                    return false;
+                }
+                curr = curr.get(c);
+            }
+            return true;
+        }
+
+        private static class TrieNode {
+
+            private final TrieNode[] nodes;
+            private boolean end;
+
+            public TrieNode() {
+                nodes = new TrieNode[26];
+            }
+
+            public TrieNode get(char c) {
+                return nodes[c - 'a'];
+            }
+
+            public boolean containsKey(char c) {
+                return nodes[c - 'a'] != null;
+            }
+
+            public void put(char c, TrieNode node) {
+                nodes[c - 'a'] = node;
+            }
+
+            public boolean isEnd() {
+                return this.end;
+            }
+
+            public void setEnd() {
+                this.end = true;
+            }
+        }
+    }
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
 }
-
-// Your Trie object will be instantiated and called as such:
-// Trie trie = new Trie();
-// trie.insert("somestring");
-// trie.search("key");

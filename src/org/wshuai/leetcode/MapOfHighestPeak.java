@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 03/02/2021.
@@ -8,33 +9,33 @@ import java.util.LinkedList;
  */
 public class MapOfHighestPeak {
 
-    private static final int[] DIRECTIONS = new int[]{ 0, -1, 0, 1, 0 };
+    private static final int[] DIRS = new int[]{-1, 0, 1, 0, -1};
 
-    // time O(m*n)
+    // time O(m * n), space O(min(m, n))
     public int[][] highestPeak(int[][] isWater) {
-        int m = isWater.length, n = isWater[0].length, height = 0;
+        // #1162的变形题
+        int height = 0, m = isWater.length, n = isWater[0].length;
         int[][] res = new int[m][n];
-        LinkedList<int[]> queue = new LinkedList<>();
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                if(isWater[i][j] == 1){
-                    queue.offerLast(new int[]{i, j});
-                    isWater[i][j] = -1; // use isWater to record visited status
+        Deque<int[]> queue = new ArrayDeque<>();
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (isWater[i][j] == 1) {
+                    queue.offer(new int[]{i, j});
+                    isWater[i][j] = -1;
                 }
             }
         }
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int size = queue.size();
-            while(size-- > 0){
-                int[] cur = queue.pollFirst();
-                res[cur[0]][cur[1]] = height;
-                for(int d = 0; d < 4; d++){
-                    int x = cur[0] + DIRECTIONS[d], y = cur[1] + DIRECTIONS[d + 1];
-                    if(x < 0 || x >= m || y < 0 || y >= n || isWater[x][y] == -1){
-                        continue;
+            while (size-- > 0) {
+                int[] curr = queue.poll();
+                for (int i = 0; i < 4; i++) {
+                    int x = curr[0] + DIRS[i], y = curr[1] + DIRS[i + 1];
+                    if (x >= 0 && x < m && y >= 0 && y < n && isWater[x][y] == 0) {
+                        res[x][y] = height + 1;
+                        queue.offer(new int[]{x, y});
+                        isWater[x][y] = -1;
                     }
-                    isWater[x][y] = -1;
-                    queue.offerLast(new int[]{x, y});
                 }
             }
             height++;
