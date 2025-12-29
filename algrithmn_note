@@ -201,10 +201,10 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0853 https://leetcode.com/problems/car-fleet/
 #0901 https://leetcode.com/problems/online-stock-span/
 #0907 https://leetcode.com/problems/sum-of-subarray-minimums/ (miao a ~~~) (gong xian fa)
-#0962 https://leetcode.com/problems/maximum-width-ramp/ (miao a ~~~)
+#0962 https://leetcode.com/problems/maximum-width-ramp/ (miao a ~~~) (单调栈最长子数组)
 #1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
 #1081 https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
-#1124 https://leetcode.com/problems/longest-well-performing-interval/ (prefix sum + #0962)
+#1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a ~~~) (前缀和 + 单调栈最长子数组) (前缀和)
 #1130 https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/ (***)
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/ (miao a ~~~)
 #1425
@@ -500,15 +500,16 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
 #0327 https://leetcode.com/problems/count-of-range-sum/
 #0523 https://leetcode.com/problems/continuous-subarray-sum/ (前缀和 + 模运算)
-#0525 https://leetcode.com/problems/contiguous-array/ (miao a~~~) (前缀和 + 01数组)
+#0525 https://leetcode.com/problems/contiguous-array/ (miao a~~~) (前缀和 + 01值)
 #0560 https://leetcode.com/problems/subarray-sum-equals-k/ (前缀和 + 哈希表)
 #0930 https://leetcode.com/problems/binary-subarrays-with-sum/ (前缀和 + 哈希表)
 #0974 https://leetcode.com/problems/subarray-sums-divisible-by-k/ (前缀和 + 模运算)
 #1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
-#1124 https://leetcode.com/problems/longest-well-performing-interval/
+#1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a ~~~) (前缀和 + 单调栈最长子数组) (前缀和)
 #1310 https://leetcode.com/problems/xor-queries-of-a-subarray/ (异或前缀和)
 #1477 https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/ (miao a~~~) (前缀和 + DP)
 #1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
+#1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
@@ -517,10 +518,11 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2121 https://leetcode.com/problems/intervals-between-identical-elements/
 #2270 https://leetcode.com/problems/number-of-ways-to-split-array/
-#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a~~~) (gong xian fa) (prefix sum of prefix sum)
+#2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a~~~) (贡献法) (前缀和数组的前缀和)
 #2300 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/ (二分，前缀和)
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
+#2488 https://leetcode.com/problems/count-subarrays-with-median-k/ (miao a~~~) (前缀 + 后缀 + 01值)
 #2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/ (前缀和 基础)
 #2588 https://leetcode.com/problems/count-the-number-of-beautiful-subarrays/ (miao a~~~) (前缀异或和)
 #2615 https://leetcode.com/problems/sum-of-distances/
@@ -538,8 +540,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (前缀和，滑动窗口)
 #3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
 #3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
-#3755 https://leetcode.cn/problems/find-maximum-balanced-xor-subarray-length/ (miao a~~~) (异或前缀和 + 01前缀和) (#0525 + #2588) (状态压缩)
-#LCCI-17.05 https://leetcode.cn/problems/find-longest-subarray-lcci/ (miao a~~~) (前缀和 + 01数组) (#0525)
+#3728 https://leetcode.com/problems/stable-subarrays-with-equal-boundary-and-interior-sum/ (miao a~~~) (前缀和，索引处理技巧)
+#3755 https://leetcode.cn/problems/find-maximum-balanced-xor-subarray-length/ (miao a~~~) (异或前缀和 + 01值) (#0525 + #2588) (状态压缩)
+#LCCI-17.05 https://leetcode.cn/problems/find-longest-subarray-lcci/ (miao a~~~) (前缀和 + 01值) (#0525)
 
 10. Segment Tree
 #0220 https://leetcode.com/problems/contains-duplicate-iii/
@@ -651,6 +654,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
 #1395 https://leetcode.com/problems/count-number-of-teams/
 #1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
+#1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
 #1626 https://leetcode.com/problems/best-team-with-no-conflicts/
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
