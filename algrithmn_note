@@ -510,6 +510,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1477 https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/ (miao a~~~) (前缀和 + DP)
 #1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
 #1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
+#1590 https://leetcode.com/problems/make-sum-divisible-by-p/ (miao a~~~) (前缀和 + 模运算)
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
@@ -541,6 +542,8 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
 #3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
 #3728 https://leetcode.com/problems/stable-subarrays-with-equal-boundary-and-interior-sum/ (miao a~~~) (前缀和，索引处理技巧)
+#3737 https://leetcode.com/problems/count-subarrays-with-majority-element-i/ (miao a~~~) (前缀和 + 树状数组)
+#3739 https://leetcode.com/problems/count-subarrays-with-majority-element-ii/ (miao a~~~) (前缀和 + 树状数组)
 #3755 https://leetcode.cn/problems/find-maximum-balanced-xor-subarray-length/ (miao a~~~) (异或前缀和 + 01值) (#0525 + #2588) (状态压缩)
 #LCCI-17.05 https://leetcode.cn/problems/find-longest-subarray-lcci/ (miao a~~~) (前缀和 + 01值) (#0525)
 
@@ -623,6 +626,8 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3590 https://leetcode.com/problems/kth-smallest-path-xor-sum/ (BIT + DFS with timestamp + Mo's algorithmn)
 #3624 https://leetcode.com/problems/number-of-integers-with-popcount-depth-equal-to-k-ii/
 #3671 https://leetcode.com/problems/sum-of-beautiful-subsequences/
+#3737 https://leetcode.com/problems/count-subarrays-with-majority-element-i/ (miao a~~~) (前缀和 + 树状数组)
+#3739 https://leetcode.com/problems/count-subarrays-with-majority-element-ii/ (miao a~~~) (前缀和 + 树状数组)
 
 12. Trie
 #0208 https://leetcode.com/problems/implement-trie-prefix-tree/ (字典树 基础)

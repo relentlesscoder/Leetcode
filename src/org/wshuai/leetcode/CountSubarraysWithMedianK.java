@@ -71,7 +71,7 @@ public class CountSubarraysWithMedianK {
                 break;
             }
         }
-        // 因为 diff 的值域范围是 [- (n - 1), n - 1], 所以可以把每个
+        // 因为 diff 的值域范围是 [-(n - 1), n - 1], 所以可以把每个
         // diff 值映射到正整数 diff + n。可以建立一个长度为 2 * n 的
         // 数组来存所有的 diff 值。
         int[] prefix = new int[n << 1];
