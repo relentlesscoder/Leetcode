@@ -498,7 +498,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
 #0303 https://leetcode.com/problems/range-sum-query-immutable/ (前缀和 基础)
 #0304 https://leetcode.com/problems/range-sum-query-2d-immutable/ (二维数组 前缀和)
-#0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/
+#0325 https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/ (前缀和 基础)
 #0327 https://leetcode.com/problems/count-of-range-sum/
 #0523 https://leetcode.com/problems/continuous-subarray-sum/ (前缀和 + 模运算)
 #0525 https://leetcode.com/problems/contiguous-array/ (miao a~~~) (前缀和 + 01值)
@@ -520,6 +520,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
 #2017 https://leetcode.com/problems/grid-game/
 #2025 https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/ (miao a~~~) (前缀和 + 双哈希表)
+#2031 https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/ (miao a~~~) (前缀和 + 双哈希表) (同#3739)
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2121 https://leetcode.com/problems/intervals-between-identical-elements/
 #2270 https://leetcode.com/problems/number-of-ways-to-split-array/
@@ -528,6 +529,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/
 #2448 https://leetcode.com/problems/minimum-cost-to-make-array-equal/
 #2488 https://leetcode.com/problems/count-subarrays-with-median-k/ (miao a~~~) (前缀 + 后缀 + 01值)
+#2489 https://leetcode.cn/problems/number-of-substrings-with-fixed-ratio/ (miao a~~~) (前缀 + 公式推导)
 #2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/ (前缀和 基础)
 #2588 https://leetcode.com/problems/count-the-number-of-beautiful-subarrays/ (miao a~~~) (前缀异或和)
 #2615 https://leetcode.com/problems/sum-of-distances/
@@ -535,6 +537,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2731 https://leetcode.com/problems/movement-of-robots/
 #2845 https://leetcode.com/problems/count-of-interesting-subarrays/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
+#2947
+#2949
+#2956 https://leetcode.com/problems/number-of-divisible-substrings/ (miao a~~~) (前缀和 + 平均数)
 #3026 https://leetcode.com/problems/maximum-good-subarray-sum/ (哈希表 存最小前缀和)
 #3152 https://leetcode.com/problems/special-array-ii/ (miao a~~~) (奇偶性前缀和)
 #3361 https://leetcode.com/problems/shift-distance-between-two-strings/ (miao a~~~) (前缀和应用)
@@ -703,6 +708,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2901 https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-ii
 #2915 https://leetcode.com/problems/length-of-the-longest-subsequence-that-sums-to-target/
 #2999 https://leetcode.com/problems/count-the-number-of-powerful-integers/
+#3032
 #3040 https://leetcode.com/problems/maximum-number-of-operations-with-the-same-score-ii/ (avoid negative)
 #3068 https://leetcode.com/problems/find-the-maximum-sum-of-node-values/
 #3186 https://leetcode.com/problems/maximum-total-damage-with-spell-casting/
