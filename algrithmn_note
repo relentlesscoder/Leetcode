@@ -480,6 +480,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2529 https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/
 #2560 https://leetcode.com/problems/house-robber-iv/
 #2563 https://leetcode.com/problems/count-the-number-of-fair-pairs/
+#2602 https://leetcode.com/problems/minimum-operations-to-make-all-array-elements-equal/ (miao a~~~) (前缀和 + 二分查找)
 #2616 https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
 #2790 https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length/ (binary search for max)
 #2861 https://leetcode.com/problems/maximum-number-of-alloys/ ***(binary search for max)
@@ -517,6 +518,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
 #1590 https://leetcode.com/problems/make-sum-divisible-by-p/ (miao a~~~) (前缀和 + 模运算)
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
+#1685 https://leetcode.com/problems/sum-of-absolute-differences-in-a-sorted-array/ (miao a~~~) (前缀和应用) (#2602)
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
@@ -534,6 +536,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2489 https://leetcode.cn/problems/number-of-substrings-with-fixed-ratio/ (miao a~~~) (前缀 + 公式推导)
 #2559 https://leetcode.com/problems/count-vowel-strings-in-ranges/ (前缀和 基础)
 #2588 https://leetcode.com/problems/count-the-number-of-beautiful-subarrays/ (miao a~~~) (前缀异或和)
+#2602 https://leetcode.com/problems/minimum-operations-to-make-all-array-elements-equal/ (miao a~~~) (前缀和 + 二分查找)
 #2615 https://leetcode.com/problems/sum-of-distances/
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 #2731 https://leetcode.com/problems/movement-of-robots/
