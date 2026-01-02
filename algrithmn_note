@@ -527,6 +527,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
+#1915 https://leetcode.com/problems/number-of-wonderful-substrings/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩) (#1542)
 #2017 https://leetcode.com/problems/grid-game/
 #2025 https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/ (miao a~~~) (前缀和 + 双哈希表)
 #2031 https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/ (miao a~~~) (前缀和 + 双哈希表) (同#3739)
@@ -545,6 +546,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2615 https://leetcode.com/problems/sum-of-distances/ (miao a~~~) (前缀和) (#1685)
 #2640 https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/
 #2731 https://leetcode.com/problems/movement-of-robots/
+#2791 https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩 + 树的DFS) (#1542)
 #2845 https://leetcode.com/problems/count-of-interesting-subarrays/
 #2903 https://leetcode.com/problems/find-indices-with-index-and-value-difference-i/
 #2947
@@ -837,6 +839,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2458 https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
 #2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/
 #2641 https://leetcode.com/problems/cousins-in-binary-tree-ii/
+#2791 https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩 + 树的DFS) (#1542)
 
 16. Topological Sort
 #0210 https://leetcode.com/problems/course-schedule-ii/
