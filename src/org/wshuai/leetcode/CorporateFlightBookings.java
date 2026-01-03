@@ -8,16 +8,15 @@ public class CorporateFlightBookings {
 
 	// time O(n), space O(n)
 	public int[] corpFlightBookings(int[][] bookings, int n) {
+		// 差分数组应用
 		int[] res = new int[n];
-		for (int[] booking : bookings) {
-			res[booking[0] - 1] += booking[2];
-			if (booking[1] < n) {
-				res[booking[1]] -= booking[2];
-			}
+		int[] diff = new int[n + 1];
+		for (int[] b : bookings) {
+			diff[b[0] - 1] += b[2];
+			diff[b[1]] -= b[2];
 		}
-		int seats = 0;
-		for (int i = 0; i < n; i++) {
-			seats += res[i];
+		for (int i = 0, seats = 0; i < n; i++) {
+			seats += diff[i];
 			res[i] = seats;
 		}
 		return res;

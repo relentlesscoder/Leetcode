@@ -8,17 +8,22 @@ import java.util.List;
  */
 public class PointsThatIntersectWithCars {
 
-    // time O(n), space O(n)
+    // time O(n + MAX), space O(MAX)
     public int numberOfPoints(List<List<Integer>> nums) {
-        int[] line = new int[102];
-        for (List<Integer> car : nums) {
-            line[car.get(0)]++;
-            line[car.get(1) + 1]--;
+        // 利用差分数组计算有多少个点被至少一辆车覆盖
+        int res = 0, max = 0;
+        for (List<Integer> list : nums) { // O(n)
+            max = Math.max(max, list.get(1));
         }
-        int res = 0, sum = 0;
-        for (int i = 1; i <= 100; i++) {
-            sum += line[i];
-            if (sum > 0) {
+        int[] diff = new int[max + 2];
+        for (List<Integer> list : nums) { // O(n)
+            int s = list.get(0), e = list.get(1);
+            diff[s]++;
+            diff[e + 1]--;
+        }
+        for (int i = 1, cnt = 0; i <= max; i++) { // O(MAX)
+            cnt += diff[i];
+            if (cnt > 0) {
                 res++;
             }
         }

@@ -493,6 +493,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3356 https://leetcode.com/problems/zero-array-transformation-ii/
 #3453 https://leetcode.com/problems/separate-squares-i/ ***(double type boundary)
 #3501 https://leetcode.com/problems/maximize-active-section-with-trade-ii/ (binary search for min and max)
+#3709 https://leetcode.com/problems/design-exam-scores-tracker/ (前缀和 + 二分搜索)
 
 09. Prefix Sum
 
@@ -524,14 +525,16 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1658 https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/
 #1685 https://leetcode.com/problems/sum-of-absolute-differences-in-a-sorted-array/ (miao a~~~) (前缀和应用) (#2602)
 #1703 https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/ (miao a~~~) (#1838) (滑动窗口 + 前缀和 + 贡献法)
+#1744 https://leetcode.com/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/ (前缀和应用, 逻辑题)
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1781 https://leetcode.com/problems/sum-of-beauty-of-all-substrings/
 #1788 https://leetcode.com/problems/maximize-the-beauty-of-the-garden/
+#1895
 #1915 https://leetcode.com/problems/number-of-wonderful-substrings/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩) (#1542)
 #2017 https://leetcode.com/problems/grid-game/
 #2025 https://leetcode.com/problems/maximum-number-of-ways-to-partition-an-array/ (miao a~~~) (前缀和 + 双哈希表)
 #2031 https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/ (miao a~~~) (前缀和 + 双哈希表) (同#3739)
-#2055 https://leetcode.com/problems/plates-between-candles/
+#2055 https://leetcode.com/problems/plates-between-candles/ (miao a~~~) (前缀和应用）
 #2121 https://leetcode.com/problems/intervals-between-identical-elements/
 #2270 https://leetcode.com/problems/number-of-ways-to-split-array/
 #2281 https://leetcode.com/problems/sum-of-total-strength-of-wizards/ (miao a~~~) (贡献法) (前缀和数组的前缀和)
@@ -564,6 +567,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3511 https://leetcode.com/problems/make-a-positive-array/ (miao a~~~) (前缀和应用)
 #3540 https://leetcode.com/problems/minimum-time-to-visit-all-houses/ (miao a~~~) (前缀和应用, 同#3361)
 #3652 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-using-strategy/ (miao a~~~) (前缀和，滑动窗口)
+#3709 https://leetcode.com/problems/design-exam-scores-tracker/ (前缀和 + 二分搜索)
 #3714 https://leetcode.com/problems/longest-balanced-substring-ii/ (miao a~~~) (分类讨论 + 前缀和 + 状态压缩)
 #3719 https://leetcode.com/problems/longest-balanced-subarray-i/ (segment tree + prefix sum)
 #3721 https://leetcode.com/problems/longest-balanced-subarray-ii/ (segment tree + prefix sum)
@@ -575,6 +579,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #LCCI-17.05 https://leetcode.cn/problems/find-longest-subarray-lcci/ (miao a~~~) (前缀和 + 01值) (#0525)
 
 10. Segment Tree
+
 #0220 https://leetcode.com/problems/contains-duplicate-iii/
 #0307 https://leetcode.com/problems/range-sum-query-mutable/
 #0654 https://leetcode.com/problems/maximum-binary-tree/
@@ -616,6 +621,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #LCP81 https://leetcode.cn/problems/ryfUiz/ (segment tree + bit manipulation)
 
 11. Binary Indexed Tree
+
 #0300 https://leetcode.com/problems/longest-increasing-subsequence/
 #0307 https://leetcode.com/problems/range-sum-query-mutable/ (sum)
 #0308 https://leetcode.com/problems/range-sum-query-2d-mutable/ (two dimensional BIT)
@@ -658,6 +664,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3739 https://leetcode.com/problems/count-subarrays-with-majority-element-ii/ (miao a~~~) (前缀和 + 树状数组)
 
 12. Trie
+
 #0208 https://leetcode.com/problems/implement-trie-prefix-tree/ (字典树 基础)
 #0648 https://leetcode.com/problems/replace-words/ (字典树 基础)
 #0720 https://leetcode.com/problems/longest-word-in-dictionary/ (字典树 应用)
@@ -674,6 +681,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3597 https://leetcode.com/problems/partition-string/ (字典树 应用)
 
 10. Dynamic Programming
+
 #0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
 #0072 https://leetcode.com/problems/edit-distance/
 #0085 https://leetcode.com/problems/maximal-rectangle/ (***)
@@ -737,6 +745,36 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 #3524 https://leetcode.com/problems/find-x-value-of-array-i/
 
+12. Difference Array
+
+#0253 https://leetcode.com/problems/meeting-rooms-ii/
+#0370 https://leetcode.com/problems/range-addition/ (差分 基础)
+#1094 https://leetcode.com/problems/car-pooling/ (差分 基础)
+#1109 https://leetcode.com/problems/corporate-flight-bookings/ (差分 基础)
+#1854 https://leetcode.com/problems/maximum-population-year/ (差分 基础)
+#1893 https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/ (差分 基础)
+#2021 https://leetcode.com/problems/brightest-position-on-street/
+#2132 https://leetcode.com/problems/stamping-the-grid/
+#2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
+#2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
+#2381 https://leetcode.com/problems/shifting-letters-ii/
+#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
+#2772 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/
+#2848 https://leetcode.com/problems/points-that-intersect-with-cars/ (差分 基础)
+#2960 https://leetcode.com/problems/count-tested-devices-after-test-operations/ (差分 基础)
+#3355 https://leetcode.com/problems/zero-array-transformation-i/ (差分 基础)
+#3356 https://leetcode.com/problems/zero-array-transformation-ii/
+#3362 https://leetcode.com/problems/zero-array-transformation-iii/
+#3346 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-i/
+#3347 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-ii/
+#LCCI-16.10 https://leetcode.cn/problems/living-people-lcci/ (差分 基础)
+
+
+
+
+
+
+
 06. Subsequence
 
 #0392 https://leetcode.com/problems/is-subsequence/
@@ -773,25 +811,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
 #3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
-
-12. Difference Array
-#0253 https://leetcode.com/problems/meeting-rooms-ii/
-#1094 https://leetcode.com/problems/car-pooling/
-#1109 https://leetcode.com/problems/corporate-flight-bookings/
-#1893 https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/
-#2021 https://leetcode.com/problems/brightest-position-on-street/
-#2132 https://leetcode.com/problems/stamping-the-grid/
-#2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
-#2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
-#2381 https://leetcode.com/problems/shifting-letters-ii/
-#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
-#2772 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/
-#2848 https://leetcode.com/problems/points-that-intersect-with-cars/
-#3355 https://leetcode.com/problems/zero-array-transformation-i/
-#3356 https://leetcode.com/problems/zero-array-transformation-ii/
-#3362 https://leetcode.com/problems/zero-array-transformation-iii/
-#3346 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-i/
-#3347 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-ii/
 
 13. Intervals
 #0056 https://leetcode.com/problems/merge-intervals/

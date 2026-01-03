@@ -6,17 +6,24 @@ package org.wshuai.leetcode;
  */
 public class MaximumPopulationYear {
 
-    // time O(n)
+    // time O(n + MAX), space O(MAX)
     public int maximumPopulation(int[][] logs) {
-        int res = 0;
-        int[] year = new int[2051];
-        for(int[] log : logs){
-            year[log[0]]++;
-            year[log[1]]--;
+        // 差分数组应用
+        int res = 0, cnt = 0, max = 0;
+        for (int[] l : logs) {
+            max = Math.max(max, l[1]);
         }
-        for(int i = 1950; i <= 2050; i++){
-            year[i] += year[i - 1];
-            res = year[i] > year[res] ? i : res;
+        int[] diff = new int[max + 1];
+        for (int[] l : logs) {
+            diff[l[0]]++;
+            diff[l[1]]--;
+        }
+        for (int i = 1950, sum = 0; i <= max; i++) {
+            sum += diff[i];
+            if (sum > cnt) {
+                res = i;
+                cnt = sum;
+            }
         }
         return res;
     }
