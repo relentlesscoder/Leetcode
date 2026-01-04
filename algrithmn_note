@@ -769,7 +769,35 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3347 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-ii/
 #LCCI-16.10 https://leetcode.cn/problems/living-people-lcci/ (差分 基础)
 
+14. Queue
 
+#0021 https://leetcode.com/problems/merge-two-sorted-lists/
+#0023 https://leetcode.com/problems/merge-k-sorted-lists/
+#0138 https://leetcode.com/problems/copy-list-with-random-pointer/
+#0206 https://leetcode.com/problems/reverse-linked-list/
+#0225 https://leetcode.com/problems/implement-stack-using-queues/ (miao a~~~) (队列 应用)
+#0232 https://leetcode.com/problems/implement-queue-using-stacks/ (miao a~~~) (队列 应用)
+#0346 https://leetcode.com/problems/moving-average-from-data-stream/ (队列 应用)
+#0362 https://leetcode.com/problems/design-hit-counter/ (队列 应用)
+#0379 https://leetcode.com/problems/design-phone-directory/ (队列 应用)
+#0622 https://leetcode.com/problems/design-circular-queue/ (miao a~~~) (队列 应用)
+#0649 https://leetcode.com/problems/dota2-senate/ (miao a~~~) (队列 应用)
+#0933 https://leetcode.com/problems/number-of-recent-calls/ (队列 基础)
+#0950 https://leetcode.com/problems/reveal-cards-in-increasing-order/ (队列 ...)
+#1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
+#1429 https://leetcode.com/problems/first-unique-number/ (队列 应用)
+#1670 https://leetcode.com/problems/design-front-middle-back-queue/ (miao a~~~) (双队列)
+#2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/
+#2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
+#2074 https://leetcode.com/problems/reverse-nodes-in-even-length-groups/ (complex)
+#2095 https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
+#2130 https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
+#2181 https://leetcode.com/problems/merge-nodes-in-between-zeros/
+#2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
+#2534 https://leetcode.com/problems/time-taken-to-cross-the-door/ (队列 应用)
+#2807 https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/
+#3217 https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/
+#3508 https://leetcode.com/problems/implement-router/ (miao a~~~) (队列 + 哈希表 + 二分)
 
 
 
@@ -820,22 +848,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
 #2655 https://leetcode.com/problems/find-maximal-uncovered-ranges/ (merge intervals)
 #3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
-
-14. Linked List
-#0021 https://leetcode.com/problems/merge-two-sorted-lists/
-#0023 https://leetcode.com/problems/merge-k-sorted-lists/
-#0138 https://leetcode.com/problems/copy-list-with-random-pointer/
-#0206 https://leetcode.com/problems/reverse-linked-list/
-#1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
-#2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/
-#2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
-#2074 https://leetcode.com/problems/reverse-nodes-in-even-length-groups/ (complex)
-#2095 https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
-#2130 https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
-#2181 https://leetcode.com/problems/merge-nodes-in-between-zeros/
-#2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
-#2807 https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/
-#3217 https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/
 
 15. Binary Tree
 #0199 https://leetcode.com/problems/binary-tree-right-side-view/

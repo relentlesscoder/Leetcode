@@ -9,61 +9,56 @@ import java.util.Deque;
  */
 public class MovingAverage {
 
-	// time O(m), space O(n)
-	private class MovingAverageQueue {
+	// time O(n), space O(m)
+	class MovingAverageCircularArray {
 
-		private int size;
-
+		private int idx;
 		private double sum;
+		private final int[] arr;
 
-		private Deque<Integer> queue;
-
-		public MovingAverageQueue(int size) {
-			this.size = size;
-			sum = 0.0;
-			queue = new ArrayDeque<>();
-		}
-
-		public double next(int val) {
-			sum += val;
-			queue.offer(val);
-			if (queue.size() > size) {
-				sum -= queue.poll();
-			}
-			return sum / queue.size();
-		}
-	}
-
-	// time O(m), space O(n)
-	private class MovingAverageCircularArray {
-
-		private int size, count, head;
-
-		private double sum;
-
-		private int[] queue;
-
+		// 用循环数组来实现滑动窗口
 		public MovingAverageCircularArray(int size) {
-			this.size = size;
-			count = 0;
-			head = 0;
-			sum = 0.0;
-			queue = new int[size];
+			this.idx = 0;
+			this.sum = 0.0;
+			this.arr = new int[size];
 		}
 
 		public double next(int val) {
-			count++;
-			int tail = (head + 1) % size;
-			sum = sum - queue[tail] + val;
-			head = (head + 1) % size;
-			queue[head] = val;
-			return sum / Math.min(size, count);
+			int n = arr.length, i = idx % n;
+			sum -= arr[i];
+			arr[i] = val;
+			sum += arr[i];
+			return sum / Math.min(++idx, n);
 		}
 	}
-}
+
+    // time O(n), space O(m)
+    private static class MovingAverageQueue {
+
+        private final int size;
+        private double sum;
+        private final Deque<Integer> queue;
+
+		// 用队列来实现滑动窗口
+        public MovingAverageQueue(int size) {
+            this.size = size;
+            this.sum = 0.0;
+            this.queue = new ArrayDeque<>();
+        }
+
+        public double next(int val) {
+            sum += val;
+            queue.offer(val);
+            if (queue.size() > size) {
+                sum -= queue.poll();
+            }
+            return sum / queue.size();
+        }
+    }
 
 /**
  * Your MovingAverage object will be instantiated and called as such:
  * MovingAverage obj = new MovingAverage(size);
  * double param_1 = obj.next(val);
  */
+}

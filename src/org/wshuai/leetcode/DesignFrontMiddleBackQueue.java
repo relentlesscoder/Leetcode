@@ -1,128 +1,94 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * Created by Wei on 12/24/2020.
  * #1670 https://leetcode.com/problems/design-front-middle-back-queue/
  */
 public class DesignFrontMiddleBackQueue {
 
-    private int size;
-    private DoublyLinkedList head, tail, middle;
+    // time O(n), space O(n)
+    private static class FrontMiddleBackQueue {
 
-    public DesignFrontMiddleBackQueue() {
-        size = 0;
-        head = new DoublyLinkedList(0);
-        tail = new DoublyLinkedList(0);
-        middle = null;
-        head.next = tail;
-        tail.prev = head;
-    }
+        private final Deque<Integer> frontQueue;
+        private final Deque<Integer> backQueue;
 
-    public void pushFront(int val) {
-        DoublyLinkedList node = new DoublyLinkedList(val);
-        insert(head, head.next, node);
-        if(size++ == 0){
-            middle = node;
-            return;
+        // 使用两个队列分别实现存前一半和后一半数字。任何时候最多只允许前一半比后一半
+        // 多 1 个数字。
+        public FrontMiddleBackQueue() {
+            frontQueue = new ArrayDeque<>();
+            backQueue = new ArrayDeque<>();
         }
-        if(size % 2 == 0){
-            middle = middle.prev;
-        }
-    }
 
-    public void pushMiddle(int val) {
-        DoublyLinkedList node = new DoublyLinkedList(val);
-        if(size++ == 0){
-            insert(head, tail, node);
-            middle = node;
-            return;
+        // 将数字加入队首然后重新平衡
+        public void pushFront(int val) {
+            frontQueue.offerFirst(val);
+            rebalance();
         }
-        if(size % 2 == 0){
-            insert(middle.prev, middle, node);
-            middle = middle.prev;
-        }else{
-            insert(middle, middle.next, node);
-            middle = middle.next;
-        }
-    }
 
-    public void pushBack(int val) {
-        DoublyLinkedList node = new DoublyLinkedList(val);
-        insert(tail.prev, tail, node);
-        if(size++ == 0){
-            middle = node;
-            return;
+        // 将数字加入中间，题目要求如果有两个中间位置选择较前的位置。需要处理两种情况:
+        //   1. 前队列和后队列长度一样，将新数字直接加入到前队列的队尾。
+        //   2. 前队列比后队列多一个数，则将前队列的队尾加入到后队列的队首再将新数字加
+        //      入到前队列的队尾。
+        public void pushMiddle(int val) {
+            if (frontQueue.size() == backQueue.size() + 1) {
+                backQueue.offerFirst(frontQueue.pollLast());
+            }
+            frontQueue.offer(val);
+            rebalance();
         }
-        if(size % 2 == 1){
-            middle = middle.next;
-        }
-    }
 
-    public int popFront() {
-        if(size == 0){
-            return -1;
+        // 将数字加入队尾然后重新平衡
+        public void pushBack(int val) {
+            backQueue.offer(val);
+            rebalance();
         }
-        int res = head.next.val;
-        if(size % 2 == 0){
-            middle = middle.next;
+
+        // 将队首数字弹出然后重新平衡
+        public int popFront() {
+            if (frontQueue.isEmpty()) {
+                return -1;
+            }
+            int res = frontQueue.poll();
+            rebalance();
+            return res;
         }
-        remove(head.next);
-        if(--size == 0){
-            middle = null;
+
+        // 将前队列队尾数字弹出然后重新平衡，注意前队列的队尾永远是"整个队列"的中间元素。
+        public int popMiddle() {
+            if (frontQueue.isEmpty()) {
+                return -1;
+            }
+            int res = frontQueue.pollLast();
+            rebalance();
+            return res;
         }
-        return res;
-    }
 
-    public int popMiddle() {
-        if(size == 0){
-            return -1;
+        // 将队尾数字弹出然后重新平衡
+        public int popBack() {
+            if (frontQueue.isEmpty() && backQueue.isEmpty()) {
+                return -1;
+            }
+            // 优先从后队列弹出数字
+            int res = !backQueue.isEmpty() ?
+                    backQueue.pollLast() : frontQueue.pollLast();
+            rebalance();
+            return res;
         }
-        int res = middle.val;
-        DoublyLinkedList temp = size % 2 == 0 ? middle.next : middle.prev;
-        remove(middle);
-        middle = --size == 0 ? null : temp;
-        return res;
-    }
 
-    public int popBack() {
-        if(size == 0){
-            return -1;
-        }
-        int res = tail.prev.val;
-        if(size % 2 == 1){
-            middle = middle.prev;
-        }
-        remove(tail.prev);
-        if(--size == 0){
-            middle = null;
-        }
-        return res;
-    }
-
-    private void insert(DoublyLinkedList front, DoublyLinkedList back, DoublyLinkedList node){
-        front.next = node;
-        node.prev = front;
-        node.next = back;
-        back.prev = node;
-    }
-
-    private void remove(DoublyLinkedList node){
-        DoublyLinkedList front = node.prev, back = node.next;
-        front.next = back;
-        back.prev = front;
-    }
-
-    private class DoublyLinkedList{
-
-        private int val;
-        private DoublyLinkedList prev;
-        private DoublyLinkedList next;
-
-        private DoublyLinkedList(int val){
-            this.val = val;
+        private void rebalance() {
+            // 不允许后面元素比前面多
+            while (backQueue.size() > frontQueue.size()) {
+                frontQueue.offer(backQueue.pollFirst());
+            }
+            // 不允许前面元素比后面多两个
+            while (frontQueue.size() > backQueue.size() + 1) {
+                backQueue.offerFirst(frontQueue.pollLast());
+            }
         }
     }
-}
 
 /**
  * Your FrontMiddleBackQueue object will be instantiated and called as such:
@@ -134,3 +100,4 @@ public class DesignFrontMiddleBackQueue {
  * int param_5 = obj.popMiddle();
  * int param_6 = obj.popBack();
  */
+}

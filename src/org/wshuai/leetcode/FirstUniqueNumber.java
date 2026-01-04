@@ -1,7 +1,8 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 
 /**
@@ -10,35 +11,38 @@ import java.util.Map;
  */
 public class FirstUniqueNumber {
 
-	private LinkedHashSet<Integer> unique;
-	private Map<Integer, Integer> count;
+	// time O(n), space O(m)
+    private static class FirstUnique {
 
-	public FirstUniqueNumber(int[] nums) {
-		unique = new LinkedHashSet<>();
-		count = new HashMap<>();
-		for(int num : nums){
-			count.put(num, count.getOrDefault(num, 0) + 1);
-			if(count.get(num) == 1){
-				unique.add(num);
-			}else{
-				unique.remove(num);
-			}
-		}
-	}
+        private final Map<Integer, Integer> freq;
+        private final Deque<Integer> queue;
 
-	public int showFirstUnique() {
-		return unique.isEmpty() ? -1 : unique.iterator().next();
-	}
+        public FirstUnique(int[] nums) {
+            freq = new HashMap<>();
+            queue = new ArrayDeque<>();
+            for (int num : nums) {
+				// 同样的数字只加入队列一次
+                if (freq.merge(num, 1, Integer::sum) == 1) {
+                    queue.offer(num);
+                }
+            }
+        }
 
-	public void add(int value) {
-		count.put(value, count.getOrDefault(value, 0) + 1);
-		if(count.get(value) == 1){
-			unique.add(value);
-		}else{
-			unique.remove(value);
-		}
-	}
-}
+        public int showFirstUnique() {
+			// 弹出队首的所有重复的数字
+            while (!queue.isEmpty() && freq.get(queue.peek()) > 1) {
+                queue.poll();
+            }
+            return queue.isEmpty() ? -1 : queue.peek();
+        }
+
+        public void add(int value) {
+			// 只有当前数字不存在才加入
+            if (freq.merge(value, 1, Integer::sum) == 1) {
+                queue.offer(value);
+            }
+        }
+    }
 
 /**
  * Your FirstUnique object will be instantiated and called as such:
@@ -46,3 +50,4 @@ public class FirstUniqueNumber {
  * int param_1 = obj.showFirstUnique();
  * obj.add(value);
  */
+}

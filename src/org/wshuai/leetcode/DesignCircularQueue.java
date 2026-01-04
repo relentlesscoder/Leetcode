@@ -6,62 +6,64 @@ package org.wshuai.leetcode;
  */
 public class DesignCircularQueue {
 
-	private int[] data;
-	private int head = 0, tail = -1, size = 0, k;
+    // time O(n), space O(k)
+    private static class MyCircularQueue {
 
-	/** Initialize your data structure here. Set the size of the queue to be k. */
-	public DesignCircularQueue(int k) {
-		this.data = new int[k];
-		this.k = k;
-	}
+        private int k;
+        private int head;
+        private int tail;
+        private int size;
+        private final int[] nums;
 
-	/** Insert an element into the circular queue. Return true if the operation is successful. */
-	public boolean enQueue(int value) {
-		if(isFull()){
-			return false;
-		}
-		tail = (tail + 1) % k;
-		data[tail] = value;
-		size++;
-		return true;
-	}
+        public MyCircularQueue(int k) {
+            this.k = k;
+            head = 0;
+            tail = -1;
+            size = 0;
+            nums = new int[k];
+        }
 
-	/** Delete an element from the circular queue. Return true if the operation is successful. */
-	public boolean deQueue() {
-		if(isEmpty()){
-			return false;
-		}
-		head = (head + 1) % k;
-		size--;
-		return true;
-	}
+        public boolean enQueue(int value) {
+            if (isFull()) {
+                return false;
+            }
+            tail = (tail + 1) % k;
+            nums[tail] = value;
+            size++;
+            return true;
+        }
 
-	/** Get the front item from the queue. */
-	public int Front() {
-		if(isEmpty()){
-			return -1;
-		}
-		return data[head];
-	}
+        public boolean deQueue() {
+            if (isEmpty()) {
+                return false;
+            }
+            head = (head + 1) % k;
+            size--;
+            return true;
+        }
 
-	/** Get the last item from the queue. */
-	public int Rear() {
-		if(isEmpty()){
-			return -1;
-		}
-		return data[tail];
-	}
+        public int Front() {
+            if (isEmpty()) {
+                return -1;
+            }
+            return nums[head];
+        }
 
-	/** Checks whether the circular queue is empty or not. */
-	public boolean isEmpty() {
-		return size == 0;
-	}
+        public int Rear() {
+            if (isEmpty()) {
+                return -1;
+            }
+            return nums[tail];
+        }
 
-	/** Checks whether the circular queue is full or not. */
-	public boolean isFull() {
-		return size == k;
-	}
-}
+        public boolean isEmpty() {
+            return size == 0;
+        }
+
+        public boolean isFull() {
+            return size == k;
+        }
+    }
 
 /**
  * Your MyCircularQueue object will be instantiated and called as such:
@@ -73,3 +75,4 @@ public class DesignCircularQueue {
  * boolean param_5 = obj.isEmpty();
  * boolean param_6 = obj.isFull();
  */
+}

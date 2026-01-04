@@ -1,55 +1,48 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/27/2016.
  * #0379 https://leetcode.com/problems/design-phone-directory/
  */
 public class DesignPhoneDirectory {
-	private int max;
-	private LinkedList<Integer> queue;
-	private boolean[] used;
 
-	/** Initialize your data structure here
-	 @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
-	public DesignPhoneDirectory(int maxNumbers) {
-		if(maxNumbers <= 0){
-			throw new IllegalArgumentException("Invalid input.");
-		}
-		queue = new LinkedList<Integer>();
-		for(int i = 0; i < maxNumbers; i++){
-			queue.offerLast(i);
-		}
-		used = new boolean[maxNumbers];
-		max = maxNumbers - 1;
-	}
+	// time O(n), space O(MAX)
+    private static class PhoneDirectory {
 
-	/** Provide a number which is not assigned to anyone.
-	 @return - Return an available number. Return -1 if none is available. */
-	public int get() {
-		if(queue.isEmpty()){
-			throw new NoSuchElementException("Empty list.");
-		}
-		int val = queue.pollFirst();
-		used[val] = true;
-		return val;
-	}
+        private final Deque<Integer> queue;
+        private final boolean[] used;
 
-	/** Check if a number is available or not. */
-	public boolean check(int number) {
-		return  number <= max && !used[number];
-	}
+        public PhoneDirectory(int maxNumbers) {
+            used = new boolean[maxNumbers];
+            queue = new ArrayDeque<>();
+            for (int i = 0; i < maxNumbers; i++) {
+                queue.offer(i);
+            }
+        }
 
-	/** Recycle or release a number. */
-	public void release(int number) {
-		if(number <= max && used[number]){
-			queue.offerLast(number);
-			used[number] = false;
-		}
-	}
-}
+        public int get() {
+            if (queue.isEmpty()) {
+                return -1;
+            }
+            used[queue.peek()] = true;
+            return queue.poll();
+        }
+
+        public boolean check(int number) {
+            return !used[number];
+        }
+
+        public void release(int number) {
+            if (!used[number]) {
+                return;
+            }
+            queue.offer(number);
+            used[number] = false;
+        }
+    }
 
 /**
  * Your PhoneDirectory object will be instantiated and called as such:
@@ -58,3 +51,4 @@ public class DesignPhoneDirectory {
  * boolean param_2 = obj.check(number);
  * obj.release(number);
  */
+}
