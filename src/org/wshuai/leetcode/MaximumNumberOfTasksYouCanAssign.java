@@ -17,7 +17,7 @@ public class MaximumNumberOfTasksYouCanAssign {
         int left = 0, right = Math.min(tasks.length, workers.length);
         while (left < right) {
             int mid = left + (right - left + 1) / 2;
-            if (!canAssign(tasks, workers, pills, strength, mid)) {
+            if (!canCompleteArray(tasks, workers, pills, strength, mid)) {
                 right = mid - 1;
             } else {
                 left = mid;
@@ -26,36 +26,56 @@ public class MaximumNumberOfTasksYouCanAssign {
         return left;
     }
 
-    private boolean canAssign(int[] tasks, int[] workers, int pills, int strength, int k) {
+    private boolean canCompleteArray(int[] tasks, int[] workers, int pills, int strength, int k) {
+        // 用数组取代双端数列
+        int[] queue = new int[tasks.length];
+        for (int i = workers.length - k, j = 0, head = 0, tail = 0; i < workers.length; i++) {
+            while (j < tasks.length && workers[i] + strength >= tasks[j]) {
+                queue[tail++] = tasks[j++];
+            }
+            if (head == tail) {
+                return false;
+            }
+            if (workers[i] >= queue[head]) {
+                head++;
+                continue;
+            }
+            if (pills == 0) {
+                return false;
+            }
+            pills--;
+            tail--;
+        }
+        return true;
+    }
+
+    private boolean canCompleteQueue(int[] tasks, int[] workers, int pills, int strength, int k) {
         Deque<Integer> queue = new ArrayDeque<>();
         int i = 0;
-        // Greedy: use the k strongest workers to complete the k easiest works
+        // 贪心: 用最强的 k 个工人去完成最简单的 k 个任务。
         for (int j = workers.length - k; j < workers.length; j++) {
             int w = workers[j];
-            // For current worker, add all tasks he can complete (with pill)
+            // 把所有可以被当前工人完成的任务 (包括使用或者不使用药丸的情况) 加到队列中。
             while (i < k && tasks[i] <= w + strength) {
                 queue.offer(tasks[i]);
                 i++;
             }
-            // Impossible to complete any work
+            // 直接返回如果不能完成任何任务
             if (queue.isEmpty()) {
                 return false;
             }
-            // Complete the easiest work without pill, note that the worker can also
-            // pick another harder work (LOE to his strength) but that does not offer
-            // any benefit because stronger worker can also complete the job later
+            // 如果能不用药丸就能完成最简单的任务则选择最简单的任务。注意这里他可以做更难的任务
+            // 但是那样无法得到任何好处还会降低后面的工人完成任务的可能性。
             if (w >= queue.peek()) {
                 queue.poll();
                 continue;
             }
-            // Return false if current worker can't even complete the easiest work
-            // and there is no pills left
+            // 直接返回如果当前工人即使用药也无法完成最简单的任务
             if (pills == 0) {
                 return false;
             }
-            // If a pill needs to be used, then complete the hardest work to maximize
-            // the profit. This is to increase the chance a stronger worker can pick
-            // an easier job without using a pill
+            // 如果必须使用一颗药丸则选择最难的任务，这样可以增加后面的工人不使用药丸完成最简单
+            // 的任务和使用药丸完成比当前任务更简单的任务的可能性。
             pills--;
             queue.pollLast();
         }

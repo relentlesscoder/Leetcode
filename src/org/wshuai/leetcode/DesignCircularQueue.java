@@ -9,27 +9,27 @@ public class DesignCircularQueue {
     // time O(n), space O(k)
     private static class MyCircularQueue {
 
-        private int k;
-        private int head;
-        private int tail;
-        private int size;
-        private final int[] nums;
+        private int front;
+        private int rear;
+        private final int capacity;
+        private final int[] arr;
 
+        // front指向第一个有效数据的位置，而rear指向最后一个有效数据的后面一个位置即下一个
+        // 插入数据的位置。
         public MyCircularQueue(int k) {
-            this.k = k;
-            head = 0;
-            tail = -1;
-            size = 0;
-            nums = new int[k];
+            capacity = k + 1;
+            arr = new int[capacity];
+            front = 0;
+            rear = 0;
         }
 
         public boolean enQueue(int value) {
             if (isFull()) {
                 return false;
             }
-            tail = (tail + 1) % k;
-            nums[tail] = value;
-            size++;
+            // 先赋值再更新索引
+            arr[rear] = value;
+            rear = (rear + 1) % capacity;
             return true;
         }
 
@@ -37,8 +37,7 @@ public class DesignCircularQueue {
             if (isEmpty()) {
                 return false;
             }
-            head = (head + 1) % k;
-            size--;
+            front = (front + 1) % capacity;
             return true;
         }
 
@@ -46,22 +45,22 @@ public class DesignCircularQueue {
             if (isEmpty()) {
                 return -1;
             }
-            return nums[head];
+            return arr[front];
         }
 
         public int Rear() {
             if (isEmpty()) {
                 return -1;
             }
-            return nums[tail];
+            return arr[((rear - 1) % capacity + capacity) % capacity];
         }
 
         public boolean isEmpty() {
-            return size == 0;
+            return front == rear;
         }
 
         public boolean isFull() {
-            return size == k;
+            return (rear + 1) % capacity == front;
         }
     }
 

@@ -6,80 +6,83 @@ package org.wshuai.leetcode;
  */
 public class DesignCircularDeque {
 
-	private int[] data;
-	private int head = 0, tail = -1, size = 0, k;
+    private static class MyCircularDeque {
 
-	/** Initialize your data structure here. Set the size of the deque to be k. */
-	public DesignCircularDeque(int k) {
-		this.data = new int[k];
-		this.k = k;
-	}
+        private final int capacity;
+        private final int[] arr;
+        private int front;
+        private int rear;
 
-	/** Adds an item at the front of Deque. Return true if the operation is successful. */
-	public boolean insertFront(int value) {
-		if(isFull()){
-			return false;
-		}
-		head = (head - 1 + k) % k;
-		data[head] = value;
-		// reset after first element is added
-		if(++size == 1){
-			tail = head;
-		}
-		return true;
-	}
+        // front指向第一个有效数据的位置，而rear指向最后一个有效数据的后面一个位置即下一个
+        // 插入数据的位置。
+        public MyCircularDeque(int k) {
+            capacity = k + 1;
+            arr = new int[capacity];
+            front = 0;
+            rear = 0;
+        }
 
-	/** Adds an item at the rear of Deque. Return true if the operation is successful. */
-	public boolean insertLast(int value) {
-		if(isFull()){
-			return false;
-		}
-		tail = (tail + 1) % k;
-		data[tail] = value;
-		size++;
-		return true;
-	}
+        public boolean insertFront(int value) {
+            if (isFull()) {
+                return false;
+            }
+            // 先更新索引后赋值
+            front = ((front - 1) % capacity + capacity) % capacity;
+            arr[front] = value;
+            return true;
+        }
 
-	/** Deletes an item from the front of Deque. Return true if the operation is successful. */
-	public boolean deleteFront() {
-		if(isEmpty()){
-			return false;
-		}
-		head = (head + 1) % k;
-		size--;
-		return true;
-	}
+        public boolean insertLast(int value) {
+            if (isFull()) {
+                return false;
+            }
+            // 先赋值后更新索引
+            arr[rear] = value;
+            rear = (rear + 1) % capacity;
+            return true;
+        }
 
-	/** Deletes an item from the rear of Deque. Return true if the operation is successful. */
-	public boolean deleteLast() {
-		if(isEmpty()){
-			return false;
-		}
-		tail = (tail - 1 + k) % k;
-		size--;
-		return true;
-	}
+        public boolean deleteFront() {
+            if (isEmpty()) {
+                return false;
+            }
+            // front 被设计在数组的开头，所以是 +1
+            front = (front + 1) % capacity;
+            return true;
+        }
 
-	/** Get the front item from the deque. */
-	public int getFront() {
-		return isEmpty() ? -1 : data[head];
-	}
+        public boolean deleteLast() {
+            if (isEmpty()) {
+                return false;
+            }
+            // rear 被设计在数组的末尾，所以是 -1
+            rear = ((rear - 1) % capacity + capacity) % capacity;
+            return true;
+        }
 
-	/** Get the last item from the deque. */
-	public int getRear() {
-		return isEmpty() ? -1 : data[tail];
-	}
+        public int getFront() {
+            if (isEmpty()) {
+                return -1;
+            }
+            return arr[front];
+        }
 
-	/** Checks whether the circular deque is empty or not. */
-	public boolean isEmpty() {
-		return size == 0;
-	}
+        public int getRear() {
+            if (isEmpty()) {
+                return -1;
+            }
+            // 当 rear 为 0 时防止数组越界
+            return arr[((rear - 1) % capacity + capacity) % capacity];
+        }
 
-	/** Checks whether the circular deque is full or not. */
-	public boolean isFull() {
-		return size == k;
-	}
-}
+        public boolean isEmpty() {
+            return front == rear;
+        }
+
+        public boolean isFull() {
+            return (rear + 1) % capacity == front;
+        }
+    }
 
 /**
  * Your MyCircularDeque object will be instantiated and called as such:
@@ -93,3 +96,4 @@ public class DesignCircularDeque {
  * boolean param_7 = obj.isEmpty();
  * boolean param_8 = obj.isFull();
  */
+}

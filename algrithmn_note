@@ -463,7 +463,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2055 https://leetcode.com/problems/plates-between-candles/
 #2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
 #2070 https://leetcode.com/problems/most-beautiful-item-for-each-query
-#2071 https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/ ***(binary search for max)
+#2071 https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/ (miao a~~~) (二分 + 贪心 + 双端队列) (二分求最大值)
 #2141 https://leetcode.com/problems/maximum-running-time-of-n-computers/
 #2187 https://leetcode.com/problems/minimum-time-to-complete-trips/
 #2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/ ***(binary search for max)
@@ -777,10 +777,12 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0206 https://leetcode.com/problems/reverse-linked-list/
 #0225 https://leetcode.com/problems/implement-stack-using-queues/ (miao a~~~) (队列 应用)
 #0232 https://leetcode.com/problems/implement-queue-using-stacks/ (miao a~~~) (队列 应用)
+#0239 https://leetcode.com/problems/sliding-window-maximum/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
 #0346 https://leetcode.com/problems/moving-average-from-data-stream/ (队列 应用)
 #0362 https://leetcode.com/problems/design-hit-counter/ (队列 应用)
 #0379 https://leetcode.com/problems/design-phone-directory/ (队列 应用)
 #0622 https://leetcode.com/problems/design-circular-queue/ (miao a~~~) (队列 应用)
+#0641 https://leetcode.com/problems/design-circular-deque/ (miao a~~~) (队列 应用)
 #0649 https://leetcode.com/problems/dota2-senate/ (miao a~~~) (队列 应用)
 #0933 https://leetcode.com/problems/number-of-recent-calls/ (队列 基础)
 #0950 https://leetcode.com/problems/reveal-cards-in-increasing-order/ (队列 ...)
@@ -789,6 +791,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1670 https://leetcode.com/problems/design-front-middle-back-queue/ (miao a~~~) (双队列)
 #2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/
 #2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
+#2071 https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/ (miao a~~~) (二分 + 贪心 + 双端队列)
 #2074 https://leetcode.com/problems/reverse-nodes-in-even-length-groups/ (complex)
 #2095 https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
 #2130 https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
@@ -796,9 +799,10 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 #2534 https://leetcode.com/problems/time-taken-to-cross-the-door/ (队列 应用)
 #2807 https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/
+#2810 https://leetcode.com/problems/faulty-keyboard/ (miao a~~~) (队列 应用)
 #3217 https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/
 #3508 https://leetcode.com/problems/implement-router/ (miao a~~~) (队列 + 哈希表 + 二分)
-
+#LCR184 https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
 
 
 
