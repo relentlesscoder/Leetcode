@@ -508,6 +508,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0525 https://leetcode.com/problems/contiguous-array/ (miao a~~~) (前缀和 + 01值)
 #0548
 #0560 https://leetcode.com/problems/subarray-sum-equals-k/ (前缀和 + 哈希表)
+#0862 https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/ (miao a~~~) (单调队列 + 前缀和)
 #0930 https://leetcode.com/problems/binary-subarrays-with-sum/ (前缀和 + 哈希表)
 #0974 https://leetcode.com/problems/subarray-sums-divisible-by-k/ (前缀和 + 模运算)
 #1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
@@ -784,10 +785,13 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0622 https://leetcode.com/problems/design-circular-queue/ (miao a~~~) (队列 应用)
 #0641 https://leetcode.com/problems/design-circular-deque/ (miao a~~~) (队列 应用)
 #0649 https://leetcode.com/problems/dota2-senate/ (miao a~~~) (队列 应用)
+#0862 https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/ (miao a~~~) (单调队列 + 前缀和)
 #0933 https://leetcode.com/problems/number-of-recent-calls/ (队列 基础)
 #0950 https://leetcode.com/problems/reveal-cards-in-increasing-order/ (队列 ...)
 #1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
 #1429 https://leetcode.com/problems/first-unique-number/ (队列 应用)
+#1438 https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
+#1499 https://leetcode.com/problems/max-value-of-equation/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
 #1670 https://leetcode.com/problems/design-front-middle-back-queue/ (miao a~~~) (双队列)
 #2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/
 #2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/
@@ -796,14 +800,44 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2095 https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
 #2130 https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
 #2181 https://leetcode.com/problems/merge-nodes-in-between-zeros/
+#2398 https://leetcode.com/problems/maximum-number-of-robots-within-budget/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/
 #2534 https://leetcode.com/problems/time-taken-to-cross-the-door/ (队列 应用)
+#2762 https://leetcode.com/problems/continuous-subarrays/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
 #2807 https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/
 #2810 https://leetcode.com/problems/faulty-keyboard/ (miao a~~~) (队列 应用)
 #3217 https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/
 #3508 https://leetcode.com/problems/implement-router/ (miao a~~~) (队列 + 哈希表 + 二分)
+#3589 https://leetcode.com/problems/count-prime-gap-balanced-subarrays/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈, 质数预处理)
 #LCR184 https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
 
+10. Priority Queue
+
+#0023 https://leetcode.com/problems/merge-k-sorted-lists/
+#0347 https://leetcode.com/problems/top-k-frequent-elements/
+#1046 https://leetcode.com/problems/last-stone-weight/ (基础)
+#1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
+#1792 https://leetcode.com/problems/maximum-average-pass-ratio/
+#1921 https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
+#1942 https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/
+#2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
+#2126 https://leetcode.com/problems/destroying-asteroids/
+#2163 https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/
+#2182 https://leetcode.com/problems/construct-string-with-repeat-limit/
+#2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
+#2402 https://leetcode.com/problems/meeting-rooms-iii/
+#2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
+#2512 https://leetcode.com/problems/reward-top-k-students/
+#2542 https://leetcode.com/problems/maximum-subsequence-score/
+#2558 https://leetcode.com/problems/take-gifts-from-the-richest-pile/ (基础)
+#2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
+#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+#3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
+#3264 https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-i/ (基础)
+#3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
+#3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
+#3362 https://leetcode.com/problems/zero-array-transformation-iii/
+#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 
 
 
@@ -819,30 +853,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 08. Backtracking
 #1655 https://leetcode.com/problems/distribute-repeating-integers/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
-
-10. Min/max queue
-#0023 https://leetcode.com/problems/merge-k-sorted-lists/
-#0347 https://leetcode.com/problems/top-k-frequent-elements/
-#1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
-#1792 https://leetcode.com/problems/maximum-average-pass-ratio/
-#1921 https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
-#1942 https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/
-#2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
-#2126 https://leetcode.com/problems/destroying-asteroids/
-#2163 https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/
-#2182 https://leetcode.com/problems/construct-string-with-repeat-limit/
-#2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
-#2402 https://leetcode.com/problems/meeting-rooms-iii/
-#2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
-#2512 https://leetcode.com/problems/reward-top-k-students/
-#2542 https://leetcode.com/problems/maximum-subsequence-score/
-#2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
-#2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
-#3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
-#3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
-#3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
-#3362 https://leetcode.com/problems/zero-array-transformation-iii/
-#3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
 
 13. Intervals
 #0056 https://leetcode.com/problems/merge-intervals/
@@ -1537,10 +1547,39 @@ Note:
     	#2709 https://leetcode.cn/problems/greatest-common-divisor-traversal/
 		#2818 https://leetcode.com/problems/apply-operations-to-maximize-score/
 		#3569 https://leetcode.com/problems/maximize-count-of-distinct-primes-after-split/ (segment tree + prime factorization)
+		#3589 https://leetcode.com/problems/count-prime-gap-balanced-subarrays/
+		#3591 https://leetcode.com/problems/check-if-any-element-has-prime-frequency/
+
+	不同质因数的个数:
+
+	static {
+        for (int i = 2; i < MAX; i++) {
+            // If PRIME_SCORE[i] already set then current i is not a prime number
+            if (PRIME_SCORE[i] == 0) {
+                for (int j = i; j < MAX; j += i) {
+                    PRIME_SCORE[j]++;
+                }
+            }
+        }
+    }
+
+    是否质数:
+
+    static {
+        NON_PRIME[0] = NON_PRIME[1] = true;
+        for (int i = 2; i <= MAX; i++) {
+            if (!NON_PRIME[i]) {
+                for (int j = i; j <= MAX / i; j++) {
+                    NON_PRIME[i * j] = true;
+                }
+            }
+        }
+    }
 
 	Factorization: 
 		#1627 https://leetcode.com/problems/graph-connectivity-with-threshold/ (连通集 + 因数分解)
 		#3164 https://leetcode.com/problems/find-the-number-of-good-pairs-ii/ (factorization)
+
 
 21. Palindrome extend from middle https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 	// gracefully handle both cases like aabaa or abba

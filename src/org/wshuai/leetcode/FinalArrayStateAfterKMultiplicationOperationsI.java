@@ -10,16 +10,16 @@ public class FinalArrayStateAfterKMultiplicationOperationsI {
 
     // time O((n + k) * log(n)), space O(n)
     public int[] getFinalState(int[] nums, int k, int multiplier) {
-        PriorityQueue<int[]> minQueue = new PriorityQueue<>((a, b) ->
-                a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) ->
+                a[1] == b[1] ? a[0] - b[0] : a[1] - b[1]);
         for (int i = 0; i < nums.length; i++) {
-            minQueue.offer(new int[]{nums[i], i});
+            queue.offer(new int[]{i, nums[i]});
         }
         while (k-- > 0) {
-            int[] curr = minQueue.poll();
-            curr[0] *= multiplier;
-            minQueue.offer(curr);
-            nums[curr[1]] = curr[0];
+            int[] curr = queue.poll();
+            curr[1] *= multiplier;
+            nums[curr[0]] = curr[1];
+            queue.offer(curr);
         }
         return nums;
     }
