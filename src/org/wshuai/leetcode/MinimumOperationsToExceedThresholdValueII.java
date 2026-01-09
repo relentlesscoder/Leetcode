@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 public class MinimumOperationsToExceedThresholdValueII {
 
     // time O(n * log(n)), space O(n)
-    public int minOperationsOptimized(int[] nums, int k) {
+    public int minOperations(int[] nums, int k) {
         int res = 0;
         PriorityQueue<Integer> minQueue = new PriorityQueue<>();
         for (int num : nums) {
@@ -19,34 +19,17 @@ public class MinimumOperationsToExceedThresholdValueII {
         }
         while (!minQueue.isEmpty()) {
             res++;
-            int first = minQueue.poll();
-            // if there is only one in the queue, it means all other values are >= k
-            // then we only need one more operation
+            int x = minQueue.poll();
+            // 直接返回如果只剩一个数
             if (minQueue.isEmpty()) {
                 break;
             }
-            int second = minQueue.poll();
-            long value = 2L * first + second;
-
-            // only add back to queue if the increased value is still < k
-            if (value < k) {
-                minQueue.offer((int)value);
+            int y = minQueue.poll();
+            long v = 2L * x + y;
+            // 只有当 v < k 才加入
+            if (v < k) {
+                minQueue.offer((int) v);
             }
-        }
-        return res;
-    }
-
-    // time O(n * log(n)), space O(n)
-    public int minOperations(int[] nums, int k) {
-        int res = 0;
-        PriorityQueue<Long> minQueue = new PriorityQueue<>();
-        for (int num : nums) {
-            minQueue.offer(1L * num);
-        }
-        while (minQueue.peek() < k) {
-            long first = minQueue.poll(), second = minQueue.poll();
-            minQueue.offer((first << 1) + second);
-            res++;
         }
         return res;
     }

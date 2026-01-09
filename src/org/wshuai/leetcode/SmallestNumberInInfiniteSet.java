@@ -9,45 +9,51 @@ import java.util.PriorityQueue;
  */
 public class SmallestNumberInInfiniteSet {
 
-	// time O(n * log(n)), space O(n)
-	private class SmallestInfiniteSet {
+    // time O(n * log(n)), space O(n)
+    private static class SmallestInfiniteSet {
 
-		private HashSet<Integer> popedNumbers;
-		private PriorityQueue<Integer> popedNumbersMinQueue;
-		private Integer currentMin;
+        private HashSet<Integer> popedNumbers;
+        private PriorityQueue<Integer> popedNumbersMinQueue;
+        private Integer currentMin;
 
-		public SmallestInfiniteSet() {
-			popedNumbers = new HashSet<>();
-			popedNumbersMinQueue = new PriorityQueue<>();
-			currentMin = 1;
-		}
+        public SmallestInfiniteSet() {
+            // 之前弹出后被加回来的数字的哈希表
+            popedNumbers = new HashSet<>();
+            // 之前弹出后被加回来的数字组成的最小队列
+            popedNumbersMinQueue = new PriorityQueue<>();
+            currentMin = 1;
+        }
 
-		public int popSmallest() {
-			int smallest;
-			if (!popedNumbersMinQueue.isEmpty()) { // if previously popped numbers are added back, it will be definitely less than the current min, so we need to poll from the min queue
-				smallest = popedNumbersMinQueue.poll();
-				popedNumbers.remove(smallest);
-			} else {
-				smallest = currentMin;
-				currentMin++;
-			}
-			return smallest;
-		}
+        public int popSmallest() {
+            int smallest;
+            // 现在被加回来的数字的最小队列里面找
+            if (!popedNumbersMinQueue.isEmpty()) {
+                smallest = popedNumbersMinQueue.poll();
+                // 将数字从哈希表中删掉
+                popedNumbers.remove(smallest);
+            } else {
+                // 如果之前弹出的数字都没有被加回来，则我们需要弹出并更新当前最小值
+                smallest = currentMin;
+                currentMin++;
+            }
+            return smallest;
+        }
 
-		public void addBack(int num) {
-			if (popedNumbers.contains(num) || currentMin <= num) { // if current min less or equal to num, no need to add it back since it will not have any affect
-				return;
-			}
-			// added previously popped number back to the min queue
-			popedNumbers.add(num);
-			popedNumbersMinQueue.offer(num);
-		}
-	}
+        public void addBack(int num) {
+            // 如果数字被弹出但没有被加回来或者根本未被弹出
+            if (popedNumbers.contains(num) || currentMin <= num) {
+                return;
+            }
+            // 把数字加回来
+            popedNumbers.add(num);
+            popedNumbersMinQueue.offer(num);
+        }
+    }
 
-	/**
-	 * Your SmallestInfiniteSet object will be instantiated and called as such:
-	 * SmallestInfiniteSet obj = new SmallestInfiniteSet();
-	 * int param_1 = obj.popSmallest();
-	 * obj.addBack(num);
-	 */
+    /**
+     * Your SmallestInfiniteSet object will be instantiated and called as such:
+     * SmallestInfiniteSet obj = new SmallestInfiniteSet();
+     * int param_1 = obj.popSmallest();
+     * obj.addBack(num);
+     */
 }

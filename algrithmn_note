@@ -824,14 +824,17 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2126 https://leetcode.com/problems/destroying-asteroids/
 #2163 https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/
 #2182 https://leetcode.com/problems/construct-string-with-repeat-limit/
+#2336 https://leetcode.com/problems/smallest-number-in-infinite-set/ (应用)
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
 #2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
 #2512 https://leetcode.com/problems/reward-top-k-students/
+#2530 https://leetcode.com/problems/maximal-score-after-applying-k-operations/ (应用)
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
-#2558 https://leetcode.com/problems/take-gifts-from-the-richest-pile/ (基础)
+#2558 https://leetcode.com/problems/take-gifts-from-the-richest-pile/ (基础 heapify)
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
 #2940 https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/
+#3066 https://leetcode.com/problems/minimum-operations-to-exceed-threshold-value-ii/ (应用)
 #3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
 #3264 https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-i/ (基础)
 #3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
