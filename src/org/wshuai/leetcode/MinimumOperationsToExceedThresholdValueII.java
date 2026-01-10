@@ -18,9 +18,9 @@ public class MinimumOperationsToExceedThresholdValueII {
             }
         }
         while (!minQueue.isEmpty()) {
+            // 注意最后只剩一个数的情况，操作数也需要加一。
             res++;
             int x = minQueue.poll();
-            // 直接返回如果只剩一个数
             if (minQueue.isEmpty()) {
                 break;
             }

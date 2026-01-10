@@ -8,21 +8,37 @@ import java.util.PriorityQueue;
  */
 public class SeatReservationManager {
 
-    PriorityQueue<Integer> pq = new PriorityQueue<>();
+    // time O(k * log(k)), space O(k)
+    private static class SeatManager {
 
-    public SeatReservationManager(int n) {
-        for(int i = 1; i <= n; i++){
-            pq.offer(i);
+        // #2336 的简化版
+        private int min;
+        private final PriorityQueue<Integer> minQueue;
+
+        public SeatManager(int n) {
+            min = 1;
+            minQueue = new PriorityQueue<>();
+        }
+
+        public int reserve() {
+            int res = -1;
+            if (!minQueue.isEmpty()) {
+                res = minQueue.poll();
+            } else {
+                res = min++;
+            }
+            return res;
+        }
+
+        public void unreserve(int seatNumber) {
+            minQueue.offer(seatNumber);
         }
     }
 
-    // time O(log(n))
-    public int reserve() {
-        return pq.poll();
-    }
-
-    // time O(log(n))
-    public void unreserve(int seatNumber) {
-        pq.offer(seatNumber);
-    }
+/**
+ * Your SeatManager object will be instantiated and called as such:
+ * SeatManager obj = new SeatManager(n);
+ * int param_1 = obj.reserve();
+ * obj.unreserve(seatNumber);
+ */
 }

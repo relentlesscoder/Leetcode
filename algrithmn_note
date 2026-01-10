@@ -681,7 +681,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3043 https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/
 #3597 https://leetcode.com/problems/partition-string/ (字典树 应用)
 
-10. Dynamic Programming
+13. Dynamic Programming
 
 #0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
 #0072 https://leetcode.com/problems/edit-distance/
@@ -746,9 +746,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 #3524 https://leetcode.com/problems/find-x-value-of-array-i/
 
-12. Difference Array
+14. Difference Array
 
-#0253 https://leetcode.com/problems/meeting-rooms-ii/
+#0253 https://leetcode.com/problems/meeting-rooms-ii/ (miao a~~~) (最小堆 / 差分) (区间)
 #0370 https://leetcode.com/problems/range-addition/ (差分 基础)
 #1094 https://leetcode.com/problems/car-pooling/ (差分 基础)
 #1109 https://leetcode.com/problems/corporate-flight-bookings/ (差分 基础)
@@ -759,7 +759,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2237 https://leetcode.com/problems/count-positions-on-street-with-required-brightness/
 #2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/ (line sweep for large indexes using tree map)
 #2381 https://leetcode.com/problems/shifting-letters-ii/
-#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
+#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/ (miao a~~~) (最小堆 / 差分) (区间)
 #2772 https://leetcode.com/problems/successful-pairs-of-spells-and-potions/
 #2848 https://leetcode.com/problems/points-that-intersect-with-cars/ (差分 基础)
 #2960 https://leetcode.com/problems/count-tested-devices-after-test-operations/ (差分 基础)
@@ -770,7 +770,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3347 https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-ii/
 #LCCI-16.10 https://leetcode.cn/problems/living-people-lcci/ (差分 基础)
 
-14. Queue
+15. Queue
 
 #0021 https://leetcode.com/problems/merge-two-sorted-lists/
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
@@ -811,25 +811,32 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3589 https://leetcode.com/problems/count-prime-gap-balanced-subarrays/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈, 质数预处理)
 #LCR184 https://leetcode.cn/problems/dui-lie-de-zui-da-zhi-lcof/ (miao a~~~) (单调队列 = 滑动窗口 + 单调栈)
 
-10. Priority Queue
+16. Priority Queue
 
 #0023 https://leetcode.com/problems/merge-k-sorted-lists/
+#0253 https://leetcode.com/problems/meeting-rooms-ii/ (miao a~~~) (最小堆 / 差分) (区间)
 #0347 https://leetcode.com/problems/top-k-frequent-elements/
+#0703 https://leetcode.com/problems/kth-largest-element-in-a-stream/ (应用 heapify) (#2558)
 #1046 https://leetcode.com/problems/last-stone-weight/ (基础)
 #1705 https://leetcode.com/problems/maximum-number-of-eaten-apples/
 #1792 https://leetcode.com/problems/maximum-average-pass-ratio/
+#1801 https://leetcode.com/problems/number-of-orders-in-the-backlog/ (应用)
+#1845 https://leetcode.com/problems/seat-reservation-manager/ (#2336 的简化版)
 #1921 https://leetcode.com/problems/eliminate-maximum-number-of-monsters/
-#1942 https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/
+#1942 https://leetcode.com/problems/the-number-of-the-smallest-unoccupied-chair/ (miao a~~~) (应用)
+#1962 https://leetcode.com/problems/remove-stones-to-minimize-the-total/ (应用 heapify) (#2558)
 #2102 https://leetcode.com/problems/sequentially-ordinal-rank-tracker/
 #2126 https://leetcode.com/problems/destroying-asteroids/
 #2163 https://leetcode.com/problems/minimum-difference-in-sums-after-removal-of-elements/
 #2182 https://leetcode.com/problems/construct-string-with-repeat-limit/
+#2208 https://leetcode.com/problems/minimum-operations-to-halve-array-sum/ (应用 heapify) (#2558)
 #2336 https://leetcode.com/problems/smallest-number-in-infinite-set/ (应用)
 #2371 https://leetcode.com/problems/minimize-maximum-value-in-a-grid/
 #2402 https://leetcode.com/problems/meeting-rooms-iii/
-#2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/
+#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/ (miao a~~~) (最小堆 / 差分) (区间)
+#2462 https://leetcode.com/problems/total-cost-to-hire-k-workers/ (miao a~~~) (应用)
 #2512 https://leetcode.com/problems/reward-top-k-students/
-#2530 https://leetcode.com/problems/maximal-score-after-applying-k-operations/ (应用)
+#2530 https://leetcode.com/problems/maximal-score-after-applying-k-operations/ (应用 heapify) (#2558)
 #2542 https://leetcode.com/problems/maximum-subsequence-score/
 #2558 https://leetcode.com/problems/take-gifts-from-the-richest-pile/ (基础 heapify)
 #2593 https://leetcode.com/problems/find-score-of-an-array-after-marking-all-elements/
@@ -837,10 +844,22 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3066 https://leetcode.com/problems/minimum-operations-to-exceed-threshold-value-ii/ (应用)
 #3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
 #3264 https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-i/ (基础)
+#3275 https://leetcode.com/problems/k-th-nearest-obstacle-queries/ (应用 heapify) (#2558)
+#3296 https://leetcode.com/problems/minimum-number-of-seconds-to-make-mountain-height-zero/ (应用 heapify) (#2558)
 #3318 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-i/ (double queue)
 #3321 https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
 #3362 https://leetcode.com/problems/zero-array-transformation-iii/
+#3478 https://leetcode.com/problems/choose-k-elements-with-maximum-sum/ (miao a~~~) (应用)
 #3672 https://leetcode.com/problems/sum-of-weighted-modes-in-subarrays/ (sliding window + segment tree)
+
+17. Intervals
+#0056 https://leetcode.com/problems/merge-intervals/
+#0253 https://leetcode.com/problems/meeting-rooms-ii/ (miao a~~~) (最小堆 / 差分) (区间)
+#2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/
+#2402 https://leetcode.com/problems/meeting-rooms-iii/
+#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/ (miao a~~~) (最小堆 / 差分) (区间)
+#2655 https://leetcode.com/problems/find-maximal-uncovered-ranges/ (merge intervals)
+#3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
 
 
 
@@ -856,15 +875,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 08. Backtracking
 #1655 https://leetcode.com/problems/distribute-repeating-integers/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
-
-13. Intervals
-#0056 https://leetcode.com/problems/merge-intervals/
-#0253 https://leetcode.com/problems/meeting-rooms-ii/
-#2251 https://leetcode.com/problems/number-of-flowers-in-full-bloom/
-#2402 https://leetcode.com/problems/meeting-rooms-iii/
-#2406 https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/
-#2655 https://leetcode.com/problems/find-maximal-uncovered-ranges/ (merge intervals)
-#3323 https://leetcode.com/problems/minimize-connected-groups-by-inserting-interval/
 
 15. Binary Tree
 #0199 https://leetcode.com/problems/binary-tree-right-side-view/
