@@ -5,13 +5,34 @@ package org.wshuai.leetcode;
  * #1290 https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
  */
 public class ConvertBinaryNumberInALinkedListToInteger {
-	public int getDecimalValue(LinkedListNode head) {
-		LinkedListNode cur = head;
-		int res = 0;
-		while(cur != null){
-			res = (res << 1) + cur.val;
-			cur = cur.next;
-		}
-		return res;
-	}
+
+	// time O(n), space O(1)
+    public int getDecimalValue(ListNode head) {
+        int res = 0;
+        while (head != null) {
+            res = (res << 1) + head.val;
+            head = head.next;
+        }
+        return res;
+    }
+
+    /**
+     * Definition for singly-linked list.
+     **/
+    private static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

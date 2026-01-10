@@ -6,22 +6,28 @@ package org.wshuai.leetcode;
  */
 public class RemoveLinkedListElements {
 
-    // time O(n)
+    // time O(n), space O(1)
     public ListNode removeElements(ListNode head, int val) {
-        ListNode root = new ListNode(0), cur = head, prev = root;
+        ListNode root = new ListNode(-1), curr = head, prev = root;
         root.next = head;
-        while (cur != null) {
-            if (cur.val == val) {
-                prev.next = cur.next;
+        while (curr != null) {
+            ListNode next = curr.next;
+            // 如果值等于 val
+            if (curr.val == val) {
+                prev.next = next; // 将前一个节点的 next 指针指向当前节点下一个节点
+                curr.next = null; // 将当前节点的 next 指针设为 null
             } else {
-                prev = cur;
+                prev = curr;
             }
-            cur = cur.next;
+            curr = next;
         }
         return root.next;
     }
 
-    private class ListNode {
+    /**
+     * Definition for singly-linked list.
+     **/
+    private static class ListNode {
         int val;
         ListNode next;
 

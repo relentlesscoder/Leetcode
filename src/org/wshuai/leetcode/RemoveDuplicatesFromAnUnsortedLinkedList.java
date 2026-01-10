@@ -11,32 +11,44 @@ public class RemoveDuplicatesFromAnUnsortedLinkedList {
 
     // time O(n), space O(n)
     public ListNode deleteDuplicatesUnsorted(ListNode head) {
-        Map<Integer, Integer> count = new HashMap<>();
-        ListNode root = new ListNode(-1), prev = root, cur = head;
+        Map<Integer, Integer> freq = new HashMap<>();
+        ListNode root = new ListNode(-1000), curr = head, prev = root;
         root.next = head;
-        while(cur != null){
-            count.put(cur.val, count.getOrDefault(cur.val, 0) + 1);
-            cur = cur.next;
+        while (curr != null) {
+            freq.merge(curr.val, 1, Integer::sum);
+            curr = curr.next;
         }
-        cur = head;
-        while(cur != null){
-            if(count.get(cur.val) > 1){
-                prev.next = cur.next;
-            }else{
-                prev = cur;
+        curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            if (freq.get(curr.val) > 1) {
+                prev.next = next;
+                curr.next = null;
+            } else {
+                prev = curr;
             }
-            cur = cur.next;
+            curr = next;
         }
         return root.next;
     }
 
-    // Definition for singly-linked list.
-    private class ListNode {
+    /**
+     * Definition for singly-linked list.
+     **/
+    private static class ListNode {
         int val;
         ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 09/26/2023.
@@ -8,69 +9,76 @@ import java.util.LinkedList;
  */
 public class RemoveNodesFromLinkedList {
 
-	// time O(n), space O(1)
-	public ListNode removeNodes(ListNode head) {
-		head = reverse(head); // reverse the linked list
-		int max = head.val;
-		ListNode curr = head, prev = null;
-		while (curr != null) {
-			if (curr.val < max) { // if there is greater value before the current, remove the current node
-				prev.next = curr.next;
-			} else { // update the max if greater value (than the current max) is found
-				max = Math.max(max, curr.val);
-				prev = curr;
-			}
-			curr = curr.next;
-		}
-		return reverse(head); // reverse the linked list again
-	}
+    // time O(n), space O(1)
+    public ListNode removeNodes(ListNode head) {
+		// 翻转链表，这样对每个节点只需要判断它是否是目前的最大值。如果不是则需要删除当前节点。
+        ListNode reversed = reverse(head), curr = reversed.next, prev = reversed;
+        int max = reversed.val;
+        while (curr != null) {
+            ListNode next = curr.next;
+            if (curr.val < max) {
+                prev.next = next;
+                curr.next = null;
+            } else {
+                prev = curr;
+            }
+            max = Math.max(max, curr.val);
+            curr = next;
+        }
+		// 再次翻转链表，注意第一个节点是不会被删的 (它前面不会有比它大的节点) 所以不要使用
+		// dummy 节点
+        return reverse(reversed);
+    }
 
-	private ListNode reverse(ListNode head) {
-		ListNode curr = head, prev = null;
-		while (curr != null) {
-			ListNode next = curr.next;
-			curr.next = prev;
-			prev = curr;
-			curr = next;
-		}
-		return prev;
-	}
+    private ListNode reverse(ListNode head) {
+        ListNode curr = head, prev = null;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
 
-	// time O(n), space O(n)
-	public ListNode removeNodesMonotonicStack(ListNode head) {
-		ListNode root = new ListNode(1_000_000);
-		root.next = head;
-		LinkedList<ListNode> queue = new LinkedList<>();
-		ListNode curr = head;
-		queue.offerLast(root);
-		while (curr != null) {
-			while (!queue.isEmpty() && queue.peekLast().val < curr.val) {
-				queue.pollLast();
-			}
-			queue.peekLast().next = curr;
-			queue.offerLast(curr);
-			curr = curr.next;
-		}
-		return queue.peekFirst().next;
-	}
+    // time O(n), space O(n)
+    public ListNode removeNodesMonotonicStack(ListNode head) {
+		// 利用单调栈
+        ListNode root = new ListNode((int) 1e6);
+        root.next = head;
+        Deque<ListNode> stack = new ArrayDeque<>();
+        stack.push(root);
+        while (head != null) {
+			// 弹出栈顶所有小于当前节点值的节点
+            while (stack.size() > 1 && stack.peek().val < head.val) {
+                ListNode prev = stack.pop();
+                prev.next = null;
+            }
+			// 将栈顶节点的 next 指针指向当前节点
+            stack.peek().next = head;
+            stack.push(head);
+            head = head.next;
+        }
+        return root.next;
+    }
 
-	/**
-	 * Definition for singly-linked list.
-	 **/
-	private class ListNode {
-		int val;
-		ListNode next;
+    /**
+     * Definition for singly-linked list.
+     **/
+    private class ListNode {
+        int val;
+        ListNode next;
 
-		ListNode() {
-		}
+        ListNode() {
+        }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

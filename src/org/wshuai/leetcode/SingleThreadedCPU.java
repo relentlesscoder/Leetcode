@@ -9,29 +9,34 @@ import java.util.PriorityQueue;
  */
 public class SingleThreadedCPU {
 
-	// time O(n * log(n)), space O(n)
-	public int[] getOrder(int[][] tasks) {
-		int n = tasks.length, time = 0, taskIndex = 0, processIndex = 0;
-		int[] processOrder = new int[n];
-		Integer[] taskIndexOrder = new Integer[n];
-		for (int i = 0; i < n; i++) {
-			taskIndexOrder[i] = i;
-		}
-		Arrays.sort(taskIndexOrder, (a, b) -> tasks[a][0] - tasks[b][0]);
-		PriorityQueue<int[]> taskPools = new PriorityQueue<>((a, b) -> a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
-		while (processIndex < n) {
-			while (taskIndex < n && tasks[taskIndexOrder[taskIndex]][0] <= time) { // add all available tasks to the task pool
-				taskPools.offer(new int[] {tasks[taskIndexOrder[taskIndex]][1], taskIndexOrder[taskIndex]});
-				taskIndex++;
-			}
-			if (!taskPools.isEmpty()) { // pick the next task to execute
-				int[] next = taskPools.poll();
-				processOrder[processIndex++] = next[1];
-				time += next[0];
-			} else {
-				time = tasks[taskIndexOrder[taskIndex]][0]; // no tasks are available, advance to the next enqueue time
-			}
-		}
-		return processOrder;
-	}
+    // time O(n * log(n)), space O(n)
+    public int[] getOrder(int[][] tasks) {
+        int n = tasks.length;
+        // 把索引按进入任务队列时间排序
+        Integer[] sorted = new Integer[n];
+        Arrays.setAll(sorted, i -> i);
+        Arrays.sort(sorted, (a, b) -> tasks[a][0] - tasks[b][0]);
+        // 维护一个最小队列，按任务时间和其在任务数组中的原索引排序
+        PriorityQueue<int[]> minQueue = new PriorityQueue<>((a, b) ->
+                a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]);
+        int[] res = new int[n];
+        for (int idx = 0, j = 0, start = 0; idx < n; ) {
+            if (!minQueue.isEmpty()) { // 如果队列中有任务
+                int[] curr = minQueue.poll();
+                res[idx++] = curr[1]; // 弹出队首的任务并执行
+                start += curr[0]; // 将下一个任务的开始时间设为当前任务结束时间
+            } else {
+                // 注意如果当前任务结束时间之前下一个任务还没有开始则需要将下一个任
+                // 务的开始时间设为排序后下一个索引的开始时间，这种情况 cpu 会有一
+                // 段空闲状态。
+                start = tasks[sorted[j]][0];
+            }
+            // 将所有在当前任务结束时间前开始的任务加入队列
+            while (j < n && tasks[sorted[j]][0] <= start) {
+                minQueue.offer(new int[]{tasks[sorted[j]][1], sorted[j]});
+                j++;
+            }
+        }
+        return res;
+    }
 }

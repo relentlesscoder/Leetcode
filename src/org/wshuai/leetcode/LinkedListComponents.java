@@ -8,25 +8,43 @@ import java.util.Set;
  * #0817 https://leetcode.com/problems/linked-list-components/
  */
 public class LinkedListComponents {
-	// time O(n), space O(n)
-	public int numComponents(LinkedListNode head, int[] G) {
-		int res = 0;
-		Set<Integer> nodes = new HashSet<>();
-		for(int g : G){
-			nodes.add(g);
-		}
-		LinkedListNode cur = head;
-		boolean flag = false;
-		while(cur != null){
-			if(nodes.contains(cur.val) && !flag){
-				flag = true;
-				res++;
-			}
-			if(!nodes.contains(cur.val) && flag){
-				flag = false;
-			}
-			cur = cur.next;
-		}
-		return res;
-	}
+
+    // time O(n), space O(n)
+    public int numComponents(ListNode head, int[] nums) {
+		// 类似并查集的做法，连通相邻两个节点如果它们都在 nums 中。
+        int n = nums.length, res = n;
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            set.add(num);
+        }
+        while (head != null) {
+            if (head.next != null
+					&& set.contains(head.val)
+					&& set.contains(head.next.val)) {
+                res--;
+            }
+            head = head.next;
+        }
+        return res;
+    }
+
+    /**
+     * Definition for singly-linked list.
+     **/
+    private static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

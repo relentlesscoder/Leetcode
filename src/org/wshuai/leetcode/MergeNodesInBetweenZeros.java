@@ -8,17 +8,16 @@ public class MergeNodesInBetweenZeros {
 
     // time O(n), space O(n)
     public ListNode mergeNodes(ListNode head) {
+        ListNode root = new ListNode(-1), tail = root;
         int sum = 0;
-        ListNode prev = new ListNode(0), root = prev, curr = head.next;
-        while (curr != null) {
-            if (curr.val == 0) {
-                prev.next = new ListNode(sum);
-                prev = prev.next;
+        while (head != null) {
+            if (head.val == 0 && sum > 0) {
+                tail.next = new ListNode(sum);
+                tail = tail.next;
                 sum = 0;
-            } else {
-                sum += curr.val;
             }
-            curr = curr.next;
+            sum += head.val;
+            head = head.next;
         }
         return root.next;
     }
@@ -26,7 +25,7 @@ public class MergeNodesInBetweenZeros {
     /**
      * Definition for singly-linked list.
      */
-    private class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

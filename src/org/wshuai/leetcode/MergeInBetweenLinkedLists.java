@@ -6,44 +6,56 @@ package org.wshuai.leetcode;
  */
 public class MergeInBetweenLinkedLists {
 
-	// time O(m+n)
-	public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
-		ListNode root = new ListNode(0), cur1 = list1, cur2 = list2, prev1 = root;
-		root.next = list1;
-		int i = 0;
-		while (i < a) {
-			prev1 = cur1;
-			cur1 = cur1.next;
-			i++;
-		}
-		prev1.next = list2;
-		while (cur2.next != null) {
-			cur2 = cur2.next;
-		}
-		while (i <= b) {
-			cur1 = cur1.next;
-			i++;
-		}
-		cur2.next = cur1;
-		return root.next;
-	}
+    // time O(m + n), space O(1)
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        ListNode root = new ListNode(-1), curr = list1, prev = root, head = null, tail = null;
+        root.next = list1;
+        int cnt = 0;
+        // 遍历 list1，找到两个目标节点
+        while (curr != null) { // O(n)
+            ListNode next = curr.next;
+            // 找到 a 节点，将 a 前一个节点记录为 head - 这个点将连接 list2 的第一个节点。
+            if (cnt == a) {
+                head = prev;
+                prev.next = null;
+            }
+            // 找到 b 节点，将 b 后一个节点记录为 tail - 这个点将连接 list2 的最后一个节点。
+            if (cnt == b) {
+                tail = curr.next;
+                curr.next = null;
+                break;
+            }
+            prev = curr;
+            curr = next;
+            cnt++;
+        }
+        // 连接 list2
+        head.next = list2;
+        curr = list2;
+        while (curr.next != null) { // O(m)
+            curr = curr.next;
+        }
+        curr.next = tail;
+        return root.next;
+    }
 
-	// Definition for singly-linked list.
-	private class ListNode {
-		int val;
-		ListNode next;
+    /**
+     * Definition for singly-linked list.
+     **/
+    private static class ListNode {
+        int val;
+        ListNode next;
 
-		ListNode() {
-		}
+        ListNode() {
+        }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-	}
-
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

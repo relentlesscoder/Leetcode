@@ -11,19 +11,22 @@ public class DeleteNodesFromLinkedListPresentInArray {
 
     // time O(m + n), space O(m)
     public ListNode modifiedList(int[] nums, ListNode head) {
-        ListNode root = new ListNode(-1), prev = root;
-        root.next = head;
         Set<Integer> set = new HashSet<>();
-        for (int num : nums) {
-            set.add(num);
+        for (int x : nums) {
+            set.add(x);
         }
-        while (head != null) {
-            if (set.contains(head.val)) {
-                prev.next = head.next;
+        // 同 #0203
+        ListNode root = new ListNode(-1), curr = head, prev = root;
+        root.next = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            if (set.contains(curr.val)) {
+                prev.next = next;
+                curr.next = null;
             } else {
-                prev = head;
+                prev = curr;
             }
-            head = head.next;
+            curr = next;
         }
         return root.next;
     }
