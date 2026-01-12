@@ -6,33 +6,39 @@ package org.wshuai.leetcode;
  */
 public class ReverseNodesInKGroup {
 
-    // time O(n)
-	public ListNode reverseKGroup(ListNode head, int k) {
-		ListNode root = new ListNode(0), cur = head, lastEnd = root;
-		root.next = head;
-		for(int i = 0; cur != null; cur = cur.next){
-			if(++i == k){
-				lastEnd = reverse(lastEnd, cur);
-				cur = lastEnd;
-				i = 0;
-			}
-		}
-		return root.next;
-	}
+    // time O(n), space O(1)
+    public ListNode reverseKGroup(ListNode head, int k) {
+        // 统计链表中节点总数
+        int cnt = 0;
+        for (ListNode node = head; node != null; node = node.next) {
+            cnt++;
+        }
+        // 计算需要反转的长度为 k 的节点组数
+        cnt /= k;
+        ListNode root = new ListNode(-1), // dummy 根结点
+                last = root, // 上一组的尾节点
+                curr = head, // 当前节点
+                prev = null; // 前一个节点
+        root.next = head;
+        while (cnt-- > 0) {
+            for (int i = 0; i < k; i++) {
+                ListNode next = curr.next;
+                curr.next = prev; // 反转
+                prev = curr;
+                curr = next;
+            }
+            // 此时 curr 指向下一组的首节点 而 prev 指向当前组的原来的尾节点 (反转后的首节点)
+            ListNode nxt = last.next; // nxt 指向当前组内原来的首节点 (反转后的尾节点)
+            last.next.next = curr; // 将组内原来的首节点 (反转后的尾节点) 的 next 指针指向下一组首节点
+            last.next = prev; // 将上一组的尾节点的 next 指针指向 prev (反转后的首节点)
+            last = nxt; // 更新 last 指向 nxt (反转后的尾节点)
+        }
+        return root.next;
+    }
 
-	private ListNode reverse(ListNode lastEnd, ListNode curEnd){
-		ListNode cur = lastEnd.next, res = cur, prev = curEnd.next;
-		while(prev != curEnd){
-			ListNode next = cur.next; // record next node
-			cur.next = prev; // reverse
-			prev = cur;
-			cur = next;
-		}
-		lastEnd.next = curEnd;
-		return res;
-	}
-
-    //Definition for singly-linked list.
+    /**
+     * Definition for singly-linked list.
+     */
     private class ListNode {
         int val;
         ListNode next;
@@ -49,5 +55,4 @@ public class ReverseNodesInKGroup {
             this.next = next;
         }
     }
-
 }

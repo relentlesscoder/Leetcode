@@ -1,7 +1,5 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
-
 /**
  * Created by Wei on 07/06/2025.
  * #2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/
@@ -10,46 +8,26 @@ public class SortLinkedListAlreadySortedUsingAbsoluteValues {
 
     // time O(n), space O(1)
     public ListNode sortLinkedList(ListNode head) {
-        ListNode root = head, prev = root, curr = root.next, next = new ListNode(-1);
+        ListNode curr = head.next, prev = head;
         while (curr != null) {
-            if (curr.val >= 0) { // add to the end if value is non-negative
-                prev.next = curr;
+            ListNode next = curr.next;
+            // 将绝对值小于或等于当前头节点的值插入到队首作为新的头节点
+            if (curr.val <= head.val) {
+                prev.next = next;
+                curr.next = head;
+                head = curr;
+            } else {
                 prev = curr;
-                next = curr.next;
-            } else { // add to the front if value is negative
-                prev.next = null;
-                next = curr.next;
-                curr.next = root;
-                root = curr;
             }
             curr = next;
         }
-        return root;
+        return head;
     }
 
-    // time O(n), space O(n)
-    public ListNode sortLinkedListDeque(ListNode head) {
-        Deque<ListNode> stack = new ArrayDeque<>();
-        ListNode root = new ListNode(-1), curr = head;
-        while (curr != null) {
-            if (curr.val >= 0) {
-                stack.offer(curr);
-            } else {
-                stack.offerFirst(curr);
-            }
-            curr = curr.next;
-        }
-        curr = root;
-        while (!stack.isEmpty()) {
-            stack.peekFirst().next = null;
-            curr.next = stack.pollFirst();
-            curr = curr.next;
-        }
-        return root.next;
-    }
-
-    /*Definition for singly-linked list.*/
-    private static class ListNode {
+    /**
+     * Definition for singly-linked list.
+     */
+    private class ListNode {
         int val;
         ListNode next;
 

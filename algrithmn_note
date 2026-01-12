@@ -864,24 +864,31 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 
 18. Linked List
 
+#0024 https://leetcode.com/problems/swap-nodes-in-pairs/ (miao a~~~) (链表 基础) (反转列表)
+#0025 https://leetcode.com/problems/reverse-nodes-in-k-group/ (miao a~~~) (链表 基础) (反转列表)
 #0082 https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/ (miao a~~~) (链表 基础) (删除节点)
 #0083 https://leetcode.com/problems/remove-duplicates-from-sorted-list/ (链表 基础) (删除节点)
+#0092 https://leetcode.com/problems/reverse-linked-list-ii/ (miao a~~~) (链表 基础) (反转列表)
 #0203 https://leetcode.com/problems/remove-linked-list-elements/ (链表 基础) (删除节点)
+#0206 https://leetcode.com/problems/reverse-linked-list/ (链表 基础) (反转列表)
 #0237 https://leetcode.com/problems/delete-node-in-a-linked-list/ (miao a~~~) (链表 基础) (删除节点)
+#0708 https://leetcode.com/problems/insert-into-a-cyclic-sorted-list/ (miao a~~~) (链表 基础) (插入节点)
 #0725 https://leetcode.com/problems/split-linked-list-in-parts/ (miao a~~~) (链表 分组)
 #0817 https://leetcode.com/problems/linked-list-components/ (类似并查集)
 #1290 https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/ (链表 基础)
 #1669 https://leetcode.com/problems/merge-in-between-linked-lists/ (miao a~~~) (链表 基础) (删除节点)
 #1836 https://leetcode.com/problems/remove-duplicates-from-an-unsorted-linked-list/ (链表 基础) (删除节点)
+#2046 https://leetcode.com/problems/sort-linked-list-already-sorted-using-absolute-values/ (miao a~~~) (链表 基础) (插入节点)
 #2058 https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/ (链表 基础)
 #2181 https://leetcode.com/problems/merge-nodes-in-between-zeros/ (链表 基础)
 #2487 https://leetcode.com/problems/remove-nodes-from-linked-list/ (miao a~~~) (翻转链表 + 删除节点) (单调栈)
+#2807 https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/ (链表 基础) (插入节点)
 #3062 https://leetcode.com/problems/winner-of-the-linked-list-game/ (链表 基础)
 #3063 https://leetcode.com/problems/linked-list-frequency/ (链表 基础)
 #3217 https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/ (链表 基础) (删除节点)
 #3263 https://leetcode.com/problems/convert-doubly-linked-list-to-array-i/ (链表 基础)
 #3294 https://leetcode.com/problems/convert-doubly-linked-list-to-array-ii/ (链表 基础) (#2363)
-
+#LCR029 https://leetcode.cn/problems/4ueAj6/ (miao a~~~) (链表 基础) (插入节点)
 
 
 

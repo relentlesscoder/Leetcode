@@ -6,22 +6,34 @@ package org.wshuai.leetcode;
  */
 public class InsertGreatestCommonDivisorsInLinkedList {
 
-    // time O(n * log(m)), space O(log(m))
+    // time O(n * log(MAX)), space O(1)
     public ListNode insertGreatestCommonDivisors(ListNode head) {
-        ListNode root = new ListNode(-1), curr = head;
-        root.next = head;
-        while (curr != null && curr.next != null) {
-            ListNode next = curr.next, middle = new ListNode(gcd(curr.val, next.val));
-            curr.next = middle;
-            middle.next = next;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            if (next != null) {
+                ListNode insert = new ListNode(gcd(curr.val, next.val));
+                curr.next = insert;
+                insert.next = next;
+            }
             curr = next;
         }
-        return root.next;
+        return head;
     }
 
-    private int gcd(int x, int y){
-        return x == 0 ? y : gcd(y % x, x);
+    private int gcd(int a, int b) {
+        while (a > 0) {
+            int temp = a;
+            a = b % a;
+            b = temp;
+        }
+        return b;
     }
+
+    /*
+    private int gcd(int a, int b) {
+        return a == 0 ? b : gcd(b % a, a);
+    }*/
 
     /**
      * Definition for singly-linked list.

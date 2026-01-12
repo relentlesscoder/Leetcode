@@ -1,10 +1,10 @@
 package org.wshuai.leetcode;
 
 /**
- * Created by Wei on 09/04/2019.
- * #0708 https://leetcode.com/problems/insert-into-a-cyclic-sorted-list/
+ * Created by Wei on 01/11/2026.
+ * #LCR029 https://leetcode.cn/problems/4ueAj6/
  */
-public class InsertIntoASortedCircularLinkedList {
+public class LCR029 {
 
     // time O(n), space O(1)
     public Node insert(Node head, int insertVal) {
