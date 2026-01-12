@@ -6,32 +6,44 @@ package org.wshuai.leetcode;
  */
 public class RemoveNthNodeFromEndOfList {
 
-	// time O(n)
+	// time O(n), space O(1)
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode root = new ListNode(0), fast = head, slow = head, prev = root;
-        root.next = head;
-        int i = 0;
-        while (i++ < n) {
-            fast = fast.next;
+        // 前后指针
+        ListNode root = new ListNode(-1, head), // dummy 根结点
+                right = root, // 前指针
+                left = root; // 后指针
+        // 让 right 指针先走 n 步
+        for (int i = 0; i < n; i++) {
+            right = right.next;
         }
-        while (fast != null) {
-            fast = fast.next;
-            prev = slow;
-            slow = slow.next;
+        // 两个指针一起走，当 right 指向最后一个节点时， left 指向 倒数第 n + 1 个节点 -
+        // 即目标节点前面一个节点。
+        while (right.next != null) {
+            left = left.next;
+            right = right.next;
         }
-        prev.next = slow.next;
+        // 删除操作
+        left.next = left.next.next;
         return root.next;
     }
 
-    // Definition for singly-linked list.
+    /**
+     * Definition for singly-linked list.
+     */
     private class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
-            val = x;
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
         }
     }
 }
-
-

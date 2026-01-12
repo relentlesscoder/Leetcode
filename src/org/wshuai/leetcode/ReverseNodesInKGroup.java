@@ -15,11 +15,10 @@ public class ReverseNodesInKGroup {
         }
         // 计算需要反转的长度为 k 的节点组数
         cnt /= k;
-        ListNode root = new ListNode(-1), // dummy 根结点
+        ListNode root = new ListNode(-1, head), // dummy 根结点
                 last = root, // 上一组的尾节点
                 curr = head, // 当前节点
                 prev = null; // 前一个节点
-        root.next = head;
         while (cnt-- > 0) {
             for (int i = 0; i < k; i++) {
                 ListNode next = curr.next;

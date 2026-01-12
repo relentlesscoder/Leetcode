@@ -11,12 +11,11 @@ public class ReverseLinkedListII {
         if (left >= right) {
             return head;
         }
-        ListNode root = new ListNode(-1), // dummy 根节点
+        ListNode root = new ListNode(-1, head), // dummy 根节点
                 curr = head, // 当前节点
                 prev = root, // 前一个节点
                 first = null, // 编号为 left 的节点
                 end = null; // first 节点的前一个节点
-        root.next = head;
         int id = 0; // 节点的编号
         while (curr != null) {
             id++;

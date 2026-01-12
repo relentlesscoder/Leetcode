@@ -9,10 +9,9 @@ public class SwapNodesInPairs {
     // time O(n), space O(1)
     public ListNode swapPairs(ListNode head) {
         // 两个节点为一组遍历链表
-        ListNode root = new ListNode(-1), // dummy 根节点
+        ListNode root = new ListNode(-1, head), // dummy 根节点
                 curr = head, // 当前组的第一个节点
                 prev = root; // 前一组的最后一个节点
-        root.next = head;
         while (curr != null && curr.next != null) {
             ListNode next = curr.next.next; // 记录下一组的第一个节点
             curr.next.next = curr; // 反转当前组内两节点

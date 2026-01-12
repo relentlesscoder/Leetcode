@@ -6,29 +6,30 @@ package org.wshuai.leetcode;
  */
 public class SwappingNodesInALinkedList {
 
-    // time O(n)
+    // time O(n), space O(1)
     public ListNode swapNodes(ListNode head, int k) {
-        ListNode fast = head, slow = null, p1 = null;
-        for (int i = 1; fast != null; i++) {
-            if (i == k) {
-                p1 = fast;
-                slow = head;
-            }
-            if (fast.next == null) {
-                break;
-            }
-            fast = fast.next;
-            if (slow != null) {
-                slow = slow.next;
-            }
+        ListNode root = new ListNode(-1, head), // dummy 根结点
+                first = root, // 正数第 k 个节点
+                right = root, // 前指针
+                left = root; // 后指针
+        while (k-- > 0) {
+            first = first.next; // 找到正数第 k 个节点
+            right = right.next; // 前指针先走 k 步
         }
-        int val = slow.val;
-        slow.val = p1.val;
-        p1.val = val;
-        return head;
+        while (right != null) { // 前后指针一起走，走完 left 指向倒数第 k 个节点
+            right = right.next;
+            left = left.next;
+        }
+        // 交换两个节点的值
+        int val = first.val;
+        first.val = left.val;
+        left.val = val;
+        return root.next;
     }
 
-    // Definition for singly-linked list.
+    /**
+     * Definition for singly-linked list.
+     */
     private class ListNode {
         int val;
         ListNode next;
@@ -45,5 +46,4 @@ public class SwappingNodesInALinkedList {
             this.next = next;
         }
     }
-
 }
