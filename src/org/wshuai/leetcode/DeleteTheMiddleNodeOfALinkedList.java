@@ -6,54 +6,38 @@ package org.wshuai.leetcode;
  */
 public class DeleteTheMiddleNodeOfALinkedList {
 
-	// time O(n), space O(1)
-	public ListNode deleteMiddle(ListNode head) {
-		if (head.next == null) {
-			return null;
-		}
-		ListNode fastNode = head.next.next, slowNode = head; // slow node reaches the element before the middle at the end
-		while (fastNode != null && fastNode.next != null) {
-			fastNode = fastNode.next.next;
-			slowNode = slowNode.next;
-		}
-		slowNode.next = slowNode.next.next;
-		return head;
-	}
+    // time O(n), space O(1)
+    public ListNode deleteMiddle(ListNode head) {
+        ListNode root = new ListNode(-1, head), // dummy 根结点
+                fast = head, // 快指针
+                slow = head, // 慢指针
+                prev = root; // 前一个节点
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
+        }
+        prev.next = slow.next;
+        return root.next;
+    }
 
-	// time O(n), space O(1)
-	public ListNode deleteMiddleLargerMiddle(ListNode head) {
-		if (head.next == null) { // special case: single node list
-			return null;
-		}
-		ListNode fastNode = head, slowNode = head, prev = null; // slow node reaches ceiling((n - 1) / 2) at the end
-		while (fastNode != null && fastNode.next != null) { // use fast and slow node to find the node to delete
-			fastNode = fastNode.next.next;
-			prev = slowNode;
-			slowNode = slowNode.next;
-		}
-		if (slowNode != null) {
-			prev.next = slowNode.next;
-		}
-		return head;
-	}
+    /**
+     * Definition for singly-linked list.
+     **/
+    private class ListNode {
+        int val;
+        ListNode next;
 
-	/**
-	 * Definition for singly-linked list.
-	 **/
-	private class ListNode {
-		int val;
-		ListNode next;
+        ListNode() {
+        }
 
-		ListNode() {
-		}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

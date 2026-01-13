@@ -5,50 +5,42 @@ package org.wshuai.leetcode;
  * #0457 https://leetcode.com/problems/circular-array-loop/
  */
 public class CircularArrayLoop {
-	public boolean circularArrayLoop(int[] nums) {
-		if(nums == null || nums.length < 2){
-			return false;
-		}
-		int len = nums.length;
-		for(int i = 0; i < len; i++){
-			// skip visited nodes
-			if(nums[i] == 0){
-				continue;
-			}
-			// advance fast once to avoid erroneous check
-			int slow = i, fast = advance(nums, slow);
-			while(nums[i] * nums[fast] > 0 &&
-				nums[i] * nums[advance(nums, fast)] > 0){
-				if(slow == fast){
-					// one element infinite loop
-					if(slow == advance(nums, slow)){
-						break;
-					}
-					return true;
-				}
-				slow = advance(nums, slow);
-				fast = advance(nums, advance(nums, fast));
-			}
 
-			// set visited path to 0
-			slow = i;
-			int sign = nums[i];
-			while(sign * nums[slow] > 0){
-				int temp = advance(nums, slow);
-				nums[slow] = 0;
-				slow = temp;
-			}
-		}
-		return false;
-	}
+    // time O(n), space O(1)
+    public boolean circularArrayLoop(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == 0) {
+                continue;
+            }
+			// 快慢指针
+            int slow = i, fast = next(i, nums, n);
+			// 检查快指针的当前和下一步是否与慢指针正负一致
+            while (nums[fast] * nums[slow] > 0
+                    && nums[next(fast, nums, n)] * nums[slow] > 0) {
+                if (fast == slow) {
+                    if (slow == next(slow, nums, n)) { // k = 1
+                        break;
+                    } else {
+                        return true;
+                    }
+                }
+				// 快二慢一
+                fast = next(next(fast, nums, n), nums, n);
+                slow = next(slow, nums, n);
+            }
+			// 如果到达这里说明基于 i 的路径不可行，将路径上所有的点设为 0 以免重复遍历。
+            int add = i;
+            while (nums[add] * nums[next(add, nums, n)] > 0) {
+                int temp = add;
+                add = next(add, nums, n);
+                nums[temp] = 0;
+            }
+        }
+        return false;
+    }
 
-	private int advance(int[] nums, int i){
-		int len = nums.length;
-		i += nums[i];
-		i %= len;
-		if(i < 0){
-			i += len;
-		}
-		return i;
-	}
+    private int next(int i, int[] nums, int n) {
+        return ((i + nums[i]) % n + n) % n;
+    }
 }

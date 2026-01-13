@@ -8,26 +8,32 @@ public class MaximumTwinSumOfALinkedList {
 
     // time O(n), space O(1)
     public int pairSum(ListNode head) {
+        int res = 0;
         ListNode fast = head, slow = head, prev = null, curr = head;
-        while (fast != null) { // use fast and slow nodes to find the start index of the second half
+        // 用快慢指针找到中间(靠右)节点
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-        while (curr != slow) { // revert the fist half
+        // 反转前半部分链表
+        while (curr != slow) {
             ListNode next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
         }
-        int max = Integer.MIN_VALUE;
+        // 依次计算每一对孪生和
         while (slow != null) {
-            max = Math.max(max, slow.val + prev.val);
+            res = Math.max(res, slow.val + prev.val);
             slow = slow.next;
             prev = prev.next;
         }
-        return max;
+        return res;
     }
 
+    /**
+     * Definition for singly-linked list.
+     **/
     private class ListNode {
         int val;
         ListNode next;

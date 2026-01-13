@@ -1,56 +1,51 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Wei on 10/26/2016.
  * #0142 https://leetcode.com/problems/linked-list-cycle/
  */
 public class LinkedListCycleII {
+
 	// time O(n), space O(1)
-	public LinkedListNode detectCycle(LinkedListNode head) {
-		if(head == null){
-			return null;
-		}
-		LinkedListNode fast = head, slow = head;
-		boolean cycle = false;
-		while(fast.next != null && fast.next.next != null){
+	public ListNode detectCycle(ListNode head) {
+		// 假设进环前的路程为 a，环长为 b。设慢指针走了 x 步时，快慢指针相遇，
+		// 此时快指针走了 2x步。显然 2x-x=nb（快指针比慢指针多走了 n 圈），
+		// 即 x=nb。也就是说慢指针总共走过的路程是 nb，但这 nb 当中，实际上包
+		// 含了进环前的一个小 a，因此慢指针在环中只走了 nb-a 步，它还得再往前
+		// 走 a 步，才是完整的 n 圈。所以，我们让头节点和慢指针同时往前走，当
+		// 他俩相遇时，就走过了最后这 a 步。
+		ListNode fast = head, slow = head;
+		while (fast != null && fast.next != null) {
 			fast = fast.next.next;
 			slow = slow.next;
-			if(fast == slow){
-				cycle = true;
-				break;
+			if (fast == slow) {
+				while (slow != head) {
+					slow = slow.next;
+					head = head.next;
+				}
+				return slow;
 			}
-		}
-		if(!cycle){
-			return null;
-		}
-		// if there is a cycle, the distance of the fast
-		// node is twice of that of the second, so reset
-		// the fast to the head and let them walk at the
-		// same speed, the node they meet at this time
-		// is the result.
-		fast = head;
-		while(fast != slow){
-			fast = fast.next;
-			slow = slow.next;
-		}
-		return fast;
-	}
-
-	// time O(n), space O(n)
-	public LinkedListNode detectCycleHashMap(LinkedListNode head) {
-		Map<LinkedListNode, Integer> map = new HashMap<>();
-		LinkedListNode cur = head;
-		int i = 0;
-		while(cur != null){
-			if(map.containsKey(cur)){
-				return cur;
-			}
-			map.put(cur, i++);
-			cur = cur.next;
 		}
 		return null;
+	}
+
+	/**
+	 * Definition for singly-linked list.
+	 **/
+	private class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode() {
+		}
+
+		ListNode(int val) {
+			this.val = val;
+		}
+
+		ListNode(int val, ListNode next) {
+			this.val = val;
+			this.next = next;
+		}
 	}
 }
