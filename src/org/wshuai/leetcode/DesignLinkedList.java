@@ -5,101 +5,90 @@ package org.wshuai.leetcode;
  * #0707 https://leetcode.com/problems/design-linked-list/
  */
 public class DesignLinkedList {
-	private ListNode head = null;
-	private int size = 0;
 
-	/** Initialize your data structure here. */
-	public DesignLinkedList() {
-	}
+    private static class MyLinkedList {
 
-	/** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
-	public int get(int index) {
-		if(index < 0 || index >= size){
-			return -1;
-		}
-		ListNode cur = head;
-		while(index-- > 0){
-			cur = cur.next;
-		}
-		return cur.val;
-	}
+        private ListNode root;
 
-	/** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
-	public void addAtHead(int val) {
-		ListNode cur = new ListNode(val);
-		if(size > 0){
-			cur.next = head;
-		}
-		head = cur;
-		size++;
-	}
+        public MyLinkedList() {
+            root = new ListNode(0);
+        }
 
-	/** Append a node of value val to the last element of the linked list. */
-	public void addAtTail(int val) {
-		ListNode cur = new ListNode(val);
-		if(size == 0){
-			head = cur;
-			size++;
-			return;
-		}
-		ListNode tail = head;
-		while(tail.next != null){
-			tail = tail.next;
-		}
-		tail.next = cur;
-		size++;
-	}
+        // time O(n), space O(1)
+        public int get(int index) {
+            int i = 0;
+            ListNode head = root.next;
+            while (head != null && i < index) {
+                head = head.next;
+                i++;
+            }
+            return i == index && head != null ? head.val : -1;
+        }
 
-	/** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
-	public void addAtIndex(int index, int val) {
-		if(index > size){
-			return;
-		}
-		if(index == size){
-			addAtTail(val);
-		}else if(index == 0){
-			addAtHead(val);
-		}else{
-			int i = 0;
-			ListNode cur = head;
-			while(i++ < index - 1){
-				cur = cur.next;
-			}
-			ListNode next = cur.next;
-			cur.next = new ListNode(val);
-			cur.next.next = next;
-			size++;
-		}
-	}
+        // time O(1), space O(1)
+        public void addAtHead(int val) {
+            ListNode head = root.next;
+            root.next = new ListNode(val, head);
+        }
 
-	/** Delete the index-th node in the linked list, if the index is valid. */
-	public void deleteAtIndex(int index) {
-		if(index < 0 || index >= size){
-			return;
-		}
-		if(index == 0){
-			head = head.next;
-		}else{
-			int i = 0;
-			ListNode cur = head;
-			while(i++ < index - 1){
-				cur = cur.next;
-			}
-			cur.next = cur.next.next;
-		}
-		size--;
-	}
+        // time O(n), space O(1)
+        public void addAtTail(int val) {
+            ListNode head = root.next, prev = root;
+            while (head != null) {
+                prev = head;
+                head = head.next;
+            }
+            prev.next = new ListNode(val);
+        }
 
-	private class ListNode{
-		int val;
+        // time O(n), space O(1)
+        public void addAtIndex(int index, int val) {
+            int i = 0;
+            ListNode head = root.next, prev = root;
+            while (head != null && i < index) {
+                prev = head;
+                head = head.next;
+                i++;
+            }
+            if (i == index) {
+                prev.next = new ListNode(val, head);
+            }
+        }
 
-		ListNode next;
+        // time O(n), space O(1)
+        public void deleteAtIndex(int index) {
+            int i = 0;
+            ListNode head = root.next, prev = root;
+            while (head != null && i < index) {
+                prev = head;
+                head = head.next;
+                i++;
+            }
+            if (i == index && head != null) {
+                prev.next = head.next;
+            }
+        }
 
-		public ListNode(int val){
-			this.val = val;
-		}
-	}
-}
+        /**
+         * Definition for singly-linked list.
+         **/
+        private static class ListNode {
+            int val;
+            ListNode next;
+
+            ListNode() {
+            }
+
+            ListNode(int val) {
+                this.val = val;
+            }
+
+            ListNode(int val, ListNode next) {
+                this.val = val;
+                this.next = next;
+            }
+        }
+    }
 
 /**
  * Your MyLinkedList object will be instantiated and called as such:
@@ -110,3 +99,4 @@ public class DesignLinkedList {
  * obj.addAtIndex(index,val);
  * obj.deleteAtIndex(index);
  */
+}

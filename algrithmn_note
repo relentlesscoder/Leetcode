@@ -202,7 +202,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0901 https://leetcode.com/problems/online-stock-span/
 #0907 https://leetcode.com/problems/sum-of-subarray-minimums/ (miao a ~~~) (gong xian fa)
 #0962 https://leetcode.com/problems/maximum-width-ramp/ (miao a ~~~) (单调栈最长子数组)
-#1019 https://leetcode.com/problems/next-greater-node-in-linked-list/
+#1019 https://leetcode.com/problems/next-greater-node-in-linked-list/ (miao a~~~) (链表 应用) (链表 + 单调栈)
 #1081 https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
 #1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a ~~~) (前缀和 + 单调栈最长子数组) (前缀和)
 #1130 https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/ (***)
@@ -514,6 +514,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1031 https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/
 #1074 https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/ (二维数组 前缀和个数)
 #1124 https://leetcode.com/problems/longest-well-performing-interval/ (miao a~~~) (前缀和 + 单调栈最长子数组) (前缀和)
+#1171 https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/ (miao a~~~) (链表 应用) (链表 + 前缀和)
 #1177 https://leetcode.com/problems/can-make-palindrome-from-substring/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩)
 #1310 https://leetcode.com/problems/xor-queries-of-a-subarray/ (异或前缀和)
 #1371 https://leetcode.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩)
@@ -878,6 +879,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0141 https://leetcode.com/problems/linked-list-cycle/ (miao a~~~) (链表 基础) (快慢指针)
 #0142 https://leetcode.com/problems/linked-list-cycle/ (miao a~~~) (链表 基础) (快慢指针)
 #0143 https://leetcode.com/problems/reorder-list/ (miao a~~~) (链表 基础) (快慢指针) (#0234)
+#0146 https://leetcode.com/problems/lru-cache/ (miao a~~~) (双链表 应用)
 #0148 https://leetcode.com/problems/sort-list/ (miao a~~~) (合并链表 + 分治) (#0023)
 #0160 https://leetcode.com/problems/intersection-of-two-linked-lists/ (miao a~~~) (链表 基础) (双指针)
 #0203 https://leetcode.com/problems/remove-linked-list-elements/ (链表 基础) (删除节点)
@@ -889,10 +891,14 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0369 https://leetcode.com/problems/plus-one-linked-list/ (链表 基础) (合并链表) (#0002)
 #0445 https://leetcode.com/problems/add-two-numbers-ii/ (链表 基础) (合并链表) (#0002)
 #0457 https://leetcode.com/problems/circular-array-loop/ (miao a~~~) (链表) (快慢指针) (R)
+#0460 https://leetcode.com/problems/lfu-cache/ (miao a~~~) (双链表 应用) (R)
+#0707 https://leetcode.com/problems/design-linked-list/ (链表 应用)
 #0708 https://leetcode.com/problems/insert-into-a-cyclic-sorted-list/ (miao a~~~) (链表 基础) (插入节点)
 #0725 https://leetcode.com/problems/split-linked-list-in-parts/ (miao a~~~) (链表 分组)
 #0817 https://leetcode.com/problems/linked-list-components/ (类似并查集)
 #0876 https://leetcode.com/problems/middle-of-the-linked-list/ (链表 基础) (快慢指针)
+#1019 https://leetcode.com/problems/next-greater-node-in-linked-list/ (miao a~~~) (链表 应用) (链表 + 单调栈)
+#1171 https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/ (miao a~~~) (链表 应用) (链表 + 前缀和)
 #1290 https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/ (链表 基础)
 #1474 https://leetcode.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/ (miao a~~~) (前后指针)
 #1634 https://leetcode.com/problems/add-two-polynomials-represented-as-linked-lists/ (链表 基础) (合并链表)
