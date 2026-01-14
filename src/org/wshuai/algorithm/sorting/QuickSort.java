@@ -4,6 +4,7 @@ package org.wshuai.algorithm.sorting;
  * Created by Wei on 9/12/16.
  */
 public class QuickSort {
+
 	public static void quickSort(int[] nums, int p, int q) {
 		if (p < q) {
 			int r = partition(nums, p, q);

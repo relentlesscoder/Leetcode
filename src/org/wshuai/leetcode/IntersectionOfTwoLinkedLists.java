@@ -8,26 +8,32 @@ public class IntersectionOfTwoLinkedLists {
 
     // time O(n), space O(1)
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode p = headA, q = headB;
-        while (p != q) {
-            p = p == null ? headB : p.next;
-            q = q == null ? headA : q.next;
+		// https://leetcode.cn/problems/intersection-of-two-linked-lists/solutions/2958778/tu-jie-yi-zhang-tu-miao-dong-xiang-jiao-m6tg1/
+        ListNode a = headA, b = headB;
+        while (a != b) {
+            a = a != null ? a.next : headB;
+            b = b != null ? b.next : headA;
         }
-        return p;
+        return a;
     }
 
-	/**
-	 * Definition for singly-linked list.
-	 */
-	static class ListNode {
-		int val;
-		ListNode next;
+    /**
+     * Definition for singly-linked list.
+     **/
+    private class ListNode {
+        int val;
+        ListNode next;
 
-		ListNode(int x) {
-			val = x;
-			next = null;
-		}
-	}
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }
-
-

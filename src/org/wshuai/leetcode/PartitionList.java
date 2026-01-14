@@ -5,21 +5,47 @@ package org.wshuai.leetcode;
  * #0086 https://leetcode.com/problems/partition-list/
  */
 public class PartitionList {
-	// O(n)
-	public LinkedListNode partition(LinkedListNode head, int x) {
-		LinkedListNode lt = new LinkedListNode(0), gte = new LinkedListNode(0), cur1 = lt, cur2 = gte;
-		while(head != null){
-			if(head.val < x){
-				cur1.next = head;
-				cur1 = cur1.next;
-			}else{
-				cur2.next = head;
-				cur2 = cur2.next;
-			}
-			head = head.next;
-		}
-		cur2.next = null;
-		cur1.next = gte.next;
-		return lt.next;
-	}
+
+    // time O(n), space O(1)
+    public ListNode partition(ListNode head, int x) {
+		// 同 #0328
+        ListNode r1 = new ListNode(-1),
+				r2 = new ListNode(-1),
+				less = r1,
+				ge = r2;
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = null;
+            if (head.val < x) {
+                less.next = head;
+                less = less.next;
+            } else {
+                ge.next = head;
+                ge = ge.next;
+            }
+            head = next;
+        }
+        less.next = r2.next;
+        return r1.next;
+    }
+
+    /**
+     * Definition for singly-linked list.
+     **/
+    private class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

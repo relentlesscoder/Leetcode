@@ -6,38 +6,41 @@ package org.wshuai.leetcode;
  */
 public class MergeTwoSortedList {
 
-	// time O(m + n), space O(1)
-	public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-		ListNode root = new ListNode(), prev = root;
-		while (list1 != null || list2 != null) {
-			if (list1 == null || (list2 != null && list2.val < list1.val)) {
-				prev.next = list2;
-				prev = list2;
-				list2 = list2.next;
-			} else {
-				prev.next = list1;
-				prev = list1;
-				list1 = list1.next;
-			}
-		}
-		return root.next;
-	}
+    // time O(m + n), space O(1)
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode root = new ListNode(0), curr = root;
+        while (list1 != null || list2 != null) {
+            int v1 = list1 == null ? Integer.MAX_VALUE : list1.val;
+            int v2 = list2 == null ? Integer.MAX_VALUE : list2.val;
+            if (v1 < v2) {
+                curr.next = list1;
+                list1 = list1.next;
+            } else {
+                curr.next = list2;
+                list2 = list2.next;
+            }
+            curr = curr.next;
+        }
+        return root.next;
+    }
 
-	// Definition for singly-linked list.
-	private static class ListNode {
-		int val;
-		ListNode next;
+    /**
+     * Definition for singly-linked list.
+     **/
+    private static class ListNode {
+        int val;
+        ListNode next;
 
-		ListNode() {
-		}
+        ListNode() {
+        }
 
-		ListNode(int val) {
-			this.val = val;
-		}
+        ListNode(int val) {
+            this.val = val;
+        }
 
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-	}
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

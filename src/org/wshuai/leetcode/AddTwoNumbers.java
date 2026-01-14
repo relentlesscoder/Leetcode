@@ -6,21 +6,41 @@ package org.wshuai.leetcode;
  */
 public class AddTwoNumbers {
 
-	// time O(m + n)
-	public LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
-		LinkedListNode root = new LinkedListNode(-1);
-		LinkedListNode cur = root;
-		int sum = 0;
-		while(l1 != null || l2 != null || sum > 0){
-			int num1 = l1 == null ? 0 : l1.val;
-			int num2 = l2 == null ? 0 : l2.val;
-			sum = num1 + num2 + sum;
-			cur.next = new LinkedListNode(sum % 10);
-			cur = cur.next;
-			l1 = l1 == null ? l1 : l1.next;
-			l2 = l2 == null ? l2 : l2.next;
-			sum /= 10;
+	// time O(m + n), space O(m + n)
+	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		// 两两相加
+		ListNode head = new ListNode(0), curr = head;
+		int carry = 0;
+		while (l1 != null || l2 != null || carry != 0) {
+			int n1 = l1 == null ? 0 : l1.val;
+			int n2 = l2 == null ? 0 : l2.val;
+			l1 = l1 == null ? null : l1.next;
+			l2 = l2 == null ? null : l2.next;
+			int sum = n1 + n2 + carry;
+			carry = sum / 10;
+			curr.next = new ListNode(sum % 10);
+			curr = curr.next;
 		}
-		return root.next;
+		return head.next;
+	}
+
+	/**
+	 * Definition for singly-linked list.
+	 **/
+	private static class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode() {
+		}
+
+		ListNode(int val) {
+			this.val = val;
+		}
+
+		ListNode(int val, ListNode next) {
+			this.val = val;
+			this.next = next;
+		}
 	}
 }

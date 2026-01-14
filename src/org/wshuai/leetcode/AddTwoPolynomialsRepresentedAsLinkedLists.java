@@ -6,38 +6,42 @@ package org.wshuai.leetcode;
  */
 public class AddTwoPolynomialsRepresentedAsLinkedLists {
 
-    // time O(m + n)
+    // time O(m + n), space O(1)
     public PolyNode addPoly(PolyNode poly1, PolyNode poly2) {
-        PolyNode root = new PolyNode(), cur = root;
+        PolyNode root = new PolyNode(-1, -1), curr = root;
         while (poly1 != null || poly2 != null) {
             if (poly1 == null) {
-                cur.next = new PolyNode(poly2.coefficient, poly2.power);
+                curr.next = poly2;
                 poly2 = poly2.next;
             } else if (poly2 == null) {
-                cur.next = new PolyNode(poly1.coefficient, poly1.power);
+                curr.next = poly1;
                 poly1 = poly1.next;
-            } else if (poly2.power > poly1.power) {
-                cur.next = new PolyNode(poly2.coefficient, poly2.power);
+            } else if (poly1.power < poly2.power) {
+                curr.next = poly2;
                 poly2 = poly2.next;
             } else if (poly1.power > poly2.power) {
-                cur.next = new PolyNode(poly1.coefficient, poly1.power);
+                curr.next = poly1;
                 poly1 = poly1.next;
-            } else if (poly1.coefficient + poly2.coefficient == 0) {
-                poly1 = poly1.next;
+            } else if (poly1.coefficient + poly2.coefficient == 0) { // 两个节点抵消了
                 poly2 = poly2.next;
+                poly1 = poly1.next;
                 continue;
             } else {
-                cur.next = new PolyNode(poly1.coefficient + poly2.coefficient, poly1.power);
-                poly1 = poly1.next;
+                curr.next = new PolyNode(poly1.coefficient + poly2.coefficient, poly1.power);
                 poly2 = poly2.next;
+                poly1 = poly1.next;
             }
-            cur = cur.next;
+            curr = curr.next;
+            // 为了节省空间使用原链表元素，所以一旦节点被加入要断开与原链表节点的连接
+            curr.next = null;
         }
         return root.next;
     }
 
-    //Definition for polynomial singly-linked list.
-    private class PolyNode {
+    /**
+     * Definition for polynomial singly-linked list.
+     **/
+    private static class PolyNode {
 
         int coefficient, power;
         PolyNode next = null;
