@@ -1,99 +1,61 @@
 package org.wshuai.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Wei on 01/17/2020.
  * #0138 https://leetcode.com/problems/copy-list-with-random-pointer/
  */
 public class CopyListWithRandomPointer {
 
-	// time O(n), space O(1)
-	// https://leetcode.com/problems/copy-list-with-random-pointer/editorial/
-	public Node copyRandomList(Node head) {
-		if (head == null) {
-			return null;
-		}
-		Node curr = head;
-		while (curr != null) {
-			Node copy = new Node(curr.val);
-			copy.next = curr.next;
-			curr.next = copy;
-			curr = curr.next.next;
-		}
-		curr = head;
-		while (curr != null) {
-			curr.next.random = curr.random == null ? null : curr.random.next;
-			curr = curr.next.next;
-		}
-		Node pointerOld = head, pointerNew = head.next, headerNew = head.next;
-		while (pointerOld != null) {
-			pointerOld.next = pointerOld.next.next;
-			pointerNew.next = pointerNew.next == null ? null : pointerNew.next.next;
-			pointerOld = pointerOld.next;
-			pointerNew = pointerNew.next;
-		}
-		return headerNew;
-	}
+    // time O(n), space O(1)
+    public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+        // 为链表中每个节点复制一个具有相同值的新节点，将该节点加入到当前节点后形成交错链表。
+        // 比如 1 -> 2 -> 3 -> null 变成 1 -> 1' -> 2 -> 2' -> 3 -> 3' -> null。
+        Node curr = head;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = new Node(curr.val);
+            curr.next.next = next;
+            curr = next;
+        }
+        // 遍历每个旧节点，将新节点的 random 设为旧节点 random 指向的节点的下一个节点 -
+        // 因为在交错链表中，每个节点的新节点就是他的下一个节点。
+        curr = head;
+        while (curr != null) {
+            if (curr.random != null) {
+                curr.next.random = curr.random.next;
+            }
+            curr = curr.next.next;
+        }
+        // 将新旧链表分离
+        Node root = new Node(0), // 新链表的 dummy 根结点
+                tail = root; // 新链表当前的尾节点
+        curr = head;
+        // 遍历每个旧节点
+        while (curr != null) {
+            tail.next = curr.next; // 将新链表的下一个节点设为当前旧节点的下一个节点
+            tail = tail.next; // 更新新链表的尾节点
+            curr.next = curr.next.next; // 将旧节点的下一个节点还原为原链表中的下一个节点
+            curr = curr.next; // 更新当前节点
+            tail.next = null; // 将新链表尾节点设为空
+        }
+        return root.next;
+    }
 
-	// time O(n), space O(n)
-	public Node copyRandomListIterative(Node head) {
-		if (head == null) {
-			return null;
-		}
-		Map<Node, Node> map = new HashMap<>();
-		Node copy = new Node(head.val), curr = head;
-		map.put(head, copy);
-		while (curr != null) {
-			copy.next = getClonedNode(curr.next, map);
-			copy.random = getClonedNode(curr.random, map);
-			curr = curr.next;
-			copy = copy.next;
-		}
-		return map.get(head);
-	}
+    /**
+     * Definition for a Node.
+     */
+    private class Node {
+        int val;
+        Node next;
+        Node random;
 
-	private Node getClonedNode(Node node, Map<Node, Node> map) {
-		if (node == null) {
-			return null;
-		}
-		map.putIfAbsent(node, new Node(node.val));
-		return map.get(node);
-	}
-
-	// time O(n), space O(n)
-	public Node copyRandomListRecursive(Node head) {
-		Map<Node, Node> map = new HashMap<>();
-		return dfs(head, map);
-	}
-
-	private Node dfs(Node curr, Map<Node, Node> map) {
-		if (curr == null) {
-			return curr;
-		}
-		if (map.containsKey(curr)) {
-			return map.get(curr);
-		}
-		Node copy = new Node(curr.val);
-		map.put(curr, copy);
-		copy.next = dfs(curr.next, map);
-		copy.random = dfs(curr.random, map);
-		return copy;
-	}
-
-	/**
-	 * Definition for a Node.
-	 */
-	private class Node {
-		int val;
-		Node next;
-		Node random;
-
-		public Node(int val) {
-			this.val = val;
-			this.next = null;
-			this.random = null;
-		}
-	}
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+    }
 }

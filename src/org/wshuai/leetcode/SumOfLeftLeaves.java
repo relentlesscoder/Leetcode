@@ -5,21 +5,45 @@ package org.wshuai.leetcode;
  * #0404 https://leetcode.com/problems/sum-of-left-leaves/
  */
 public class SumOfLeftLeaves {
-	// time O(n)
-	public int sumOfLeftLeaves(TreeNode root) {
-		if(root == null){
-			return 0;
-		}
-		return dfs(root.left, true) + dfs(root.right, false);
-	}
 
-	private int dfs(TreeNode root, boolean isLeft){
-		if(root == null){
-			return 0;
-		}
-		if(root.left == null && root.right == null && isLeft){
-			return root.val;
-		}
-		return dfs(root.left, true) + dfs(root.right, false);
-	}
+    // time O(n), space O(log(n))
+    public int sumOfLeftLeaves(TreeNode root) {
+        return calc(root, false);
+    }
+
+    private int calc(TreeNode node, boolean left) {
+        if (left && node.left == null && node.right == null) {
+            return node.val;
+        }
+        int sum = 0;
+        if (node.left != null) {
+            sum += calc(node.left, true);
+        }
+        if (node.right != null) {
+            sum += calc(node.right, false);
+        }
+        return sum;
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

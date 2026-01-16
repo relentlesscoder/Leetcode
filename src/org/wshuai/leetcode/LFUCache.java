@@ -68,7 +68,7 @@ public class LFUCache {
         }
 
         private void remove(DoublyLinkedListNode node) {
-			// 移除节点
+            // 移除节点
             node.prev.next = node.next;
             node.next.prev = node.prev;
             node.prev = null;
@@ -76,7 +76,7 @@ public class LFUCache {
         }
 
         private DoublyLinkedListNode newList() {
-			// 新建一个双链表
+            // 新建一个双链表
             DoublyLinkedListNode head = new DoublyLinkedListNode(-1, -1);
             head.prev = head;
             head.next = head;
@@ -84,7 +84,7 @@ public class LFUCache {
         }
 
         private void addToFront(int freq, DoublyLinkedListNode node) {
-			// 将 node 加到频率 freq 对应的双链表的队首
+            // 将 node 加到频率 freq 对应的双链表的队首
             DoublyLinkedListNode head = freqMap.computeIfAbsent(freq, k -> newList());
             node.prev = head;
             node.next = head.next;

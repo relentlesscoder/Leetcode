@@ -876,6 +876,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0083 https://leetcode.com/problems/remove-duplicates-from-sorted-list/ (链表 基础) (删除节点)
 #0086 https://leetcode.com/problems/partition-list/ (链表 基础) (双指针)
 #0092 https://leetcode.com/problems/reverse-linked-list-ii/ (miao a~~~) (链表 基础) (反转列表)
+#0138 https://leetcode.com/problems/copy-list-with-random-pointer/ (miao a~~~) (链表 应用)
 #0141 https://leetcode.com/problems/linked-list-cycle/ (miao a~~~) (链表 基础) (快慢指针)
 #0142 https://leetcode.com/problems/linked-list-cycle/ (miao a~~~) (链表 基础) (快慢指针)
 #0143 https://leetcode.com/problems/reorder-list/ (miao a~~~) (链表 基础) (快慢指针) (#0234)
@@ -889,6 +890,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0287 https://leetcode.com/problems/find-the-duplicate-number/ (miao a~~~) (链表 基础) (快慢指针) (循环排序)
 #0328 https://leetcode.com/problems/odd-even-linked-list/ (链表 基础) (双指针)
 #0369 https://leetcode.com/problems/plus-one-linked-list/ (链表 基础) (合并链表) (#0002)
+#0382
+#0430 https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/ (miao a~~~) (双链表 应用)
+#0432 https://leetcode.com/problems/all-oone-data-structure/ (miao a~~~) (双链表 应用)
 #0445 https://leetcode.com/problems/add-two-numbers-ii/ (链表 基础) (合并链表) (#0002)
 #0457 https://leetcode.com/problems/circular-array-loop/ (miao a~~~) (链表) (快慢指针) (R)
 #0460 https://leetcode.com/problems/lfu-cache/ (miao a~~~) (双链表 应用) (R)
@@ -899,6 +903,8 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0876 https://leetcode.com/problems/middle-of-the-linked-list/ (链表 基础) (快慢指针)
 #1019 https://leetcode.com/problems/next-greater-node-in-linked-list/ (miao a~~~) (链表 应用) (链表 + 单调栈)
 #1171 https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/ (miao a~~~) (链表 应用) (链表 + 前缀和)
+#1206
+#1265 https://leetcode.com/problems/print-immutable-linked-list-in-reverse/ (链表 应用) (链表 + 栈)
 #1290 https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/ (链表 基础)
 #1474 https://leetcode.com/problems/delete-n-nodes-after-m-nodes-of-a-linked-list/ (miao a~~~) (前后指针)
 #1634 https://leetcode.com/problems/add-two-polynomials-represented-as-linked-lists/ (链表 基础) (合并链表)
@@ -922,6 +928,38 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3294 https://leetcode.com/problems/convert-doubly-linked-list-to-array-ii/ (链表 基础) (#2363)
 #LCR029 https://leetcode.cn/problems/4ueAj6/ (miao a~~~) (链表 基础) (插入节点)
 
+19. Binary Tree
+
+#0094 https://leetcode.com/problems/binary-tree-inorder-traversal/ (二叉树 遍历) (Morris)
+#0144 https://leetcode.com/problems/binary-tree-preorder-traversal/ (二叉树 遍历) (Morris)
+#0145 https://leetcode.com/problems/binary-tree-postorder-traversal/ (二叉树 遍历) (Morris)
+#0173 https://leetcode.com/problems/binary-search-tree-iterator/ (miao a~~~) (二叉树 遍历) (Morris)
+#0199 https://leetcode.com/problems/binary-tree-right-side-view/
+#0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+#0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+#0404 https://leetcode.com/problems/sum-of-left-leaves/ (二叉树 遍历)
+#0543 https://leetcode.com/problems/diameter-of-binary-tree/
+#0671 https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/ (二叉树 遍历) (Morris)
+#0872 https://leetcode.com/problems/leaf-similar-trees/ (miao a~~~) (二叉树 遍历) (Morris)
+#0938 https://leetcode.com/problems/range-sum-of-bst/
+#0993 https://leetcode.com/problems/cousins-in-binary-tree/
+#1161 https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
+#1214 https://leetcode.com/problems/two-sum-bsts/ (miao a~~~) (二叉树 遍历) (Morris) (BST的中序遍历)
+#1469 https://leetcode.com/problems/find-all-the-lonely-nodes/ (二叉树 遍历)
+#1644 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
+#1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
+#1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
+#0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
+#2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
+#2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
+#2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
+#2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
+#2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/
+#2458 https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
+#2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/
+#2641 https://leetcode.com/problems/cousins-in-binary-tree-ii/
+#2791 https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩 + 树的DFS) (#1542)
+#LCP44 https://leetcode.cn/problems/sZ59z6/ (二叉树 遍历) (Morris)
 
 
 06. Subsequence
@@ -936,29 +974,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 08. Backtracking
 #1655 https://leetcode.com/problems/distribute-repeating-integers/
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
-
-15. Binary Tree
-#0199 https://leetcode.com/problems/binary-tree-right-side-view/
-#0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-#0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
-#0543 https://leetcode.com/problems/diameter-of-binary-tree/
-#0938 https://leetcode.com/problems/range-sum-of-bst/
-#0993 https://leetcode.com/problems/cousins-in-binary-tree/
-#1161 https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
-#1214 https://leetcode.com/problems/two-sum-bsts/
-#1644 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
-#1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
-#1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/
-#0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
-#2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
-#2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/
-#2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
-#2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/
-#2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/
-#2458 https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
-#2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/
-#2641 https://leetcode.com/problems/cousins-in-binary-tree-ii/
-#2791 https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩 + 树的DFS) (#1542)
 
 16. Topological Sort
 #0210 https://leetcode.com/problems/course-schedule-ii/

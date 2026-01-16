@@ -2,46 +2,79 @@ package org.wshuai.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
- * Created by Wei on 8/9/19.
- * #872 https://leetcode.com/problems/leaf-similar-trees/
+ * Created by Wei on 08/09/2019.
+ * #0872 https://leetcode.com/problems/leaf-similar-trees/
  */
 public class LeafSimilarTrees {
-	public boolean leafSimilar(TreeNode root1, TreeNode root2) {
-		List<Integer> lst1 = getLeafNodes(root1);
-		List<Integer> lst2 = getLeafNodes(root2);
-		if (lst1.size() != lst2.size()) {
-			return false;
-		}
-		for (int i = 0; i < lst1.size(); i++) {
-			if (lst1.get(i) != lst2.get(i)) {
-				return false;
-			}
-		}
-		return true;
-	}
 
-	private List<Integer> getLeafNodes(TreeNode root) {
-		List<Integer> res = new ArrayList<Integer>();
-		if (root == null) {
-			return res;
-		}
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-		TreeNode current = root;
-		while (current != null || !stack.empty()) {
-			if (current != null) {
-				stack.push(current);
-				current = current.left;
-			} else {
-				TreeNode parent = stack.pop();
-				if (parent.left == null && parent.right == null) {
-					res.add(parent.val);
-				}
-				current = parent.right;
-			}
-		}
-		return res;
-	}
+	// time O(n), space O(n)
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+		// 利用 morris 前序遍历来比较每个叶子节点的值
+        List<Integer> vals = new ArrayList<>();
+		// 遍历 root1 将叶子节点的值加入 vals
+        preOrderTraversal(root1, vals, false);
+		// 遍历 root2 将每个叶子节点与 vals 中对应的值比较
+        return preOrderTraversal(root2, vals, true);
+    }
+
+    private boolean preOrderTraversal(TreeNode root, List<Integer> vals, boolean check) {
+        TreeNode curr = root;
+        int i = 0;
+        while (curr != null) {
+            if (curr.left == null) {
+                if (curr.right == null) {
+                    if (!check) {
+                        vals.add(curr.val);
+                    } else if (i >= vals.size() || vals.get(i++) != curr.val) {
+                        return false;
+                    }
+                }
+                curr = curr.right;
+            } else {
+                TreeNode pre = curr.left;
+                while (pre.right != null && pre.right != curr) {
+                    pre = pre.right;
+                }
+                if (pre.right == null) {
+                    pre.right = curr;
+                    curr = curr.left;
+                } else {
+                    pre.right = null;
+                    if (pre.left == null) {
+                        if (!check) {
+                            vals.add(pre.val);
+                        } else if (i >= vals.size() || vals.get(i++) != pre.val) {
+                            return false;
+                        }
+                    }
+                    curr = curr.right;
+                }
+            }
+        }
+        return !check || i == vals.size();
+    }
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

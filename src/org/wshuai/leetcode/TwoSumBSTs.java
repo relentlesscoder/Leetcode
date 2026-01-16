@@ -1,198 +1,116 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
 /**
  * Created by Wei on 10/09/2019.
  * #1214 https://leetcode.com/problems/two-sum-bsts/
  */
 public class TwoSumBSTs {
 
-	// time O(n + m), space O(1)
-	public boolean twoSumBSTsTwoPointersWithMorrisTraversal(TreeNode root1, TreeNode root2, int target) {
-		MorrisIterator itr1 = new MorrisIterator(root1);
-		ReverseMorrisIterator itr2 = new ReverseMorrisIterator(root2);
-		Integer v1 = itr1.next(), v2 = itr2.next();
-		while (v1 != null && v2 != null) {
-			int sum = v1.intValue() + v2.intValue();
-			if (sum == target) {
-				return true;
-			} else if (sum < target) {
-				v1 = itr1.next();
-			} else {
-				v2 = itr2.next();
-			}
-		}
-		return false;
-	}
+    // time O(n + m), space O(1)
+    public boolean twoSumBSTsMorrisTraversal(TreeNode root1, TreeNode root2, int target) {
+        // 利用 BST 的中序遍历是按照值由小到大排序的性质
+        BSTIterator itr1 = new BSTIterator(root1); // 顺序遍历 root1
+        BSTReverseIterator itr2 = new BSTReverseIterator(root2); // 逆序遍历 root2
+        for (Integer v1 = itr1.next(), v2 = itr2.next(); v1 != null && v2 != null; ) {
+            int sum = v1.intValue() + v2.intValue();
+            if (sum == target) { // 找到和要求的一对
+                return true;
+            } else if (sum < target) { // 和太小找 v1 的下一个值
+                v1 = itr1.next();
+            } else { // 和太大找 v2 的下一个值
+                v2 = itr2.next();
+            }
+        }
+        return false;
+    }
 
-	private static class MorrisIterator implements Iterator<Integer> {
-		private TreeNode cur, pre;
+    private static class BSTIterator {
 
-		public MorrisIterator(TreeNode root) {
-			cur = root;
-			pre = null;
-		}
+        private TreeNode curr;
 
-		public boolean hasNext() {
-			return cur != null;
-		}
+        public BSTIterator(TreeNode root) {
+            this.curr = root;
+        }
 
-		// In-order traversal is left -> node -> right
-		public Integer next() {
-			Integer val = null;
-			while (cur != null) {
-				if (cur.left == null) {
-					val = cur.val;
-					cur = cur.right;
-					break;
-				} else {
-					pre = cur.left;
-					while (pre.right != null && pre.right != cur) {
-						pre = pre.right;
-					}
-					if (pre.right == null) {
-						pre.right = cur;
-						cur = cur.left;
-					} else {
-						pre.right = null;
-						val = cur.val;
-						cur = cur.right;
-						break;
-					}
-				}
-			}
-			return val;
-		}
-	}
+        public Integer next() {
+            while (curr != null) {
+                if (curr.left == null) {
+                    int val = curr.val;
+                    curr = curr.right;
+                    return val;
+                } else {
+                    TreeNode pre = curr.left;
+                    while (pre.right != null && pre.right != curr) {
+                        pre = pre.right;
+                    }
+                    if (pre.right == null) {
+                        pre.right = curr;
+                        curr = curr.left;
+                    } else {
+                        pre.right = null;
+                        int val = curr.val;
+                        curr = curr.right;
+                        return val;
+                    }
+                }
+            }
+            return null;
+        }
+    }
 
-	private static class ReverseMorrisIterator implements Iterator<Integer> {
-		private TreeNode cur, pre;
+    private static class BSTReverseIterator {
 
-		public ReverseMorrisIterator(TreeNode root) {
-			cur = root;
-			pre = null;
-		}
+        private TreeNode curr;
 
-		public boolean hasNext() {
-			return cur != null;
-		}
+        public BSTReverseIterator(TreeNode root) {
+            this.curr = root;
+        }
 
-		// Reverse in-order traversal is right -> node -> left
-		public Integer next() {
-			Integer val = null;
-			while (cur != null) {
-				if (cur.right == null) {
-					val = cur.val;
-					cur = cur.left;
-					break;
-				} else {
-					pre = cur.right;
-					while (pre.left != null && pre.left != cur) {
-						pre = pre.left;
-					}
-					if (pre.left == null) {
-						pre.left = cur;
-						cur = cur.right;
-					} else {
-						pre.left = null;
-						val = cur.val;
-						cur = cur.left;
-						break;
-					}
-				}
-			}
-			return val;
-		}
-	}
+        public Integer next() {
+            while (curr != null) {
+                if (curr.right == null) {
+                    int val = curr.val;
+                    curr = curr.left;
+                    return val;
+                } else {
+                    TreeNode pre = curr.right;
+                    while (pre.left != null && pre.left != curr) {
+                        pre = pre.left;
+                    }
+                    if (pre.left == null) {
+                        pre.left = curr;
+                        curr = curr.right;
+                    } else {
+                        pre.left = null;
+                        int val = curr.val;
+                        curr = curr.left;
+                        return val;
+                    }
+                }
+            }
+            return null;
+        }
+    }
 
-	// time O(m + n), space O(m + n)
-	public boolean twoSumBSTsTwoPointers(TreeNode root1, TreeNode root2, int target) {
-		List<Integer> nums1 = new ArrayList<>();
-		List<Integer> nums2 = new ArrayList<>();
-		inOrder(root1, nums1);
-		inOrder(root2, nums2);
-		for (int i = 0, j = nums2.size() - 1; i < nums1.size() && j >= 0; ) {
-			int sum = nums1.get(i) + nums2.get(j);
-			if (sum == target) {
-				return true;
-			} else if (sum < target) {
-				i++;
-			} else {
-				j--;
-			}
-		}
-		return false;
-	}
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-	private void inOrder(TreeNode node, List<Integer> vals) {
-		if (node == null) {
-			return;
-		}
-		inOrder(node.left, vals);
-		vals.add(node.val);
-		inOrder(node.right, vals);
-	}
+        TreeNode() {
+        }
 
-	// time O(n + m), space O(n)
-	public boolean twoSumBSTsHashSet(TreeNode root1, TreeNode root2, int target) {
-		Set<Integer> vals = new HashSet<>();
-		dfs(root1, vals);
-		return search(root2, target, vals);
-	}
+        TreeNode(int val) {
+            this.val = val;
+        }
 
-	private void dfs(TreeNode node, Set<Integer> vals) {
-		if (node == null) {
-			return;
-		}
-		vals.add(node.val);
-		dfs(node.left, vals);
-		dfs(node.right, vals);
-	}
-
-	private boolean search(TreeNode node, int target, Set<Integer> vals) {
-		if (node == null) {
-			return false;
-		}
-		if (vals.contains(target - node.val)) {
-			return true;
-		}
-		return search(node.left, target, vals)
-				|| search(node.right, target, vals);
-	}
-
-	// time O(n * log(m)), space O(log(n))
-	public boolean twoSumBSTsBinarySearch(TreeNode root1, TreeNode root2, int target) {
-		return inOrder(root1, root2, target);
-	}
-
-	private boolean search(int val, TreeNode root) {
-		TreeNode node = root;
-		while (node != null) {
-			if (node.val == val) {
-				return true;
-			}
-			if (node.val < val) {
-				node = node.right;
-			} else {
-				node = node.left;
-			}
-		}
-		return false;
-	}
-
-	private boolean inOrder(TreeNode node1, TreeNode node2, int target) {
-		if (node1 == null) {
-			return false;
-		}
-		if (search(target - node1.val, node2)) {
-			return true;
-		}
-		return inOrder(node1.left, node2, target)
-				|| inOrder(node1.right, node2, target);
-	}
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
