@@ -44,7 +44,7 @@ public class SecondMinimumNodeInABinaryTree {
         return (int) res;
     }
 
-    // time O(n), space O(log(n))
+    // time O(n), space O(h)
     public int findSecondMinimumValueRecursive(TreeNode root) {
         long[] min = new long[]{Long.MAX_VALUE, Long.MAX_VALUE};
         findMin(root, min);

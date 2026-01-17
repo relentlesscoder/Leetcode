@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class FindAllTheLonelyNodes {
 
-    // time O(n), space O(log(n))
+    // time O(n), space O(h)
     public List<Integer> getLonelyNodesRecursive(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         checkNode(root, res);

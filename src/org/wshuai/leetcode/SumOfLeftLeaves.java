@@ -6,7 +6,7 @@ package org.wshuai.leetcode;
  */
 public class SumOfLeftLeaves {
 
-    // time O(n), space O(log(n))
+    // time O(n), space O(h)
     public int sumOfLeftLeaves(TreeNode root) {
         return calc(root, false);
     }
