@@ -2,28 +2,61 @@ package org.wshuai.leetcode;
 
 /**
  * Created by Wei on 02/03/2020.
- * #1343 https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
+ * #1339 https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/
  */
 public class MaximumProductOfSplittedBinaryTree {
-	private long max = Long.MIN_VALUE, sum = 0;
 
-	// time O(n)
+	private static final int MOD = (int) 1e9 + 7;
+	private long res = 1L;
+
+	// time O(n), space O(h)
 	public int maxProduct(TreeNode root) {
-		if(root == null){
-			return 0;
-		}
-		sum = dfs(root);
-		max = Long.MIN_VALUE;
-		dfs(root);
-		return (int)(max % 1_000_000_007);
+		res = 1L;
+		// 计算所有节点之和 total
+		int total = calcTotal(root);
+		// 对每个节点，计算以它为根结点的子树的和 sum 与树中其他节点和 total - sum
+		// 的乘积, 即以当前节点与其父节点之间的边分裂二叉树形成的两个部分和的乘积。
+		calcProd(root, total);
+		return (int) (res % MOD);
 	}
 
-	private long dfs(TreeNode root){
-		if(root == null){
+	private int calcTotal(TreeNode root) {
+		if (root == null) {
 			return 0;
 		}
-		long nodeSum = dfs(root.left) + dfs(root.right) + root.val;
-		max = Math.max(max, nodeSum * (sum - nodeSum));
-		return nodeSum;
+		return root.val + calcTotal(root.left) + calcTotal(root.right);
 	}
+
+	private int calcProd(TreeNode root, int total) {
+		if (root == null) {
+			return 0;
+		}
+		int left = calcProd(root.left, total),
+				right = calcProd(root.right, total);
+		int sum = root.val + left + right;
+		res = Math.max(res, (long) sum * (total - sum));
+		return sum;
+	}
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

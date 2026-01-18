@@ -5,25 +5,43 @@ package org.wshuai.leetcode;
  * #0563 https://leetcode.com/problems/binary-tree-tilt/
  */
 public class BinaryTreeTilt {
-	private int res;
+    private int res;
 
-	// time O(n)
-	public int findTilt(TreeNode root) {
-		res = 0;
-		if(root == null){
-			return res;
-		}
-		dfs(root);
-		return res;
-	}
+    // time O(n), space O(h)
+    public int findTilt(TreeNode root) {
+        res = 0;
+        dfs(root);
+        return res;
+    }
 
-	private int dfs(TreeNode root){
-		if(root == null){
-			return 0;
-		}
-		int left = dfs(root.left);
-		int right = dfs(root.right);
-		res += Math.abs(left - right);
-		return root.val + left + right;
-	}
+    private int dfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = dfs(root.left), right = dfs(root.right);
+        res += Math.abs(left - right);
+        return root.val + left + right;
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

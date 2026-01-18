@@ -5,22 +5,48 @@ package org.wshuai.leetcode;
  * #0110 https://leetcode.com/problems/balanced-binary-tree/
  */
 public class BalancedBinaryTree {
-	// time O(n)
-	public boolean isBalanced(TreeNode root) {
-		if(root == null){
-			return true;
-		}
-		int left = depth(root.left);
-		int right = depth(root.right);
-		return Math.abs(left - right) <= 1
-				&& isBalanced(root.left)
-				&& isBalanced(root.right);
-	}
 
-	private int depth(TreeNode root){
-		if(root == null){
-			return 0;
-		}
-		return 1 + Math.max(depth(root.left), depth(root.right));
-	}
+    private boolean balanced;
+
+    // time O(n), space O(h)
+    public boolean isBalanced(TreeNode root) {
+        balanced = true;
+        dfs(root);
+        return balanced;
+    }
+
+    private int dfs(TreeNode root) {
+		// 对每个节点判断左右子树高度差是否小于等于 1 。
+        if (root == null || !balanced) {
+            return 0;
+        }
+        int left = dfs(root.left);
+        int right = dfs(root.right);
+        if (Math.abs(left - right) > 1) {
+            balanced = false;
+        }
+        return Math.max(left, right) + 1;
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

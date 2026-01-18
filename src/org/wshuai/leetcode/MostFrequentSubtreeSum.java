@@ -10,41 +10,59 @@ import java.util.Map;
  * #0508 https://leetcode.com/problems/most-frequent-subtree-sum/
  */
 public class MostFrequentSubtreeSum {
-	private Map<Integer, Integer> map;
-	private int maxFreqCount;
 
-	// time O(n), space O(n)
-	public int[] findFrequentTreeSum(TreeNode root) {
-		if (root == null) {
-			return new int[0];
-		}
-		map = new HashMap<>();
-		maxFreqCount = 0;
-		dfs(root);
-		List<Integer> list = new ArrayList<>();
-		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-			if (entry.getValue() == maxFreqCount) {
-				list.add(entry.getKey());
-			}
-		}
-		int[] res = new int[list.size()];
-		int i = 0;
-		for (int sum : list) {
-			res[i++] = sum;
-		}
-		return res;
-	}
+    private int maxFreq = 0;
+    private final Map<Integer, Integer> sumMap = new HashMap<>();
 
-	private int dfs(TreeNode root) {
-		if (root == null) {
-			return 0;
-		}
-		int sum = root.val + dfs(root.left) + dfs(root.right);
-		int count = map.getOrDefault(sum, 0) + 1;
-		map.put(sum, count);
-		if (count > maxFreqCount) {
-			maxFreqCount = count;
-		}
-		return sum;
-	}
+    public int[] findFrequentTreeSum(TreeNode root) {
+        // 递归二叉树，对每个节点计算以它为根结点的子树的节点和。维护一个哈希表存节点和及频率和
+        // 一个变量存节点和的频率的最大值。递归结束后，在哈希表中找到所有频率等于最大频率的节点
+        // 和组成数组即为答案。
+        maxFreq = 0;
+        sumMap.clear();
+        dfs(root);
+        List<Integer> nums = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : sumMap.entrySet()) {
+            if (entry.getValue() == maxFreq) {
+                nums.add(entry.getKey());
+            }
+        }
+        int[] res = new int[nums.size()];
+        for (int i = 0; i < nums.size(); i++) {
+            res[i] = nums.get(i);
+        }
+        return res;
+    }
+
+    private int dfs(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int sum = root.val + dfs(root.left) + dfs(root.right);
+        int cnt = sumMap.merge(sum, 1, Integer::sum);
+        maxFreq = Math.max(maxFreq, cnt);
+        return sum;
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
