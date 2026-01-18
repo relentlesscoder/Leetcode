@@ -8,6 +8,7 @@ public class MinimumDepthOfBinaryTree {
 
     // time O(n), space O(h)
     public int minDepthBottomUp(TreeNode root) {
+        // 自底向上的简化版
         if (root == null) {
             return 0;
         }
@@ -19,6 +20,29 @@ public class MinimumDepthOfBinaryTree {
         }
         return Math.min(minDepthBottomUp(root.left),
                 minDepthBottomUp(root.right)) + 1;
+    }
+
+    // time O(n), space O(h)
+    public int minDepthBottomUpVerbose(TreeNode root) {
+        // 自底向上
+        if (root == null) {
+            return 0;
+        }
+        // 叶子节点，左子节点和右子节点均为空
+        if (root.left == null && root.right == null) {
+            return 1;
+        }
+        // 左不为空右为空
+        if (root.left != null && root.right == null) {
+            return minDepthBottomUpVerbose(root.left) + 1;
+        }
+        // 右不为空左为空
+        if (root.right != null && root.left == null) {
+            return minDepthBottomUpVerbose(root.right) + 1;
+        }
+        // 左右都不为空
+        return Math.min(minDepthBottomUpVerbose(root.left),
+                minDepthBottomUpVerbose(root.right)) + 1;
     }
 
     private int res;
