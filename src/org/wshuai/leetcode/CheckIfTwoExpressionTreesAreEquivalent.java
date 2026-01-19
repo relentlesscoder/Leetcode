@@ -6,33 +6,33 @@ package org.wshuai.leetcode;
  */
 public class CheckIfTwoExpressionTreesAreEquivalent {
 
-    // time O(n)
+    // time O(n), space O(h)
     public boolean checkEquivalence(Node root1, Node root2) {
-        int[] count = new int[26];
-        dfs(root1, count, 1);
-        dfs(root2, count, -1);
+        // 分别递归统计字符出现次数，然后比较两树中所有字符次数是否都相同
+        int[] freq1 = new int[26], freq2 = new int[26];
+        dfs(root1, freq1);
+        dfs(root2, freq2);
         for (int i = 0; i < 26; i++) {
-            if (count[i] != 0) {
+            if (freq1[i] != freq2[i]) {
                 return false;
             }
         }
         return true;
     }
 
-    private void dfs(Node root, int[] count, int val) {
-        if (root == null) {
+    private void dfs(Node root, int[] freq) {
+        if (root.val >= 'a' && root.val <= 'z') {
+            freq[root.val - 'a']++;
             return;
         }
-        if (root.val != '+') {
-            count[root.val - 'a'] += val;
-        }
-        dfs(root.left, count, val);
-        dfs(root.right, count, val);
+        dfs(root.left, freq);
+        dfs(root.right, freq);
     }
 
-
-    //Definition for a binary tree node.
-    private class Node {
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class Node {
         char val;
         Node left;
         Node right;
@@ -51,5 +51,4 @@ public class CheckIfTwoExpressionTreesAreEquivalent {
             this.right = right;
         }
     }
-
 }

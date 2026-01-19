@@ -6,33 +6,45 @@ package org.wshuai.leetcode;
  */
 public class CountNodesEqualToSumOfDescendants {
 
-	// time O(n), space O(n)
+	private int res = 0;
+
+	// time O(n), space O(h)
 	public int equalToDescendants(TreeNode root) {
-		return (int) dfs(root)[0];
+		res = 0;
+		dfs(root);
+		return res;
 	}
 
-	private long[] dfs(TreeNode node) {
-		if (node == null) {
-			return new long[] {0, 0};
+	private int dfs(TreeNode root) {
+		if (root == null) {
+			return 0;
 		}
-		long[] left = dfs(node.left), right = dfs(node.right);
-		long sum = left[1] + right[1], count = left[0] + right[0];
-		return new long[] {count + (sum == node.val ? 1 : 0), sum + node.val};
+		int left = dfs(root.left), right = dfs(root.right);
+		if (left + right == root.val) {
+			res++;
+		}
+		return root.val + left + right;
 	}
 
 	/**
-	 * Definition for a binary tree node.
-	 */
-	  private class TreeNode {
-	      int val;
-	      TreeNode left;
-	      TreeNode right;
-	      TreeNode() {}
-	      TreeNode(int val) { this.val = val; }
-	      TreeNode(int val, TreeNode left, TreeNode right) {
-	          this.val = val;
-	          this.left = left;
-	          this.right = right;
-	      }
-	  }
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

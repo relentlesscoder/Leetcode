@@ -1,34 +1,55 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by Wei on 11/06/2019.
  * #0663 https://leetcode.com/problems/equal-tree-partition/
  */
 public class EqualTreePartition {
-	// time O(n), space O(n)
+	private boolean res = false;
+	private int total = -1;
+
+	// time O(n), space O(h)
 	public boolean checkEqualTree(TreeNode root) {
-		Map<Integer, List<TreeNode>> map = new HashMap<>();
-		int sum = dfs(root, map);
-		if(sum % 2 != 0){
-			return false;
-		}
-		sum >>= 1;
-		return map.containsKey(sum)
-				&& (map.get(sum).size() > 1 || map.get(sum).get(0) != root);
+		res = false;
+		total = dfs(root, root);
+		dfs(root, root);
+		return res;
 	}
 
-	private int dfs(TreeNode root, Map<Integer, List<TreeNode>> map){
-		if(root == null){
+	private int dfs(TreeNode node, TreeNode root) {
+		if (node == null || res) { // 优化 - 退出递归如果 res 已经为真
 			return 0;
 		}
-		int sum = root.val + dfs(root.left, map) + dfs(root.right, map);
-		map.putIfAbsent(sum, new ArrayList<>());
-		map.get(sum).add(root);
+		int left = dfs(node.left, root), // 左子树节点值之和
+				right = dfs(node.right, root), // 右子树节点值之和
+				sum = left + right + node.val; // 当前子树值之和
+		// 如果 total 已经算出来了，且 total 两倍于 sum， 且当前节点不是树
+		// 的根结点则可以均匀划分。
+		if (total != -1 && total - sum == sum && node != root) {
+			res = true;
+		}
 		return sum;
 	}
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

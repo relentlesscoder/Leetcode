@@ -5,42 +5,66 @@ package org.wshuai.leetcode;
  * #0333 https://leetcode.com/problems/largest-bst-subtree/
  */
 public class LargestBSTSubtree {
-	private int res;
 
-	// time O(n)
+	private static final long MASK = (1L << 15) - 1;
+	private static final long MAX = 20_000;
+	private int res = 0;
+
+	// time O(n), space O(h)
 	public int largestBSTSubtree(TreeNode root) {
 		res = 0;
 		dfs(root);
 		return res;
 	}
 
-	private TreeNodeInfo dfs(TreeNode root){
-		if(root == null){
-			return new TreeNodeInfo(0, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
+	private long dfs(TreeNode root) {
+		// 状态压缩，用一个长整型的从低到高的比特位存以当前节点为根结点的子树的以下状态:
+		// 比特位 15  |  15 | 15   | 1
+		// 状态   max | min | size | bst
+		// 注意因为需要把包含负数的值域转化为全正数 [-10^4, 10^4] -> [0, 2 * 10^4]
+		if (root == null) {
+			// 默认状态: 0 | 2 * 10^4 | 0 | 1
+			return (MAX << 16) + 1;
 		}
-		TreeNodeInfo left = dfs(root.left);
-		TreeNodeInfo right = dfs(root.right);
-		boolean bst = left.bst && right.bst && root.val > left.max && root.val < right.min;
-		int size = bst ? 1 + left.size + right.size : 0;
-		if(bst){
-			res = Math.max(size, res);
+		// 递归左右子树
+		long left = dfs(root.left), right = dfs(root.right);
+		// 提取状态值
+		long leftMax = left >> 31, leftMin = (left >> 16) & MASK, leftCount = (left >> 1) & MASK, leftTree = left & 1;
+		long rightMax = right >> 31, rightMin = (right >> 16) & MASK, rightCount = (right >> 1) & MASK, rightTree = right & 1;
+		int size = (int) (leftCount + rightCount + 1), // 当前子树的大小
+				bst = 0, // 变量 bst 的值 1 代表当前子树是为 BST，0 表示不是
+				val = root.val + 10_000; // 映射当前节点值
+		// 判断当前子树是否为 BST
+		if (leftTree == 1 && rightTree == 1 && leftMax < val && rightMin > val) {
+			res = Math.max(res, size);
+			bst = 1;
 		}
-		int max = Math.max(Math.max(left.max, right.max), root.val);
-		int min = Math.min(Math.min(left.min, right.min), root.val);
-		return new TreeNodeInfo(size, max, min, bst);
+		// 更新最大最小值
+		long max = Math.max(val, Math.max(leftMax, rightMax));
+		long min = Math.min(val, Math.min(leftMin, rightMin));
+		// 状态   max | min | size | bst
+		return (max << 31) + (min << 16) + (size << 1) + bst;
 	}
 
-	private class TreeNodeInfo{
-		int size;
-		int max;
-		int min;
-		boolean bst;
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-		public TreeNodeInfo(int size, int max, int min, boolean bst){
-			this.size = size;
-			this.max = max;
-			this.min = min;
-			this.bst = bst;
-		}
-	}
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
