@@ -6,30 +6,57 @@ package org.wshuai.leetcode;
  */
 public class LowestCommonAncestorOfDeepestLeaves {
 
-	// time O(n)
-	public TreeNode lcaDeepestLeaves(TreeNode root) {
-		return dfs(root).node;
-	}
+    // time O(n), space O(h)
+    public TreeNode lcaDeepestLeaves(TreeNode root) {
+		// 同 #0865
+        int depth = getDepth(root);
+        return findCommonAncestor(root, depth, 0);
+    }
 
-	private Pair dfs(TreeNode root){
-		if(root == null){
-			return new Pair(null, 0);
-		}
-		Pair left = dfs(root.left), right = dfs(root.right);
-		int leftDepth = left.depth, rightDepth = right.depth;
-		return new Pair(leftDepth == rightDepth ? root : leftDepth > rightDepth ? left.node : right.node,
-				1 + Math.max(leftDepth, rightDepth));
-	}
+    private TreeNode findCommonAncestor(TreeNode root, int depth, int curr) {
+        if (root == null) {
+            return null;
+        }
+        if (++curr == depth) {
+            return root;
+        }
+        TreeNode left = findCommonAncestor(root.left, depth, curr);
+        TreeNode right = findCommonAncestor(root.right, depth, curr);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        return root;
+    }
 
-	private class Pair{
+    private int getDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + Math.max(getDepth(root.left), getDepth(root.right));
+    }
 
-		private TreeNode node;
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-		private int depth;
+        TreeNode() {
+        }
 
-		private Pair(TreeNode node, int depth){
-			this.node = node;
-			this.depth = depth;
-		}
-	}
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

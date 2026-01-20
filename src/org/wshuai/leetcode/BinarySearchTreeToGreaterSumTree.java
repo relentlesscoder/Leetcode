@@ -1,64 +1,48 @@
 package org.wshuai.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
 /**
- * Created by Wei on 8/24/19.
+ * Created by Wei on 08/24/2019.
  * #1038 https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/
  */
 public class BinarySearchTreeToGreaterSumTree {
 
-	int pre = 0;
+    // time O(n), space O(h)
+    public TreeNode bstToGst(TreeNode root) {
+        // 同 #0538
+        dfs(root, 0);
+        return root;
+    }
 
-	// reverse in-order traversal - https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/discuss/286725/JavaC%2B%2BPython-Revered-Inorder-Traversal
-	public TreeNode bstToGst(TreeNode root) {
+    private int dfs(TreeNode root, int add) {
+        if (root == null) {
+            return 0;
+        }
+        int right = dfs(root.right, add);
+        int left = dfs(root.left, add + right + root.val);
+        int val = root.val;
+        root.val += right + add;
+        return right + val + left;
+    }
 
-		if (root.right != null) {
-			bstToGst(root.right);
-		}
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-		root.val = pre + root.val;
-		pre = root.val;
+        TreeNode() {
+        }
 
-		if (root.left != null) {
-			bstToGst(root.left);
-		}
+        TreeNode(int val) {
+            this.val = val;
+        }
 
-		return root;
-	}
-
-	public TreeNode bstToGstInorderTraversal(TreeNode root) {
-		List<Integer> list = new ArrayList<>();
-		Stack<TreeNode> stack = new Stack<>();
-		TreeNode current = root;
-		while (!stack.isEmpty() || current != null) {
-			if (current != null) {
-				stack.push(current);
-				current = current.left;
-			} else {
-				TreeNode parent = stack.pop();
-				list.add(parent.val);
-				current = parent.right;
-			}
-		}
-		for (int i = list.size() - 2; i >= 0; i--) {
-			list.set(i, list.get(i) + list.get(i + 1));
-		}
-		stack = new Stack<>();
-		current = root;
-		int i = 0;
-		while (!stack.isEmpty() || current != null) {
-			if (current != null) {
-				stack.push(current);
-				current = current.left;
-			} else {
-				TreeNode parent = stack.pop();
-				parent.val = list.get(i++);
-				current = parent.right;
-			}
-		}
-		return root;
-	}
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

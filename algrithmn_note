@@ -937,14 +937,16 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0110 https://leetcode.com/problems/balanced-binary-tree/ (自底向上 DFS)
 #0111 https://leetcode.com/problems/minimum-depth-of-binary-tree/ (自顶向下/自底向上 DFS)
 #0112 https://leetcode.com/problems/path-sum/ (自顶向下 DFS)
+#0124 https://leetcode.com/problems/binary-tree-maximum-path-sum/ (二叉树 直径) (#0543)
 #0129 https://leetcode.com/problems/sum-root-to-leaf-numbers/ (自顶向下 DFS)
 #0144 https://leetcode.com/problems/binary-tree-preorder-traversal/ (二叉树 遍历) (Morris)
 #0145 https://leetcode.com/problems/binary-tree-postorder-traversal/ (二叉树 遍历) (Morris)
+#0156 https://leetcode.com/problems/binary-tree-upside-down/ (自底向上 DFS) (二叉树 翻转)
 #0173 https://leetcode.com/problems/binary-search-tree-iterator/ (miao a~~~) (二叉树 遍历) (Morris)
 #0199 https://leetcode.com/problems/binary-tree-right-side-view/ (miao a~~~) (二叉树 递归/层序遍历）
 #0226 https://leetcode.com/problems/invert-binary-tree/ (自底向上 DFS)
 #0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-#0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+#0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/ (自底向上 DFS + 最低共同祖先)
 #0250 https://leetcode.com/problems/count-univalue-subtrees/ (自底向上 DFS)
 #0298 https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/ (二叉树 递归 自顶向下/自底向上)
 #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
@@ -952,8 +954,10 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0366 https://leetcode.com/problems/find-leaves-of-binary-tree/ (miao a~~~) (自底向上 DFS)
 #0404 https://leetcode.com/problems/sum-of-left-leaves/ (二叉树 遍历)
 #0508 https://leetcode.com/problems/most-frequent-subtree-sum/ (自底向上 DFS + 哈希表)
-#0543 https://leetcode.com/problems/diameter-of-binary-tree/
+#0538 https://leetcode.com/problems/convert-bst-to-greater-tree/ (miao a~~~) (有递有归 - 参考 google drive 中的图解)
+#0543 https://leetcode.com/problems/diameter-of-binary-tree/ (二叉树 直径)
 #0545 https://leetcode.com/problems/boundary-of-binary-tree/ (miao a~~~) (二叉树 递归 自顶向下) (R)
+#0549 https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii/ (miao a~~~) (二叉树 直径) (#0543)
 #0563 https://leetcode.com/problems/binary-tree-tilt/ (自底向上 DFS)
 #0572 https://leetcode.com/problems/subtree-of-another-tree/ (自底向上 DFS)
 #0606 https://leetcode.com/problems/construct-string-from-binary-tree/ (自底向上 DFS)
@@ -961,6 +965,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0623 https://leetcode.com/problems/add-one-row-to-tree/ (miao a~~~) (二叉树 递归 自顶向下)
 #0663 https://leetcode.com/problems/equal-tree-partition/ (自底向上 DFS)
 #0671 https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/ (二叉树 遍历) (Morris)
+#0687 https://leetcode.com/problems/longest-univalue-path/ (miao a~~~) (二叉树 直径) (#0543)
+#0814 https://leetcode.com/problems/binary-tree-pruning/ (自底向上 DFS) (删点)
+#0865 https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/ (miao a~~~) (自底向上 DFS + 最低共同祖先)
 #0872 https://leetcode.com/problems/leaf-similar-trees/ (miao a~~~) (二叉树 遍历) (Morris)
 #0971 https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/ (miao a~~~) (二叉树 递归 自顶向下)
 #0938 https://leetcode.com/problems/range-sum-of-bst/
@@ -970,17 +977,23 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0993 https://leetcode.com/problems/cousins-in-binary-tree/
 #1022 https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/ (miao a~~~) (二叉树 递归 自顶向下)
 #1026 https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/ (miao a~~~) (二叉树 递归 自顶向下/自底向上) (状态压缩)
+#1038 https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/ (miao a~~~) (有递有归 - 参考 google drive 中的图解) (同 #0538)
+#1080 https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/ (miao a~~~) (自底向上 DFS) (R)
+#1110 https://leetcode.com/problems/delete-nodes-and-return-forest/ (自底向上 DFS) (删点)
 #1120 https://leetcode.com/problems/maximum-average-subtree/ (miao a~~~) (自底向上 DFS + 状态压缩)
+#1123 https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/ (miao a~~~) (自底向上 DFS + 最低共同最先) (#0865)
 #1145 https://leetcode.com/problems/binary-tree-coloring-game/ (miao a~~~) (自底向上 DFS)
 #1161 https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
 #1214 https://leetcode.com/problems/two-sum-bsts/ (miao a~~~) (二叉树 遍历) (Morris) (BST的中序遍历)
 #1315 https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/ (二叉树 递归 自顶向下)
+#1325 https://leetcode.com/problems/delete-leaves-with-a-given-value/ (自底向上 DFS) (删点)
 #1339 https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/ (自底向上 DFS)
 #1372 https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/ (miao a~~~) (二叉树 递归 自顶向下) (R)
 #1379 https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/ (自底向上 DFS)
 #1430 https://leetcode.com/problems/check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree/ (二叉树 递归 自顶向下)
 #1448 https://leetcode.com/problems/count-good-nodes-in-binary-tree/ (二叉树 递归 自顶向下)
 #1469 https://leetcode.com/problems/find-all-the-lonely-nodes/ (二叉树 遍历 自顶向下)
+#1530 https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/ (miao a~~~) (自底向上 DFS)
 #1612 https://leetcode.com/problems/check-if-two-expression-trees-are-equivalent/ (自底向上 DFS)
 #1644 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/
@@ -998,6 +1011,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2689 https://leetcode.com/problems/extract-kth-character-from-the-rope-tree/ (miao a~~~) (二叉树 递归 自顶向下) (非暴力解 不连接所有也子节点的字符串)
 #2764 https://leetcode.com/problems/is-array-a-preorder-of-some-binary-tree/ (miao a~~~) (二叉树 遍历)
 #2791 https://leetcode.com/problems/count-paths-that-can-form-a-palindrome-in-a-tree/ (miao a~~~) (前缀和 + 奇偶性异或和 + 状态压缩 + 树的DFS) (#1542)
+#2792 https://leetcode.com/problems/count-nodes-that-are-great-enough/ (miao a~~~) (自底向上 DFS + 合并 sorted list + 交换排序)
 #3319 https://leetcode.com/problems/k-th-largest-perfect-subtree-size-in-binary-tree/ (miao a~~~) (自底向上 DFS + 最小堆)
 #LCP44 https://leetcode.cn/problems/sZ59z6/ (二叉树 遍历) (Morris)
 #LCP67 https://leetcode.cn/problems/KnLfVT/ (自底向上 DFS)

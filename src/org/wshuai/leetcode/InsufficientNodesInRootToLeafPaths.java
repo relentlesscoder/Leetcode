@@ -5,37 +5,46 @@ package org.wshuai.leetcode;
  * #1080 https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/
  */
 public class InsufficientNodesInRootToLeafPaths {
-	public TreeNode sufficientSubset(TreeNode root, int limit) {
-		boolean val = dfs(root, limit, 0);
-		return val ? null : root;
-	}
 
-	private boolean dfs(TreeNode node, int limit, int sum){
-		if(node.left == null && node.right == null){
-			return sum + node.val < limit;
-		}
-		if(node.left == null){
-			boolean right = dfs(node.right, limit, sum + node.val);
-			if(right){
-				node.right = null;
-			}
-			return right;
-		}
-		if(node.right == null){
-			boolean left = dfs(node.left, limit, sum + node.val);
-			if(left){
-				node.left = null;
-			}
-			return left;
-		}
-		boolean left = dfs(node.left, limit, sum + node.val);
-		boolean right = dfs(node.right, limit, sum + node.val);
-		if(left){
-			node.left = null;
-		}
-		if(right){
-			node.right = null;
-		}
-		return left && right;
-	}
+    // time O(n), space O(h)
+    public TreeNode sufficientSubset(TreeNode root, int limit) {
+        limit -= root.val;
+        // 从根结点到叶子节点的路径只有一条
+        if (root.left == null && root.right == null) {
+            return limit > 0 ? null : root;
+        }
+        // 递归左子树
+        if (root.left != null) {
+            root.left = sufficientSubset(root.left, limit);
+        }
+        // 递归右子树
+        if (root.right != null) {
+            root.right = sufficientSubset(root.right, limit);
+        }
+        // 节点能被删除的条件是左右子节点都可以被删除，因为如果节点能被删除经过该节点到所有叶子
+        // 节点的路径的和都小于 limit 所有路径都必须经过它的两个子节点。
+        return root.left == null && root.right == null ? null : root;
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
