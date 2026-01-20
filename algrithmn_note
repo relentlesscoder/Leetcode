@@ -1004,6 +1004,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
 #2265 https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/ (miao a~~~) (自底向上 DFS + 状态压缩)
 #2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/ (自底向上 DFS)
+#2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/ (miao a~~~) (二叉树 直径) (图 DFS/BFS) (#0543) (R)
 #2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/
 #2458 https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
 #2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/
