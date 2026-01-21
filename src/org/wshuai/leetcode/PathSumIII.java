@@ -9,44 +9,54 @@ import java.util.Map;
  */
 public class PathSumIII {
 
+	private int res = 0;
+
 	// time O(n), space O(n)
-	public int pathSum(TreeNode root, int sum) {
-		Map<Integer, Integer> prefix = new HashMap<>();
-		prefix.put(0, 1);
-		return dfs(root, 0, sum, prefix);
-	}
-
-	private int dfs(TreeNode root, int sum, int target, Map<Integer, Integer> prefix){
-		if(root == null){
-			return 0;
-		}
-		sum += root.val;
-		int res = prefix.getOrDefault(sum - target, 0);
-		prefix.put(sum, prefix.getOrDefault(sum, 0) + 1);
-
-		res += dfs(root.left, sum, target, prefix) + dfs(root.right, sum, target, prefix);
-		// for binary tree, we need to delete the current prefix sum
-		// since other paths cannot use it.
-		prefix.put(sum, prefix.get(sum) - 1);
+	public int pathSum(TreeNode root, int targetSum) {
+		res = 0;
+		Map<Long, Integer> prefix = new HashMap<>();
+		prefix.put(0L, 1);
+		dfs(root, targetSum, 0, prefix);
 		return res;
 	}
 
-	// time O(n^2)
-	public int pathSumRecursive(TreeNode root, int sum) {
-		if(root == null){
-			return 0;
+	private void dfs(TreeNode root, int targetSum, long sum, Map<Long, Integer> prefix) {
+		// prefix 存从根节点出发的前缀节点和
+		if (root == null) {
+			return;
 		}
-		return pathSumFrom(root, sum)
-			+ pathSumRecursive(root.left, sum)
-			+ pathSumRecursive(root.right, sum);
+		// 计算前缀节点和
+		sum += root.val;
+		// 用前缀哈希表计算当前路径上是否存在和为目标的子路径
+		res += prefix.getOrDefault(sum - targetSum, 0);
+		// 将当前前缀节点和加入哈希表
+		prefix.merge(sum, 1, Integer::sum);
+		// 递归左右子树
+		dfs(root.left, targetSum, sum, prefix);
+		dfs(root.right, targetSum, sum, prefix);
+		// 活干完后恢复现场
+		prefix.merge(sum, -1, Integer::sum);
 	}
 
-	private int pathSumFrom(TreeNode root, int sum){
-		if(root == null){
-			return 0;
-		}
-		return (root.val == sum ? 1 : 0)
-			+ pathSumFrom(root.left, sum - root.val)
-			+ pathSumFrom(root.right, sum - root.val);
-	}
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

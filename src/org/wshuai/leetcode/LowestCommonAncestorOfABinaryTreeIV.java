@@ -9,56 +9,48 @@ import java.util.Set;
  */
 public class LowestCommonAncestorOfABinaryTreeIV {
 
-	// time O(n), space O(n)
-	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {
-		Set<TreeNode> set = new HashSet<>();
-		for (TreeNode node : nodes) {
-			set.add(node);
-		}
-		return dfs(root, set);
-	}
+    // time O(n), space O(n)
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode[] nodes) {
+        Set<TreeNode> set = new HashSet<>();
+        for (TreeNode node : nodes) {
+            set.add(node);
+        }
+        return dfs(root, set);
+    }
 
-	private TreeNode dfs(TreeNode root, Set<TreeNode> nodes) {
-		if (root == null || nodes.contains(root)) { // pop two nodes up until LCA is found
-			return root;
-		}
-		TreeNode left = dfs(root.left, nodes);
-		TreeNode right = dfs(root.right, nodes);
-		if (left == null) {
-			return right;
-		} else if (right == null) {
-			return left;
-		}
-		return root;
-	}
+    private TreeNode dfs(TreeNode root, Set<TreeNode> set) {
+        if (root == null || set.contains(root)) {
+            return root;
+        }
+        TreeNode left = dfs(root.left, set), right = dfs(root.right, set);
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        return root;
+    }
 
-	// time O(n*log(d))
-	public TreeNode lowestCommonAncestorDivideConquer(TreeNode root, TreeNode[] nodes) {
-		return merge(root, nodes, 0, nodes.length - 1);
-	}
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-	private TreeNode merge(TreeNode root, TreeNode[] nodes, int i, int j) {
-		if (i == j) {
-			return nodes[i];
-		}
-		int k = i + (j - i) / 2;
-		TreeNode left = merge(root, nodes, i, k);
-		TreeNode right = merge(root, nodes, k + 1, j);
-		return helper(root, left, right);
-	}
+        TreeNode() {
+        }
 
-	public TreeNode helper(TreeNode root, TreeNode p, TreeNode q) {
-		if (root == null || root == p || root == q) {
-			return root;
-		}
-		TreeNode left = helper(root.left, p, q);
-		TreeNode right = helper(root.right, p, q);
-		if (left == null) {
-			return right;
-		}
-		if (right == null) {
-			return left;
-		}
-		return root;
-	}
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
