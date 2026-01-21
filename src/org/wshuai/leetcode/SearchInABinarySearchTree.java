@@ -5,18 +5,40 @@ package org.wshuai.leetcode;
  * #0700 https://leetcode.com/problems/search-in-a-binary-search-tree/
  */
 public class SearchInABinarySearchTree {
-	// time O(log(n))
-	public TreeNode searchBST(TreeNode root, int val) {
-		if(root == null){
-			return null;
-		}
-		if(root.val == val){
-			return root;
-		}
-		if(root.val > val){
-			return searchBST(root.left, val);
-		}else{
-			return searchBST(root.right, val);
-		}
-	}
+
+    // time O(n), space O(1)
+    public TreeNode searchBST(TreeNode root, int val) {
+        while (root != null) {
+            if (root.val < val) {
+                root = root.right;
+            } else if (root.val > val) {
+                root = root.left;
+            } else {
+                return root;
+            }
+        }
+        return null;
+    }
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

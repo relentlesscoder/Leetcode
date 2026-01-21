@@ -5,20 +5,77 @@ package org.wshuai.leetcode;
  * #0098 https://leetcode.com/problems/validate-binary-search-tree/
  */
 public class ValidateBinarySearchTree {
+	private TreeNode last = null;
+	private boolean res = true;
 
-	// time O(n)
+	// time O(n), space O(n)
 	public boolean isValidBST(TreeNode root) {
-		return dfs(root, Long.MIN_VALUE, Long.MAX_VALUE);
+		inorder(root);
+		return res;
 	}
 
-	public boolean dfs(TreeNode root, long minVal, long maxVal) {
-		if (root == null){
-			return true;
+	private void inorder(TreeNode root) {
+		if (root == null || !res) {
+			return;
 		}
-		if (root.val >= maxVal || root.val <= minVal){
-			return false;
+		inorder(root.left);
+		if (last != null && root.val <= last.val) {
+			res = false;
 		}
-		return dfs(root.left, minVal, root.val)
-				&& dfs(root.right, root.val, maxVal);
+		last = root;
+		inorder(root.right);
 	}
+
+	// time O(n), space O(1)
+	public boolean isValidBSTMorris(TreeNode root) {
+		TreeNode last = null, curr = root;
+		while (curr != null) {
+			if (curr.left == null) {
+				if (last != null && curr.val <= last.val) {
+					return false;
+				}
+				last = curr;
+				curr = curr.right;
+			} else {
+				TreeNode pre = curr.left;
+				while (pre.right != null && pre.right != curr) {
+					pre = pre.right;
+				}
+				if (pre.right == null) {
+					pre.right = curr;
+					curr = curr.left;
+				} else {
+					pre.right = null;
+					if (last != null && curr.val <= last.val) {
+						return false;
+					}
+					last = curr;
+					curr = curr.right;
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
