@@ -954,6 +954,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/ (自底向上 DFS + 最低共同祖先)
 #0250 https://leetcode.com/problems/count-univalue-subtrees/ (自底向上 DFS)
 #0257 https://leetcode.com/problems/binary-tree-paths/ (二叉树 回溯) (模版)
+#0270 https://leetcode.com/problems/closest-binary-search-tree-value/ (二叉搜索树)
 #0285 https://leetcode.com/problems/inorder-successor-in-bst/ (二叉搜索树 遍历) (Morris)
 #0298 https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/ (二叉树 递归 自顶向下/自底向上)
 #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
@@ -963,6 +964,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0437 https://leetcode.com/problems/path-sum-iii/ (二叉树 回溯 + 前缀和)
 #0501 https://leetcode.com/problems/find-mode-in-binary-search-tree/ (二叉搜索树 遍历) (Morris)
 #0508 https://leetcode.com/problems/most-frequent-subtree-sum/ (自底向上 DFS + 哈希表)
+#0510 https://leetcode.com/problems/inorder-successor-in-bst-ii/ (二叉搜索树 遍历) (Morris)
 #0530 https://leetcode.com/problems/minimum-absolute-difference-in-bst/ (二叉搜索树 遍历) (Morris)
 #0538 https://leetcode.com/problems/convert-bst-to-greater-tree/ (miao a~~~) (有递有归 - 参考 google drive 中的图解)
 #0543 https://leetcode.com/problems/diameter-of-binary-tree/ (二叉树 直径)

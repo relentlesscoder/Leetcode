@@ -5,31 +5,52 @@ package org.wshuai.leetcode;
  * #0510 https://leetcode.com/problems/inorder-successor-in-bst-ii/
  */
 public class InorderSuccessorInBSTII {
-	// time O(log(n))
-	public TreeNodeWithParent inorderSuccessor(TreeNodeWithParent node) {
-		if(node.right != null){
-			TreeNodeWithParent successor = node.right;
-			while(successor != null && successor.left != null){
-				successor = successor.left;
+
+	// time O(n), space O(1)
+	public Node inorderSuccessor(Node node) {
+		Node res = null;
+		// 如果 node 有右子树，则后继节点为右子树的最小值
+		if (node.right != null) {
+			res = node.right;
+			while (res != null && res.left != null) {
+				res = res.left;
 			}
-			return successor;
-		}else{
-			TreeNodeWithParent successor = node.parent;
-			while (successor != null && successor.val < node.val) {
-				successor = successor.parent;
+		} else {
+			// 如果 node 没有右子树，则后继节点第一个大于它的祖先节点
+			res = node.parent;
+			while (res != null && res.val <= node.val) {
+				res = res.parent;
 			}
-			return successor;
 		}
+		return res;
 	}
 
-	private class TreeNodeWithParent{
+	// time O(n), space O(n)
+	public Node inorderSuccessorFromRoot(Node node) {
+		// 先找到根结点，再用 #0285 的方法找后继节点
+		Node res = null, root = node;
+		while (root.parent != null) {
+			root = root.parent;
+		}
+		while (root != null) {
+			if (root.val > node.val) {
+				res = root;
+				root = root.left;
+			} else {
+				root = root.right;
+			}
+		}
+		return res;
+	}
+
+	private class Node {
 		public int val;
 
-		public TreeNodeWithParent left;
+		public Node left;
 
-		public TreeNodeWithParent right;
+		public Node right;
 
-		public TreeNodeWithParent parent;
+		public Node parent;
 
 	}
 }
