@@ -6,25 +6,49 @@ package org.wshuai.leetcode;
  */
 public class ConvertSortedArrayToBinarySearchTree {
 
-	// time O(n)
+	// time O(n), space O(log(n))
 	public TreeNode sortedArrayToBST(int[] nums) {
-		if(nums == null || nums.length == 0){
-			return null;
-		}
-		return merge(nums, 0, nums.length - 1);
+		int n = nums.length;
+		return dfs(nums, 0, n - 1);
 	}
 
-	private TreeNode merge(int[] nums, int i, int j){
-		if(i > j){
+	private TreeNode dfs(int[] nums, int start, int end) {
+		// 每次将原问题划分为两个子问题，每次将一个元素转换成节点
+		if (start > end) {
 			return null;
 		}
-		if(i == j){
-			return new TreeNode(nums[i]);
+		if (start == end) {
+			return new TreeNode(nums[start]);
 		}
-		int k = i + (j - i) / 2;
-		TreeNode root = new TreeNode(nums[k]);
-		root.left = merge(nums, i, k - 1);
-		root.right = merge(nums, k + 1, j);
+		// 将中间的元素作为当前子树的根结点
+		int mid = start + (end - start) / 2;
+		TreeNode root = new TreeNode(nums[mid]);
+		// 递归左子问题 [start, mid - 1]
+		root.left = dfs(nums, start, mid - 1);
+		// 递归右子问题 [mid - 1, end]
+		root.right = dfs(nums, mid + 1, end);
 		return root;
 	}
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

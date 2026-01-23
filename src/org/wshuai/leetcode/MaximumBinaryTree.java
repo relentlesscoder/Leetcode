@@ -10,20 +10,18 @@ import java.util.Deque;
 public class MaximumBinaryTree {
 
     // time O(n), space O(n)
-    public TreeNode constructMaximumBinaryTreeMonotonicStack(int[] nums) {
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        int n = nums.length;
         Deque<TreeNode> stack = new ArrayDeque<>();
-        for (int num : nums) {
-            TreeNode cur = new TreeNode(num);
-            // Find the max from left side of num that is less than num
-            // and set it to left child
-            while (!stack.isEmpty() && stack.peek().val < num) {
-                cur.left = stack.pop();
+        for (int i = 0; i < n; i++) {
+            TreeNode curr = new TreeNode(nums[i]);
+            while (!stack.isEmpty() && stack.peek().val < nums[i]) {
+                curr.left = stack.pop();
             }
-            // If the top is grater then num, set num as its right child
             if (!stack.isEmpty()) {
-                stack.peek().right = cur;
+                stack.peek().right = curr;
             }
-            stack.push(cur);
+            stack.push(curr);
         }
         return stack.isEmpty() ? null : stack.pollLast();
     }
@@ -55,54 +53,34 @@ public class MaximumBinaryTree {
     // time O(n * log(n)), space O(n)
     public TreeNode constructMaximumBinaryTreeSegmentTree(int[] nums) {
         int n = nums.length;
-        SegmentTree st = new SegmentTree(n);
-        for (int i = 0; i < n; i++) {
-            st.update(i, nums[i]);
-        }
-        return dfs(nums, 0, nums.length - 1, st);
+        SegmentTree st = new SegmentTree(nums);
+        return dfs(0, n - 1, st);
     }
 
-    private TreeNode dfs(int[] nums, int left, int right, SegmentTree st) {
-        if (left >= right) {
-            if (left > right) {
-                return null;
-            }
-            return new TreeNode(nums[left]);
+    private TreeNode dfs(int start, int end, SegmentTree st) {
+        if (start > end) {
+            return null;
         }
-        int[] res = st.query(left, right);
-        int val = res[0], idx = res[1];
-        TreeNode node = new TreeNode(val);
-        node.left = dfs(nums, left, idx - 1, st);
-        node.right = dfs(nums, idx + 1, right, st);
-        return node;
+        int[] arr = st.query(start, end);
+        TreeNode root = new TreeNode(arr[0]);
+        if (start == end) {
+            return root;
+        }
+        root.left = dfs(start, arr[1] - 1, st);
+        root.right = dfs(arr[1] + 1, end, st);
+        return root;
     }
 
     private static class SegmentTree {
 
         private final int n;
-        private final int[][] tree;
+        private int[][] tree;
 
-        public SegmentTree(int n) {
-            this.n = n;
-            tree = new int[2 << (32 - Integer.numberOfLeadingZeros(n - 1))][2];
-        }
-
-        public void update(int index, int val) {
-            update(1, 0, n - 1, index, val);
-        }
-
-        private void update(int node, int left, int right, int index, int val) {
-            if (left == right) {
-                tree[node] = new int[]{val, index};
-                return;
-            }
-            int mid = (left + right) / 2;
-            if (index <= mid) {
-                update(node * 2, left, mid, index, val);
-            } else {
-                update(node * 2 + 1, mid + 1, right, index, val);
-            }
-            maintain(node);
+        public SegmentTree(int[] nums) {
+            this.n = nums.length;
+            int size = 2 << (32 - Integer.numberOfLeadingZeros(n - 1));
+            this.tree = new int[size][2];
+            build(1, 0, n - 1, nums);
         }
 
         public int[] query(int start, int end) {
@@ -113,7 +91,7 @@ public class MaximumBinaryTree {
             if (left >= start && right <= end) {
                 return tree[node];
             }
-            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             if (end <= mid) {
                 return query(node * 2, left, mid, start, end);
             }
@@ -125,12 +103,48 @@ public class MaximumBinaryTree {
             return merge(lr, rr);
         }
 
-        private int[] merge(int[] a, int[] b) {
-            return a[0] > b[0] ? a : b;
+        private void build(int node, int left, int right, int[] nums) {
+            if (left == right) {
+                tree[node] = new int[]{nums[left], left};
+                return;
+            }
+            int mid = left + (right - left) / 2;
+            build(node * 2, left, mid, nums);
+            build(node * 2 + 1, mid + 1, right, nums);
+            maintain(node);
         }
 
         private void maintain(int node) {
             tree[node] = merge(tree[node * 2], tree[node * 2 + 1]);
+        }
+
+        private int[] merge(int[] v1, int[] v2) {
+            if (v1[0] > v2[0]) {
+                return v1;
+            }
+            return v2;
+        }
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
     }
 }

@@ -1,6 +1,10 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by Wei on 12/14/2019.
