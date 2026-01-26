@@ -936,8 +936,13 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0098 https://leetcode.com/problems/validate-binary-search-tree/ (二叉搜索树 遍历) (Morris)
 #0099
 #0100 https://leetcode.com/problems/same-tree/ (自底向上 DFS)
-#0101 https://leetcode.com/problems/symmetric-tree/ (miao a~~~) (DFS/BFS)
+#0101 https://leetcode.com/problems/symmetric-tree/ (miao a~~~) (二叉树 翻转一层的节点) (DFS/BFS)
+#0102 https://leetcode.com/problems/binary-tree-level-order-traversal/ (二叉树 BFS)
+#0103 https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/ (miao a~~~) (二叉树 BFS)
 #0104 https://leetcode.com/problems/maximum-depth-of-binary-tree/ (自顶向下/自底向上 DFS)
+#0105 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/ (miao a~~~) (根据前序 + 中序构造二叉树)
+#0106 https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/ (miao a~~~) (根据后序 + 中序构造二叉树)
+#0107 https://leetcode.com/problems/binary-tree-level-order-traversal-ii/ (二叉树 BFS)
 #0108 https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/ (二叉树 构造)
 #0110 https://leetcode.com/problems/balanced-binary-tree/ (自底向上 DFS)
 #0111 https://leetcode.com/problems/minimum-depth-of-binary-tree/ (自顶向下/自底向上 DFS)
@@ -955,10 +960,10 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0235 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/ (二叉搜索树 + 最低共同祖先)
 #0236 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/ (自底向上 DFS + 最低共同祖先)
 #0250 https://leetcode.com/problems/count-univalue-subtrees/ (自底向上 DFS)
-#0255 https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/ (二叉树 先序遍历) (R)
+#0255 https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/ (二叉搜索树 先序遍历验证) (R)
 #0257 https://leetcode.com/problems/binary-tree-paths/ (二叉树 回溯) (模版)
 #0270 https://leetcode.com/problems/closest-binary-search-tree-value/ (二叉搜索树)
-#0272
+#0272 https://leetcode.com/problems/closest-binary-search-tree-value-ii/ (miao a~~~) (二叉搜索树) (遍历/搜索)
 #0285 https://leetcode.com/problems/inorder-successor-in-bst/ (二叉搜索树 遍历) (Morris)
 #0298 https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/ (二叉树 递归 自顶向下/自底向上)
 #0314 https://leetcode.com/problems/binary-tree-vertical-order-traversal/
@@ -966,10 +971,14 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0366 https://leetcode.com/problems/find-leaves-of-binary-tree/ (miao a~~~) (自底向上 DFS)
 #0404 https://leetcode.com/problems/sum-of-left-leaves/ (二叉树 遍历)
 #0437 https://leetcode.com/problems/path-sum-iii/ (二叉树 回溯 + 前缀和)
+#0450 https://leetcode.com/problems/delete-node-in-a-bst/ (二叉搜索树 删除)
 #0501 https://leetcode.com/problems/find-mode-in-binary-search-tree/ (二叉搜索树 遍历) (Morris)
 #0508 https://leetcode.com/problems/most-frequent-subtree-sum/ (自底向上 DFS + 哈希表)
 #0510 https://leetcode.com/problems/inorder-successor-in-bst-ii/ (二叉搜索树 遍历) (Morris)
+#0513 https://leetcode.com/problems/find-bottom-left-tree-value/ (二叉树 递归/BFS) (#0199)
+#0515 https://leetcode.com/problems/find-largest-value-in-each-tree-row/ (二叉树 递归/BFS) (#0199)
 #0530 https://leetcode.com/problems/minimum-absolute-difference-in-bst/ (二叉搜索树 遍历) (Morris)
+#0536 https://leetcode.com/problems/construct-binary-tree-from-string/ (miao a~~~) (二叉树 + 栈) (括号题)
 #0538 https://leetcode.com/problems/convert-bst-to-greater-tree/ (miao a~~~) (有递有归 - 参考 google drive 中的图解)
 #0543 https://leetcode.com/problems/diameter-of-binary-tree/ (二叉树 直径)
 #0545 https://leetcode.com/problems/boundary-of-binary-tree/ (miao a~~~) (二叉树 递归 自顶向下) (R)
@@ -979,34 +988,41 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0606 https://leetcode.com/problems/construct-string-from-binary-tree/ (自底向上 DFS)
 #0617 https://leetcode.com/problems/merge-two-binary-trees/ (miao a~~~) (自底向上 DFS)
 #0623 https://leetcode.com/problems/add-one-row-to-tree/ (miao a~~~) (二叉树 递归 自顶向下)
+#0637 https://leetcode.com/problems/average-of-levels-in-binary-tree/ (二叉树 BFS)
 #0653 https://leetcode.com/problems/two-sum-iv-input-is-a-bst/ (miao a~~~) (二叉搜索树 遍历) (Morris)
 #0654 https://leetcode.com/problems/maximum-binary-tree/ (miao a~~~) (最大二叉树 构造) (线段树/单调栈/分治) (R)
 #0663 https://leetcode.com/problems/equal-tree-partition/ (自底向上 DFS)
+#0669 https://leetcode.com/problems/trim-a-binary-search-tree/ (miao a~~~) (二叉搜索树 范围删除节点)
 #0671 https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/ (二叉树 遍历) (Morris)
 #0687 https://leetcode.com/problems/longest-univalue-path/ (miao a~~~) (二叉树 直径) (#0543)
 #0700 https://leetcode.com/problems/search-in-a-binary-search-tree/ (二叉搜索树)
+#0701 https://leetcode.com/problems/insert-into-a-binary-search-tree/ (二叉搜索树 插入) 
 #0783 https://leetcode.com/problems/minimum-distance-between-bst-nodes/ (二叉搜索树 遍历) (Morris) (同#0530)
 #0814 https://leetcode.com/problems/binary-tree-pruning/ (自底向上 DFS) (删点)
 #0865 https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/ (miao a~~~) (自底向上 DFS + 最低共同祖先)
 #0872 https://leetcode.com/problems/leaf-similar-trees/ (miao a~~~) (二叉树 遍历) (Morris)
+#0889 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/ (miao a~~~) (根据前序 + 后序构造二叉树)
 #0897 https://leetcode.com/problems/increasing-order-search-tree/ (二叉搜索树 遍历) (Morris)
 #0971 https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/ (miao a~~~) (二叉树 递归 自顶向下)
 #0938 https://leetcode.com/problems/range-sum-of-bst/ (二叉搜索树)
 #0951 https://leetcode.com/problems/flip-equivalent-binary-trees/ (miao a~~~) (自底向上 DFS)
 #0965 https://leetcode.com/problems/univalued-binary-tree/ (自顶向下/自底向上 DFS)
 #0988 https://leetcode.com/problems/smallest-string-starting-from-leaf/ (二叉树 递归)
-#0993 https://leetcode.com/problems/cousins-in-binary-tree/
+#0993 https://leetcode.com/problems/cousins-in-binary-tree/ (二叉树 递归)
 #0998 https://leetcode.com/problems/maximum-binary-tree-ii/ (最大二叉树 插入)
+#1008 https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/ (miao a~~~) (根据前序构造二叉树) (单调栈/排序/二分)
 #1022 https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/ (miao a~~~) (二叉树 递归 自顶向下)
 #1026 https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/ (miao a~~~) (二叉树 递归 自顶向下/自底向上) (状态压缩)
+#1028 https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/ (miao a~~~) (二叉树 构造 + 栈)
 #1038 https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/ (miao a~~~) (有递有归 - 参考 google drive 中的图解) (同 #0538)
 #1080 https://leetcode.com/problems/insufficient-nodes-in-root-to-leaf-paths/ (miao a~~~) (自底向上 DFS) (R)
 #1110 https://leetcode.com/problems/delete-nodes-and-return-forest/ (自底向上 DFS) (删点)
 #1120 https://leetcode.com/problems/maximum-average-subtree/ (miao a~~~) (自底向上 DFS + 状态压缩)
 #1123 https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/ (miao a~~~) (自底向上 DFS + 最低共同最先) (#0865)
 #1145 https://leetcode.com/problems/binary-tree-coloring-game/ (miao a~~~) (自底向上 DFS)
-#1161 https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/
+#1161 https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/ (二叉树 BFS) (#0515)
 #1214 https://leetcode.com/problems/two-sum-bsts/ (miao a~~~) (二叉树 遍历) (Morris) (BST的中序遍历)
+#1302 https://leetcode.com/problems/deepest-leaves-sum/ (二叉树 递归/BFS) (#0199)
 #1305 https://leetcode.com/problems/all-elements-in-two-binary-search-trees/ (二叉搜索树 遍历) (Morris)
 #1315 https://leetcode.com/problems/sum-of-nodes-with-even-valued-grandparent/ (二叉树 递归 自顶向下)
 #1325 https://leetcode.com/problems/delete-leaves-with-a-given-value/ (自底向上 DFS) (删点)
@@ -1014,12 +1030,16 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1372 https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/ (miao a~~~) (二叉树 递归 自顶向下) (R)
 #1373 https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/ (二叉搜索树 dfs)
 #1379 https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/ (自底向上 DFS)
+#1382 https://leetcode.com/problems/balance-a-binary-search-tree/ (二叉搜索树 构造平衡二叉搜索树)
 #1430 https://leetcode.com/problems/check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree/ (二叉树 递归 自顶向下)
 #1448 https://leetcode.com/problems/count-good-nodes-in-binary-tree/ (二叉树 递归 自顶向下)
 #1457 https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/ (miao a~~~) (二叉树 回溯 + 回文 + 位操作) 
 #1469 https://leetcode.com/problems/find-all-the-lonely-nodes/ (二叉树 遍历 自顶向下)
 #1530 https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/ (miao a~~~) (自底向上 DFS)
+#1597
+#1609 https://leetcode.com/problems/even-odd-tree/ (二叉树 DFS/BFS) (#0199)
 #1612 https://leetcode.com/problems/check-if-two-expression-trees-are-equivalent/ (自底向上 DFS)
+#1628 https://leetcode.com/problems/design-an-expression-tree-with-evaluate-function/ (构造二叉树 + 栈)
 #1644 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/ (miao a~~~) (自底向上 DFS + 最低共同祖先)
 #1650 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/ (miao a~~~) (自底向上 DFS + 最低共同祖先) (#0160)
 #1676 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/ (miao a~~~) (自底向上 DFS + 最低共同祖先) 
@@ -1029,14 +1049,15 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1973 https://leetcode.com/problems/count-nodes-equal-to-sum-of-descendants/ (自底向上 DFS)
 #2049 https://leetcode.com/problems/count-nodes-with-the-highest-score/
 #2096 https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/ (miao a~~~) (自底向上 DFS + 最低共同祖先) (在二叉树中寻找一个目标节点路径的模版)
-#2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/
+#2196 https://leetcode.com/problems/create-binary-tree-from-descriptions/ (二叉树构造 拓扑排序)
 #2265 https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/ (miao a~~~) (自底向上 DFS + 状态压缩)
 #2331 https://leetcode.com/problems/evaluate-boolean-binary-tree/ (自底向上 DFS)
 #2385 https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/ (miao a~~~) (二叉树 直径) (图 DFS/BFS) (#0543) (R)
-#2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/
+#2415 https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/ (miao a~~~) (二叉树 翻转一层的节点) (递归/BFS) (#0101)
 #2458 https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/
 #2471 https://leetcode.com/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/
 #2476 https://leetcode.com/problems/closest-nodes-queries-in-a-binary-search-tree/ (二叉搜索树 遍历) (Morris)
+#2583 https://leetcode.com/problems/kth-largest-sum-in-a-binary-tree/ (二叉树 BFS + 最小堆)
 #2641 https://leetcode.com/problems/cousins-in-binary-tree-ii/
 #2689 https://leetcode.com/problems/extract-kth-character-from-the-rope-tree/ (miao a~~~) (二叉树 递归 自顶向下) (非暴力解 不连接所有也子节点的字符串)
 #2764 https://leetcode.com/problems/is-array-a-preorder-of-some-binary-tree/ (miao a~~~) (二叉树 遍历)
@@ -1045,6 +1066,61 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3319 https://leetcode.com/problems/k-th-largest-perfect-subtree-size-in-binary-tree/ (miao a~~~) (自底向上 DFS + 最小堆)
 #LCP44 https://leetcode.cn/problems/sZ59z6/ (二叉树 遍历) (Morris)
 #LCP67 https://leetcode.cn/problems/KnLfVT/ (自底向上 DFS)
+
+20. Stack
+
+#0020 https://leetcode.com/problems/valid-parentheses/
+#0032 https://leetcode.com/problems/longest-valid-parentheses/
+#0071 https://leetcode.com/problems/simplify-path/
+#0150 https://leetcode.com/problems/evaluate-reverse-polish-notation/
+#0155 https://leetcode.com/problems/min-stack/
+#0224 https://leetcode.com/problems/basic-calculator/
+#0227 https://leetcode.com/problems/basic-calculator-ii/
+#0346 https://leetcode.com/problems/moving-average-from-data-stream/
+#0394 https://leetcode.com/problems/decode-string/
+#0536 https://leetcode.com/problems/construct-binary-tree-from-string/ (miao a~~~) (二叉树 + 栈) (括号题)
+#0636 https://leetcode.com/problems/exclusive-time-of-functions/
+#0678 https://leetcode.com/problems/valid-parenthesis-string/
+#0682 https://leetcode.com/problems/baseball-game/
+#0716 https://leetcode.com/problems/max-stack/
+#0735 https://leetcode.com/problems/asteroid-collision/
+#0844 https://leetcode.com/problems/backspace-string-compare/
+#0856 https://leetcode.com/problems/score-of-parentheses/
+#0895 https://leetcode.com/problems/maximum-frequency-stack/
+#0921 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+#0946 https://leetcode.com/problems/validate-stack-sequences/
+#1003 https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/
+#1006 https://leetcode.com/problems/clumsy-factorial/
+#1021 https://leetcode.com/problems/remove-outermost-parentheses/
+#1047 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
+#1106 https://leetcode.com/problems/parsing-a-boolean-expression/
+#1111 https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/
+#1172 https://leetcode.com/problems/dinner-plate-stacks/
+#1190 https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/ (wormhole!!!)
+#1209 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/
+#1249 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+#1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
+#1472 https://leetcode.com/problems/design-browser-history/
+#1541 https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/
+#1544 https://leetcode.com/problems/make-the-string-great/
+#1614 https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
+#1717 https://leetcode.com/problems/maximum-score-from-removing-substrings/
+#1813 https://leetcode.com/problems/sentence-similarity-iii/
+#1963 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
+#2116 https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
+#2197 https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
+#2216 https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/
+#2390 https://leetcode.com/problems/removing-stars-from-a-string/
+#2434 https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/
+#2524 https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/ (sliding window + stack)
+#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (R*****)
+#2696 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
+#2751 https://leetcode.com/problems/robot-collisions/
+#2810 https://leetcode.com/problems/faulty-keyboard/
+#3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
+#3412 https://leetcode.com/problems/find-mirror-score-of-a-string/
+#3561 https://leetcode.com/problems/resulting-string-after-adjacent-removals/
+#3703 https://leetcode.com/problems/remove-k-balanced-substrings/
 
 
 
@@ -1113,59 +1189,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3373 https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-ii/
 #3552 https://leetcode.com/problems/grid-teleportation-traversal/ ***(BFS)
 #3566 https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/
-
-19. Stack/Queue
-#0020 https://leetcode.com/problems/valid-parentheses/
-#0032 https://leetcode.com/problems/longest-valid-parentheses/
-#0071 https://leetcode.com/problems/simplify-path/
-#0150 https://leetcode.com/problems/evaluate-reverse-polish-notation/
-#0155 https://leetcode.com/problems/min-stack/
-#0224 https://leetcode.com/problems/basic-calculator/
-#0227 https://leetcode.com/problems/basic-calculator-ii/
-#0346 https://leetcode.com/problems/moving-average-from-data-stream/
-#0394 https://leetcode.com/problems/decode-string/
-#0636 https://leetcode.com/problems/exclusive-time-of-functions/
-#0678 https://leetcode.com/problems/valid-parenthesis-string/
-#0682 https://leetcode.com/problems/baseball-game/
-#0716 https://leetcode.com/problems/max-stack/
-#0735 https://leetcode.com/problems/asteroid-collision/
-#0844 https://leetcode.com/problems/backspace-string-compare/
-#0856 https://leetcode.com/problems/score-of-parentheses/
-#0895 https://leetcode.com/problems/maximum-frequency-stack/
-#0921 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
-#0946 https://leetcode.com/problems/validate-stack-sequences/
-#1003 https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/
-#1006 https://leetcode.com/problems/clumsy-factorial/
-#1021 https://leetcode.com/problems/remove-outermost-parentheses/
-#1047 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/
-#1106 https://leetcode.com/problems/parsing-a-boolean-expression/
-#1111 https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/
-#1172 https://leetcode.com/problems/dinner-plate-stacks/
-#1190 https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/ (wormhole!!!)
-#1209 https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/
-#1249 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
-#1441 https://leetcode.com/problems/build-an-array-with-stack-operations/
-#1472 https://leetcode.com/problems/design-browser-history/
-#1541 https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/
-#1544 https://leetcode.com/problems/make-the-string-great/
-#1614 https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/
-#1717 https://leetcode.com/problems/maximum-score-from-removing-substrings/
-#1813 https://leetcode.com/problems/sentence-similarity-iii/
-#1963 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/
-#2116 https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/
-#2197 https://leetcode.com/problems/replace-non-coprime-numbers-in-array/
-#2216 https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/
-#2390 https://leetcode.com/problems/removing-stars-from-a-string/
-#2434 https://leetcode.com/problems/using-a-robot-to-print-the-lexicographically-smallest-string/
-#2524 https://leetcode.com/problems/maximum-frequency-score-of-a-subarray/ (sliding window + stack)
-#2589 https://leetcode.com/problems/minimum-time-to-complete-all-tasks/ (R*****)
-#2696 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
-#2751 https://leetcode.com/problems/robot-collisions/
-#2810 https://leetcode.com/problems/faulty-keyboard/
-#3170 https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/
-#3412 https://leetcode.com/problems/find-mirror-score-of-a-string/
-#3561 https://leetcode.com/problems/resulting-string-after-adjacent-removals/
-#3703 https://leetcode.com/problems/remove-k-balanced-substrings/
 
 20. Parentheses
 #0020 https://leetcode.com/problems/valid-parentheses/

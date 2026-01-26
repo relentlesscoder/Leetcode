@@ -13,7 +13,7 @@ public class BinaryTreeRightSideView {
 
     // time O(n), space O(h)
     public List<Integer> rightSideViewRecursive(TreeNode root) {
-		// 二叉树递归，先遍历右子树再遍历左子树。将每一层遇到的第一个节点加入列表。
+        // 二叉树递归，先遍历右子树再遍历左子树。将每一层遇到的第一个节点加入列表。
         List<Integer> res = new ArrayList<>();
         dfs(root, 0, res);
         return res;
@@ -31,8 +31,7 @@ public class BinaryTreeRightSideView {
     }
 
     // time O(n), space O(n)
-    public List<Integer> rightSideViewLevelTraversal(TreeNode root) {
-        // 二叉树的层序遍历
+    public List<Integer> rightSideViewBFS(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) {
             return res;
@@ -40,16 +39,16 @@ public class BinaryTreeRightSideView {
         Deque<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            int size = queue.size();
-            // 将每一层的最右边的节点的值加入列表
+            // 将每一层的最后(最右边)的元素加入答案列表
             res.add(queue.peekLast().val);
+            int size = queue.size();
             while (size-- > 0) {
-                TreeNode curr = queue.poll();
-                if (curr.left != null) {
-                    queue.offer(curr.left);
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.offer(node.left);
                 }
-                if (curr.right != null) {
-                    queue.offer(curr.right);
+                if (node.right != null) {
+                    queue.offer(node.right);
                 }
             }
         }

@@ -1,7 +1,8 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -13,26 +14,45 @@ public class AverageOfLevelsInBinaryTree {
 	// time O(n), space O(n)
 	public List<Double> averageOfLevels(TreeNode root) {
 		List<Double> res = new ArrayList<>();
-		if(root == null){
-			return res;
-		}
-		LinkedList<TreeNode> queue = new LinkedList<>();
-		queue.offerLast(root);
-		while(!queue.isEmpty()){
-			int size = queue.size(), count = size;
-			double sum = 0.0;
-			while(count-- > 0){
-				TreeNode cur = queue.pollFirst();
-				sum += cur.val;
-				if(cur.left != null){
-					queue.offerLast(cur.left);
+		Deque<TreeNode> queue = new ArrayDeque<>();
+		queue.offer(root);
+		while (!queue.isEmpty()) {
+			double sum = 0.0, count = queue.size();
+			int size = queue.size();
+			while (size-- > 0) {
+				TreeNode node = queue.poll();
+				sum += node.val;
+				if (node.left != null) {
+					queue.offer(node.left);
 				}
-				if(cur.right != null){
-					queue.offerLast(cur.right);
+				if (node.right != null) {
+					queue.offer(node.right);
 				}
 			}
-			res.add(sum / size);
+			res.add(sum / count);
 		}
 		return res;
 	}
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

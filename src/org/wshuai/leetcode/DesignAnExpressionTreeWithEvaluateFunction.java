@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Wei on 10/22/2020.
@@ -8,64 +9,94 @@ import java.util.Stack;
  */
 public class DesignAnExpressionTreeWithEvaluateFunction {
 
-	// time O(n), space O(n)
-	public Node buildTree(String[] postfix) {
-		Stack<Node> stack = new Stack<>();
-		for(String s : postfix){
-			if(isOperator(s.charAt(0))){
-				TreeNode cur = new TreeNode(s);
-				cur.right = stack.pop();
-				cur.left = stack.pop();
-				stack.push(cur);
-			}else{
-				stack.push(new TreeNode(s));
-			}
-		}
-		return stack.pop();
-	}
+    /**
+     * This is the TreeBuilder class.
+     * You can treat it as the driver code that takes the postinfix input
+     * and returns the expression tree representing it as a Node.
+     */
+    private static class TreeBuilder {
+        Node buildTree(String[] postfix) {
+            int n = postfix.length;
+            Deque<ExpressionTreeNode> stack = new ArrayDeque<>();
+            for (int i = 0; i < n; i++) {
+                if (postfix[i].equals("+")
+                        || postfix[i].equals("-")
+                        || postfix[i].equals("*")
+                        || postfix[i].equals("/")) {
+                    ExpressionTreeNode node =
+                            new ExpressionTreeNode(
+                                    true,
+                                    0,
+                                    postfix[i].charAt(0));
+                    node.right = stack.pop();
+                    node.left = stack.pop();
+                    stack.push(node);
+                } else {
+                    stack.push(
+                            new ExpressionTreeNode(
+                                    false,
+                                    Integer.parseInt(postfix[i]),
+                                    '#'));
+                }
+            }
+            return stack.peek();
+        }
 
-	public static boolean isOperator(char c){
-		return c == '+' || c == '-' || c == '*' || c == '/';
-	}
+        private static class ExpressionTreeNode extends Node {
 
-	private abstract class Node {
+            private ExpressionTreeNode left;
+            private ExpressionTreeNode right;
 
-		public abstract int evaluate();
-		// define your fields here
-		public String val;
+            public ExpressionTreeNode(boolean isOperator, int value, char operator) {
+                this.isOperator = isOperator;
+                this.value = value;
+                this.operator = operator;
+                this.left = null;
+                this.right = null;
+            }
 
-		public Node left;
+            @Override
+            public int evaluate() {
+                return evaluate(this);
+            }
 
-		public Node right;
+            private int evaluate(ExpressionTreeNode root) {
+                if (!root.isOperator) {
+                    return root.value;
+                }
+                return calc(evaluate(root.left), evaluate(root.right), root.operator);
+            }
 
-		public Node(String val){
-			this.val = val;
-			this.left = null;
-			this.right = null;
-		}
-	}
+            private int calc(int v1, int v2, char operator) {
+                int res = switch (operator) {
+                    case '+' -> v1 + v2;
+                    case '-' -> v1 - v2;
+                    case '*' -> v1 * v2;
+                    case '/' -> v1 / v2;
+                    default -> throw new RuntimeException("Unsupported operator");
+                };
+                return res;
+            }
+        }
+    }
 
-	private class TreeNode extends Node{
+    /**
+     * This is the interface for the expression tree Node.
+     * You should not remove it, and you can define some classes to implement it.
+     */
+    private abstract static class Node {
+        public abstract int evaluate();
 
-		public TreeNode(String val){
-			super(val);
-		}
+        // define your fields here
+        public boolean isOperator;
+        public int value;
+        public char operator;
+    }
 
-		public int evaluate(){
-			char c = this.val.charAt(0);
-			if(!isOperator(c)){
-				return Integer.parseInt(this.val);
-			}
-			int leftOperand = this.left.evaluate(), rightOperand = this.right.evaluate();
-			if(c == '+'){
-				return leftOperand + rightOperand;
-			}else if(c == '-'){
-				return leftOperand - rightOperand;
-			}else if(c == '*'){
-				return leftOperand * rightOperand;
-			}else{
-				return leftOperand / rightOperand;
-			}
-		}
-	}
+/**
+ * Your TreeBuilder object will be instantiated and called as such:
+ * TreeBuilder obj = new TreeBuilder();
+ * Node expTree = obj.buildTree(postfix);
+ * int ans = expTree.evaluate();
+ */
 }

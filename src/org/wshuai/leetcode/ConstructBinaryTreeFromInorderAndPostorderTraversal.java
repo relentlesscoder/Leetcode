@@ -9,29 +9,58 @@ import java.util.Map;
  */
 public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 
-	// time O(n), space O(n)
-	public TreeNode buildTree(int[] inorder, int[] postorder) {
-		Map<Integer, Integer> map = new HashMap<>();
-		for(int i = 0; i < inorder.length; i++){
-			map.put(inorder[i], i);
-		}
-		return dfs(postorder, 0, postorder.length - 1, 0, postorder.length - 1, map);
-	}
+    // time O(n), space O(n)
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+		// #0105 同样的思路
+        // 对后序数组中的每个根节点 - 最右边那个节点，利用中序遍历算出左子树和右子树的大小。
+        // 递归左右子树在前序数组中的区间以构造二叉树。
+        int n = inorder.length;
+        // 节点值到中序遍历索引的哈希表
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            map.put(inorder[i], i);
+        }
+        return dfs(0, n - 1, 0, n - 1,
+                postorder, map);
+    }
 
-	private TreeNode dfs(int[] postorder, int i, int j, int m, int n, Map<Integer, Integer> map){
-		// i, j denotes the range in postorder
-		// m, n denotes the range in inorder
-		if(i > j){
-			return null;
-		}
-		TreeNode root = new TreeNode(postorder[j]);
-		if(i == j){
-			return root;
-		}
-		// use inorder index (from hash map) to calculate number of left subtree nodes
-		int k = map.get(postorder[j]) - m;
-		root.left = dfs(postorder, i, i + k - 1, m, m + k - 1, map);
-		root.right = dfs(postorder, i + k, j - 1, m + k + 1, n, map);
-		return root;
-	}
+    private TreeNode dfs(int postLeft, int postRight, int inLeft, int inRight,
+                         int[] postorder, Map<Integer, Integer> inorder) {
+        if (postLeft > postRight || inLeft > inRight) {
+            return null;
+        }
+        // 当前子树的区间的根结点就是后序数组中最右边的节点
+        TreeNode root = new TreeNode(postorder[postRight]);
+        // 找到他在中序数组中的位置
+        int idx = inorder.get(postorder[postRight]);
+        // 计算左子树所在区间
+        root.left = dfs(postLeft, postLeft + idx - inLeft - 1,
+                inLeft, idx - 1, postorder, inorder);
+        // 计算右子树所在区间
+        root.right = dfs(postLeft + idx - inLeft, postRight - 1,
+                idx + 1, inRight, postorder, inorder);
+        return root;
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

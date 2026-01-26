@@ -6,48 +6,56 @@ package org.wshuai.leetcode;
  */
 public class CousinsInBinaryTree {
 
-	// time O(n), space O(n)
-	public boolean isCousins(TreeNode root, int x, int y) {
-		int[] info = new int[4];
-		dfs(root, x, y, -1, 0, info);
-		return info[0] != info[2] && info[1] == info[3];
-	}
+    // time O(n), space O(n)
+    private int xDepth = -1;
+    private int yDepth = -1;
+    private boolean sameParent = false;
 
-	private void dfs(TreeNode node, int x, int y, int parent, int level, int[] info) {
-		if (node == null) {
-			return;
-		}
-		if (node.val == x) {
-			info[0] = parent;
-			info[1] = level;
-		}
-		if (node.val == y) {
-			info[2] = parent;
-			info[3] = level;
-		}
-		dfs(node.left, x, y, node.val, level + 1, info);
-		dfs(node.right, x, y, node.val, level + 1, info);
-	}
+    public boolean isCousins(TreeNode root, int x, int y) {
+        xDepth = -1;
+        yDepth = -1;
+        sameParent = false;
+        dfs(root, x, y, 0);
+        return xDepth == yDepth && !sameParent;
+    }
 
-	/**
-	 * Definition for a binary tree node.
-	 */
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
+    private void dfs(TreeNode root, int x, int y, int depth) {
+        if (root == null) {
+            return;
+        }
+        if (root.val == x) {
+            xDepth = depth;
+        } else if (root.val == y) {
+            yDepth = depth;
+        }
+        if (root.left != null && root.right != null
+                && ((root.left.val == x && root.right.val == y)
+                || (root.right.val == x && root.left.val == y))) {
+            sameParent = true;
+        }
+        dfs(root.left, x, y, depth + 1);
+        dfs(root.right, x, y, depth + 1);
+    }
 
-		TreeNode() {
-		}
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-		TreeNode(int val) {
-			this.val = val;
-		}
+        TreeNode() {
+        }
 
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-	}
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

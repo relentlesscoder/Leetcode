@@ -1,30 +1,27 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
-import java.util.List;
+import java.util.PriorityQueue;
 
 /**
- * Created by Wei on 01/26/2016.
- * #0102 https://leetcode.com/problems/binary-tree-level-order-traversal/
+ * Created by Wei on 01/25/2026.
+ * #2583 https://leetcode.com/problems/kth-largest-sum-in-a-binary-tree/
  */
-public class BinaryTreeLevelOrderTraversal {
+public class KthLargestSumInABinaryTree {
 
-    // time O(n), space O(n)
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
+    // time O(n * log(k)), space O(n)
+    public long kthLargestLevelSum(TreeNode root, int k) {
+        // 维护一个大小为 k 的最小堆，BFS 二叉树求每一层的和并放入最小堆中最后堆首即为答案。
+        PriorityQueue<Long> minQueue = new PriorityQueue<>();
         Deque<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-            List<Integer> curr = new ArrayList<>();
             int size = queue.size();
+            long sum = 0;
             while (size-- > 0) {
                 TreeNode node = queue.poll();
-                curr.add(node.val);
+                sum += node.val;
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
@@ -32,9 +29,12 @@ public class BinaryTreeLevelOrderTraversal {
                     queue.offer(node.right);
                 }
             }
-            res.add(curr);
+            minQueue.offer(sum);
+            if (minQueue.size() > k) {
+                minQueue.poll();
+            }
         }
-        return res;
+        return minQueue.size() == k ? minQueue.peek() : -1;
     }
 
     /**

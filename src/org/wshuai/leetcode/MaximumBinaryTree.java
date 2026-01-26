@@ -28,6 +28,7 @@ public class MaximumBinaryTree {
 
     // time O(n * log(n)), space O(log(n))
     public TreeNode constructMaximumBinaryTreeDivideAndConquer(int[] nums) {
+        // 类似合并排序，对每个区间找最大值。
         return mergeSort(nums, 0, nums.length - 1);
     }
 
@@ -38,6 +39,7 @@ public class MaximumBinaryTree {
             }
             return new TreeNode(nums[left]);
         }
+        // 找到最大值的索引
         int idx = left;
         for (int i = left; i <= right; i++) {
             if (nums[i] > nums[idx]) {
@@ -52,22 +54,24 @@ public class MaximumBinaryTree {
 
     // time O(n * log(n)), space O(n)
     public TreeNode constructMaximumBinaryTreeSegmentTree(int[] nums) {
+        // 用一个线段树来维护区间最大值及他的索引，每次挑选当前区间的最大值为根结点
+        // 并用他的索引将区间分成左右两边继续递归。
         int n = nums.length;
         SegmentTree st = new SegmentTree(nums);
         return dfs(0, n - 1, st);
     }
 
     private TreeNode dfs(int start, int end, SegmentTree st) {
-        if (start > end) {
+        if (start > end) { // 区间不存在返回空
             return null;
         }
-        int[] arr = st.query(start, end);
+        int[] arr = st.query(start, end); // 找到当前区间的最大值及其索引
         TreeNode root = new TreeNode(arr[0]);
-        if (start == end) {
+        if (start == end) { // 唯一元素直接返回
             return root;
         }
-        root.left = dfs(start, arr[1] - 1, st);
-        root.right = dfs(arr[1] + 1, end, st);
+        root.left = dfs(start, arr[1] - 1, st); // 递归左区间
+        root.right = dfs(arr[1] + 1, end, st); // 递归右区间
         return root;
     }
 

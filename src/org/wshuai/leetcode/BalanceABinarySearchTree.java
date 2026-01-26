@@ -8,58 +8,57 @@ import java.util.List;
  * #1382 https://leetcode.com/problems/balance-a-binary-search-tree/
  */
 public class BalanceABinarySearchTree {
-	// time O(n), space O(n)
-	public TreeNode balanceBST(TreeNode root) {
-		List<TreeNode> nodes = new ArrayList<>();
-		//nodes = morrisTraversal(root);
-		inorder(root, nodes);
-		return rebalanceBST(nodes, 0, nodes.size() - 1);
-	}
 
-	private TreeNode rebalanceBST(List<TreeNode> nodes, int i, int j){
-		if(i > j){
-			return null;
-		}
-		int mid = i + (j - i) / 2;
-		TreeNode root = nodes.get(mid);
-		root.left = rebalanceBST(nodes, i, mid - 1);
-		root.right = rebalanceBST(nodes, mid + 1, j);
-		return root;
-	}
-
-	private void inorder(TreeNode root, List<TreeNode> nodes){
-		if(root == null){
-			return;
-		}
-		inorder(root.left, nodes);
-		nodes.add(root);
-		inorder(root.right, nodes);
-	}
-
-    /*
-    private List<TreeNode> morrisTraversal(TreeNode root){
-        List<TreeNode> res = new ArrayList<>();
-        TreeNode cur = root;
-        while(cur != null){
-            if(cur.left != null){
-                TreeNode pred = cur.left;
-                while(pred.right != null && pred.right != cur){
-                    pred = pred.right;
-                }
-                if(pred.right == null){
-                    pred.right = cur;
-                    cur = cur.left;
-                }else{
-                    pred.right = null;
-                    res.add(cur);
-                    cur = cur.right;
-                }
-            }else{
-                res.add(cur);
-                cur = cur.right;
-            }
-        }
-        return res;
+    // time O(n), space O(n)
+    public TreeNode balanceBST(TreeNode root) {
+		// 先中序遍历二叉树的到排序后的节点数组，然后递归数组每次选中间节点为当前子树的
+		// 根结点以构造平衡二叉树。
+        List<TreeNode> nodes = new ArrayList<>();
+		// 中序遍历
+        inorder(root, nodes);
+		// 构造二叉树
+        return build(nodes, 0, nodes.size() - 1);
     }
-    */
+
+    private TreeNode build(List<TreeNode> nodes, int start, int end) {
+        if (start > end) {
+            return null;
+        }
+        int mid = start + (end - start) / 2;
+        TreeNode root = nodes.get(mid);
+        root.left = build(nodes, start, mid - 1);
+        root.right = build(nodes, mid + 1, end);
+        return root;
+    }
+
+    private void inorder(TreeNode root, List<TreeNode> nodes) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left, nodes);
+        nodes.add(root);
+        inorder(root.right, nodes);
+    }
+
+	/**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
