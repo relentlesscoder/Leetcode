@@ -124,7 +124,7 @@ public class MinimumNumberOfOperationsToSortABinaryTreeByLevel {
     /**
      * Definition for a binary tree node.
      */
-    private class TreeNode {
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

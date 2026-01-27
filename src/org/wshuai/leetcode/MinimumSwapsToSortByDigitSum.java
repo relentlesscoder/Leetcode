@@ -10,14 +10,14 @@ public class MinimumSwapsToSortByDigitSum {
 
     // time O(n * log(n)), space O(n)
     public int minSwapsUnionFind(int[] nums) {
-        // 对于数组中大小为k的连通块，共需要k-1次操作来将连通块内的元素排序。
+        // 对于数组中大小为 k 的连通块，共需要 k-1 次操作来将连通块内的元素排序。
         // 示例1:
         //  0 1 2 3 4 5
         // [1,0,2,5,3,4]
         // [0,1,2,5,3,4]
         // [0,1,2,3,5,4]
         // [0,1,2,3,4,5]
-        // 示例1中有三个联通块[1,0],[2],[5,3,4]所以需要最少需要三次操作。
+        // 示例1中有三个联通块 [1,0], [2], [5,3,4] 所以需要最少需要三次操作。
         int n = nums.length;
         int[][] arr = new int[n][3];
         for (int i = 0; i < n; i++) {

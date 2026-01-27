@@ -8,41 +8,45 @@ import java.util.LinkedList;
  */
 public class CheckCompletenessOfABinaryTree {
 
-	// time O(n), space O(n)
-	public boolean isCompleteTree(TreeNode root) {
-		boolean end = false;
-		LinkedList<TreeNode> queue = new LinkedList<>();
-		queue.offerLast(root);
-		while(!queue.isEmpty()) {
-			TreeNode cur = queue.pollFirst();
-			if(cur == null) {
-				end = true;
-			}
-			else{
-				if(end){
-					return false;
-				}
-				queue.offerLast(cur.left);
-				queue.offerLast(cur.right);
-			}
-		}
-		return true;
-	}
+    // time O(n), space O(n)
+    public boolean isCompleteTree(TreeNode root) {
+        // 将二叉树的节点按层序遍历排序(包括空节点)，则非完全二叉树必含有空节点。
+        TreeNode prev = root;
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (prev == null && node != null) {
+                return false;
+            }
+            if (node != null) {
+                queue.offer(node.left);
+                queue.offer(node.right);
+            }
+            prev = node;
+        }
+        return true;
+    }
 
-	// time O(n), space O(n)
-	public boolean isCompleteTreeAlternative(TreeNode root) {
-		LinkedList<TreeNode> bfs = new LinkedList<>();
-		bfs.offerLast(root);
-		while(bfs.peekFirst() != null){
-			TreeNode node = bfs.pollFirst();
-			bfs.offerLast(node.left);
-			bfs.offerLast(node.right);
-		}
-		while(!bfs.isEmpty() && bfs.peekFirst() == null){
-			bfs.pollFirst();
-		}
-		return bfs.isEmpty();
-	}
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
+        TreeNode() {
+        }
 
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
