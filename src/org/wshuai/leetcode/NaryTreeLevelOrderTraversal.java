@@ -1,7 +1,8 @@
 package org.wshuai.leetcode;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -9,26 +10,47 @@ import java.util.List;
  * #0429 https://leetcode.com/problems/n-ary-tree-level-order-traversal/
  */
 public class NaryTreeLevelOrderTraversal {
-	// time O(n), space O(n)
-	public List<List<Integer>> levelOrder(NaryTreeNode root) {
-		List<List<Integer>> res = new ArrayList<>();
-		if(root == null){
-			return res;
-		}
-		LinkedList<NaryTreeNode> queue = new LinkedList<>();
-		queue.offerLast(root);
-		while(!queue.isEmpty()){
-			int size = queue.size();
-			List<Integer> levelNodes = new ArrayList<>();
-			while(size-- > 0){
-				NaryTreeNode cur = queue.pollFirst();
-				levelNodes.add(cur.val);
-				for(NaryTreeNode child : cur.children){
-					queue.offerLast(child);
-				}
-			}
-			res.add(levelNodes);
-		}
-		return res;
-	}
+
+    // time O(n), space O(n)
+    public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Deque<Node> queue = new ArrayDeque<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            int size = queue.size();
+            while (size-- > 0) {
+                Node node = queue.poll();
+                list.add(node.val);
+                for (Node child : node.children) {
+                    queue.offer(child);
+                }
+            }
+            res.add(list);
+        }
+        return res;
+    }
+
+    /**
+     * Definition for a Node.
+     */
+    private static class Node {
+        public int val;
+        public List<Node> children;
+
+        public Node() {
+        }
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    }
 }

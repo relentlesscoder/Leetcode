@@ -1,6 +1,6 @@
 package org.wshuai.leetcode;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,21 +8,41 @@ import java.util.List;
  * #0590 https://leetcode.com/problems/n-ary-tree-postorder-traversal/
  */
 public class NaryTreePostorderTraversal {
+
 	// time O(n), space O(n)
-	public List<Integer> postorder(NaryTreeNode root) {
-		LinkedList<Integer> res = new LinkedList<>();
-		if(root == null){
-			return res;
-		}
-		LinkedList<NaryTreeNode> queue = new LinkedList<>();
-		queue.offerLast(root);
-		while(!queue.isEmpty()){
-			NaryTreeNode cur = queue.pollLast();
-			res.offerFirst(cur.val);
-			for(NaryTreeNode child : cur.children){
-				queue.offerLast(child);
-			}
-		}
+	public List<Integer> postorder(Node root) {
+		List<Integer> res = new ArrayList<>();
+		dfs(root, res);
 		return res;
 	}
+
+	private void dfs(Node root, List<Integer> res) {
+		if (root == null) {
+			return;
+		}
+		for (Node child : root.children) {
+			dfs(child, res);
+		}
+		res.add(root.val);
+	}
+
+	/**
+	 * Definition for a Node.
+	 */
+    private static class Node {
+        public int val;
+        public List<Node> children;
+
+        public Node() {
+        }
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    }
 }

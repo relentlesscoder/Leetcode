@@ -11,76 +11,90 @@ import java.util.Set;
  */
 public class CorrectABinaryTree {
 
-	// time O(n)
-	public TreeNode correctBinaryTree(TreeNode root) {
-		Set<Integer> visited = new HashSet<>();
-		// find the invalid node
-		TreeNode invalid = find(root, visited);
-		// remove the invalid node
-		remove(root, invalid);
-		return root;
-	}
+    // time O(n), space O(n)
+    public TreeNode correctBinaryTreeDFS(TreeNode root) {
+        correct(root, null, new HashSet<>());
+        return root;
+    }
 
-	private void remove(TreeNode node, TreeNode target){
-		if(node == null){
-			return;
-		}
-		if(node.left == target){
-			node.left = null;
-			return;
-		}
-		if(node.right == target){
-			node.right = null;
-			return;
-		}
-		remove(node.left, target);
-		remove(node.right, target);
-	}
+    private void correct(TreeNode root, TreeNode parent, Set<TreeNode> visited) {
+        // 从右往左递归，问题节点应该已经先被遍历过了
+        if (root == null) {
+            return;
+        }
+        // 找到问题节点
+        if (root.right != null && visited.contains(root.right)) {
+            root.right = null;
+            // 删除问题节点
+            if (parent.left == root) {
+                parent.left = null;
+            } else if (parent.right == root) {
+                parent.right = null;
+            }
+            return;
+        }
+        visited.add(root);
+        // 先右后左
+        correct(root.right, root, visited);
+        correct(root.left, root, visited);
+    }
 
-	private TreeNode find(TreeNode node, Set<Integer> visited){
-		if(node == null){
-			return null;
-		}
-		// dfs from right to left, the invalid node's right child
-		// should be already visited
-		if(node.right != null && visited.contains(node.right.val)){
-			return node;
-		}
-		visited.add(node.val);
-		TreeNode right = find(node.right, visited);
-		if(right != null){
-			return right;
-		}
-		return find(node.left, visited);
-	}
+    // time O(n), space O(n)
+    public TreeNode correctBinaryTreeBFS(TreeNode root) {
+        TreeNode target = null;
+        // 哈希表保存子节点到父节点
+        Map<TreeNode, TreeNode> parentMap = new HashMap<>();
+        Set<TreeNode> queue = new HashSet<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Set<TreeNode> next = new HashSet<>();
+            for (TreeNode curr : queue) {
+                if (curr.left != null) {
+                    next.add(curr.left);
+                    parentMap.put(curr.left, curr);
+                }
+                // 如果当前节点的右节点已经在当前层节点的节点表中则找到目标节点
+                if (curr.right != null && queue.contains(curr.right)) {
+                    target = curr;
+                    break;
+                } else if (curr.right != null) {
+                    next.add(curr.right);
+                    parentMap.put(curr.right, curr);
+                }
+            }
+            queue = next;
+        }
+        // 删除错误的指针
+        target.right = null;
+        // 删除问题节点
+        TreeNode parent = parentMap.get(target);
+        if (parent.left == target) {
+            parent.left = null;
+        } else if (parent.right == target) {
+            parent.right = null;
+        }
+        return root;
+    }
 
-	// time O(n), space O(n)
-	public TreeNode correctBinaryTreeLevelTraversal(TreeNode root) {
-		Map<TreeNode, TreeNode> cur = new HashMap<>(), next = new HashMap<>();
-		// node -> parent mapping
-		cur.put(root, null);
-		while(cur.size() != 0){
-			for(TreeNode node : cur.keySet()){
-				if(cur.containsKey(node.right)){
-					TreeNode parent = cur.get(node);
-					if(parent.left == node){
-						parent.left = null;
-					}
-					if(parent.right == node){
-						parent.right = null;
-					}
-					return root;
-				}
-				if(node.left != null){
-					next.put(node.left, node);
-				}
-				if(node.right != null){
-					next.put(node.right, node);
-				}
-			}
-			cur = next;
-			next = new HashMap<>();
-		}
-		return root;
-	}
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }

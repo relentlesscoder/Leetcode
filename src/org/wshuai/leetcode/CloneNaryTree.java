@@ -9,23 +9,32 @@ import java.util.List;
  */
 public class CloneNaryTree {
 
-	// time O(n)
+	// time O(n), space O(n)
 	public Node cloneTree(Node root) {
 		if (root == null) {
 			return null;
 		}
-		Node copy = new Node(root.val);
-		if (root.children != null) {
-			copy.children = new ArrayList<Node>();
-			for (Node c : root.children) {
-				copy.children.add(cloneTree(c));
-			}
-		}
-		return copy;
+		Node newRoot = new Node(root.val);
+		dfs(root, newRoot);
+		return newRoot;
 	}
 
+	private void dfs(Node root, Node copyRoot) {
+		if (root == null) {
+			return;
+		}
+		List<Node> copyList = new ArrayList<>();
+		for (Node child : root.children) {
+			Node copyChild = new Node(child.val);
+			copyList.add(copyChild);
+			dfs(child, copyChild);
+		}
+		copyRoot.children = copyList;
+	}
 
-	// Definition for a Node.
+	/**
+	 * Definition for a Node.
+	 */
 	private class Node {
 		public int val;
 		public List<Node> children;
