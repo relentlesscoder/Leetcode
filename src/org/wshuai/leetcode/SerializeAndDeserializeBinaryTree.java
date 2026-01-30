@@ -8,51 +8,75 @@ import java.util.LinkedList;
  */
 public class SerializeAndDeserializeBinaryTree {
 
-	// Encodes a tree to a single string.
-	public String serialize(TreeNode root) {
-		if(root == null){
-			return "";
-		}
-		StringBuilder res = new StringBuilder();
-		LinkedList<TreeNode> queue = new LinkedList<>();
-		queue.offerLast(root);
-		while(!queue.isEmpty()){
-			TreeNode cur = queue.pollFirst();
-			if(cur != null){
-				res.append(cur.val + ",");
-				queue.offerLast(cur.left);
-				queue.offerLast(cur.right);
-			}else{
-				res.append("n,");
-			}
-		}
-		return res.substring(0, res.length() - 1);
-	}
+	// time O(n), space O(n)
+    private static class Codec {
 
-	// Decodes your encoded data to tree.
-	public TreeNode deserialize(String data) {
-		if(data.length() == 0){
-			return null;
-		}
-		String[] vals = data.split(",");
-		TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
-		LinkedList<TreeNode> queue = new LinkedList<>();
-		queue.offerLast(root);
-		for(int i = 1; i < vals.length; i += 2){
-			TreeNode parent = queue.pollFirst();
-			if(!vals[i].equals("n")){
-				parent.left = new TreeNode(Integer.parseInt(vals[i]));
-				queue.offerLast(parent.left);
-			}
-			if(!vals[i + 1].equals("n")){
-				parent.right = new TreeNode(Integer.parseInt(vals[i + 1]));
-				queue.offerLast(parent.right);
-			}
-		}
-		return root;
-	}
-}
+        // Encodes a tree to a single string.
+        public String serialize(TreeNode root) {
+            StringBuilder res = new StringBuilder();
+            LinkedList<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    res.append("n,");
+                } else {
+                    res.append(node.val + ",");
+                    queue.offer(node.left);
+                    queue.offer(node.right);
+                }
+            }
+            return res.substring(0, res.length() - 1);
+        }
+
+        // Decodes your encoded data to tree.
+        public TreeNode deserialize(String data) {
+            if (data.isEmpty() || data.charAt(0) == 'n') {
+                return null;
+            }
+            String[] nodes = data.split(",");
+            TreeNode root = new TreeNode(Integer.parseInt(nodes[0]));
+            LinkedList<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            for (int i = 1; i < nodes.length; i += 2) {
+                TreeNode parent = queue.poll();
+                if (!nodes[i].equals("n")) {
+                    parent.left = new TreeNode(Integer.parseInt(nodes[i]));
+                    queue.offer(parent.left);
+                }
+                if (!nodes[i + 1].equals("n")) {
+                    parent.right = new TreeNode(Integer.parseInt(nodes[i + 1]));
+                    queue.offer(parent.right);
+                }
+            }
+            return root;
+        }
+    }
+
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
 
 // Your Codec object will be instantiated and called as such:
-// Codec codec = new Codec();
-// codec.deserialize(codec.serialize(root));
+// Codec ser = new Codec();
+// Codec deser = new Codec();
+// TreeNode ans = deser.deserialize(ser.serialize(root));
+}

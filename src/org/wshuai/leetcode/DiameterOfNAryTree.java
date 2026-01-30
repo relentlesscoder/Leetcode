@@ -9,37 +9,34 @@ import java.util.List;
  */
 public class DiameterOfNAryTree {
 
-    private int d;
+    private int res = 0;
 
-    // time O(n)
+    // time O(n), space O(n)
     public int diameter(Node root) {
-        d = 0;
-        if(root == null){
-            return 0;
-        }
+        res = 0;
         dfs(root);
-        return d;
+        return res;
     }
 
-    private int dfs(Node root){
-        if(root == null || root.children.size() == 0){
+    public int dfs(Node root) {
+        if (root == null || root.children.isEmpty()) {
             return 0;
         }
-        int max = 0, secondMax = 0;
-        for(Node child : root.children){
-            int cur = 1 + dfs(child);
-            if(cur > max){
-                secondMax = max;
-                max = cur;
-            }else if(cur > secondMax){
-                secondMax = cur;
+        int max = 0, second = 0;
+        for (Node child : root.children) {
+            int len = 1 + dfs(child);
+            if (len > max) {
+                second = max;
+                max = len;
+            } else if (len > second) {
+                second = len;
             }
         }
-        d = Math.max(max + secondMax, d);
+        res = Math.max(res, max + second);
         return max;
     }
 
-    private class Node {
+    private static class Node {
         public int val;
         public List<Node> children;
 
@@ -53,9 +50,11 @@ public class DiameterOfNAryTree {
             children = new ArrayList<Node>();
         }
 
-        public Node(int _val,ArrayList<Node> _children) {
+        public Node(int _val, ArrayList<Node> _children) {
             val = _val;
             children = _children;
         }
-    };
+    }
+
+    ;
 }

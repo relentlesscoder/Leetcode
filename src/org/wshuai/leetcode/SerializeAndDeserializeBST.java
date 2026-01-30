@@ -10,64 +10,80 @@ import java.util.Map;
  */
 public class SerializeAndDeserializeBST {
 
-	// Encodes a tree to a single string.
-	public String serialize(TreeNode root) {
-		if(root == null){
-			return "";
-		}
-		StringBuilder sb = new StringBuilder();
-		preorder(root, sb);
-		return sb.substring(0, sb.length() - 1);
-	}
+	// time O(n * log(n)), space O(n)
+	private static class Codec {
 
-	// Decodes your encoded data to tree.
-	public TreeNode deserialize(String data) {
-		if(data.isEmpty()){
-			return null;
+		// Encodes a tree to a single string.
+		public String serialize(TreeNode root) {
+			if (root == null) {
+				return "";
+			}
+			StringBuilder preorder = new StringBuilder();
+			TreeNode curr = root;
+			while (curr != null) {
+				if (curr.left == null) {
+					preorder.append(curr.val + ",");
+					curr = curr.right;
+				} else {
+					TreeNode pre = curr.left;
+					while (pre.right != null && pre.right != curr) {
+						pre = pre.right;
+					}
+					if (pre.right == null) {
+						pre.right = curr;
+						preorder.append(curr.val + ",");
+						curr = curr.left;
+					} else {
+						pre.right = null;
+						curr = curr.right;
+					}
+				}
+			}
+			return preorder.substring(0, preorder.length() - 1);
 		}
-		String[] strs = data.split(",");
-		int[] preorder = new int[strs.length], inorder = new int[strs.length];
-		for(int i = 0; i < preorder.length; i++){
-			preorder[i] = Integer.parseInt(strs[i]);
-			inorder[i] = preorder[i];
-		}
-		Arrays.sort(inorder);
-		return buildTree(preorder, inorder);
-	}
 
-	private void preorder(TreeNode root, StringBuilder sb){
-		if(root == null){
-			return;
+		// Decodes your encoded data to tree.
+		public TreeNode deserialize(String data) {
+			if (data.isEmpty()) {
+				return null;
+			}
+			String[] strs = data.split(",");
+			int n = strs.length;
+			int[] preorder = new int[n], inorder = new int[n];
+			for (int i = 0; i < n; i++) {
+				int num = Integer.parseInt(strs[i]);
+				preorder[i] = num;
+				inorder[i] = num;
+			}
+			Arrays.sort(inorder);
+			Map<Integer, Integer> inorderMap = new HashMap<>();
+			for (int i = 0; i < n; i++) {
+				inorderMap.put(inorder[i], i);
+			}
+			return build(0, n - 1,
+					0, n - 1, preorder, inorderMap);
 		}
-		sb.append(root.val + ",");
-		preorder(root.left, sb);
-		preorder(root.right, sb);
-	}
 
-	// #0105 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
-	public TreeNode buildTree(int[] preorder, int[] inorder) {
-		Map<Integer, Integer> map = new HashMap<>();
-		for(int i = 0; i < inorder.length; i++){
-			map.put(inorder[i], i);
-		}
-		return dfs(preorder, 0, preorder.length - 1, 0, preorder.length - 1, map);
-	}
-
-	private TreeNode dfs(int[] preorder, int i, int j, int m, int n, Map<Integer, Integer> map){
-		if(i > j){
-			return null;
-		}
-		TreeNode root = new TreeNode(preorder[i]);
-		if(i == j){
+		private TreeNode build(int preLeft, int preRight, int inLeft, int inRight,
+							   int[] preorder, Map<Integer, Integer> inorder) {
+			// #0105
+			if (preLeft > preRight || inLeft > inRight) {
+				return null;
+			}
+			TreeNode root = new TreeNode(preorder[preLeft]);
+			int index = inorder.get(preorder[preLeft]);
+			root.left = build(preLeft + 1, preLeft + index - inLeft,
+					inLeft, index - 1, preorder, inorder);
+			root.right = build(preLeft + index - inLeft + 1, preRight,
+					index + 1, inRight, preorder, inorder);
 			return root;
 		}
-		int k = map.get(preorder[i]) - m;
-		root.left = dfs(preorder, i + 1, i + k, m, m + k - 1, map);
-		root.right = dfs(preorder, i + k + 1, j, m + k + 1, n, map);
-		return root;
 	}
-}
 
 // Your Codec object will be instantiated and called as such:
-// Codec codec = new Codec();
-// codec.deserialize(codec.serialize(root));
+// Codec ser = new Codec();
+// Codec deser = new Codec();
+// String tree = ser.serialize(root);
+// TreeNode ans = deser.deserialize(tree);
+// return ans;
+}
