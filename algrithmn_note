@@ -409,6 +409,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0742 https://leetcode.com/problems/closest-leaf-in-a-binary-tree/ (miao a~~~) (二叉树 DFS) (图 BFS)
 #0863 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/ (miao a~~~) (二叉树 DFS) (图 BFS)
 #1376 https://leetcode.com/problems/time-needed-to-inform-all-employees/ (一般树 DFS/BFS)
+#1443 https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/ (miao a~~~) (一般树 DFS)
 #1466 https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/ (一般树 DFS/BFS 模版)
 #1627 https://leetcode.com/problems/graph-connectivity-with-threshold/
 #1857 https://leetcode.com/problems/largest-color-value-in-a-directed-graph/
@@ -425,6 +426,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #2685 https://leetcode.com/problems/count-the-number-of-complete-components/ (count complete connected components)
 #2782 https://leetcode.com/problems/number-of-unique-categories/
 #2924 https://leetcode.com/problems/find-champion-ii/
+#3067 https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/ (miao a~~~) (一般树 DFS)
 #3515 https://leetcode.com/problems/shortest-path-in-a-weighted-tree/ (BIT + Graph + DFS with timestamp)
 #3528 https://leetcode.com/problems/unit-conversion-i/ (一般树 DFS/BFS)
 #3650 https://leetcode.com/problems/minimum-cost-path-with-edge-reversals/
