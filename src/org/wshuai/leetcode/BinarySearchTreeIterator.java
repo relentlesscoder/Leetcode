@@ -43,27 +43,27 @@ public class BinarySearchTreeIterator {
         public boolean hasNext() {
             return curr != null;
         }
+    }
 
-        /**
-         * Definition for a binary tree node.
-         */
-        private static class TreeNode {
-            int val;
-            TreeNode left;
-            TreeNode right;
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-            TreeNode() {
-            }
+        TreeNode() {
+        }
 
-            TreeNode(int val) {
-                this.val = val;
-            }
+        TreeNode(int val) {
+            this.val = val;
+        }
 
-            TreeNode(int val, TreeNode left, TreeNode right) {
-                this.val = val;
-                this.left = left;
-                this.right = right;
-            }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
     }
 

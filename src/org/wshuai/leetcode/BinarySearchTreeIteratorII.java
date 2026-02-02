@@ -2,7 +2,6 @@ package org.wshuai.leetcode;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Created by Wei on 09/20/2020.
@@ -10,56 +9,73 @@ import java.util.Stack;
  */
 public class BinarySearchTreeIteratorII {
 
-    private Stack<TreeNode> stack;
-    private List<TreeNode> list;
-    private int index;
+    // time O(n), space O(n)
+    private static class BSTIterator {
 
-    public BinarySearchTreeIteratorII(TreeNode root) {
-        stack = new Stack<>();
-        list = new ArrayList<>();
-        index = -1;
-        pushLeft(root);
-    }
+        private TreeNode curr;
+        private final List<Integer> nodes;
+        private int idx = -1;
 
-    private void pushLeft(TreeNode node) {
-        while (node != null) {
-            stack.push(node);
-            node = node.left;
+        public BSTIterator(TreeNode root) {
+            // 用 list 存已经遍历过的节点值，idx 表示当前的索引。如果索引在 list 的范围中
+            // 则直接返回 list 中的值否则继续遍历二叉树。
+            nodes = new ArrayList<>();
+            curr = root;
+        }
+
+        public boolean hasNext() {
+            return inRange(idx + 1) || curr != null;
+        }
+
+        public int next() {
+            if (inRange(idx + 1)) {
+                return nodes.get(++idx);
+            }
+            while (curr != null) {
+                if (curr.left == null) {
+                    int res = curr.val;
+                    idx++;
+                    nodes.add(res);
+                    curr = curr.right;
+                    return res;
+                } else {
+                    TreeNode pre = curr.left;
+                    while (pre.right != null && pre.right != curr) {
+                        pre = pre.right;
+                    }
+                    if (pre.right == null) {
+                        pre.right = curr;
+                        curr = curr.left;
+                    } else {
+                        pre.right = null;
+                        int res = curr.val;
+                        idx++;
+                        nodes.add(res);
+                        curr = curr.right;
+                        return res;
+                    }
+                }
+            }
+            return -1;
+        }
+
+        public boolean hasPrev() {
+            return inRange(idx - 1);
+        }
+
+        public int prev() {
+            return nodes.get(--idx);
+        }
+
+        private boolean inRange(int index) {
+            return index >= 0 && index < nodes.size();
         }
     }
 
-    private boolean inRange(int i) {
-        return i >= 0 && i < list.size();
-    }
-
-    public boolean hasNext() {
-        return inRange(index + 1) || !stack.isEmpty();
-    }
-
-    public int next() {
-        int res = -1;
-        if (inRange(index + 1)) {
-            res = list.get(index + 1).val;
-        } else {
-            TreeNode next = stack.pop();
-            pushLeft(next.right);
-            list.add(next);
-            res = next.val;
-        }
-        index++;
-        return res;
-    }
-
-    public boolean hasPrev() {
-        return inRange(index - 1);
-    }
-
-    public int prev() {
-        return list.get(--index).val;
-    }
-
-    //Definition for a binary tree node.
-    private class TreeNode {
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -77,4 +93,13 @@ public class BinarySearchTreeIteratorII {
             this.right = right;
         }
     }
+
+/**
+ * Your BSTIterator object will be instantiated and called as such:
+ * BSTIterator obj = new BSTIterator(root);
+ * boolean param_1 = obj.hasNext();
+ * int param_2 = obj.next();
+ * boolean param_3 = obj.hasPrev();
+ * int param_4 = obj.prev();
+ */
 }

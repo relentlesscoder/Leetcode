@@ -8,56 +8,48 @@ import java.util.Arrays;
  */
 public class CountNodesWithTheHighestScore {
 
+	private long max = 0L;
+	private int res = 0;
+
 	// time O(n), space O(n)
 	public int countHighestScoreNodes(int[] parents) {
+		// 删除二叉树的一个节点会把二叉树分成三个部分 - 左子树，右子树和除去以
+		// 当前节点为根结点的子树的原树中的其他节点。特殊情况：对于根结点来说，
+		// 第三个部分的节点数为 0 。本题我们知道节点总数，对每个节点只需要用 DFS
+		// 计算两个子树的节点数即可求的该节点的分数。
+		max = 0L;
+		res = 0;
 		int n = parents.length;
-		int[] left = new int[n], right = new int[n];
-		long[] score = new long[n];
-		// build the tree
-		Arrays.fill(left, -1);
-		Arrays.fill(right, -1);
-		for (int i = 0; i < n; i++) {
-			if (parents[i] != -1) {
-				if (left[parents[i]] == -1) {
-					left[parents[i]] = i;
-				} else {
-					right[parents[i]] = i;
-				}
+		// 根据父节点数组构造二叉树数组
+		int[][] tree = new int[n][2];
+		Arrays.setAll(tree, i -> new int[] {-1, -1});
+		for (int i = 1; i < n; i++) {
+			if (tree[parents[i]][0] == -1) {
+				tree[parents[i]][0] = i;
+			} else {
+				tree[parents[i]][1] = i;
 			}
 		}
-		// recursively calculate the score of removing each node
-		dfs(0, left, right, n, score);
-		// find the count of nodes that has max score
-		long max = 0L;
-		int count = 0;
-		for (int i = 0; i < n; i++) {
-			if (score[i] > max) {
-				max = score[i];
-				count = 1;
-			} else if (score[i] == max) {
-				count++;
-			}
-		}
-		return count;
+		// DFS 二叉树计算每个节点的分数
+		dfs(0, n, tree);
+		return res;
 	}
 
-	private int dfs(int node, int[] left, int[] right, long n, long[] score) {
-		if (node == -1) {
+	private int dfs(int root, int n, int[][] tree) {
+		if (root == -1) {
 			return 0;
 		}
-		int sizeOfLeftSubtree = dfs(left[node], left, right, n, score);
-		int sizeOfrightSubtree = dfs(right[node], left, right, n, score);
-		long product = 1L, sizeOfTheRest = n - 1L - sizeOfLeftSubtree - sizeOfrightSubtree;
-		if (sizeOfTheRest != 0) {
-			product *= sizeOfTheRest;
+		int leftTree = dfs(tree[root][0], n, tree);
+		int rightTree = dfs(tree[root][1], n, tree);
+		int parentTree = n - leftTree - rightTree - 1;
+		long p = 1L;
+		p *= leftTree == 0 ? 1 : leftTree;
+		p *= rightTree == 0 ? 1 : rightTree;
+		p *= parentTree == 0 ? 1 : parentTree;
+		if (p >= max) {
+			res = (p > max ? 1 : res + 1);
+			max = p;
 		}
-		if (sizeOfLeftSubtree != 0) {
-			product *= sizeOfLeftSubtree;
-		}
-		if (sizeOfrightSubtree != 0) {
-			product *= sizeOfrightSubtree;
-		}
-		score[node] = product;
-		return sizeOfLeftSubtree + sizeOfrightSubtree + 1;
+		return leftTree + rightTree + 1;
 	}
 }

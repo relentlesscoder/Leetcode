@@ -1,6 +1,11 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Wei on 11/15/2016.
@@ -10,78 +15,56 @@ public class BinaryTreeVerticalOrderTraversal {
 
     // time O(n), space O(n)
     public List<List<Integer>> verticalOrder(TreeNode root) {
+        // 用 BFS 遍历二叉树，BFS 遍历顺序为逐层遍历且层内从左向右。
+        int min = Integer.MAX_VALUE;
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
             return res;
         }
-        int[] columnRange = new int[]{0, 0};
-        dfs(root, columnRange, 0);
-        for (int i = columnRange[0]; i <= columnRange[1]; i++) {
-            res.add(new ArrayList<>());
-        }
-        Deque<TreeNode> nodes = new ArrayDeque<>();
-        Deque<Integer> columns = new ArrayDeque<>();
-        nodes.offer(root);
-        columns.offer(0);
-        while (!nodes.isEmpty()) {
-            TreeNode curr = nodes.poll();
-            int col = columns.poll();
-            res.get(col - columnRange[0]).add(curr.val);
+        Map<Integer, List<Integer>> colMap = new HashMap<>();
+        Deque<TreeNode> nodeQueue = new ArrayDeque<>();
+        Deque<Integer> columnQueue = new ArrayDeque<>();
+        nodeQueue.offer(root);
+        columnQueue.offer(0);
+        while (!nodeQueue.isEmpty()) {
+            TreeNode curr = nodeQueue.poll();
+            int col = columnQueue.poll();
+            colMap.computeIfAbsent(col, k -> new ArrayList<>()).add(curr.val);
+            min = Math.min(min, col);
             if (curr.left != null) {
-                nodes.offer(curr.left);
-                columns.offer(col - 1);
+                nodeQueue.offer(curr.left);
+                columnQueue.offer(col - 1);
             }
             if (curr.right != null) {
-                nodes.offer(curr.right);
-                columns.offer(col + 1);
+                nodeQueue.offer(curr.right);
+                columnQueue.offer(col + 1);
             }
+        }
+        for (int i = min; i < min + colMap.size(); i++) {
+            res.add(colMap.get(i));
         }
         return res;
     }
 
-    private void dfs(TreeNode node, int[] columnRange, int col) {
-        if (node == null) {
-            return;
+    /**
+     * Definition for a binary tree node.
+     */
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
         }
 
-        columnRange[0] = Math.min(columnRange[0], col);
-        columnRange[1] = Math.max(columnRange[1], col);
+        TreeNode(int val) {
+            this.val = val;
+        }
 
-        dfs(node.left, columnRange, col - 1);
-        dfs(node.right, columnRange, col + 1);
-    }
-
-    // time O(n), space O(n)
-    public List<List<Integer>> verticalOrderHashMap(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
-        if (root == null) {
-            return res;
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
-        int minCol = 0, maxCol = 0;
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        Deque<TreeNode> nodes = new ArrayDeque<>();
-        Deque<Integer> columns = new ArrayDeque<>();
-        nodes.offer(root);
-        columns.offer(0);
-        while (!nodes.isEmpty()) {
-            TreeNode curr = nodes.poll();
-            int col = columns.poll();
-            map.putIfAbsent(col, new ArrayList<>());
-            map.get(col).add(curr.val);
-            if (curr.left != null) {
-                minCol = Math.min(minCol, col - 1);
-                nodes.offer(curr.left);
-                columns.offer(col - 1);
-            }
-            if (curr.right != null) {
-                maxCol = Math.max(maxCol, col + 1);
-                nodes.offer(curr.right);
-                columns.offer(col + 1);
-            }
-        }
-        for (int i = minCol; i <= maxCol; i++) {
-            res.add(map.get(i));
-        }
-        return res;
     }
 }
