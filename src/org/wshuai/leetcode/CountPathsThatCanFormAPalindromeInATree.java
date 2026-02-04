@@ -34,11 +34,14 @@ public class CountPathsThatCanFormAPalindromeInATree {
         long res = 0;
         for (int x : adj[i]) {
             int mask = prev ^ (1 << (s[x] - 'a'));
+            // 路径中的节点数的字符的数量全是偶数的情况
             res += map.getOrDefault(mask, 0);
+            // 允许一个字符的数量为奇数
             for (int j = 0; j < 26; j++) {
                 int curr = mask ^ (1 << j);
                 res += map.getOrDefault(curr, 0);
             }
+            // 更新哈希表
             map.merge(mask, 1, Integer::sum);
             res += dfs(x, mask, adj, s, map);
         }

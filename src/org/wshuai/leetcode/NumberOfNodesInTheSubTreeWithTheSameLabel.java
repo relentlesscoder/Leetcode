@@ -1,9 +1,8 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Wei on 08/04/2020.
@@ -13,33 +12,34 @@ public class NumberOfNodesInTheSubTreeWithTheSameLabel {
 
     // time O(n), space O(n)
     public int[] countSubTrees(int n, int[][] edges, String labels) {
-        Map<Integer, List<Integer>> tree = new HashMap<>();
-        for(int[] e : edges){
-            tree.putIfAbsent(e[0], new ArrayList<>());
-            tree.putIfAbsent(e[1], new ArrayList<>());
-            tree.get(e[0]).add(e[1]);
-            tree.get(e[1]).add(e[0]);
-        }
         int[] res = new int[n];
-        dfs(0, tree, res, labels.toCharArray(), new boolean[n]);
+        // 构造邻接表
+        List<Integer>[] adj = new ArrayList[n];
+        Arrays.setAll(adj, i -> new ArrayList<>());
+        for (int[] e : edges) {
+            adj[e[0]].add(e[1]);
+            adj[e[1]].add(e[0]);
+        }
+        dfs(0, -1, adj, labels.toCharArray(), res);
         return res;
     }
 
-    private int[] dfs(int cur, Map<Integer, List<Integer>> tree, int[] res, char[] lables, boolean[] visited){
-        int[] count = new int[26];
-        visited[cur] = true;
-        for(int next : tree.get(cur)){
-            if(visited[next]){
+    private int[] dfs(int node, int parent, List<Integer>[] adj, char[] arr, int[] res) {
+        int[] freq = new int[26]; // 表示以当前节点为根结点的子树中 26 个小写字母的数量
+        for (int next : adj[node]) {
+            // 树的 DFS 只需要保证下一个节点不是父节点即可
+            if (next == parent) {
                 continue;
             }
-            int[] temp = dfs(next, tree, res, lables, visited);
-            for(int i = 0; i < 26; i++){
-                count[i] += temp[i];
+            // DFS 找子树中 26 个小写字母的数量
+            int[] f = dfs(next, node, adj, arr, res);
+            // 加到当前子树的中
+            for (int i = 0; i < 26; i++) {
+                freq[i] += f[i];
             }
         }
-        int index = lables[cur] - 'a';
-        count[index]++;
-        res[cur] = count[index];
-        return count;
+        // 更新答案
+        res[node] = ++freq[arr[node] - 'a'];
+        return freq;
     }
 }
