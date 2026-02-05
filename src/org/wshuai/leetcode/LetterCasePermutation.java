@@ -8,29 +8,26 @@ import java.util.List;
  * #0784 https://leetcode.com/problems/letter-case-permutation/
  */
 public class LetterCasePermutation {
-	// time O(2^n)
-	public List<String> letterCasePermutation(String S) {
-		List<String> res = new ArrayList<>();
-		dfs(0, S.length(), S.toCharArray(), res);
-		return res;
-	}
 
-	private void dfs(int start, int n, char[] cur, List<String> res) {
-		if (start == n) {
-			res.add(new String(cur));
-			return;
-		}
-		dfs(start + 1, n, cur, res);
-		char c = cur[start];
-		if (Character.isAlphabetic(c)) {
-			if (cur[start] >= 'a' && cur[start] <= 'z') {
-				cur[start] = (char) (c - 32);
-				dfs(start + 1, n, cur, res);
-			} else {
-				cur[start] = (char) (c + 32);
-				dfs(start + 1, n, cur, res);
-			}
-			cur[start] = c;
-		}
-	}
+    // time O(2^n), space O(n)
+    public List<String> letterCasePermutation(String s) {
+        int n = s.length();
+        List<String> res = new ArrayList<>();
+        dfs(0, s.toCharArray(), new char[n], res);
+        return res;
+    }
+
+    private void dfs(int i, char[] s, char[] path, List<String> res) {
+        if (i == s.length) {
+            res.add(new String(path));
+            return;
+        }
+        path[i] = s[i];
+        dfs(i + 1, s, path, res); // 不改变当前字符
+        if (Character.isLetter(s[i])) { // 如果当前字符是字母，需要转换大小写 (树多一个分支)
+            path[i] = s[i] >= 'a' && s[i] <= 'z' ?
+                    (char) ('A' + s[i] - 'a') : (char) ('a' + s[i] - 'A');
+            dfs(i + 1, s, path, res);
+        }
+    }
 }

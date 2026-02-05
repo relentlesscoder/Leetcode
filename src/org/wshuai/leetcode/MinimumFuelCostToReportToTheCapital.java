@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,36 +10,35 @@ import java.util.List;
  */
 public class MinimumFuelCostToReportToTheCapital {
 
-    private long cost = 0;
+    private long res = 0;
 
-    // time O(n), space O(n)
     public long minimumFuelCost(int[][] roads, int seats) {
-        // https://leetcode.cn/problems/minimum-fuel-cost-to-report-to-the-capital/solutions/1981361/kao-lu-mei-tiao-bian-shang-zhi-shao-xu-y-uamv/
+        // 贡献法，计算每条从子节点回到父节点的边上有多少车经过。
+        res = 0;
         int n = roads.length + 1;
+        // 构造邻接表
         List<Integer>[] adj = new ArrayList[n];
-        for (int i = 0; i < n; i++) {
-            adj[i] = new ArrayList<>();
-        }
-        for (int[] r : roads) {
-            adj[r[0]].add(r[1]);
-            adj[r[1]].add(r[0]);
+        Arrays.setAll(adj, i -> new ArrayList<>());
+        for (int[] e : roads) {
+            adj[e[0]].add(e[1]);
+            adj[e[1]].add(e[0]);
         }
         dfs(0, -1, adj, seats);
-        return cost;
+        return res;
     }
 
     private int dfs(int node, int parent, List<Integer>[] adj, int seats) {
-        int res = 1;
-        for (int child : adj[node]) {
-            if (child == parent) {
+        int cost = 1;
+        for (int next : adj[node]) {
+            if (next == parent) {
                 continue;
             }
-            res += dfs(child, node, adj, seats);
+            cost += dfs(next, node, adj, seats);
         }
         if (node > 0) {
-            // calculate the contribution ceiling[size/seats] to the total cost for the edge node -> parent
-            cost += (res + seats - 1) / seats;
+            // 统计需要的汽车 (汽油) 数量
+            res += (cost + seats - 1) / seats;
         }
-        return res;
+        return cost; // 经过这个城市回到其父节点城市的人数
     }
 }

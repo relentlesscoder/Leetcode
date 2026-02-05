@@ -1,6 +1,8 @@
 package org.wshuai.leetcode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Wei on 11/13/2019.
@@ -8,52 +10,38 @@ import java.util.*;
  */
 public class TreeDiameter {
 
-	// time O(V+E), space O(V)
-	// proof https://www.youtube.com/watch?v=2PFl93WM_ao
-	public int treeDiameter(int[][] edges) {
-		Map<Integer, List<Integer>> map = new HashMap<>();
-		for(int[] e : edges){
-			map.putIfAbsent(e[0], new ArrayList<Integer>());
-			map.putIfAbsent(e[1], new ArrayList<Integer>());
-			map.get(e[0]).add(e[1]);
-			map.get(e[1]).add(e[0]);
-		}
-		// first BFS to find the farthest node from any
-		// node (0 for simplicity)
-		int res = 0;
-		boolean[] visited = new boolean[map.size()];
-		LinkedList<Integer> queue = new LinkedList<>();
-		queue.offerLast(0);
-		visited[0] = true;
-		int last = -1;
-		while(!queue.isEmpty()){
-			int node = queue.pollFirst();
-			last = node;
-			for(int n : map.get(node)){
-				if(!visited[n]){
-					visited[n] = true;
-					queue.offerLast(n);
-				}
-			}
-		}
-		// find the distance to farthest node from the node
-		// found above
-		Arrays.fill(visited, false);
-		queue.offer(last);
-		visited[last] = true;
-		while(!queue.isEmpty()){
-			int size = queue.size();
-			res++;
-			while(size-- > 0){
-				int node = queue.pollFirst();
-				for(int n : map.get(node)){
-					if(!visited[n]){
-						visited[n] = true;
-						queue.offerLast(n);
-					}
-				}
-			}
-		}
-		return res - 1;
-	}
+    private int res = 0;
+
+    // time O(n), space O(n)
+    public int treeDiameter(int[][] edges) {
+        res = 0;
+        int n = edges.length + 1;
+        // 构造邻接表
+        List<Integer>[] adj = new ArrayList[n];
+        Arrays.setAll(adj, i -> new ArrayList<>());
+        for (int[] e : edges) {
+            adj[e[0]].add(e[1]);
+            adj[e[1]].add(e[0]);
+        }
+        dfs(0, -1, adj);
+        return res;
+    }
+
+    private int dfs(int node, int parent, List<Integer>[] adj) {
+        int max = 0; // 通过子节点回来的最长路径
+        for (int next : adj[node]) {
+            // 树的 DFS 需要排除父节点
+            if (next == parent) {
+                continue;
+            }
+            // 递归求最长路径
+            int len = dfs(next, node, adj);
+            // 通过当前节点的最长路径一定等于子节点的最长的两条路径之和
+            res = Math.max(res, len + max);
+            // 更新最长路径
+            max = Math.max(max, len);
+        }
+        // 返回通过当前节点返回去父节点的最长路径
+        return max + 1;
+    }
 }

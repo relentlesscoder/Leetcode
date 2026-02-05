@@ -8,17 +8,18 @@ public class PartitionArrayIntoTwoEqualProductSubsets {
 
     // time O(2^n), space O(1)
     public boolean checkEqualPartitionsBitMask(int[] nums, long target) {
-        int n = nums.length, mask = (1 << n) - 1;
-        for (int partition = 1; partition < mask; partition++) {
-            long p1 = 1L, p2 = 1L;
-            for (int bit = 0; bit < n && p1 <= target && p2 <= target; bit++) {
-                if (((1 << bit) & partition) > 0) {
-                    p1 *= nums[bit];
+        // #0078
+        int n = nums.length, m = 1 << n;
+        for (int i = 0; i < m; i++) {
+            long prod1 = 1L, prod2 = 1L;
+            for (int j = 0; j < n && prod1 <= target && prod2 <= target; j++) {
+                if (((1 << j) & i) > 0) {
+                    prod1 *= nums[j];
                 } else {
-                    p2 *= nums[bit];
+                    prod2 *= nums[j];
                 }
             }
-            if (p1 == target && p1 == p2) {
+            if (prod1 == target && prod2 == target) {
                 return true;
             }
         }
@@ -26,18 +27,22 @@ public class PartitionArrayIntoTwoEqualProductSubsets {
     }
 
     // time O(2^n), space O(n)
-    public boolean checkEqualPartitions(int[] nums, long target) {
-        return dfs(1L, 1L, 0, nums, target);
+    public boolean checkEqualPartitionsBacktracking(int[] nums, long target) {
+        // #0078
+        return dfs(0, 1L, 1L, nums, target);
     }
 
-    private boolean dfs(long p1, long p2, int i, int[] nums, long target) {
+    private boolean dfs(int i, long prod1, long prod2, int[] nums, long target) {
+        // 找到符合要求的划分方案
         if (i == nums.length) {
-            return p1 == target && p2 == target;
+            return prod1 == target && prod2 == target;
         }
-        if (p1 > target || p2 > target) {
+        // 提前结束
+        if (prod1 > target || prod2 > target) {
             return false;
         }
-        return dfs(p1 * nums[i], p2, i + 1, nums, target)
-                || dfs(p1, p2 * nums[i], i + 1, nums, target);
+        // 将当前数字加入第一部分或者第二部分
+        return dfs(i + 1, prod1 * nums[i], prod2, nums, target)
+                || dfs(i + 1, prod1, prod2 * nums[i], nums, target);
     }
 }

@@ -48,7 +48,7 @@ public class MinimumIncrementsToEqualizeLeafPaths {
             }
         }
         // 将需要修改的节点树统计到答案中
-        res += (!adj[node].isEmpty() ? adj[node].size() - 1 - cnt : 0);
+        res += adj[node].size() - 1 - cnt;
         return max + cost[node]; // 将最大值向上传递
     }
 }
