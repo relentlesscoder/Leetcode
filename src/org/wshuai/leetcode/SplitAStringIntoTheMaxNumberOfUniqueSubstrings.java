@@ -9,25 +9,27 @@ import java.util.Set;
  */
 public class SplitAStringIntoTheMaxNumberOfUniqueSubstrings {
 
+    private int res = 0;
+
+    // time O(2^n), space O(n)
     public int maxUniqueSplit(String s) {
-        Set<String> visited = new HashSet<>();
-        return dfs(0, s, visited);
+        res = 0;
+        dfs(0, new HashSet<>(), s);
+        return res;
     }
 
-    private int dfs(int start, String s, Set<String> visited){
-        if(start == s.length()){
-            return 0;
+    private void dfs(int i, Set<String> path, String s) {
+        if (i == s.length()) {
+            res = Math.max(res, path.size());
+            return;
         }
-        int max = 0;
-        for(int i = start; i < s.length(); i++){
-            String cur = s.substring(start, i + 1);
-            if(visited.contains(cur)){
-                continue;
+        for (int j = i; j < s.length(); j++) {
+            String str = s.substring(i, j + 1);
+            if (!path.contains(str)) {
+                path.add(str);
+                dfs(j + 1, path, s);
+                path.remove(str);
             }
-            visited.add(cur);
-            max = Math.max(max, 1 + dfs(i + 1, s, visited));
-            visited.remove(cur);
         }
-        return max;
     }
 }

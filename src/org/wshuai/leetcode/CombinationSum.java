@@ -10,27 +10,28 @@ import java.util.List;
  */
 public class CombinationSum {
 
-	// time O(k*2^n), space O(n)
-	// complexity analysis https://github.com/Deadbeef-ECE/Interview/blob/master/Leetcode/BackTracking/039_Combination_Sum.java
-	public List<List<Integer>> combinationSum(int[] candidates, int target) {
-		Arrays.sort(candidates);
-		List<List<Integer>> res = new ArrayList<>();
-		dfs(0, target, candidates, new ArrayList<Integer>(), res);
-		return res;
-	}
+    // time O(k * 2^n), space O(n)
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>> res = new ArrayList<>();
+        dfs(0, target, candidates, res, new ArrayList<>());
+        return res;
+    }
 
-	private void dfs(int start, int target, int[] candidates, List<Integer> cur, List<List<Integer>> res){
-		if(target == 0){
-			res.add(new ArrayList<>(cur));
-		}
-		for(int i = start; i < candidates.length; i++){
-			// pruning the current branch because the array is sorted
-			if(candidates[i] > target){
-				break;
-			}
-			cur.add(candidates[i]);
-			dfs(i, target - candidates[i], candidates, cur, res);
-			cur.remove(cur.size() - 1);
-		}
-	}
+    private void dfs(int i, int target, int[] candidates, List<List<Integer>> res, List<Integer> path) {
+        if (target == 0) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        if (i == candidates.length || target < candidates[i]) {
+            return;
+        }
+        // 不选
+        dfs(i + 1, target, candidates, res, path);
+        // 选
+        path.add(candidates[i]);
+        // 注意因为允许重复所以还是从 i 开始
+        dfs(i, target - candidates[i], candidates, res, path);
+        path.remove(path.size() - 1);
+    }
 }
