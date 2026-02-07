@@ -9,36 +9,33 @@ import java.util.List;
  */
 public class RestoreIPAddresses {
 
-	// time O(3^3*n)
+	// time O(n^4), space O(n)
 	public List<String> restoreIpAddresses(String s) {
 		List<String> res = new ArrayList<>();
-		if(s == null || s.isEmpty() || s.length() > 12){
-			return res;
-		}
-		dfs(0, s, "", res);
+		dfs(0, 0, new String[4], s, res);
 		return res;
 	}
 
-	private void dfs(int count, String s, String cur, List<String> res){
-		if(count == 3){
-			if(isValid(s)){
-				res.add(cur + "." + s);
+	private void dfs(int i, int p, String[] ip, String s, List<String> res) {
+		if (i == s.length()) { // 所有字符处理完
+			if (p == 4) { // 且能被分成四部分
+				res.add(String.join(".", ip));
 			}
 			return;
 		}
-		for(int i = 1; i <= Math.min(3, s.length()); i++){
-			String str = s.substring(0, i);
-			if(isValid(str)){
-				dfs(count + 1, s.substring(i), cur + (count == 0 ? "" : ".") + str, res);
+		if (p >= 4) { // 已经分成四部分但是字符还没有处理完，提前结束
+			return;
+		}
+		for (int j = i; j < Math.min(i + 3, s.length()); j++) {
+			String str = s.substring(i, j + 1);
+			if (str.length() == 2 && str.charAt(0) == '0') { // 子串含前缀 0 不符合要求
+				break;
 			}
+			if (Integer.parseInt(str) > 255) { // 子串大于 255
+				break;
+			}
+			ip[p] = str;
+			dfs(j + 1, p + 1, ip, s, res);
 		}
-	}
-
-	private boolean isValid(String s){
-		if(s.length() == 0 || (s.length() > 1 && s.charAt(0) == '0')){
-			return false;
-		}
-		int val = Integer.parseInt(s);
-		return val >= 0 && val <= 255;
 	}
 }

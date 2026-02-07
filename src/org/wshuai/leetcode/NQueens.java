@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -8,47 +9,43 @@ import java.util.List;
  * #0051 https://leetcode.com/problems/n-queens/
  */
 public class NQueens {
-	// time O(n^n), space O(n)
-	public List<List<String>> solveNQueens(int n) {
-		List<List<String>> res = new ArrayList<>();
-		solve(0, n, new ArrayList<Integer>(), res, new boolean[n],
-				new boolean[n], new boolean[2*n - 1], new boolean[2*n - 1]);
-		return res;
-	}
 
-	private void solve(int row, int n, List<Integer> cur, List<List<String>> res,
-	                   boolean[] rows, boolean[] columns, boolean[] diagonals, boolean[] antiDiagonals){
-		if(row == n){
-			res.add(populateBoard(cur, n));
-			return;
-		}
-		for(int i = 0; i < n; i++){
-			if(rows[row] || columns[i] || diagonals[row - i + n - 1] || antiDiagonals[row + i]){
-				continue;
-			}
-			cur.add(i);
-			rows[row] = true;
-			columns[i] = true;
-			antiDiagonals[row + i] = true;
-			diagonals[row - i + n - 1] = true;
-			solve(row + 1, n, cur, res, rows, columns, diagonals, antiDiagonals);
-			cur.remove(cur.size() - 1);
-			rows[row] = false;
-			columns[i] = false;
-			antiDiagonals[row + i] = false;
-			diagonals[row - i + n - 1] = false;
-		}
-	}
+    // time O(n^2 * n!), space O(n)
+    public List<List<String>> solveNQueens(int n) {
+        // 因为每一行必须选一个所以本质上是列的全排列
+        List<List<String>> res = new ArrayList<>();
+        int[] board = new int[n];
+        int cols = 0, // 列是否被占
+                diff = 0, // 反对角线是否被占
+                sum = 0; // 对角线是否被占
+        dfs(0, board, res, cols, diff, sum);
+        return res;
+    }
 
-	private List<String> populateBoard(List<Integer> cur, int n){
-		List<String> board = new ArrayList<>();
-		for(int i = 0; i < cur.size(); i++){
-			StringBuilder sb = new StringBuilder();
-			for(int j = 0; j < n; j++){
-				sb.append(cur.get(i) == j ? "Q" : ".");
-			}
-			board.add(sb.toString());
-		}
-		return board;
-	}
+    private void dfs(int x, int[] board, List<List<String>> res, int cols, int diff, int sum) {
+        int n = board.length;
+        if (x == n) { // 所有皇后都放好了则构造矩阵
+            List<String> ans = new ArrayList<>();
+            for (int c : board) {
+                char[] arr = new char[n];
+                Arrays.fill(arr, '.');
+                arr[c] = 'Q';
+                ans.add(new String(arr));
+            }
+            res.add(ans);
+            return;
+        }
+        for (int y = 0; y < n; y++) {
+            if (((1 << y) & cols) == 0 && (1 << (x - y + n) & diff) == 0 && (1 << (x + y) & sum) == 0) {
+                cols |= (1 << y);
+                diff |= 1 << (x - y + n);
+                sum |= 1 << (x + y);
+                board[x] = y;
+                dfs(x + 1, board, res, cols, diff, sum);
+                cols ^= (1 << y);
+                diff ^= 1 << (x - y + n);
+                sum ^= 1 << (x + y);
+            }
+        }
+    }
 }

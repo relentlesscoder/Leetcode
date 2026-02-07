@@ -781,6 +781,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 #3335 https://leetcode.com/problems/total-characters-in-string-after-transformations-i/
+#3376 https://leetcode.com/problems/minimum-time-to-break-locks-i/ (miao a~~~) (DP 状态压缩 / 回溯 排列)
 #3494 https://leetcode.com/problems/find-the-minimum-amount-of-time-to-brew-potions/
 #3503 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
@@ -1211,18 +1212,30 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 21 Backtracking
 
 #0017 https://leetcode.com/problems/letter-combinations-of-a-phone-number/ (回溯 基础)
+#0022 https://leetcode.com/problems/generate-parentheses/ (miao a~~~) (回溯 组合)
+#0037
 #0039 https://leetcode.com/problems/combination-sum/ (miao a~~~) (回溯)
+#0046 https://leetcode.com/problems/permutations/ (回溯 排列)
+#0051 https://leetcode.com/problems/n-queens/ (miao a~~~) (回溯 排列)
+#0077 https://leetcode.com/problems/combinations/ (回溯 组合)
 #0078 https://leetcode.com/problems/subsets/ (回溯 基础)
+#0093 https://leetcode.com/problems/restore-ip-addresses/ (miao a~~~) (回溯 + 划分)
 #0131 https://leetcode.com/problems/palindrome-partitioning/ (miao a~~~) (回溯 + 划分)
+#0140
+#0216 https://leetcode.com/problems/combination-sum-iii/ (回溯 组合)
 #0254 https://leetcode.com/problems/factor-combinations/ (miao a~~~) (回溯)
+#0301
 #0320 https://leetcode.com/problems/generalized-abbreviation/ (miao a~~~) (回溯)
 #0784 https://leetcode.com/problems/letter-case-permutation/ (回溯 基础)
 #1239 https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/ (miao a~~~) (回溯 + 位运算)
 #1255
+#1286 https://leetcode.com/problems/iterator-for-combination/ (miao a~~~) (回溯 组合 + 位运算)
+#1307
 #1593 https://leetcode.com/problems/split-a-string-into-the-max-number-of-unique-substrings/ (miao a~~~) (回溯 + 划分)
 #1601
 #1617
 #1655 https://leetcode.com/problems/distribute-repeating-integers/
+#1849
 #1863 https://leetcode.com/problems/sum-of-all-subset-xor-totals/ (回溯 基础) (#0078)
 #2002
 #2044 https://leetcode.com/problems/count-number-of-maximum-bitwise-or-subsets/ (miao a~~~) (回溯 基础) (DFS/DFS + Memorization/DP/位运算) (#0078)
@@ -1234,6 +1247,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2597 https://leetcode.com/problems/the-number-of-beautiful-subsets/ (miao a~~~) (回溯 + 位运算)
 #2698 https://leetcode.com/problems/find-the-punishment-number-of-an-integer/ (miao a~~~) (回溯 + 划分)
 #2959
+#3376 https://leetcode.com/problems/minimum-time-to-break-locks-i/ (miao a~~~) (DP 状态压缩 / 回溯 排列)
 #3566 https://leetcode.com/problems/partition-array-into-two-equal-product-subsets/ (回溯 基础) (#0078)
 #LCP51 https://leetcode.cn/problems/UEcfPD/ (回溯 基础)
 

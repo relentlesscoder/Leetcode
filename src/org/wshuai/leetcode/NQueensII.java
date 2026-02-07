@@ -5,35 +5,33 @@ package org.wshuai.leetcode;
  * #0052 https://leetcode.com/problems/n-queens-ii/
  */
 public class NQueensII {
-	private int res;
+    private int res = 0;
 
-	// time O(n^n), space O(n)
-	public int totalNQueens(int n) {
-		res = 0;
-		solve(0, n, new boolean[n], new boolean[n],
-				new boolean[2*n - 1], new boolean[2*n - 1]);
-		return res;
-	}
+    // time O(n * n!), space O(n)
+    public int totalNQueens(int n) {
+        res = 0;
+        int cols = 0, // 列是否被占
+                diff = 0, // 反对角线是否被占
+                sum = 0; // 对角线是否被占
+        dfs(0, n, cols, diff, sum);
+        return res;
+    }
 
-	private void solve(int row, int n, boolean[] rows, boolean[] columns,
-	                   boolean[] diagonals, boolean[] antiDiagonals){
-		if(row == n){
-			res++;
-			return;
-		}
-		for(int i = 0; i < n; i++){
-			if(rows[row] || columns[i] || diagonals[row - i + n - 1] || antiDiagonals[row + i]){
-				continue;
-			}
-			rows[row] = true;
-			columns[i] = true;
-			antiDiagonals[row + i] = true;
-			diagonals[row - i + n - 1] = true;
-			solve(row + 1, n, rows, columns, diagonals, antiDiagonals);
-			rows[row] = false;
-			columns[i] = false;
-			antiDiagonals[row + i] = false;
-			diagonals[row - i + n - 1] = false;
-		}
-	}
+    private void dfs(int x, int n, int cols, int diff, int sum) {
+        if (x == n) {
+            res++;
+            return;
+        }
+        for (int y = 0; y < n; y++) {
+            if (((1 << y) & cols) == 0 && (1 << (x - y + n) & diff) == 0 && (1 << (x + y) & sum) == 0) {
+                cols |= (1 << y);
+                diff |= 1 << (x - y + n);
+                sum |= 1 << (x + y);
+                dfs(x + 1, n, cols, diff, sum);
+                cols ^= (1 << y);
+                diff ^= 1 << (x - y + n);
+                sum ^= 1 << (x + y);
+            }
+        }
+    }
 }
