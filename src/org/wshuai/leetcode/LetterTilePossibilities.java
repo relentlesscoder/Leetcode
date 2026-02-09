@@ -3,30 +3,39 @@ package org.wshuai.leetcode;
 import java.util.Arrays;
 
 /**
- * Created by Wei on 8/30/2019.
+ * Created by Wei on 08/30/2019.
  * #1079 https://leetcode.com/problems/letter-tile-possibilities/
  */
 public class LetterTilePossibilities {
-	int count = 0;
 
-	public int numTilePossibilities(String tiles) {
-		char[] arr = tiles.toCharArray();
-		Arrays.sort(arr);
-		int[] used = new int[arr.length];
-		dfs(arr, used);
-		return count;
-	}
+    private int res = 0;
 
-	private void dfs(char[] tiles, int[] used) {
-		for (int i = 0; i < tiles.length; i++) {
-			// remove duplicates
-			if (used[i] == 1 || (i > 0 && used[i - 1] == 0 && tiles[i] == tiles[i - 1])) {
-				continue;
-			}
-			used[i] = 1;
-			count++;
-			dfs(tiles, used);
-			used[i] = 0;
-		}
-	}
+    public int numTilePossibilities(String tiles) {
+        // 本质上是全排列 + 去重
+        res = 0;
+        char[] arr = tiles.toCharArray();
+        Arrays.sort(arr);
+        dfs(0, arr);
+        return res - 1;
+    }
+
+    private void dfs(int used, char[] s) {
+        res++; // 题目要求所有的中间结果也需要统计
+        if (used == (1 << s.length) - 1) { // 所有索引全部用完
+            return;
+        }
+        int visited = 0; // 递归树上本层已经用过的元素值
+        for (int j = 0; j < s.length; j++) {
+            // 该索引被用过或者值被用过
+            if (((1 << j) & used) > 0 || ((1 << (s[j] - 'A')) & visited) > 0) {
+                continue;
+            }
+            visited |= (1 << (s[j] - 'A'));
+            used |= (1 << j);
+            dfs(used, s);
+            // 恢复现场
+            // 注意 visited 不需要恢复
+            used ^= (1 << j);
+        }
+    }
 }

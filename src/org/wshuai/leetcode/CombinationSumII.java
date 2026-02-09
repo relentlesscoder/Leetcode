@@ -10,28 +10,55 @@ import java.util.List;
  */
 public class CombinationSumII {
 
-	// time O(2^n)
-	public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-		Arrays.sort(candidates);
-		List<List<Integer>> res = new ArrayList<>();
-		dfs(0, target, candidates, new ArrayList<Integer>(), res);
-		return res;
-	}
+    // time O(n * 2^n), space O(n)
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        // #0090
+        Arrays.sort(candidates);
+        List<List<Integer>> res = new ArrayList<>();
+        dfs1(0, target, new ArrayList<>(), candidates, res);
+        // dfs2(0, target, new ArrayList<>(), candidates, res);
+        return res;
+    }
 
-	private void dfs(int start, int target, int[] candidates, List<Integer> cur, List<List<Integer>> res){
-		if(target == 0){
-			res.add(new ArrayList<>(cur));
-		}
-		for(int i = start; i < candidates.length; i++){
-			if(candidates[i] > target){
-				break;
-			}
-			if(i > start && candidates[i] == candidates[i - 1]){
-				continue;
-			}
-			cur.add(candidates[i]);
-			dfs(i + 1, target - candidates[i], candidates, cur, res);
-			cur.remove(cur.size() - 1);
-		}
-	}
+    private void dfs1(int i, int target, List<Integer> path, int[] nums, List<List<Integer>> res) {
+        // 枚举下一个要选的数
+        if (target == 0) {
+            res.add(new ArrayList<>(path));
+        }
+        if (i == nums.length || target < nums[i]) {
+            return;
+        }
+        // 在 [i, n - 1] 中选一个 nums[j]，注意选 nums[j] 意味着 [i, j - 1] 中的数都没有选
+        for (int j = i; j < nums.length; j++) {
+            // 如果 j > i，说明 nums[j - 1] 没有选，所有等于 nums[j - 1] 的数都不选
+            if (j > i && nums[j] == nums[j - 1]) {
+                continue;
+            }
+            path.add(nums[j]);
+            dfs1(j + 1, target - nums[j], path, nums, res);
+            path.remove(path.size() - 1);
+        }
+    }
+
+    private void dfs2(int i, int target, List<Integer> path, int[] nums, List<List<Integer>> res) {
+        // 枚举下一个要选的数
+        if (target == 0) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        int n = nums.length;
+        if (i == n || target < nums[i]) {
+            return;
+        }
+        // 选
+        path.add(nums[i]);
+        dfs2(i + 1, target - nums[i], path, nums, res);
+        path.remove(path.size() - 1);
+        // 不选
+        int x = nums[i];
+        while (i < n && nums[i] == x) {
+            i++;
+        }
+        dfs2(i, target, path, nums, res);
+    }
 }

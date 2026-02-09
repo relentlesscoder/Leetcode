@@ -7,42 +7,41 @@ import java.util.Arrays;
  * #0473 https://leetcode.com/problems/matchsticks-to-square/
  */
 public class MatchsticksToSquare {
-	// time O(3^n)
-	public boolean makesquare(int[] nums) {
-		if(nums == null || nums.length < 4){
-			return false;
-		}
-		int sum = 0, target = 0;
-		for(int num : nums){
-			sum += num;
-		}
-		if(sum % 4 != 0){
-			return false;
-		}
-		target = sum / 4;
-		Arrays.sort(nums);
-		return dfs(0, 0, 0, 4, target, nums);
-	}
 
-	private boolean dfs(int start, int sum, int used, int count, int target, int[] nums){
-		if(count == 1){
-			return true;
-		}
-		if(sum == target){
-			return dfs(0, 0, used, count - 1, target, nums);
-		}
-		for(int i = start; i < nums.length; i++){
-			if(((1 << i) & used) > 0){
-				continue;
-			}
-			// recursion tree pruning
-			if(sum + nums[i] > target){
-				return false;
-			}
-			if(dfs(i, sum + nums[i], (1 << i) | used, count, target, nums)){
-				return true;
-			}
-		}
-		return false;
-	}
+    // time O(4^n), space O(n)
+    public boolean makesquare(int[] matchsticks) {
+		// 优化: 反转数组 - 优先使用长的火柴达到目标长度
+        Arrays.sort(matchsticks);
+        for (int i = 0, j = matchsticks.length - 1; i < j; i++, j--) {
+            int temp = matchsticks[i];
+            matchsticks[i] = matchsticks[j];
+            matchsticks[j] = temp;
+        }
+		// 计算中长度
+        int sum = 0;
+        for (int x : matchsticks) {
+            sum += x;
+        }
+		// 如总长度不能平分为 4 份则不符合要求
+        if (sum % 4 != 0) {
+            return false;
+        }
+        sum /= 4;
+        return dfs(0, new int[4], sum, matchsticks);
+    }
+
+    private boolean dfs(int i, int[] len, int target, int[] nums) {
+        if (i == nums.length) {
+            return true;
+        }
+		// 将当前火柴分别加入四个部分
+        for (int j = 0; j < 4; j++) {
+            len[j] += nums[i];
+            if (len[j] <= target && dfs(i + 1, len, target, nums)) {
+                return true;
+            }
+            len[j] -= nums[i];
+        }
+        return false;
+    }
 }
