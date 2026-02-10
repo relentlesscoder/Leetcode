@@ -5,24 +5,26 @@ package org.wshuai.leetcode;
  * #0070 https://leetcode.com/problems/climbing-stairs/
  */
 public class ClimbingStairs {
-	// time O(n), space O(1)
-	public int climbStairsConstantSpace(int n) {
-		int s1 = 1, s2 = 1;
-		for(int i = 2; i <= n; i++){
-			int temp = s2;
-			s2 += s1;
-			s1 = temp;
-		}
-		return s2;
-	}
 
-	// time O(n), space O(n)
-	public int climbStairs(int n) {
-		int[] dp = new int[n + 1];
-		dp[0] = dp[1] = 1;
-		for(int i = 2; i <= n; i++){
-			dp[i] = dp[i - 1] + dp[i - 2];
-		}
-		return dp[n];
-	}
+    // time O(n), space O(1)
+    public int climbStairsDP(int n) {
+        // 空间优化版，用两个变量存 i - 1 和 i - 2 的结果
+        int res = 1, pre = 1;
+        for (int i = 2; i <= n; i++) {
+            int cnt = res + pre;
+            pre = res;
+            res = cnt;
+        }
+        return res;
+    }
+
+    // time O(n), space O(n)
+    public int climbStairsDPWithArray(int n) {
+        int[] dp = new int[n + 1]; // dp[i] 表示爬到第 i 级楼梯有多少种方法
+        dp[0] = dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2]; // 可以从 i - 1 或者 i - 2 级爬到第 i 级
+        }
+        return dp[n];
+    }
 }
