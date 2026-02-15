@@ -1,27 +1,29 @@
 package org.wshuai.leetcode;
 
+import java.util.Arrays;
+
 /**
  * Created by Wei on 01/10/2024.
  * #2606 https://leetcode.com/problems/find-the-substring-with-maximum-cost/
  */
 public class FindTheSubstringWithMaximumCost {
 
-    // time O(n), space O(1)
+    // time O(n + m), space O(1)
     public int maximumCostSubstring(String s, String chars, int[] vals) {
-        int n = s.length();
-        int[] map = new int[26];
-        for (int i = 1; i <= 26; i++) {
-            map[i - 1] = i;
+        int n = s.length(), m = chars.length();
+        // 计算每个字符的开销
+        int[] costs = new int[26];
+        Arrays.setAll(costs, i -> i + 1);
+        for (int i = 0; i < m; i++) {
+            costs[chars.charAt(i) - 'a'] = vals[i];
         }
-        for (int i = 0; i < chars.length(); i++) {
-            map[chars.charAt(i) - 'a'] = vals[i];
-        }
-        int currSubarray = 0, maxSubarray = Integer.MIN_VALUE;
+        // 转化为求最大子数组 (#0053)
+        int res = 0, maxSum = 0;
         for (int i = 0; i < n; i++) {
-            int num = map[s.charAt(i) - 'a'];
-            currSubarray = Math.max(currSubarray + num, num);
-            maxSubarray = Math.max(maxSubarray, currSubarray);
+            char c = s.charAt(i);
+            maxSum = Math.max(maxSum + costs[c - 'a'], costs[c - 'a']);
+            res = Math.max(res, maxSum);
         }
-        return Math.max(maxSubarray, 0);
+        return res;
     }
 }

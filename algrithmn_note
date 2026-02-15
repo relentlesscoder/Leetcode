@@ -736,8 +736,10 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
 #0740 https://leetcode.com/problems/delete-and-earn/ (miao a~~~) (DP 打家劫舍)
 #0746 https://leetcode.com/problems/min-cost-climbing-stairs/ (DP 基础)
+#0918 https://leetcode.com/problems/maximum-sum-circular-subarray/ (miao a~~~) (DP 最大子数组) (#0053)
 #1012 https://leetcode.com/problems/numbers-with-repeated-digits/ (Digit DP)
 #1186 https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/ (prefix + suffix sum)
+#1191 https://leetcode.com/problems/k-concatenation-maximum-sum/ (miao a~~~) (DP 最大子数组) (#0053)
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
 #1395 https://leetcode.com/problems/count-number-of-teams/
@@ -762,7 +764,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2050 https://leetcode.com/problems/parallel-courses-iii/
 #2060 https://leetcode.com/problems/check-if-an-original-string-exists-given-two-encoded-strings/
 #2088 https://leetcode.com/problems/count-fertile-pyramids-in-a-land/
-#2140 https://leetcode.com/problems/solving-questions-with-brainpower/
+#2140 https://leetcode.com/problems/solving-questions-with-brainpower/ (miao a~~~) (记忆化搜索/DP) (蛙跳题)
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
 #2218 https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/
 #2262 https://leetcode.com/problems/total-appeal-of-a-string/
@@ -778,6 +780,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2466 https://leetcode.com/problems/count-ways-to-build-good-strings/ (miao a~~~) (记忆化搜索/DP - 背包)
 #2501 https://leetcode.com/problems/longest-square-streak-in-an-array/
 #2533 https://leetcode.com/problems/number-of-good-binary-strings/ (miao a~~~) (记忆化搜索/DP - 背包)
+#2606 https://leetcode.com/problems/find-the-substring-with-maximum-cost/ (miao a~~~) (DP 最大子数组) (#0053)
 #2707 https://leetcode.com/problems/extra-characters-in-a-string/
 #2742 https://leetcode.com/problems/painting-the-walls/
 #2787 https://leetcode.com/problems/ways-to-express-an-integer-as-sum-of-powers/ (Knapsack)
