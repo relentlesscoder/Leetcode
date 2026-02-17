@@ -6,19 +6,24 @@ package org.wshuai.leetcode;
  */
 public class MaximumProductSubarray {
 
-	// time O(n)
-	// Kadane's algorithm
-	public int maxProduct(int[] nums) {
-		if(nums == null || nums.length == 0){
-			return 0;
-		}
-		int res = nums[0], max = nums[0], min = nums[0];
-		for(int i = 1; i < nums.length; i++){
-			int p1 = nums[i] * max, p2 = nums[i] * min; // need to consider negative case (swapping max and min)
-			max = Math.max(nums[i], Math.max(p1, p2));
-			min = Math.min(nums[i], Math.min(p1, p2));
-			res = Math.max(res, max);
-		}
-		return res;
-	}
+    // time O(n), space O(1)
+    public int maxProduct(int[] nums) {
+		// #0053相似题，不同的是需要考虑负数的情况。负数与最小值的乘积有可能变成最大值 (反之亦然)。
+        int res = Integer.MIN_VALUE,
+				max = 1, // 当前索引结尾的子数组的最大乘积
+				min = 1, // 当前索引结尾的子数组的最小乘积
+				n = nums.length;
+        for (int i = 0; i < n; i++) {
+            int mx = max; // 先拷贝一份 max
+			// 找到以当前元素结尾的子数组的最大乘积需要考虑 max 与 nums[i] 的乘积, min 与 nums[i]
+			// 的乘积 和 nums[i] 自己这三种情况
+            max = Math.max(Math.max(max * nums[i], min * nums[i]), nums[i]);
+			// 找到以当前元素结尾的子数组的最小乘积需要考虑 max 与 nums[i] 的乘积, min 与 nums[i]
+			// 的乘积 和 nums[i] 自己这三种情况
+            min = Math.min(Math.min(min * nums[i], mx * nums[i]), nums[i]);
+			// 更新答案
+            res = Math.max(res, max);
+        }
+        return res;
+    }
 }
