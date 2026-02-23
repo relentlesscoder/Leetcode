@@ -81,7 +81,7 @@ public class MinimumFallingPathSumII {
 
 	// time O(m * n^2), space O(m * n)
 	public int minFallingPathSumDPWithGrid(int[][] grid) {
-		// 把记忆化搜素翻译成 DP
+		// 把记忆化搜索翻译成 DP
 		int res = Integer.MAX_VALUE, m = grid.length, n = grid[0].length;
 		int[][] dp = new int[m][n];
 		Arrays.setAll(dp[m - 1], i -> grid[m - 1][i]);

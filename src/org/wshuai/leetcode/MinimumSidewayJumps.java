@@ -10,27 +10,90 @@ import java.util.Deque;
  */
 public class MinimumSidewayJumps {
 
+    private static final int MAX = (int) 1e6;
+
     // time O(n), space O(1)
-    public int minSideJumps(int[] obstacles) {
+    public int minSideJumpsDP(int[] obstacles) {
+        // 空间优化版 DP
         int n = obstacles.length;
-        // dp[i] denotes the cost of lane i + 1
-        int[] dp = new int[]{1, 0, 1};
-        for (int i = 1; i < n; i++) {
-            if (obstacles[i] > 0) {
-                // Overrides cost of the lane to max if there is an obstacle
-                // in lane, meaning we can't proceed without changing the lane.
-                dp[obstacles[i] - 1] = 1_000_000;
-            }
+        int[] pre = new int[3];
+        for (int i = n - 2; i >= 0; i--) {
+            int[] dp = new int[3];
             for (int j = 0; j < 3; j++) {
-                // Special case: obstacles[i] = 0, maintain the current cost.
-                if (j + 1 != obstacles[i]) {
-                    // for lanes without obstacle, add the jump cost to the min between
-                    // the costs from the other two lanes.
-                    dp[j] = Math.min(dp[j], Math.min(dp[(j + 1) % 3], dp[(j + 2) % 3]) + 1);
+                if (obstacles[i] == j + 1) {
+                    dp[j] = MAX;
+                    continue;
+                }
+                dp[j] = pre[j];
+                if (obstacles[i] != (j + 1) % 3 + 1) {
+                    dp[j] = Math.min(dp[j], 1 + pre[(j + 1) % 3]);
+                }
+                if (obstacles[i] != (j + 2) % 3 + 1) {
+                    dp[j] = Math.min(dp[j], 1 + pre[(j + 2) % 3]);
+                }
+            }
+            pre = dp;
+        }
+        return pre[1];
+    }
+
+    // time O(n), space O(n)
+    public int minSideJumpsDPWithGrid(int[] obstacles) {
+        // 把记忆化搜索翻译成 DP
+        int n = obstacles.length;
+        int[][] dp = new int[3][n];
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j = 0; j < 3; j++) {
+                if (obstacles[i] == j + 1) {
+                    dp[j][i] = MAX;
+                    continue;
+                }
+                dp[j][i] = dp[j][i + 1];
+                if (obstacles[i] != (j + 1) % 3 + 1) {
+                    dp[j][i] = Math.min(dp[j][i], 1 + dp[(j + 1) % 3][i + 1]);
+                }
+                if (obstacles[i] != (j + 2) % 3 + 1) {
+                    dp[j][i] = Math.min(dp[j][i], 1 + dp[(j + 2) % 3][i + 1]);
                 }
             }
         }
-        return Math.min(dp[0], Math.min(dp[1], dp[2]));
+        return dp[1][0];
+    }
+
+    // time O(n), space O(n)
+    public int minSideJumpsDFSWithMemorization(int[] obstacles) {
+        // 记忆化搜索
+        int n = obstacles.length;
+        int[][] memo = new int[3][n];
+        for (int[] row : memo) {
+            Arrays.fill(row, -1);
+        }
+        return dfs(1, 0, obstacles, memo);
+    }
+
+    private int dfs(int x, int y, int[] obstacles, int[][] memo) {
+        int n = obstacles.length;
+        // 到达最后一列返回 0
+        if (y == n - 1) {
+            return 0;
+        }
+        // 如果当前格子有障碍物则直接返回最大值 - 不能走
+        if (obstacles[y] == x + 1) {
+            return MAX;
+        }
+        if (memo[x][y] != -1) {
+            return memo[x][y];
+        }
+        // 直接去下一列同一行的方格 - 不用横跳
+        int res = dfs(x, y + 1, obstacles, memo);
+        // 如果同一列另两个方格没有障碍物也可以横跳一步去下一列对应行的方格
+        if (obstacles[y] != (x + 1) % 3 + 1) {
+            res = Math.min(res, 1 + dfs((x + 1) % 3, y + 1, obstacles, memo));
+        }
+        if (obstacles[y] != (x + 2) % 3 + 1) {
+            res = Math.min(res, 1 + dfs((x + 2) % 3, y + 1, obstacles, memo));
+        }
+        return memo[x][y] = res;
     }
 
     // time O(n), space O(n)

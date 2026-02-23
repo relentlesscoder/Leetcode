@@ -87,7 +87,7 @@ public class MaximumNumberOfMovesInAGrid {
 
     // time O(m * n), space O(m * n)
     public int maxMovesDFSWithGrid(int[][] grid) {
-        // 把记忆化搜素翻译成 DP
+        // 把记忆化搜索翻译成 DP
         int res = 0, m = grid.length, n = grid[0].length;
         int[][] dp = new int[m][n];
         for (int j = n - 2; j >= 0; j--) {

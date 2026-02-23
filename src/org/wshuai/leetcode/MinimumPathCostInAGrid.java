@@ -33,7 +33,7 @@ public class MinimumPathCostInAGrid {
 
     // time O(m * n^2), space O(m * n)
     public int minPathCostDPWithGrid(int[][] grid, int[][] moveCost) {
-        // 把记忆化搜素翻译成 DP
+        // 把记忆化搜索翻译成 DP
         int res = Integer.MAX_VALUE, m = grid.length, n = grid[0].length;
         int[][] dp = new int[m][n];
         Arrays.setAll(dp[m - 1], i -> grid[m - 1][i]);
@@ -54,6 +54,7 @@ public class MinimumPathCostInAGrid {
 
     // time O(m * n^2), space O(m * n)
     public int minPathCostDFSWithMemorization(int[][] grid, int[][] moveCost) {
+        // 记忆化搜索
         int res = Integer.MAX_VALUE, m = grid.length, n = grid[0].length;
         int[][] memo = new int[m][n];
         for (int i = 0; i < n; i++) {

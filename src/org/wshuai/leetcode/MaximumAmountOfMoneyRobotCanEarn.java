@@ -34,7 +34,7 @@ public class MaximumAmountOfMoneyRobotCanEarn {
 
     // time O(m * n), space O(m * n)
     public int maximumAmountDPWithGrid(int[][] coins) {
-        // 把记忆化搜素翻译成 DP
+        // 把记忆化搜索翻译成 DP
         int m = coins.length, n = coins[0].length;
         // 多加一行一列处理出界的情况以便于计算
         int[][][] dp = new int[m + 1][n + 1][3];

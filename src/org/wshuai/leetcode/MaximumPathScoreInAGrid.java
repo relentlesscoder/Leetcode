@@ -37,7 +37,7 @@ public class MaximumPathScoreInAGrid {
 
     // time O(m * n * k), space O(m * n * k)
     public int maxPathScoreDPWithGrid(int[][] grid, int k) {
-        // 把记忆化搜素翻译成 DP
+        // 把记忆化搜索翻译成 DP
         int m = grid.length, n = grid[0].length;
         // 多加一行一列处理出界的情况以便于计算
         int[][][] dp = new int[m + 1][n + 1][k + 1];
