@@ -28,6 +28,7 @@ public class MinimumCostPathWithAlternatingDirectionsII {
 
     // time O(m * n), space O(m * n)
     public long minCostDPWithGrid(int m, int n, int[][] waitCost) {
+        // 把记忆化搜素翻译成 DP
         long[][] dp = new long[m + 1][n + 1];
         Arrays.fill(dp[0], Long.MAX_VALUE);
         dp[0][1] = -waitCost[0][0];

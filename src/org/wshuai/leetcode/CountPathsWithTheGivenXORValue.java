@@ -12,6 +12,7 @@ public class CountPathsWithTheGivenXORValue {
 
     // time O(m * n), space O(m * n)
     public int countPathsWithXorValueDPWithGrid(int[][] grid, int k) {
+        // 把记忆化搜素翻译成 DP
         int m = grid.length, n = grid[0].length, max = 0;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {

@@ -1,6 +1,7 @@
 package org.wshuai.leetcode;
 
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 
 /**
@@ -31,7 +32,7 @@ public class MaximumNumberOfMovesInAGrid {
             }
         }
         // 如果我们已经能到达这个格子，那后续的遍历到达这个格子也没办法使结果更优
-        // 因此可以把格子的值直接设为0以免重复遍历，当然也可以使用一个数组来记录
+        // 因此可以把格子的值直接设为 0 以免重复遍历，当然也可以使用一个数组来记录
         // 已遍历过的格子。
         grid[i][j] = 0;
     }
@@ -61,30 +62,80 @@ public class MaximumNumberOfMovesInAGrid {
         return res;
     }
 
-    // time O(m * n), space O(m * n)
-    public int maxMovesDP(int[][] grid) {
-        int res = 0, row = grid.length, col = grid[0].length;
-        int[][] dp = new int[row][col];
-        for (int i = 0; i < row; i++) {
-            dp[i][0] = 1;
-        }
-        for (int j = 1; j < col; j++) {
-            for (int i = 0; i < row; i++) {
-                if (i - 1 >= 0 && grid[i][j] > grid[i - 1][j - 1]) {
-                    dp[i][j] = Math.max(dp[i][j], dp[i - 1][j - 1]);
+    // time O(m * n), space O(m)
+    public int maxMoves(int[][] grid) {
+        // 空间优化版 DP
+        int res = 0, m = grid.length, n = grid[0].length;
+        int[] pre = new int[m];
+        for (int j = n - 2; j >= 0; j--) {
+            int[] dp = new int[m];
+            for (int i = 0; i < m; i++) {
+                for (int d = 0; d < 3; d++) {
+                    int x = i + DIRS[d][0], y = j + DIRS[d][1];
+                    if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] > grid[i][j]) {
+                        dp[i] = Math.max(dp[i], 1 + pre[x]);
+                    }
                 }
-                if (grid[i][j] > grid[i][j - 1]) {
-                    dp[i][j] = Math.max(dp[i][j], dp[i][j - 1]);
-                }
-                if (i + 1 < row && grid[i][j] > grid[i + 1][j - 1]) {
-                    dp[i][j] = Math.max(dp[i][j], dp[i + 1][j - 1]);
-                }
-                if (dp[i][j] > 0) {
-                    dp[i][j]++;
-                }
-                res = Math.max(dp[i][j] - 1, res);
             }
+            pre = dp;
+        }
+        for (int i = 0; i < m; i++) {
+            res = Math.max(res, pre[i]);
         }
         return res;
+    }
+
+    // time O(m * n), space O(m * n)
+    public int maxMovesDFSWithGrid(int[][] grid) {
+        // 把记忆化搜素翻译成 DP
+        int res = 0, m = grid.length, n = grid[0].length;
+        int[][] dp = new int[m][n];
+        for (int j = n - 2; j >= 0; j--) {
+            for (int i = 0; i < m; i++) {
+                for (int d = 0; d < 3; d++) {
+                    int x = i + DIRS[d][0], y = j + DIRS[d][1];
+                    if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] > grid[i][j]) {
+                        dp[i][j] = Math.max(dp[i][j], 1 + dp[x][y]);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            res = Math.max(res, dp[i][0]);
+        }
+        return res;
+    }
+
+    // time O(m * n), space O(m * n)
+    public int maxMovesDFSWithMemorization(int[][] grid) {
+        // 记忆化搜索
+        int res = 0, m = grid.length, n = grid[0].length;
+        int[][] memo = new int[m][n];
+        for (int[] row : memo) {
+            Arrays.fill(row, -1);
+        }
+        for (int i = 0; i < m; i++) {
+            res = Math.max(res, dfs(i, 0, grid, memo));
+        }
+        return res;
+    }
+
+    private int dfs(int i, int j, int[][] grid, int[][] memo) {
+        int m = grid.length, n = grid[0].length;
+        if (j == n - 1) {
+            return 0;
+        }
+        if (memo[i][j] != -1) {
+            return memo[i][j];
+        }
+        int res = 0;
+        for (int d = 0; d < 3; d++) {
+            int x = i + DIRS[d][0], y = j + DIRS[d][1];
+            // 只能去右边值更大的方格
+            if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] > grid[i][j]) {
+                res = Math.max(res, 1 + dfs(x, y, grid, memo));
+            }
+        }
+        return memo[i][j] = res;
     }
 }

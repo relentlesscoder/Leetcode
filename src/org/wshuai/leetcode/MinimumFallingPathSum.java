@@ -33,6 +33,7 @@ public class MinimumFallingPathSum {
 
     // time O(n^2), space O(n^2)
     public int minFallingPathSumDPWithGrid(int[][] matrix) {
+        // 把记忆化搜素翻译成 DP
         int res = Integer.MAX_VALUE, n = matrix.length;
         if (n == 1) {
             return matrix[0][0];
