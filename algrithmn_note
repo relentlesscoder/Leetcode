@@ -252,7 +252,7 @@ https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3
 #0286 https://leetcode.com/problems/walls-and-gates/ (多源BFS)
 #0305 https://leetcode.com/problems/number-of-islands-ii/ (miao a~~~) (DFS, union find)
 #0317 https://leetcode.com/problems/shortest-distance-from-all-buildings/ (多源BFS, 状态压缩)
-#0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (DFS)
+#0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (miao a~~~) (Greedy BFS/记忆化搜索/拓扑排序)
 #0417 https://leetcode.com/problems/pacific-atlantic-water-flow/ (miao a~~~) (DFS, BFS) (在dfs之前判断是否符合条件)
 #0463 https://leetcode.com/problems/island-perimeter/ (直接枚举)
 #0489 https://leetcode.com/problems/robot-room-cleaner/ (miao a~~~) (DFS + 改变方向）(***)
@@ -733,9 +733,11 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0085 https://leetcode.com/problems/maximal-rectangle/ (***)
 #0120 https://leetcode.com/problems/triangle/ (DP 网格图)
 #0152 https://leetcode.com/problems/maximum-product-subarray/ (miao a~~~) (DP 最大子数组) (#0053)
+#0174 https://leetcode.com/problems/dungeon-game/ (miao a~~~) (DP 网格图)
 #0198 https://leetcode.com/problems/house-robber/ (DP / DFS w. Memorization) (打家劫舍)
 #0213 https://leetcode.com/problems/house-robber-ii/ (miao a~~~) (DP 分类讨论) (#0198)
 #0221 https://leetcode.com/problems/maximal-square/ (***)
+#0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (miao a~~~) (Greedy BFS/记忆化搜索/拓扑排序)
 #0377 https://leetcode.com/problems/combination-sum-iv/ (记忆化搜索/DP - 背包)
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
@@ -750,6 +752,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
 #1289 https://leetcode.com/problems/minimum-falling-path-sum-ii/ (miao a~~~) (DP 网格图 + 优化)
+#1301 https://leetcode.com/problems/number-of-paths-with-max-score/ (miao a~~~) (记忆化搜索/DP)
 #1395 https://leetcode.com/problems/count-number-of-teams/
 #1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
 #1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
@@ -764,7 +767,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1900 https://leetcode.com/problems/the-earliest-and-latest-rounds-where-players-compete/
 #1911 https://leetcode.com/problems/maximum-alternating-subsequence-sum/
 #1931 https://leetcode.com/problems/painting-a-grid-with-three-different-colors/
-#1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/
+#1937 https://leetcode.com/problems/maximum-number-of-points-with-cost/ (miao a~~~) (DP 网格图) (优化) (R)
 #1947 https://leetcode.com/problems/maximum-compatibility-score-sum/
 #1981 https://leetcode.com/problems/minimize-the-difference-between-target-and-chosen-elements/
 #1995 https://leetcode.com/problems/count-special-quadruplets/ (Knapsack)
@@ -778,11 +781,14 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2218 https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/
 #2262 https://leetcode.com/problems/total-appeal-of-a-string/
 #2266 https://leetcode.com/problems/count-number-of-texts/ (miao a~~~) (记忆化搜索/DP)
+#2267
 #2304 https://leetcode.com/problems/minimum-path-cost-in-a-grid/ (DP 网格图)
 #2305 https://leetcode.com/problems/fair-distribution-of-cookies/
 #2320 https://leetcode.cn/problems/count-number-of-ways-to-place-houses/ (miao a~~~) (记忆化搜索/DP) (打家劫舍)
 #2321
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
+#2328 https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/ (miao a~~~) (记忆化搜索) (#0329)
+#2435 https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/ (miao a~~~) (DP 网格图)
 #2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
 #2376 https://leetcode.com/problems/count-special-integers/ (Digit DP)
 #2400 https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/
@@ -805,6 +811,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 #3335 https://leetcode.com/problems/total-characters-in-string-after-transformations-i/
+#3363
 #3376 https://leetcode.com/problems/minimum-time-to-break-locks-i/ (miao a~~~) (DP 状态压缩 / 回溯 排列)
 #3381 https://leetcode.com/problems/maximum-subarray-sum-with-length-divisible-by-k/ (miao a~~~) (DP 最大子数组/前缀和) (#0053)
 #3393 https://leetcode.com/problems/count-paths-with-the-given-xor-value/ (DP 网格图)
@@ -814,6 +821,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 #3524 https://leetcode.com/problems/find-x-value-of-array-i/
 #3603 https://leetcode.com/problems/minimum-cost-path-with-alternating-directions-ii/ (DP 网格图)
+#3665 https://leetcode.com/problems/twisted-mirror-path-count/ (miao a~~~) (DP 网格图)
 #3693 https://leetcode.cn/problems/climbing-stairs-ii/ (miao a~~~) (DP)
 #3742 https://leetcode.com/problems/maximum-path-score-in-a-grid/ (miao a~~~) (DP 网格图)
 
