@@ -8,8 +8,47 @@ import java.util.Arrays;
  */
 public class LastStoneWeightII {
 
+    // time O(n * t), space O(t)
+    public int lastStoneWeightII(int[] stones) {
+        // 空间优化版 DP
+        int n = stones.length, sum = 0, target = 0;
+        for (int s : stones) {
+            sum += s;
+        }
+        target = sum / 2;
+        int[] dp = new int[target + 1];
+        Arrays.setAll(dp, i -> i);
+        for (int i = 0; i < n; i++) {
+            for (int t = target; t >= 0; t--) {
+                dp[t] = Math.min(dp[t],
+                        t < stones[i] ? 10000 : dp[t - stones[i]]);
+            }
+        }
+        return sum - 2 * (target - dp[target]);
+    }
+
+    // time O(n * t), space O(n * t)
+    public int lastStoneWeightIIDPWithGrid(int[] stones) {
+        // 把记忆化搜索翻译成 DP
+        int n = stones.length, sum = 0, target = 0;
+        for (int s : stones) {
+            sum += s;
+        }
+        target = sum / 2;
+        int[][] dp = new int[n + 1][target + 1];
+        Arrays.setAll(dp[0], i -> i);
+        for (int i = 0; i < n; i++) {
+            for (int t = target; t >= 0; t--) {
+                dp[i + 1][t] = Math.min(dp[i][t],
+                        t < stones[i] ? 10000 : dp[i][t - stones[i]]);
+            }
+        }
+        return sum - 2 * (target - dp[n][target]);
+    }
+
     // time O(n * t), space O(n * t)
     public int lastStoneWeightIIDFSWithMemorization(int[] stones) {
+        // 记忆化搜索
         int n = stones.length, sum = 0, target = 0;
         for (int s : stones) {
             sum += s;

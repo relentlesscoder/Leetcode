@@ -2,7 +2,7 @@ package org.wshuai.leetcode.dp;
 
 /**
  * Created by Wei on 10/03/2023.
- * #1774 https://leetcode.com/problems/closest-dessert-cost/
+ * #1860 https://leetcode.com/problems/incremental-memory-leak/
  */
 public class IncrementalMemoryLeak {
 
