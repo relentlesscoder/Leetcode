@@ -737,6 +737,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0198 https://leetcode.com/problems/house-robber/ (DP / DFS w. Memorization) (打家劫舍)
 #0213 https://leetcode.com/problems/house-robber-ii/ (miao a~~~) (DP 分类讨论) (#0198)
 #0221 https://leetcode.com/problems/maximal-square/ (***)
+#0279 https://leetcode.com/problems/perfect-squares/ (miao a~~~) (记忆化搜索/DP - 完全背包)
 #0322 https://leetcode.com/problems/coin-change/ (miao a~~~) (记忆化搜索/DP - 完全背包)
 #0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (miao a~~~) (Greedy BFS/记忆化搜索/拓扑排序)
 #0377 https://leetcode.com/problems/combination-sum-iv/ (记忆化搜索/DP - 背包)
@@ -745,6 +746,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0474 https://leetcode.com/problems/ones-and-zeroes/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #0494 https://leetcode.com/problems/target-sum/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
+#0518 https://leetcode.com/problems/coin-change-2/ (miao a~~~) (记忆化搜索/DP - 完全背包)
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
 #0740 https://leetcode.com/problems/delete-and-earn/ (miao a~~~) (DP 打家劫舍)
 #0741 https://leetcode.com/problems/cherry-pickup/ (miao a~~~) (DP 网格图 多状态)
@@ -788,6 +790,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2088 https://leetcode.com/problems/count-fertile-pyramids-in-a-land/
 #2140 https://leetcode.com/problems/solving-questions-with-brainpower/ (miao a~~~) (记忆化搜索/DP) (蛙跳题)
 #2184 https://leetcode.com/problems/number-of-ways-to-build-sturdy-brick-wall/
+#2189 https://leetcode.com/problems/number-of-ways-to-build-house-of-cards/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #2218 https://leetcode.com/problems/maximum-value-of-k-coins-from-piles/
 #2262 https://leetcode.com/problems/total-appeal-of-a-string/
 #2266 https://leetcode.com/problems/count-number-of-texts/ (miao a~~~) (记忆化搜索/DP)
@@ -841,6 +844,8 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 #3524 https://leetcode.com/problems/find-x-value-of-array-i/
 #3603 https://leetcode.com/problems/minimum-cost-path-with-alternating-directions-ii/ (DP 网格图)
+#3610 https://leetcode.com/problems/minimum-number-of-primes-to-sum-to-target/ (miao a~~~) (记忆化搜索/DP - 完全背包 + 埃氏筛)
+#3647 https://leetcode.com/problems/maximum-weight-in-two-bags/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #3665 https://leetcode.com/problems/twisted-mirror-path-count/ (miao a~~~) (DP 网格图)
 #3685 https://leetcode.cn/problems/subsequence-sum-after-capping-elements/ (miao a~~~) (记忆化搜索/DP - 0/1 背包) (R)
 #3693 https://leetcode.cn/problems/climbing-stairs-ii/ (miao a~~~) (DP)
