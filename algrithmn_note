@@ -729,7 +729,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0063 https://leetcode.com/problems/unique-paths-ii/ (DP 网格图)
 #0064 https://leetcode.com/problems/minimum-path-sum/ (DP 网格图)
 #0070 https://leetcode.com/problems/climbing-stairs/ (DP 基础)
-#0072 https://leetcode.com/problems/edit-distance/
+#0072 https://leetcode.com/problems/edit-distance/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #0085 https://leetcode.com/problems/maximal-rectangle/ (***)
 #0120 https://leetcode.com/problems/triangle/ (DP 网格图)
 #0152 https://leetcode.com/problems/maximum-product-subarray/ (miao a~~~) (DP 最大子数组) (#0053)
@@ -747,7 +747,10 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0494 https://leetcode.com/problems/target-sum/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
 #0518 https://leetcode.com/problems/coin-change-2/ (miao a~~~) (记忆化搜索/DP - 完全背包)
+#0583 https://leetcode.com/problems/delete-operation-for-two-strings/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
+#0712 https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
+#0718 https://leetcode.com/problems/maximum-length-of-repeated-subarray/ (miao a~~~) (DP - 同最长公共子序列)
 #0740 https://leetcode.com/problems/delete-and-earn/ (miao a~~~) (DP 打家劫舍)
 #0741 https://leetcode.com/problems/cherry-pickup/ (miao a~~~) (DP 网格图 多状态)
 #0746 https://leetcode.com/problems/min-cost-climbing-stairs/ (DP 基础)
@@ -756,7 +759,9 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0931 https://leetcode.com/problems/minimum-falling-path-sum/ (DP 网格图)
 #0956 https://leetcode.com/problems/tallest-billboard/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #1012 https://leetcode.com/problems/numbers-with-repeated-digits/ (Digit DP)
+#1035 https://leetcode.com/problems/uncrossed-lines/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #1049 https://leetcode.com/problems/last-stone-weight-ii/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
+#1143 https://leetcode.com/problems/longest-common-subsequence/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #1186 https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/ (miao a~~~) (DP 最大子数组/前缀后缀和) (#0053) (R)
 #1191 https://leetcode.com/problems/k-concatenation-maximum-sum/ (miao a~~~) (DP 最大子数组) (#0053)
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
@@ -764,6 +769,8 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1289 https://leetcode.com/problems/minimum-falling-path-sum-ii/ (miao a~~~) (DP 网格图 + 优化)
 #1301 https://leetcode.com/problems/number-of-paths-with-max-score/ (miao a~~~) (记忆化搜索/DP)
 #1395 https://leetcode.com/problems/count-number-of-teams/
+#1449
+#1458 https://leetcode.com/problems/max-dot-product-of-two-subsequences/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #1463 https://leetcode.com/problems/cherry-pickup-ii/ (miao a~~~) (DP 网格图 多状态) (#0741)
 #1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
 #1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
@@ -843,6 +850,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3503 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/
 #3504 https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-ii/
 #3524 https://leetcode.com/problems/find-x-value-of-array-i/
+#3592
 #3603 https://leetcode.com/problems/minimum-cost-path-with-alternating-directions-ii/ (DP 网格图)
 #3610 https://leetcode.com/problems/minimum-number-of-primes-to-sum-to-target/ (miao a~~~) (记忆化搜索/DP - 完全背包 + 埃氏筛)
 #3647 https://leetcode.com/problems/maximum-weight-in-two-bags/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
