@@ -725,7 +725,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 13. Dynamic Programming
 
 #0010 https://leetcode.com/problems/regular-expression-matching/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
-#0044 https://leetcode.com/problems/wildcard-matching/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
+#0044 https://leetcode.com/problems/wildcard-matching/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列) (#0010)
 #0053 https://leetcode.com/problems/maximum-subarray/ (miao a~~~) (子数组前缀和, DP)
 #0062 https://leetcode.com/problems/unique-paths/ (DP 网格图)
 #0063 https://leetcode.com/problems/unique-paths-ii/ (DP 网格图)
@@ -742,6 +742,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0213 https://leetcode.com/problems/house-robber-ii/ (miao a~~~) (DP 分类讨论) (#0198)
 #0221 https://leetcode.com/problems/maximal-square/ (***)
 #0279 https://leetcode.com/problems/perfect-squares/ (miao a~~~) (记忆化搜索/DP - 完全背包)
+#0300 https://leetcode.com/problems/longest-increasing-subsequence/ (miao a~~~) (记忆化搜索/DP/BIT/Binary Search - LCS)
 #0322 https://leetcode.com/problems/coin-change/ (miao a~~~) (记忆化搜索/DP - 完全背包)
 #0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (miao a~~~) (Greedy BFS/记忆化搜索/拓扑排序)
 #0377 https://leetcode.com/problems/combination-sum-iv/ (记忆化搜索/DP - 背包)
@@ -765,6 +766,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1012 https://leetcode.com/problems/numbers-with-repeated-digits/ (Digit DP)
 #1035 https://leetcode.com/problems/uncrossed-lines/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #1049 https://leetcode.com/problems/last-stone-weight-ii/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
+#1092
 #1143 https://leetcode.com/problems/longest-common-subsequence/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #1186 https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/ (miao a~~~) (DP 最大子数组/前缀后缀和) (#0053) (R)
 #1191 https://leetcode.com/problems/k-concatenation-maximum-sum/ (miao a~~~) (DP 最大子数组) (#0053)
@@ -867,6 +869,21 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3693 https://leetcode.cn/problems/climbing-stairs-ii/ (miao a~~~) (DP)
 #3742 https://leetcode.com/problems/maximum-path-score-in-a-grid/ (miao a~~~) (DP 网格图)
 #LCP47
+
+14. Greedy
+#0300 https://leetcode.com/problems/longest-increasing-subsequence/ (miao a~~~) (记忆化搜索/DP/BIT/Binary Search - LCS)
+#0334 https://leetcode.com/problems/increasing-triplet-subsequence/ (miao a~~~) (#0300 - LCS)
+#1353 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/ (并查集)
+#1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/ (miao a~~~) (#0300 - LCS)
+#1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
+#1964 https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/ (miao a~~~) (#0300 - LCS)
+#1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
+#2111 https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/ (miao a~~~) (#0300 - LCS)
+#2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
+#2611 https://leetcode.com/problems/mice-and-cheese/
+#2826 https://leetcode.com/problems/sorting-three-groups/ (miao a~~~) (#0300 - LCS)
+#3397 https://leetcode.com/problems/maximum-number-of-distinct-elements-after-operations/
+#3825 https://leetcode.com/problems/longest-strictly-increasing-subsequence-with-non-zero-bitwise-and/ (miao a~~~) (#0300 - LCS)
 
 14. Difference Array
 
@@ -1689,14 +1706,6 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 
 39. Sorted Set
 #2158 https://leetcode.com/problems/amount-of-new-area-painted-each-day/
-
-40. Greedy
-#1353 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/ (并查集)
-#1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
-#1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
-#2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
-#2611 https://leetcode.com/problems/mice-and-cheese/
-#3397 https://leetcode.com/problems/maximum-number-of-distinct-elements-after-operations/
 
 41. Square Root (Sqrt) Decomposition
 #0307 https://leetcode.com/problems/range-sum-query-mutable/

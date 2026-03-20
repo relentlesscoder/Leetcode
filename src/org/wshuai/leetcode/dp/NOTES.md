@@ -146,3 +146,121 @@ i=4: PRIME_SCORE[4]=1 ≠ 0 → 跳过（4 是合数）
 | 内循环步长 | `j++`（逐个） | `j += i`（跳 i 步） |
 | 内循环起点 | 可优化到 `i*i` | **必须从 `i` 开始** |
 | 能从 `i*i` 起？ | ✓ 不会漏（已被标记） | ✗ 会漏掉 `i*2`~`i*(i-1)` 的质因数 `i` |
+
+---
+
+## Java 求二进制最高位 1 的方法
+
+```java
+int n = 12; // 二进制: 1100
+```
+
+| 方法 | 结果 | 含义 |
+|---|---|---|
+| `Integer.highestOneBit(n)` | `8` | 最高位 1 对应的值（2 的幂） |
+| `31 - Integer.numberOfLeadingZeros(n)` | `3` | 最高位 1 的位置（从第 0 位开始） |
+| `32 - Integer.numberOfLeadingZeros(n)` | `4` | 二进制长度 |
+
+### 应用场景
+
+枚举所有可能的 bit 位（如 #3825）：
+
+```java
+int max = 0;
+for (int x : nums) max = Math.max(max, x);
+int m = 32 - Integer.numberOfLeadingZeros(max); // 二进制长度
+for (int i = 0; i < m; i++) {
+    // 枚举第 i 位为 1 的元素
+    if (((1 << i) & nums[j]) != 0) { ... }
+}
+```
+
+---
+
+## 贪心 + 二分求最长非递减/严格递增子序列（LIS 变体）
+
+### 核心思想
+
+维护一个有序数组 `arr`，`arr[i]` 表示长度为 `i+1` 的子序列的**最小可能结尾值**。对每个新元素用二分查找确定插入位置，要么追加（延长子序列）要么替换（优化尾部值）。
+
+### 严格递增 vs 非递减的区别：二分查找用 lower bound 还是 upper bound？
+
+| 子序列类型 | 二分查找 | 判断条件 | 原因 |
+|---|---|---|---|
+| **严格递增** | lower bound | `arr[mid] < target → low = mid + 1` | 相等不行，必须找到 `>=` 的位置替换 |
+| **非递减** | upper bound | `arr[mid] <= target → low = mid + 1` | 相等可以，找到 `>` 的位置替换 |
+
+### 严格递增示例（#0300, #1964, #3825）
+
+```java
+// lower bound: 找第一个 >= target 的位置
+private int binarySearch(int[] nums, int high, int target) {
+    int low = 0;
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (nums[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    return low;
+}
+```
+
+### 非递减示例（#2826, #2111）
+
+```java
+// upper bound: 找第一个 > target 的位置
+private int binarySearch(int[] nums, int high, int target) {
+    int low = 0;
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+        if (nums[mid] <= target) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    return low;
+}
+```
+
+### 最少修改次数 = n - LIS 长度
+
+当题目问"最少操作使数组有序"时，答案就是 `n - 最长非递减/递增子序列长度`（保留最多已有序的元素，剩下的才需要改）。
+
+相关题目：#0300, #1671, #1964, #2111, #2826, #3825
+
+---
+
+## Java 反转数组的方法
+
+Java 没有内置的原始数组反转方法，最常用的是双指针交换：
+
+```java
+// 双指针原地反转（最快，O(n) 时间，O(1) 空间）
+private void reverse(int[] nums) {
+    for (int i = 0, j = nums.length - 1; i < j; i++, j--) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
+```
+
+| 方法 | 原地 | 速度 | 适用类型 |
+|---|---|---|---|
+| 双指针交换 | 是 | 最快 | `int[]`, `char[]` 等原始数组 |
+| `Collections.reverse` | 是 | 快 | `List<T>` |
+| `IntStream` | 否 | 较慢 | `int[]`（生成新数组） |
+
+### 应用场景
+
+反转数组后求 LIS = 求原数组的最长严格递减子序列（如 #1671 山脉数组）：
+
+```java
+int[] left = lisAtEachPosition(nums);   // 正向 LIS
+reverse(nums);
+int[] right = lisAtEachPosition(nums);  // 反向 LIS = 原数组的最长递减子序列
+```
