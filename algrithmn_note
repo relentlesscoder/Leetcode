@@ -669,6 +669,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0315 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 #0327 https://leetcode.com/problems/count-of-range-sum/ (BIT + merge sort + prefix sum)
 #0493 https://leetcode.com/problems/reverse-pairs/
+#0673 https://leetcode.com/problems/number-of-longest-increasing-subsequence/ (DP/BIT - LIS)
 #0683 https://leetcode.com/problems/k-empty-slots/
 #1395 https://leetcode.com/problems/count-number-of-teams/
 #1409 https://leetcode.com/problems/queries-on-a-permutation-with-key/
@@ -736,15 +737,18 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0097 https://leetcode.com/problems/interleaving-string/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #0115 https://leetcode.com/problems/distinct-subsequences/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #0120 https://leetcode.com/problems/triangle/ (DP 网格图)
+#0132 https://leetcode.com/problems/palindrome-partitioning-ii/ (miao a~~~) (记忆化搜索/DP - 划分)
+#0139 https://leetcode.com/problems/word-break/ (miao a~~~) (记忆化搜索/DP + 反向 Trie - 划分)
 #0152 https://leetcode.com/problems/maximum-product-subarray/ (miao a~~~) (DP 最大子数组) (#0053)
 #0174 https://leetcode.com/problems/dungeon-game/ (miao a~~~) (DP 网格图)
 #0198 https://leetcode.com/problems/house-robber/ (DP / DFS w. Memorization) (打家劫舍)
 #0213 https://leetcode.com/problems/house-robber-ii/ (miao a~~~) (DP 分类讨论) (#0198)
 #0221 https://leetcode.com/problems/maximal-square/ (***)
 #0279 https://leetcode.com/problems/perfect-squares/ (miao a~~~) (记忆化搜索/DP - 完全背包)
-#0300 https://leetcode.com/problems/longest-increasing-subsequence/ (miao a~~~) (记忆化搜索/DP/BIT/Binary Search - LCS)
+#0300 https://leetcode.com/problems/longest-increasing-subsequence/ (miao a~~~) (记忆化搜索/DP/BIT/Binary Search - LIS)
 #0322 https://leetcode.com/problems/coin-change/ (miao a~~~) (记忆化搜索/DP - 完全背包)
 #0329 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/ (miao a~~~) (Greedy BFS/记忆化搜索/拓扑排序)
+#0368
 #0377 https://leetcode.com/problems/combination-sum-iv/ (记忆化搜索/DP - 背包)
 #0410 https://leetcode.com/problems/split-array-largest-sum/ (划分)
 #0416 https://leetcode.com/problems/partition-equal-subset-sum/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
@@ -753,6 +757,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0516 https://leetcode.com/problems/longest-palindromic-subsequence/
 #0518 https://leetcode.com/problems/coin-change-2/ (miao a~~~) (记忆化搜索/DP - 完全背包)
 #0583 https://leetcode.com/problems/delete-operation-for-two-strings/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
+#0673 https://leetcode.com/problems/number-of-longest-increasing-subsequence/ (DP/BIT - LIS)
 #0691 https://leetcode.com/problems/stickers-to-spell-word/
 #0712 https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #0718 https://leetcode.com/problems/maximum-length-of-repeated-subarray/ (miao a~~~) (DP - 同最长公共子序列)
@@ -763,12 +768,14 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #0918 https://leetcode.com/problems/maximum-sum-circular-subarray/ (miao a~~~) (DP 最大子数组) (#0053)
 #0931 https://leetcode.com/problems/minimum-falling-path-sum/ (DP 网格图)
 #0956 https://leetcode.com/problems/tallest-billboard/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
+#0960 https://leetcode.com/problems/delete-columns-to-make-sorted-iii/ (miao a~~~) (记忆化搜索/DP - LIS)
 #1012 https://leetcode.com/problems/numbers-with-repeated-digits/ (Digit DP)
 #1035 https://leetcode.com/problems/uncrossed-lines/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #1049 https://leetcode.com/problems/last-stone-weight-ii/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #1092
 #1143 https://leetcode.com/problems/longest-common-subsequence/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #1186 https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/ (miao a~~~) (DP 最大子数组/前缀后缀和) (#0053) (R)
+#1187 https://leetcode.com/problems/make-array-strictly-increasing/ (miao a~~~) (记忆化搜索/DP/Binary Search - LIS) (R)
 #1191 https://leetcode.com/problems/k-concatenation-maximum-sum/ (miao a~~~) (DP 最大子数组) (#0053)
 #1216 https://leetcode.com/problems/valid-palindrome-iii/
 #1277 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
@@ -781,9 +788,11 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #1524 https://leetcode.com/problems/number-of-sub-arrays-with-odd-sum/ (前缀和 + 奇偶性, DP)
 #1546 https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/ (miao a~~~) (前缀和 + DP + 贪心)
 #1594 https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/ (miao a~~~) (DP 网格图)
-#1626 https://leetcode.com/problems/best-team-with-no-conflicts/
+#1626 https://leetcode.com/problems/best-team-with-no-conflicts/ (miao a~~~) (记忆化搜索/DP/BIT - LIS)
 #1639 https://leetcode.com/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
+#1691
 #1692 https://leetcode.com/problems/count-ways-to-distribute-candies/
+#1713
 #1723 https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/
 #1749 https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/ (miao a~~~) (子数组前缀和, DP)
 #1751 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/
@@ -816,9 +825,10 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #2321
 #2327 https://leetcode.com/problems/number-of-people-aware-of-a-secret/
 #2328 https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/ (miao a~~~) (记忆化搜索) (#0329)
+#2407 https://leetcode.com/problems/longest-increasing-subsequence-ii/ (miao a~~~) (记忆化搜索/DP/Segment Tree - LIS)
 #2431 https://leetcode.com/problems/maximize-total-tastiness-of-purchased-fruits/ (miao a~~~) (记忆化搜索/DP - 0/1 背包)
 #2435 https://leetcode.com/problems/paths-in-matrix-whose-sum-is-divisible-by-k/ (miao a~~~) (DP 网格图)
-#2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/
+#2369 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/ (miao a~~~) (记忆化搜索/DP - 划分)
 #2376 https://leetcode.com/problems/count-special-integers/ (Digit DP)
 #2400 https://leetcode.com/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps/
 #2445 https://leetcode.com/problems/number-of-nodes-with-value-one/ (miao a~~~) (二叉树 + DP)
@@ -845,6 +855,7 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #3201 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-i/
 #3202 https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/
 #3287
+#3288
 #3290 https://leetcode.com/problems/maximum-multiplication-score/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #3316 https://leetcode.com/problems/find-maximum-removals-from-source-string/ (miao a~~~) (记忆化搜索/DP - 同最长公共子序列)
 #3335 https://leetcode.com/problems/total-characters-in-string-after-transformations-i/
@@ -871,19 +882,20 @@ https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-a
 #LCP47
 
 14. Greedy
-#0300 https://leetcode.com/problems/longest-increasing-subsequence/ (miao a~~~) (记忆化搜索/DP/BIT/Binary Search - LCS)
-#0334 https://leetcode.com/problems/increasing-triplet-subsequence/ (miao a~~~) (#0300 - LCS)
+#0300 https://leetcode.com/problems/longest-increasing-subsequence/ (miao a~~~) (记忆化搜索/DP/BIT/Binary Search - LIS)
+#0334 https://leetcode.com/problems/increasing-triplet-subsequence/ (miao a~~~) (#0300 - LIS)
+#0354 https://leetcode.com/problems/russian-doll-envelopes/ (miao a~~~) (#0300 - LIS)
 #1353 https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/ (并查集)
-#1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/ (miao a~~~) (#0300 - LCS)
+#1671 https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/ (miao a~~~) (#0300 - LIS)
 #1793 https://leetcode.com/problems/maximum-score-of-a-good-subarray/ (miao a ~~~)
-#1964 https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/ (miao a~~~) (#0300 - LCS)
+#1964 https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/ (miao a~~~) (#0300 - LIS)
 #1989 https://leetcode.com/problems/maximum-number-of-people-that-can-be-caught-in-tag/ (two pointers + greedy)
-#2111 https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/ (miao a~~~) (#0300 - LCS)
+#2111 https://leetcode.com/problems/minimum-operations-to-make-the-array-k-increasing/ (miao a~~~) (#0300 - LIS)
 #2178 https://leetcode.com/problems/maximum-split-of-positive-even-integers/
 #2611 https://leetcode.com/problems/mice-and-cheese/
-#2826 https://leetcode.com/problems/sorting-three-groups/ (miao a~~~) (#0300 - LCS)
+#2826 https://leetcode.com/problems/sorting-three-groups/ (miao a~~~) (#0300 - LIS)
 #3397 https://leetcode.com/problems/maximum-number-of-distinct-elements-after-operations/
-#3825 https://leetcode.com/problems/longest-strictly-increasing-subsequence-with-non-zero-bitwise-and/ (miao a~~~) (#0300 - LCS)
+#3825 https://leetcode.com/problems/longest-strictly-increasing-subsequence-with-non-zero-bitwise-and/ (miao a~~~) (#0300 - LIS)
 
 14. Difference Array
 
