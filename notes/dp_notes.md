@@ -351,3 +351,254 @@ if (isPalin[j][i]) { ... }  // s[j..i] 是回文？O(1)
 ```
 
 相关题目：#0005, #0131, #0132, #0516, #0647
+
+---
+
+## 划分型 DP 的通用模板
+
+### 核心公式
+
+```
+dfs(i) = min/max over j { dfs(j-1) + cost(j, i) }
+```
+
+枚举最后一段的起点 `j`, 最后一段为 `arr[j..i]`, 递归处理 `arr[0..j-1]`.
+
+### j 的选择决定了复杂度
+
+| j 的范围 | 写法 | 示例 |
+|---|---|---|
+| 固定 1-2 个选择 | 直接 `Math.max/min` | #0091, #0639, #2369, #3196 |
+| for 循环枚举 | `for j = i downto 0` | #0132, #0139, #1043, #1105, #1416, #2547, #2707, #2767, #3144 |
+| for + 数据结构加速 | 线段树/BIT 优化 | #2547 (线段树) |
+
+### 内循环的常见剪枝/限制
+
+- **Trie 匹配**: 路径不存在直接 break (#0139, #2707, #2767)
+- **宽度/长度限制**: 总宽度超限 break (#1043, #1105), 最长单词长度限制 (#0139, #2707)
+- **数值超限**: 数值 > k 时 break (#1416)
+- **贪心**: 找到最短合法段就 break (#2472)
+
+---
+
+## 线段树优化划分型 DP (#2547 详解)
+
+### 问题
+
+将数组划分成若干段, 每段 cost = k + trimmedLength (去掉只出现一次的元素后的长度).
+
+### 第一步: 原始 O(n²) DP
+
+```
+dp[i] = min over j in [1..i] { dp[j-1] + k + (i-j+1) - h(j,i) }
+```
+
+h(j,i) = nums[j-1..i-1] 中只出现一次的元素个数.
+
+### 第二步: 提取常数项, 定义线段树存储内容
+
+```
+dp[i] = k + i + min over j { dp[j-1] - (j-1) - h(j,i) }
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              tree[j] 存的就是这个值
+```
+
+定义 `tree[j] = dp[j-1] - (j-1) - h(j, 当前i)`, 则:
+
+```
+dp[i] = k + i + min(tree[1..i])    ← 线段树区间最小值查询 O(log n)
+```
+
+代码中用 `res = dp[i] - i` 省掉偏移, 最后 `return res + n`.
+
+### 第三步: 增量更新 h 的变化
+
+当加入 `nums[i-1] = v` 时, h(j, i) 相比 h(j, i-1) 的变化:
+
+```
+段起点 j 的位置:
+
+ 0    prevToLast    last              i
+ |--------|----------|----...---------|
+    区域A      区域B         区域C
+```
+
+| 区域 | j 的范围 | v 的 freq 变化 | h 变化 | tree 更新 |
+|---|---|---|---|---|
+| C | [last+1, i] | 0→1 (首次出现) | h+1 | tree-1 |
+| B | [prevToLast+1, last] | 1→2 (不再 distinct) | h-1 | tree+1 |
+| A | [1, prevToLast] | >=2→>=3 (仍不 distinct) | 不变 | 不更新 |
+
+```java
+st.update(last[num] + 1, i, -1);              // 区域C: h+1 → tree-1
+st.update(prevToLast[num] + 1, last[num], 1);  // 区域B: h-1 → tree+1
+```
+
+每步只做 O(1) 次区间更新, 每次 O(log n), 总时间 O(n log n).
+
+---
+
+## Lazy Propagation 线段树: spread 为什么不越界
+
+`spread(node)` 访问 `node*2` 和 `node*2+1`, 两个条件保证不越界:
+
+### 1. spread 只在内部节点调用
+
+```java
+void update(int node, int left, int right, int start, int end, int val) {
+    if (left >= start && right <= end) {
+        apply(node, val);   // 可能是叶子, 但不调 spread
+        return;
+    }
+    spread(node);           // 只有 left < right (内部节点) 才走到这里
+    // ...
+}
+```
+
+`left == right` (叶子) 时, 第一个 `if` 必命中, 直接 return, 不会调 `spread`.
+
+### 2. 数组开得够大
+
+```java
+int size = 2 << (32 - Integer.numberOfLeadingZeros(n));
+//       ≈ 4 * nextPowerOf2(n) >= 4n
+```
+
+线段树最深叶子节点编号 <= 4n, 所以 `node*2+1` 永远在数组范围内.
+
+两个条件缺一不可: 叶子节点调 spread → 子节点无意义; 数组太小 → 有效子节点越界.
+
+---
+
+## LCP (Longest Common Prefix) 数组预计算
+
+### 定义
+
+`lcp[i][j]` = 从位置 `i` 开始的子串和从位置 `j` 开始的子串的最长公共前缀长度.
+
+### 预计算代码
+
+```java
+int[][] lcp = new int[n + 1][n + 1];
+for (int i = n - 1; i >= 0; i--) {
+    for (int j = n - 1; j > i; j--) {
+        if (s[i] == s[j]) {
+            lcp[i][j] = lcp[i + 1][j + 1] + 1;
+        }
+    }
+}
+```
+
+从右下角往左上角填表, 因为 `lcp[i][j]` 依赖 `lcp[i+1][j+1]` (右下方的格子).
+
+### 典型用法: 判断两个子串是否相等
+
+判断 `s[i..i+len-1] == s[j..j+len-1]`:
+
+```java
+if (lcp[i][j] >= len) {
+    // s[i..i+len-1] 和 s[j..j+len-1] 完全相同
+}
+```
+
+**注意用 `>=` 而不是 `==`**: `lcp[i][j]` 是**最长**公共前缀, 可能比 `len` 更长. 我们只需要前 `len` 个字符匹配, 后面多匹配的不关心. 用 `==` 会错误地要求第 `len+1` 个字符必须不同.
+
+```
+示例: s = "aaaa", i = 0, j = 1, len = 1
+
+s[0..] = "aaaa"
+s[1..] = "aaa"
+lcp[0][1] = 3 (公共前缀 "aaa")
+
+>= 1 → 3 >= 1 ✓ 前 1 个字符相同, 可以操作
+== 1 → 3 == 1 ✗ 错误地认为不匹配
+```
+
+### 与 O(n²) 子串比较的对比
+
+| 方法 | 预处理 | 每次比较 |
+|---|---|---|
+| 直接比较 `s.substring` | 无 | O(n) |
+| LCP 数组 | O(n²) | O(1) |
+
+当需要多次判断子串相等时, LCP 预处理后每次 O(1) 查表, 避免重复比较.
+
+相关题目: #2430
+
+---
+
+## Rolling Hash (滚动哈希)
+
+### 原理
+
+把字符串当成 BASE 进制的数, 用取模避免溢出.
+
+```
+字符串 "abc" 的哈希值 = a * BASE² + b * BASE¹ + c * BASE⁰
+类似十进制: 123 = 1*100 + 2*10 + 3*1
+```
+
+### 前缀哈希预计算
+
+```java
+long MOD = (1L << 61) - 1, BASE = 131;
+long[] hash = new long[n + 1], pow = new long[n + 1];
+pow[0] = 1;
+for (int i = 0; i < n; i++) {
+    hash[i + 1] = (hash[i] * BASE + s[i]) % MOD;
+    pow[i + 1] = pow[i] * BASE % MOD;
+}
+```
+
+### O(1) 提取子串哈希
+
+类似前缀和相减, 但要乘以 BASE 的幂来对齐位数:
+
+```
+hash("abc") = a*BASE² + b*BASE + c
+hash("a")   = a
+
+hash("bc") = hash("abc") - hash("a") * BASE²
+           = (a*BASE² + b*BASE + c) - a*BASE²
+           = b*BASE + c  ✓
+```
+
+```java
+// 获取 s[l..r] 的哈希值
+private long getHash(long[] hash, long[] pow, int l, int r, long MOD) {
+    return (hash[r + 1] - hash[l] * pow[r - l + 1] % MOD + MOD) % MOD;
+    //      ^^^^^^^^^^    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    //      前缀hash[0..r]  减去前缀hash[0..l-1] 左移对齐
+    //                                                ^^^
+    //                                          +MOD 防止减法变负数
+}
+```
+
+### 判断子串相等
+
+```java
+// O(1) 判断 s[i..i+len-1] == s[j..j+len-1]
+if (getHash(hash, pow, i, i + len - 1, MOD)
+    == getHash(hash, pow, j, j + len - 1, MOD)) {
+    // 两个子串相同 (极小概率哈希冲突)
+}
+```
+
+### 为什么选 MOD = 2⁶¹ - 1?
+
+这是一个梅森素数, 两个好处:
+1. **足够大** — 冲突概率 ≈ 1/2⁶¹, 极小
+2. **取模快** — 梅森素数的取模可以用位运算优化
+
+### Rolling Hash vs LCP 数组
+
+| | LCP 数组 | Rolling Hash |
+|---|---|---|
+| 预处理 | O(n²) 时间, O(n²) 空间 | O(n) 时间, O(n) 空间 |
+| 判断子串相等 | O(1) 查表 | O(1) 哈希比较 |
+| 正确性 | 100% 正确 | 极小概率哈希冲突 |
+| 消除冲突 | - | 用双哈希 (两组 BASE/MOD) |
+
+当空间敏感时优先用 Rolling Hash; 当正确性要求严格时用 LCP 数组.
+
+相关题目: #2430
